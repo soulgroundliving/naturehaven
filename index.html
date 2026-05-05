@@ -1,319 +1,442 @@
 <!DOCTYPE html>
-<html lang="th" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0f766e">
-
-  <title>Nature Haven · ทางสายกลาง · อยู่ดีในที่ที่ใช่</title>
-  <meta name="description" content="Nature Haven — ที่อยู่อาศัยที่ออกแบบเพื่อชีวิตเรียบง่าย ชุมชนที่เคียงข้างคุณ ดำเนินการโดย The Green Haven Co., Ltd.">
-
-  <!-- Open Graph / social cards -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://naturehaven-living.vercel.app/">
-  <meta property="og:title" content="Nature Haven · ทางสายกลาง">
-  <meta property="og:description" content="ที่อยู่อาศัยที่ออกแบบเพื่อชีวิตเรียบง่าย ชุมชนที่เคียงข้างคุณ">
-  <meta property="og:locale" content="th_TH">
-  <meta property="og:site_name" content="Nature Haven">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Nature Haven · ทางสายกลาง">
-  <meta name="twitter:description" content="ที่อยู่อาศัยที่ออกแบบเพื่อชีวิตเรียบง่าย">
-
-  <link rel="canonical" href="https://naturehaven-living.vercel.app/">
-
-  <!-- Fonts (preconnect first to shave RTT) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- Styles (brand tokens first, then page styles) -->
-  <link rel="stylesheet" href="/styles/brand.css">
-  <link rel="stylesheet" href="/styles/landing.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nature Haven — Quiet Living in Saimai</title>
+<link rel="stylesheet" href="site.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-  <a href="#main" class="skip-link">ข้ามไปยังเนื้อหา</a>
 
-  <header class="site-header" role="banner">
-    <nav class="nav" aria-label="เมนูหลัก">
-      <a href="/" class="brand" aria-label="Nature Haven · กลับหน้าแรก">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"></circle>
-            <path d="M5 14 L9 10 L13 13 L19 7"></path>
-          </svg>
-        </span>
-        <span class="brand-name">
-          <span class="brand-name-th">Nature Haven</span>
-          <span class="brand-name-sub">ทางสายกลาง</span>
-        </span>
+<!-- ====== NAV ====== -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav-brand" style="border:0;">
+    <span class="wordmark">NATURE HAVEN</span>
+    <span class="sub">SAIMAI</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#top" class="is-active">Home</a>
+    <a href="#residences">Residences</a>
+    <a href="#facilities">Facilities</a>
+    <a href="#location">Location</a>
+    <a href="#about">About</a>
+  </nav>
+  <a href="https://lin.ee/Z0ujovB6" target="_blank" rel="noopener" class="nav-cta">
+    <i data-lucide="message-circle"></i>
+    Reserve via LINE
+  </a>
+</header>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="top">
+  <div class="hero-text reveal">
+    <div class="hero-eyebrow">Nature Haven · Saimai</div>
+    <h1 class="hero-title">Live <span class="quiet">quietly.</span><br/>Live well.</h1>
+    <p class="hero-sub">A residence shaped by intention — where life gently returns to its natural rhythm. MUJI-inspired private living for those who prefer less, but better.</p>
+    <div class="hero-meta">
+      <span><span class="dot"></span>20 Units</span>
+      <span><span class="dot"></span>Low-rise</span>
+      <span><span class="dot"></span>August 2026</span>
+    </div>
+    <div class="hero-actions">
+      <a href="https://lin.ee/Z0ujovB6" target="_blank" rel="noopener" class="btn btn-line">
+        <i data-lucide="message-circle"></i>
+        Reserve via LINE
       </a>
+      <a href="#residences" class="btn btn-ghost">
+        View Residences
+        <i data-lucide="arrow-down-right"></i>
+      </a>
+    </div>
+  </div>
+  <div class="hero-image reveal">
+    <div class="ph ph-hero"></div>
+    <div class="badge">
+      <span class="num">31.5</span>
+      <span>sq.m. · 1 bedroom · 1 bathroom</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <span class="line"></span>
+  </div>
+</section>
 
-      <ul class="nav-links" role="list">
-        <li><a href="#about">ปรัชญา</a></li>
-        <li><a href="#amenities">สิ่งอำนวยความสะดวก</a></li>
-        <li><a href="#voices">เสียงลูกบ้าน</a></li>
-        <li><a href="#contact">ติดต่อ</a></li>
+<!-- ====== PHILOSOPHY / ABOUT ====== -->
+<section class="section section--tone" id="about">
+  <div class="section-grid philosophy">
+    <div class="phil-col reveal">
+      <div class="eyebrow">Our Philosophy</div>
+      <h2 class="section-title">A different<br/>kind of living.</h2>
+      <p style="margin-top:32px;">True comfort is not created by excess — but by space, silence, and intention.</p>
+      <p>At Nature Haven, every detail exists for a reason. So your days can begin softly, and unfold without effort.</p>
+      <p style="margin-top:32px; color: var(--moss-deep); font-style: italic; font-family: var(--font-display); font-size: 18px;">Crafted for those who prefer less — but better.</p>
+    </div>
+    <div class="phil-col reveal">
+      <div class="eyebrow">About Nest</div>
+      <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 26px; margin-top: 24px; line-height: 1.3;">A newly built private residence inspired by MUJI minimal living.</h3>
+      <ul class="phil-list">
+        <li>
+          <span class="icon-wrap"><i data-lucide="building-2"></i></span>
+          <span class="label">20-unit low-rise residence</span>
+        </li>
+        <li>
+          <span class="icon-wrap"><i data-lucide="shield-check"></i></span>
+          <span class="label">Designed for privacy and calm</span>
+        </li>
+        <li>
+          <span class="icon-wrap"><i data-lucide="map-pin"></i></span>
+          <span class="label">Located near Sai Mai Road</span>
+        </li>
+        <li>
+          <span class="icon-wrap"><i data-lucide="leaf"></i></span>
+          <span class="label">Pocket garden &amp; pet-friendly options</span>
+        </li>
       </ul>
-
-      <a class="btn btn-ghost btn-sm nav-cta" href="https://the-green-haven.vercel.app/login">
-        เข้าระบบ
-      </a>
-    </nav>
-  </header>
-
-  <main id="main">
-    <!-- ─── Hero ─────────────────────────────────────────── -->
-    <section class="hero" aria-labelledby="hero-heading">
-      <div class="hero-inner">
-        <p class="eyebrow">ทางสายกลาง · Quiet Living</p>
-        <h1 id="hero-heading" class="hero-heading">
-          อยู่ดี<br>
-          ในที่ที่ใช่
-        </h1>
-        <p class="hero-lede">
-          Nature Haven คือที่อยู่อาศัยที่ออกแบบเพื่อชีวิตเรียบง่าย —
-          ห้องที่ดูแลเรา ชุมชนที่เคียงข้างคุณ
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="https://the-green-haven.vercel.app/booking">
-            สนใจอยู่อาศัย
-            <span class="btn-arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="btn btn-ghost" href="https://the-green-haven.vercel.app/login">
-            ลูกบ้านปัจจุบัน
-          </a>
-        </div>
+    </div>
+    <div class="phil-image reveal">
+      <div class="ph ph-nest"></div>
+      <div class="nest-mark">
+        <div class="name">nest</div>
+        <div class="sub">NATURE HAVEN</div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <figure class="hero-visual" aria-hidden="true">
-        <svg viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="skyWash" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#f2f7f5"/>
-              <stop offset="100%" stop-color="#ecfdf5"/>
-            </linearGradient>
-          </defs>
-          <rect width="600" height="460" fill="url(#skyWash)"/>
-          <circle cx="430" cy="140" r="58" fill="#ffffff" opacity="0.65"/>
-          <circle cx="430" cy="140" r="58" fill="none" stroke="#0f766e" stroke-width="1" opacity="0.35"/>
-          <path d="M0,330 L120,210 L220,290 L320,180 L430,260 L520,220 L600,250 L600,460 L0,460 Z"
-                fill="#0f766e" opacity="0.08"/>
-          <path d="M0,360 L100,300 L200,340 L320,280 L440,320 L540,290 L600,310 L600,460 L0,460 Z"
-                fill="#0d5c4e" opacity="0.10"/>
-          <line x1="0" y1="395" x2="600" y2="395" stroke="#0d5c4e" stroke-width="0.5" opacity="0.25"/>
-          <g stroke="#0d5c4e" stroke-width="1.2" fill="none" opacity="0.45" stroke-linecap="round">
-            <path d="M150,395 L150,355 M138,372 L150,360 L162,372 M144,388 L150,378 L156,388"/>
-            <path d="M180,395 L180,365 M170,378 L180,370 L190,378 M175,390 L180,382 L185,390"/>
-            <path d="M470,395 L470,360 M458,375 L470,365 L482,375 M464,388 L470,380 L476,388"/>
-          </g>
-        </svg>
-      </figure>
-    </section>
-
-    <!-- ─── About / Philosophy ──────────────────────────── -->
-    <section class="section about" id="about" aria-labelledby="about-heading">
-      <div class="container container-narrow">
-        <p class="eyebrow">ปรัชญาของเรา</p>
-        <h2 id="about-heading" class="section-heading">
-          ที่อยู่อาศัย<br>
-          ไม่ใช่แค่ห้องนอน
-        </h2>
-
-        <div class="prose">
-          <p>
-            เราเชื่อว่า "บ้าน" คือที่ที่ทำให้ชีวิตเรียบง่ายลง ไม่ใช่ซับซ้อนขึ้น —
-            ที่ที่กลับมาแล้วได้พัก ไม่ใช่กลับมาแล้วเหนื่อยกว่าเดิม
-          </p>
-          <p>
-            ทุกตารางเมตรของ Nature Haven ถูกออกแบบเพื่อตัดสิ่งที่ไม่จำเป็นออก
-            เหลือไว้แต่สิ่งที่ทำให้คุณภาพชีวิตดีขึ้นจริงๆ
-          </p>
-          <p>
-            <strong>ทางสายกลาง</strong> — ไม่หรูเกินจน ไม่ขาดเหลือเกินจำเป็น
-            พอดีกับชีวิตที่อยากให้เป็น
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── Amenities ───────────────────────────────────── -->
-    <section class="section amenities" id="amenities" aria-labelledby="amenities-heading">
-      <div class="container">
-        <header class="section-header">
-          <p class="eyebrow">สิ่งอำนวยความสะดวก</p>
-          <h2 id="amenities-heading" class="section-heading">
-            ครบสำหรับการอยู่อาศัย
-          </h2>
-        </header>
-
-        <ul class="amenities-grid" role="list">
-          <li class="amenity-card">
-            <span class="amenity-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
-                <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
-                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
-                <line x1="12" y1="20" x2="12.01" y2="20"></line>
-              </svg>
-            </span>
-            <h3 class="amenity-title">Wi-Fi ครอบคลุม</h3>
-            <p class="amenity-text">อินเทอร์เน็ตความเร็วสูง ทุกห้อง ทุกพื้นที่ส่วนกลาง</p>
+<!-- ====== DESIGNED FOR EVERYDAY LIVING ====== -->
+<section class="section" id="residences">
+  <div class="section-grid">
+    <div class="living">
+      <div class="reveal">
+        <div class="eyebrow">Designed for Everyday Living</div>
+        <h2 class="section-title" style="font-size: clamp(28px, 3.2vw, 48px);">Spaces that<br/>support your<br/>rhythm.</h2>
+        <p style="margin-top:24px; font-size: 15px; color: var(--ink-2); line-height: 1.7;">Morning light, quiet evenings, and everything in between — held by a layout that knows exactly what is enough.</p>
+        <ul class="living-stats">
+          <li>
+            <i data-lucide="square" class="ico"></i>
+            <span class="val">31.5</span>
+            <span class="key">sq.m. total area</span>
           </li>
-
-          <li class="amenity-card">
-            <span class="amenity-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="11" width="18" height="10" rx="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-              </svg>
-            </span>
-            <h3 class="amenity-title">ที่จอดรถส่วนตัว</h3>
-            <p class="amenity-text">ที่จอดรถประจำห้อง ระบบกล้องวงจรปิด 24 ชั่วโมง</p>
+          <li>
+            <i data-lucide="bed" class="ico"></i>
+            <span class="val">1</span>
+            <span class="key">Bedroom · 1 Bathroom</span>
           </li>
-
-          <li class="amenity-card">
-            <span class="amenity-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2l1.5 4.5h4.5l-3.6 2.6 1.4 4.5-3.8-2.8-3.8 2.8 1.4-4.5L5 6.5h4.5L12 2z"></path>
-                <path d="M5 21h14"></path>
-                <path d="M7 17h10"></path>
-              </svg>
-            </span>
-            <h3 class="amenity-title">ทำความสะอาดส่วนกลาง</h3>
-            <p class="amenity-text">ดูแลพื้นที่ส่วนกลางทุกวัน ห้องน้ำส่วนกลางสะอาดเสมอ</p>
-          </li>
-
-          <li class="amenity-card">
-            <span class="amenity-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
-            </span>
-            <h3 class="amenity-title">ระบบรักษาความปลอดภัย</h3>
-            <p class="amenity-text">คีย์การ์ด ประตูส่วนกลาง CCTV ทุกชั้น เจ้าหน้าที่ประจำ</p>
-          </li>
-
-          <li class="amenity-card">
-            <span class="amenity-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
-            </span>
-            <h3 class="amenity-title">ชุมชนที่อบอุ่น</h3>
-            <p class="amenity-text">กิจกรรมประจำเดือน เพื่อนบ้านที่ทักทายกัน</p>
-          </li>
-
-          <li class="amenity-card">
-            <span class="amenity-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="8" r="6"></circle>
-                <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path>
-              </svg>
-            </span>
-            <h3 class="amenity-title">รางวัลลูกบ้านดี</h3>
-            <p class="amenity-text">สะสมแต้มจ่ายตรงเวลา ดูแลห้องดี แลกของรางวัลได้</p>
+          <li>
+            <i data-lucide="utensils" class="ico"></i>
+            <span class="val">—</span>
+            <span class="key">Separate kitchen with balcony</span>
           </li>
         </ul>
       </div>
-    </section>
-
-    <!-- ─── Testimonial ─────────────────────────────────── -->
-    <section class="section voices" id="voices" aria-labelledby="voices-heading">
-      <div class="container container-narrow">
-        <h2 id="voices-heading" class="sr-only">เสียงจากลูกบ้าน</h2>
-        <figure class="quote-card">
-          <blockquote class="quote">
-            <p>
-              อยู่ที่นี่แล้วรู้สึกว่าชีวิตช้าลง ไม่ใช่เพราะเงียบเหงา
-              แต่เพราะไม่มีอะไรต้องวุ่นวาย — ทุกอย่างเรียบง่ายในแบบที่ควรจะเป็น
-            </p>
-          </blockquote>
-          <figcaption class="quote-attribution">
-            <span class="quote-name">— ลูกบ้านปีที่ 2</span>
-          </figcaption>
-        </figure>
+      <div class="living-image reveal">
+        <div class="ph ph-room"></div>
       </div>
-    </section>
-
-    <!-- ─── Final CTA ───────────────────────────────────── -->
-    <section class="section cta" aria-labelledby="cta-heading">
-      <div class="container">
-        <header class="section-header section-header-center">
-          <p class="eyebrow">เริ่มต้นกับเรา</p>
-          <h2 id="cta-heading" class="section-heading">
-            พร้อมเป็นส่วนหนึ่งของชุมชนเรา
-          </h2>
-        </header>
-
-        <div class="cta-paths">
-          <article class="cta-card">
-            <p class="cta-card-eyebrow">ลูกบ้านปัจจุบัน</p>
-            <h3 class="cta-card-heading">เข้าระบบจัดการ</h3>
-            <p class="cta-card-text">
-              ดูบิล อัปโหลดสลิป จองบริการ อ่านประกาศชุมชน
-              และสะสมแต้มลูกบ้านดี
-            </p>
-            <a class="btn btn-primary btn-block" href="https://the-green-haven.vercel.app/login">
-              เข้าระบบลูกบ้าน
-              <span class="btn-arrow" aria-hidden="true">→</span>
-            </a>
-          </article>
-
-          <article class="cta-card cta-card-accent">
-            <p class="cta-card-eyebrow">สนใจอยู่อาศัย</p>
-            <h3 class="cta-card-heading">นัดเข้าชมห้อง</h3>
-            <p class="cta-card-text">
-              จองเข้าชมห้องผ่านระบบ ดูราคา ดูแผนผัง
-              และจองห้องที่ใช่กับชีวิตคุณ
-            </p>
-            <a class="btn btn-primary btn-block" href="https://the-green-haven.vercel.app/booking">
-              จองเข้าชมห้อง
-              <span class="btn-arrow" aria-hidden="true">→</span>
-            </a>
-          </article>
-        </div>
+      <div class="reveal">
+        <div class="eyebrow">Thoughtfully Equipped</div>
+        <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 28px; margin-top: 24px; line-height: 1.25;">Every piece is selected for how it is actually used.</h3>
+        <p style="margin-top: 24px; font-size: 15px; color: var(--ink-2); line-height: 1.75;">A comfortable 5 ft bed. A proper workspace. Built-in storage that keeps life simple. Details that quietly support your day.</p>
       </div>
-    </section>
-  </main>
-
-  <!-- ─── Footer ────────────────────────────────────────── -->
-  <footer class="site-footer" id="contact" role="contentinfo">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <p class="footer-brand-name">The Green Haven Co., Ltd.</p>
-          <p class="footer-brand-text">
-            ผู้ดำเนินการที่อยู่อาศัย Nature Haven<br>
-            ทางสายกลาง · Quiet living since 2020
-          </p>
-        </div>
-
-        <div>
-          <h3 class="footer-heading">ติดต่อ</h3>
-          <ul class="footer-links" role="list">
-            <li>LINE Official: <a href="#" rel="noopener">@naturehaven</a></li>
-            <li>โทร: 0X-XXX-XXXX</li>
-            <li>อีเมล: hello@naturehaven.co.th</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="footer-heading">บริการ</h3>
-          <ul class="footer-links" role="list">
-            <li><a href="https://the-green-haven.vercel.app/login">ระบบลูกบ้าน</a></li>
-            <li><a href="https://the-green-haven.vercel.app/booking">จองเข้าชมห้อง</a></li>
-            <li><a href="#about">เกี่ยวกับเรา</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <p class="footer-copyright">
-        © 2026 The Green Haven Co., Ltd. · ทุกสิทธิ์สงวน
-      </p>
     </div>
-  </footer>
+
+    <div class="essentials reveal">
+      <div class="essential"><i data-lucide="bed-double"></i><span class="label">5 ft bed with ergonomic mattress</span></div>
+      <div class="essential"><i data-lucide="laptop"></i><span class="label">Work desk</span></div>
+      <div class="essential"><i data-lucide="archive"></i><span class="label">Built-in wardrobe &amp; storage</span></div>
+      <div class="essential"><i data-lucide="wind"></i><span class="label">Air conditioner</span></div>
+      <div class="essential"><i data-lucide="refrigerator"></i><span class="label">Refrigerator &amp; microwave</span></div>
+      <div class="essential"><i data-lucide="droplet"></i><span class="label">Water heater</span></div>
+      <div class="essential"><i data-lucide="moon"></i><span class="label">Full blackout curtains</span></div>
+      <div class="essential"><i data-lucide="fan"></i><span class="label">Air ventilation system</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== QUIETLY CONNECTED ====== -->
+<section class="section section--tone" id="facilities">
+  <div class="section-grid connected">
+    <div class="reveal">
+      <div class="eyebrow">Quietly Connected</div>
+      <h2 class="section-title" style="font-size: clamp(32px, 3.6vw, 56px);">Managed simply,<br/>through one<br/>application.</h2>
+      <p style="margin-top: 24px; max-width: 420px; font-size: 15px; color: var(--ink-2); line-height: 1.75;">Smart Living gathers everything you might ever need — bookings, payments, maintenance, even the air around you — into a single quiet surface.</p>
+      <div class="feature-grid">
+        <div class="feature"><span class="ico-sq"><i data-lucide="key-round"></i></span><span class="lab">Digital door lock</span><span class="sub">Unit &amp; building</span></div>
+        <div class="feature"><span class="ico-sq"><i data-lucide="cctv"></i></span><span class="lab">CCTV security</span><span class="sub">24/7 monitoring</span></div>
+        <div class="feature"><span class="ico-sq"><i data-lucide="car"></i></span><span class="lab">Parking</span><span class="sub">1 space per unit</span></div>
+        <div class="feature"><span class="ico-sq"><i data-lucide="trees"></i></span><span class="lab">Pocket garden</span><span class="sub">Communal &amp; quiet</span></div>
+        <div class="feature"><span class="ico-sq"><i data-lucide="washing-machine"></i></span><span class="lab">Laundry &amp; drying</span><span class="sub">On-site facility</span></div>
+        <div class="feature"><span class="ico-sq"><i data-lucide="wifi"></i></span><span class="lab">Free Wi-Fi</span><span class="sub">AIS Fiber</span></div>
+        <div class="feature"><span class="ico-sq"><i data-lucide="sparkles"></i></span><span class="lab">Cleaning service</span><span class="sub">Every 6 months</span></div>
+        <div class="feature"><span class="ico-sq"><i data-lucide="air-vent"></i></span><span class="lab">A/C cleaning</span><span class="sub">Yearly</span></div>
+      </div>
+    </div>
+
+    <div class="reveal" style="display:flex; justify-content:center;">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="phone-screen">
+          <div class="phone-status"><span>9:41</span><span>● ● ●</span></div>
+          <div class="phone-head">
+            <div class="greet">
+              <span class="tn">NATURE HAVEN</span>
+              Good morning.
+            </div>
+            <div class="av"></div>
+          </div>
+          <div class="phone-search"><i data-lucide="search"></i><span>Search the residence…</span></div>
+          <div class="phone-tiles">
+            <div class="phone-tile accent"><i data-lucide="calendar-check"></i><div><div class="t">Booking</div><div class="s">Common spaces</div></div></div>
+            <div class="phone-tile"><i data-lucide="receipt"></i><div><div class="t">Payments</div><div class="s">Auto · LINE Pay</div></div></div>
+            <div class="phone-tile"><i data-lucide="key-round"></i><div><div class="t">My Door</div><div class="s">Open · Lock</div></div></div>
+            <div class="phone-tile"><i data-lucide="wrench"></i><div><div class="t">Maintenance</div><div class="s">Request anytime</div></div></div>
+            <div class="phone-tile"><i data-lucide="paw-print"></i><div><div class="t">Pet</div><div class="s">Vaccinations</div></div></div>
+            <div class="phone-tile"><i data-lucide="leaf"></i><div><div class="t">Air Quality</div><div class="s">PM2.5 · 18</div></div></div>
+          </div>
+          <div class="phone-bar">
+            <i data-lucide="home" class="on"></i>
+            <i data-lucide="calendar"></i>
+            <i data-lucide="message-circle"></i>
+            <i data-lucide="user"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="eyebrow">Sustainable by Intention</div>
+      <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 32px; margin-top: 24px; line-height: 1.2;">Built to last —<br/>not to impress.</h3>
+      <ul class="sustain-list">
+        <li>
+          <span class="num">01</span>
+          <div class="body">
+            <h4>Solar energy integration</h4>
+            <p>Rooftop solar offsets common-area power, reducing the building's footprint year-round.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <div class="body">
+            <h4>Energy-conscious design</h4>
+            <p>Cross-ventilation, blackout curtains and inverter cooling — designed to use less from day one.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <div class="body">
+            <h4>Long-term material durability</h4>
+            <p>Selected for how they age — quietly, without losing their character.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ====== LOCATION ====== -->
+<section class="section" id="location">
+  <div class="section-grid">
+    <div class="location-head">
+      <div class="reveal">
+        <div class="eyebrow">Effortlessly Connected</div>
+        <h2 class="section-title">Set in a peaceful<br/>neighborhood —<br/>yet moments away<br/>from what matters.</h2>
+      </div>
+      <p class="reveal" style="font-size: 16px; line-height: 1.8; color: var(--ink-2); padding-bottom: 12px;">Quiet streets, mature trees, a pocket of Saimai that still moves at a walking pace — with the city's essentials a few minutes from your door.</p>
+    </div>
+
+    <div class="location-grid">
+      <div class="loc-card loc-1 reveal">
+        <div class="ph ph-market"></div>
+        <div class="pin"><div class="name">Wongsakorn Market</div><div class="dist">700 m · 9 min walk</div></div>
+      </div>
+      <div class="loc-card loc-2 reveal">
+        <div class="ph ph-cafe"></div>
+        <div class="pin"><div class="name">Big C</div><div class="dist">280 m · 4 min walk</div></div>
+      </div>
+      <div class="loc-card loc-3 reveal">
+        <div class="ph ph-hospital"></div>
+        <div class="pin"><div class="name">CGH Sai Mai Hospital</div><div class="dist">300 m</div></div>
+      </div>
+      <div class="loc-card loc-4 reveal">
+        <div class="ph ph-mall"></div>
+        <div class="pin"><div class="name">Makro Sai Mai</div><div class="dist">750 m</div></div>
+      </div>
+      <div class="loc-card loc-5 reveal">
+        <div class="ph ph-bts"></div>
+        <div class="pin"><div class="name">BTS Khu Khot</div><div class="dist">5 km · 12 min drive</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== PRICING / FIT ====== -->
+<section class="section section--tone">
+  <div class="section-grid pricing">
+    <div class="reveal">
+      <div class="eyebrow">Simple, Transparent Living</div>
+      <h2 class="section-title" style="font-size: clamp(32px, 3.6vw, 52px);">All-inclusive.<br/>No hidden lines.</h2>
+      <p style="margin-top: 22px; max-width: 460px; font-size: 15px; color: var(--ink-2); line-height: 1.75;">A single monthly figure covers common-area maintenance and on-site services. Reserve at the opening rate while units last.</p>
+      <div class="price-cards">
+        <div class="price-card">
+          <i data-lucide="users" class="ic"></i>
+          <h4>Standard Units</h4>
+          <div class="open">
+            <div class="label">Opening Rate</div>
+            <div><span class="price">5,800</span><span class="unit">THB / month</span></div>
+          </div>
+          <div class="reg">
+            <div class="label">Regular</div>
+            <div><span class="price">6,000</span><span class="unit">THB / month</span></div>
+          </div>
+        </div>
+        <div class="price-card featured">
+          <i data-lucide="paw-print" class="ic"></i>
+          <h4>Pet-Friendly Units</h4>
+          <div class="open">
+            <div class="label">Opening Rate</div>
+            <div><span class="price">6,200</span><span class="unit">THB / month</span></div>
+          </div>
+          <div class="reg">
+            <div class="label">Regular</div>
+            <div><span class="price">6,500</span><span class="unit">THB / month</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pricing-foot">All-inclusive of common area &amp; services · Availability begins August 2026</div>
+    </div>
+
+    <div class="fit reveal">
+      <div class="eyebrow">This might be for you</div>
+      <h3 style="font-family: var(--font-display); font-weight: 300; font-size: 32px; margin-top: 24px; line-height: 1.25;">If you live softly, this is your kind of place.</h3>
+      <ul class="fit-list">
+        <li>
+          <i data-lucide="user" class="ic"></i>
+          <div class="body"><h5>Solo or as a couple</h5><p>Two residents per unit. The space holds your routines without crowding them.</p></div>
+        </li>
+        <li>
+          <i data-lucide="volume-1" class="ic"></i>
+          <div class="body"><h5>You value calm over noise</h5><p>Low-rise, low-density. Hallways stay quiet by design.</p></div>
+        </li>
+        <li>
+          <i data-lucide="armchair" class="ic"></i>
+          <div class="body"><h5>You prefer thoughtful spaces</h5><p>Less stuff, better choices — built-ins that breathe.</p></div>
+        </li>
+        <li>
+          <i data-lucide="paw-print" class="ic"></i>
+          <div class="body"><h5>You have small pets</h5><p>1–2 small companions welcome in pet-friendly units.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FINAL CTA ====== -->
+<section class="final" id="contact">
+  <div class="final-image reveal">
+    <div class="ph ph-gate"></div>
+    <div class="nest-overlay">
+      <div class="name">nest</div>
+      <div class="sub">NATURE HAVEN</div>
+    </div>
+  </div>
+  <div class="final-text reveal">
+    <div class="eyebrow">Reserve quietly</div>
+    <p class="quote" style="margin-top: 24px;">Nature Haven<br/>may not be for everyone.<br/>But for those who understand —<br/><em>it feels just right.</em></p>
+    <div class="meta">
+      <div><div class="k">Availability</div><div class="v">August 2026</div></div>
+      <div><div class="k">Units</div><div class="v">20 · low-rise</div></div>
+      <div><div class="k">Reservation</div><div class="v">via LINE only</div></div>
+    </div>
+    <div class="final-cta">
+      <a href="https://lin.ee/Z0ujovB6" target="_blank" rel="noopener" class="btn btn-line">
+        <i data-lucide="message-circle"></i>
+        Contact via LINE
+      </a>
+      <span class="final-cta-note">สามารถจองผ่านไลน์ได้เลย · https://lin.ee/Z0ujovB6</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="foot">
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="word">nest</div>
+      <div class="sub">NATURE HAVEN · SAIMAI</div>
+      <p class="desc">A residence shaped by intention — where life gently returns to its natural rhythm.</p>
+    </div>
+    <div>
+      <h5>Visit</h5>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#residences">Residences</a></li>
+        <li><a href="#facilities">Facilities</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="https://lin.ee/Z0ujovB6" target="_blank" rel="noopener">Reserve via LINE</a></li>
+        <li><a href="https://lin.ee/Z0ujovB6" target="_blank" rel="noopener">Ask a question</a></li>
+        <li><a href="https://lin.ee/Z0ujovB6" target="_blank" rel="noopener">Schedule a viewing</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Address</h5>
+      <ul style="opacity: 0.85;">
+        <li>Sai Mai Road</li>
+        <li>Sai Mai, Bangkok</li>
+        <li>Opening August 2026</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <div>© 2026 Nature Haven. All rights reserved.</div>
+    <div class="socials">
+      <a href="https://lin.ee/Z0ujovB6" target="_blank" rel="noopener" title="LINE"><i data-lucide="message-circle"></i></a>
+      <a href="#" title="Instagram"><i data-lucide="camera"></i></a>
+      <a href="#" title="Facebook"><i data-lucide="globe"></i></a>
+    </div>
+  </div>
+</footer>
+
+<!-- ====== FLOATING LINE FAB ====== -->
+<a href="https://lin.ee/Z0ujovB6" target="_blank" rel="noopener" class="fab-line" aria-label="Contact via LINE">
+  <i data-lucide="message-circle"></i>
+  <span>Chat on LINE</span>
+  <span class="ping"></span>
+</a>
+
+<script>
+  // Lucide icons
+  if (window.lucide) lucide.createIcons();
+
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 24);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Reveal-on-scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Active nav link
+  const links = document.querySelectorAll('.nav-links a');
+  const sections = ['top','about','residences','facilities','location','contact'].map(id => document.getElementById(id)).filter(Boolean);
+  const sio = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.toggle('is-active', l.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => sio.observe(s));
+</script>
+
 </body>
 </html>
