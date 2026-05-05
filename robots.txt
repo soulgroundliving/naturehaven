@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://naturehaven-living.vercel.app/sitemap.xml
