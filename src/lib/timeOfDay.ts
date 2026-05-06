@@ -48,7 +48,7 @@ const MORNING: TimePalette = {
   skyFrom: '#E8E4D9',
   skyVia: '#F5EDDF',
   skyTo: '#DEDCD0',
-  orbTint: [0.92, 0.95, 0.88],
+  orbTint: [0.97, 0.98, 0.96],
   lightColor: '#FFE7C4',
   lightIntensity: 1.1,
   lightAngle: [-2.5, 1.5, 1.5], // low east, warm rim
@@ -69,7 +69,7 @@ const DAY: TimePalette = {
   skyFrom: '#E8E9EA',
   skyVia: '#F0EEE8',
   skyTo: '#DCDED5',
-  orbTint: [0.96, 0.98, 0.97],
+  orbTint: [1.0, 1.0, 1.0],
   lightColor: '#FFF5E0',
   lightIntensity: 1.2,
   lightAngle: [0, 3, 1], // top-front, balanced
@@ -90,7 +90,7 @@ const SUNSET: TimePalette = {
   skyFrom: '#3D2A3D',
   skyVia: '#C4866A',
   skyTo: '#E8B486',
-  orbTint: [1.0, 0.85, 0.78], // rose-gold
+  orbTint: [1.0, 0.97, 0.95], // faint warm hint, mostly clear
   lightColor: '#FF9966',
   lightIntensity: 1.4,
   lightAngle: [-3.5, 0.5, 1], // long horizontal from low west
@@ -111,7 +111,7 @@ const NIGHT: TimePalette = {
   skyFrom: '#0E1A28',
   skyVia: '#152937',
   skyTo: '#1A2A2E',
-  orbTint: [0.78, 0.86, 0.92], // cool blue
+  orbTint: [0.95, 0.97, 1.0], // faint cool hint, mostly clear
   lightColor: '#9FB8D9',
   lightIntensity: 0.7,
   lightAngle: [0.5, 4, 0.5], // top-down moon

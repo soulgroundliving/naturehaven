@@ -80,21 +80,18 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
               IBL reflection from the time-of-day Environment preset. */}
           <meshPhysicalMaterial
             color={orbColor}
-            roughness={0.08}
+            roughness={0}
             metalness={0}
-            transmission={0.35}
-            thickness={1.5}
-            ior={1.45}
+            transmission={0.96}
+            thickness={1.2}
+            ior={1.52}
             attenuationColor={attenuation}
-            attenuationDistance={2.5}
-            iridescence={0.65}
+            attenuationDistance={8}
+            iridescence={0.35}
             iridescenceIOR={1.3}
             clearcoat={1}
-            clearcoatRoughness={0.04}
-            envMapIntensity={1.6}
-            sheen={0.4}
-            sheenColor={attenuation}
-            sheenRoughness={0.5}
+            clearcoatRoughness={0.02}
+            envMapIntensity={2.8}
           />
         </Sphere>
       </group>
