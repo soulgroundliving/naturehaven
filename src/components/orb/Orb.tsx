@@ -1,6 +1,7 @@
-// SMOKE TEST: bare hot-pink sphere — no drei, no Suspense, no transmission.
-// If this shows up, drei or transmission was the issue. If still invisible,
-// the Canvas/R3F itself isn't rendering.
+import { useFrame } from '@react-three/fiber';
+import { Environment, Sparkles, Sphere } from '@react-three/drei';
+import { useMemo, useRef } from 'react';
+import * as THREE from 'three';
 import type { TimePalette } from '@/lib/timeOfDay';
 
 export interface OrbControls {
@@ -15,15 +16,88 @@ interface OrbProps {
   reducedFidelity: boolean;
 }
 
-export default function Orb(_props: OrbProps) {
+export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps) {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const groupRef = useRef<THREE.Group>(null);
+
+  const orbColor = useMemo(
+    () => new THREE.Color(palette.orbTint[0], palette.orbTint[1], palette.orbTint[2]),
+    [palette]
+  );
+  const attenuation = useMemo(() => new THREE.Color(palette.lightColor), [palette]);
+
+  useFrame((state) => {
+    const g = groupRef.current;
+    const m = meshRef.current;
+    if (!g || !m) return;
+    const c = controlsRef.current;
+    const t = state.clock.elapsedTime;
+
+    if (c.reducedMotion) {
+      g.scale.setScalar(c.scale);
+      g.rotation.x = c.tilt;
+      g.position.y = 0;
+      m.rotation.y = 0;
+      return;
+    }
+
+    g.position.y = Math.sin(t * 0.6) * 0.08;
+    m.rotation.y = t * 0.1;
+
+    const k = 0.06;
+    const cur = g.scale.x;
+    const nextScale = cur + (c.scale - cur) * k;
+    g.scale.setScalar(nextScale);
+    g.rotation.x += (c.tilt - g.rotation.x) * k;
+  });
+
+  const segments = reducedFidelity ? 32 : 64;
+  const sparkleCount = reducedFidelity ? 60 : 180;
+
   return (
     <>
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[3, 3, 3]} intensity={1.5} />
-      <mesh>
-        <sphereGeometry args={[1.2, 32, 32]} />
-        <meshStandardMaterial color="hotpink" />
-      </mesh>
+      <ambientLight intensity={palette.ambientIntensity} />
+      <directionalLight
+        position={palette.lightAngle}
+        intensity={palette.lightIntensity}
+        color={palette.lightColor}
+      />
+      <Environment preset={palette.envPreset} />
+      <Sparkles
+        count={sparkleCount}
+        speed={0.35}
+        opacity={palette.slot === 'night' ? 0.6 : 0.45}
+        size={2.5}
+        scale={[8, 12, 4]}
+        color={palette.lightColor}
+        noise={1}
+      />
+      <group ref={groupRef}>
+        <Sphere ref={meshRef} args={[1, segments, segments]}>
+          {/* Tinted glass with subtle transmission — single-pass shader keeps
+              the surface visible on a transparent canvas. Iridescence +
+              clearcoat give the peachweb glass shimmer; envMapIntensity boosts
+              IBL reflection from the time-of-day Environment preset. */}
+          <meshPhysicalMaterial
+            color={orbColor}
+            roughness={0.08}
+            metalness={0}
+            transmission={0.35}
+            thickness={1.5}
+            ior={1.45}
+            attenuationColor={attenuation}
+            attenuationDistance={2.5}
+            iridescence={0.65}
+            iridescenceIOR={1.3}
+            clearcoat={1}
+            clearcoatRoughness={0.04}
+            envMapIntensity={1.6}
+            sheen={0.4}
+            sheenColor={attenuation}
+            sheenRoughness={0.5}
+          />
+        </Sphere>
+      </group>
     </>
   );
 }
