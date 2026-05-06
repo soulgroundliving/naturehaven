@@ -201,8 +201,7 @@ const ResidencesSection: React.FC = () => {
           <img
             src="/assets/room-3d-render.jpg"
             alt="Unit interior — 31.5 sq.m. studio"
-            className="w-full object-cover"
-            style={{ maxHeight: '520px', objectPosition: 'center top' }}
+            className="w-full"
           />
         </div>
 
