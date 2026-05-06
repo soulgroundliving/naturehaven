@@ -15,8 +15,7 @@ interface OrbProps {
   reducedFidelity: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps) {
+export default function Orb(_props: OrbProps) {
   return (
     <>
       <ambientLight intensity={0.8} />
