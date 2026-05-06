@@ -52,7 +52,7 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
   });
 
   const segments = reducedFidelity ? 32 : 64;
-  const sparkleCount = reducedFidelity ? 60 : 180;
+  const sparkleCount = reducedFidelity ? 180 : 540;
 
   return (
     <>
@@ -65,10 +65,10 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
       <Environment preset={palette.envPreset} />
       <Sparkles
         count={sparkleCount}
-        speed={0.35}
-        opacity={palette.slot === 'night' ? 0.6 : 0.45}
+        speed={0.5}
+        opacity={palette.slot === 'night' ? 0.7 : 0.55}
         size={2.5}
-        scale={[8, 12, 4]}
+        scale={[3.5, 3.5, 3.5]}
         color={palette.lightColor}
         noise={1}
       />
