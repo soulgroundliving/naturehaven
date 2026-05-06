@@ -34,10 +34,18 @@
     font-family: 'Outfit', sans-serif;
     font-weight: 300;
     color: #2B2B2B;
-    background-color: #FFFFFF;
+    background:
+      linear-gradient(
+        180deg,
+        var(--sky-from, #E8E9EA),
+        var(--sky-via, #F0EEE8) 55%,
+        var(--sky-to, #DCDED5)
+      );
+    background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    transition: background 600ms ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
