@@ -14,7 +14,7 @@ const navLinks = [
   { label: 'CONTACT', href: '#contact' },
 ];
 
-const darkSections = ['design-philosophy', 'contact', 'footer'];
+const darkSections = ['contact', 'footer'];
 
 interface NavigationProps {
   lenisRef: React.RefObject<any>;

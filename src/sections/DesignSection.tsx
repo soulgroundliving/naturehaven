@@ -22,15 +22,8 @@ const architectureSpecs = [
   'Sky Hook feature for vertical utility use',
 ];
 
-const philosophyFeatures = [
-  { num: '01', text: 'Feng Shui aligned' },
-  { num: '02', text: 'Pocket green spaces' },
-  { num: '03', text: 'Calm-centered layout' },
-];
-
 const DesignSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const darkSectionRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
@@ -68,31 +61,8 @@ const DesignSection: React.FC = () => {
     { scope: sectionRef }
   );
 
-  useGSAP(
-    () => {
-      if (!darkSectionRef.current) return;
-
-      const items = darkSectionRef.current.querySelectorAll('.phil-animate');
-      gsap.from(items, {
-        y: 20,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: darkSectionRef.current,
-          start: 'top 75%',
-          toggleActions: 'play none none none',
-        },
-      });
-    },
-    { scope: darkSectionRef }
-  );
-
   return (
-    <section ref={sectionRef} id="design" className="bg-pure-white/30 backdrop-blur-xl">
-      {/* Light portion */}
-      <div className="section-padding">
+    <section ref={sectionRef} id="design" className="bg-pure-white/30 backdrop-blur-xl section-padding">
         <div className="container-main">
           <SectionHeader
             label="Design & Architecture"
@@ -162,44 +132,6 @@ const DesignSection: React.FC = () => {
                 />
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Living Philosophy — frosted white */}
-      <div
-        ref={darkSectionRef}
-        id="design-philosophy"
-        className="bg-pure-white/30 backdrop-blur-xl py-24 md:py-32 lg:py-40"
-      >
-        <div className="container-main">
-          <h2 className="phil-animate font-serif text-4xl md:text-5xl lg:text-6xl xl:text-[70px] text-dark-charcoal leading-[1.1] mb-6">
-            Living Philosophy
-          </h2>
-          <p className="phil-animate font-sans text-base lg:text-[17px] font-light text-dark-charcoal/60 max-w-[600px] leading-relaxed mb-16">
-            Nature Haven is built on a thoughtful understanding of living — where
-            structure, flow, and quiet intention come together naturally.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-16">
-            {philosophyFeatures.map(({ num, text }) => (
-              <div key={num} className="phil-animate">
-                <span className="font-serif text-4xl md:text-5xl text-sage-green/70">
-                  {num}
-                </span>
-                <p className="font-sans text-[15px] text-dark-charcoal/70 mt-3">
-                  {text}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="phil-animate">
-            <img
-              src="/assets/design-philosophy-interior.jpg"
-              alt="Calm-centered living space"
-              className="w-full rounded-xl object-cover aspect-video"
-            />
           </div>
         </div>
       </div>
