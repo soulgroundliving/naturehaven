@@ -90,7 +90,7 @@ const DesignSection: React.FC = () => {
   );
 
   return (
-    <section ref={sectionRef} id="design" className="bg-soft-taupe">
+    <section ref={sectionRef} id="design" className="bg-pure-white/30 backdrop-blur-xl">
       {/* Light portion */}
       <div className="section-padding">
         <div className="container-main">
