@@ -94,15 +94,15 @@ const ResidencesSection: React.FC = () => {
         {/* Three Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 md:mb-20">
           {/* Suitable For */}
-          <div className="res-card bg-pure-white/80 backdrop-blur-sm rounded-xl p-8 md:p-12">
-            <h3 className="font-serif text-2xl md:text-[32px] text-dark-charcoal mb-6">
+          <div className="res-card card-surface backdrop-blur-sm rounded-xl p-8 md:p-12">
+            <h3 className="font-serif text-2xl md:text-[32px] sec-text mb-6">
               Suitable For
             </h3>
             <ul className="space-y-3">
               {suitableFor.map((item) => (
                 <li key={item} className="flex items-center gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-sage-green flex-shrink-0" />
-                  <span className="font-sans text-base font-light text-dark-charcoal">
+                  <span className="font-sans text-base font-light sec-text">
                     {item}
                   </span>
                 </li>
@@ -111,56 +111,56 @@ const ResidencesSection: React.FC = () => {
           </div>
 
           {/* Space & Layout */}
-          <div className="res-card bg-pure-white/80 backdrop-blur-sm rounded-xl p-8 md:p-12">
-            <h3 className="font-serif text-2xl md:text-[32px] text-dark-charcoal mb-4">
+          <div className="res-card card-surface backdrop-blur-sm rounded-xl p-8 md:p-12">
+            <h3 className="font-serif text-2xl md:text-[32px] sec-text mb-4">
               Space & Layout
             </h3>
             <div className="flex items-baseline gap-2 mb-2">
-              <span className="font-serif text-6xl md:text-7xl lg:text-[80px] text-dark-charcoal leading-none">
+              <span className="font-serif text-6xl md:text-7xl lg:text-[80px] sec-text leading-none">
                 31.5
               </span>
-              <span className="font-sans text-base text-subtle-taupe">
+              <span className="font-sans text-base sec-text-60">
                 sq.m.
               </span>
             </div>
             <div className="w-full h-px bg-dark-charcoal/20 my-4" />
-            <p className="font-sans text-base font-light text-dark-charcoal mb-1">
+            <p className="font-sans text-base font-light sec-text mb-1">
               1 Bedroom / 1 Bathroom
             </p>
-            <p className="font-sans text-base font-light text-dark-charcoal mb-3">
+            <p className="font-sans text-base font-light sec-text mb-3">
               Separate kitchen with balcony
             </p>
             <div className="flex flex-col gap-1">
-              <span className="font-sans text-sm text-subtle-taupe">
+              <span className="font-sans text-sm sec-text-60">
                 Units 1–2
               </span>
-              <span className="font-sans text-sm text-subtle-taupe">
+              <span className="font-sans text-sm sec-text-60">
                 Units 3–4 (Pet Allowed)
               </span>
             </div>
           </div>
 
           {/* Rental Rates */}
-          <div className="res-card bg-pure-white/80 backdrop-blur-sm rounded-xl p-8 md:p-12">
-            <h3 className="font-serif text-2xl md:text-[32px] text-dark-charcoal mb-6">
+          <div className="res-card card-surface backdrop-blur-sm rounded-xl p-8 md:p-12">
+            <h3 className="font-serif text-2xl md:text-[32px] sec-text mb-6">
               Rental
             </h3>
 
             {/* Rate 1 */}
             <div className="mb-6">
               <div className="flex items-baseline gap-2">
-                <span className="font-serif text-4xl md:text-5xl text-dark-charcoal">
+                <span className="font-serif text-4xl md:text-5xl sec-text">
                   5,800
                 </span>
-                <span className="font-sans text-sm text-subtle-taupe">
+                <span className="font-sans text-sm sec-text-60">
                   THB / month
                 </span>
               </div>
               <div className="flex items-center gap-3 mt-2">
-                <span className="inline-block bg-subtle-taupe/20 text-dark-charcoal text-xs font-sans font-normal px-4 py-1.5 rounded-full">
+                <span className="inline-block bg-subtle-taupe/20 sec-text text-xs font-sans font-normal px-4 py-1.5 rounded-full">
                   Opening Rate
                 </span>
-                <span className="font-sans text-sm text-subtle-taupe line-through">
+                <span className="font-sans text-sm sec-text-60 line-through">
                   Regular: 6,000 THB
                 </span>
               </div>
@@ -169,18 +169,18 @@ const ResidencesSection: React.FC = () => {
             {/* Rate 2 */}
             <div>
               <div className="flex items-baseline gap-2">
-                <span className="font-serif text-4xl md:text-5xl text-dark-charcoal">
+                <span className="font-serif text-4xl md:text-5xl sec-text">
                   6,200
                 </span>
-                <span className="font-sans text-sm text-subtle-taupe">
+                <span className="font-sans text-sm sec-text-60">
                   THB / month
                 </span>
               </div>
               <div className="flex items-center gap-3 mt-2">
-                <span className="inline-block bg-subtle-taupe/20 text-dark-charcoal text-xs font-sans font-normal px-4 py-1.5 rounded-full">
+                <span className="inline-block bg-subtle-taupe/20 sec-text text-xs font-sans font-normal px-4 py-1.5 rounded-full">
                   Opening Rate
                 </span>
-                <span className="font-sans text-sm text-subtle-taupe line-through">
+                <span className="font-sans text-sm sec-text-60 line-through">
                   Regular: 6,500 THB
                 </span>
               </div>
@@ -191,7 +191,7 @@ const ResidencesSection: React.FC = () => {
             </p>
 
             <div className="w-full h-px bg-dark-charcoal/10 mt-6 mb-4" />
-            <p className="font-sans text-sm text-subtle-taupe">
+            <p className="font-sans text-sm sec-text-60">
               Annual contract • 1-month deposit + 1-month advance
             </p>
           </div>
@@ -207,11 +207,11 @@ const ResidencesSection: React.FC = () => {
         </div>
 
         {/* In-Room Essentials */}
-        <div className="essentials-card bg-pure-white/80 backdrop-blur-sm rounded-xl p-8 md:p-12 lg:p-16">
-          <h3 className="font-serif text-3xl md:text-[40px] text-dark-charcoal text-center mb-2">
+        <div className="essentials-card card-surface backdrop-blur-sm rounded-xl p-8 md:p-12 lg:p-16">
+          <h3 className="font-serif text-3xl md:text-[40px] sec-text text-center mb-2">
             In-Room Essentials
           </h3>
-          <p className="font-sans text-base italic text-dark-charcoal/70 text-center mb-10 md:mb-12">
+          <p className="font-sans text-base italic sec-text-70 text-center mb-10 md:mb-12">
             Every element is selected with purpose.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5">
@@ -221,7 +221,7 @@ const ResidencesSection: React.FC = () => {
                   className="text-sage-green flex-shrink-0"
                   size={20}
                 />
-                <span className="font-sans text-base font-light text-dark-charcoal">
+                <span className="font-sans text-base font-light sec-text">
                   {item}
                 </span>
               </div>

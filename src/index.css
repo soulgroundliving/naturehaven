@@ -101,6 +101,11 @@
     transition: background 600ms ease;
   }
 
+  .card-surface {
+    background: var(--card-bg, rgba(255,255,255,0.85));
+    transition: background 600ms ease;
+  }
+
   .sec-text    { color: var(--sec-text);    transition: color 600ms ease; }
   .sec-text-90 { color: var(--sec-text-90); transition: color 600ms ease; }
   .sec-text-80 { color: var(--sec-text-80); transition: color 600ms ease; }

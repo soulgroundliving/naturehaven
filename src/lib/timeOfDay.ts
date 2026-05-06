@@ -54,6 +54,7 @@ export interface TimePalette {
   secText55: string;   // faint / decorative text
   secBorder: string;   // divider / border lines
   secBg: string;       // frosted section background (rgba)
+  cardBg: string;      // elevated card surface on frosted sections
 }
 
 const MORNING: TimePalette = {
@@ -84,6 +85,7 @@ const MORNING: TimePalette = {
   secText55: 'rgba(43,43,43,0.55)',
   secBorder: 'rgba(43,43,43,0.15)',
   secBg: 'rgba(255,255,255,0.55)',
+  cardBg: 'rgba(255,255,255,0.88)',
 };
 
 const DAY: TimePalette = {
@@ -114,6 +116,7 @@ const DAY: TimePalette = {
   secText55: 'rgba(43,43,43,0.55)',
   secBorder: 'rgba(43,43,43,0.15)',
   secBg: 'rgba(255,255,255,0.55)',
+  cardBg: 'rgba(255,255,255,0.88)',
 };
 
 const SUNSET: TimePalette = {
@@ -144,6 +147,7 @@ const SUNSET: TimePalette = {
   secText55: 'rgba(255,255,255,0.55)',
   secBorder: 'rgba(255,255,255,0.15)',
   secBg: 'rgba(255,255,255,0.30)',
+  cardBg: 'rgba(255,255,255,0.32)',
 };
 
 const NIGHT: TimePalette = {
@@ -174,6 +178,7 @@ const NIGHT: TimePalette = {
   secText55: 'rgba(245,241,234,0.55)',
   secBorder: 'rgba(245,241,234,0.15)',
   secBg: 'rgba(255,255,255,0.20)',
+  cardBg: 'rgba(255,255,255,0.24)',
 };
 
 export const TIME_PALETTES: Record<TimeOfDay, TimePalette> = {

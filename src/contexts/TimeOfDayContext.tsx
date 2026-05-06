@@ -49,6 +49,7 @@ function applyCSSVars(p: TimePalette) {
   root.style.setProperty('--sec-text-55', p.secText55);
   root.style.setProperty('--sec-border', p.secBorder);
   root.style.setProperty('--sec-bg', p.secBg);
+  root.style.setProperty('--card-bg', p.cardBg);
   root.dataset.tod = p.slot;
   root.dataset.mood = p.mood;
 }
