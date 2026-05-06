@@ -39,6 +39,14 @@ function App() {
   const activeSection = useSectionObserver(sectionIds);
 
   useEffect(() => {
+    // Skip smooth scroll entirely for users who prefer reduced motion —
+    // Lenis's RAF-driven easing is exactly the kind of vestibular cue
+    // those users opt out of. Native scroll keeps ScrollTrigger working.
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    if (reducedMotion) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -64,11 +72,17 @@ function App() {
 
   return (
     <div className="relative">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-pure-white focus:text-dark-charcoal focus:rounded focus:shadow-lg focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-sage-green"
+      >
+        Skip to content
+      </a>
       <Navigation lenisRef={lenisRef} activeSection={activeSection} />
       <Suspense fallback={null}>
         <OrbScene />
       </Suspense>
-      <main className="relative z-[1]">
+      <main id="main" className="relative z-[1]">
         <HeroSection lenisRef={lenisRef} />
         <AboutSection />
         <ResidencesSection />

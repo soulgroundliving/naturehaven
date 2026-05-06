@@ -94,3 +94,26 @@
     text-wrap: balance;
   }
 }
+
+/* ── A11y baseline ────────────────────────────────────────────────────────
+   Reduced-motion reset for CSS-driven motion. (GSAP timelines are killed
+   per-component via matchMedia; Lenis is skipped entirely in App.tsx.)
+*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus ring on slot-aware CTAs — sage on light slots, slate on night */
+.hero-cta:focus-visible,
+button[class*="bg-[var(--cta-bg"]:focus-visible,
+a[class*="bg-[var(--cta-bg"]:focus-visible {
+  outline: 2px solid var(--cta-bg, #3D5A4C);
+  outline-offset: 4px;
+}
