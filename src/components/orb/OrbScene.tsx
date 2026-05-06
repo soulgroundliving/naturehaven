@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -137,14 +137,13 @@ export default function OrbScene() {
           dpr={reducedFidelity ? [1, 1.5] : [1, 2]}
           camera={{ position: [0, 0, 4], fov: 35 }}
           gl={{ antialias: true, alpha: true }}
+          onCreated={() => console.log('[orb] Canvas created')}
         >
-          <Suspense fallback={null}>
-            <Orb
-              palette={palette}
-              controlsRef={controlsRef}
-              reducedFidelity={reducedFidelity}
-            />
-          </Suspense>
+          <Orb
+            palette={palette}
+            controlsRef={controlsRef}
+            reducedFidelity={reducedFidelity}
+          />
         </Canvas>
       </div>
     </div>
