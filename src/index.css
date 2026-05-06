@@ -61,7 +61,7 @@
 
 @layer components {
   .section-padding {
-    @apply py-20 md:py-32 lg:py-40;
+    @apply py-14 md:py-28 lg:py-40;
   }
 
   .container-main {
@@ -73,7 +73,7 @@
   }
 
   .headline-lg {
-    @apply font-serif text-4xl md:text-5xl lg:text-6xl xl:text-[70px] leading-[1.1] text-dark-charcoal;
+    @apply font-serif text-[28px] md:text-5xl lg:text-6xl xl:text-[70px] leading-[1.1] text-dark-charcoal;
   }
 
   .headline-md {

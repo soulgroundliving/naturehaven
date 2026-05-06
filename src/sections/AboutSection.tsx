@@ -66,11 +66,11 @@ const AboutSection: React.FC = () => {
       <div className="container-main">
 
         {/* Philosophy Block */}
-        <div className="mb-24 md:mb-32">
+        <div className="mb-12 md:mb-24 lg:mb-32">
           <p className="ph-anim section-label sec-text-60 mb-5 tracking-[0.2em]">
             Our Philosophy
           </p>
-          <h2 className="ph-anim font-serif text-4xl md:text-5xl lg:text-[58px] sec-text leading-[1.07] max-w-2xl">
+          <h2 className="ph-anim font-serif text-[30px] md:text-5xl lg:text-[58px] sec-text leading-[1.07] max-w-2xl">
             True comfort is<br />
             never excessive.
           </h2>

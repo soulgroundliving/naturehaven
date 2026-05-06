@@ -41,7 +41,7 @@ const ContactSection: React.FC = () => {
           <p className="contact-animate section-label sec-text-60 mb-4 tracking-[0.2em]">
             Contact
           </p>
-          <h2 className="contact-animate font-serif text-4xl md:text-5xl lg:text-6xl xl:text-[80px] sec-text leading-[1.1]">
+          <h2 className="contact-animate font-serif text-[28px] md:text-5xl lg:text-6xl xl:text-[80px] sec-text leading-[1.1]">
             Reserve your space quietly.
           </h2>
         </div>

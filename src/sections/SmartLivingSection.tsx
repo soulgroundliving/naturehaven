@@ -148,7 +148,7 @@ const SmartLivingSection: React.FC = () => {
       className="section-padding frosted-section backdrop-blur-xl"
     >
       <div className="container-main">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.9fr_1fr] gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.9fr_1fr] gap-8 lg:gap-16 items-start">
 
           {/* LEFT — Quietly Connected */}
           <div>
@@ -167,7 +167,7 @@ const SmartLivingSection: React.FC = () => {
             </p>
 
             {/* Feature list */}
-            <div className="sl-left-anim grid grid-cols-2 gap-x-8 gap-y-5">
+            <div className="sl-left-anim grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
               {features.map(({ Icon, label, sub }) => (
                 <div key={label} className="flex items-start gap-3">
                   <Icon
@@ -188,7 +188,7 @@ const SmartLivingSection: React.FC = () => {
           </div>
 
           {/* CENTER — Phone mockup */}
-          <div className="sl-phone-anim flex justify-center">
+          <div className="sl-phone-anim flex justify-center order-first lg:order-none">
             <div
               className="relative w-full max-w-[300px] bg-near-black rounded-[36px] p-3"
               style={{
