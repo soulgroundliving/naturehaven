@@ -172,7 +172,7 @@ const SmartLivingSection: React.FC = () => {
                 <div key={label} className="flex items-start gap-2.5">
                   <Icon
                     size={20}
-                    className="text-[#71b99e] flex-shrink-0 mt-[2px]"
+                    className="text-pure-white flex-shrink-0 mt-[2px]"
                   />
                   <div>
                     <p className="font-sans text-[15px] font-normal sec-text-90 leading-snug">
