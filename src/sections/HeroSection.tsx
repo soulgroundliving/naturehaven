@@ -3,7 +3,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { ArrowDown } from '@/components/icons';
-import { useTimeOfDay } from '@/contexts/TimeOfDayContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,7 +17,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
-  const { palette } = useTimeOfDay();
 
   useGSAP(
     () => {
@@ -114,10 +112,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
           <span aria-hidden="true">{headlineChars}</span>
         </h1>
         <p
-          className="hero-subtitle font-sans text-base md:text-lg font-light max-w-[500px] mt-8 leading-relaxed"
+          className="hero-subtitle font-sans text-base md:text-lg font-light max-w-[600px] mt-8 leading-relaxed"
           style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
         >
-          ทางสายกลาง · {palette.tagline}
+          A residence shaped by intention — where life gently returns to its natural rhythm.
         </p>
         <button
           onClick={scrollToAbout}
