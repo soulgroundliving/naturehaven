@@ -1,4 +1,10 @@
-import { Suspense, lazy, useEffect, useRef } from 'react';
+import { Suspense, lazy, useEffect, useRef, Component, type ReactNode } from 'react';
+
+class OrbErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  render() { return this.state.failed ? null : this.props.children; }
+}
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -81,9 +87,11 @@ function App() {
       </a>
       <Navigation lenisRef={lenisRef} activeSection={activeSection} />
       <VideoBackground />
-      <Suspense fallback={null}>
-        <OrbScene />
-      </Suspense>
+      <OrbErrorBoundary>
+        <Suspense fallback={null}>
+          <OrbScene />
+        </Suspense>
+      </OrbErrorBoundary>
       <main id="main" className="relative z-[1]">
         <HeroSection lenisRef={lenisRef} />
         <AboutSection />
