@@ -30,14 +30,14 @@ gsap.registerPlugin(ScrollTrigger);
 type SimpleIcon = React.FC<{ size?: number; className?: string }>;
 
 const features: { Icon: SimpleIcon; label: string; sub: string }[] = [
-  { Icon: KeyIcon, label: 'Digital door lock', sub: 'Unit & building' },
-  { Icon: ShieldIcon, label: 'CCTV security', sub: '24/7 monitoring' },
-  { Icon: CarIcon, label: 'Parking', sub: '1 space per unit' },
-  { Icon: LeafIcon, label: 'Pocket garden', sub: 'Communal & quiet' },
-  { Icon: WashingIcon, label: 'Laundry & drying', sub: 'On-site facility' },
-  { Icon: WifiIcon, label: 'Free Wi-Fi', sub: 'AIS Fiber' },
-  { Icon: SparkleIcon, label: 'Cleaning service', sub: 'Every 6 months' },
-  { Icon: SnowflakeIcon, label: 'A/C cleaning', sub: 'Yearly' },
+  { Icon: KeyIcon,      label: 'Digital door lock',   sub: 'Unit & building' },
+  { Icon: ShieldIcon,   label: 'CCTV security',        sub: '24/7 monitoring' },
+  { Icon: CarIcon,      label: 'Parking',              sub: '1 space per unit' },
+  { Icon: LeafIcon,     label: 'Pocket garden',        sub: 'Communal & quiet' },
+  { Icon: WashingIcon,  label: 'Laundry & drying',     sub: 'On-site facility' },
+  { Icon: WifiIcon,     label: 'Free Wi-Fi',           sub: 'AIS Fiber' },
+  { Icon: SparkleIcon,  label: 'Cleaning service',     sub: 'Every 6 months' },
+  { Icon: SnowflakeIcon,label: 'A/C cleaning',         sub: 'Yearly' },
 ];
 
 const sustainable = [
@@ -149,32 +149,38 @@ const SmartLivingSection: React.FC = () => {
     >
       <div className="container-main">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.9fr_1fr] gap-12 lg:gap-16 items-start">
+
           {/* LEFT — Quietly Connected */}
           <div>
-            <p className="sl-left-anim section-label text-dark-charcoal/70 mb-4">
+            <p className="sl-left-anim section-label text-dark-charcoal/50 mb-4 tracking-[0.2em]">
               Quietly Connected
             </p>
-            <h2 className="sl-left-anim font-serif text-3xl md:text-4xl lg:text-[44px] text-dark-charcoal leading-[1.15] mb-6">
+            <h2 className="sl-left-anim font-serif text-3xl md:text-4xl lg:text-[44px] text-dark-charcoal leading-[1.1] mb-5">
               Managed simply,<br />
               through one<br />
               application.
             </h2>
-            <p className="sl-left-anim font-sans text-base font-light text-dark-charcoal/70 leading-relaxed mb-10 max-w-md">
+            <p className="sl-left-anim font-sans text-[15px] font-light text-dark-charcoal/60 leading-relaxed mb-8 max-w-md">
               Smart Living gathers everything you might ever need — bookings,
               payments, maintenance, even the air around you — into a single
               quiet surface.
             </p>
-            <div className="sl-left-anim grid grid-cols-2 gap-x-6 gap-y-6">
+
+            {/* Quiet luxury feature list — icon + text inline, no boxes */}
+            <div className="sl-left-anim grid grid-cols-2 gap-x-8 gap-y-5">
               {features.map(({ Icon, label, sub }) => (
-                <div key={label} className="flex flex-col gap-2.5">
-                  <div className="w-10 h-10 border border-dark-charcoal/15 rounded-sm grid place-items-center text-sage-green">
-                    <Icon size={20} />
-                  </div>
-                  <div className="font-sans text-sm text-dark-charcoal leading-snug">
-                    {label}
-                  </div>
-                  <div className="font-sans text-xs text-dark-charcoal/55 -mt-2 leading-snug">
-                    {sub}
+                <div key={label} className="flex items-start gap-3">
+                  <Icon
+                    size={15}
+                    className="text-sage-green flex-shrink-0 mt-[3px] opacity-75"
+                  />
+                  <div>
+                    <p className="font-sans text-[13px] font-normal text-dark-charcoal leading-snug">
+                      {label}
+                    </p>
+                    <p className="font-sans text-[11px] text-dark-charcoal/45 leading-snug mt-0.5">
+                      {sub}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -184,47 +190,47 @@ const SmartLivingSection: React.FC = () => {
           {/* CENTER — Phone mockup */}
           <div className="sl-phone-anim flex justify-center order-first lg:order-none">
             <div
-              className="relative w-full max-w-[320px] bg-near-black rounded-[36px] p-3"
+              className="relative w-full max-w-[300px] bg-near-black rounded-[36px] p-3"
               style={{
                 aspectRatio: '9 / 19',
                 boxShadow:
-                  '0 18px 40px rgba(31,27,22,0.18), inset 0 0 0 2px rgba(255,255,255,0.04)',
+                  '0 24px 48px rgba(31,27,22,0.22), inset 0 0 0 2px rgba(255,255,255,0.06)',
               }}
             >
               <div className="absolute top-[18px] left-1/2 -translate-x-1/2 w-24 h-[22px] bg-near-black rounded-xl z-10" />
-              <div className="w-full h-full bg-light-warm-grey rounded-[26px] overflow-hidden flex flex-col">
+              <div className="w-full h-full bg-[#F5F2EE] rounded-[26px] overflow-hidden flex flex-col">
                 <div className="px-5 pt-4 pb-1 flex justify-between text-[11px] text-dark-charcoal font-medium">
                   <span>9:41</span>
                   <span>● ● ●</span>
                 </div>
-                <div className="px-5 pt-5 pb-4 flex justify-between items-center border-b border-dark-charcoal/12">
+                <div className="px-5 pt-5 pb-4 flex justify-between items-center border-b border-dark-charcoal/10">
                   <div>
-                    <span className="block text-[10px] text-dark-charcoal/55 uppercase tracking-[0.32em] mb-1">
+                    <span className="block text-[9px] text-dark-charcoal/45 uppercase tracking-[0.35em] mb-1">
                       NATURE HAVEN
                     </span>
                     <span className="font-serif text-[18px] font-light leading-tight">
                       Good morning.
                     </span>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-soft-taupe/40 border border-dark-charcoal/15" />
+                  <div className="w-8 h-8 rounded-full bg-soft-taupe/50 border border-dark-charcoal/10" />
                 </div>
-                <div className="mx-5 mt-4 mb-4 px-3.5 py-2 bg-pure-white rounded-full flex gap-2 items-center text-[12px] text-dark-charcoal/50">
-                  <Search size={14} />
+                <div className="mx-5 mt-4 mb-4 px-3.5 py-2.5 bg-pure-white rounded-full flex gap-2 items-center text-[11px] text-dark-charcoal/40 shadow-sm">
+                  <Search size={13} />
                   <span>Search the residence…</span>
                 </div>
-                <div className="px-5 grid grid-cols-2 gap-2.5">
-                  <PhoneTile Icon={CalendarCheck} title="Booking" sub="Common spaces" accent />
-                  <PhoneTile Icon={Receipt} title="Payments" sub="Auto · LINE Pay" />
-                  <PhoneTile Icon={KeyIcon} title="My Door" sub="Open · Lock" />
-                  <PhoneTile Icon={Wrench} title="Maintenance" sub="Request anytime" />
-                  <PhoneTile Icon={PawPrint} title="Pet" sub="Vaccinations" />
-                  <PhoneTile Icon={LeafIcon} title="Air Quality" sub="PM2.5 · 18" />
+                <div className="px-5 grid grid-cols-2 gap-2">
+                  <PhoneTile Icon={CalendarCheck} title="Booking"     sub="Common spaces"   accent />
+                  <PhoneTile Icon={Receipt}       title="Payments"    sub="Auto · LINE Pay" />
+                  <PhoneTile Icon={KeyIcon}       title="My Door"     sub="Open · Lock" />
+                  <PhoneTile Icon={Wrench}        title="Maintenance" sub="Request anytime" />
+                  <PhoneTile Icon={PawPrint}      title="Pet"         sub="Vaccinations" />
+                  <PhoneTile Icon={LeafIcon}      title="Air Quality" sub="PM2.5 · 18" />
                 </div>
-                <div className="mt-auto px-5 py-3 border-t border-dark-charcoal/12 flex justify-around items-center">
-                  <HomeIcon size={18} className="text-sage-green" />
-                  <Calendar size={18} className="text-dark-charcoal/45" />
-                  <MessageCircle size={18} className="text-dark-charcoal/45" />
-                  <User size={18} className="text-dark-charcoal/45" />
+                <div className="mt-auto px-5 py-3.5 border-t border-dark-charcoal/10 flex justify-around items-center">
+                  <HomeIcon      size={17} className="text-sage-green" />
+                  <Calendar      size={17} className="text-dark-charcoal/35" />
+                  <MessageCircle size={17} className="text-dark-charcoal/35" />
+                  <User          size={17} className="text-dark-charcoal/35" />
                 </div>
               </div>
             </div>
@@ -232,10 +238,10 @@ const SmartLivingSection: React.FC = () => {
 
           {/* RIGHT — Sustainable by Intention */}
           <div>
-            <p className="sl-right-anim section-label text-dark-charcoal/70 mb-4">
+            <p className="sl-right-anim section-label text-dark-charcoal/50 mb-4 tracking-[0.2em]">
               Sustainable by Intention
             </p>
-            <h3 className="sl-right-anim font-serif text-3xl md:text-4xl lg:text-[40px] text-dark-charcoal leading-[1.2] mb-2">
+            <h3 className="sl-right-anim font-serif text-3xl md:text-4xl lg:text-[40px] text-dark-charcoal leading-[1.1] mb-2">
               Built to last —<br />
               not to impress.
             </h3>
@@ -243,16 +249,16 @@ const SmartLivingSection: React.FC = () => {
               {sustainable.map(({ num, title, body }) => (
                 <li
                   key={num}
-                  className="sl-right-anim py-6 border-t border-dark-charcoal/15 last:border-b flex gap-5 items-start"
+                  className="sl-right-anim py-6 border-t border-dark-charcoal/12 last:border-b flex gap-5 items-start"
                 >
-                  <span className="font-serif text-[26px] font-light text-sage-green min-w-[44px] leading-none pt-1">
+                  <span className="font-serif text-[22px] font-light text-sage-green/70 min-w-[36px] leading-none pt-1">
                     {num}
                   </span>
                   <div>
-                    <h4 className="font-sans text-base font-medium text-dark-charcoal mb-1.5">
+                    <h4 className="font-sans text-[15px] font-medium text-dark-charcoal mb-1.5">
                       {title}
                     </h4>
-                    <p className="font-sans text-sm text-dark-charcoal/65 leading-relaxed">
+                    <p className="font-sans text-sm text-dark-charcoal/55 leading-relaxed">
                       {body}
                     </p>
                   </div>
@@ -260,6 +266,7 @@ const SmartLivingSection: React.FC = () => {
               ))}
             </ul>
           </div>
+
         </div>
       </div>
     </section>
