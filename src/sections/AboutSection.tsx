@@ -12,35 +12,47 @@ const AboutSection: React.FC = () => {
     () => {
       if (!sectionRef.current) return;
 
-      const items = sectionRef.current.querySelectorAll('.about-animate');
-      gsap.from(items, {
-        y: 20,
+      const philo = sectionRef.current.querySelectorAll('.ph-anim');
+      gsap.from(philo, {
+        y: 22,
         opacity: 0,
         duration: 0.7,
-        stagger: 0.12,
+        stagger: 0.1,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
+          trigger: philo[0] as Element,
+          start: 'top 80%',
           toggleActions: 'play none none none',
         },
       });
 
-      const image = sectionRef.current.querySelector('.about-image');
-      if (image) {
-        gsap.from(image, {
-          y: 30,
-          opacity: 0,
-          scale: 0.98,
-          duration: 0.9,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: image as Element,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-        });
-      }
+      const image = sectionRef.current.querySelector('.ab-image');
+      gsap.from(image, {
+        x: -24,
+        opacity: 0,
+        scale: 0.98,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: image as Element,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
+
+      const text = sectionRef.current.querySelectorAll('.ab-text-anim');
+      gsap.from(text, {
+        x: 20,
+        opacity: 0,
+        duration: 0.65,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: text[0] as Element,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
     },
     { scope: sectionRef }
   );
@@ -52,40 +64,54 @@ const AboutSection: React.FC = () => {
       className="section-padding bg-pure-white/30 backdrop-blur-xl"
     >
       <div className="container-main">
+
         {/* Philosophy Block */}
         <div className="mb-24 md:mb-32">
-          <p className="about-animate section-label text-dark-charcoal/70 mb-4">
+          <p className="ph-anim section-label text-dark-charcoal/50 mb-5 tracking-[0.2em]">
             Our Philosophy
           </p>
-          <div className="about-animate w-10 h-px bg-dark-charcoal mb-6" />
-          <h2 className="about-animate headline-lg max-w-[700px]">
-            True comfort is never excessive.
+          <h2 className="ph-anim font-serif text-4xl md:text-5xl lg:text-[58px] text-dark-charcoal leading-[1.07] max-w-2xl">
+            True comfort is<br />
+            never excessive.
           </h2>
-          <p className="about-animate body-text max-w-[600px] mt-6">
+          <p className="ph-anim font-sans text-[15px] font-light text-dark-charcoal/60 leading-relaxed mt-7 max-w-[440px]">
             It is found in stillness — in spaces that are thoughtfully designed,
             and in a quiet balance that allows each day to unfold with ease.
           </p>
         </div>
 
-        {/* About Block */}
-        <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 lg:gap-16 items-start">
-          <div>
-            <p className="about-animate section-label text-dark-charcoal/70 mb-4">
+        {/* About Block — image left, text right */}
+        <div className="grid grid-cols-1 lg:grid-cols-[52%_48%] gap-10 lg:gap-0 items-stretch">
+
+          {/* Image — full-height, slight negative margin to push edge */}
+          <div className="ab-image lg:pr-10">
+            <img
+              src="/assets/about-minimal-room.jpg"
+              alt="Minimal bedroom interior"
+              className="w-full h-full object-cover rounded-lg"
+              style={{ minHeight: '420px', maxHeight: '640px' }}
+            />
+          </div>
+
+          {/* Text */}
+          <div className="flex flex-col justify-center lg:pl-2">
+            <p className="ab-text-anim section-label text-dark-charcoal/50 mb-5 tracking-[0.2em]">
               About
             </p>
-            <h2 className="about-animate headline-md">
-              A newly built private residence inspired by MUJI minimal living.
-            </h2>
-            <p className="about-animate body-text mt-8">
-              Designed for calm, crafted for privacy, and quietly connected to
-              Sai Mai Road. Available from August 2026.
+            <h3 className="ab-text-anim font-serif text-[28px] md:text-[34px] lg:text-[38px] text-dark-charcoal leading-[1.12]">
+              A newly built private<br />
+              residence inspired<br />
+              by MUJI minimal living.
+            </h3>
+            <p className="ab-text-anim font-sans text-[15px] font-light text-dark-charcoal/60 leading-relaxed mt-7 max-w-sm">
+              Designed for calm, crafted for privacy, and quietly connected
+              to Sai Mai Road. Available from August 2026.
             </p>
             <button
               onClick={() => {
-                const el = document.getElementById('residences');
-                el?.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('residences')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="about-animate group mt-8 inline-flex items-center gap-2 font-serif italic text-xl text-dark-charcoal hover:text-sage-green transition-colors duration-300"
+              className="ab-text-anim group mt-9 inline-flex items-center gap-2.5 font-serif italic text-[18px] text-dark-charcoal hover:text-sage-green transition-colors duration-300 self-start"
             >
               <span className="relative">
                 View Residences
@@ -106,13 +132,7 @@ const AboutSection: React.FC = () => {
               </svg>
             </button>
           </div>
-          <div className="about-image lg:-mt-10">
-            <img
-              src="/assets/about-minimal-room.jpg"
-              alt="Minimal bedroom interior"
-              className="w-full rounded-lg shadow-lg object-cover aspect-[3/4]"
-            />
-          </div>
+
         </div>
       </div>
     </section>
