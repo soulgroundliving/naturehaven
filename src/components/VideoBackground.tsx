@@ -7,6 +7,12 @@ import { useEffect, useRef } from 'react';
 // The orb canvas is also `position:fixed; z-index:0` and is rendered AFTER
 // this component in App.tsx, so it paints on top (same z, later DOM order).
 // `<main>` sits at z-[1] above everything, so section content always wins.
+//
+// Autoplay strategy: NO `autoPlay` attribute on the element — that causes
+// iOS Safari to render a native play overlay when blocked, which the orb
+// canvas sits on top of and blocks. Instead we call .play() in JS; if
+// blocked we register a one-time touchstart unlock on the document so the
+// video starts on the user's first interaction without any visible UI.
 
 const VIDEO_URL =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b.mp4';
@@ -51,20 +57,27 @@ export default function VideoBackground() {
       v.style.opacity = '0';
       window.setTimeout(() => {
         v.currentTime = 0;
-        v.play().catch(() => {
-          /* autoplay blocked — ignore, fallback to static first frame */
-        });
+        v.play().catch(() => {});
       }, RESET_DELAY_MS);
     };
 
+    const startFade = () => {
+      rafId = requestAnimationFrame(tick);
+    };
+
     v.addEventListener('ended', onEnded);
-    v.play().catch(() => {
-      // Autoplay blocked (common on mobile without user interaction).
-      // Cancel the RAF fade loop and show the static first frame instead.
-      cancelAnimationFrame(rafId);
-      v.style.opacity = '1';
+
+    // Try immediate play (works on desktop + some mobile browsers).
+    v.play().then(startFade).catch(() => {
+      // Blocked by browser policy (common on mobile before first interaction).
+      // Register a one-time touch unlock — no native play UI shown this way.
+      const unlock = () => {
+        v.play().then(startFade).catch(() => {
+          // Still blocked — CSS gradient fallback stays visible, acceptable.
+        });
+      };
+      document.addEventListener('touchstart', unlock, { once: true, passive: true });
     });
-    rafId = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(rafId);
@@ -81,7 +94,6 @@ export default function VideoBackground() {
         ref={videoRef}
         src={VIDEO_URL}
         muted
-        autoPlay
         playsInline
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
