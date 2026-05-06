@@ -100,7 +100,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
       >
         <p
           className="hero-label font-sans text-xs md:text-sm uppercase tracking-[0.15em] mb-6"
-          style={{ color: 'var(--text-muted-on-bg, #5C5650)' }}
+          style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
         >
           Quiet Living in Saimai
         </p>
