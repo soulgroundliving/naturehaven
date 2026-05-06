@@ -48,7 +48,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       className={`mb-12 md:mb-20 ${align === 'center' ? 'text-center' : ''} ${className}`}
     >
       <p
-        className={`sh-animate section-label mb-4 ${dark ? 'text-warm-brown' : ''}`}
+        className={`sh-animate section-label mb-4 ${dark ? '!text-pure-white/60' : ''}`}
       >
         {label}
       </p>

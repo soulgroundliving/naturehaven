@@ -152,15 +152,15 @@ const SmartLivingSection: React.FC = () => {
 
           {/* LEFT — Quietly Connected */}
           <div>
-            <p className="sl-left-anim section-label text-dark-charcoal/50 mb-4 tracking-[0.2em]">
+            <p className="sl-left-anim section-label text-pure-white/60 mb-4 tracking-[0.2em]">
               Quietly Connected
             </p>
-            <h2 className="sl-left-anim font-serif text-3xl md:text-4xl lg:text-[44px] text-dark-charcoal leading-[1.1] mb-5">
+            <h2 className="sl-left-anim font-serif text-3xl md:text-4xl lg:text-[44px] text-pure-white leading-[1.1] mb-5">
               Managed simply,<br />
               through one<br />
               application.
             </h2>
-            <p className="sl-left-anim font-sans text-[15px] font-light text-dark-charcoal/60 leading-relaxed mb-8 max-w-md">
+            <p className="sl-left-anim font-sans text-[15px] font-light text-pure-white/70 leading-relaxed mb-8 max-w-md">
               Smart Living gathers everything you might ever need — bookings,
               payments, maintenance, even the air around you — into a single
               quiet surface.
@@ -175,10 +175,10 @@ const SmartLivingSection: React.FC = () => {
                     className="text-sage-green flex-shrink-0 mt-[3px] opacity-75"
                   />
                   <div>
-                    <p className="font-sans text-[13px] font-normal text-dark-charcoal leading-snug">
+                    <p className="font-sans text-[13px] font-normal text-pure-white/90 leading-snug">
                       {label}
                     </p>
-                    <p className="font-sans text-[11px] text-dark-charcoal/45 leading-snug mt-0.5">
+                    <p className="font-sans text-[11px] text-pure-white/55 leading-snug mt-0.5">
                       {sub}
                     </p>
                   </div>
@@ -238,10 +238,10 @@ const SmartLivingSection: React.FC = () => {
 
           {/* RIGHT — Sustainable by Intention */}
           <div>
-            <p className="sl-right-anim section-label text-dark-charcoal/50 mb-4 tracking-[0.2em]">
+            <p className="sl-right-anim section-label text-pure-white/60 mb-4 tracking-[0.2em]">
               Sustainable by Intention
             </p>
-            <h3 className="sl-right-anim font-serif text-3xl md:text-4xl lg:text-[40px] text-dark-charcoal leading-[1.1] mb-2">
+            <h3 className="sl-right-anim font-serif text-3xl md:text-4xl lg:text-[40px] text-pure-white leading-[1.1] mb-2">
               Built to last —<br />
               not to impress.
             </h3>
@@ -249,16 +249,16 @@ const SmartLivingSection: React.FC = () => {
               {sustainable.map(({ num, title, body }) => (
                 <li
                   key={num}
-                  className="sl-right-anim py-6 border-t border-dark-charcoal/12 last:border-b flex gap-5 items-start"
+                  className="sl-right-anim py-6 border-t border-pure-white/15 last:border-b flex gap-5 items-start"
                 >
                   <span className="font-serif text-[22px] font-light text-sage-green/70 min-w-[36px] leading-none pt-1">
                     {num}
                   </span>
                   <div>
-                    <h4 className="font-sans text-[15px] font-medium text-dark-charcoal mb-1.5">
+                    <h4 className="font-sans text-[15px] font-medium text-pure-white/90 mb-1.5">
                       {title}
                     </h4>
-                    <p className="font-sans text-sm text-dark-charcoal/55 leading-relaxed">
+                    <p className="font-sans text-sm text-pure-white/65 leading-relaxed">
                       {body}
                     </p>
                   </div>

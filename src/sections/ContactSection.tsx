@@ -38,10 +38,10 @@ const ContactSection: React.FC = () => {
     >
       <div className="container-main">
         <div className="text-center mb-12">
-          <p className="contact-animate section-label text-dark-charcoal/50 mb-4 tracking-[0.2em]">
+          <p className="contact-animate section-label text-pure-white/60 mb-4 tracking-[0.2em]">
             Contact
           </p>
-          <h2 className="contact-animate font-serif text-4xl md:text-5xl lg:text-6xl xl:text-[80px] text-dark-charcoal leading-[1.1]">
+          <h2 className="contact-animate font-serif text-4xl md:text-5xl lg:text-6xl xl:text-[80px] text-pure-white leading-[1.1]">
             Reserve your space quietly.
           </h2>
         </div>
@@ -58,7 +58,7 @@ const ContactSection: React.FC = () => {
             <LineIcon className="relative z-10" size={20} />
             <span className="relative z-10">Reserve via LINE</span>
           </a>
-          <p className="font-sans text-base font-light text-dark-charcoal/50 text-center">
+          <p className="font-sans text-base font-light text-pure-white/60 text-center">
             We answer fastest on LINE.
           </p>
         </div>

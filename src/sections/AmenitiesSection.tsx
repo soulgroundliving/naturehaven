@@ -87,10 +87,10 @@ const AmenitiesSection: React.FC = () => {
       <div className="container-main">
         {/* Header */}
         <div className="max-w-xl mb-16">
-          <p className="am-header-anim section-label text-dark-charcoal/50 mb-4 tracking-[0.2em]">
+          <p className="am-header-anim section-label text-pure-white/60 mb-4 tracking-[0.2em]">
             Amenities
           </p>
-          <h2 className="am-header-anim font-serif text-3xl md:text-4xl lg:text-[44px] text-dark-charcoal leading-[1.1]">
+          <h2 className="am-header-anim font-serif text-3xl md:text-4xl lg:text-[44px] text-pure-white leading-[1.1]">
             Everything in place,<br />
             before you arrive.
           </h2>
@@ -101,17 +101,17 @@ const AmenitiesSection: React.FC = () => {
           {amenities.map(({ Icon, label, desc }) => (
             <div
               key={label}
-              className="am-row-anim flex items-start gap-4 py-5 border-t border-dark-charcoal/10 last:border-b md:last:border-b-0"
+              className="am-row-anim flex items-start gap-4 py-5 border-t border-pure-white/15 last:border-b md:last:border-b-0"
             >
               <Icon
                 size={14}
                 className="text-sage-green flex-shrink-0 mt-[5px] opacity-70"
               />
               <div>
-                <p className="font-sans text-[14px] font-medium text-dark-charcoal leading-snug">
+                <p className="font-sans text-[14px] font-medium text-pure-white/90 leading-snug">
                   {label}
                 </p>
-                <p className="font-sans text-[12px] text-dark-charcoal/50 mt-0.5 leading-snug">
+                <p className="font-sans text-[12px] text-pure-white/60 mt-0.5 leading-snug">
                   {desc}
                 </p>
               </div>
@@ -121,7 +121,7 @@ const AmenitiesSection: React.FC = () => {
 
         {/* CTA */}
         <div className="am-cta-anim mt-16 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-          <p className="font-sans text-[15px] font-light text-dark-charcoal/60 max-w-xs leading-relaxed">
+          <p className="font-sans text-[15px] font-light text-pure-white/70 max-w-xs leading-relaxed">
             Every item above is included in your monthly rate — nothing hidden.
           </p>
           <PrimaryButton href="#contact">Reserve a Unit</PrimaryButton>

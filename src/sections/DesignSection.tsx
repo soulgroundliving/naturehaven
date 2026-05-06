@@ -97,15 +97,16 @@ const DesignSection: React.FC = () => {
           <SectionHeader
             label="Design & Architecture"
             headline="Designed with intention. Built for calm."
+            dark
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Left Column — Materials */}
             <div>
-              <h3 className="design-left-animate headline-sm mb-2">
+              <h3 className="design-left-animate headline-sm mb-2 text-pure-white">
                 Design & Materials
               </h3>
-              <p className="design-left-animate font-sans text-base italic text-dark-charcoal/70 mb-8">
+              <p className="design-left-animate font-sans text-base italic text-pure-white/70 mb-8">
                 Every material chosen with care.
               </p>
 
@@ -113,10 +114,10 @@ const DesignSection: React.FC = () => {
                 {materials.map(({ color, text }) => (
                   <div key={text} className="design-left-animate flex items-center gap-4">
                     <div
-                      className="w-8 h-8 rounded-md shadow-sm flex-shrink-0 border border-dark-charcoal/10"
+                      className="w-8 h-8 rounded-md shadow-sm flex-shrink-0 border border-pure-white/20"
                       style={{ backgroundColor: color }}
                     />
-                    <span className="font-sans text-base font-light text-dark-charcoal">
+                    <span className="font-sans text-base font-light text-pure-white/85">
                       {text}
                     </span>
                   </div>
@@ -138,7 +139,7 @@ const DesignSection: React.FC = () => {
 
             {/* Right Column — Architecture */}
             <div>
-              <h3 className="design-right-animate headline-sm mb-8">
+              <h3 className="design-right-animate headline-sm mb-8 text-pure-white">
                 Architecture & Living Concept
               </h3>
 
@@ -146,7 +147,7 @@ const DesignSection: React.FC = () => {
                 {architectureSpecs.map((spec) => (
                   <li key={spec} className="design-right-animate flex items-start gap-3">
                     <Check className="text-sage-green mt-0.5 flex-shrink-0" size={18} />
-                    <span className="font-sans text-base font-light text-dark-charcoal leading-relaxed">
+                    <span className="font-sans text-base font-light text-pure-white/80 leading-relaxed">
                       {spec}
                     </span>
                   </li>
