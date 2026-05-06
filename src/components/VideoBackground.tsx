@@ -59,7 +59,10 @@ export default function VideoBackground() {
 
     v.addEventListener('ended', onEnded);
     v.play().catch(() => {
-      /* autoplay blocked — leave at opacity 0, first frame still visible if `preload=auto` */
+      // Autoplay blocked (common on mobile without user interaction).
+      // Cancel the RAF fade loop and show the static first frame instead.
+      cancelAnimationFrame(rafId);
+      v.style.opacity = '1';
     });
     rafId = requestAnimationFrame(tick);
 
@@ -78,6 +81,7 @@ export default function VideoBackground() {
         ref={videoRef}
         src={VIDEO_URL}
         muted
+        autoPlay
         playsInline
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
