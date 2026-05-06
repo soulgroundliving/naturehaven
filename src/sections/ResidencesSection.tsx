@@ -196,6 +196,16 @@ const ResidencesSection: React.FC = () => {
           </div>
         </div>
 
+        {/* Room 3D Render */}
+        <div className="mb-16 md:mb-20 rounded-xl overflow-hidden">
+          <img
+            src="/assets/room-3d-render.jpg"
+            alt="Unit interior — 31.5 sq.m. studio"
+            className="w-full object-cover"
+            style={{ maxHeight: '520px', objectPosition: 'center top' }}
+          />
+        </div>
+
         {/* In-Room Essentials */}
         <div className="essentials-card bg-pure-white/80 backdrop-blur-sm rounded-xl p-8 md:p-12 lg:p-16">
           <h3 className="font-serif text-3xl md:text-[40px] text-dark-charcoal text-center mb-2">
