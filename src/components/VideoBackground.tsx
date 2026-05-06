@@ -91,7 +91,7 @@ export default function VideoBackground() {
         style={{
           background:
             'linear-gradient(180deg, var(--sky-from, #E8E9EA) 0%, var(--sky-via, #F0EEE8) 40%, var(--sky-to, #DCDED5) 100%)',
-          opacity: 0.5,
+          opacity: 'var(--overlay-opacity, 0.5)' as unknown as number,
           mixBlendMode: 'multiply',
         }}
       />

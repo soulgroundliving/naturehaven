@@ -15,6 +15,9 @@ export interface TimePalette {
   // Glass orb tint — RGB 0..1 for Three.js MeshTransmissionMaterial.color
   orbTint: [number, number, number];
 
+  // Multiply-blend overlay opacity over the video bg — night is stronger
+  overlayOpacity: number;
+
   // DirectionalLight on the orb scene
   lightColor: string;
   lightIntensity: number;
@@ -49,6 +52,7 @@ const MORNING: TimePalette = {
   skyVia: '#F5EDDF',
   skyTo: '#DEDCD0',
   orbTint: [0.97, 0.98, 0.96],
+  overlayOpacity: 0.45,
   lightColor: '#FFE7C4',
   lightIntensity: 1.1,
   lightAngle: [-2.5, 1.5, 1.5], // low east, warm rim
@@ -70,6 +74,7 @@ const DAY: TimePalette = {
   skyVia: '#F0EEE8',
   skyTo: '#DCDED5',
   orbTint: [1.0, 1.0, 1.0],
+  overlayOpacity: 0.42,
   lightColor: '#FFF5E0',
   lightIntensity: 1.2,
   lightAngle: [0, 3, 1], // top-front, balanced
@@ -91,6 +96,7 @@ const SUNSET: TimePalette = {
   skyVia: '#C4866A',
   skyTo: '#E8B486',
   orbTint: [1.0, 0.97, 0.95], // faint warm hint, mostly clear
+  overlayOpacity: 0.52,
   lightColor: '#FF9966',
   lightIntensity: 1.4,
   lightAngle: [-3.5, 0.5, 1], // long horizontal from low west
@@ -112,6 +118,7 @@ const NIGHT: TimePalette = {
   skyVia: '#152937',
   skyTo: '#1A2A2E',
   orbTint: [0.95, 0.97, 1.0], // faint cool hint, mostly clear
+  overlayOpacity: 0.78,
   lightColor: '#9FB8D9',
   lightIntensity: 0.7,
   lightAngle: [0.5, 4, 0.5], // top-down moon

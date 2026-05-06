@@ -40,6 +40,7 @@ function applyCSSVars(p: TimePalette) {
   root.style.setProperty('--cta-bg', p.ctaBg);
   root.style.setProperty('--cta-bg-hover', p.ctaBgHover);
   root.style.setProperty('--text-shadow-hero', p.textShadow);
+  root.style.setProperty('--overlay-opacity', String(p.overlayOpacity));
   root.dataset.tod = p.slot;
   root.dataset.mood = p.mood;
 }
