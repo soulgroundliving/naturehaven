@@ -102,9 +102,32 @@ const AmenitiesSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="amenities"
-      className="section-padding bg-soft-taupe"
+      className="section-padding relative overflow-hidden"
     >
-      <div className="container-main">
+      {/* Video background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        poster="https://images.unsplash.com/photo-1557683316-973673baf926?w=1600&q=60"
+        // @ts-ignore — non-standard playsinline attributes for iOS/Android WebView
+        disableRemotePlayback
+        webkit-playsinline="true"
+        x5-playsinline="true"
+      >
+        <source
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260424_064411_9e9d7f84-9277-41f4-ab10-59172d89e6be.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      {/* Overlay — ensures cards and text stay readable over the video */}
+      <div className="absolute inset-0 bg-white/45" />
+
+      <div className="container-main relative z-10">
         <SectionHeader
           label="Amenities"
           headline="Everything you need, thoughtfully provided."
@@ -115,7 +138,7 @@ const AmenitiesSection: React.FC = () => {
           {amenities.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="amenity-card bg-pure-white rounded-xl p-8 md:p-10 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
+              className="amenity-card bg-pure-white/80 backdrop-blur-sm rounded-xl p-8 md:p-10 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
             >
               <div className="w-12 h-12 flex items-center justify-center text-sage-green mb-5">
                 <Icon size={28} />
