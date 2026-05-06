@@ -167,18 +167,18 @@ const SmartLivingSection: React.FC = () => {
             </p>
 
             {/* Feature list */}
-            <div className="sl-left-anim grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+            <div className="sl-left-anim grid grid-cols-2 gap-x-5 gap-y-5">
               {features.map(({ Icon, label, sub }) => (
-                <div key={label} className="flex items-start gap-3">
+                <div key={label} className="flex items-start gap-2.5">
                   <Icon
-                    size={15}
-                    className="text-sage-green flex-shrink-0 mt-[3px] opacity-75"
+                    size={18}
+                    className="text-sage-green flex-shrink-0 mt-[2px]"
                   />
                   <div>
-                    <p className="font-sans text-[13px] font-normal sec-text-90 leading-snug">
+                    <p className="font-sans text-[15px] font-normal sec-text-90 leading-snug">
                       {label}
                     </p>
-                    <p className="font-sans text-[11px] sec-text-55 leading-snug mt-0.5">
+                    <p className="font-sans text-[13px] sec-text-60 leading-snug mt-0.5">
                       {sub}
                     </p>
                   </div>
