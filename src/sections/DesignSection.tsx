@@ -165,17 +165,17 @@ const DesignSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Dark subsection — Living Philosophy */}
+      {/* Living Philosophy — frosted white */}
       <div
         ref={darkSectionRef}
         id="design-philosophy"
-        className="bg-near-black py-24 md:py-32 lg:py-40"
+        className="bg-pure-white/30 backdrop-blur-xl py-24 md:py-32 lg:py-40"
       >
         <div className="container-main">
-          <h2 className="phil-animate font-serif text-4xl md:text-5xl lg:text-6xl xl:text-[70px] text-pure-white leading-[1.1] mb-6">
+          <h2 className="phil-animate font-serif text-4xl md:text-5xl lg:text-6xl xl:text-[70px] text-dark-charcoal leading-[1.1] mb-6">
             Living Philosophy
           </h2>
-          <p className="phil-animate font-sans text-base lg:text-[17px] font-light text-pure-white/80 max-w-[600px] leading-relaxed mb-16">
+          <p className="phil-animate font-sans text-base lg:text-[17px] font-light text-dark-charcoal/60 max-w-[600px] leading-relaxed mb-16">
             Nature Haven is built on a thoughtful understanding of living — where
             structure, flow, and quiet intention come together naturally.
           </p>
@@ -183,10 +183,10 @@ const DesignSection: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-16">
             {philosophyFeatures.map(({ num, text }) => (
               <div key={num} className="phil-animate">
-                <span className="font-serif text-4xl md:text-5xl text-sage-green">
+                <span className="font-serif text-4xl md:text-5xl text-sage-green/70">
                   {num}
                 </span>
-                <p className="font-sans text-[15px] text-pure-white/80 mt-3">
+                <p className="font-sans text-[15px] text-dark-charcoal/70 mt-3">
                   {text}
                 </p>
               </div>
@@ -197,7 +197,7 @@ const DesignSection: React.FC = () => {
             <img
               src="/assets/design-philosophy-interior.jpg"
               alt="Calm-centered living space"
-              className="w-full rounded-xl object-cover aspect-video opacity-80"
+              className="w-full rounded-xl object-cover aspect-video"
             />
           </div>
         </div>
