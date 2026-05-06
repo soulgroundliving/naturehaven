@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Navigation from '@/components/Navigation';
 import VideoBackground from '@/components/VideoBackground';
+import FloatingLineChat from '@/components/FloatingLineChat';
 import useSectionObserver from '@/hooks/useSectionObserver';
 
 // Code-split the 3D scene — three + r3f + drei is ~1MB. Body CSS gradient
@@ -95,6 +96,7 @@ function App() {
         <ContactSection />
         <FooterSection />
       </main>
+      <FloatingLineChat />
     </div>
   );
 }
