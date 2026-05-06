@@ -44,6 +44,16 @@ export interface TimePalette {
   // Mood for copy/animation variants
   mood: 'fresh' | 'crisp' | 'warm' | 'still';
   tagline: string; // sub-headline shown below "Nature Haven"
+
+  // Frosted section tokens — used by all bg-pure-white/30 sections
+  secText: string;     // primary text on frosted sections
+  secText60: string;   // label / muted text
+  secText70: string;   // sub-body / secondary copy
+  secText80: string;   // body copy
+  secText90: string;   // high-contrast text
+  secText55: string;   // faint / decorative text
+  secBorder: string;   // divider / border lines
+  secBg: string;       // frosted section background (rgba)
 }
 
 const MORNING: TimePalette = {
@@ -66,6 +76,14 @@ const MORNING: TimePalette = {
     '0 1px 2px rgba(255,255,255,0.6), 0 0 18px rgba(255,255,255,0.55)',
   mood: 'fresh',
   tagline: 'ตื่นมารับวันใหม่ที่นี่',
+  secText: '#2B2B2B',
+  secText60: 'rgba(43,43,43,0.60)',
+  secText70: 'rgba(43,43,43,0.70)',
+  secText80: 'rgba(43,43,43,0.80)',
+  secText90: 'rgba(43,43,43,0.90)',
+  secText55: 'rgba(43,43,43,0.55)',
+  secBorder: 'rgba(43,43,43,0.15)',
+  secBg: 'rgba(255,255,255,0.55)',
 };
 
 const DAY: TimePalette = {
@@ -88,6 +106,14 @@ const DAY: TimePalette = {
     '0 1px 2px rgba(255,255,255,0.6), 0 0 18px rgba(255,255,255,0.55)',
   mood: 'crisp',
   tagline: 'ความสงบในทุกขณะ',
+  secText: '#2B2B2B',
+  secText60: 'rgba(43,43,43,0.60)',
+  secText70: 'rgba(43,43,43,0.70)',
+  secText80: 'rgba(43,43,43,0.80)',
+  secText90: 'rgba(43,43,43,0.90)',
+  secText55: 'rgba(43,43,43,0.55)',
+  secBorder: 'rgba(43,43,43,0.15)',
+  secBg: 'rgba(255,255,255,0.55)',
 };
 
 const SUNSET: TimePalette = {
@@ -110,6 +136,14 @@ const SUNSET: TimePalette = {
     '0 2px 4px rgba(0,0,0,0.55), 0 0 14px rgba(0,0,0,0.35)',
   mood: 'warm',
   tagline: 'ปิดวันด้วยใจที่เบา',
+  secText: '#FFFFFF',
+  secText60: 'rgba(255,255,255,0.60)',
+  secText70: 'rgba(255,255,255,0.70)',
+  secText80: 'rgba(255,255,255,0.80)',
+  secText90: 'rgba(255,255,255,0.90)',
+  secText55: 'rgba(255,255,255,0.55)',
+  secBorder: 'rgba(255,255,255,0.15)',
+  secBg: 'rgba(255,255,255,0.30)',
 };
 
 const NIGHT: TimePalette = {
@@ -132,6 +166,14 @@ const NIGHT: TimePalette = {
     '0 2px 4px rgba(0,0,0,0.6), 0 0 14px rgba(0,0,0,0.4)',
   mood: 'still',
   tagline: 'พักผ่อนในที่ของตัวเอง',
+  secText: '#F5F1EA',
+  secText60: 'rgba(245,241,234,0.60)',
+  secText70: 'rgba(245,241,234,0.70)',
+  secText80: 'rgba(245,241,234,0.80)',
+  secText90: 'rgba(245,241,234,0.90)',
+  secText55: 'rgba(245,241,234,0.55)',
+  secBorder: 'rgba(245,241,234,0.15)',
+  secBg: 'rgba(255,255,255,0.20)',
 };
 
 export const TIME_PALETTES: Record<TimeOfDay, TimePalette> = {

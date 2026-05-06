@@ -82,12 +82,13 @@ const ResidencesSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="residences"
-      className="section-padding bg-pure-white/30 backdrop-blur-xl"
+      className="section-padding frosted-section backdrop-blur-xl"
     >
       <div className="container-main">
         <SectionHeader
           label="Residences"
           headline="Spaces designed for real living — comfortable, intentional, and meant to last."
+          dark
         />
 
         {/* Three Info Cards */}

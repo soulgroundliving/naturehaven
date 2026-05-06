@@ -93,6 +93,21 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Time-of-day adaptive tokens — set by TimeOfDayContext via CSS vars.
+     Use these on any element that sits on a frosted (bg-pure-white/30) section. */
+  .frosted-section {
+    background: var(--sec-bg, rgba(255,255,255,0.30));
+    transition: background 600ms ease;
+  }
+
+  .sec-text    { color: var(--sec-text);    transition: color 600ms ease; }
+  .sec-text-90 { color: var(--sec-text-90); transition: color 600ms ease; }
+  .sec-text-80 { color: var(--sec-text-80); transition: color 600ms ease; }
+  .sec-text-70 { color: var(--sec-text-70); transition: color 600ms ease; }
+  .sec-text-60 { color: var(--sec-text-60); transition: color 600ms ease; }
+  .sec-text-55 { color: var(--sec-text-55); transition: color 600ms ease; }
+  .sec-border  { border-color: var(--sec-border); transition: border-color 600ms ease; }
 }
 
 /* ── A11y baseline ────────────────────────────────────────────────────────

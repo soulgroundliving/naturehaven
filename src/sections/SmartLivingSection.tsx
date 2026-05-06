@@ -145,28 +145,28 @@ const SmartLivingSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="smart-living"
-      className="section-padding bg-pure-white/30 backdrop-blur-xl"
+      className="section-padding frosted-section backdrop-blur-xl"
     >
       <div className="container-main">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.9fr_1fr] gap-12 lg:gap-16 items-start">
 
           {/* LEFT — Quietly Connected */}
           <div>
-            <p className="sl-left-anim section-label text-pure-white/60 mb-4 tracking-[0.2em]">
+            <p className="sl-left-anim section-label sec-text-60 mb-4 tracking-[0.2em]">
               Quietly Connected
             </p>
-            <h2 className="sl-left-anim font-serif text-3xl md:text-4xl lg:text-[44px] text-pure-white leading-[1.1] mb-5">
+            <h2 className="sl-left-anim font-serif text-3xl md:text-4xl lg:text-[44px] sec-text leading-[1.1] mb-5">
               Managed simply,<br />
               through one<br />
               application.
             </h2>
-            <p className="sl-left-anim font-sans text-[15px] font-light text-pure-white/70 leading-relaxed mb-8 max-w-md">
+            <p className="sl-left-anim font-sans text-[15px] font-light sec-text-70 leading-relaxed mb-8 max-w-md">
               Smart Living gathers everything you might ever need — bookings,
               payments, maintenance, even the air around you — into a single
               quiet surface.
             </p>
 
-            {/* Quiet luxury feature list — icon + text inline, no boxes */}
+            {/* Feature list */}
             <div className="sl-left-anim grid grid-cols-2 gap-x-8 gap-y-5">
               {features.map(({ Icon, label, sub }) => (
                 <div key={label} className="flex items-start gap-3">
@@ -175,10 +175,10 @@ const SmartLivingSection: React.FC = () => {
                     className="text-sage-green flex-shrink-0 mt-[3px] opacity-75"
                   />
                   <div>
-                    <p className="font-sans text-[13px] font-normal text-pure-white/90 leading-snug">
+                    <p className="font-sans text-[13px] font-normal sec-text-90 leading-snug">
                       {label}
                     </p>
-                    <p className="font-sans text-[11px] text-pure-white/55 leading-snug mt-0.5">
+                    <p className="font-sans text-[11px] sec-text-55 leading-snug mt-0.5">
                       {sub}
                     </p>
                   </div>
@@ -238,10 +238,10 @@ const SmartLivingSection: React.FC = () => {
 
           {/* RIGHT — Sustainable by Intention */}
           <div>
-            <p className="sl-right-anim section-label text-pure-white/60 mb-4 tracking-[0.2em]">
+            <p className="sl-right-anim section-label sec-text-60 mb-4 tracking-[0.2em]">
               Sustainable by Intention
             </p>
-            <h3 className="sl-right-anim font-serif text-3xl md:text-4xl lg:text-[40px] text-pure-white leading-[1.1] mb-2">
+            <h3 className="sl-right-anim font-serif text-3xl md:text-4xl lg:text-[40px] sec-text leading-[1.1] mb-2">
               Built to last —<br />
               not to impress.
             </h3>
@@ -249,16 +249,16 @@ const SmartLivingSection: React.FC = () => {
               {sustainable.map(({ num, title, body }) => (
                 <li
                   key={num}
-                  className="sl-right-anim py-6 border-t border-pure-white/15 last:border-b flex gap-5 items-start"
+                  className="sl-right-anim py-6 border-t sec-border last:border-b flex gap-5 items-start"
                 >
                   <span className="font-serif text-[22px] font-light text-sage-green/70 min-w-[36px] leading-none pt-1">
                     {num}
                   </span>
                   <div>
-                    <h4 className="font-sans text-[15px] font-medium text-pure-white/90 mb-1.5">
+                    <h4 className="font-sans text-[15px] font-medium sec-text-90 mb-1.5">
                       {title}
                     </h4>
-                    <p className="font-sans text-sm text-pure-white/65 leading-relaxed">
+                    <p className="font-sans text-sm sec-text-70 leading-relaxed">
                       {body}
                     </p>
                   </div>

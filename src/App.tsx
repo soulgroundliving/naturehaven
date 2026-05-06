@@ -33,7 +33,6 @@ function App() {
     'amenities',
     'location',
     'design',
-    'design-philosophy',
     'smart-living',
     'contact',
     'footer',

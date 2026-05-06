@@ -61,20 +61,20 @@ const AboutSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="about"
-      className="section-padding bg-pure-white/30 backdrop-blur-xl"
+      className="section-padding frosted-section backdrop-blur-xl"
     >
       <div className="container-main">
 
         {/* Philosophy Block */}
         <div className="mb-24 md:mb-32">
-          <p className="ph-anim section-label text-pure-white/60 mb-5 tracking-[0.2em]">
+          <p className="ph-anim section-label sec-text-60 mb-5 tracking-[0.2em]">
             Our Philosophy
           </p>
-          <h2 className="ph-anim font-serif text-4xl md:text-5xl lg:text-[58px] text-pure-white leading-[1.07] max-w-2xl">
+          <h2 className="ph-anim font-serif text-4xl md:text-5xl lg:text-[58px] sec-text leading-[1.07] max-w-2xl">
             True comfort is<br />
             never excessive.
           </h2>
-          <p className="ph-anim font-sans text-[15px] font-light text-pure-white/70 leading-relaxed mt-7 max-w-[440px]">
+          <p className="ph-anim font-sans text-[15px] font-light sec-text-70 leading-relaxed mt-7 max-w-[440px]">
             It is found in stillness — in spaces that are thoughtfully designed,
             and in a quiet balance that allows each day to unfold with ease.
           </p>
@@ -83,7 +83,7 @@ const AboutSection: React.FC = () => {
         {/* About Block — image left, text right */}
         <div className="grid grid-cols-1 lg:grid-cols-[52%_48%] gap-10 lg:gap-0 items-stretch">
 
-          {/* Image — full-height, slight negative margin to push edge */}
+          {/* Image — full-height */}
           <div className="ab-image lg:pr-10 self-stretch">
             <img
               src="/assets/about-minimal-room.jpg"
@@ -94,15 +94,15 @@ const AboutSection: React.FC = () => {
 
           {/* Text */}
           <div className="flex flex-col justify-center lg:pl-2">
-            <p className="ab-text-anim section-label text-pure-white/60 mb-5 tracking-[0.2em]">
+            <p className="ab-text-anim section-label sec-text-60 mb-5 tracking-[0.2em]">
               About
             </p>
-            <h3 className="ab-text-anim font-serif text-[28px] md:text-[34px] lg:text-[38px] text-pure-white leading-[1.12]">
+            <h3 className="ab-text-anim font-serif text-[28px] md:text-[34px] lg:text-[38px] sec-text leading-[1.12]">
               A newly built private<br />
               residence inspired<br />
               by MUJI minimal living.
             </h3>
-            <p className="ab-text-anim font-sans text-[15px] font-light text-pure-white/70 leading-relaxed mt-7 max-w-sm">
+            <p className="ab-text-anim font-sans text-[15px] font-light sec-text-70 leading-relaxed mt-7 max-w-sm">
               Designed for calm, crafted for privacy, and quietly connected
               to Sai Mai Road. Available from August 2026.
             </p>
@@ -110,7 +110,7 @@ const AboutSection: React.FC = () => {
               onClick={() => {
                 document.getElementById('residences')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="ab-text-anim group mt-9 inline-flex items-center gap-2.5 font-serif italic text-[18px] text-pure-white hover:text-sage-green transition-colors duration-300 self-start py-2 -my-2"
+              className="ab-text-anim group mt-9 inline-flex items-center gap-2.5 font-serif italic text-[18px] sec-text hover:text-sage-green transition-colors duration-300 self-start py-2 -my-2"
             >
               <span className="relative">
                 View Residences

@@ -41,6 +41,14 @@ function applyCSSVars(p: TimePalette) {
   root.style.setProperty('--cta-bg-hover', p.ctaBgHover);
   root.style.setProperty('--text-shadow-hero', p.textShadow);
   root.style.setProperty('--overlay-opacity', String(p.overlayOpacity));
+  root.style.setProperty('--sec-text', p.secText);
+  root.style.setProperty('--sec-text-60', p.secText60);
+  root.style.setProperty('--sec-text-70', p.secText70);
+  root.style.setProperty('--sec-text-80', p.secText80);
+  root.style.setProperty('--sec-text-90', p.secText90);
+  root.style.setProperty('--sec-text-55', p.secText55);
+  root.style.setProperty('--sec-border', p.secBorder);
+  root.style.setProperty('--sec-bg', p.secBg);
   root.dataset.tod = p.slot;
   root.dataset.mood = p.mood;
 }

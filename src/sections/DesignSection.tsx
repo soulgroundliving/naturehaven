@@ -62,75 +62,74 @@ const DesignSection: React.FC = () => {
   );
 
   return (
-    <section ref={sectionRef} id="design" className="bg-pure-white/30 backdrop-blur-xl section-padding">
-        <div className="container-main">
-          <SectionHeader
-            label="Design & Architecture"
-            headline="Designed with intention. Built for calm."
-            dark
-          />
+    <section ref={sectionRef} id="design" className="frosted-section backdrop-blur-xl section-padding">
+      <div className="container-main">
+        <SectionHeader
+          label="Design & Architecture"
+          headline="Designed with intention. Built for calm."
+          dark
+        />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Left Column — Materials */}
-            <div>
-              <h3 className="design-left-animate headline-sm mb-2 text-pure-white">
-                Design & Materials
-              </h3>
-              <p className="design-left-animate font-sans text-base italic text-pure-white/70 mb-8">
-                Every material chosen with care.
-              </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Left Column — Materials */}
+          <div>
+            <h3 className="design-left-animate headline-sm mb-2 sec-text">
+              Design & Materials
+            </h3>
+            <p className="design-left-animate font-sans text-base italic sec-text-70 mb-8">
+              Every material chosen with care.
+            </p>
 
-              <div className="space-y-5 mb-8">
-                {materials.map(({ color, text }) => (
-                  <div key={text} className="design-left-animate flex items-center gap-4">
-                    <div
-                      className="w-8 h-8 rounded-md shadow-sm flex-shrink-0 border border-pure-white/20"
-                      style={{ backgroundColor: color }}
-                    />
-                    <span className="font-sans text-base font-light text-pure-white/85">
-                      {text}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <p className="design-left-animate font-sans text-[15px] italic text-sage-green mb-10">
-                Designed with sustainability in mind.
-              </p>
-
-              <div className="design-left-animate">
-                <img
-                  src="/assets/design-materials-detail.jpg"
-                  alt="Interior materials detail"
-                  className="w-full rounded-lg shadow-md object-cover aspect-[3/2]"
-                />
-              </div>
+            <div className="space-y-5 mb-8">
+              {materials.map(({ color, text }) => (
+                <div key={text} className="design-left-animate flex items-center gap-4">
+                  <div
+                    className="w-8 h-8 rounded-md shadow-sm flex-shrink-0 border border-pure-white/20"
+                    style={{ backgroundColor: color }}
+                  />
+                  <span className="font-sans text-base font-light sec-text-80">
+                    {text}
+                  </span>
+                </div>
+              ))}
             </div>
 
-            {/* Right Column — Architecture */}
-            <div>
-              <h3 className="design-right-animate headline-sm mb-8 text-pure-white">
-                Architecture & Living Concept
-              </h3>
+            <p className="design-left-animate font-sans text-[15px] italic text-sage-green mb-10">
+              Designed with sustainability in mind.
+            </p>
 
-              <ul className="space-y-4 mb-10">
-                {architectureSpecs.map((spec) => (
-                  <li key={spec} className="design-right-animate flex items-start gap-3">
-                    <Check className="text-sage-green mt-0.5 flex-shrink-0" size={18} />
-                    <span className="font-sans text-base font-light text-pure-white/80 leading-relaxed">
-                      {spec}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+            <div className="design-left-animate">
+              <img
+                src="/assets/design-materials-detail.jpg"
+                alt="Interior materials detail"
+                className="w-full rounded-lg shadow-md object-cover aspect-[3/2]"
+              />
+            </div>
+          </div>
 
-              <div className="design-right-animate">
-                <img
-                  src="/assets/design-philosophy-interior.jpg"
-                  alt="Airflow optimized interior"
-                  className="w-full rounded-lg shadow-md object-cover aspect-video"
-                />
-              </div>
+          {/* Right Column — Architecture */}
+          <div>
+            <h3 className="design-right-animate headline-sm mb-8 sec-text">
+              Architecture & Living Concept
+            </h3>
+
+            <ul className="space-y-4 mb-10">
+              {architectureSpecs.map((spec) => (
+                <li key={spec} className="design-right-animate flex items-start gap-3">
+                  <Check className="text-sage-green mt-0.5 flex-shrink-0" size={18} />
+                  <span className="font-sans text-base font-light sec-text-80 leading-relaxed">
+                    {spec}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="design-right-animate">
+              <img
+                src="/assets/design-philosophy-interior.jpg"
+                alt="Airflow optimized interior"
+                className="w-full rounded-lg shadow-md object-cover aspect-video"
+              />
             </div>
           </div>
         </div>
