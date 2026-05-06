@@ -96,6 +96,14 @@ export default function OrbScene() {
         });
       }
 
+      // Fade in on load — orb materialises gently instead of popping
+      gsap.to(wrapper, {
+        opacity: 1,
+        duration: 2,
+        delay: 0.5,
+        ease: 'power2.inOut',
+      });
+
       // Footer fade — orb retreats so closing copy stands alone
       gsap.to(wrapper, {
         opacity: 0,
@@ -120,6 +128,7 @@ export default function OrbScene() {
         inset: 0,
         zIndex: 0,
         pointerEvents: 'none',
+        opacity: 0,
       }}
     >
       <div
