@@ -52,7 +52,7 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
   });
 
   const segments = reducedFidelity ? 32 : 64;
-  const sparkleCount = reducedFidelity ? 180 : 540;
+  const sparkleCount = reducedFidelity ? 90 : 270;
 
   return (
     <>
