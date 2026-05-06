@@ -1,10 +1,5 @@
 import { useFrame } from '@react-three/fiber';
-import {
-  Environment,
-  MeshTransmissionMaterial,
-  Sparkles,
-  Sphere,
-} from '@react-three/drei';
+import { Environment, Sparkles, Sphere } from '@react-three/drei';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import type { TimePalette } from '@/lib/timeOfDay';
@@ -64,7 +59,6 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
   });
 
   const segments = reducedFidelity ? 32 : 64;
-  const samples = reducedFidelity ? 4 : 8;
   const sparkleCount = reducedFidelity ? 60 : 180;
 
   return (
@@ -87,30 +81,26 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
       />
       <group ref={groupRef}>
         <Sphere ref={meshRef} args={[1, segments, segments]}>
-          <MeshTransmissionMaterial
-            // Less than 1 leaves a visible surface contribution against the
-            // transparent canvas — pure 1.0 transmission + alpha bg = invisible.
-            transmission={0.92}
-            samples={samples}
-            thickness={2.5}
-            roughness={0.08}
-            chromaticAberration={0.08}
-            ior={1.5}
-            backside
-            backsideThickness={1}
-            distortion={0.3}
-            distortionScale={0.4}
+          {/* meshPhysicalMaterial uses single-pass transmission — no FBO
+              backbuffer required, so it actually draws on a transparent
+              canvas. drei's MeshTransmissionMaterial samples the framebuffer
+              and outputs nothing when the FB is alpha:0. */}
+          <meshPhysicalMaterial
             color={orbColor}
+            roughness={0.06}
+            metalness={0}
+            transmission={0.75}
+            thickness={2}
+            ior={1.5}
             attenuationColor={attenuation}
-            attenuationDistance={3}
-            // Iridescence + clearcoat make the orb readable on any background
-            // (rainbow rim + glossy outer) — the peachweb look.
-            iridescence={0.55}
+            attenuationDistance={2.5}
+            iridescence={0.6}
             iridescenceIOR={1.3}
             clearcoat={1}
-            clearcoatRoughness={0}
-            envMapIntensity={1.4}
-            metalness={0}
+            clearcoatRoughness={0.02}
+            envMapIntensity={1.6}
+            transparent
+            opacity={0.95}
           />
         </Sphere>
       </group>
