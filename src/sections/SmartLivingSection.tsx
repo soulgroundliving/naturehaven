@@ -62,7 +62,7 @@ const SmartLivingSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="smart-living"
-      className="section-padding bg-pure-white"
+      className="section-padding bg-pure-white/30 backdrop-blur-xl"
     >
       <div className="container-main">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">

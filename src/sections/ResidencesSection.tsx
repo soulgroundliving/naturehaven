@@ -82,7 +82,7 @@ const ResidencesSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="residences"
-      className="section-padding bg-pure-white"
+      className="section-padding bg-pure-white/30 backdrop-blur-xl"
     >
       <div className="container-main">
         <SectionHeader
