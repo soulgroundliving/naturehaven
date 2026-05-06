@@ -88,18 +88,29 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
       <group ref={groupRef}>
         <Sphere ref={meshRef} args={[1, segments, segments]}>
           <MeshTransmissionMaterial
-            transmission={1}
+            // Less than 1 leaves a visible surface contribution against the
+            // transparent canvas — pure 1.0 transmission + alpha bg = invisible.
+            transmission={0.92}
             samples={samples}
-            thickness={1.5}
-            roughness={0.05}
-            chromaticAberration={0.06}
+            thickness={2.5}
+            roughness={0.08}
+            chromaticAberration={0.08}
             ior={1.5}
             backside
-            distortion={0.2}
-            distortionScale={0.3}
+            backsideThickness={1}
+            distortion={0.3}
+            distortionScale={0.4}
             color={orbColor}
             attenuationColor={attenuation}
-            attenuationDistance={4}
+            attenuationDistance={3}
+            // Iridescence + clearcoat make the orb readable on any background
+            // (rainbow rim + glossy outer) — the peachweb look.
+            iridescence={0.55}
+            iridescenceIOR={1.3}
+            clearcoat={1}
+            clearcoatRoughness={0}
+            envMapIntensity={1.4}
+            metalness={0}
           />
         </Sphere>
       </group>
