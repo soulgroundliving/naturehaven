@@ -93,7 +93,7 @@ const ResidencesSection: React.FC = () => {
         {/* Three Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 md:mb-20">
           {/* Suitable For */}
-          <div className="res-card bg-light-warm-grey rounded-xl p-8 md:p-12">
+          <div className="res-card bg-pure-white/80 backdrop-blur-sm rounded-xl p-8 md:p-12">
             <h3 className="font-serif text-2xl md:text-[32px] text-dark-charcoal mb-6">
               Suitable For
             </h3>
@@ -110,7 +110,7 @@ const ResidencesSection: React.FC = () => {
           </div>
 
           {/* Space & Layout */}
-          <div className="res-card bg-light-warm-grey rounded-xl p-8 md:p-12">
+          <div className="res-card bg-pure-white/80 backdrop-blur-sm rounded-xl p-8 md:p-12">
             <h3 className="font-serif text-2xl md:text-[32px] text-dark-charcoal mb-4">
               Space & Layout
             </h3>
@@ -140,7 +140,7 @@ const ResidencesSection: React.FC = () => {
           </div>
 
           {/* Rental Rates */}
-          <div className="res-card bg-light-warm-grey rounded-xl p-8 md:p-12">
+          <div className="res-card bg-pure-white/80 backdrop-blur-sm rounded-xl p-8 md:p-12">
             <h3 className="font-serif text-2xl md:text-[32px] text-dark-charcoal mb-6">
               Rental
             </h3>
@@ -197,7 +197,7 @@ const ResidencesSection: React.FC = () => {
         </div>
 
         {/* In-Room Essentials */}
-        <div className="essentials-card bg-light-warm-grey rounded-xl p-8 md:p-12 lg:p-16">
+        <div className="essentials-card bg-pure-white/80 backdrop-blur-sm rounded-xl p-8 md:p-12 lg:p-16">
           <h3 className="font-serif text-3xl md:text-[40px] text-dark-charcoal text-center mb-2">
             In-Room Essentials
           </h3>
