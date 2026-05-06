@@ -37,6 +37,8 @@ function applyCSSVars(p: TimePalette) {
   root.style.setProperty('--sky-to', p.skyTo);
   root.style.setProperty('--text-on-bg', p.textOnBg);
   root.style.setProperty('--text-muted-on-bg', p.textMuted);
+  root.style.setProperty('--cta-bg', p.ctaBg);
+  root.style.setProperty('--cta-bg-hover', p.ctaBgHover);
   root.dataset.tod = p.slot;
   root.dataset.mood = p.mood;
 }

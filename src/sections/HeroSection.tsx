@@ -121,9 +121,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
         </p>
         <button
           onClick={scrollToAbout}
-          className="hero-cta group relative mt-12 inline-flex items-center gap-3 bg-sage-green text-pure-white font-sans text-sm uppercase tracking-wide px-10 py-4 rounded-full overflow-hidden transition-transform duration-200 active:scale-[0.98] hover:shadow-lg"
+          className="hero-cta group relative mt-12 inline-flex items-center gap-3 bg-[var(--cta-bg,#3D5A4C)] text-pure-white font-sans text-sm uppercase tracking-wide px-10 py-4 rounded-full overflow-hidden transition-transform duration-200 active:scale-[0.98] hover:shadow-lg"
         >
-          <span className="absolute inset-0 bg-[#4a6e5d] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
+          <span className="absolute inset-0 bg-[var(--cta-bg-hover,#4a6e5d)] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
           <span className="relative z-10">Discover More</span>
           <svg
             className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"

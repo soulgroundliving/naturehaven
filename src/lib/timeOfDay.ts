@@ -28,6 +28,11 @@ export interface TimePalette {
   textOnBg: string;
   textMuted: string;
 
+  // CTA accent — slot-aware primary button bg
+  // (most slots stay sage; night flips to cool slate so it reads on dark sky)
+  ctaBg: string;
+  ctaBgHover: string;
+
   // Mood for copy/animation variants
   mood: 'fresh' | 'crisp' | 'warm' | 'still';
   tagline: string; // sub-headline shown below "Nature Haven"
@@ -46,6 +51,8 @@ const MORNING: TimePalette = {
   envPreset: 'dawn',
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
+  ctaBg: '#3D5A4C',     // brand sage — works on cream sky
+  ctaBgHover: '#4A6E5D',
   mood: 'fresh',
   tagline: 'ตื่นมารับวันใหม่ที่นี่',
 };
@@ -63,6 +70,8 @@ const DAY: TimePalette = {
   envPreset: 'studio',
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
+  ctaBg: '#3D5A4C',     // brand sage — neutral baseline
+  ctaBgHover: '#4A6E5D',
   mood: 'crisp',
   tagline: 'ความสงบในทุกขณะ',
 };
@@ -80,6 +89,8 @@ const SUNSET: TimePalette = {
   envPreset: 'sunset',
   textOnBg: '#FFFFFF',
   textMuted: '#F5E8D8',
+  ctaBg: '#3D5A4C',     // brand sage holds against warm sky
+  ctaBgHover: '#4A6E5D',
   mood: 'warm',
   tagline: 'ปิดวันด้วยใจที่เบา',
 };
@@ -97,6 +108,8 @@ const NIGHT: TimePalette = {
   envPreset: 'night',
   textOnBg: '#F5F1EA',
   textMuted: '#A8B4BC',
+  ctaBg: '#5C7A8E',     // cool slate — sage gets lost on dark navy sky
+  ctaBgHover: '#465E70',
   mood: 'still',
   tagline: 'พักผ่อนในที่ของตัวเอง',
 };
