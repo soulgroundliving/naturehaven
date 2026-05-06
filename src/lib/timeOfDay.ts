@@ -33,6 +33,11 @@ export interface TimePalette {
   ctaBg: string;
   ctaBgHover: string;
 
+  // Hero text-shadow — gives text legibility over the busy video bg.
+  // Light slots: white halo (dark text on bright video).
+  // Dark slots: dark grounding (white/cream text on tinted dark video).
+  textShadow: string;
+
   // Mood for copy/animation variants
   mood: 'fresh' | 'crisp' | 'warm' | 'still';
   tagline: string; // sub-headline shown below "Nature Haven"
@@ -53,6 +58,8 @@ const MORNING: TimePalette = {
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — works on cream sky
   ctaBgHover: '#4A6E5D',
+  textShadow:
+    '0 1px 2px rgba(255,255,255,0.6), 0 0 18px rgba(255,255,255,0.55)',
   mood: 'fresh',
   tagline: 'ตื่นมารับวันใหม่ที่นี่',
 };
@@ -72,6 +79,8 @@ const DAY: TimePalette = {
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — neutral baseline
   ctaBgHover: '#4A6E5D',
+  textShadow:
+    '0 1px 2px rgba(255,255,255,0.6), 0 0 18px rgba(255,255,255,0.55)',
   mood: 'crisp',
   tagline: 'ความสงบในทุกขณะ',
 };
@@ -91,6 +100,8 @@ const SUNSET: TimePalette = {
   textMuted: '#F5E8D8',
   ctaBg: '#3D5A4C',     // brand sage holds against warm sky
   ctaBgHover: '#4A6E5D',
+  textShadow:
+    '0 2px 4px rgba(0,0,0,0.55), 0 0 14px rgba(0,0,0,0.35)',
   mood: 'warm',
   tagline: 'ปิดวันด้วยใจที่เบา',
 };
@@ -110,6 +121,8 @@ const NIGHT: TimePalette = {
   textMuted: '#A8B4BC',
   ctaBg: '#5C7A8E',     // cool slate — sage gets lost on dark navy sky
   ctaBgHover: '#465E70',
+  textShadow:
+    '0 2px 4px rgba(0,0,0,0.6), 0 0 14px rgba(0,0,0,0.4)',
   mood: 'still',
   tagline: 'พักผ่อนในที่ของตัวเอง',
 };

@@ -117,3 +117,22 @@ a[class*="bg-[var(--cta-bg"]:focus-visible {
   outline: 2px solid var(--cta-bg, #3D5A4C);
   outline-offset: 4px;
 }
+
+/* Hero text legibility over the video bg — slot-aware shadow halo.
+   Light slots (morning/day) get a white glow behind dark text;
+   dark slots (sunset/night) get a dark grounding behind light text.
+   The CTA has a solid bg, so it skips the shadow. */
+#hero h1,
+#hero .hero-label,
+#hero .hero-subtitle,
+.hero-scroll-cue {
+  text-shadow: var(--text-shadow-hero);
+}
+
+/* Top nav over the video bg — same halo so PHILOSOPHY/RESIDENCES/etc.
+   read at all times. The .nav-on-hero class is added by Navigation when
+   the user is still in the hero (no frosted nav bg yet). */
+.nav-on-hero a,
+.nav-on-hero button {
+  text-shadow: var(--text-shadow-hero);
+}

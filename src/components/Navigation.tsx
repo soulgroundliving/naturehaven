@@ -68,7 +68,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection }) => {
         } ${
           isPastHero
             ? 'bg-white/85 backdrop-blur-xl shadow-sm'
-            : 'bg-transparent'
+            : 'bg-transparent nav-on-hero'
         }`}
       >
         <div className="container-main flex items-center justify-between h-20">
@@ -79,8 +79,15 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection }) => {
               if (lenisRef.current) lenisRef.current.scrollTo(0);
             }}
             className={`font-serif text-lg transition-colors duration-500 ${
-              isPastHero && !isDark ? 'text-dark-charcoal' : 'text-pure-white'
+              isPastHero
+                ? isDark
+                  ? 'text-pure-white'
+                  : 'text-dark-charcoal'
+                : ''
             }`}
+            style={
+              !isPastHero ? { color: 'var(--text-on-bg, #FFFFFF)' } : undefined
+            }
           >
             Nature Haven
           </a>
@@ -95,10 +102,17 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection }) => {
                   key={link.href}
                   onClick={() => scrollTo(link.href)}
                   className={`relative font-sans text-xs uppercase tracking-[0.05em] transition-colors duration-300 group ${
-                    isPastHero && !isDark
-                      ? 'text-dark-charcoal'
-                      : 'text-pure-white'
+                    isPastHero
+                      ? isDark
+                        ? 'text-pure-white'
+                        : 'text-dark-charcoal'
+                      : ''
                   }`}
+                  style={
+                    !isPastHero
+                      ? { color: 'var(--text-on-bg, #FFFFFF)' }
+                      : undefined
+                  }
                 >
                   <span className="relative">
                     {link.label}
@@ -120,8 +134,15 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection }) => {
           <button
             onClick={() => setMobileOpen(true)}
             className={`lg:hidden p-2 transition-colors duration-500 ${
-              isPastHero && !isDark ? 'text-dark-charcoal' : 'text-pure-white'
+              isPastHero
+                ? isDark
+                  ? 'text-pure-white'
+                  : 'text-dark-charcoal'
+                : ''
             }`}
+            style={
+              !isPastHero ? { color: 'var(--text-on-bg, #FFFFFF)' } : undefined
+            }
           >
             <Menu size={24} />
           </button>

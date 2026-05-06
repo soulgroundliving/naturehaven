@@ -141,7 +141,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
 
       <div
         ref={scrollIndicatorRef}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        className="hero-scroll-cue absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
         style={{ color: 'var(--text-muted-on-bg, #5C5650)' }}
       >
         <span className="font-sans text-xs uppercase tracking-[0.15em]">
