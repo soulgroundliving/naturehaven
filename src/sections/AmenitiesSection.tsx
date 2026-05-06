@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import SectionHeader from '@/components/SectionHeader';
 import PrimaryButton from '@/components/PrimaryButton';
 import {
   KeyIcon,
@@ -18,46 +17,14 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 const amenities = [
-  {
-    icon: KeyIcon,
-    title: 'Digital Access',
-    desc: 'Digital door lock — secure unit & building access',
-  },
-  {
-    icon: ShieldIcon,
-    title: 'Security',
-    desc: 'CCTV security — monitored around the clock',
-  },
-  {
-    icon: CarIcon,
-    title: 'Parking',
-    desc: 'Parking — 1 space per unit',
-  },
-  {
-    icon: LeafIcon,
-    title: 'Pocket Garden',
-    desc: 'Pocket garden — a breath of green in your day',
-  },
-  {
-    icon: WashingIcon,
-    title: 'Laundry',
-    desc: 'Laundry & drying area — convenient and clean',
-  },
-  {
-    icon: WifiIcon,
-    title: 'High-Speed Internet',
-    desc: 'Free Wi-Fi — AIS Fiber connectivity',
-  },
-  {
-    icon: SparkleIcon,
-    title: 'Cleaning Service',
-    desc: 'Cleaning service — every 6 months',
-  },
-  {
-    icon: SnowflakeIcon,
-    title: 'AC Maintenance',
-    desc: 'Air conditioner cleaning — yearly service',
-  },
+  { Icon: KeyIcon,      label: 'Digital door lock',   desc: 'Keyless entry — unit & building' },
+  { Icon: ShieldIcon,   label: 'CCTV security',        desc: '24 / 7 perimeter monitoring' },
+  { Icon: CarIcon,      label: 'Parking',              desc: 'One dedicated bay per unit' },
+  { Icon: LeafIcon,     label: 'Pocket garden',        desc: 'A communal garden to breathe in' },
+  { Icon: WashingIcon,  label: 'Laundry & drying',     desc: 'On-site, clean, and convenient' },
+  { Icon: WifiIcon,     label: 'Free Wi-Fi',           desc: 'AIS Fiber — no shared throttle' },
+  { Icon: SparkleIcon,  label: 'Cleaning service',     desc: 'Common areas, every 6 months' },
+  { Icon: SnowflakeIcon,label: 'A/C maintenance',      desc: 'Serviced annually — no extra cost' },
 ];
 
 const AmenitiesSection: React.FC = () => {
@@ -67,30 +34,43 @@ const AmenitiesSection: React.FC = () => {
     () => {
       if (!sectionRef.current) return;
 
-      const cards = sectionRef.current.querySelectorAll('.amenity-card');
-      gsap.from(cards, {
-        y: 25,
+      const header = sectionRef.current.querySelectorAll('.am-header-anim');
+      gsap.from(header, {
+        y: 18,
         opacity: 0,
-        scale: 0.97,
-        duration: 0.6,
+        duration: 0.7,
         stagger: 0.1,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: cards[0] as Element,
+          trigger: header[0] as Element,
           start: 'top 80%',
           toggleActions: 'play none none none',
         },
       });
 
-      const cta = sectionRef.current.querySelector('.amenities-cta');
+      const rows = sectionRef.current.querySelectorAll('.am-row-anim');
+      gsap.from(rows, {
+        x: -16,
+        opacity: 0,
+        duration: 0.55,
+        stagger: 0.07,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: rows[0] as Element,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
+
+      const cta = sectionRef.current.querySelector('.am-cta-anim');
       gsap.from(cta, {
-        y: 15,
+        y: 12,
         opacity: 0,
         duration: 0.6,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: cta as Element,
-          start: 'top 85%',
+          start: 'top 88%',
           toggleActions: 'play none none none',
         },
       });
@@ -102,62 +82,49 @@ const AmenitiesSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="amenities"
-      className="section-padding relative overflow-hidden"
+      className="section-padding bg-pure-white/30 backdrop-blur-xl"
     >
-      {/* Video background */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        poster="https://images.unsplash.com/photo-1557683316-973673baf926?w=1600&q=60"
-        // @ts-ignore — non-standard playsinline attributes for iOS/Android WebView
-        disableRemotePlayback
-        webkit-playsinline="true"
-        x5-playsinline="true"
-      >
-        <source
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260424_064411_9e9d7f84-9277-41f4-ab10-59172d89e6be.mp4"
-          type="video/mp4"
-        />
-      </video>
+      <div className="container-main">
+        {/* Header */}
+        <div className="max-w-xl mb-16">
+          <p className="am-header-anim section-label text-dark-charcoal/50 mb-4 tracking-[0.2em]">
+            Amenities
+          </p>
+          <h2 className="am-header-anim font-serif text-3xl md:text-4xl lg:text-[44px] text-dark-charcoal leading-[1.1]">
+            Everything in place,<br />
+            before you arrive.
+          </h2>
+        </div>
 
-      {/* Overlay — ensures cards and text stay readable over the video */}
-      <div className="absolute inset-0 bg-white/45" />
-
-      <div className="container-main relative z-10">
-        <SectionHeader
-          label="Amenities"
-          headline="Everything you need, thoughtfully provided."
-          align="center"
-        />
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-          {amenities.map(({ icon: Icon, title, desc }) => (
+        {/* Amenity list — two columns, editorial rule-separated rows */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 lg:gap-x-24">
+          {amenities.map(({ Icon, label, desc }) => (
             <div
-              key={title}
-              className="amenity-card bg-pure-white/80 backdrop-blur-sm rounded-xl p-8 md:p-10 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
+              key={label}
+              className="am-row-anim flex items-start gap-4 py-5 border-t border-dark-charcoal/10 last:border-b md:last:border-b-0"
             >
-              <div className="w-12 h-12 flex items-center justify-center text-sage-green mb-5">
-                <Icon size={28} />
+              <Icon
+                size={14}
+                className="text-sage-green flex-shrink-0 mt-[5px] opacity-70"
+              />
+              <div>
+                <p className="font-sans text-[14px] font-medium text-dark-charcoal leading-snug">
+                  {label}
+                </p>
+                <p className="font-sans text-[12px] text-dark-charcoal/50 mt-0.5 leading-snug">
+                  {desc}
+                </p>
               </div>
-              <h4 className="font-serif text-xl md:text-2xl text-dark-charcoal mb-3">
-                {title}
-              </h4>
-              <p className="font-sans text-[15px] font-light text-dark-charcoal/80 leading-relaxed">
-                {desc}
-              </p>
             </div>
           ))}
         </div>
 
-        <div className="amenities-cta text-center mt-16">
-          <p className="font-sans text-lg font-light text-dark-charcoal mb-6">
-            Ready to make this your home?
+        {/* CTA */}
+        <div className="am-cta-anim mt-16 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <p className="font-sans text-[15px] font-light text-dark-charcoal/60 max-w-xs leading-relaxed">
+            Every item above is included in your monthly rate — nothing hidden.
           </p>
-          <PrimaryButton href="#contact">Reserve Now</PrimaryButton>
+          <PrimaryButton href="#contact">Reserve a Unit</PrimaryButton>
         </div>
       </div>
     </section>
