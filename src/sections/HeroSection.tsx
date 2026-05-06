@@ -106,7 +106,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
         </p>
         <h1
           ref={headlineRef}
-          className="font-serif leading-[0.9] text-[14vw] md:text-[12vw] lg:text-[10vw]"
+          className="font-serif leading-[0.9] text-[10vw] md:text-[12vw] lg:text-[10vw]"
           aria-label={HEADLINE}
         >
           <span aria-hidden="true">{headlineChars}</span>

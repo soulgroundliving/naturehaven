@@ -84,12 +84,11 @@ const AboutSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[52%_48%] gap-10 lg:gap-0 items-stretch">
 
           {/* Image — full-height, slight negative margin to push edge */}
-          <div className="ab-image lg:pr-10">
+          <div className="ab-image lg:pr-10 self-stretch">
             <img
               src="/assets/about-minimal-room.jpg"
               alt="Minimal bedroom interior"
-              className="w-full h-full object-cover rounded-lg"
-              style={{ minHeight: '420px', maxHeight: '640px' }}
+              className="w-full object-cover rounded-lg aspect-[4/3] lg:aspect-auto lg:h-full"
             />
           </div>
 
@@ -111,7 +110,7 @@ const AboutSection: React.FC = () => {
               onClick={() => {
                 document.getElementById('residences')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="ab-text-anim group mt-9 inline-flex items-center gap-2.5 font-serif italic text-[18px] text-pure-white hover:text-sage-green transition-colors duration-300 self-start"
+              className="ab-text-anim group mt-9 inline-flex items-center gap-2.5 font-serif italic text-[18px] text-pure-white hover:text-sage-green transition-colors duration-300 self-start py-2 -my-2"
             >
               <span className="relative">
                 View Residences

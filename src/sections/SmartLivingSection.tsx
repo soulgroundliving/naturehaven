@@ -188,7 +188,7 @@ const SmartLivingSection: React.FC = () => {
           </div>
 
           {/* CENTER — Phone mockup */}
-          <div className="sl-phone-anim flex justify-center order-first lg:order-none">
+          <div className="sl-phone-anim flex justify-center">
             <div
               className="relative w-full max-w-[300px] bg-near-black rounded-[36px] p-3"
               style={{

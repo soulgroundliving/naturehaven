@@ -133,7 +133,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection }) => {
           {/* Mobile Hamburger */}
           <button
             onClick={() => setMobileOpen(true)}
-            className={`lg:hidden p-2 transition-colors duration-500 ${
+            className={`lg:hidden p-3 transition-colors duration-500 ${
               isPastHero
                 ? isDark
                   ? 'text-pure-white'
