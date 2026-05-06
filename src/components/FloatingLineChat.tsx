@@ -10,10 +10,10 @@ export default function FloatingLineChat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on LINE"
-      className="fixed right-6 bottom-6 z-[60] inline-flex items-center gap-2.5 bg-[#06C755] hover:bg-[#05A848] text-pure-white px-5 py-3.5 rounded-full font-sans text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
+      className="fixed right-6 bottom-6 z-[60] inline-flex items-center gap-2.5 bg-[var(--cta-bg,#3D5A4C)] hover:bg-[var(--cta-bg-hover,#4a6e5d)] text-pure-white px-5 py-3.5 rounded-full font-sans text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
       style={{
         boxShadow:
-          '0 12px 32px -8px rgba(6, 199, 85, 0.45), 0 4px 12px rgba(31,27,22,0.12)',
+          '0 12px 32px -8px rgba(31,27,22,0.28), 0 4px 12px rgba(31,27,22,0.12)',
       }}
     >
       <MessageCircle size={18} />
