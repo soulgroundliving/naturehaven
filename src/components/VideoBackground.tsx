@@ -90,8 +90,8 @@ export default function VideoBackground() {
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(180deg, var(--sky-from, #E8E9EA) 0%, var(--sky-via, #F0EEE8) 35%, transparent 75%)',
-          opacity: 0.55,
+            'linear-gradient(180deg, var(--sky-from, #E8E9EA) 0%, var(--sky-via, #F0EEE8) 40%, var(--sky-to, #DCDED5) 100%)',
+          opacity: 0.5,
           mixBlendMode: 'multiply',
         }}
       />
