@@ -92,7 +92,7 @@ const ResidencesSection: React.FC = () => {
         />
 
         {/* Three Info Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 md:mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 md:mb-16 lg:mb-20">
           {/* Suitable For */}
           <div className="res-card card-surface backdrop-blur-sm rounded-xl p-8 md:p-12">
             <h3 className="font-serif text-2xl md:text-[32px] sec-text mb-6">
@@ -198,7 +198,7 @@ const ResidencesSection: React.FC = () => {
         </div>
 
         {/* Room 3D Render */}
-        <div className="mb-16 md:mb-20 rounded-xl overflow-hidden">
+        <div className="mb-10 md:mb-16 lg:mb-20 rounded-xl overflow-hidden">
           <img
             src="/assets/room-3d-render.jpg"
             alt="Unit interior — 31.5 sq.m. studio"

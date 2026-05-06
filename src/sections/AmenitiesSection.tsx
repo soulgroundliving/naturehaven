@@ -86,7 +86,7 @@ const AmenitiesSection: React.FC = () => {
     >
       <div className="container-main">
         {/* Header */}
-        <div className="max-w-xl mb-16">
+        <div className="max-w-xl mb-10 md:mb-16">
           <p className="am-header-anim section-label sec-text-60 mb-4 tracking-[0.2em]">
             Amenities
           </p>
@@ -120,7 +120,7 @@ const AmenitiesSection: React.FC = () => {
         </div>
 
         {/* CTA */}
-        <div className="am-cta-anim mt-16 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        <div className="am-cta-anim mt-10 md:mt-16 flex flex-col sm:flex-row items-start sm:items-center gap-6">
           <p className="font-sans text-[15px] font-light sec-text-70 max-w-xs leading-relaxed">
             Every item above is included in your monthly rate — nothing hidden.
           </p>

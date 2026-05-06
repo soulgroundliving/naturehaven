@@ -42,7 +42,7 @@ const FooterSection: React.FC = () => {
   );
 
   return (
-    <footer ref={sectionRef} id="footer" className="bg-white/85 backdrop-blur-xl shadow-sm pt-16 md:pt-20 pb-10">
+    <footer ref={sectionRef} id="footer" className="bg-white/85 backdrop-blur-xl shadow-sm pt-16 md:pt-20 pb-24 md:pb-10">
       <div className="container-main">
         {/* Top Area */}
         <div className="text-center mb-12">

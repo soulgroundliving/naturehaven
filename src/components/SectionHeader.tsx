@@ -45,7 +45,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`mb-12 md:mb-20 ${align === 'center' ? 'text-center' : ''} ${className}`}
+      className={`mb-8 md:mb-16 lg:mb-20 ${align === 'center' ? 'text-center' : ''} ${className}`}
     >
       <p
         className={`sh-animate section-label mb-4 ${dark ? 'sec-text-60' : ''}`}

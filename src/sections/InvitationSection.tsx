@@ -101,7 +101,7 @@ const InvitationSection: React.FC = () => {
     >
       <div className="container-main flex justify-center">
         <div
-          className="inv-card relative w-full max-w-[580px] rounded-2xl px-10 py-14 md:px-16 md:py-20"
+          className="inv-card relative w-full max-w-[580px] rounded-2xl px-6 py-10 sm:px-10 sm:py-14 md:px-16 md:py-20"
           style={{
             background: 'linear-gradient(148deg, #FDFAF6 0%, #F5EDE0 100%)',
             boxShadow:
