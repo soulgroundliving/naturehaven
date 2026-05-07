@@ -274,7 +274,7 @@ const SmartLivingSection: React.FC = () => {
                   key={num}
                   className="sl-right-anim py-6 border-t sec-border last:border-b flex gap-5 items-start"
                 >
-                  <span className="font-serif text-[22px] font-light text-sage-green/70 min-w-[36px] leading-none pt-1">
+                  <span className="font-serif text-[22px] font-light sec-text-60 min-w-[36px] leading-none pt-1">
                     {num}
                   </span>
                   <div>
