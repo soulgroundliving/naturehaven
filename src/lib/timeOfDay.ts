@@ -120,8 +120,8 @@ const DAY: TimePalette = {
   lightIntensity: 1.8,            // strong directional = visible specular + iridescence hit
   lightAngle: [-2, 2, 2],        // angled so highlights cross the bubble face
   ambientIntensity: 0.08,         // very low — prevents IBL from washing out shimmer
-  envPreset: 'night',             // darker IBL gives bubble something to refract against
-  envMapIntensity: 3.0,           // high — boosts the env reflection on the thin film
+  envPreset: 'night',             // dark IBL reflects visibly on bubble surface
+  envMapIntensity: 4.5,           // very high — night blues show strongly on the thin film
   glassTransmission: 0.97,        // near-total — bubble is almost entirely see-through
   glassIridescence: 1.0,          // full soap-bubble rainbow shimmer
   textOnBg: '#2B2B2B',

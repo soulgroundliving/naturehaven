@@ -81,7 +81,7 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
           <meshPhysicalMaterial
             color={orbColor}
             roughness={0}
-            metalness={0.06}
+            metalness={0.22}
             transmission={palette.glassTransmission}
             thickness={0.12}
             ior={1.35}
