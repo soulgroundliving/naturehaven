@@ -139,12 +139,22 @@ const ResidencesSection: React.FC = () => {
                 <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em] mb-2">
                   Units 1–2
                 </p>
-                <p className="font-sans text-sm font-medium sec-text-90 leading-snug">
+                <p className="font-sans text-sm font-medium sec-text-90 leading-snug mb-4">
                   Standard
                 </p>
-                <div className="mt-4 pt-3 border-t sec-border flex items-baseline gap-1">
-                  <span className="font-serif text-[22px] sec-text leading-none">5,800</span>
-                  <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
+                <div className="pt-3 border-t sec-border">
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span className="font-serif text-[22px] sec-text leading-none">5,800</span>
+                    <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">
+                      Opening Rate
+                    </span>
+                    <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">
+                      6,000 THB
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -157,79 +167,63 @@ const ResidencesSection: React.FC = () => {
                   </p>
                   <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
                 </div>
-                <p className="font-sans text-sm font-medium text-sage-green leading-snug">
+                <p className="font-sans text-sm font-medium text-sage-green leading-snug mb-4">
                   Pet Friendly
                 </p>
-                <div className="mt-4 pt-3 border-t border-sage-green/20 flex items-baseline gap-1">
-                  <span className="font-serif text-[22px] sec-text leading-none">6,200</span>
-                  <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
+                <div className="pt-3 border-t border-sage-green/20">
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span className="font-serif text-[22px] sec-text leading-none">6,200</span>
+                    <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">
+                      Opening Rate
+                    </span>
+                    <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">
+                      6,500 THB
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Rental Rates */}
+          {/* Terms */}
           <div className="res-card card-surface backdrop-blur-sm rounded-xl p-8 md:p-12">
-            <h3 className="font-serif text-2xl md:text-[32px] sec-text mb-6">
-              Rental
+            <h3 className="font-serif text-2xl md:text-[32px] sec-text mb-8">
+              Terms
             </h3>
 
-            {/* Rate 1 — Units 1–2 */}
-            <div className="mb-6">
-              <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em] mb-2">
-                Units 1–2
-              </p>
-              <div className="flex items-baseline gap-2">
-                <span className="font-serif text-4xl md:text-5xl sec-text">
-                  5,800
+            <ul className="flex flex-col gap-5">
+              <li className="flex flex-col gap-1">
+                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
+                  Contract
                 </span>
-                <span className="font-sans text-sm sec-text-60">
-                  THB / month
+                <span className="font-sans text-base font-light sec-text">
+                  Annual (12 months)
                 </span>
-              </div>
-              <div className="flex items-center gap-3 mt-2">
-                <span className="inline-block bg-subtle-taupe/20 sec-text text-xs font-sans font-normal px-4 py-1.5 rounded-full">
-                  Opening Rate
+              </li>
+              <li className="flex flex-col gap-1">
+                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
+                  Move-in
                 </span>
-                <span className="font-sans text-sm sec-text-60 line-through">
-                  Regular: 6,000 THB
+                <span className="font-sans text-base font-light sec-text">
+                  1-month deposit + 1-month advance
                 </span>
-              </div>
-            </div>
+              </li>
+              <li className="flex flex-col gap-1">
+                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
+                  Available from
+                </span>
+                <span className="font-sans text-base font-light sec-text">
+                  August 2026
+                </span>
+              </li>
+            </ul>
 
-            {/* Rate 2 — Units 3–4 */}
-            <div>
-              <div className="flex items-center gap-1.5 mb-2">
-                <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
-                  Units 3–4
-                </p>
-                <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
-              </div>
-              <div className="flex items-baseline gap-2">
-                <span className="font-serif text-4xl md:text-5xl sec-text">
-                  6,200
-                </span>
-                <span className="font-sans text-sm sec-text-60">
-                  THB / month
-                </span>
-              </div>
-              <div className="flex items-center gap-3 mt-2">
-                <span className="inline-block bg-subtle-taupe/20 sec-text text-xs font-sans font-normal px-4 py-1.5 rounded-full">
-                  Opening Rate
-                </span>
-                <span className="font-sans text-sm sec-text-60 line-through">
-                  Regular: 6,500 THB
-                </span>
-              </div>
-            </div>
-
-            <p className="font-sans text-sm italic text-sage-green mt-6">
-              All-inclusive of common area & services
-            </p>
-
-            <div className="w-full h-px bg-dark-charcoal/10 mt-6 mb-4" />
-            <p className="font-sans text-sm sec-text-60">
-              Annual contract • 1-month deposit + 1-month advance
+            <div className="w-full h-px bg-dark-charcoal/10 mt-8 mb-5" />
+            <p className="font-sans text-sm italic text-sage-green leading-relaxed">
+              All-inclusive — amenities, Wi-Fi, cleaning &amp; A/C service covered in monthly rate.
             </p>
           </div>
         </div>
