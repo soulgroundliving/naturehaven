@@ -81,7 +81,7 @@ const MORNING: TimePalette = {
   orbTint: [1.0, 1.0, 1.0],      // clear — bubble colour comes from iridescence
   overlayOpacity: 0.45,
   lightColor: '#FFE7C4',
-  sparkleColor: '#B07830',       // warm amber — visible against cream sky
+  sparkleColor: '#FFD700',       // gold — vivid against cream sky
   lightIntensity: 1.2,
   lightAngle: [-2.5, 1.5, 1.5], // low east, warm rim
   ambientIntensity: 0.45,
