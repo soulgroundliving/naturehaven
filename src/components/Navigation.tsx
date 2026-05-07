@@ -166,8 +166,9 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection }) => {
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
-                className="font-serif text-3xl md:text-4xl text-pure-white transition-opacity duration-300 hover:opacity-60"
+                className="font-serif text-3xl md:text-4xl transition-opacity duration-300 hover:opacity-60"
                 style={{
+                  color: '#FFD700',
                   opacity: mobileOpen ? 1 : 0,
                   transform: mobileOpen ? 'translateY(0)' : 'translateY(20px)',
                   transition: `all 0.5s ease ${i * 0.1}s`,
