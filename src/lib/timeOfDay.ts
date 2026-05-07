@@ -38,10 +38,11 @@ export interface TimePalette {
   glassTransmission: number; // 0..1 (0.96 = maximum transparency, night)
   glassIridescence: number;  // 0..1 (higher = more rainbow shimmer)
 
-  // Semi-transparent circle rendered BEHIND the Three.js canvas so the glass
-  // sphere has a tonal backdrop to refract against on light-sky slots.
-  // Use 'transparent' for dark slots (night/sunset) — they don't need it.
-  orbBackdrop: string; // CSS rgba() or 'transparent'
+  // Three.js scene background for light-sky slots. When set, the canvas is
+  // clipped to a circle and the glass refracts this deep atmospheric colour
+  // rather than the washed-out transparent-canvas-over-bright-sky. Null for
+  // night/sunset where the dark CSS sky provides enough contrast already.
+  sceneBg: string | null;
 
   // Text legibility on the gradient bg
   textOnBg: string;
@@ -78,7 +79,7 @@ const MORNING: TimePalette = {
   skyFrom: '#E8E4D9',
   skyVia: '#F5EDDF',
   skyTo: '#DEDCD0',
-  orbTint: [0.98, 0.93, 0.85],   // warm peach tint — stands out against cream sky
+  orbTint: [1.0, 0.97, 0.94],    // faint warm hint — sceneBg provides depth
   overlayOpacity: 0.45,
   lightColor: '#FFE7C4',
   lightIntensity: 1.0,
@@ -86,9 +87,9 @@ const MORNING: TimePalette = {
   ambientIntensity: 0.28,
   envPreset: 'dawn',
   envMapIntensity: 1.8,
-  glassTransmission: 0.86,  // mostly transparent — let the backdrop show through glass
-  glassIridescence: 0.65,   // strong shimmer
-  orbBackdrop: 'rgba(110, 80, 50, 0.55)', // warm amber haze behind orb — stronger
+  glassTransmission: 0.92,  // mostly transparent — dark sceneBg shows through glass
+  glassIridescence: 0.62,
+  sceneBg: '#3A2010',       // deep warm dark — glass refracts this, reads as atmospheric
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — works on cream sky
@@ -113,7 +114,7 @@ const DAY: TimePalette = {
   skyFrom: '#E8E9EA',
   skyVia: '#F0EEE8',
   skyTo: '#DCDED5',
-  orbTint: [0.78, 0.87, 0.97],   // clear sky-blue tint — glass reads against grey sky
+  orbTint: [0.94, 0.96, 1.0],    // faint cool hint — sceneBg provides depth
   overlayOpacity: 0.42,
   lightColor: '#D0E8FF',          // cool blue-white light — picks up the tint
   lightIntensity: 1.1,
@@ -121,9 +122,9 @@ const DAY: TimePalette = {
   ambientIntensity: 0.25,         // lower — reduces white wash on transmission
   envPreset: 'dawn',              // softer IBL than 'studio'
   envMapIntensity: 1.2,
-  glassTransmission: 0.88,        // mostly transparent — let the backdrop show through glass
-  glassIridescence: 0.70,         // strong shimmer
-  orbBackdrop: 'rgba(40, 70, 130, 0.58)', // cool blue — strong enough to read through glass
+  glassTransmission: 0.92,        // mostly transparent — dark sceneBg shows through glass
+  glassIridescence: 0.68,
+  sceneBg: '#1A3050',             // deep cool blue — glass refracts this, reads as sky-depth
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — neutral baseline
@@ -156,9 +157,9 @@ const SUNSET: TimePalette = {
   ambientIntensity: 0.4,
   envPreset: 'sunset',
   envMapIntensity: 2.4,
-  glassTransmission: 0.95,  // dark warm sky gives good contrast — nearly full transparency
+  glassTransmission: 0.95,
   glassIridescence: 0.40,
-  orbBackdrop: 'transparent',
+  sceneBg: null,            // dark warm CSS sky gives contrast — no scene bg needed
   textOnBg: '#FFFFFF',
   textMuted: '#F5E8D8',
   ctaBg: '#3D5A4C',     // brand sage holds against warm sky
@@ -191,9 +192,9 @@ const NIGHT: TimePalette = {
   ambientIntensity: 0.25,
   envPreset: 'night',
   envMapIntensity: 2.8,
-  glassTransmission: 0.96,  // maximum — dark navy sky shows off the glass perfectly
+  glassTransmission: 0.96,
   glassIridescence: 0.35,
-  orbBackdrop: 'transparent',
+  sceneBg: null,            // dark navy CSS sky gives contrast — no scene bg needed
   textOnBg: '#F5F1EA',
   textMuted: '#A8B4BC',
   ctaBg: '#5C7A8E',     // cool slate — sage gets lost on dark navy sky

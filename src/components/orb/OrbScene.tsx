@@ -140,27 +140,23 @@ export default function OrbScene() {
           width: '60vmin',
           height: '60vmin',
           willChange: 'transform',
+          // Clip canvas to circle when sceneBg is active — hides the square
+          // canvas corners so only the circular orb area is visible.
+          borderRadius: palette.sceneBg ? '50%' : undefined,
+          overflow: palette.sceneBg ? 'hidden' : undefined,
         }}
       >
-        {/* Tonal backdrop — gives glass a surface to refract on light-sky slots.
-            Blurred circle slightly larger than the orb; transparent on dark slots. */}
-        {palette.orbBackdrop !== 'transparent' && (
-          <div
-            style={{
-              position: 'absolute',
-              inset: '-20%',
-              borderRadius: '50%',
-              background: palette.orbBackdrop,
-              filter: 'blur(48px)',
-              pointerEvents: 'none',
-            }}
-          />
-        )}
         <Canvas
           dpr={reducedFidelity ? [1, 1.5] : [1, 2]}
           camera={{ position: [0, 0, 4], fov: 35 }}
           gl={{ antialias: true, alpha: true }}
         >
+          {/* Deep atmospheric background for light-sky slots — gives the glass
+              a dark surface to refract so it reads as glass rather than a
+              white disc. Null for night/sunset where CSS sky provides contrast. */}
+          {palette.sceneBg && (
+            <color attach="background" args={[palette.sceneBg]} />
+          )}
           <Suspense fallback={null}>
             <Orb
               palette={palette}
