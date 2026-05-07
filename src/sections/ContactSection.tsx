@@ -15,7 +15,7 @@ const journeySteps = [
   {
     num: '02',
     title: 'Reach out',
-    body: 'Message us on LINE. We'll answer questions and arrange a viewing.',
+    body: "Message us on LINE. We'll answer questions and arrange a viewing.",
   },
   {
     num: '03',
