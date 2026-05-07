@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import SectionHeader from '@/components/SectionHeader';
 import { Check } from '@/components/icons';
+import { PawPrint } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -127,16 +128,43 @@ const ResidencesSection: React.FC = () => {
             <p className="font-sans text-base font-light sec-text mb-1">
               1 Bedroom / 1 Bathroom
             </p>
-            <p className="font-sans text-base font-light sec-text mb-3">
+            <p className="font-sans text-base font-light sec-text mb-5">
               Separate kitchen with balcony
             </p>
-            <div className="flex flex-col gap-1">
-              <span className="font-sans text-sm sec-text-60">
-                Units 1–2
-              </span>
-              <span className="font-sans text-sm sec-text-60">
-                Units 3–4 (Pet Allowed)
-              </span>
+
+            {/* Unit type split */}
+            <div className="grid grid-cols-2 gap-3">
+              {/* Units 1–2 */}
+              <div className="rounded-xl border sec-border p-4">
+                <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em] mb-2">
+                  Units 1–2
+                </p>
+                <p className="font-sans text-sm font-medium sec-text-90 leading-snug">
+                  Standard
+                </p>
+                <div className="mt-4 pt-3 border-t sec-border flex items-baseline gap-1">
+                  <span className="font-serif text-[22px] sec-text leading-none">5,800</span>
+                  <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
+                </div>
+              </div>
+
+              {/* Units 3–4 */}
+              <div className="rounded-xl border border-sage-green/30 bg-sage-green/5 p-4">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <p className="font-sans text-[10px] uppercase tracking-[0.18em]"
+                     style={{ color: 'var(--sage-green, #3D5A4C)', opacity: 0.75 }}>
+                    Units 3–4
+                  </p>
+                  <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
+                </div>
+                <p className="font-sans text-sm font-medium text-sage-green leading-snug">
+                  Pet Friendly
+                </p>
+                <div className="mt-4 pt-3 border-t border-sage-green/20 flex items-baseline gap-1">
+                  <span className="font-serif text-[22px] sec-text leading-none">6,200</span>
+                  <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -146,8 +174,11 @@ const ResidencesSection: React.FC = () => {
               Rental
             </h3>
 
-            {/* Rate 1 */}
+            {/* Rate 1 — Units 1–2 */}
             <div className="mb-6">
+              <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em] mb-2">
+                Units 1–2
+              </p>
               <div className="flex items-baseline gap-2">
                 <span className="font-serif text-4xl md:text-5xl sec-text">
                   5,800
@@ -166,8 +197,14 @@ const ResidencesSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Rate 2 */}
+            {/* Rate 2 — Units 3–4 */}
             <div>
+              <div className="flex items-center gap-1.5 mb-2">
+                <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
+                  Units 3–4
+                </p>
+                <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
+              </div>
               <div className="flex items-baseline gap-2">
                 <span className="font-serif text-4xl md:text-5xl sec-text">
                   6,200
