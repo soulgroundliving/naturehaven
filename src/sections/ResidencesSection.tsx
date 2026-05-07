@@ -35,12 +35,12 @@ const roomPhotos = [
     alt: 'Minimal bathroom with natural light',
   },
   {
-    src: 'https://images.unsplash.com/photo-1556911073-a517e752729c?w=800&fit=crop&auto=format&q=80',
+    src: 'https://images.unsplash.com/photo-1757439402103-fc35542f96f8?w=800&fit=crop&auto=format&q=80',
     label: 'Kitchen',
     alt: 'Separate kitchen with minimal fittings',
   },
   {
-    src: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=800&fit=crop&auto=format&q=80',
+    src: 'https://images.unsplash.com/photo-1725399103001-200ce2bb5350?w=800&fit=crop&auto=format&q=80',
     label: 'Balcony',
     alt: 'Private balcony overlooking the garden',
   },
