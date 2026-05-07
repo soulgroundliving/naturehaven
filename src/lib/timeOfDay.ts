@@ -38,6 +38,11 @@ export interface TimePalette {
   glassTransmission: number; // 0..1 (0.96 = maximum transparency, night)
   glassIridescence: number;  // 0..1 (higher = more rainbow shimmer)
 
+  // Semi-transparent circle rendered BEHIND the Three.js canvas so the glass
+  // sphere has a tonal backdrop to refract against on light-sky slots.
+  // Use 'transparent' for dark slots (night/sunset) — they don't need it.
+  orbBackdrop: string; // CSS rgba() or 'transparent'
+
   // Text legibility on the gradient bg
   textOnBg: string;
   textMuted: string;
@@ -83,6 +88,7 @@ const MORNING: TimePalette = {
   envMapIntensity: 1.8,
   glassTransmission: 0.65,  // semi-glass — cream sky gives no contrast for full transparency
   glassIridescence: 0.68,   // strong shimmer compensates for lower transmission
+  orbBackdrop: 'rgba(160, 130, 100, 0.22)', // warm amber haze behind orb
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — works on cream sky
@@ -117,6 +123,7 @@ const DAY: TimePalette = {
   envMapIntensity: 1.2,
   glassTransmission: 0.60,        // half-glass — light bg needs material presence
   glassIridescence: 0.75,         // strong shimmer gives glassy quality at low transmission
+  orbBackdrop: 'rgba(80, 110, 150, 0.28)', // cool blue-grey haze behind orb
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — neutral baseline
@@ -151,6 +158,7 @@ const SUNSET: TimePalette = {
   envMapIntensity: 2.4,
   glassTransmission: 0.95,  // dark warm sky gives good contrast — nearly full transparency
   glassIridescence: 0.40,
+  orbBackdrop: 'transparent',
   textOnBg: '#FFFFFF',
   textMuted: '#F5E8D8',
   ctaBg: '#3D5A4C',     // brand sage holds against warm sky
@@ -185,6 +193,7 @@ const NIGHT: TimePalette = {
   envMapIntensity: 2.8,
   glassTransmission: 0.96,  // maximum — dark navy sky shows off the glass perfectly
   glassIridescence: 0.35,
+  orbBackdrop: 'transparent',
   textOnBg: '#F5F1EA',
   textMuted: '#A8B4BC',
   ctaBg: '#5C7A8E',     // cool slate — sage gets lost on dark navy sky

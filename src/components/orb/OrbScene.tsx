@@ -142,6 +142,20 @@ export default function OrbScene() {
           willChange: 'transform',
         }}
       >
+        {/* Tonal backdrop — gives glass a surface to refract on light-sky slots.
+            Blurred circle slightly larger than the orb; transparent on dark slots. */}
+        {palette.orbBackdrop !== 'transparent' && (
+          <div
+            style={{
+              position: 'absolute',
+              inset: '-8%',
+              borderRadius: '50%',
+              background: palette.orbBackdrop,
+              filter: 'blur(32px)',
+              pointerEvents: 'none',
+            }}
+          />
+        )}
         <Canvas
           dpr={reducedFidelity ? [1, 1.5] : [1, 2]}
           camera={{ position: [0, 0, 4], fov: 35 }}
