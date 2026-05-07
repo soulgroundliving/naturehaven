@@ -110,12 +110,12 @@ const DAY: TimePalette = {
   skyTo: '#DCDED5',
   orbTint: [1.0, 1.0, 1.0],      // clear — bubble colour comes from iridescence
   overlayOpacity: 0.42,
-  lightColor: '#FFF5E0',
-  lightIntensity: 1.1,
-  lightAngle: [0, 3, 1],
-  ambientIntensity: 0.45,
-  envPreset: 'dawn',
-  envMapIntensity: 2.0,
+  lightColor: '#FFFFFF',
+  lightIntensity: 1.8,            // strong directional = visible specular + iridescence hit
+  lightAngle: [-2, 2, 2],        // angled so highlights cross the bubble face
+  ambientIntensity: 0.08,         // very low — prevents IBL from washing out shimmer
+  envPreset: 'night',             // darker IBL gives bubble something to refract against
+  envMapIntensity: 3.0,           // high — boosts the env reflection on the thin film
   glassTransmission: 0.97,        // near-total — bubble is almost entirely see-through
   glassIridescence: 1.0,          // full soap-bubble rainbow shimmer
   textOnBg: '#2B2B2B',

@@ -88,7 +88,7 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
             attenuationColor={attenuation}
             attenuationDistance={30}
             iridescence={palette.glassIridescence}
-            iridescenceIOR={1.55}
+            iridescenceIOR={1.8}
             clearcoat={1}
             clearcoatRoughness={0}
             envMapIntensity={palette.envMapIntensity}
