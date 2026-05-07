@@ -89,7 +89,7 @@ const MORNING: TimePalette = {
   envMapIntensity: 1.8,
   glassTransmission: 0.92,  // mostly transparent — dark sceneBg shows through glass
   glassIridescence: 0.62,
-  sceneBg: '#3A2010',       // deep warm dark — glass refracts this, reads as atmospheric
+  sceneBg: '#5C3820',       // warm dark — glass refracts this; not too black
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — works on cream sky
@@ -124,7 +124,7 @@ const DAY: TimePalette = {
   envMapIntensity: 1.2,
   glassTransmission: 0.92,        // mostly transparent — dark sceneBg shows through glass
   glassIridescence: 0.68,
-  sceneBg: '#1A3050',             // deep cool blue — glass refracts this, reads as sky-depth
+  sceneBg: '#2C4866',             // cool blue-grey — dark enough for glass to read
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — neutral baseline

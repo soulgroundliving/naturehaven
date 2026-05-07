@@ -144,6 +144,10 @@ export default function OrbScene() {
           // canvas corners so only the circular orb area is visible.
           borderRadius: palette.sceneBg ? '50%' : undefined,
           overflow: palette.sceneBg ? 'hidden' : undefined,
+          // Soft atmospheric glow feathers the circle edge into the hero bg
+          boxShadow: palette.sceneBg
+            ? `0 0 80px 40px ${palette.sceneBg}88`
+            : undefined,
         }}
       >
         <Canvas
