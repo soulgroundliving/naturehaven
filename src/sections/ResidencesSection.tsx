@@ -28,6 +28,24 @@ const essentials = [
   'Air ventilation system',
 ];
 
+const roomPhotos = [
+  {
+    src: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&fit=crop&auto=format&q=80',
+    label: 'Bathroom',
+    alt: 'Minimal bathroom with natural light',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&fit=crop&auto=format&q=80',
+    label: 'Kitchen',
+    alt: 'Separate kitchen with minimal fittings',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=800&fit=crop&auto=format&q=80',
+    label: 'Balcony',
+    alt: 'Private balcony overlooking the garden',
+  },
+];
+
 const ResidencesSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -45,6 +63,33 @@ const ResidencesSection: React.FC = () => {
         scrollTrigger: {
           trigger: cards[0] as Element,
           start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
+
+      const mainPhoto = sectionRef.current.querySelector('.gallery-main');
+      gsap.from(mainPhoto, {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: mainPhoto as Element,
+          start: 'top 82%',
+          toggleActions: 'play none none none',
+        },
+      });
+
+      const thumbs = sectionRef.current.querySelectorAll('.gallery-thumb');
+      gsap.from(thumbs, {
+        y: 16,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: thumbs[0] as Element,
+          start: 'top 85%',
           toggleActions: 'play none none none',
         },
       });
@@ -228,13 +273,40 @@ const ResidencesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Room 3D Render */}
-        <div className="mb-10 md:mb-16 lg:mb-20 rounded-xl overflow-hidden">
-          <img
-            src="/assets/room-3d-render.jpg"
-            alt="Unit interior — 31.5 sq.m. studio"
-            className="w-full"
-          />
+        {/* Photo Gallery */}
+        <div className="mb-10 md:mb-16 lg:mb-20 flex flex-col gap-2.5">
+          {/* Main — bedroom */}
+          <div className="gallery-main relative rounded-xl overflow-hidden">
+            <img
+              src="/assets/room-3d-render.jpg"
+              alt="Bedroom interior — 31.5 sq.m."
+              className="w-full object-cover aspect-[16/9] md:aspect-[21/9]"
+            />
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/35 to-transparent p-4 md:p-6">
+              <span className="font-sans text-[10px] md:text-[11px] text-white/75 uppercase tracking-[0.2em]">
+                Bedroom
+              </span>
+            </div>
+          </div>
+
+          {/* Secondary — bathroom · kitchen · balcony */}
+          <div className="grid grid-cols-3 gap-2.5">
+            {roomPhotos.map(({ src, label, alt }) => (
+              <div key={label} className="gallery-thumb relative rounded-xl overflow-hidden aspect-square">
+                <img
+                  src={src}
+                  alt={alt}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/40 to-transparent p-2 md:p-4">
+                  <span className="font-sans text-[9px] md:text-[11px] text-white/75 uppercase tracking-[0.2em]">
+                    {label}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* In-Room Essentials */}
