@@ -151,13 +151,13 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection }) => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-[200] bg-soft-taupe transition-all duration-500 lg:hidden ${
+        className={`fixed inset-0 z-[200] bg-near-black transition-all duration-500 lg:hidden ${
           mobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
       >
         <div className="flex flex-col h-full p-8">
           <div className="flex justify-end">
-            <button onClick={() => setMobileOpen(false)} className="p-2 text-dark-charcoal">
+            <button onClick={() => setMobileOpen(false)} className="p-2 text-pure-white">
               <Close size={28} />
             </button>
           </div>
@@ -166,7 +166,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection }) => {
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
-                className="font-serif text-3xl md:text-4xl text-dark-charcoal transition-opacity duration-300 hover:opacity-60"
+                className="font-serif text-3xl md:text-4xl text-pure-white transition-opacity duration-300 hover:opacity-60"
                 style={{
                   opacity: mobileOpen ? 1 : 0,
                   transform: mobileOpen ? 'translateY(0)' : 'translateY(20px)',
