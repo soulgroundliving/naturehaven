@@ -31,6 +31,13 @@ export interface TimePalette {
   // IBL reflections from bleaching out the glass transmission effect
   envMapIntensity: number;
 
+  // Glass material tuning — light-background slots need lower transmission so
+  // the sphere has visible material presence rather than disappearing into sky.
+  // Boost iridescence to compensate: colour-play keeps it feeling glassy even
+  // when it's less see-through.
+  glassTransmission: number; // 0..1 (0.96 = maximum transparency, night)
+  glassIridescence: number;  // 0..1 (higher = more rainbow shimmer)
+
   // Text legibility on the gradient bg
   textOnBg: string;
   textMuted: string;
@@ -74,6 +81,8 @@ const MORNING: TimePalette = {
   ambientIntensity: 0.35,
   envPreset: 'dawn',
   envMapIntensity: 2.2,
+  glassTransmission: 0.84,  // less see-through — cream sky bleeds in
+  glassIridescence: 0.52,   // more shimmer to compensate
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — works on cream sky
@@ -98,7 +107,7 @@ const DAY: TimePalette = {
   skyFrom: '#E8E9EA',
   skyVia: '#F0EEE8',
   skyTo: '#DCDED5',
-  orbTint: [0.96, 0.97, 0.96],   // nearly clear — avoids bleaching transmission
+  orbTint: [0.90, 0.93, 0.97],   // subtle cool-blue tint — reads against light sky
   overlayOpacity: 0.42,
   lightColor: '#FFF5E0',
   lightIntensity: 0.85,           // softer so glass stays glassy, not overlit
@@ -106,6 +115,8 @@ const DAY: TimePalette = {
   ambientIntensity: 0.30,         // lower — reduces white wash on transmission
   envPreset: 'dawn',              // softer IBL than 'studio'
   envMapIntensity: 1.4,           // lower so env reflections don't kill transmission
+  glassTransmission: 0.76,        // noticeably lower — light grey sky washes glass out
+  glassIridescence: 0.62,         // stronger rainbow play keeps it feeling glassy
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — neutral baseline
@@ -138,6 +149,8 @@ const SUNSET: TimePalette = {
   ambientIntensity: 0.4,
   envPreset: 'sunset',
   envMapIntensity: 2.4,
+  glassTransmission: 0.95,  // dark warm sky gives good contrast — nearly full transparency
+  glassIridescence: 0.40,
   textOnBg: '#FFFFFF',
   textMuted: '#F5E8D8',
   ctaBg: '#3D5A4C',     // brand sage holds against warm sky
@@ -170,6 +183,8 @@ const NIGHT: TimePalette = {
   ambientIntensity: 0.25,
   envPreset: 'night',
   envMapIntensity: 2.8,
+  glassTransmission: 0.96,  // maximum — dark navy sky shows off the glass perfectly
+  glassIridescence: 0.35,
   textOnBg: '#F5F1EA',
   textMuted: '#A8B4BC',
   ctaBg: '#5C7A8E',     // cool slate — sage gets lost on dark navy sky
