@@ -73,16 +73,16 @@ const MORNING: TimePalette = {
   skyFrom: '#E8E4D9',
   skyVia: '#F5EDDF',
   skyTo: '#DEDCD0',
-  orbTint: [0.97, 0.98, 0.96],
+  orbTint: [0.98, 0.93, 0.85],   // warm peach tint — stands out against cream sky
   overlayOpacity: 0.45,
   lightColor: '#FFE7C4',
   lightIntensity: 1.0,
   lightAngle: [-2.5, 1.5, 1.5], // low east, warm rim
-  ambientIntensity: 0.35,
+  ambientIntensity: 0.28,
   envPreset: 'dawn',
-  envMapIntensity: 2.2,
-  glassTransmission: 0.84,  // less see-through — cream sky bleeds in
-  glassIridescence: 0.52,   // more shimmer to compensate
+  envMapIntensity: 1.8,
+  glassTransmission: 0.65,  // semi-glass — cream sky gives no contrast for full transparency
+  glassIridescence: 0.68,   // strong shimmer compensates for lower transmission
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — works on cream sky
@@ -107,16 +107,16 @@ const DAY: TimePalette = {
   skyFrom: '#E8E9EA',
   skyVia: '#F0EEE8',
   skyTo: '#DCDED5',
-  orbTint: [0.90, 0.93, 0.97],   // subtle cool-blue tint — reads against light sky
+  orbTint: [0.78, 0.87, 0.97],   // clear sky-blue tint — glass reads against grey sky
   overlayOpacity: 0.42,
-  lightColor: '#FFF5E0',
-  lightIntensity: 0.85,           // softer so glass stays glassy, not overlit
+  lightColor: '#D0E8FF',          // cool blue-white light — picks up the tint
+  lightIntensity: 1.1,
   lightAngle: [0, 3, 1],
-  ambientIntensity: 0.30,         // lower — reduces white wash on transmission
+  ambientIntensity: 0.25,         // lower — reduces white wash on transmission
   envPreset: 'dawn',              // softer IBL than 'studio'
-  envMapIntensity: 1.4,           // lower so env reflections don't kill transmission
-  glassTransmission: 0.76,        // noticeably lower — light grey sky washes glass out
-  glassIridescence: 0.62,         // stronger rainbow play keeps it feeling glassy
+  envMapIntensity: 1.2,
+  glassTransmission: 0.60,        // half-glass — light bg needs material presence
+  glassIridescence: 0.75,         // strong shimmer gives glassy quality at low transmission
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — neutral baseline
