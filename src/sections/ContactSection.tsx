@@ -90,10 +90,10 @@ const ContactSection: React.FC = () => {
               <span className="block font-serif text-[28px] font-light sec-text-60 leading-none mb-4">
                 {num}
               </span>
-              <h3 className="font-sans text-[14px] font-medium sec-text-90 leading-snug mb-2">
+              <h3 className="font-sans text-[15px] font-medium sec-text-90 leading-snug mb-2">
                 {title}
               </h3>
-              <p className="font-sans text-[12px] sec-text-60 leading-relaxed">
+              <p className="font-sans text-[13px] sec-text-60 leading-relaxed">
                 {body}
               </p>
             </div>
