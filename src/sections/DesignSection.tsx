@@ -11,7 +11,7 @@ const materials = [
   { color: '#D4C5B5', text: 'SPC flooring — light tone, soft contrast with furniture' },
   { color: '#EDE7DE', text: 'Soft light wall palette (Nippon Paint OW 2154P)' },
   { color: '#C4A882', text: 'Built-in HMR E1 laminate — natural wood tone' },
-  { color: '#3B3B3B', text: 'Modern switch design' },
+  { color: '#C8A951', text: 'Modern switch design' },
 ];
 
 const architectureSpecs = [
