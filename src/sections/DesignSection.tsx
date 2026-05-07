@@ -15,7 +15,6 @@ const materials = [
 ];
 
 const architectureSpecs = [
-  'Open studio — 31.5 sq.m.',
   '20-unit low-rise residence (no elevator)',
   'North–South airflow optimization',
   'Ergonomic layout planning',
@@ -93,10 +92,6 @@ const DesignSection: React.FC = () => {
                 </div>
               ))}
             </div>
-
-            <p className="design-left-animate font-sans text-[15px] italic text-sage-green mb-10">
-              Designed with sustainability in mind.
-            </p>
 
             <div className="design-left-animate">
               <img

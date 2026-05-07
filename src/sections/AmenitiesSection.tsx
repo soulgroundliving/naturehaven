@@ -4,12 +4,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import PrimaryButton from '@/components/PrimaryButton';
 import {
-  KeyIcon,
-  ShieldIcon,
   CarIcon,
   LeafIcon,
   WashingIcon,
-  WifiIcon,
   SparkleIcon,
   SnowflakeIcon,
 } from '@/components/icons';
@@ -17,14 +14,11 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 const amenities = [
-  { Icon: KeyIcon,      label: 'Digital door lock',   desc: 'Keyless entry — unit & building' },
-  { Icon: ShieldIcon,   label: 'CCTV security',        desc: '24 / 7 perimeter monitoring' },
-  { Icon: CarIcon,      label: 'Parking',              desc: 'One dedicated bay per unit' },
-  { Icon: LeafIcon,     label: 'Pocket garden',        desc: 'A communal garden to breathe in' },
-  { Icon: WashingIcon,  label: 'Laundry & drying',     desc: 'On-site, clean, and convenient' },
-  { Icon: WifiIcon,     label: 'Free Wi-Fi',           desc: 'AIS Fiber — no shared throttle' },
-  { Icon: SparkleIcon,  label: 'Cleaning service',     desc: 'Common areas, every 6 months' },
-  { Icon: SnowflakeIcon,label: 'A/C maintenance',      desc: 'Serviced annually — no extra cost' },
+  { Icon: CarIcon,       label: 'Parking',          desc: 'One dedicated bay per unit' },
+  { Icon: LeafIcon,      label: 'Pocket garden',    desc: 'A communal garden to breathe in' },
+  { Icon: WashingIcon,   label: 'Laundry & drying', desc: 'On-site, clean, and convenient' },
+  { Icon: SparkleIcon,   label: 'Cleaning service', desc: 'Common areas, every 6 months' },
+  { Icon: SnowflakeIcon, label: 'A/C maintenance',  desc: 'Serviced annually — no extra cost' },
 ];
 
 const AmenitiesSection: React.FC = () => {

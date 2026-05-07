@@ -4,13 +4,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import {
   KeyIcon,
-  CarIcon,
-  LeafIcon,
-  WashingIcon,
-  WifiIcon,
-  SparkleIcon,
-  SnowflakeIcon,
   ShieldIcon,
+  WifiIcon,
+  LeafIcon,
 } from '@/components/icons';
 import {
   Search,
@@ -30,14 +26,9 @@ gsap.registerPlugin(ScrollTrigger);
 type SimpleIcon = React.FC<{ size?: number; className?: string }>;
 
 const features: { Icon: SimpleIcon; label: string; sub: string }[] = [
-  { Icon: KeyIcon,      label: 'Digital door lock',   sub: 'Unit & building' },
-  { Icon: ShieldIcon,   label: 'CCTV security',        sub: '24/7 monitoring' },
-  { Icon: CarIcon,      label: 'Parking',              sub: '1 space per unit' },
-  { Icon: LeafIcon,     label: 'Pocket garden',        sub: 'Communal & quiet' },
-  { Icon: WashingIcon,  label: 'Laundry & drying',     sub: 'On-site facility' },
-  { Icon: WifiIcon,     label: 'Free Wi-Fi',           sub: 'AIS Fiber' },
-  { Icon: SparkleIcon,  label: 'Cleaning service',     sub: 'Every 6 months' },
-  { Icon: SnowflakeIcon,label: 'A/C cleaning',         sub: 'Yearly' },
+  { Icon: KeyIcon,    label: 'Digital door lock', sub: 'Unit & building' },
+  { Icon: ShieldIcon, label: 'CCTV security',     sub: '24/7 monitoring' },
+  { Icon: WifiIcon,   label: 'Free Wi-Fi',        sub: 'AIS Fiber' },
 ];
 
 const sustainable = [
@@ -167,7 +158,7 @@ const SmartLivingSection: React.FC = () => {
             </p>
 
             {/* Feature list */}
-            <div className="sl-left-anim grid grid-cols-2 gap-x-5 gap-y-5">
+            <div className="sl-left-anim flex flex-col gap-5">
               {features.map(({ Icon, label, sub }) => (
                 <div key={label} className="flex items-start gap-2.5">
                   <Icon
