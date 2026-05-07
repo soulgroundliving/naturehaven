@@ -197,10 +197,10 @@ const SmartLivingSection: React.FC = () => {
                       className="sec-text-60 flex-shrink-0 mt-[2px]"
                     />
                     <div>
-                      <p className="font-sans text-[12px] font-medium sec-text-80 leading-snug">
+                      <p className="font-sans text-[15px] font-medium sec-text-80 leading-snug">
                         {label}
                       </p>
-                      <p className="font-sans text-[10px] sec-text-60 leading-snug mt-0.5">
+                      <p className="font-sans text-[13px] sec-text-60 leading-snug mt-0.5">
                         {sub}
                       </p>
                     </div>
