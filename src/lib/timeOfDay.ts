@@ -20,6 +20,10 @@ export interface TimePalette {
 
   // DirectionalLight on the orb scene
   lightColor: string;
+
+  // Sparkle particle colour — must contrast with the hero background so the
+  // sparkles are actually visible (white sparkles on a light day sky = invisible)
+  sparkleColor: string;
   lightIntensity: number;
   lightAngle: [number, number, number]; // x, y, z direction in world space
   ambientIntensity: number;
@@ -77,6 +81,7 @@ const MORNING: TimePalette = {
   orbTint: [1.0, 1.0, 1.0],      // clear — bubble colour comes from iridescence
   overlayOpacity: 0.45,
   lightColor: '#FFE7C4',
+  sparkleColor: '#B07830',       // warm amber — visible against cream sky
   lightIntensity: 1.2,
   lightAngle: [-2.5, 1.5, 1.5], // low east, warm rim
   ambientIntensity: 0.45,
@@ -111,6 +116,7 @@ const DAY: TimePalette = {
   orbTint: [1.0, 1.0, 1.0],      // clear — bubble colour comes from iridescence
   overlayOpacity: 0.42,
   lightColor: '#FFFFFF',
+  sparkleColor: '#6090C0',       // soft blue — visible against light grey sky
   lightIntensity: 1.8,            // strong directional = visible specular + iridescence hit
   lightAngle: [-2, 2, 2],        // angled so highlights cross the bubble face
   ambientIntensity: 0.08,         // very low — prevents IBL from washing out shimmer
@@ -145,6 +151,7 @@ const SUNSET: TimePalette = {
   orbTint: [1.0, 0.97, 0.95], // faint warm hint, mostly clear
   overlayOpacity: 0.52,
   lightColor: '#FF9966',
+  sparkleColor: '#FF7744',       // warm orange — vivid against the purple-orange sky
   lightIntensity: 1.4,
   lightAngle: [-3.5, 0.5, 1], // long horizontal from low west
   ambientIntensity: 0.4,
@@ -179,6 +186,7 @@ const NIGHT: TimePalette = {
   orbTint: [0.95, 0.97, 1.0], // faint cool hint, mostly clear
   overlayOpacity: 0.78,
   lightColor: '#9FB8D9',
+  sparkleColor: '#C8D8F0',       // cool silver-blue — visible against dark navy
   lightIntensity: 0.7,
   lightAngle: [0.5, 4, 0.5], // top-down moon
   ambientIntensity: 0.25,

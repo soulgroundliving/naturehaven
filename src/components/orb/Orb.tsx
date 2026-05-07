@@ -66,10 +66,10 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
       <Sparkles
         count={sparkleCount}
         speed={0.5}
-        opacity={palette.slot === 'night' ? 0.7 : 0.55}
+        opacity={palette.slot === 'night' ? 0.7 : 0.6}
         size={2.5}
         scale={[3.5, 3.5, 3.5]}
-        color={palette.lightColor}
+        color={palette.sparkleColor}
         noise={1}
       />
       <group ref={groupRef}>
@@ -81,7 +81,7 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
           <meshPhysicalMaterial
             color={orbColor}
             roughness={0}
-            metalness={0}
+            metalness={0.06}
             transmission={palette.glassTransmission}
             thickness={0.12}
             ior={1.35}
