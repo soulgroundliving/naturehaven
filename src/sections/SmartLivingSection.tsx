@@ -31,6 +31,13 @@ const features: { Icon: SimpleIcon; label: string; sub: string }[] = [
   { Icon: WifiIcon,   label: 'Free Wi-Fi',        sub: 'AIS Fiber' },
 ];
 
+const appFeatures: { Icon: LucideIcon; label: string; sub: string }[] = [
+  { Icon: CalendarCheck, label: 'Bookings',     sub: 'Common spaces' },
+  { Icon: Receipt,       label: 'Payments',     sub: 'Auto · LINE Pay' },
+  { Icon: Wrench,        label: 'Maintenance',  sub: 'Request anytime' },
+  { Icon: PawPrint,      label: 'Pet records',  sub: 'Vaccination history' },
+];
+
 const sustainable = [
   {
     num: '01',
@@ -175,6 +182,31 @@ const SmartLivingSection: React.FC = () => {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* App-managed workflows */}
+            <div className="sl-left-anim mt-7 pt-6 border-t sec-border">
+              <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.2em] mb-4">
+                Also in-app
+              </p>
+              <div className="grid grid-cols-2 gap-x-5 gap-y-3">
+                {appFeatures.map(({ Icon, label, sub }) => (
+                  <div key={label} className="flex items-start gap-2">
+                    <Icon
+                      size={13}
+                      className="sec-text-60 flex-shrink-0 mt-[2px]"
+                    />
+                    <div>
+                      <p className="font-sans text-[12px] font-medium sec-text-80 leading-snug">
+                        {label}
+                      </p>
+                      <p className="font-sans text-[10px] sec-text-60 leading-snug mt-0.5">
+                        {sub}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
