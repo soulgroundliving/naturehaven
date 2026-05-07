@@ -38,11 +38,6 @@ export interface TimePalette {
   glassTransmission: number; // 0..1 (0.96 = maximum transparency, night)
   glassIridescence: number;  // 0..1 (higher = more rainbow shimmer)
 
-  // Three.js scene background for light-sky slots. When set, the canvas is
-  // clipped to a circle and the glass refracts this deep atmospheric colour
-  // rather than the washed-out transparent-canvas-over-bright-sky. Null for
-  // night/sunset where the dark CSS sky provides enough contrast already.
-  sceneBg: string | null;
 
   // Text legibility on the gradient bg
   textOnBg: string;
@@ -79,17 +74,16 @@ const MORNING: TimePalette = {
   skyFrom: '#E8E4D9',
   skyVia: '#F5EDDF',
   skyTo: '#DEDCD0',
-  orbTint: [1.0, 0.97, 0.94],    // faint warm hint — sceneBg provides depth
+  orbTint: [1.0, 1.0, 1.0],      // clear — bubble colour comes from iridescence
   overlayOpacity: 0.45,
   lightColor: '#FFE7C4',
-  lightIntensity: 1.0,
+  lightIntensity: 1.2,
   lightAngle: [-2.5, 1.5, 1.5], // low east, warm rim
-  ambientIntensity: 0.28,
+  ambientIntensity: 0.45,
   envPreset: 'dawn',
-  envMapIntensity: 1.8,
-  glassTransmission: 0.92,  // mostly transparent — dark sceneBg shows through glass
-  glassIridescence: 0.62,
-  sceneBg: '#5C3820',       // warm dark — glass refracts this; not too black
+  envMapIntensity: 2.2,
+  glassTransmission: 0.97,  // near-total — bubble is almost entirely see-through
+  glassIridescence: 0.95,   // maximum soap-bubble rainbow shimmer
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — works on cream sky
@@ -114,17 +108,16 @@ const DAY: TimePalette = {
   skyFrom: '#E8E9EA',
   skyVia: '#F0EEE8',
   skyTo: '#DCDED5',
-  orbTint: [0.94, 0.96, 1.0],    // faint cool hint — sceneBg provides depth
+  orbTint: [1.0, 1.0, 1.0],      // clear — bubble colour comes from iridescence
   overlayOpacity: 0.42,
-  lightColor: '#D0E8FF',          // cool blue-white light — picks up the tint
+  lightColor: '#FFF5E0',
   lightIntensity: 1.1,
   lightAngle: [0, 3, 1],
-  ambientIntensity: 0.25,         // lower — reduces white wash on transmission
-  envPreset: 'dawn',              // softer IBL than 'studio'
-  envMapIntensity: 1.2,
-  glassTransmission: 0.92,        // mostly transparent — dark sceneBg shows through glass
-  glassIridescence: 0.68,
-  sceneBg: '#2C4866',             // cool blue-grey — dark enough for glass to read
+  ambientIntensity: 0.45,
+  envPreset: 'dawn',
+  envMapIntensity: 2.0,
+  glassTransmission: 0.97,        // near-total — bubble is almost entirely see-through
+  glassIridescence: 1.0,          // full soap-bubble rainbow shimmer
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — neutral baseline
@@ -157,9 +150,8 @@ const SUNSET: TimePalette = {
   ambientIntensity: 0.4,
   envPreset: 'sunset',
   envMapIntensity: 2.4,
-  glassTransmission: 0.95,
-  glassIridescence: 0.40,
-  sceneBg: null,            // dark warm CSS sky gives contrast — no scene bg needed
+  glassTransmission: 0.96,
+  glassIridescence: 0.90,   // strong rainbow on warm sunset tones
   textOnBg: '#FFFFFF',
   textMuted: '#F5E8D8',
   ctaBg: '#3D5A4C',     // brand sage holds against warm sky
@@ -193,8 +185,7 @@ const NIGHT: TimePalette = {
   envPreset: 'night',
   envMapIntensity: 2.8,
   glassTransmission: 0.96,
-  glassIridescence: 0.35,
-  sceneBg: null,            // dark navy CSS sky gives contrast — no scene bg needed
+  glassIridescence: 0.80,   // visible rainbow shimmer against the dark sky
   textOnBg: '#F5F1EA',
   textMuted: '#A8B4BC',
   ctaBg: '#5C7A8E',     // cool slate — sage gets lost on dark navy sky

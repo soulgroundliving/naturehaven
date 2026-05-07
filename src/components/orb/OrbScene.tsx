@@ -140,14 +140,6 @@ export default function OrbScene() {
           width: '60vmin',
           height: '60vmin',
           willChange: 'transform',
-          // Clip canvas to circle when sceneBg is active — hides the square
-          // canvas corners so only the circular orb area is visible.
-          borderRadius: palette.sceneBg ? '50%' : undefined,
-          overflow: palette.sceneBg ? 'hidden' : undefined,
-          // Soft atmospheric glow feathers the circle edge into the hero bg
-          boxShadow: palette.sceneBg
-            ? `0 0 80px 40px ${palette.sceneBg}88`
-            : undefined,
         }}
       >
         <Canvas
@@ -155,12 +147,6 @@ export default function OrbScene() {
           camera={{ position: [0, 0, 4], fov: 35 }}
           gl={{ antialias: true, alpha: true }}
         >
-          {/* Deep atmospheric background for light-sky slots — gives the glass
-              a dark surface to refract so it reads as glass rather than a
-              white disc. Null for night/sunset where CSS sky provides contrast. */}
-          {palette.sceneBg && (
-            <color attach="background" args={[palette.sceneBg]} />
-          )}
           <Suspense fallback={null}>
             <Orb
               palette={palette}

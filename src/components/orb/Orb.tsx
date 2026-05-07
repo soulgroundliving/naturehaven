@@ -74,23 +74,23 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
       />
       <group ref={groupRef}>
         <Sphere ref={meshRef} args={[1, segments, segments]}>
-          {/* Tinted glass with subtle transmission — single-pass shader keeps
-              the surface visible on a transparent canvas. Iridescence +
-              clearcoat give the peachweb glass shimmer; envMapIntensity boosts
-              IBL reflection from the time-of-day Environment preset. */}
+          {/* Soap-bubble shell: near-total transmission (you see straight through),
+              maximum iridescence (thin-film rainbow shimmer), water-soap IOR,
+              very thin shell thickness. The rainbow interference makes the bubble
+              visible on any background without needing a dark backdrop. */}
           <meshPhysicalMaterial
             color={orbColor}
             roughness={0}
             metalness={0}
             transmission={palette.glassTransmission}
-            thickness={1.2}
-            ior={1.52}
+            thickness={0.12}
+            ior={1.35}
             attenuationColor={attenuation}
-            attenuationDistance={8}
+            attenuationDistance={30}
             iridescence={palette.glassIridescence}
-            iridescenceIOR={1.3}
+            iridescenceIOR={1.55}
             clearcoat={1}
-            clearcoatRoughness={0.02}
+            clearcoatRoughness={0}
             envMapIntensity={palette.envMapIntensity}
           />
         </Sphere>
