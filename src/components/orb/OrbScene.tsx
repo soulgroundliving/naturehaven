@@ -96,9 +96,11 @@ export default function OrbScene() {
         });
       }
 
-      // Fade in on load — orb materialises gently instead of popping
+      // Fade in on load — orb materialises gently instead of popping.
+      // Target < 1 on light slots so the bubble reads as delicate/ethereal.
+      const targetOpacity = palette.slot === 'night' || palette.slot === 'sunset' ? 1 : 0.72;
       gsap.to(wrapper, {
-        opacity: 1,
+        opacity: targetOpacity,
         duration: 2,
         delay: 0.5,
         ease: 'power2.inOut',
