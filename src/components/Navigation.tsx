@@ -15,7 +15,8 @@ const navLinks = [
   { label: 'CONTACT', href: '#contact' },
 ];
 
-const darkSections = ['contact', 'footer'];
+// contact section now has a fixed white background — only footer is truly dark
+const darkSections = ['footer'];
 
 interface NavigationProps {
   lenisRef: React.RefObject<any>;

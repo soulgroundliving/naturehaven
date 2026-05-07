@@ -20,7 +20,10 @@ export function useSectionObserver(sectionIds: string[]) {
       const el = document.getElementById(id);
       if (el) {
         const observer = new IntersectionObserver(handleIntersection, {
-          threshold: 0.3,
+          // threshold:0 fires as soon as any pixel of the section enters the
+          // observation zone — critical for sections taller than the viewport
+          // whose intersectionRatio never reaches 0.3 (e.g. SmartLiving).
+          threshold: 0,
           rootMargin: '-80px 0px -40% 0px',
         });
         observer.observe(el);
