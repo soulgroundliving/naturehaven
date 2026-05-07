@@ -1,13 +1,256 @@
 <!doctype html>
-<html lang="en">
+<html lang="th">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nature Haven — Quiet Living in Saimai</title>
-    <meta name="description" content="A newly built private residence inspired by MUJI minimal living. Designed for calm, crafted for privacy." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0e1f17" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f3ee" media="(prefers-color-scheme: light)" />
+
+    <!-- Primary SEO -->
+    <title>Nature Haven — Quiet Living in Saimai, Bangkok</title>
+    <meta name="description" content="อพาร์ตเมนต์ใหม่สไตล์ MUJI minimal ในสายไหม กรุงเทพฯ — 31.5 ตร.ม. 1 นอน ครัวแยก ระเบียง รวม Wi-Fi เริ่ม 5,800 บาท/เดือน เปิดสิงหาคม 2026" />
+    <link rel="canonical" href="https://naturehaven-living.vercel.app/" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+
+    <!-- Open Graph -->
+    <meta property="og:type"              content="website" />
+    <meta property="og:site_name"         content="Nature Haven" />
+    <meta property="og:title"             content="Nature Haven — Quiet Living in Saimai" />
+    <meta property="og:description"       content="อพาร์ตเมนต์ใหม่สไตล์ MUJI minimal ในสายไหม กรุงเทพฯ เริ่ม 5,800 บาท/เดือน รวมทุกอย่าง เปิดสิงหาคม 2026" />
+    <meta property="og:url"               content="https://naturehaven-living.vercel.app/" />
+    <meta property="og:image"             content="https://naturehaven-living.vercel.app/og-image.jpg" />
+    <meta property="og:image:width"       content="1200" />
+    <meta property="og:image:height"      content="630" />
+    <meta property="og:image:alt"         content="Nature Haven — MUJI-inspired apartment in Saimai, Bangkok" />
+    <meta property="og:locale"            content="th_TH" />
+    <meta property="og:locale:alternate"  content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="Nature Haven — Quiet Living in Saimai" />
+    <meta name="twitter:description" content="อพาร์ตเมนต์ MUJI minimal สายไหม กรุงเทพฯ เริ่ม 5,800 บาท/เดือน" />
+    <meta name="twitter:image"       content="https://naturehaven-living.vercel.app/og-image.jpg" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD: LocalBusiness (GEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://naturehaven-living.vercel.app/#localbusiness",
+      "name": "Nature Haven",
+      "alternateName": ["เนเจอร์ เฮเว่น", "The Green Haven"],
+      "description": "MUJI-inspired private residence in Sai Mai, Bangkok. Quiet, minimal living for working professionals and couples. All-inclusive from 5,800 THB/month. Opening August 2026.",
+      "url": "https://naturehaven-living.vercel.app",
+      "image": "https://naturehaven-living.vercel.app/og-image.jpg",
+      "priceRange": "฿฿",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sai Mai",
+        "addressRegion": "Bangkok",
+        "postalCode": "10220",
+        "addressCountry": "TH"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 13.9135,
+        "longitude": 100.662
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Bangkok"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "reservations",
+        "url": "https://lin.ee/ZoujovB6",
+        "availableLanguage": ["th", "en"]
+      },
+      "sameAs": ["https://lin.ee/ZoujovB6"]
+    }
+    </script>
+
+    <!-- JSON-LD: ApartmentComplex (AIO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ApartmentComplex",
+      "@id": "https://naturehaven-living.vercel.app/#apartmentcomplex",
+      "name": "Nature Haven",
+      "description": "Newly built 20-unit low-rise apartment complex in Sai Mai, Bangkok. MUJI-inspired minimal living — 31.5 sqm units with 1 bedroom, 1 bathroom, separate kitchen and private balcony. All-inclusive monthly rate. Opening August 2026.",
+      "url": "https://naturehaven-living.vercel.app",
+      "image": "https://naturehaven-living.vercel.app/og-image.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sai Mai",
+        "addressRegion": "Bangkok",
+        "postalCode": "10220",
+        "addressCountry": "TH"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 13.9135,
+        "longitude": 100.662
+      },
+      "numberOfAccommodationUnits": {
+        "@type": "QuantitativeValue",
+        "value": 20
+      },
+      "petsAllowed": "Small pets (1–2 animals) allowed in units 3–4 only.",
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Free Wi-Fi (AIS Fiber)",          "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Solar energy integration",         "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Digital door lock",                "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "24/7 CCTV",                        "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Smart resident app",               "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Cleaning service included",        "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "A/C maintenance included",         "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Common garden area",               "value": true }
+      ],
+      "accommodationFloorPlan": [
+        {
+          "@type": "FloorPlan",
+          "name": "Standard 1-Bedroom (Units 1–2)",
+          "numberOfBedrooms": 1,
+          "numberOfBathroomsTotal": 1,
+          "floorSize": { "@type": "QuantitativeValue", "value": 31.5, "unitCode": "MTK" },
+          "petsAllowed": false
+        },
+        {
+          "@type": "FloorPlan",
+          "name": "Pet-Friendly 1-Bedroom (Units 3–4)",
+          "numberOfBedrooms": 1,
+          "numberOfBathroomsTotal": 1,
+          "floorSize": { "@type": "QuantitativeValue", "value": 31.5, "unitCode": "MTK" },
+          "petsAllowed": true
+        }
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "name": "Standard Unit — Opening Rate",
+          "price": "5800",
+          "priceCurrency": "THB",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "5800",
+            "priceCurrency": "THB",
+            "unitCode": "MON"
+          },
+          "availabilityStarts": "2026-08-01",
+          "eligibleDuration": { "@type": "QuantitativeValue", "value": 12, "unitCode": "MON" }
+        },
+        {
+          "@type": "Offer",
+          "name": "Pet-Friendly Unit — Opening Rate",
+          "price": "6200",
+          "priceCurrency": "THB",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "6200",
+            "priceCurrency": "THB",
+            "unitCode": "MON"
+          },
+          "availabilityStarts": "2026-08-01",
+          "eligibleDuration": { "@type": "QuantitativeValue", "value": 12, "unitCode": "MON" }
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: FAQPage (AEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "ค่าเช่าต่อเดือนเท่าไหร่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Standard (units 1–2) เริ่มต้น 5,800 บาท/เดือน · Pet-Friendly (units 3–4) 6,200 บาท/เดือน (เรทเปิดตัว). Standard units start at 5,800 THB/month, pet-friendly units at 6,200 THB/month (opening rates)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ค่าเช่ารวมอะไรบ้าง?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ค่าเช่ารวม Wi-Fi (AIS Fiber), บริการทำความสะอาด, บริการล้างแอร์ และสิ่งอำนวยความสะดวกส่วนกลางทั้งหมด — จ่ายรายเดือนรวมทุกอย่าง. Monthly rate includes Wi-Fi, cleaning service, A/C maintenance, and all common amenities."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ห้องขนาดเท่าไหร่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "31.5 ตร.ม. · 1 ห้องนอน · 1 ห้องน้ำ · ครัวแยก · ระเบียงส่วนตัว. Each unit is 31.5 sqm with 1 bedroom, 1 bathroom, separate kitchen, and private balcony."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "รับสัตว์เลี้ยงไหม?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "รับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัว ใน units 3–4 (Pet-Friendly) เท่านั้น. Small pets (1–2 animals) are allowed in units 3–4 only."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "สัญญาเช่ากี่เดือน?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "12 เดือน (สัญญารายปี). 12-month annual lease."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "เงินที่ต้องเตรียมวันเข้าอยู่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "มัดจำ 1 เดือน + ค่าเช่าล่วงหน้า 1 เดือน. 1-month security deposit plus 1-month advance rent."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "เปิดให้เข้าอยู่เมื่อไหร่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "เปิดให้เข้าอยู่สิงหาคม 2026. Available from August 2026."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ติดต่อจองได้ทางไหน?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ติดต่อทาง LINE เท่านั้น — https://lin.ee/ZoujovB6. Reservations via LINE only."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "มีลิฟต์ไหม?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ไม่มีลิฟต์ — เป็น low-rise 3 ชั้น ออกแบบเพื่อความเป็นส่วนตัวและประหยัดพลังงาน. No elevator — low-rise 3-floor design for privacy and energy efficiency."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Nature Haven อยู่ที่ไหน?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ย่านสายไหม กรุงเทพฯ — สงบ เป็นส่วนตัว เดินทางสะดวก. Located in Sai Mai district, Bangkok."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

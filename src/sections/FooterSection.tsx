@@ -52,6 +52,19 @@ const FooterSection: React.FC = () => {
           <p className="footer-animate font-sans text-sm font-light text-dark-charcoal/60 mt-2">
             A residence shaped by intention.
           </p>
+          <address
+            className="footer-animate not-italic mt-3 font-sans text-[13px] text-dark-charcoal/45 leading-relaxed"
+            itemScope
+            itemType="https://schema.org/PostalAddress"
+          >
+            <span itemProp="addressLocality">Sai Mai</span
+            >{', '}
+            <span itemProp="addressRegion">Bangkok</span
+            >{' · '}
+            <span itemProp="postalCode">10220</span
+            >{' · '}
+            <span itemProp="addressCountry">Thailand</span>
+          </address>
         </div>
 
         {/* Divider */}

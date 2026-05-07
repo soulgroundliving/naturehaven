@@ -27,6 +27,7 @@ import AmenitiesSection from '@/sections/AmenitiesSection';
 import LocationSection from '@/sections/LocationSection';
 import DesignSection from '@/sections/DesignSection';
 import SmartLivingSection from '@/sections/SmartLivingSection';
+import FAQSection from '@/sections/FAQSection';
 import ContactSection from '@/sections/ContactSection';
 import FooterSection from '@/sections/FooterSection';
 
@@ -43,6 +44,7 @@ function App() {
     'location',
     'design',
     'smart-living',
+    'faq',
     'contact',
     'footer',
   ];
@@ -104,6 +106,7 @@ function App() {
         <LocationSection />
         <DesignSection />
         <SmartLivingSection />
+        <FAQSection />
         <ContactSection />
         <FooterSection />
       </main>
