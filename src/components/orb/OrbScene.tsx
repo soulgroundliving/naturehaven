@@ -148,10 +148,10 @@ export default function OrbScene() {
           <div
             style={{
               position: 'absolute',
-              inset: '-8%',
+              inset: '-20%',
               borderRadius: '50%',
               background: palette.orbBackdrop,
-              filter: 'blur(32px)',
+              filter: 'blur(48px)',
               pointerEvents: 'none',
             }}
           />

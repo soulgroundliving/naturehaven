@@ -86,9 +86,9 @@ const MORNING: TimePalette = {
   ambientIntensity: 0.28,
   envPreset: 'dawn',
   envMapIntensity: 1.8,
-  glassTransmission: 0.65,  // semi-glass — cream sky gives no contrast for full transparency
-  glassIridescence: 0.68,   // strong shimmer compensates for lower transmission
-  orbBackdrop: 'rgba(160, 130, 100, 0.22)', // warm amber haze behind orb
+  glassTransmission: 0.86,  // mostly transparent — let the backdrop show through glass
+  glassIridescence: 0.65,   // strong shimmer
+  orbBackdrop: 'rgba(110, 80, 50, 0.55)', // warm amber haze behind orb — stronger
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — works on cream sky
@@ -121,9 +121,9 @@ const DAY: TimePalette = {
   ambientIntensity: 0.25,         // lower — reduces white wash on transmission
   envPreset: 'dawn',              // softer IBL than 'studio'
   envMapIntensity: 1.2,
-  glassTransmission: 0.60,        // half-glass — light bg needs material presence
-  glassIridescence: 0.75,         // strong shimmer gives glassy quality at low transmission
-  orbBackdrop: 'rgba(80, 110, 150, 0.28)', // cool blue-grey haze behind orb
+  glassTransmission: 0.88,        // mostly transparent — let the backdrop show through glass
+  glassIridescence: 0.70,         // strong shimmer
+  orbBackdrop: 'rgba(40, 70, 130, 0.58)', // cool blue — strong enough to read through glass
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — neutral baseline
