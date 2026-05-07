@@ -27,6 +27,10 @@ export interface TimePalette {
   // drei <Environment preset="..."> — IBL hemisphere driving glass refraction
   envPreset: 'dawn' | 'studio' | 'sunset' | 'night';
 
+  // envMapIntensity for meshPhysicalMaterial — lower for bright slots to prevent
+  // IBL reflections from bleaching out the glass transmission effect
+  envMapIntensity: number;
+
   // Text legibility on the gradient bg
   textOnBg: string;
   textMuted: string;
@@ -65,10 +69,11 @@ const MORNING: TimePalette = {
   orbTint: [0.97, 0.98, 0.96],
   overlayOpacity: 0.45,
   lightColor: '#FFE7C4',
-  lightIntensity: 1.1,
+  lightIntensity: 1.0,
   lightAngle: [-2.5, 1.5, 1.5], // low east, warm rim
-  ambientIntensity: 0.45,
+  ambientIntensity: 0.35,
   envPreset: 'dawn',
+  envMapIntensity: 2.2,
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — works on cream sky
@@ -93,13 +98,14 @@ const DAY: TimePalette = {
   skyFrom: '#E8E9EA',
   skyVia: '#F0EEE8',
   skyTo: '#DCDED5',
-  orbTint: [1.0, 1.0, 1.0],
+  orbTint: [0.96, 0.97, 0.96],   // nearly clear — avoids bleaching transmission
   overlayOpacity: 0.42,
   lightColor: '#FFF5E0',
-  lightIntensity: 1.2,
-  lightAngle: [0, 3, 1], // top-front, balanced
-  ambientIntensity: 0.55,
-  envPreset: 'studio',
+  lightIntensity: 0.85,           // softer so glass stays glassy, not overlit
+  lightAngle: [0, 3, 1],
+  ambientIntensity: 0.30,         // lower — reduces white wash on transmission
+  envPreset: 'dawn',              // softer IBL than 'studio'
+  envMapIntensity: 1.4,           // lower so env reflections don't kill transmission
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage — neutral baseline
@@ -131,6 +137,7 @@ const SUNSET: TimePalette = {
   lightAngle: [-3.5, 0.5, 1], // long horizontal from low west
   ambientIntensity: 0.4,
   envPreset: 'sunset',
+  envMapIntensity: 2.4,
   textOnBg: '#FFFFFF',
   textMuted: '#F5E8D8',
   ctaBg: '#3D5A4C',     // brand sage holds against warm sky
@@ -162,6 +169,7 @@ const NIGHT: TimePalette = {
   lightAngle: [0.5, 4, 0.5], // top-down moon
   ambientIntensity: 0.25,
   envPreset: 'night',
+  envMapIntensity: 2.8,
   textOnBg: '#F5F1EA',
   textMuted: '#A8B4BC',
   ctaBg: '#5C7A8E',     // cool slate — sage gets lost on dark navy sky

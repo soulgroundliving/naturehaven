@@ -91,7 +91,7 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
             iridescenceIOR={1.3}
             clearcoat={1}
             clearcoatRoughness={0.02}
-            envMapIntensity={2.8}
+            envMapIntensity={palette.envMapIntensity}
           />
         </Sphere>
       </group>
