@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Menu, Close } from './icons';
+import type { TimePalette } from '@/lib/timeOfDay';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,9 +20,14 @@ const darkSections = ['contact', 'footer'];
 interface NavigationProps {
   lenisRef: React.RefObject<any>;
   activeSection: string;
+  palette: TimePalette;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection }) => {
+const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palette }) => {
+  const isLightSlot = palette.slot === 'day' || palette.slot === 'morning';
+  const menuBg = isLightSlot ? '#F5F3EF' : '#0E0E0E';
+  const menuText = isLightSlot ? '#2B2B2B' : '#F5F1EA';
+  const menuClose = isLightSlot ? '#2B2B2B' : '#F5F1EA';
   const navRef = useRef<HTMLElement>(null);
   const [isPastHero, setIsPastHero] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
@@ -151,13 +157,18 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection }) => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-[200] bg-near-black transition-all duration-500 lg:hidden ${
+        className={`fixed inset-0 z-[200] transition-all duration-500 lg:hidden ${
           mobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
+        style={{ backgroundColor: menuBg }}
       >
         <div className="flex flex-col h-full p-8">
           <div className="flex justify-end">
-            <button onClick={() => setMobileOpen(false)} className="p-2 text-pure-white">
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="p-2"
+              style={{ color: menuClose }}
+            >
               <Close size={28} />
             </button>
           </div>
@@ -168,7 +179,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection }) => {
                 onClick={() => scrollTo(link.href)}
                 className="font-serif text-3xl md:text-4xl transition-opacity duration-300 hover:opacity-60"
                 style={{
-                  color: '#FFD700',
+                  color: menuText,
                   opacity: mobileOpen ? 1 : 0,
                   transform: mobileOpen ? 'translateY(0)' : 'translateY(20px)',
                   transition: `all 0.5s ease ${i * 0.1}s`,

@@ -10,6 +10,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Navigation from '@/components/Navigation';
+import { useTimeOfDay } from '@/contexts/TimeOfDayContext';
 import VideoBackground from '@/components/VideoBackground';
 import FloatingLineChat from '@/components/FloatingLineChat';
 import useSectionObserver from '@/hooks/useSectionObserver';
@@ -32,6 +33,7 @@ import FooterSection from '@/sections/FooterSection';
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  const { palette } = useTimeOfDay();
   const lenisRef = useRef<Lenis | null>(null);
 
   const sectionIds = [
@@ -86,7 +88,7 @@ function App() {
       >
         Skip to content
       </a>
-      <Navigation lenisRef={lenisRef} activeSection={activeSection} />
+      <Navigation lenisRef={lenisRef} activeSection={activeSection} palette={palette} />
       <VideoBackground />
       <OrbErrorBoundary>
         <Suspense fallback={null}>
