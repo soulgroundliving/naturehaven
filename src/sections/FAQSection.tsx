@@ -77,13 +77,13 @@ const FAQSection: React.FC = () => {
                   <p className="font-sans text-[15px] font-medium sec-text-90 leading-snug">
                     {item.q_th}
                   </p>
-                  <p className="font-sans text-[12px] sec-text-50 mt-0.5 leading-snug" lang="en">
+                  <p className="font-sans text-[12px] sec-text-55 mt-0.5 leading-snug" lang="en">
                     {item.q_en}
                   </p>
                 </div>
                 <ChevronDown
                   size={18}
-                  className="flex-shrink-0 mt-0.5 sec-text-50 transition-transform duration-300 group-open:rotate-180"
+                  className="flex-shrink-0 mt-0.5 sec-text-55 transition-transform duration-300 group-open:rotate-180"
                 />
               </summary>
 
@@ -91,7 +91,7 @@ const FAQSection: React.FC = () => {
                 <p className="font-sans text-[15px] font-light sec-text-80 leading-relaxed">
                   {item.a_th}
                 </p>
-                <p className="font-sans text-[12px] sec-text-50 mt-1.5 leading-relaxed" lang="en">
+                <p className="font-sans text-[12px] sec-text-55 mt-1.5 leading-relaxed" lang="en">
                   {item.a_en}
                 </p>
               </div>
