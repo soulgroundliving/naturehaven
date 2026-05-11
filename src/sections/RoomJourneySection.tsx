@@ -43,13 +43,14 @@ const RoomJourneySection: React.FC = () => {
       const texts  = gsap.utils.toArray<HTMLElement>('.rj-text');
       const dots   = gsap.utils.toArray<HTMLElement>('.rj-dot');
       const tags   = gsap.utils.toArray<HTMLElement>('.rj-tag');
-      const bar    = document.querySelector<HTMLElement>('.rj-progress-bar');
+      const bar    = containerRef.current.querySelector<HTMLElement>('.rj-progress-bar');
 
       // Set initial states — only scene 0 visible
       gsap.set(images.slice(1), { opacity: 0 });
       gsap.set(texts.slice(1), { opacity: 0, y: 32 });
       gsap.set(dots.slice(1), { opacity: 0.25, scale: 0.8 });
       gsap.set(dots[0], { opacity: 1, scale: 1 });
+      gsap.set(tags.slice(1), { opacity: 0 });
 
       let active = 0;
 
@@ -172,7 +173,8 @@ const RoomJourneySection: React.FC = () => {
         </p>
 
         {/* Scene text blocks — bottom-left */}
-        <div className="absolute bottom-10 left-8 md:bottom-16 md:left-14 max-w-[460px]">
+        {/* width explicit — all children are absolute so parent collapses to h:0 intentionally */}
+        <div className="absolute bottom-10 left-8 md:bottom-16 md:left-14 w-[460px] max-w-[calc(100vw-64px)]">
           {SCENES.map((scene, i) => (
             <div
               key={scene.tag}
@@ -217,7 +219,7 @@ const RoomJourneySection: React.FC = () => {
             {SCENES.map((_, i) => (
               <div
                 key={i}
-                className={`rj-dot rounded-full ${i === 0 ? 'opacity-100 scale-100' : 'opacity-25 scale-75'}`}
+                className={`rj-dot rounded-full ${i === 0 ? 'opacity-100 scale-100' : 'opacity-25 scale-[0.8]'}`}
                 style={{
                   width: '4px',
                   height: '4px',
