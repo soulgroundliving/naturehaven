@@ -71,17 +71,14 @@ const ContactSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="contact"
-      className="section-padding backdrop-blur-xl"
-      style={{ background: 'rgba(255,255,255,0.75)' }}
+      className="section-padding frosted-section backdrop-blur-xl"
     >
       <div className="container-main">
         <div className="text-center mb-12">
-          <p className="contact-animate section-label mb-4 tracking-[0.2em]"
-            style={{ color: 'rgba(43,43,43,0.60)' }}>
+          <p className="contact-animate section-label mb-4 tracking-[0.2em]">
             Contact
           </p>
-          <h2 className="contact-animate font-serif text-[28px] md:text-5xl lg:text-6xl xl:text-[80px] leading-[1.1]"
-            style={{ color: '#2B2B2B' }}>
+          <h2 className="contact-animate font-serif text-[28px] md:text-5xl lg:text-6xl xl:text-[80px] leading-[1.1] sec-text">
             Reserve your space quietly.
           </h2>
         </div>
@@ -89,17 +86,14 @@ const ContactSection: React.FC = () => {
         {/* Booking journey */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-14 md:mb-20">
           {journeySteps.map(({ num, title, body }) => (
-            <div key={num} className="journey-step border-t-2 border-dark-charcoal/15 pt-5">
-              <span className="block font-serif text-[28px] font-light leading-none mb-4"
-                style={{ color: 'rgba(43,43,43,0.60)' }}>
+            <div key={num} className="journey-step border-t-2 sec-border pt-5">
+              <span className="block font-serif text-[28px] font-light leading-none mb-4 sec-text-60">
                 {num}
               </span>
-              <h3 className="font-sans text-[15px] font-medium leading-snug mb-2"
-                style={{ color: 'rgba(43,43,43,0.90)' }}>
+              <h3 className="font-sans text-[15px] font-medium leading-snug mb-2 sec-text-90">
                 {title}
               </h3>
-              <p className="font-sans text-[13px] leading-relaxed"
-                style={{ color: 'rgba(43,43,43,0.60)' }}>
+              <p className="font-sans text-[13px] leading-relaxed sec-text-60">
                 {body}
               </p>
             </div>
@@ -118,8 +112,7 @@ const ContactSection: React.FC = () => {
             <LineIcon className="relative z-10" size={20} />
             <span className="relative z-10">Reserve via LINE</span>
           </a>
-          <p className="font-sans text-base font-light text-center"
-            style={{ color: 'rgba(43,43,43,0.60)' }}>
+          <p className="font-sans text-base font-light text-center sec-text-60">
             We answer fastest on LINE.
           </p>
         </div>

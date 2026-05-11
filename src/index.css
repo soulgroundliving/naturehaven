@@ -69,7 +69,9 @@
   }
 
   .section-label {
-    @apply font-sans text-xs uppercase tracking-[0.1em] text-subtle-taupe;
+    @apply font-sans text-xs uppercase tracking-[0.1em];
+    color: var(--sec-text-60);
+    transition: color 600ms ease;
   }
 
   .headline-lg {
