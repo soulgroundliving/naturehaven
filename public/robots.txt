@@ -1,20 +1,2 @@
 User-agent: *
-Allow: /
-
-# Allow AI crawlers explicitly for AIO / GEO signals
-User-agent: GPTBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-Sitemap: https://naturehaven-living.vercel.app/sitemap.xml
+Disallow: /
