@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import SectionHeader from '@/components/SectionHeader';
 import { Check } from '@/components/icons';
-import { PawPrint } from 'lucide-react';
+import { PawPrint, ChevronDown } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,8 +46,50 @@ const roomPhotos = [
   },
 ];
 
+const TIERS = [
+  {
+    id: 'standard' as const,
+    label: 'Units 1–2',
+    name: 'Standard',
+    floors: 'Floor 1 & 2',
+    unitCount: 10,
+    openingPrice: '5,800',
+    standardPrice: '6,000',
+    isPet: false,
+    details: [
+      { label: 'Units available', value: '10 units' },
+      { label: 'Location', value: 'Ground & second floor' },
+      { label: 'Included', value: 'Wi-Fi · Cleaning · A/C maintenance' },
+      { label: 'Contract', value: 'Annual (12 months)' },
+      { label: 'Move-in', value: '1-mo deposit + 1-mo advance' },
+    ],
+  },
+  {
+    id: 'pet' as const,
+    label: 'Units 3–4',
+    name: 'Pet Friendly',
+    floors: 'Floor 3 & 4',
+    unitCount: 10,
+    openingPrice: '6,200',
+    standardPrice: '6,500',
+    isPet: true,
+    details: [
+      { label: 'Units available', value: '10 units' },
+      { label: 'Location', value: 'Third & fourth floor' },
+      { label: 'Pets', value: 'Small pets welcome (1–2 per unit)' },
+      { label: 'Included', value: 'Wi-Fi · Cleaning · A/C maintenance' },
+      { label: 'Contract', value: 'Annual (12 months)' },
+    ],
+  },
+] as const;
+
+type TierId = (typeof TIERS)[number]['id'];
+
 const ResidencesSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [expanded, setExpanded] = useState<TierId | null>(null);
+
+  const toggle = (id: TierId) => setExpanded(prev => (prev === id ? null : id));
 
   useGSAP(
     () => {
@@ -63,6 +105,20 @@ const ResidencesSection: React.FC = () => {
         scrollTrigger: {
           trigger: cards[0] as Element,
           start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
+
+      const tierCards = sectionRef.current.querySelectorAll('.tier-card');
+      gsap.from(tierCards, {
+        y: 24,
+        opacity: 0,
+        duration: 0.65,
+        stagger: 0.12,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: tierCards[0] as Element,
+          start: 'top 82%',
           toggleActions: 'play none none none',
         },
       });
@@ -138,7 +194,7 @@ const ResidencesSection: React.FC = () => {
         />
 
         {/* Three Info Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 md:mb-16 lg:mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 md:mb-8">
           {/* Suitable For */}
           <div className="res-card card-surface backdrop-blur-sm rounded-xl p-8 md:p-12">
             <h3 className="font-serif text-2xl md:text-[32px] sec-text mb-6">
@@ -176,60 +232,13 @@ const ResidencesSection: React.FC = () => {
             <p className="font-sans text-base font-light sec-text mb-5">
               Separate kitchen with balcony
             </p>
-
-            {/* Unit type split */}
-            <div className="grid grid-cols-2 gap-3">
-              {/* Units 1–2 */}
-              <div className="rounded-xl border sec-border p-4">
-                <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em] mb-2">
-                  Units 1–2
-                </p>
-                <p className="font-sans text-sm font-medium sec-text-90 leading-snug mb-4">
-                  Standard
-                </p>
-                <div className="pt-3 border-t sec-border">
-                  <div className="flex items-baseline gap-1 mb-2">
-                    <span className="font-serif text-[22px] sec-text leading-none">5,800</span>
-                    <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">
-                      Opening Rate
-                    </span>
-                    <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">
-                      6,000 THB
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Units 3–4 */}
-              <div className="rounded-xl border border-sage-green/30 bg-sage-green/5 p-4">
-                <div className="flex items-center gap-1.5 mb-2">
-                  <p className="font-sans text-[10px] uppercase tracking-[0.18em]"
-                     style={{ color: 'var(--sage-green, #3D5A4C)', opacity: 0.75 }}>
-                    Units 3–4
-                  </p>
-                  <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
-                </div>
-                <p className="font-sans text-sm font-medium text-sage-green leading-snug mb-4">
-                  Pet Friendly
-                </p>
-                <div className="pt-3 border-t border-sage-green/20">
-                  <div className="flex items-baseline gap-1 mb-2">
-                    <span className="font-serif text-[22px] sec-text leading-none">6,200</span>
-                    <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">
-                      Opening Rate
-                    </span>
-                    <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">
-                      6,500 THB
-                    </span>
-                  </div>
-                </div>
-              </div>
+            <div className="flex items-center gap-2">
+              <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full">
+                20 units total
+              </span>
+              <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full">
+                4 floors
+              </span>
             </div>
           </div>
 
@@ -238,7 +247,6 @@ const ResidencesSection: React.FC = () => {
             <h3 className="font-serif text-2xl md:text-[32px] sec-text mb-8">
               Terms
             </h3>
-
             <ul className="flex flex-col gap-5">
               <li className="flex flex-col gap-1">
                 <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
@@ -265,7 +273,6 @@ const ResidencesSection: React.FC = () => {
                 </span>
               </li>
             </ul>
-
             <div className="w-full h-px bg-dark-charcoal/10 mt-8 mb-5" />
             <p className="font-sans text-sm italic text-sage-green leading-relaxed">
               All-inclusive — amenities, Wi-Fi, cleaning &amp; A/C service covered in monthly rate.
@@ -273,9 +280,102 @@ const ResidencesSection: React.FC = () => {
           </div>
         </div>
 
+        {/* Pricing Tiers */}
+        <div className="mb-10 md:mb-16 lg:mb-20">
+          <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em] mb-4">
+            Pricing — tap to see details
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {TIERS.map((tier) => {
+              const isOpen = expanded === tier.id;
+              return (
+                <button
+                  key={tier.id}
+                  onClick={() => toggle(tier.id)}
+                  aria-expanded={isOpen}
+                  className={[
+                    'tier-card text-left rounded-xl border p-6 md:p-8 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-green',
+                    tier.isPet
+                      ? 'border-sage-green/30 bg-sage-green/5 hover:bg-sage-green/10'
+                      : 'sec-border card-surface hover:bg-white/10',
+                  ].join(' ')}
+                >
+                  {/* Header row */}
+                  <div className="flex items-start justify-between gap-4 mb-5">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
+                          {tier.label}
+                        </span>
+                        {tier.isPet && (
+                          <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
+                        )}
+                      </div>
+                      <p className={[
+                        'font-sans text-base font-medium leading-snug',
+                        tier.isPet ? 'text-sage-green' : 'sec-text-90',
+                      ].join(' ')}>
+                        {tier.name}
+                      </p>
+                      <p className="font-sans text-[11px] sec-text-60 mt-0.5">
+                        {tier.floors}
+                      </p>
+                    </div>
+                    <ChevronDown
+                      size={18}
+                      className={[
+                        'flex-shrink-0 mt-0.5 sec-text-60 transition-transform duration-300',
+                        isOpen ? 'rotate-180' : '',
+                      ].join(' ')}
+                    />
+                  </div>
+
+                  {/* Price */}
+                  <div className={['pt-4 border-t', tier.isPet ? 'border-sage-green/20' : 'sec-border'].join(' ')}>
+                    <div className="flex items-baseline gap-1 mb-2">
+                      <span className="font-serif text-[28px] sec-text leading-none">
+                        {tier.openingPrice}
+                      </span>
+                      <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">
+                        Opening Rate
+                      </span>
+                      <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">
+                        {tier.standardPrice} THB
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Expandable details */}
+                  <div
+                    className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                    style={{ maxHeight: isOpen ? '400px' : '0px' }}
+                  >
+                    <div className={['mt-5 pt-5 border-t', tier.isPet ? 'border-sage-green/15' : 'sec-border'].join(' ')}>
+                      <ul className="flex flex-col gap-3">
+                        {tier.details.map(({ label, value }) => (
+                          <li key={label} className="flex flex-col gap-0.5">
+                            <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">
+                              {label}
+                            </span>
+                            <span className="font-sans text-sm font-light sec-text-80">
+                              {value}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Photo Gallery */}
         <div className="mb-10 md:mb-16 lg:mb-20 flex flex-col gap-2.5">
-          {/* Main — bedroom */}
           <div className="gallery-main relative rounded-xl overflow-hidden">
             <img
               src="/assets/room-3d-render.jpg"
@@ -288,8 +388,6 @@ const ResidencesSection: React.FC = () => {
               </span>
             </div>
           </div>
-
-          {/* Secondary — bathroom · kitchen · balcony */}
           <div className="grid grid-cols-3 gap-2.5">
             {roomPhotos.map(({ src, label, alt }) => (
               <div key={label} className="gallery-thumb relative rounded-xl overflow-hidden aspect-square">
@@ -320,10 +418,7 @@ const ResidencesSection: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5">
             {essentials.map((item) => (
               <div key={item} className="ess-item flex items-center gap-3">
-                <Check
-                  className="text-sage-green flex-shrink-0"
-                  size={20}
-                />
+                <Check className="text-sage-green flex-shrink-0" size={20} />
                 <span className="font-sans text-base font-light sec-text">
                   {item}
                 </span>
