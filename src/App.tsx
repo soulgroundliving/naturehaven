@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useRef, Component, type ReactNode } from 'react';
+import { Suspense, lazy, useEffect, useRef, useState, Component, type ReactNode } from 'react';
 
 class OrbErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
@@ -9,6 +9,7 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import LoadingOverlay from '@/components/LoadingOverlay';
 import Navigation from '@/components/Navigation';
 import { useTimeOfDay } from '@/contexts/TimeOfDayContext';
 import VideoBackground from '@/components/VideoBackground';
@@ -36,6 +37,7 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   const { palette } = useTimeOfDay();
   const lenisRef = useRef<Lenis | null>(null);
+  const [introComplete, setIntroComplete] = useState(false);
 
   const sectionIds = [
     'about',
@@ -84,6 +86,9 @@ function App() {
 
   return (
     <div className="relative">
+      {!introComplete && (
+        <LoadingOverlay onComplete={() => setIntroComplete(true)} />
+      )}
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-pure-white focus:text-dark-charcoal focus:rounded focus:shadow-lg focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-sage-green"
