@@ -203,12 +203,12 @@ const NIGHT: TimePalette = {
   mood: 'still',
   tagline: 'พักผ่อนในที่ของตัวเอง',
   secText: '#F5F1EA',
-  secText60: 'rgba(245,241,234,0.65)',
-  secText70: 'rgba(245,241,234,0.75)',
-  secText80: 'rgba(245,241,234,0.85)',
-  secText90: 'rgba(245,241,234,0.92)',
-  secText55: 'rgba(245,241,234,0.60)',
-  secBorder: 'rgba(245,241,234,0.20)',
+  secText60: 'rgba(245,241,234,0.78)',
+  secText70: 'rgba(245,241,234,0.84)',
+  secText80: 'rgba(245,241,234,0.90)',
+  secText90: 'rgba(245,241,234,0.95)',
+  secText55: 'rgba(245,241,234,0.70)',
+  secBorder: 'rgba(245,241,234,0.22)',
   // Dark glass — guarantees cream text is readable regardless of video brightness.
   // rgba(white) panels let video bleed through and create near-white bg that hides cream text.
   secBg: 'rgba(6,12,24,0.74)',
