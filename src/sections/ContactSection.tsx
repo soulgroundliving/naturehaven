@@ -87,7 +87,7 @@ const ContactSection: React.FC = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-14 md:mb-20">
           {journeySteps.map(({ num, title, body }) => (
             <div key={num} className="journey-step border-t-2 sec-border pt-5">
-              <span className="block font-serif text-[28px] font-light leading-none mb-4 sec-text-60">
+              <span className="block font-serif text-[80px] md:text-[96px] font-light leading-[1] mb-3 sec-text-55">
                 {num}
               </span>
               <h3 className="font-sans text-[15px] font-medium leading-snug mb-2 sec-text-90">

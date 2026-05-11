@@ -46,6 +46,7 @@ const FooterSection: React.FC = () => {
       <div className="container-main">
         {/* Top Area */}
         <div className="text-center mb-12">
+          <p className="footer-animate font-serif text-[13px] tracking-[0.35em] sec-text-55 mb-5">N · H</p>
           <h3 className="footer-animate font-serif text-xl md:text-2xl sec-text">
             Nature Haven — Quiet Living in Saimai
           </h3>

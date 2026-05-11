@@ -63,6 +63,13 @@ const FAQSection: React.FC = () => {
           <p className="faq-header-animate font-sans text-base italic sec-text-60">
             Frequently Asked Questions
           </p>
+          <div className="faq-header-animate flex items-center justify-center gap-4 mt-7">
+            <div className="h-px w-14" style={{ background: 'var(--sec-border)' }} />
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="flex-shrink-0" style={{ color: 'var(--sec-text-55)' }}>
+              <path d="M5 0L6.25 3.75L10 5L6.25 6.25L5 10L3.75 6.25L0 5L3.75 3.75L5 0Z" fill="currentColor"/>
+            </svg>
+            <div className="h-px w-14" style={{ background: 'var(--sec-border)' }} />
+          </div>
         </div>
 
         {/* Accordion */}
