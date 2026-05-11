@@ -44,7 +44,7 @@ const AMENITIES = [
     label: 'A/C Maintenance',
     desc: 'Serviced annually — no extra cost, no surprises.',
   },
-] as const;
+];
 
 const AmenitiesSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
