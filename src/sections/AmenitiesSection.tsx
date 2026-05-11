@@ -13,59 +13,62 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const amenities = [
-  { Icon: CarIcon,       label: 'Parking',          desc: 'One dedicated bay per unit' },
-  { Icon: LeafIcon,      label: 'Pocket garden',    desc: 'A communal garden to breathe in' },
-  { Icon: WashingIcon,   label: 'Laundry & drying', desc: 'On-site, clean, and convenient' },
-  { Icon: SparkleIcon,   label: 'Cleaning service', desc: 'Common areas, every 6 months' },
-  { Icon: SnowflakeIcon, label: 'A/C maintenance',  desc: 'Serviced annually — no extra cost' },
-];
+const AMENITIES = [
+  {
+    num: '01',
+    Icon: CarIcon,
+    label: 'Parking',
+    desc: 'One dedicated bay per unit — no searching, no waiting.',
+  },
+  {
+    num: '02',
+    Icon: LeafIcon,
+    label: 'Pocket Garden',
+    desc: 'A communal garden to slow down in. Green, quiet, yours.',
+  },
+  {
+    num: '03',
+    Icon: WashingIcon,
+    label: 'Laundry & Drying',
+    desc: 'On-site facility, clean and always available.',
+  },
+  {
+    num: '04',
+    Icon: SparkleIcon,
+    label: 'Cleaning Service',
+    desc: 'Common areas professionally maintained every six months.',
+  },
+  {
+    num: '05',
+    Icon: SnowflakeIcon,
+    label: 'A/C Maintenance',
+    desc: 'Serviced annually — no extra cost, no surprises.',
+  },
+] as const;
 
 const AmenitiesSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef   = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      if (!sectionRef.current) return;
+      const track = trackRef.current;
+      if (!track || !sectionRef.current) return;
 
-      const header = sectionRef.current.querySelectorAll('.am-header-anim');
-      gsap.from(header, {
-        y: 18,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: header[0] as Element,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
+      // Horizontal distance = full track width minus one viewport width
+      const getDistance = () => track.scrollWidth - window.innerWidth;
 
-      const rows = sectionRef.current.querySelectorAll('.am-row-anim');
-      gsap.from(rows, {
-        x: -16,
-        opacity: 0,
-        duration: 0.55,
-        stagger: 0.07,
-        ease: 'power3.out',
+      gsap.to(track, {
+        x: () => -getDistance(),
+        ease: 'none',
         scrollTrigger: {
-          trigger: rows[0] as Element,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
-
-      const cta = sectionRef.current.querySelector('.am-cta-anim');
-      gsap.from(cta, {
-        y: 12,
-        opacity: 0,
-        duration: 0.6,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: cta as Element,
-          start: 'top 88%',
-          toggleActions: 'play none none none',
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: () => `+=${getDistance()}`,
+          scrub: 1.2,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
     },
@@ -76,47 +79,162 @@ const AmenitiesSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="amenities"
-      className="section-padding frosted-section backdrop-blur-xl"
+      className="overflow-hidden"
+      style={{ background: 'var(--sec-bg, rgba(255,255,255,0.55))' }}
     >
-      <div className="container-main">
-        {/* Header */}
-        <div className="max-w-xl mb-10 md:mb-16">
-          <p className="am-header-anim section-label sec-text-60 mb-4 tracking-[0.2em]">
+      {/* Horizontal track — wider than viewport, scrolls left */}
+      <div
+        ref={trackRef}
+        className="flex items-stretch"
+        style={{ height: '100vh', willChange: 'transform' }}
+      >
+        {/* ── Intro card ─────────────────────────────────── */}
+        <div
+          className="flex-shrink-0 flex flex-col justify-between p-10 md:p-16"
+          style={{ width: 'clamp(300px, 38vw, 520px)' }}
+        >
+          <p
+            className="font-sans text-[10px] uppercase tracking-[0.22em]"
+            style={{ color: 'var(--sec-text-60)' }}
+          >
             Amenities
           </p>
-          <h2 className="am-header-anim font-serif text-3xl md:text-4xl lg:text-[44px] sec-text leading-[1.1]">
-            Everything in place,<br />
-            before you arrive.
-          </h2>
+
+          <div>
+            <h2
+              className="font-serif leading-[1.05]"
+              style={{
+                fontSize: 'clamp(2rem, 4vw, 3.25rem)',
+                color: 'var(--sec-text)',
+              }}
+            >
+              Everything in place,<br />
+              before you arrive.
+            </h2>
+            <p
+              className="font-sans font-light mt-5 leading-relaxed"
+              style={{
+                fontSize: '0.9375rem',
+                color: 'var(--sec-text-70)',
+                maxWidth: '340px',
+              }}
+            >
+              Every item below is included in your monthly rate — nothing hidden, nothing extra.
+            </p>
+          </div>
+
+          {/* Scroll hint */}
+          <div className="flex items-center gap-3" style={{ color: 'var(--sec-text-55)' }}>
+            <span className="font-sans text-[10px] uppercase tracking-[0.2em]">Scroll</span>
+            <svg width="28" height="10" viewBox="0 0 28 10" fill="none" aria-hidden="true">
+              <path d="M1 5h26M22 1l5 4-5 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
         </div>
 
-        {/* Amenity list — two columns, editorial rule-separated rows */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 lg:gap-x-24">
-          {amenities.map(({ Icon, label, desc }) => (
+        {/* ── Thin divider ───────────────────────────────── */}
+        <div
+          className="flex-shrink-0 self-stretch"
+          style={{ width: '1px', background: 'var(--sec-border)', margin: '2.5rem 0' }}
+        />
+
+        {/* ── Amenity cards ─────────────────────────────── */}
+        {AMENITIES.map(({ num, Icon, label, desc }) => (
+          <React.Fragment key={label}>
             <div
-              key={label}
-              className="am-row-anim flex items-start gap-4 py-5 border-t sec-border last:border-b md:last:border-b-0"
+              className="flex-shrink-0 flex flex-col justify-between px-10 py-12 md:px-14 md:py-16 relative"
+              style={{ width: 'clamp(260px, 28vw, 380px)' }}
             >
-              <Icon
-                size={14}
-                className="text-sage-green flex-shrink-0 mt-[5px] opacity-70"
-              />
+              {/* Faint background number */}
+              <span
+                className="absolute bottom-10 right-8 font-serif select-none pointer-events-none"
+                style={{
+                  fontSize: 'clamp(5rem, 12vw, 9rem)',
+                  lineHeight: 1,
+                  color: 'var(--sec-text)',
+                  opacity: 0.045,
+                }}
+                aria-hidden="true"
+              >
+                {num}
+              </span>
+
+              {/* Top: number + icon */}
+              <div className="flex flex-col gap-6">
+                <span
+                  className="font-sans text-[10px] uppercase tracking-[0.2em]"
+                  style={{ color: 'var(--sec-text-55)' }}
+                >
+                  {num}
+                </span>
+                <Icon size={22} className="text-sage-green opacity-80" />
+              </div>
+
+              {/* Bottom: name + desc */}
               <div>
-                <p className="font-sans text-[14px] font-medium sec-text-90 leading-snug">
+                <div
+                  className="w-8 h-px mb-6"
+                  style={{ background: 'var(--sec-border)' }}
+                />
+                <h3
+                  className="font-serif leading-tight mb-3"
+                  style={{
+                    fontSize: 'clamp(1.5rem, 2.8vw, 2.25rem)',
+                    color: 'var(--sec-text)',
+                  }}
+                >
                   {label}
-                </p>
-                <p className="font-sans text-[12px] sec-text-60 mt-0.5 leading-snug">
+                </h3>
+                <p
+                  className="font-sans font-light leading-relaxed"
+                  style={{
+                    fontSize: '0.875rem',
+                    color: 'var(--sec-text-70)',
+                    maxWidth: '240px',
+                  }}
+                >
                   {desc}
                 </p>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* CTA */}
-        <div className="am-cta-anim mt-10 md:mt-16 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-          <p className="font-sans text-[15px] font-light sec-text-70 max-w-xs leading-relaxed">
-            Every item above is included in your monthly rate — nothing hidden.
+            {/* Inter-card divider */}
+            <div
+              className="flex-shrink-0 self-stretch"
+              style={{ width: '1px', background: 'var(--sec-border)', margin: '2.5rem 0' }}
+            />
+          </React.Fragment>
+        ))}
+
+        {/* ── CTA card ───────────────────────────────────── */}
+        <div
+          className="flex-shrink-0 flex flex-col justify-center px-12 md:px-16"
+          style={{ width: 'clamp(280px, 32vw, 440px)' }}
+        >
+          <p
+            className="font-sans text-[10px] uppercase tracking-[0.22em] mb-6"
+            style={{ color: 'var(--sec-text-55)' }}
+          >
+            All included
+          </p>
+          <p
+            className="font-serif leading-snug mb-8"
+            style={{
+              fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+              color: 'var(--sec-text)',
+            }}
+          >
+            Ready when<br />you are.
+          </p>
+          <p
+            className="font-sans font-light leading-relaxed mb-10"
+            style={{
+              fontSize: '0.9375rem',
+              color: 'var(--sec-text-70)',
+              maxWidth: '300px',
+            }}
+          >
+            Reserve your unit and move in knowing every detail has already been handled.
           </p>
           <PrimaryButton href="#contact">Reserve a Unit</PrimaryButton>
         </div>
