@@ -263,7 +263,7 @@ const ResidencesSection: React.FC = () => {
                 sq.m.
               </span>
             </div>
-            <div className="w-full h-px bg-dark-charcoal/20 my-4" />
+            <div className="w-full h-px my-4" style={{ background: 'var(--sec-border)' }} />
             <p className="font-sans text-base font-light sec-text mb-1">
               1 Bedroom / 1 Bathroom
             </p>
@@ -311,7 +311,7 @@ const ResidencesSection: React.FC = () => {
                 </span>
               </li>
             </ul>
-            <div className="w-full h-px bg-dark-charcoal/10 mt-8 mb-5" />
+            <div className="w-full h-px mt-8 mb-5" style={{ background: 'var(--sec-border)' }} />
             <p className="font-sans text-sm italic text-sage-green leading-relaxed">
               All-inclusive — amenities, Wi-Fi, cleaning &amp; A/C service covered in monthly rate.
             </p>
@@ -335,7 +335,7 @@ const ResidencesSection: React.FC = () => {
                     'tier-card text-left rounded-xl border p-6 md:p-8 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-green',
                     tier.isPet
                       ? 'border-sage-green/30 bg-sage-green/5 hover:bg-sage-green/10'
-                      : 'sec-border card-surface hover:bg-white/10',
+                      : 'sec-border card-surface hover:bg-white/5',
                   ].join(' ')}
                 >
                   {/* Header row */}

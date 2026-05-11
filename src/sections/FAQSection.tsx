@@ -72,7 +72,7 @@ const FAQSection: React.FC = () => {
               key={item.id}
               className="faq-item group"
             >
-              <summary className="flex items-start justify-between gap-4 px-6 py-5 cursor-pointer list-none select-none hover:bg-dark-charcoal/[0.025] transition-colors duration-200">
+              <summary className="flex items-start justify-between gap-4 px-6 py-5 cursor-pointer list-none select-none hover:bg-black/[0.025] transition-colors duration-200">
                 <div className="flex-1 min-w-0">
                   <p className="font-sans text-[15px] font-medium sec-text-90 leading-snug">
                     {item.q_th}
