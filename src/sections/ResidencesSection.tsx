@@ -87,6 +87,9 @@ type TierId = (typeof TIERS)[number]['id'];
 
 const ResidencesSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const sqmRef    = useRef<HTMLSpanElement>(null);
+  const unitsRef  = useRef<HTMLSpanElement>(null);
+  const floorsRef = useRef<HTMLSpanElement>(null);
   const [expanded, setExpanded] = useState<TierId | null>(null);
 
   const toggle = (id: TierId) => setExpanded(prev => (prev === id ? null : id));
@@ -176,6 +179,41 @@ const ResidencesSection: React.FC = () => {
           toggleActions: 'play none none none',
         },
       });
+
+      // Number counters
+      if (sqmRef.current) {
+        const el = sqmRef.current;
+        const obj = { val: 28 };
+        gsap.to(obj, {
+          val: 31.5,
+          duration: 1.6,
+          ease: 'power2.out',
+          onUpdate() { el.textContent = obj.val.toFixed(1); },
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+        });
+      }
+      if (unitsRef.current) {
+        const el = unitsRef.current;
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: 20,
+          duration: 1.2,
+          ease: 'power2.out',
+          onUpdate() { el.textContent = String(Math.round(obj.val)); },
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+        });
+      }
+      if (floorsRef.current) {
+        const el = floorsRef.current;
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: 4,
+          duration: 0.9,
+          ease: 'power2.out',
+          onUpdate() { el.textContent = String(Math.round(obj.val)); },
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+        });
+      }
     },
     { scope: sectionRef }
   );
@@ -218,7 +256,7 @@ const ResidencesSection: React.FC = () => {
               Space & Layout
             </h3>
             <div className="flex items-baseline gap-2 mb-2">
-              <span className="font-serif text-6xl md:text-7xl lg:text-[80px] sec-text leading-none">
+              <span ref={sqmRef} className="font-serif text-6xl md:text-7xl lg:text-[80px] sec-text leading-none">
                 31.5
               </span>
               <span className="font-sans text-base sec-text-60">
@@ -234,10 +272,10 @@ const ResidencesSection: React.FC = () => {
             </p>
             <div className="flex items-center gap-2">
               <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full">
-                20 units total
+                <span ref={unitsRef}>20</span> units total
               </span>
               <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full">
-                4 floors
+                <span ref={floorsRef}>4</span> floors
               </span>
             </div>
           </div>

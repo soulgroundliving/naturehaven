@@ -10,6 +10,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import LoadingOverlay from '@/components/LoadingOverlay';
+import GrainOverlay from '@/components/GrainOverlay';
+import MagneticCursor from '@/components/MagneticCursor';
+import MarqueeStrip from '@/components/MarqueeStrip';
 import Navigation from '@/components/Navigation';
 import { useTimeOfDay } from '@/contexts/TimeOfDayContext';
 import VideoBackground from '@/components/VideoBackground';
@@ -53,6 +56,27 @@ function App() {
   ];
   const activeSection = useSectionObserver(sectionIds);
 
+  // Feature 7: frosted section lift-in on scroll
+  useEffect(() => {
+    gsap.set('.frosted-section', { opacity: 0, y: 22 });
+    const ctx = gsap.context(() => {
+      document.querySelectorAll<HTMLElement>('.frosted-section').forEach(section => {
+        gsap.to(section, {
+          opacity: 1,
+          y: 0,
+          duration: 0.85,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        });
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+
   useEffect(() => {
     // Skip smooth scroll entirely for users who prefer reduced motion —
     // Lenis's RAF-driven easing is exactly the kind of vestibular cue
@@ -90,6 +114,8 @@ function App() {
       {!introComplete && (
         <LoadingOverlay onComplete={() => setIntroComplete(true)} />
       )}
+      <GrainOverlay />
+      <MagneticCursor />
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-pure-white focus:text-dark-charcoal focus:rounded focus:shadow-lg focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-sage-green"
@@ -105,10 +131,12 @@ function App() {
       </OrbErrorBoundary>
       <main id="main" className="relative z-[1]">
         <HeroSection lenisRef={lenisRef} />
+        <MarqueeStrip />
         <AboutSection />
         <InvitationSection />
         <RoomJourneySection />
         <ResidencesSection />
+        <MarqueeStrip speed={28} />
         <AmenitiesSection />
         <LocationSection />
         <DesignSection />
