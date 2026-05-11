@@ -23,6 +23,7 @@ const OrbScene = lazy(() => import('@/components/orb/OrbScene'));
 import HeroSection from '@/sections/HeroSection';
 import AboutSection from '@/sections/AboutSection';
 import InvitationSection from '@/sections/InvitationSection';
+import RoomJourneySection from '@/sections/RoomJourneySection';
 import ResidencesSection from '@/sections/ResidencesSection';
 import AmenitiesSection from '@/sections/AmenitiesSection';
 import LocationSection from '@/sections/LocationSection';
@@ -106,6 +107,7 @@ function App() {
         <HeroSection lenisRef={lenisRef} />
         <AboutSection />
         <InvitationSection />
+        <RoomJourneySection />
         <ResidencesSection />
         <AmenitiesSection />
         <LocationSection />
