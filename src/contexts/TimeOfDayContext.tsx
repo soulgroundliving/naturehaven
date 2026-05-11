@@ -7,6 +7,7 @@ import {
   type ReactNode,
 } from 'react';
 import {
+  getContinuousPalette,
   getTimeOfDay,
   isValidSlot,
   TIME_PALETTES,
@@ -59,16 +60,33 @@ export function TimeOfDayProvider({ children }: { children: ReactNode }) {
   const [overrideSlot, setOverrideSlot] = useState<TimeOfDay | null>(null);
   const [mounted, setMounted] = useState(false);
 
+  // Live palette — blended from exact clock time, ticks every 60 s
+  const [livePalette, setLivePalette] = useState<TimePalette>(() => getContinuousPalette());
+
   useEffect(() => {
     const q = readQueryOverride();
     if (q) setOverrideSlot(q);
     setMounted(true);
   }, []);
 
+  // When not overridden: set immediately on mount, then refresh every minute
+  useEffect(() => {
+    if (!mounted || overrideSlot) return;
+    setLivePalette(getContinuousPalette());
+    const id = setInterval(() => setLivePalette(getContinuousPalette()), 60_000);
+    return () => clearInterval(id);
+  }, [mounted, overrideSlot]);
+
   const slot: TimeOfDay = mounted
     ? overrideSlot ?? getTimeOfDay()
     : 'day';
-  const palette = TIME_PALETTES[slot];
+
+  // Override uses pure keyframe palette; live mode uses interpolated blend
+  const palette: TimePalette = !mounted
+    ? TIME_PALETTES['day']
+    : overrideSlot
+    ? TIME_PALETTES[overrideSlot]
+    : livePalette;
 
   useEffect(() => {
     applyCSSVars(palette);

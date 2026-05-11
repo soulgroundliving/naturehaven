@@ -232,3 +232,109 @@ export function getTimeOfDay(date: Date = new Date()): TimeOfDay {
 export function isValidSlot(s: string | null | undefined): s is TimeOfDay {
   return s === 'morning' || s === 'day' || s === 'sunset' || s === 'night';
 }
+
+// ── Continuous interpolation ──────────────────────────────────────────────────
+// Blends two palettes by progress t ∈ [0,1].
+// Numeric + color fields lerp smoothly; discrete strings snap at t=0.5.
+
+function lerpNum(a: number, b: number, t: number): number {
+  return a + (b - a) * t;
+}
+
+function lerpTuple3(
+  a: [number, number, number],
+  b: [number, number, number],
+  t: number,
+): [number, number, number] {
+  return [lerpNum(a[0], b[0], t), lerpNum(a[1], b[1], t), lerpNum(a[2], b[2], t)];
+}
+
+function lerpHex(a: string, b: string, t: number): string {
+  const ch = (n: number) => Math.round(n).toString(16).padStart(2, '0');
+  const [ar, ag, ab_] = [parseInt(a.slice(1,3),16), parseInt(a.slice(3,5),16), parseInt(a.slice(5,7),16)];
+  const [br, bg, bb_] = [parseInt(b.slice(1,3),16), parseInt(b.slice(3,5),16), parseInt(b.slice(5,7),16)];
+  return `#${ch(lerpNum(ar,br,t))}${ch(lerpNum(ag,bg,t))}${ch(lerpNum(ab_,bb_,t))}`;
+}
+
+function lerpRgba(a: string, b: string, t: number): string {
+  const nums = (s: string) => (s.match(/[\d.]+/g) ?? ['0','0','0','1']).map(Number);
+  const [ar, ag, ab_, aa] = nums(a);
+  const [br, bg, bb_, ba] = nums(b);
+  return `rgba(${Math.round(lerpNum(ar,br,t))},${Math.round(lerpNum(ag,bg,t))},${Math.round(lerpNum(ab_,bb_,t))},${lerpNum(aa??1,ba??1,t).toFixed(2)})`;
+}
+
+function lerpColor(a: string, b: string, t: number): string {
+  if (a.startsWith('#') && b.startsWith('#')) return lerpHex(a, b, t);
+  if (a.startsWith('rgb')) return lerpRgba(a, b, t);
+  return t < 0.5 ? a : b;
+}
+
+function snap<T>(a: T, b: T, t: number): T { return t < 0.5 ? a : b; }
+
+export function interpolatePalettes(a: TimePalette, b: TimePalette, t: number): TimePalette {
+  return {
+    slot:              snap(a.slot, b.slot, t),
+    skyFrom:           lerpColor(a.skyFrom, b.skyFrom, t),
+    skyVia:            lerpColor(a.skyVia, b.skyVia, t),
+    skyTo:             lerpColor(a.skyTo, b.skyTo, t),
+    orbTint:           lerpTuple3(a.orbTint, b.orbTint, t),
+    overlayOpacity:    lerpNum(a.overlayOpacity, b.overlayOpacity, t),
+    lightColor:        lerpColor(a.lightColor, b.lightColor, t),
+    sparkleColor:      lerpColor(a.sparkleColor, b.sparkleColor, t),
+    lightIntensity:    lerpNum(a.lightIntensity, b.lightIntensity, t),
+    lightAngle:        lerpTuple3(a.lightAngle, b.lightAngle, t),
+    ambientIntensity:  lerpNum(a.ambientIntensity, b.ambientIntensity, t),
+    envPreset:         snap(a.envPreset, b.envPreset, t),
+    envMapIntensity:   lerpNum(a.envMapIntensity, b.envMapIntensity, t),
+    glassTransmission: lerpNum(a.glassTransmission, b.glassTransmission, t),
+    glassIridescence:  lerpNum(a.glassIridescence, b.glassIridescence, t),
+    textOnBg:          lerpColor(a.textOnBg, b.textOnBg, t),
+    textMuted:         lerpColor(a.textMuted, b.textMuted, t),
+    ctaBg:             lerpColor(a.ctaBg, b.ctaBg, t),
+    ctaBgHover:        lerpColor(a.ctaBgHover, b.ctaBgHover, t),
+    textShadow:        snap(a.textShadow, b.textShadow, t),
+    mood:              snap(a.mood, b.mood, t),
+    tagline:           snap(a.tagline, b.tagline, t),
+    secText:           lerpColor(a.secText, b.secText, t),
+    secText60:         lerpColor(a.secText60, b.secText60, t),
+    secText70:         lerpColor(a.secText70, b.secText70, t),
+    secText80:         lerpColor(a.secText80, b.secText80, t),
+    secText90:         lerpColor(a.secText90, b.secText90, t),
+    secText55:         lerpColor(a.secText55, b.secText55, t),
+    secBorder:         lerpColor(a.secBorder, b.secBorder, t),
+    secBg:             lerpColor(a.secBg, b.secBg, t),
+    cardBg:            lerpColor(a.cardBg, b.cardBg, t),
+  };
+}
+
+// Keyframe hours → pure palette anchors.
+// Entry at 29 = 5 am next day so night→morning wraps correctly.
+const KEYFRAMES: ReadonlyArray<{ hour: number; slot: TimeOfDay }> = [
+  { hour:  5, slot: 'morning' },
+  { hour: 11, slot: 'day'     },
+  { hour: 17, slot: 'sunset'  },
+  { hour: 20, slot: 'night'   },
+  { hour: 29, slot: 'morning' },
+];
+
+function easeInOut(t: number): number {
+  return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+}
+
+// Returns a fully interpolated palette for the exact current minute.
+// Use this instead of TIME_PALETTES[getTimeOfDay()] for live rendering.
+export function getContinuousPalette(date: Date = new Date()): TimePalette {
+  const h = date.getHours() + date.getMinutes() / 60;
+  const nh = h < 5 ? h + 24 : h; // normalise: midnight–4:59 → 24–28.x
+
+  for (let i = 0; i < KEYFRAMES.length - 1; i++) {
+    const from = KEYFRAMES[i];
+    const to   = KEYFRAMES[i + 1];
+    if (nh >= from.hour && nh < to.hour) {
+      const raw = (nh - from.hour) / (to.hour - from.hour);
+      return interpolatePalettes(TIME_PALETTES[from.slot], TIME_PALETTES[to.slot], easeInOut(raw));
+    }
+  }
+
+  return TIME_PALETTES['morning'];
+}
