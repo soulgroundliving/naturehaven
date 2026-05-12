@@ -30,6 +30,7 @@ const SCENES = [
 ] as const;
 
 const N = SCENES.length;
+const VH_PER_SCENE = 150; // scroll distance (vh) each scene occupies before transitioning
 
 const RoomJourneySection: React.FC = () => {
   const containerRef  = useRef<HTMLDivElement>(null);
@@ -118,7 +119,7 @@ const RoomJourneySection: React.FC = () => {
     // Container taller than viewport — provides scroll space
     <div
       ref={containerRef}
-      style={{ height: `${N * 100}vh` }}
+      style={{ height: `${N * VH_PER_SCENE}vh` }}
     >
       {/* Pinned frame — stays fixed during the scroll journey */}
       <div
