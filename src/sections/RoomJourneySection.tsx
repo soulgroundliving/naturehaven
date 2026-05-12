@@ -63,12 +63,12 @@ const RoomJourneySection: React.FC = () => {
         gsap.to(images[prev], { opacity: 0, duration: 0.75, ease: 'power2.inOut' });
         gsap.to(images[next], { opacity: 1, duration: 0.75, ease: 'power2.inOut' });
 
-        // Text slide: prev fully out before next fades in (both occupy same position)
+        // Text slide: prev fades out, then next snaps to full white and slides up (no opacity fade)
         gsap.to(texts[prev],  { opacity: 0, y: -24, duration: 0.35, ease: 'power2.in', overwrite: true });
         gsap.fromTo(
           texts[next],
-          { opacity: 0, y: 28 },
-          { opacity: 1, y: 0, duration: 0.5, delay: 0.38, ease: 'power3.out', overwrite: true }
+          { opacity: 1, y: 22, immediateRender: false },
+          { opacity: 1, y: 0, duration: 0.45, delay: 0.38, ease: 'power3.out', overwrite: true }
         );
 
         // Tags
