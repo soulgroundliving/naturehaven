@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import SectionHeader from '@/components/SectionHeader';
 import { Check } from '@/components/icons';
-import { PawPrint, ChevronDown } from 'lucide-react';
+import { PawPrint } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,16 +83,11 @@ const TIERS = [
   },
 ] as const;
 
-type TierId = (typeof TIERS)[number]['id'];
-
 const ResidencesSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const sqmRef    = useRef<HTMLSpanElement>(null);
   const unitsRef  = useRef<HTMLSpanElement>(null);
   const floorsRef = useRef<HTMLSpanElement>(null);
-  const [expanded, setExpanded] = useState<TierId | null>(null);
-
-  const toggle = (id: TierId) => setExpanded(prev => (prev === id ? null : id));
 
   useGSAP(
     () => {
@@ -322,98 +317,77 @@ const ResidencesSection: React.FC = () => {
         <div className="mb-10 md:mb-16 lg:mb-20">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
             <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
-              Pricing — tap to see details
+              Pricing
             </p>
             <p className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">
               Opening rate · August 2026 · 20 units
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {TIERS.map((tier) => {
-              const isOpen = expanded === tier.id;
-              return (
-                <button
-                  key={tier.id}
-                  onClick={() => toggle(tier.id)}
-                  aria-expanded={isOpen}
-                  className={[
-                    'tier-card text-left rounded-xl border p-6 md:p-8 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-green',
-                    tier.isPet
-                      ? 'border-sage-green/30 bg-sage-green/5 hover:bg-sage-green/10'
-                      : 'sec-border card-surface hover:bg-white/5',
-                  ].join(' ')}
-                >
-                  {/* Header row */}
-                  <div className="flex items-start justify-between gap-4 mb-5">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
-                          {tier.label}
+            {TIERS.map((tier) => (
+              <div
+                key={tier.id}
+                className={[
+                  'tier-card rounded-xl border p-6 md:p-8',
+                  tier.isPet
+                    ? 'border-sage-green/30 bg-sage-green/5'
+                    : 'sec-border card-surface',
+                ].join(' ')}
+              >
+                {/* Header row */}
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
+                    {tier.label}
+                  </span>
+                  {tier.isPet && (
+                    <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
+                  )}
+                </div>
+                <p className={[
+                  'font-sans text-base font-medium leading-snug mb-0.5',
+                  tier.isPet ? 'text-sage-green' : 'sec-text-90',
+                ].join(' ')}>
+                  {tier.name}
+                </p>
+                <p className="font-sans text-[11px] sec-text-60 mb-5">
+                  {tier.floors}
+                </p>
+
+                {/* Price */}
+                <div className={['pt-4 border-t', tier.isPet ? 'border-sage-green/20' : 'sec-border'].join(' ')}>
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span className="font-serif text-[28px] sec-text leading-none">
+                      {tier.openingPrice}
+                    </span>
+                    <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">
+                      Opening Rate
+                    </span>
+                    <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">
+                      {tier.standardPrice} THB
+                    </span>
+                  </div>
+                </div>
+
+                {/* Details — always visible */}
+                <div className={['mt-5 pt-5 border-t', tier.isPet ? 'border-sage-green/15' : 'sec-border'].join(' ')}>
+                  <ul className="flex flex-col gap-3">
+                    {tier.details.map(({ label, value }) => (
+                      <li key={label} className="flex flex-col gap-0.5">
+                        <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">
+                          {label}
                         </span>
-                        {tier.isPet && (
-                          <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
-                        )}
-                      </div>
-                      <p className={[
-                        'font-sans text-base font-medium leading-snug',
-                        tier.isPet ? 'text-sage-green' : 'sec-text-90',
-                      ].join(' ')}>
-                        {tier.name}
-                      </p>
-                      <p className="font-sans text-[11px] sec-text-60 mt-0.5">
-                        {tier.floors}
-                      </p>
-                    </div>
-                    <ChevronDown
-                      size={18}
-                      className={[
-                        'flex-shrink-0 mt-0.5 sec-text-60 transition-transform duration-300',
-                        isOpen ? 'rotate-180' : '',
-                      ].join(' ')}
-                    />
-                  </div>
-
-                  {/* Price */}
-                  <div className={['pt-4 border-t', tier.isPet ? 'border-sage-green/20' : 'sec-border'].join(' ')}>
-                    <div className="flex items-baseline gap-1 mb-2">
-                      <span className="font-serif text-[28px] sec-text leading-none">
-                        {tier.openingPrice}
-                      </span>
-                      <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
-                    </div>
-                    <div className="flex flex-wrap items-center gap-1.5">
-                      <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">
-                        Opening Rate
-                      </span>
-                      <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">
-                        {tier.standardPrice} THB
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Expandable details */}
-                  <div
-                    className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
-                    style={{ maxHeight: isOpen ? '400px' : '0px' }}
-                  >
-                    <div className={['mt-5 pt-5 border-t', tier.isPet ? 'border-sage-green/15' : 'sec-border'].join(' ')}>
-                      <ul className="flex flex-col gap-3">
-                        {tier.details.map(({ label, value }) => (
-                          <li key={label} className="flex flex-col gap-0.5">
-                            <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">
-                              {label}
-                            </span>
-                            <span className="font-sans text-sm font-light sec-text-80">
-                              {value}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
+                        <span className="font-sans text-sm font-light sec-text-80">
+                          {value}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
