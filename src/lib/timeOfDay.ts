@@ -317,11 +317,13 @@ export function interpolatePalettes(a: TimePalette, b: TimePalette, t: number): 
 
 // Keyframe hours → pure palette anchors.
 // Entry at 29 = 5 am next day so night→morning wraps correctly.
+// Night holds pure until hour 27 (3 am); only the final 2-hour window blends to morning.
 const KEYFRAMES: ReadonlyArray<{ hour: number; slot: TimeOfDay }> = [
   { hour:  5, slot: 'morning' },
   { hour: 11, slot: 'day'     },
   { hour: 17, slot: 'sunset'  },
   { hour: 20, slot: 'night'   },
+  { hour: 27, slot: 'night'   },
   { hour: 29, slot: 'morning' },
 ];
 
