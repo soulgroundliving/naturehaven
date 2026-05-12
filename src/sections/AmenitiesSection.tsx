@@ -56,70 +56,54 @@ const AmenitiesSection: React.FC = () => {
       const track = trackRef.current;
       if (!track || !sectionRef.current) return;
 
-      // Use the section's actual layout width (accounts for scrollbar, not window.innerWidth)
-      const getDistance = () =>
-        track.scrollWidth - (sectionRef.current?.offsetWidth ?? window.innerWidth);
+      const section = sectionRef.current;
+
+      const getDistance = () => track.scrollWidth - section.offsetWidth;
       // Extra scroll pixels held at the end so the CTA card has time to be read
-      // 1.5 × vh matches RoomJourney's VH_PER_SCENE = 150vh dwell per scene
-      const getDwell = () => window.innerHeight * 1.5;
+      const getDwell    = () => window.innerHeight * 1.5;
 
-      const cards = gsap.utils.toArray<HTMLElement>('.am-card');
+      const cards    = gsap.utils.toArray<HTMLElement>('.am-card');
+      const sw       = section.offsetWidth;
+      const revealed = new Set<HTMLElement>();
 
-      // Only hide cards that start off-screen to the right — overflow:hidden on the
-      // section already clips them, but we need opacity:0 so the fade-in animation
-      // works as they scroll into view. Cards already in the viewport stay visible.
-      const sw = sectionRef.current.offsetWidth;
-      cards.forEach((card) => {
-        if ((card as HTMLElement).offsetLeft >= sw) {
-          gsap.set(card, { opacity: 0, y: 18 });
-        }
+      // Pre-hide only cards that start off-screen; in-viewport cards stay visible.
+      cards.forEach(card => {
+        if (card.offsetLeft >= sw) gsap.set(card, { opacity: 0, y: 18 });
       });
 
-      const hTween = gsap.to(track, {
-        x: () => -(getDistance() + getDwell()),
-        ease: 'none',
-        // Clamp so the track never moves past its true end — the extra scroll
-        // is pure dwell at the final state, not additional translation.
-        modifiers: {
-          x: (x: number) => Math.max(-getDistance(), x),
-        },
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: () => `+=${getDistance() + getDwell()}`,
-          scrub: 1.2,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: (st) => {
-            if (progressRef.current) {
-              // Progress bar fills to 100% when horizontal scroll is complete,
-              // then holds at 100% during the dwell period.
-              const d = getDistance();
-              const fill = Math.min(1, (st.progress * (d + getDwell())) / d);
-              gsap.set(progressRef.current, { scaleX: fill });
+      // quickSetter avoids per-frame tween overhead for the track translation.
+      const setX = gsap.quickSetter(track, 'x', 'px') as (v: number) => void;
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top top',
+        end: () => `+=${getDistance() + getDwell()}`,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (st) => {
+          const d     = getDistance();
+          const total = d + getDwell();
+          // hProgress reaches 1.0 exactly when the track finishes horizontal travel,
+          // then holds at 1.0 for the remaining dwell scroll distance.
+          const hp    = Math.min(1, (st.progress * total) / d);
+          const x     = -d * hp;
+
+          setX(x);
+
+          // Reveal cards as their left edge enters the viewport
+          cards.forEach(card => {
+            if (!revealed.has(card) && card.offsetLeft + x < sw) {
+              revealed.add(card);
+              gsap.to(card, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' });
             }
-          },
+          });
+
+          if (progressRef.current) {
+            gsap.set(progressRef.current, { scaleX: hp });
+          }
         },
       });
-
-      // Per-card entrance: each card fades in as its left edge enters the horizontal viewport.
-      // containerAnimation handles cards revealed by horizontal scroll.
-      cards.forEach((card) => {
-        gsap.to(card, {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: card,
-            containerAnimation: hTween,
-            start: 'left right',
-            toggleActions: 'play none none none',
-          },
-        });
-      });
-
     },
     { scope: sectionRef }
   );
