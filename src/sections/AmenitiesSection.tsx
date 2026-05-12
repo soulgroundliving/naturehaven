@@ -94,8 +94,8 @@ const AmenitiesSection: React.FC = () => {
         },
       });
 
-      // Per-card entrance: each card fades in as its left edge enters the viewport
-      // (initially-visible cards all trigger at containerProgress=0 → staggered entrance on pin)
+      // Per-card entrance: each card fades in as its left edge enters the horizontal viewport.
+      // containerAnimation handles cards revealed by horizontal scroll.
       cards.forEach((card) => {
         gsap.to(card, {
           opacity: 1,
@@ -109,6 +109,31 @@ const AmenitiesSection: React.FC = () => {
             toggleActions: 'play none none none',
           },
         });
+      });
+
+      // containerAnimation triggers don't fire for cards already in the viewport
+      // when the user jumps directly to this section (nav link, hash, etc.).
+      // This onEnter detects those cards by their offsetLeft vs. section width
+      // and plays their entrance immediately when the section first pins.
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top bottom',
+        once: true,
+        onEnter: () => {
+          const sw = sectionRef.current?.offsetWidth ?? window.innerWidth;
+          cards.forEach((card, i) => {
+            if ((card as HTMLElement).offsetLeft < sw) {
+              gsap.to(card, {
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                delay: i * 0.1,
+                ease: 'power2.out',
+                overwrite: 'auto',
+              });
+            }
+          });
+        },
       });
     },
     { scope: sectionRef }
