@@ -62,6 +62,12 @@ export interface TimePalette {
   tagline: string; // sub-headline shown below "Nature Haven"
 
   // Frosted section tokens — used by all bg-pure-white/30 sections
+  //
+  // CONTRAST CONTRACT — do not lower these without running `npm run verify:contrast`
+  // Light palettes (morning/day/sunset): secBg ≈ rgba(255,255,255,0.72+)
+  //   secText55/60/70 min opacity: 0.70  (AA_LARGE  3.0:1)
+  //   secText80/90    min opacity: 0.85  (AA_NORMAL 4.5:1)
+  // Night palette: already high contrast at lower opacity values — do not lower below 0.68.
   secText: string;     // primary text on frosted sections
   secText60: string;   // label / muted text
   secText70: string;   // sub-body / secondary copy
