@@ -100,17 +100,8 @@ const RoomJourneySection: React.FC = () => {
         }
       };
 
-      // Pin the frame for the scroll journey
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: 'top top',
-        end: `+=${(N - 1) * 100}vh`,
-        pin: frameRef.current,
-        pinSpacing: false,
-        anticipatePin: 1,
-      });
-
       // Scene triggers
+      // Frame sticks via CSS position:sticky (see JSX) — no GSAP pin needed
       for (let i = 1; i < N; i++) {
         ScrollTrigger.create({
           trigger: containerRef.current,
@@ -133,7 +124,7 @@ const RoomJourneySection: React.FC = () => {
       <div
         ref={frameRef}
         className="relative w-full overflow-hidden"
-        style={{ height: '100vh' }}
+        style={{ position: 'sticky', top: 0, height: '100vh' }}
         aria-label="Room journey — scroll to explore"
       >
         {/* Scene images (stacked, crossfade) */}
