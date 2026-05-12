@@ -47,29 +47,68 @@ const AMENITIES = [
 ];
 
 const AmenitiesSection: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const trackRef   = useRef<HTMLDivElement>(null);
+  const sectionRef  = useRef<HTMLDivElement>(null);
+  const trackRef    = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
       const track = trackRef.current;
       if (!track || !sectionRef.current) return;
 
-      // Horizontal distance = full track width minus one viewport width
-      const getDistance = () => track.scrollWidth - window.innerWidth;
+      // Use the section's actual layout width (accounts for scrollbar, not window.innerWidth)
+      const getDistance = () =>
+        track.scrollWidth - (sectionRef.current?.offsetWidth ?? window.innerWidth);
+      // Extra scroll pixels held at the end so the CTA card has time to be read
+      // 1.5 × vh matches RoomJourney's VH_PER_SCENE = 150vh dwell per scene
+      const getDwell = () => window.innerHeight * 1.5;
 
-      gsap.to(track, {
-        x: () => -getDistance(),
+      const cards = gsap.utils.toArray<HTMLElement>('.am-card');
+      gsap.set(cards, { opacity: 0, y: 18 });
+
+      const hTween = gsap.to(track, {
+        x: () => -(getDistance() + getDwell()),
         ease: 'none',
+        // Clamp so the track never moves past its true end — the extra scroll
+        // is pure dwell at the final state, not additional translation.
+        modifiers: {
+          x: (x: number) => Math.max(-getDistance(), x),
+        },
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: () => `+=${getDistance()}`,
+          end: () => `+=${getDistance() + getDwell()}`,
           scrub: 1.2,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          onUpdate: (st) => {
+            if (progressRef.current) {
+              // Progress bar fills to 100% when horizontal scroll is complete,
+              // then holds at 100% during the dwell period.
+              const d = getDistance();
+              const fill = Math.min(1, (st.progress * (d + getDwell())) / d);
+              gsap.set(progressRef.current, { scaleX: fill });
+            }
+          },
         },
+      });
+
+      // Per-card entrance: each card fades in as its left edge enters the viewport
+      // (initially-visible cards all trigger at containerProgress=0 → staggered entrance on pin)
+      cards.forEach((card) => {
+        gsap.to(card, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: card,
+            containerAnimation: hTween,
+            start: 'left right',
+            toggleActions: 'play none none none',
+          },
+        });
       });
     },
     { scope: sectionRef }
@@ -79,7 +118,7 @@ const AmenitiesSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="amenities"
-      className="overflow-hidden"
+      className="overflow-hidden relative"
       style={{ background: 'var(--sec-bg, rgba(255,255,255,0.55))' }}
     >
       {/* Horizontal track — wider than viewport, scrolls left */}
@@ -142,7 +181,7 @@ const AmenitiesSection: React.FC = () => {
         {AMENITIES.map(({ num, Icon, label, desc }) => (
           <React.Fragment key={label}>
             <div
-              className="flex-shrink-0 flex flex-col justify-between px-10 py-12 md:px-14 md:py-16 relative"
+              className="am-card flex-shrink-0 flex flex-col justify-between px-10 py-12 md:px-14 md:py-16 relative"
               style={{ width: 'clamp(260px, 28vw, 380px)' }}
             >
               {/* Faint background number */}
@@ -238,6 +277,23 @@ const AmenitiesSection: React.FC = () => {
           </p>
           <PrimaryButton href="#contact">Reserve a Unit</PrimaryButton>
         </div>
+      </div>
+
+      {/* Horizontal progress bar — bottom edge of the pinned frame */}
+      <div
+        className="absolute bottom-0 left-0 w-full pointer-events-none"
+        style={{ height: '1px', background: 'var(--sec-border)' }}
+        aria-hidden="true"
+      >
+        <div
+          ref={progressRef}
+          className="h-full"
+          style={{
+            background: 'var(--sec-text-55)',
+            transformOrigin: 'left center',
+            transform: 'scaleX(0)',
+          }}
+        />
       </div>
     </section>
   );

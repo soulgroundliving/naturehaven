@@ -317,14 +317,17 @@ export function interpolatePalettes(a: TimePalette, b: TimePalette, t: number): 
 
 // Keyframe hours → pure palette anchors.
 // Entry at 29 = 5 am next day so night→morning wraps correctly.
-// Night holds pure until hour 27 (3 am); only the final 2-hour window blends to morning.
+// Night holds pure until hour 28.5 (4:30 am); only the final 30-minute window blends to morning.
+// This prevents contrast collapse at 4 am where the mid-blend of dark-bg+cream-text and
+// light-bg+dark-text produces medium-gray-on-medium-gray (near-zero contrast).
 const KEYFRAMES: ReadonlyArray<{ hour: number; slot: TimeOfDay }> = [
-  { hour:  5, slot: 'morning' },
-  { hour: 11, slot: 'day'     },
-  { hour: 17, slot: 'sunset'  },
-  { hour: 20, slot: 'night'   },
-  { hour: 27, slot: 'night'   },
-  { hour: 29, slot: 'morning' },
+  { hour:  5,    slot: 'morning' },
+  { hour: 11,    slot: 'day'     },
+  { hour: 17,    slot: 'sunset'  },
+  { hour: 20,    slot: 'night'   },
+  { hour: 27,    slot: 'night'   },
+  { hour: 28.5,  slot: 'night'   },  // hold pure night through 4 am; avoids mid-blend unreadability
+  { hour: 29,    slot: 'morning' },
 ];
 
 function easeInOut(t: number): number {
