@@ -102,11 +102,14 @@ const RoomJourneySection: React.FC = () => {
       };
 
       // Scene triggers
-      // Frame sticks via CSS position:sticky (see JSX) — no GSAP pin needed
+      // Frame sticks via CSS position:sticky (see JSX) — no GSAP pin needed.
+      // containerVh = N × VH_PER_SCENE + 100 so every scene (incl. the last)
+      // gets exactly VH_PER_SCENE of dwell before the frame unsticks.
+      const containerVh = N * VH_PER_SCENE + 100;
       for (let i = 1; i < N; i++) {
         ScrollTrigger.create({
           trigger: containerRef.current,
-          start: `${((i) / N) * 100}% top`,
+          start: `${(i * VH_PER_SCENE / containerVh) * 100}% top`,
           onEnter:     () => goTo(i),
           onLeaveBack: () => goTo(i - 1),
         });
@@ -119,7 +122,7 @@ const RoomJourneySection: React.FC = () => {
     // Container taller than viewport — provides scroll space
     <div
       ref={containerRef}
-      style={{ height: `${N * VH_PER_SCENE}vh` }}
+      style={{ height: `${N * VH_PER_SCENE + 100}vh` }}
     >
       {/* Pinned frame — stays fixed during the scroll journey */}
       <div
