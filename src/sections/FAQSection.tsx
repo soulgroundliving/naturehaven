@@ -60,9 +60,6 @@ const FAQSection: React.FC = () => {
           <h2 className="faq-header-animate font-serif text-3xl md:text-5xl lg:text-[56px] sec-text leading-[1.1] mb-3">
             คำถามที่พบบ่อย
           </h2>
-          <p className="faq-header-animate font-sans text-base italic sec-text-60">
-            Frequently Asked Questions
-          </p>
           <div className="faq-header-animate flex items-center justify-center gap-4 mt-7">
             <div className="h-px w-14" style={{ background: 'var(--sec-border)' }} />
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="flex-shrink-0" style={{ color: 'var(--sec-text-55)' }}>

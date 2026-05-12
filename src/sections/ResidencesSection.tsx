@@ -320,9 +320,14 @@ const ResidencesSection: React.FC = () => {
 
         {/* Pricing Tiers */}
         <div className="mb-10 md:mb-16 lg:mb-20">
-          <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em] mb-4">
-            Pricing — tap to see details
-          </p>
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
+              Pricing — tap to see details
+            </p>
+            <p className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">
+              Opening rate · August 2026 · 20 units
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {TIERS.map((tier) => {
               const isOpen = expanded === tier.id;
@@ -443,6 +448,32 @@ const ResidencesSection: React.FC = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Reserve CTA */}
+        <div className="mb-10 md:mb-16 lg:mb-20 text-center">
+          <p className="font-sans text-[11px] sec-text-55 uppercase tracking-[0.18em] mb-5">
+            Ready to make it yours?
+          </p>
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="group inline-flex items-center gap-3 bg-[var(--cta-bg,#3D5A4C)] text-pure-white font-sans text-sm uppercase tracking-wide px-10 py-4 rounded-full overflow-hidden relative transition-transform duration-200 active:scale-[0.98] hover:shadow-lg"
+          >
+            <span className="absolute inset-0 bg-[var(--cta-bg-hover,#4a6e5d)] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
+            <span className="relative z-10">Reserve a Unit</span>
+            <svg
+              className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
         </div>
 
         {/* In-Room Essentials */}

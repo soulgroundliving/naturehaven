@@ -32,8 +32,9 @@ const SCENES = [
 const N = SCENES.length;
 
 const RoomJourneySection: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const frameRef     = useRef<HTMLDivElement>(null);
+  const containerRef  = useRef<HTMLDivElement>(null);
+  const frameRef      = useRef<HTMLDivElement>(null);
+  const counterRef    = useRef<HTMLSpanElement>(null);
 
   useGSAP(
     () => {
@@ -91,6 +92,11 @@ const RoomJourneySection: React.FC = () => {
             duration: 0.5,
             ease: 'power2.inOut',
           });
+        }
+
+        // Scene counter
+        if (counterRef.current) {
+          counterRef.current.textContent = `${next + 1} / ${N}`;
         }
       };
 
@@ -221,8 +227,8 @@ const RoomJourneySection: React.FC = () => {
                 key={i}
                 className={`rj-dot rounded-full ${i === 0 ? 'opacity-100 scale-100' : 'opacity-25 scale-[0.8]'}`}
                 style={{
-                  width: '4px',
-                  height: '4px',
+                  width: '6px',
+                  height: '6px',
                   background: 'white',
                   transition: 'none', // GSAP handles this
                 }}
@@ -232,14 +238,19 @@ const RoomJourneySection: React.FC = () => {
           </div>
         </div>
 
-        {/* Scroll hint — bottom-right */}
-        <div className="absolute bottom-10 right-8 md:bottom-16 md:right-14 flex items-center gap-2 select-none">
-          <span className="font-sans text-[9px] uppercase tracking-[0.2em] text-white/35">
-            Scroll
+        {/* Scroll hint + scene counter — bottom-right */}
+        <div className="absolute bottom-10 right-8 md:bottom-16 md:right-14 flex flex-col items-end gap-2 select-none">
+          <span ref={counterRef} className="font-sans text-[9px] uppercase tracking-[0.18em] text-white/60">
+            1 / {N}
           </span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" aria-hidden="true">
-            <path d="M12 5v14M5 12l7 7 7-7" />
-          </svg>
+          <div className="flex items-center gap-2">
+            <span className="font-sans text-[9px] uppercase tracking-[0.2em] text-white/60">
+              Scroll
+            </span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.60)" strokeWidth="1.5" aria-hidden="true">
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </div>
         </div>
       </div>
     </div>

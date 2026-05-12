@@ -88,8 +88,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
     { scope: sectionRef }
   );
 
-  const scrollToAbout = () => {
-    const target = document.querySelector('#about');
+  const scrollToResidences = () => {
+    const target = document.querySelector('#residences');
     const lenis = lenisRef.current as { scrollTo: (t: Element, o?: { offset?: number }) => void } | null;
     if (target && lenis) {
       lenis.scrollTo(target, { offset: -80 });
@@ -154,13 +154,21 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
           A residence shaped by intention — where life gently returns to its natural rhythm.
         </p>
 
+        {/* Pricing anchor */}
+        <p
+          className="hero-cta font-sans text-[11px] uppercase tracking-[0.18em] mt-7 opacity-60"
+          style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
+        >
+          From 5,800 THB / mo · Available August 2026
+        </p>
+
         {/* CTA */}
         <button
-          onClick={scrollToAbout}
-          className="hero-cta group relative mt-12 inline-flex items-center gap-3 bg-[var(--cta-bg,#3D5A4C)] text-pure-white font-sans text-sm uppercase tracking-wide px-10 py-4 rounded-full overflow-hidden transition-transform duration-200 active:scale-[0.98] hover:shadow-lg"
+          onClick={scrollToResidences}
+          className="hero-cta group relative mt-5 inline-flex items-center gap-3 bg-[var(--cta-bg,#3D5A4C)] text-pure-white font-sans text-sm uppercase tracking-wide px-10 py-4 rounded-full overflow-hidden transition-transform duration-200 active:scale-[0.98] hover:shadow-lg"
         >
           <span className="absolute inset-0 bg-[var(--cta-bg-hover,#4a6e5d)] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
-          <span className="relative z-10">Discover More</span>
+          <span className="relative z-10">View Residences</span>
           <svg
             className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
             fill="none"
@@ -179,6 +187,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
         style={{ color: 'var(--text-muted-on-bg, #5C5650)' }}
       >
         <span className="font-sans text-xs uppercase tracking-[0.15em]">เลื่อนเพื่อสำรวจ</span>
+        <span className="font-sans text-[9px] uppercase tracking-[0.12em] opacity-50">Scroll to explore</span>
         <div className="animate-bounce-gentle">
           <ArrowDown size={20} />
         </div>

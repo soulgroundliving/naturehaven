@@ -93,7 +93,7 @@ const MORNING: TimePalette = {
   ambientIntensity: 0.45,
   envPreset: 'dawn',
   envMapIntensity: 2.2,
-  glassTransmission: 0.97,  // near-total — bubble is almost entirely see-through
+  glassTransmission: 0.82,  // reduced so bubble has visible presence against cream sky
   glassIridescence: 0.95,   // maximum soap-bubble rainbow shimmer
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',
@@ -128,7 +128,7 @@ const DAY: TimePalette = {
   ambientIntensity: 0.08,         // very low — prevents IBL from washing out shimmer
   envPreset: 'night',             // dark IBL reflects visibly on bubble surface
   envMapIntensity: 4.5,           // very high — night blues show strongly on the thin film
-  glassTransmission: 0.97,        // near-total — bubble is almost entirely see-through
+  glassTransmission: 0.82,        // reduced so bubble has visible presence against grey sky
   glassIridescence: 1.0,          // full soap-bubble rainbow shimmer
   textOnBg: '#2B2B2B',
   textMuted: '#5C5650',

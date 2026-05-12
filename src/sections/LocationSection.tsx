@@ -13,7 +13,7 @@ const nearbyEssentials = [
   { name: 'CGH Sai Mai Hospital', distance: '300 m' },
   { name: 'Wongsakorn Market', distance: '700 m' },
   { name: 'Makro Sai Mai', distance: '750 m' },
-  { name: 'BTS Khu Khot', distance: '5 km' },
+  { name: 'BTS Khu Khot', distance: '5 km · ~15 min by taxi' },
 ];
 
 const lifestyleSurroundings = [
