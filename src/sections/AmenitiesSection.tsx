@@ -64,7 +64,16 @@ const AmenitiesSection: React.FC = () => {
       const getDwell = () => window.innerHeight * 1.5;
 
       const cards = gsap.utils.toArray<HTMLElement>('.am-card');
-      gsap.set(cards, { opacity: 0, y: 18 });
+
+      // Only hide cards that start off-screen to the right — overflow:hidden on the
+      // section already clips them, but we need opacity:0 so the fade-in animation
+      // works as they scroll into view. Cards already in the viewport stay visible.
+      const sw = sectionRef.current.offsetWidth;
+      cards.forEach((card) => {
+        if ((card as HTMLElement).offsetLeft >= sw) {
+          gsap.set(card, { opacity: 0, y: 18 });
+        }
+      });
 
       const hTween = gsap.to(track, {
         x: () => -(getDistance() + getDwell()),
@@ -111,30 +120,6 @@ const AmenitiesSection: React.FC = () => {
         });
       });
 
-      // containerAnimation triggers don't fire for cards already in the viewport
-      // when the user jumps directly to this section (nav link, hash, etc.).
-      // This onEnter detects those cards by their offsetLeft vs. section width
-      // and plays their entrance immediately when the section first pins.
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: 'top bottom',
-        once: true,
-        onEnter: () => {
-          const sw = sectionRef.current?.offsetWidth ?? window.innerWidth;
-          cards.forEach((card, i) => {
-            if ((card as HTMLElement).offsetLeft < sw) {
-              gsap.to(card, {
-                opacity: 1,
-                y: 0,
-                duration: 0.7,
-                delay: i * 0.1,
-                ease: 'power2.out',
-                overwrite: 'auto',
-              });
-            }
-          });
-        },
-      });
     },
     { scope: sectionRef }
   );
