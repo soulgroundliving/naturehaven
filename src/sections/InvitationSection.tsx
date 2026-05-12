@@ -138,7 +138,7 @@ const InvitationSection: React.FC = () => {
               }}
             />
             <div
-              className="inv-pen absolute -top-[9px]"
+              className="inv-pen absolute top-1/2 -translate-y-1/2"
               style={{ left: '0%', color: '#9B8A78', opacity: 0 }}
             >
               <PenNib />

@@ -227,7 +227,7 @@ const ResidencesSection: React.FC = () => {
         />
 
         {/* Three Info Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 md:mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 md:mb-16 lg:mb-20">
           {/* Suitable For */}
           <div className="res-card card-surface backdrop-blur-sm rounded-xl p-8 md:p-12">
             <h3 className="font-serif text-2xl md:text-[32px] sec-text mb-6">

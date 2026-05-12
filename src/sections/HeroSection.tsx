@@ -104,7 +104,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
     >
       <div
         ref={contentRef}
-        className="relative z-10 text-center px-4 flex flex-col items-center"
+        className="relative z-10 text-center w-full max-w-[1300px] mx-auto px-4 md:px-8 lg:px-12 flex flex-col items-center"
         style={{ willChange: 'transform, opacity', color: 'var(--text-on-bg, #2B2B2B)' }}
       >
         {/* Editorial rule above label */}
@@ -142,8 +142,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
 
         {/* Editorial rule below headline */}
         <div
-          className="hero-rule-bottom h-px mt-7 mb-8 opacity-20"
-          style={{ width: '260px', background: 'var(--text-on-bg, #2B2B2B)' }}
+          className="hero-rule-bottom w-[260px] h-px mt-7 mb-8 opacity-20"
+          style={{ background: 'var(--text-on-bg, #2B2B2B)' }}
         />
 
         {/* Subtitle */}
