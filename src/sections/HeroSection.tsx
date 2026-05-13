@@ -125,8 +125,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
 
         {/* Headline — line-by-line mask-reveal */}
         <h1
-          className="font-serif leading-[0.88] text-[15vw] sm:text-[13vw] md:text-[11.5vw] lg:text-[10vw]"
+          className="font-serif leading-[0.88] text-[11vw] sm:text-[10.5vw] md:text-[10.5vw] lg:text-[10vw] tracking-[-0.01em]"
           aria-label="Nature Haven"
+          style={{ filter: 'drop-shadow(0 0 22px rgba(255,255,255,0.45))' }}
         >
           {HEADLINE_LINES.map((line, i) => (
             <span
