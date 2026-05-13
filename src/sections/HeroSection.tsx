@@ -157,8 +157,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
 
         {/* Pricing anchor */}
         <p
-          className="hero-cta font-sans text-[11px] uppercase tracking-[0.18em] mt-7 opacity-60"
-          style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
+          className="hero-cta font-sans text-[11px] uppercase tracking-[0.18em] mt-7 text-white opacity-60"
         >
           From 5,800 THB / mo · Available August 2026
         </p>
@@ -184,8 +183,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
       {/* Scroll indicator */}
       <div
         ref={scrollIndicatorRef}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-        style={{ color: 'var(--text-muted-on-bg, #5C5650)' }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white"
       >
         <span className="font-sans text-xs uppercase tracking-[0.15em]">เลื่อนเพื่อสำรวจ</span>
         <span className="font-sans text-[9px] uppercase tracking-[0.12em] opacity-50">Scroll to explore</span>
