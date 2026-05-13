@@ -39,6 +39,27 @@ export default function OrbScene() {
       // animations compose with centering instead of clobbering it.
       gsap.set(container, { xPercent: -50, yPercent: -50 });
 
+      // Hero alignment — shift orb so its centre sits on the "Nature Haven" h1.
+      // The heading centre is above the viewport midpoint; we measure the gap at
+      // page-load (scroll=0) and animate back to y=0 as the hero exits.
+      const heroH1 = document.querySelector<HTMLElement>('#hero h1');
+      const heroOffset = heroH1
+        ? (heroH1.getBoundingClientRect().top + heroH1.getBoundingClientRect().height / 2) -
+          window.innerHeight / 2
+        : -80;
+      gsap.set(container, { y: heroOffset });
+
+      const setOrbY = gsap.quickSetter(container, 'y', 'px');
+      ScrollTrigger.create({
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1,
+        onUpdate: (self) => {
+          setOrbY(heroOffset * (1 - self.progress));
+        },
+      });
+
       // Section-anchored states (scale + tilt) — set targets; Orb lerps toward
       // them each frame via controlsRef.
       ScrollTrigger.create({
