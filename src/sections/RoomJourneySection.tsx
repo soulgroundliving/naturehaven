@@ -30,16 +30,27 @@ const SCENES = [
 ] as const;
 
 const N = SCENES.length;
-const VH_PER_SCENE = 150; // scroll distance (vh) each scene occupies before transitioning
+// Mobile uses shorter scroll-per-scene so users don't over-scroll on phones
+const VH_PER_SCENE        = 150;
+const VH_PER_SCENE_MOBILE = 80;
 
 const RoomJourneySection: React.FC = () => {
   const containerRef  = useRef<HTMLDivElement>(null);
   const frameRef      = useRef<HTMLDivElement>(null);
   const counterRef    = useRef<HTMLSpanElement>(null);
+  // Compute once at mount — smaller vh on mobile so the section doesn't
+  // consume too many phone-lengths of scroll.
+  const [vhPerScene]  = React.useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
+      ? VH_PER_SCENE_MOBILE
+      : VH_PER_SCENE
+  );
+  const containerVhCalc = N * vhPerScene + 100;
 
   useGSAP(
     () => {
       if (!containerRef.current || !frameRef.current) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       const images = gsap.utils.toArray<HTMLElement>('.rj-img');
       const texts  = gsap.utils.toArray<HTMLElement>('.rj-text');
@@ -104,15 +115,12 @@ const RoomJourneySection: React.FC = () => {
         }
       };
 
-      // Scene triggers
-      // Frame sticks via CSS position:sticky (see JSX) — no GSAP pin needed.
-      // containerVh = N × VH_PER_SCENE + 100 so every scene (incl. the last)
-      // gets exactly VH_PER_SCENE of dwell before the frame unsticks.
-      const containerVh = N * VH_PER_SCENE + 100;
+      // Scene triggers — use vhPerScene (responsive) so mobile doesn't
+      // over-scroll. containerVhCalc pre-computed at component mount.
       for (let i = 1; i < N; i++) {
         ScrollTrigger.create({
           trigger: containerRef.current,
-          start: `${(i * VH_PER_SCENE / containerVh) * 100}% top`,
+          start: `${(i * vhPerScene / containerVhCalc) * 100}% top`,
           onEnter:     () => goTo(i),
           onLeaveBack: () => goTo(i - 1),
         });
@@ -125,13 +133,13 @@ const RoomJourneySection: React.FC = () => {
     // Container taller than viewport — provides scroll space
     <div
       ref={containerRef}
-      style={{ height: `${N * VH_PER_SCENE + 100}vh` }}
+      style={{ height: `${containerVhCalc}dvh` }}
     >
       {/* Pinned frame — stays fixed during the scroll journey */}
       <div
         ref={frameRef}
         className="relative w-full overflow-hidden"
-        style={{ position: 'sticky', top: 0, height: '100vh' }}
+        style={{ position: 'sticky', top: 0, height: '100dvh' }}
         aria-label="Room journey — scroll to explore"
       >
         {/* Scene images (stacked, crossfade) */}

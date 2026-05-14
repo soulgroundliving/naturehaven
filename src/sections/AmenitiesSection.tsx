@@ -58,6 +58,10 @@ const AmenitiesSection: React.FC = () => {
       const section = sectionRef.current;
       const wrapper = wrapperRef.current;
       if (!track || !section || !wrapper) return;
+      // Skip scroll-hijacking for reduced-motion users and on mobile —
+      // mobile shows a vertical stack instead (no scroll-driven translate).
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const getDistance = () => track.scrollWidth - section.offsetWidth;
       // Extra scroll pixels held at end so CTA card has time to be read
@@ -101,15 +105,16 @@ const AmenitiesSection: React.FC = () => {
       className="overflow-hidden relative"
       style={{ background: 'var(--sec-bg, rgba(255,255,255,0.55))', position: 'sticky', top: 0 }}
     >
-      {/* Horizontal track — wider than viewport, scrolls left */}
+      {/* Horizontal track — desktop: wider than viewport, GSAP-scrolled left.
+           Mobile: flex-col vertical stack via CSS (am-track media query). */}
       <div
         ref={trackRef}
-        className="flex items-stretch"
-        style={{ height: '100vh', willChange: 'transform' }}
+        className="am-track flex items-stretch md:h-[100dvh]"
+        style={{ willChange: 'transform' }}
       >
         {/* ── Intro card ─────────────────────────────────── */}
         <div
-          className="flex-shrink-0 flex flex-col justify-between p-10 md:p-16"
+          className="am-intro flex-shrink-0 flex flex-col justify-between p-8 md:p-10 lg:p-16"
           style={{ width: 'clamp(300px, 38vw, 520px)' }}
         >
           <p
@@ -142,8 +147,8 @@ const AmenitiesSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Scroll hint */}
-          <div className="flex items-center gap-3" style={{ color: 'var(--sec-text-55)' }}>
+          {/* Scroll hint — desktop only (mobile is a vertical stack, no horizontal scroll) */}
+          <div className="hidden md:flex items-center gap-3" style={{ color: 'var(--sec-text-55)' }}>
             <span className="font-sans text-[10px] uppercase tracking-[0.2em]">Scroll</span>
             <svg width="28" height="10" viewBox="0 0 28 10" fill="none" aria-hidden="true">
               <path d="M1 5h26M22 1l5 4-5 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -153,7 +158,7 @@ const AmenitiesSection: React.FC = () => {
 
         {/* ── Thin divider ───────────────────────────────── */}
         <div
-          className="flex-shrink-0 self-stretch"
+          className="am-divider flex-shrink-0 self-stretch"
           style={{ width: '1px', background: 'var(--sec-border)', margin: '2.5rem 0' }}
         />
 
@@ -219,7 +224,7 @@ const AmenitiesSection: React.FC = () => {
 
             {/* Inter-card divider */}
             <div
-              className="flex-shrink-0 self-stretch"
+              className="am-divider flex-shrink-0 self-stretch"
               style={{ width: '1px', background: 'var(--sec-border)', margin: '2.5rem 0' }}
             />
           </React.Fragment>
@@ -227,7 +232,7 @@ const AmenitiesSection: React.FC = () => {
 
         {/* ── CTA card ───────────────────────────────────── */}
         <div
-          className="flex-shrink-0 flex flex-col justify-center px-12 md:px-16"
+          className="am-cta flex-shrink-0 flex flex-col justify-center px-8 py-10 md:px-12 lg:px-16"
           style={{ width: 'clamp(280px, 32vw, 440px)' }}
         >
           <p
@@ -259,9 +264,9 @@ const AmenitiesSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Horizontal progress bar — bottom edge of the pinned frame */}
+      {/* Horizontal progress bar — desktop only */}
       <div
-        className="absolute bottom-0 left-0 w-full pointer-events-none"
+        className="am-progress absolute bottom-0 left-0 w-full pointer-events-none"
         style={{ height: '1px', background: 'var(--sec-border)' }}
         aria-hidden="true"
       >

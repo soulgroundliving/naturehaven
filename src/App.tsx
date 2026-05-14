@@ -99,13 +99,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Skip smooth scroll entirely for users who prefer reduced motion —
-    // Lenis's RAF-driven easing is exactly the kind of vestibular cue
-    // those users opt out of. Native scroll keeps ScrollTrigger working.
-    const reducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
-    if (reducedMotion) return;
+    // Skip smooth scroll for reduced-motion users (vestibular safety) and
+    // for touch-primary devices — Lenis easing fights native iOS momentum
+    // scroll and makes the page feel sluggish on phones/tablets.
+    const reducedMotion  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isTouchPrimary = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    if (reducedMotion || isTouchPrimary) return;
 
     const lenis = new Lenis({
       duration: 1.2,

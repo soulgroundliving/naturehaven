@@ -158,3 +158,30 @@ a[class*="bg-[var(--cta-bg"]:focus-visible {
 .nav-on-hero button {
   text-shadow: var(--text-shadow-hero);
 }
+
+/* ── Amenities — mobile vertical stack ───────────────────────────────
+   GSAP scroll-hijacking is skipped on mobile (max-width: 767px).
+   Cards stack vertically; fixed widths are overridden to full-width.
+   Vertical dividers and the progress bar are hidden (irrelevant in
+   a block-flow layout).
+*/
+@media (max-width: 767px) {
+  #amenities .am-track {
+    flex-direction: column !important;
+    height: auto !important;
+    transform: none !important;
+  }
+  #amenities .am-intro,
+  #amenities .am-card,
+  #amenities .am-cta {
+    width: 100% !important;
+    border-bottom: 1px solid var(--sec-border, rgba(43,43,43,0.12));
+  }
+  #amenities .am-cta {
+    border-bottom: none;
+  }
+  #amenities .am-divider,
+  #amenities .am-progress {
+    display: none !important;
+  }
+}

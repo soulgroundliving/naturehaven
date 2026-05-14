@@ -11,6 +11,7 @@ const FooterSection: React.FC = () => {
   useGSAP(
     () => {
       if (!sectionRef.current) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       const items = sectionRef.current.querySelectorAll('.footer-animate');
       gsap.from(items, {
@@ -42,7 +43,7 @@ const FooterSection: React.FC = () => {
   );
 
   return (
-    <footer ref={sectionRef} id="footer" className="frosted-section backdrop-blur-xl shadow-sm pt-16 md:pt-20 pb-24 md:pb-10">
+    <footer ref={sectionRef} id="footer" className="frosted-section backdrop-blur-xl shadow-sm pt-16 md:pt-20 pb-10 md:pb-10">
       <div className="container-main">
         {/* Top Area */}
         <div className="text-center mb-12">

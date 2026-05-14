@@ -213,9 +213,10 @@ const SmartLivingSection: React.FC = () => {
           {/* CENTER — Phone mockup */}
           <div className="sl-phone-anim flex justify-center order-first lg:order-none">
             <div
-              className="relative w-full max-w-[300px] bg-near-black rounded-[36px] p-3"
+              className="relative w-full max-w-[260px] sm:max-w-[300px] bg-near-black rounded-[36px] p-3"
               style={{
                 aspectRatio: '9 / 19',
+                maxHeight: '70vh',
                 boxShadow:
                   '0 24px 48px rgba(31,27,22,0.22), inset 0 0 0 2px rgba(255,255,255,0.06)',
               }}
