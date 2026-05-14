@@ -55,8 +55,9 @@ const InvitationSection: React.FC = () => {
       gsap.set(pen,  { left: '0%', opacity: 0 });
       gsap.set(rule, { scaleX: 0, transformOrigin: 'left center' });
 
-      const setPenLeft   = gsap.quickSetter(pen,  'left',   '%');
-      const setRuleScale = gsap.quickSetter(rule, 'scaleX');
+      const setPenLeft    = gsap.quickSetter(pen,  'left',    '%');
+      const setPenOpacity = gsap.quickSetter(pen,  'opacity');
+      const setRuleScale  = gsap.quickSetter(rule, 'scaleX');
 
       ScrollTrigger.create({
         trigger: sectionRef.current,
@@ -67,9 +68,10 @@ const InvitationSection: React.FC = () => {
           setPenLeft(p * 96);
           setRuleScale(p);
           // fade in at start only — stays visible once drawn
-          const opacity = p < 0.06 ? p / 0.06 : 1;
-          gsap.set(pen, { opacity });
+          setPenOpacity(p < 0.06 ? p / 0.06 : 1);
         },
+        // Ensure pen stays at end-state when scrolled past trigger
+        onLeave: () => { setPenLeft(96); setRuleScale(1); setPenOpacity(1); },
       });
     },
     { scope: sectionRef }
@@ -121,7 +123,7 @@ const InvitationSection: React.FC = () => {
             />
             <div
               className="inv-pen absolute top-1/2 -translate-y-1/2"
-              style={{ left: '0%', color: '#9B8A78', opacity: 0 }}
+              style={{ color: '#9B8A78' }}
             >
               <PenNib />
             </div>
