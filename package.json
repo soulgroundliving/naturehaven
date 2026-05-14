@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node tools/prerender.mjs",
+    "build:client-only": "tsc -b && vite build",
+    "prerender": "node tools/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "verify:contrast": "node tools/verify-contrast.mjs"
@@ -56,7 +58,6 @@
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.70.0",
     "react-resizable-panels": "^4.2.2",
-    "react-router": "^7.6.1",
     "recharts": "^2.15.4",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
@@ -66,6 +67,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@prerenderer/prerenderer": "^1.2.5",
+    "@prerenderer/renderer-puppeteer": "^1.2.4",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
@@ -78,6 +81,7 @@
     "globals": "^16.5.0",
     "kimi-plugin-inspect-react": "^1.0.3",
     "postcss": "^8.5.6",
+    "puppeteer": "^24.43.1",
     "tailwindcss": "^3.4.19",
     "tailwindcss-animate": "^1.0.7",
     "tw-animate-css": "^1.4.0",

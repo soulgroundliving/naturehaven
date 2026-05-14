@@ -24,13 +24,37 @@ Loaded at every session start. Follow exactly.
 | Command | What it does |
 |---|---|
 | `npm run dev` | Local dev server (Vite HMR) |
-| `npm run build` | `tsc -b && vite build` — production bundle |
+| `npm run build` | `tsc -b && vite build && node tools/prerender.mjs` — typecheck, bundle, then puppeteer snapshot |
+| `npm run build:client-only` | Same minus the prerender step. Use when debugging build issues unrelated to SSG. |
+| `npm run prerender` | Just re-run the puppeteer snapshot against an existing `dist/`. |
 | `npm run lint` | ESLint check |
 | `git push origin main` | Triggers Vercel auto-deploy |
 
 **Verify always on Vercel** (`naturehaven-living.vercel.app`), never localhost — no auth issues here but keep the habit consistent with the main project.
 
 QA time-of-day slots via query param: `?tod=morning|day|sunset|night`
+
+### SSG (puppeteer prerender)
+
+`tools/prerender.mjs` runs after `vite build` to capture the rendered DOM into `dist/index.html`. Without this step the deployed HTML is `<div id="root"></div>` and crawlers see nothing.
+
+How it works:
+1. Launches headless Chrome via `@prerenderer/prerenderer` + `@prerenderer/renderer-puppeteer`.
+2. Spins up an Express server pointed at `dist/`, navigates to `/`.
+3. Forces `prefers-reduced-motion: reduce` and injects `window.__PRERENDER__ = true` before the page mounts.
+4. Waits 4 s for lazy chunks (10 lazy sections) to load + initial GSAP timelines to no-op.
+5. Captures `document.documentElement.outerHTML` and overwrites `dist/index.html`.
+
+Client opt-outs (via `src/lib/isPrerender.ts`):
+- `<VideoBackground>` — remote CloudFront video that would slow puppeteer; not useful in static HTML
+- `<OrbScene>` — WebGL canvas; not useful in static HTML
+- `<LoadingOverlay>` — `introComplete` starts `true` during prerender so the snapshot shows real content, not a splash
+
+Anything else (TimeOfDay context, Lenis, GSAP reveals) is already gated by `useEffect` or `prefers-reduced-motion` and works correctly.
+
+Vercel cost: first cold build adds ~30-60 s for puppeteer's Chromium download. Cached builds: ~5 s extra. No extra runtime cost — output is just static HTML.
+
+If the prerender step fails, the build fails — same exit-1 contract as TypeScript / Vite. Verify with `grep "Nature Haven" dist/index.html | wc -l` (should be ≥ 10).
 
 ---
 
@@ -130,9 +154,11 @@ All sections are in `src/sections/`. Order in `src/pages/Home.tsx`:
 
 ## Crawler / SEO state
 
-- `robots.txt` currently blocks all crawlers (stealth mode pre-launch)
+- `robots.txt` currently blocks all crawlers (stealth mode pre-launch). Flip to `Allow: /` before launch.
+- `<meta name="robots" content="noindex, nofollow" />` in `index.html` is the second gate — remove the `noindex` value (or drop the meta) at launch.
 - OG image placeholder at `/og-image.jpg` — replace with real shot before launch
 - Thai + English copy mixed intentionally; `lang="th"` on `<html>`
+- **SSG is live**: `npm run build` produces a fully-prerendered `dist/index.html` (~179 KB, all 13 sections, 11 K words of HTML). When the noindex gates flip, crawlers + social previewers see real content immediately. See the `SSG (puppeteer prerender)` block under Build commands.
 
 ---
 

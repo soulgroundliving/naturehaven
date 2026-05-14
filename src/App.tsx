@@ -20,6 +20,7 @@ import SectionDots from '@/components/SectionDots';
 import { useTimeOfDay } from '@/contexts/TimeOfDayContext';
 import VideoBackground from '@/components/VideoBackground';
 import useSectionObserver from '@/hooks/useSectionObserver';
+import { isPrerender } from '@/lib/isPrerender';
 
 // Code-split the 3D scene — three + r3f + drei is ~1MB. Body CSS gradient
 // paints the sky immediately while this chunk loads.
@@ -47,7 +48,10 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   const { palette } = useTimeOfDay();
   const lenisRef = useRef<Lenis | null>(null);
-  const [introComplete, setIntroComplete] = useState(false);
+  // During puppeteer prerender, skip the intro overlay entirely so the
+  // snapshotted HTML shows real content instead of a white-out splash.
+  const prerendering = isPrerender();
+  const [introComplete, setIntroComplete] = useState(prerendering);
   const [isPastHero, setIsPastHero] = useState(false);
 
   const sectionIds = [
@@ -152,12 +156,17 @@ function App() {
         }}
       />
       <FloatingLineChat />
-      <VideoBackground />
-      <OrbErrorBoundary>
-        <Suspense fallback={null}>
-          <OrbScene />
-        </Suspense>
-      </OrbErrorBoundary>
+      {/* Video + 3D Orb are useless in the crawler snapshot AND slow puppeteer
+          down (remote video fetch + WebGL init). Skip them during prerender —
+          real client mount re-renders the tree and they appear normally. */}
+      {!prerendering && <VideoBackground />}
+      {!prerendering && (
+        <OrbErrorBoundary>
+          <Suspense fallback={null}>
+            <OrbScene />
+          </Suspense>
+        </OrbErrorBoundary>
+      )}
       <main id="main" className="relative z-[1]">
         <HeroSection lenisRef={lenisRef} />
         <MarqueeStrip />
