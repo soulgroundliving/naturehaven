@@ -13,7 +13,6 @@ const suitableFor = [
   'Working professionals',
   'Couples',
   'Those who value quiet living',
-  'Small pets (1–2 allowed)',
 ];
 
 const essentials = [
@@ -58,9 +57,6 @@ const TIERS = [
     details: [
       { label: 'Units available', value: '10 units' },
       { label: 'Location', value: 'Ground & second floor' },
-      { label: 'Included', value: 'Wi-Fi · Cleaning · A/C maintenance' },
-      { label: 'Contract', value: 'Annual (12 months)' },
-      { label: 'Move-in', value: '1-mo deposit + 1-mo advance' },
     ],
   },
   {
@@ -75,8 +71,6 @@ const TIERS = [
       { label: 'Units available', value: '10 units' },
       { label: 'Location', value: 'Third & fourth floor' },
       { label: 'Pets', value: 'Small pets welcome (1–2 per unit)' },
-      { label: 'Included', value: 'Wi-Fi · Cleaning · A/C maintenance' },
-      { label: 'Contract', value: 'Annual (12 months)' },
     ],
   },
 ] as const;
