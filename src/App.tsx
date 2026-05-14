@@ -67,6 +67,34 @@ function App() {
   ];
   const activeSection = useSectionObserver(sectionIds);
 
+  // ── Safari: prevent page drift during intro + handle bfcache restore ──────
+  // On iOS Safari, the page behind a `position:fixed` overlay can still be
+  // scrolled (URL bar collapse, momentum carry-over, etc.).  If scroll drifts
+  // away from 0 before the overlay dismisses, every ScrollTrigger whose
+  // `start` is already "past" fires simultaneously — causing all animations
+  // to play at once.  Fix: lock body overflow while the overlay is up, then
+  // reset scroll + refresh triggers the moment it comes down.
+  //
+  // pageshow (persisted:true) fires when Safari restores a page from bfcache
+  // (back/forward button).  The inline <head> script doesn't re-run there,
+  // so we reset explicitly from the event listener.
+  useEffect(() => {
+    if (prerendering) return;
+
+    document.body.style.overflow = 'hidden';
+
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) {
+        window.scrollTo(0, 0);
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => ScrollTrigger.refresh())
+        );
+      }
+    };
+    window.addEventListener('pageshow', onPageShow);
+    return () => window.removeEventListener('pageshow', onPageShow);
+  }, [prerendering]);
+
   useEffect(() => {
     const handleScroll = () => setIsPastHero(window.scrollY > window.innerHeight * 0.8);
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -132,7 +160,20 @@ function App() {
   return (
     <div className="relative">
       {!introComplete && (
-        <LoadingOverlay onComplete={() => setIntroComplete(true)} />
+        <LoadingOverlay onComplete={() => {
+          // 1. Release the body scroll lock set during the intro.
+          // 2. Force scroll back to 0 (iOS may have drifted the page).
+          // 3. Update React state so the overlay unmounts.
+          // 4. After two animation frames (layout is settled), re-measure
+          //    every ScrollTrigger from a clean scroll-0 baseline so no
+          //    triggers are "pre-fired".
+          document.body.style.overflow = '';
+          window.scrollTo(0, 0);
+          setIntroComplete(true);
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => ScrollTrigger.refresh())
+          );
+        }} />
       )}
       <GrainOverlay />
       <MagneticCursor />
