@@ -165,15 +165,15 @@ const SUNSET: TimePalette = {
   envMapIntensity: 2.4,
   glassTransmission: 0.96,
   glassIridescence: 0.90,   // strong rainbow on warm sunset tones
-  // Dark text on warm sunset gradient — white was unreadable on the light
-  // bottom band (#E8B486) and the day→sunset lerp produced mid-gray (#C7C7C7)
-  // between 12-17 that failed contrast against bright video bg.
-  textOnBg: '#2B2B2B',
-  textMuted: '#5C5650',
+  // Cream text on warm-dark sunset sky — sky darkens fast after 17:00 and
+  // the video overlay is 0.52+ making white fully legible. Dark grounding
+  // shadow (same as night) keeps text crisp over the warm background.
+  textOnBg: '#F5F1EA',
+  textMuted: '#C4B8A8',
   ctaBg: '#3D5A4C',     // brand sage holds against warm sky
   ctaBgHover: '#4A6E5D',
   textShadow:
-    '0 1px 2px rgba(255,255,255,0.6), 0 0 18px rgba(255,255,255,0.55)',
+    '0 2px 4px rgba(0,0,0,0.6), 0 0 14px rgba(0,0,0,0.4)',
   mood: 'warm',
   tagline: 'ปิดวันด้วยใจที่เบา',
   secText: '#2B2B2B',

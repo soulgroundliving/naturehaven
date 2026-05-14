@@ -157,8 +157,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
 
         {/* Pricing anchor */}
         <p
-          className="hero-cta font-sans text-[11px] uppercase tracking-[0.18em] mt-7 opacity-60"
-          style={{ color: 'var(--text-on-bg, #2B2B2B)', textShadow: 'var(--text-shadow-hero)' }}
+          className="hero-cta font-sans text-[11px] uppercase tracking-[0.18em] mt-7 text-white opacity-60"
         >
           From 5,800 THB / mo · Available August 2026
         </p>
