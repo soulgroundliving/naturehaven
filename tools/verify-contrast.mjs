@@ -26,6 +26,7 @@ const SRC = join(__dirname, '../src/lib/timeOfDay.ts');
 // Worst-case mid-point RGB for each slot's background gradient
 // (sample from the actual CSS gradient used in naturehaven)
 const GRADIENT_BG = {
+  dawn:    [184, 106,  90],  // skyVia of DAWN = dusty rose horizon (worst-case mid)
   morning: [240, 238, 232],
   day:     [232, 233, 234],
   sunset:  [196, 134, 106],
@@ -87,7 +88,7 @@ function parseOpacity(str) {
 }
 
 function extractPalettes(src) {
-  const slots = ['MORNING', 'DAY', 'SUNSET', 'NIGHT'];
+  const slots = ['DAWN', 'MORNING', 'DAY', 'SUNSET', 'NIGHT'];
   const result = {};
 
   for (const slot of slots) {

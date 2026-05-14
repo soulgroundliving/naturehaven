@@ -86,6 +86,7 @@ const AboutSection: React.FC = () => {
           <img
             src="/assets/about-minimal-room.jpg"
             alt="Minimal bedroom interior"
+            loading="lazy"
             className="w-full object-cover aspect-[4/3] lg:aspect-auto lg:h-full"
             style={{ minHeight: '420px' }}
           />

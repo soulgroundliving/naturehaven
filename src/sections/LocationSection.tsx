@@ -82,6 +82,7 @@ const LocationSection: React.FC = () => {
             <img
               src="/assets/location-area-map.jpg"
               alt="Sai Mai neighborhood map"
+              loading="lazy"
               className="w-full rounded-xl shadow-lg object-cover aspect-[3/4] lg:aspect-auto lg:h-[700px]"
             />
             {/* Location Pin Overlay */}

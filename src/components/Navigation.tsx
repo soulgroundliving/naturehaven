@@ -106,9 +106,10 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
               const sectionId = link.href.replace('#', '');
               const isActive = activeSection === sectionId;
               return (
-                <button
+                <a
                   key={link.href}
-                  onClick={() => scrollTo(link.href)}
+                  href={link.href}
+                  onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
                   className={`relative font-sans text-xs uppercase tracking-[0.05em] transition-colors duration-300 group ${
                     isPastHero
                       ? isDark
@@ -133,7 +134,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
                   {isActive && (
                     <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-sage-green" />
                   )}
-                </button>
+                </a>
               );
             })}
           </div>
@@ -176,9 +177,10 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
           </div>
           <div className="flex-1 flex flex-col items-center justify-center gap-8">
             {navLinks.map((link, i) => (
-              <button
+              <a
                 key={link.href}
-                onClick={() => scrollTo(link.href)}
+                href={link.href}
+                onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
                 className="font-serif text-3xl md:text-4xl transition-opacity duration-300 hover:opacity-60"
                 style={{
                   color: menuText,
@@ -188,7 +190,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
                 }}
               >
                 {link.label}
-              </button>
+              </a>
             ))}
           </div>
         </div>

@@ -1,8 +1,8 @@
 // Time-of-day palette system.
-// 4 discrete slots derived from local clock; whole site re-paints + 3D scene
-// re-lights when slot changes. Override via ?tod=morning|day|sunset|night for QA.
+// 5 discrete slots derived from local clock; whole site re-paints + 3D scene
+// re-lights when slot changes. Override via ?tod=dawn|morning|day|sunset|night for QA.
 
-export type TimeOfDay = 'morning' | 'day' | 'sunset' | 'night';
+export type TimeOfDay = 'dawn' | 'morning' | 'day' | 'sunset' | 'night';
 
 export interface TimePalette {
   slot: TimeOfDay;
@@ -58,7 +58,7 @@ export interface TimePalette {
   textShadow: string;
 
   // Mood for copy/animation variants
-  mood: 'fresh' | 'crisp' | 'warm' | 'still';
+  mood: 'serene' | 'fresh' | 'crisp' | 'warm' | 'still';
   tagline: string; // sub-headline shown below "Nature Haven"
 
   // Frosted section tokens — used by all bg-pure-white/30 sections
@@ -78,6 +78,42 @@ export interface TimePalette {
   secBg: string;       // frosted section background (rgba)
   cardBg: string;      // elevated card surface on frosted sections
 }
+
+// Dawn — 5:00–7:00 AM. Violet sky transitioning to rose-gold before full sunrise.
+// Uses cream text (sky still transitionally dark), white glass sections, rose sparkles.
+const DAWN: TimePalette = {
+  slot: 'dawn',
+  skyFrom: '#1A1228',         // deep violet pre-sunrise
+  skyVia: '#B86A5A',          // dusty rose horizon
+  skyTo: '#DCB07A',           // warm amber ground glow
+  orbTint: [0.96, 0.91, 0.95],
+  overlayOpacity: 0.62,
+  lightColor: '#FFB06A',
+  sparkleColor: '#E88060',    // rose-gold — vivid against violet-rose sky
+  lightIntensity: 0.9,
+  lightAngle: [-3.8, 0.2, 0.6],
+  ambientIntensity: 0.28,
+  envPreset: 'dawn',
+  envMapIntensity: 1.8,
+  glassTransmission: 0.94,
+  glassIridescence: 0.92,
+  textOnBg: '#F5F1EA',        // cream — sky dark enough for cream text at 5 am
+  textMuted: '#C4ACA0',
+  ctaBg: '#3D5A4C',
+  ctaBgHover: '#4A6E5D',
+  textShadow: '0 2px 4px rgba(0,0,0,0.55), 0 0 12px rgba(0,0,0,0.32)',
+  mood: 'serene',
+  tagline: 'รุ่งอรุณในแบบของตัวเอง',
+  secText: '#2B2B2B',
+  secText60: 'rgba(43,43,43,0.76)',
+  secText70: 'rgba(43,43,43,0.82)',
+  secText80: 'rgba(43,43,43,0.88)',
+  secText90: 'rgba(43,43,43,0.93)',
+  secText55: 'rgba(43,43,43,0.72)',
+  secBorder: 'rgba(43,43,43,0.20)',
+  secBg: 'rgba(255,255,255,0.86)',
+  cardBg: 'rgba(255,255,255,0.95)',
+};
 
 const MORNING: TimePalette = {
   slot: 'morning',
@@ -225,23 +261,25 @@ const NIGHT: TimePalette = {
 };
 
 export const TIME_PALETTES: Record<TimeOfDay, TimePalette> = {
+  dawn: DAWN,
   morning: MORNING,
   day: DAY,
   sunset: SUNSET,
   night: NIGHT,
 };
 
-// Hour ranges: 5–11 morning · 11–17 day · 17–20 sunset · 20–5 night
+// Hour ranges: 5–7 dawn · 7–11 morning · 11–17 day · 17–20 sunset · 20–5 night
 export function getTimeOfDay(date: Date = new Date()): TimeOfDay {
   const h = date.getHours();
-  if (h >= 5 && h < 11) return 'morning';
+  if (h >= 5 && h < 7)  return 'dawn';
+  if (h >= 7 && h < 11) return 'morning';
   if (h >= 11 && h < 17) return 'day';
   if (h >= 17 && h < 20) return 'sunset';
   return 'night';
 }
 
 export function isValidSlot(s: string | null | undefined): s is TimeOfDay {
-  return s === 'morning' || s === 'day' || s === 'sunset' || s === 'night';
+  return s === 'dawn' || s === 'morning' || s === 'day' || s === 'sunset' || s === 'night';
 }
 
 // ── Continuous interpolation ──────────────────────────────────────────────────
@@ -326,18 +364,19 @@ export function interpolatePalettes(a: TimePalette, b: TimePalette, t: number): 
 }
 
 // Keyframe hours → pure palette anchors.
-// Entry at 29 = 5 am next day so night→morning wraps correctly.
-// Night holds pure until hour 28.5 (4:30 am); only the final 30-minute window blends to morning.
+// Entry at 29 = 5 am next day so night→dawn wraps correctly.
+// Night holds pure until hour 28.5 (4:30 am); only the final 30-minute window blends to dawn.
 // This prevents contrast collapse at 4 am where the mid-blend of dark-bg+cream-text and
 // light-bg+dark-text produces medium-gray-on-medium-gray (near-zero contrast).
 const KEYFRAMES: ReadonlyArray<{ hour: number; slot: TimeOfDay }> = [
-  { hour:  5,    slot: 'morning' },
+  { hour:  5,    slot: 'dawn'    },  // first light — violet-to-rose-gold sky
+  { hour:  7,    slot: 'morning' },  // established morning
   { hour: 11,    slot: 'day'     },
   { hour: 17,    slot: 'sunset'  },
   { hour: 20,    slot: 'night'   },
   { hour: 27,    slot: 'night'   },
   { hour: 28.5,  slot: 'night'   },  // hold pure night through 4 am; avoids mid-blend unreadability
-  { hour: 29,    slot: 'morning' },
+  { hour: 29,    slot: 'dawn'    },  // next-day dawn wraps here (= 5 am)
 ];
 
 function easeInOut(t: number): number {
@@ -359,5 +398,5 @@ export function getContinuousPalette(date: Date = new Date()): TimePalette {
     }
   }
 
-  return TIME_PALETTES['morning'];
+  return TIME_PALETTES['dawn'];
 }

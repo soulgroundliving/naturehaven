@@ -97,6 +97,7 @@ const DesignSection: React.FC = () => {
               <img
                 src="/assets/design-materials-detail.jpg"
                 alt="Interior materials detail"
+                loading="lazy"
                 className="w-full rounded-lg shadow-md object-cover aspect-[3/2]"
               />
             </div>
@@ -123,6 +124,7 @@ const DesignSection: React.FC = () => {
               <img
                 src="/assets/design-philosophy-interior.jpg"
                 alt="Airflow optimized interior"
+                loading="lazy"
                 className="w-full rounded-lg shadow-md object-cover aspect-video"
               />
             </div>

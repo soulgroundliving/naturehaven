@@ -11,9 +11,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import LoadingOverlay from '@/components/LoadingOverlay';
 import GrainOverlay from '@/components/GrainOverlay';
+import FloatingLineChat from '@/components/FloatingLineChat';
 import MagneticCursor from '@/components/MagneticCursor';
 import MarqueeStrip from '@/components/MarqueeStrip';
 import Navigation from '@/components/Navigation';
+import ScrollProgressBar from '@/components/ScrollProgressBar';
+import SectionDots from '@/components/SectionDots';
 import { useTimeOfDay } from '@/contexts/TimeOfDayContext';
 import VideoBackground from '@/components/VideoBackground';
 import useSectionObserver from '@/hooks/useSectionObserver';
@@ -22,18 +25,22 @@ import useSectionObserver from '@/hooks/useSectionObserver';
 // paints the sky immediately while this chunk loads.
 const OrbScene = lazy(() => import('@/components/orb/OrbScene'));
 
+// Hero + scroll-pinned sections stay eager so ScrollTrigger has DOM refs immediately.
 import HeroSection from '@/sections/HeroSection';
-import AboutSection from '@/sections/AboutSection';
-import InvitationSection from '@/sections/InvitationSection';
 import RoomJourneySection from '@/sections/RoomJourneySection';
-import ResidencesSection from '@/sections/ResidencesSection';
 import AmenitiesSection from '@/sections/AmenitiesSection';
-import LocationSection from '@/sections/LocationSection';
-import DesignSection from '@/sections/DesignSection';
-import SmartLivingSection from '@/sections/SmartLivingSection';
-import FAQSection from '@/sections/FAQSection';
-import ContactSection from '@/sections/ContactSection';
-import FooterSection from '@/sections/FooterSection';
+
+// Below-fold sections lazy-loaded — reduces initial JS parse time significantly.
+const AboutSection      = lazy(() => import('@/sections/AboutSection'));
+const InvitationSection = lazy(() => import('@/sections/InvitationSection'));
+const ResidencesSection = lazy(() => import('@/sections/ResidencesSection'));
+const LocationSection   = lazy(() => import('@/sections/LocationSection'));
+const DesignSection     = lazy(() => import('@/sections/DesignSection'));
+const SmartLivingSection   = lazy(() => import('@/sections/SmartLivingSection'));
+const TestimonialsSection  = lazy(() => import('@/sections/TestimonialsSection'));
+const FAQSection           = lazy(() => import('@/sections/FAQSection'));
+const ContactSection    = lazy(() => import('@/sections/ContactSection'));
+const FooterSection     = lazy(() => import('@/sections/FooterSection'));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,11 +48,13 @@ function App() {
   const { palette } = useTimeOfDay();
   const lenisRef = useRef<Lenis | null>(null);
   const [introComplete, setIntroComplete] = useState(false);
+  const [isPastHero, setIsPastHero] = useState(false);
 
   const sectionIds = [
     'about',
     'residences',
     'amenities',
+    'testimonials',
     'location',
     'design',
     'smart-living',
@@ -55,8 +64,18 @@ function App() {
   ];
   const activeSection = useSectionObserver(sectionIds);
 
+  useEffect(() => {
+    const handleScroll = () => setIsPastHero(window.scrollY > window.innerHeight * 0.8);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   // Feature 7: frosted section lift-in on scroll
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set('.frosted-section', { opacity: 1, y: 0 });
+      return;
+    }
     gsap.set('.frosted-section', { opacity: 0, y: 22 });
     const ctx = gsap.context(() => {
       document.querySelectorAll<HTMLElement>('.frosted-section').forEach(section => {
@@ -121,7 +140,18 @@ function App() {
       >
         Skip to content
       </a>
+      <ScrollProgressBar />
       <Navigation lenisRef={lenisRef} activeSection={activeSection} palette={palette} />
+      <SectionDots
+        activeSection={activeSection}
+        isPastHero={isPastHero}
+        onDotClick={(id) => {
+          const target = document.getElementById(id);
+          if (target && lenisRef.current) lenisRef.current.scrollTo(target, { offset: -80 });
+          else if (id === 'hero' && lenisRef.current) lenisRef.current.scrollTo(0);
+        }}
+      />
+      <FloatingLineChat />
       <VideoBackground />
       <OrbErrorBoundary>
         <Suspense fallback={null}>
@@ -131,18 +161,25 @@ function App() {
       <main id="main" className="relative z-[1]">
         <HeroSection lenisRef={lenisRef} />
         <MarqueeStrip />
-        <AboutSection />
-        <InvitationSection />
+        <Suspense fallback={null}>
+          <AboutSection />
+          <InvitationSection />
+        </Suspense>
         <RoomJourneySection />
-        <ResidencesSection />
+        <Suspense fallback={null}>
+          <ResidencesSection />
+        </Suspense>
         <MarqueeStrip speed={28} />
         <AmenitiesSection />
-        <LocationSection />
-        <DesignSection />
-        <SmartLivingSection />
-        <FAQSection />
-        <ContactSection />
-        <FooterSection />
+        <Suspense fallback={null}>
+          <TestimonialsSection />
+          <LocationSection />
+          <DesignSection />
+          <SmartLivingSection />
+          <FAQSection />
+          <ContactSection />
+          <FooterSection />
+        </Suspense>
       </main>
     </div>
   );

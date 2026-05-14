@@ -21,6 +21,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
 
   useGSAP(
     () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        gsap.set(['.hero-rule-top', '.hero-label-word', '.hero-line-inner', '.hero-rule-bottom', '.hero-subtitle', '.hero-cta', scrollIndicatorRef.current], { clearProps: 'all' });
+        return;
+      }
+
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
       // 1. Thin rule above label — scales in from left

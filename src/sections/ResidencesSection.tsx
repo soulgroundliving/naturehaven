@@ -386,6 +386,7 @@ const ResidencesSection: React.FC = () => {
             <img
               src="/assets/room-3d-render.jpg"
               alt="Bedroom interior — 31.5 sq.m."
+              loading="lazy"
               className="w-full object-cover aspect-[16/9] md:aspect-[21/9]"
             />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/35 to-transparent p-4 md:p-6">
