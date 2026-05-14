@@ -49,7 +49,7 @@ const roomPhotos = [
 const TIERS = [
   {
     id: 'standard' as const,
-    label: 'Units 1–2',
+    label: 'Floors 1–2',
     name: 'Standard',
     floors: 'Floor 1 & 2',
     unitCount: 10,
@@ -66,7 +66,7 @@ const TIERS = [
   },
   {
     id: 'pet' as const,
-    label: 'Units 3–4',
+    label: 'Floors 3–4',
     name: 'Pet Friendly',
     floors: 'Floor 3 & 4',
     unitCount: 10,
