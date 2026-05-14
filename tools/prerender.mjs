@@ -5,15 +5,16 @@
 // Run automatically as the third stage of `npm run build`:
 //   tsc -b && vite build && node tools/prerender.mjs
 //
+// Browser binary strategy:
+//   • Vercel / any Linux CI → @sparticuz/chromium (Lambda-optimised, smaller,
+//     bundles the system libs Vercel's build container is missing)
+//   • Local dev (Windows / macOS) → puppeteer's bundled Chromium (works
+//     out of the box, no extra setup)
+//
 // Detection on the client:
 //   window.__PRERENDER__ === true → puppeteer is rendering us; skip Canvas,
 //   skip the loading overlay, skip video autoplay. Plain client loads do not
 //   have this flag and behave normally.
-//
-// Hydration note: prefers-reduced-motion is forced ON inside puppeteer so
-// GSAP-driven reveals (HeroSection, frosted-section lift-in, Lenis) skip
-// entirely. The captured HTML is therefore in its natural rendered state —
-// no animation transforms baked in.
 
 import path from 'node:path';
 import fs from 'node:fs/promises';
@@ -26,6 +27,25 @@ const repoRoot  = path.resolve(__dirname, '..');
 const distDir   = path.join(repoRoot, 'dist');
 
 const ROUTES = ['/'];
+
+// On Linux CI (Vercel sets VERCEL=1; GitHub Actions sets CI=true) load the
+// Lambda-bundled Chromium. Locally puppeteer's auto-downloaded binary works.
+const isLinuxCI =
+  process.platform === 'linux' &&
+  (process.env.VERCEL === '1' || process.env.CI === 'true' || process.env.AWS_LAMBDA_FUNCTION_NAME);
+
+let launchOptions = {};
+if (isLinuxCI) {
+  const { default: chromium } = await import('@sparticuz/chromium');
+  launchOptions = {
+    args: [...chromium.args, '--disable-dev-shm-usage'],
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
+  };
+  console.log('[prerender] using @sparticuz/chromium for Linux CI');
+} else {
+  console.log(`[prerender] using puppeteer's bundled Chromium (platform=${process.platform})`);
+}
 
 // Sanity check — dist must exist before we try to render it.
 try {
@@ -53,6 +73,7 @@ const prerenderer = new Prerenderer({
       '--disable-setuid-sandbox',
       '--disable-dev-shm-usage',
     ],
+    launchOptions,
     pageSetup: async (page) => {
       // Force reduced-motion so GSAP / Lenis / animated reveals are skipped.
       // Sections that respect the media feature collapse to their final

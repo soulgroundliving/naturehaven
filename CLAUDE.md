@@ -52,7 +52,11 @@ Client opt-outs (via `src/lib/isPrerender.ts`):
 
 Anything else (TimeOfDay context, Lenis, GSAP reveals) is already gated by `useEffect` or `prefers-reduced-motion` and works correctly.
 
-Vercel cost: first cold build adds ~30-60 s for puppeteer's Chromium download. Cached builds: ~5 s extra. No extra runtime cost — output is just static HTML.
+Browser binary selection (see top of `tools/prerender.mjs`):
+- **Linux CI** (Vercel sets `VERCEL=1`) → `@sparticuz/chromium` — Lambda-optimised, smaller, bundles the system libs the Vercel build container is missing. Vercel's default Chromium image rejects vanilla `puppeteer`.
+- **Local dev** (Windows / macOS) → puppeteer's bundled Chromium, downloaded on `npm install`.
+
+Vercel cost: first cold build ~+15 s for `@sparticuz/chromium` install. Cached builds: ~5 s extra. No runtime cost — output is just static HTML.
 
 If the prerender step fails, the build fails — same exit-1 contract as TypeScript / Vite. Verify with `grep "Nature Haven" dist/index.html | wc -l` (should be ≥ 10).
 
