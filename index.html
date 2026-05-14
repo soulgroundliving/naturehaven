@@ -6,6 +6,13 @@
     <meta name="theme-color" content="#0e1f17" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f3ee" media="(prefers-color-scheme: light)" />
 
+    <script>
+      // Always start at top on refresh. Must run synchronously here (before
+      // the deferred module bundle) so the browser skips its own restoration.
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
+    </script>
+
     <!-- Primary SEO -->
     <title>Nature Haven — Quiet Living in Saimai, Bangkok</title>
     <meta name="description" content="อพาร์ตเมนต์ใหม่สไตล์ MUJI minimal ในสายไหม กรุงเทพฯ — 31.5 ตร.ม. 1 นอน ครัวแยก ระเบียง รวม Wi-Fi เริ่ม 5,800 บาท/เดือน เปิดสิงหาคม 2026" />

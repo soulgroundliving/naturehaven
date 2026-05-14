@@ -38,12 +38,6 @@ import FooterSection from '@/sections/FooterSection';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Prevent browser from restoring scroll position on refresh
-if (typeof window !== 'undefined') {
-  history.scrollRestoration = 'manual';
-  window.scrollTo(0, 0);
-}
-
 function App() {
   const { palette } = useTimeOfDay();
   const lenisRef = useRef<Lenis | null>(null);
