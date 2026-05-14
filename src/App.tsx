@@ -161,18 +161,15 @@ function App() {
     <div className="relative">
       {!introComplete && (
         <LoadingOverlay onComplete={() => {
-          // 1. Release the body scroll lock set during the intro.
-          // 2. Force scroll back to 0 (iOS may have drifted the page).
-          // 3. Update React state so the overlay unmounts.
-          // 4. After two animation frames (layout is settled), re-measure
-          //    every ScrollTrigger from a clean scroll-0 baseline so no
-          //    triggers are "pre-fired".
+          // Release scroll lock, reset to top, let React unmount the overlay.
+          // No manual ScrollTrigger.refresh() here — GSAP's own ResizeObserver
+          // already refreshes positions as lazy sections load during the intro.
+          // An explicit refresh at this moment can fire onUpdate with a stale
+          // transient progress (Safari URL-bar virtual scroll) and push the
+          // AmenitiesSection track to its end position on first paint.
           document.body.style.overflow = '';
           window.scrollTo(0, 0);
           setIntroComplete(true);
-          requestAnimationFrame(() =>
-            requestAnimationFrame(() => ScrollTrigger.refresh())
-          );
         }} />
       )}
       <GrainOverlay />

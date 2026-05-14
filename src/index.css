@@ -166,6 +166,16 @@ a[class*="bg-[var(--cta-bg"]:focus-visible {
    a block-flow layout).
 */
 @media (max-width: 767px) {
+  /* The section has position:sticky as an inline style (needed for the
+     desktop GSAP scroll-hijack). On mobile GSAP exits early and never sets
+     the wrapper height to a large scroll-space value, so the wrapper ends up
+     only as tall as the section itself. A sticky element whose parent is
+     exactly its own height sticks on first entry and never unsticks — the
+     user sees one frozen card instead of a scrollable column. Override to
+     relative so the section flows normally. */
+  #amenities {
+    position: relative !important;
+  }
   #amenities .am-track {
     flex-direction: column !important;
     height: auto !important;

@@ -78,6 +78,12 @@ const AmenitiesSection: React.FC = () => {
         ? gsap.quickSetter(progressRef.current, 'scaleX') as (v: number) => void
         : null;
 
+      // Ensure track starts at x=0.  A global ScrollTrigger.refresh() fired
+      // during intro teardown (e.g. Safari URL-bar virtual scroll) can push
+      // onUpdate with a transient non-zero progress before the user scrolls.
+      // This explicit set acts as the authoritative initial position.
+      gsap.set(track, { x: 0 });
+
       // No pin:true — sticky CSS handles visual pinning, avoiding Lenis conflicts
       ScrollTrigger.create({
         trigger: wrapper,
@@ -85,6 +91,11 @@ const AmenitiesSection: React.FC = () => {
         end: () => `+=${getDistance() + getDwell()}`,
         invalidateOnRefresh: true,
         onRefresh: setWrapperHeight,
+        // When scrolling back above the trigger, reset track to start position.
+        onLeaveBack: () => {
+          gsap.set(track, { x: 0 });
+          if (setProgress) setProgress(0);
+        },
         onUpdate: (st) => {
           const d     = getDistance();
           const total = d + getDwell();
