@@ -61,24 +61,24 @@ const RoomJourneySection: React.FC = () => {
         const prev = active;
         active = next;
 
-        // Image crossfade
-        gsap.to(images[prev], { opacity: 0, duration: 0.75, ease: 'power2.inOut' });
-        gsap.to(images[next], { opacity: 1, duration: 0.75, ease: 'power2.inOut' });
+        // Image crossfade — overwrite kills any in-progress opacity tween on
+        // the same image (prevents competing tweens during rapid back-and-forth)
+        gsap.to(images[prev], { opacity: 0, duration: 0.75, ease: 'power2.inOut', overwrite: true });
+        gsap.to(images[next], { opacity: 1, duration: 0.75, ease: 'power2.inOut', overwrite: true });
 
-        // Text swap: hide prev instantly, slide next in. Prev fade-out used to
-        // overlap next's enter (3 scene blocks stacked at the same absolute
-        // position), creating a double-text smear during fast scroll. Instant
-        // hide guarantees only one scene's text is ever visible.
-        gsap.set(texts[prev], { opacity: 0, y: -24 });
+        // Text swap: hide prev instantly, slide next in.
+        // duration:0 + overwrite:true kills any in-progress fromTo on texts[prev]
+        // so fast back-and-forth never leaves two text blocks visible at once.
+        gsap.to(texts[prev], { opacity: 0, y: -24, duration: 0, overwrite: true });
         gsap.fromTo(
           texts[next],
           { opacity: 0, y: 28 },
           { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', overwrite: true }
         );
 
-        // Tags
-        gsap.to(tags[prev],  { opacity: 0, duration: 0.25 });
-        gsap.to(tags[next],  { opacity: 1, duration: 0.35, delay: 0.2 });
+        // Tags — also instant-hide prev to match text behaviour
+        gsap.to(tags[prev],  { opacity: 0, duration: 0, overwrite: true });
+        gsap.to(tags[next],  { opacity: 1, duration: 0.35, delay: 0.2, overwrite: true });
 
         // Dots
         dots.forEach((d, i) => {
