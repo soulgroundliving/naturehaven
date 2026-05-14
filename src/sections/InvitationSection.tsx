@@ -48,21 +48,31 @@ const InvitationSection: React.FC = () => {
         .from(lines, { opacity: 0, y: 10, duration: 0.55, stagger: 0.15, ease: 'power2.out' }, '-=0.5')
         .from(seal,  { opacity: 0, scale: 0.82, duration: 0.6, ease: 'back.out(1.7)' });
 
-      // ── Pen + rule — scrubs bidirectionally with scroll ──────────
+      // ── Pen + rule — bidirectional via onUpdate + quickSetter ───────
+      // quickSetter bypasses GSAP's tween engine so reverse scroll works
+      // correctly with Lenis (no lag tween fighting the smooth scroll).
+      if (!pen || !rule) return;
       gsap.set(pen,  { left: '0%', opacity: 0 });
       gsap.set(rule, { scaleX: 0, transformOrigin: 'left center' });
 
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 68%',
-          end:   'top 18%',
-          scrub: 0.6,
+      const setPenLeft   = gsap.quickSetter(pen,  'left',   '%');
+      const setRuleScale = gsap.quickSetter(rule, 'scaleX');
+
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top 68%',
+        end:   'top 18%',
+        onUpdate: (self) => {
+          const p = self.progress;
+          setPenLeft(p * 96);
+          setRuleScale(p);
+          // fade in at start, fade out near end
+          const opacity = p < 0.06 ? p / 0.06
+                        : p > 0.88 ? 1 - (p - 0.88) / 0.12
+                        : 1;
+          gsap.set(pen, { opacity });
         },
-      })
-        .to(pen,  { left: '96%', opacity: 1, ease: 'none', duration: 0.9 }, 0)
-        .to(rule, { scaleX: 1,   ease: 'none', duration: 0.9 }, 0)
-        .to(pen,  { opacity: 0,  ease: 'none', duration: 0.1 });
+      });
     },
     { scope: sectionRef }
   );
