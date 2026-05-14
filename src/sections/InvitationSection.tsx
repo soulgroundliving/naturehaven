@@ -66,10 +66,8 @@ const InvitationSection: React.FC = () => {
           const p = self.progress;
           setPenLeft(p * 96);
           setRuleScale(p);
-          // fade in at start, fade out near end
-          const opacity = p < 0.06 ? p / 0.06
-                        : p > 0.88 ? 1 - (p - 0.88) / 0.12
-                        : 1;
+          // fade in at start only — stays visible once drawn
+          const opacity = p < 0.06 ? p / 0.06 : 1;
           gsap.set(pen, { opacity });
         },
       });
