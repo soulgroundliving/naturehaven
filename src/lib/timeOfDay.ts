@@ -309,15 +309,19 @@ export function interpolatePalettes(a: TimePalette, b: TimePalette, t: number): 
     textShadow:        snap(a.textShadow, b.textShadow, t),
     mood:              snap(a.mood, b.mood, t),
     tagline:           snap(a.tagline, b.tagline, t),
-    secText:           lerpColor(a.secText, b.secText, t),
-    secText60:         lerpColor(a.secText60, b.secText60, t),
-    secText70:         lerpColor(a.secText70, b.secText70, t),
-    secText80:         lerpColor(a.secText80, b.secText80, t),
-    secText90:         lerpColor(a.secText90, b.secText90, t),
-    secText55:         lerpColor(a.secText55, b.secText55, t),
-    secBorder:         lerpColor(a.secBorder, b.secBorder, t),
-    secBg:             lerpColor(a.secBg, b.secBg, t),
-    cardBg:            lerpColor(a.cardBg, b.cardBg, t),
+    // Frosted-section tokens snap just like textOnBg: blending dark-on-white
+    // (day/sunset) with cream-on-dark (night) produces medium-gray-on-medium-gray
+    // between 17–20 that fails contrast. Snap ensures we only ever hold a clean
+    // keyframe pair — no mid-state contrast collapse.
+    secText:           snap(a.secText,   b.secText,   t),
+    secText60:         snap(a.secText60, b.secText60, t),
+    secText70:         snap(a.secText70, b.secText70, t),
+    secText80:         snap(a.secText80, b.secText80, t),
+    secText90:         snap(a.secText90, b.secText90, t),
+    secText55:         snap(a.secText55, b.secText55, t),
+    secBorder:         snap(a.secBorder, b.secBorder, t),
+    secBg:             snap(a.secBg,     b.secBg,     t),
+    cardBg:            snap(a.cardBg,    b.cardBg,    t),
   };
 }
 
