@@ -28,6 +28,7 @@ const InvitationSection: React.FC = () => {
   useGSAP(
     () => {
       if (!sectionRef.current) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       const card  = sectionRef.current.querySelector('.inv-card');
       const pen   = sectionRef.current.querySelector('.inv-pen');
@@ -35,60 +36,33 @@ const InvitationSection: React.FC = () => {
       const lines = sectionRef.current.querySelectorAll('.inv-line');
       const seal  = sectionRef.current.querySelector('.inv-seal');
 
-      const tl = gsap.timeline({
+      // ── Entry: card + text reveal — plays once ───────────────────
+      gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 75%',
           toggleActions: 'play none none none',
         },
-      });
+      })
+        .from(card, { opacity: 0, y: 32, scale: 0.984, duration: 0.9, ease: 'power3.out' })
+        .from(lines, { opacity: 0, y: 10, duration: 0.55, stagger: 0.15, ease: 'power2.out' }, '-=0.5')
+        .from(seal,  { opacity: 0, scale: 0.82, duration: 0.6, ease: 'back.out(1.7)' });
 
-      // Card drifts in
-      tl.from(card, {
-        opacity: 0,
-        y: 32,
-        scale: 0.984,
-        duration: 0.9,
-        ease: 'power3.out',
-      });
+      // ── Pen + rule — scrubs bidirectionally with scroll ──────────
+      gsap.set(pen,  { left: '0%', opacity: 0 });
+      gsap.set(rule, { scaleX: 0, transformOrigin: 'left center' });
 
-      // Ink rule draws across
-      tl.fromTo(
-        rule,
-        { scaleX: 0 },
-        { scaleX: 1, duration: 1.1, ease: 'power2.inOut' },
-        '-=0.3'
-      );
-
-      // Pen glides along the rule simultaneously
-      tl.fromTo(
-        pen,
-        { left: '0%', opacity: 0 },
-        { left: '96%', opacity: 1, duration: 1.1, ease: 'power2.inOut' },
-        '<'
-      );
-      tl.to(pen, { opacity: 0, duration: 0.22 }, '<+=0.85');
-
-      // Lines of text emerge while pen is still crossing
-      tl.from(
-        lines,
-        {
-          opacity: 0,
-          y: 10,
-          duration: 0.55,
-          stagger: 0.15,
-          ease: 'power2.out',
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 68%',
+          end:   'top 18%',
+          scrub: 0.6,
         },
-        '-=1.6'
-      );
-
-      // NH monogram
-      tl.from(seal, {
-        opacity: 0,
-        scale: 0.82,
-        duration: 0.6,
-        ease: 'back.out(1.7)',
-      });
+      })
+        .to(pen,  { left: '96%', opacity: 1, ease: 'none', duration: 0.9 }, 0)
+        .to(rule, { scaleX: 1,   ease: 'none', duration: 0.9 }, 0)
+        .to(pen,  { opacity: 0,  ease: 'none', duration: 0.1 });
     },
     { scope: sectionRef }
   );
