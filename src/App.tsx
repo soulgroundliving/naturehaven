@@ -11,7 +11,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import LoadingOverlay from '@/components/LoadingOverlay';
 import GrainOverlay from '@/components/GrainOverlay';
-import FloatingLineChat from '@/components/FloatingLineChat';
 import MagneticCursor from '@/components/MagneticCursor';
 import MarqueeStrip from '@/components/MarqueeStrip';
 import Navigation from '@/components/Navigation';
@@ -155,7 +154,6 @@ function App() {
           else if (id === 'hero' && lenisRef.current) lenisRef.current.scrollTo(0);
         }}
       />
-      <FloatingLineChat />
       {/* Video + 3D Orb are useless in the crawler snapshot AND slow puppeteer
           down (remote video fetch + WebGL init). Skip them during prerender —
           real client mount re-renders the tree and they appear normally. */}
