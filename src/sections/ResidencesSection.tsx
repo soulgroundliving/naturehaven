@@ -51,7 +51,6 @@ const TIERS = [
     id: 'standard' as const,
     label: 'Floors 1–2',
     name: 'Standard',
-    floors: 'Floor 1 & 2',
     unitCount: 10,
     openingPrice: '5,800',
     standardPrice: '6,000',
@@ -68,7 +67,6 @@ const TIERS = [
     id: 'pet' as const,
     label: 'Floors 3–4',
     name: 'Pet Friendly',
-    floors: 'Floor 3 & 4',
     unitCount: 10,
     openingPrice: '6,200',
     standardPrice: '6,500',
@@ -344,13 +342,10 @@ const ResidencesSection: React.FC = () => {
                   )}
                 </div>
                 <p className={[
-                  'font-sans text-base font-medium leading-snug mb-0.5',
+                  'font-sans text-base font-medium leading-snug mb-5',
                   tier.isPet ? 'text-sage-green' : 'sec-text-90',
                 ].join(' ')}>
                   {tier.name}
-                </p>
-                <p className="font-sans text-[11px] sec-text-60 mb-5">
-                  {tier.floors}
                 </p>
 
                 {/* Price */}
