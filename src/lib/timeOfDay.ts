@@ -110,7 +110,7 @@ const MORNING: TimePalette = {
   secText90: 'rgba(43,43,43,0.93)',
   secText55: 'rgba(43,43,43,0.72)',
   secBorder: 'rgba(43,43,43,0.20)',
-  secBg: 'rgba(255,255,255,0.76)',
+  secBg: 'rgba(255,255,255,0.86)',
   cardBg: 'rgba(255,255,255,0.95)',
 };
 
@@ -145,7 +145,7 @@ const DAY: TimePalette = {
   secText90: 'rgba(43,43,43,0.93)',
   secText55: 'rgba(43,43,43,0.72)',
   secBorder: 'rgba(43,43,43,0.20)',
-  secBg: 'rgba(255,255,255,0.76)',
+  secBg: 'rgba(255,255,255,0.86)',
   cardBg: 'rgba(255,255,255,0.95)',
 };
 
@@ -183,8 +183,8 @@ const SUNSET: TimePalette = {
   secText90: 'rgba(43,43,43,0.93)',
   secText55: 'rgba(43,43,43,0.72)',
   secBorder: 'rgba(43,43,43,0.20)',
-  secBg: 'rgba(255,255,255,0.72)',
-  cardBg: 'rgba(255,255,255,0.84)',
+  secBg: 'rgba(255,255,255,0.86)',
+  cardBg: 'rgba(255,255,255,0.95)',
 };
 
 const NIGHT: TimePalette = {
