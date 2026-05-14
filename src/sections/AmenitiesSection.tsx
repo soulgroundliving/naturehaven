@@ -47,73 +47,59 @@ const AMENITIES = [
 ];
 
 const AmenitiesSection: React.FC = () => {
+  const wrapperRef  = useRef<HTMLDivElement>(null);
   const sectionRef  = useRef<HTMLDivElement>(null);
   const trackRef    = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      const track = trackRef.current;
-      if (!track || !sectionRef.current) return;
-
+      const track   = trackRef.current;
       const section = sectionRef.current;
+      const wrapper = wrapperRef.current;
+      if (!track || !section || !wrapper) return;
 
       const getDistance = () => track.scrollWidth - section.offsetWidth;
-      // Extra scroll pixels held at the end so the CTA card has time to be read
+      // Extra scroll pixels held at end so CTA card has time to be read
       const getDwell    = () => window.innerHeight * 1.5;
 
-      const cards    = gsap.utils.toArray<HTMLElement>('.am-card');
-      const sw       = section.offsetWidth;
-      const revealed = new Set<HTMLElement>();
+      // Set wrapper height to create the scroll space (sticky section stays 100vh)
+      const setWrapperHeight = () => {
+        wrapper.style.height = `${window.innerHeight + getDistance() + getDwell()}px`;
+      };
+      setWrapperHeight();
 
-      // Pre-hide only cards that start off-screen; in-viewport cards stay visible.
-      cards.forEach(card => {
-        if (card.offsetLeft >= sw) gsap.set(card, { opacity: 0, y: 18 });
-      });
+      const setX        = gsap.quickSetter(track, 'x', 'px') as (v: number) => void;
+      const setProgress = progressRef.current
+        ? gsap.quickSetter(progressRef.current, 'scaleX') as (v: number) => void
+        : null;
 
-      // quickSetter avoids per-frame tween overhead for the track translation.
-      const setX = gsap.quickSetter(track, 'x', 'px') as (v: number) => void;
-
+      // No pin:true — sticky CSS handles visual pinning, avoiding Lenis conflicts
       ScrollTrigger.create({
-        trigger: section,
+        trigger: wrapper,
         start: 'top top',
         end: () => `+=${getDistance() + getDwell()}`,
-        pin: true,
-        anticipatePin: 1,
         invalidateOnRefresh: true,
+        onRefresh: setWrapperHeight,
         onUpdate: (st) => {
           const d     = getDistance();
           const total = d + getDwell();
-          // hProgress reaches 1.0 exactly when the track finishes horizontal travel,
-          // then holds at 1.0 for the remaining dwell scroll distance.
           const hp    = Math.min(1, (st.progress * total) / d);
-          const x     = -d * hp;
-
-          setX(x);
-
-          // Reveal cards as their left edge enters the viewport
-          cards.forEach(card => {
-            if (!revealed.has(card) && card.offsetLeft + x < sw) {
-              revealed.add(card);
-              gsap.to(card, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' });
-            }
-          });
-
-          if (progressRef.current) {
-            gsap.set(progressRef.current, { scaleX: hp });
-          }
+          setX(-d * hp);
+          if (setProgress) setProgress(hp);
         },
       });
     },
-    { scope: sectionRef }
+    { scope: wrapperRef }
   );
 
   return (
+    <div ref={wrapperRef}>
     <section
       ref={sectionRef}
       id="amenities"
       className="overflow-hidden relative"
-      style={{ background: 'var(--sec-bg, rgba(255,255,255,0.55))' }}
+      style={{ background: 'var(--sec-bg, rgba(255,255,255,0.55))', position: 'sticky', top: 0 }}
     >
       {/* Horizontal track — wider than viewport, scrolls left */}
       <div
@@ -290,6 +276,7 @@ const AmenitiesSection: React.FC = () => {
         />
       </div>
     </section>
+    </div>
   );
 };
 
