@@ -168,7 +168,7 @@ function App() {
         </OrbErrorBoundary>
       )}
       <main id="main" className="relative z-[1]">
-        <HeroSection lenisRef={lenisRef} />
+        <HeroSection />
         <MarqueeStrip />
         <Suspense fallback={null}>
           <AboutSection />

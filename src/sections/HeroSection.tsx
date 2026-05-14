@@ -6,15 +6,11 @@ import { ArrowDown } from '@/components/icons';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface HeroSectionProps {
-  lenisRef: React.RefObject<unknown>;
-}
-
 // Each word in its own mask container — editorial mask-reveal effect
 const LABEL_WORDS = ['Quiet', 'Living', 'in', 'Saimai,', 'Bangkok'];
 const HEADLINE_LINES = ['Nature', 'Haven'];
 
-const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
+const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
@@ -93,14 +89,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
     { scope: sectionRef }
   );
 
-  const scrollToResidences = () => {
-    const target = document.querySelector('#residences');
-    const lenis = lenisRef.current as { scrollTo: (t: Element, o?: { offset?: number }) => void } | null;
-    if (target && lenis) {
-      lenis.scrollTo(target, { offset: -80 });
-    }
-  };
-
   return (
     <section
       ref={sectionRef}
@@ -167,22 +155,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
           From 5,800 THB / mo · Available August 2026
         </p>
 
-        {/* CTA */}
-        <button
-          onClick={scrollToResidences}
-          className="hero-cta group relative mt-5 inline-flex items-center gap-3 bg-[var(--cta-bg,#3D5A4C)] text-pure-white font-sans text-sm uppercase tracking-wide px-10 py-4 rounded-full overflow-hidden transition-transform duration-200 active:scale-[0.98] hover:shadow-lg"
-        >
-          <span className="absolute inset-0 bg-[var(--cta-bg-hover,#4a6e5d)] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
-          <span className="relative z-10">View Residences</span>
-          <svg
-            className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </button>
       </div>
 
       {/* Scroll indicator */}
