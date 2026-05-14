@@ -165,12 +165,15 @@ const SUNSET: TimePalette = {
   envMapIntensity: 2.4,
   glassTransmission: 0.96,
   glassIridescence: 0.90,   // strong rainbow on warm sunset tones
-  textOnBg: '#FFFFFF',
-  textMuted: '#F5E8D8',
+  // Dark text on warm sunset gradient — white was unreadable on the light
+  // bottom band (#E8B486) and the day→sunset lerp produced mid-gray (#C7C7C7)
+  // between 12-17 that failed contrast against bright video bg.
+  textOnBg: '#2B2B2B',
+  textMuted: '#5C5650',
   ctaBg: '#3D5A4C',     // brand sage holds against warm sky
   ctaBgHover: '#4A6E5D',
   textShadow:
-    '0 2px 4px rgba(0,0,0,0.55), 0 0 14px rgba(0,0,0,0.35)',
+    '0 1px 2px rgba(255,255,255,0.6), 0 0 18px rgba(255,255,255,0.55)',
   mood: 'warm',
   tagline: 'ปิดวันด้วยใจที่เบา',
   secText: '#2B2B2B',
@@ -296,8 +299,11 @@ export function interpolatePalettes(a: TimePalette, b: TimePalette, t: number): 
     envMapIntensity:   lerpNum(a.envMapIntensity, b.envMapIntensity, t),
     glassTransmission: lerpNum(a.glassTransmission, b.glassTransmission, t),
     glassIridescence:  lerpNum(a.glassIridescence, b.glassIridescence, t),
-    textOnBg:          lerpColor(a.textOnBg, b.textOnBg, t),
-    textMuted:         lerpColor(a.textMuted, b.textMuted, t),
+    // Hero text colors snap rather than lerp: blending dark↔cream produces
+    // mid-gray (~#909090) that fails contrast against the busy video bg.
+    // textShadow already snaps for the same reason.
+    textOnBg:          snap(a.textOnBg, b.textOnBg, t),
+    textMuted:         snap(a.textMuted, b.textMuted, t),
     ctaBg:             lerpColor(a.ctaBg, b.ctaBg, t),
     ctaBgHover:        lerpColor(a.ctaBgHover, b.ctaBgHover, t),
     textShadow:        snap(a.textShadow, b.textShadow, t),
