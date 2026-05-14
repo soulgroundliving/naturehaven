@@ -113,7 +113,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
         {/* Label — word mask-reveal */}
         <p
           className="font-sans text-[10px] md:text-xs uppercase tracking-[0.22em] mb-8 flex flex-wrap justify-center gap-x-[0.55em] gap-y-1"
-          style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
+          style={{ color: 'var(--text-on-bg, #2B2B2B)', textShadow: 'var(--text-shadow-hero)' }}
           aria-label="Quiet Living in Saimai, Bangkok"
         >
           {LABEL_WORDS.map((word, i) => (
@@ -127,7 +127,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
         <h1
           className="font-serif leading-[0.88] text-[11vw] sm:text-[10.5vw] md:text-[10.5vw] lg:text-[10vw] tracking-[-0.01em]"
           aria-label="Nature Haven"
-          style={{ filter: 'drop-shadow(0 0 22px rgba(255,255,255,0.45))' }}
+          style={{ textShadow: 'var(--text-shadow-hero)' }}
         >
           {HEADLINE_LINES.map((line, i) => (
             <span
@@ -150,14 +150,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ lenisRef }) => {
         {/* Subtitle */}
         <p
           className="hero-subtitle font-sans text-base md:text-lg font-light max-w-[520px] leading-relaxed"
-          style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
+          style={{ color: 'var(--text-on-bg, #2B2B2B)', textShadow: 'var(--text-shadow-hero)' }}
         >
           A residence shaped by intention — where life gently returns to its natural rhythm.
         </p>
 
         {/* Pricing anchor */}
         <p
-          className="hero-cta font-sans text-[11px] uppercase tracking-[0.18em] mt-7 text-white opacity-60"
+          className="hero-cta font-sans text-[11px] uppercase tracking-[0.18em] mt-7 opacity-60"
+          style={{ color: 'var(--text-on-bg, #2B2B2B)', textShadow: 'var(--text-shadow-hero)' }}
         >
           From 5,800 THB / mo · Available August 2026
         </p>
