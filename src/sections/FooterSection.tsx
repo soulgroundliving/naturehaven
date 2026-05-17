@@ -23,7 +23,7 @@ const FooterSection: React.FC = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 85%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -35,7 +35,7 @@ const FooterSection: React.FC = () => {
         scrollTrigger: {
           trigger: divider as Element,
           start: 'top 90%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
     },

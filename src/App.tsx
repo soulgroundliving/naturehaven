@@ -118,7 +118,9 @@ function App() {
           scrollTrigger: {
             trigger: section,
             start: 'top 90%',
-            toggleActions: 'play none none none',
+            toggleActions: 'play none none reverse',
+            invalidateOnRefresh: true,
+            fastScrollEnd: true,
           },
         });
       });

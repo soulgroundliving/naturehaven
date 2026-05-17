@@ -101,7 +101,7 @@ const SmartLivingSection: React.FC = () => {
         scrollTrigger: {
           trigger: left[0] as Element,
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -116,7 +116,7 @@ const SmartLivingSection: React.FC = () => {
           scrollTrigger: {
             trigger: phone as Element,
             start: 'top 80%',
-            toggleActions: 'play none none none',
+            toggleActions: 'play none none reverse',
           },
         });
       }
@@ -132,7 +132,7 @@ const SmartLivingSection: React.FC = () => {
         scrollTrigger: {
           trigger: right[0] as Element,
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
     },

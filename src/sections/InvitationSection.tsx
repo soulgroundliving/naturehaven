@@ -36,12 +36,12 @@ const InvitationSection: React.FC = () => {
       const lines = sectionRef.current.querySelectorAll('.inv-line');
       const seal  = sectionRef.current.querySelector('.inv-seal');
 
-      // ── Entry: card + text reveal — plays once ───────────────────
+      // ── Entry: card + text reveal — reverses on scroll back ──────
       gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 75%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       })
         .from(card, { opacity: 0, y: 32, scale: 0.984, duration: 0.9, ease: 'power3.out' })

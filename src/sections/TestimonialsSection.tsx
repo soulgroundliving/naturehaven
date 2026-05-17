@@ -43,7 +43,7 @@ const TestimonialsSection: React.FC = () => {
         scrollTrigger: {
           trigger: header as Element,
           start: 'top 82%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -57,7 +57,7 @@ const TestimonialsSection: React.FC = () => {
         scrollTrigger: {
           trigger: cards[0] as Element,
           start: 'top 85%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
     },

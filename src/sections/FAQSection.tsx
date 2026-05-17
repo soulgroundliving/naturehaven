@@ -24,7 +24,7 @@ const FAQSection: React.FC = () => {
         scrollTrigger: {
           trigger: header[0] as Element,
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -38,7 +38,7 @@ const FAQSection: React.FC = () => {
         scrollTrigger: {
           trigger: items[0] as Element,
           start: 'top 82%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
     },

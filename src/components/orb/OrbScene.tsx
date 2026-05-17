@@ -127,14 +127,17 @@ export default function OrbScene() {
         ease: 'power2.inOut',
       });
 
-      // Footer fade — orb retreats so closing copy stands alone
+      // Footer fade — orb retreats so closing copy stands alone.
+      // Numeric scrub (lerp) is smoother on Safari + Lenis and reverses
+      // cleanly when scrolling back up out of the footer.
       gsap.to(wrapper, {
         opacity: 0,
         scrollTrigger: {
           trigger: 'footer',
           start: 'top 80%',
           end: 'top 20%',
-          scrub: true,
+          scrub: 0.5,
+          invalidateOnRefresh: true,
         },
       });
     });

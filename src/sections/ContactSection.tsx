@@ -46,7 +46,7 @@ const ContactSection: React.FC = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 75%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -60,7 +60,7 @@ const ContactSection: React.FC = () => {
         scrollTrigger: {
           trigger: steps[0] as Element,
           start: 'top 82%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
     },

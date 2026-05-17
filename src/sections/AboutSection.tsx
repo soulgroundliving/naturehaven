@@ -22,7 +22,7 @@ const AboutSection: React.FC = () => {
         scrollTrigger: {
           trigger: philo[0] as Element,
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -36,7 +36,7 @@ const AboutSection: React.FC = () => {
         scrollTrigger: {
           trigger: image as Element,
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -50,7 +50,7 @@ const AboutSection: React.FC = () => {
         scrollTrigger: {
           trigger: text[0] as Element,
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
     },

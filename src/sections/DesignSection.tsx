@@ -38,7 +38,7 @@ const DesignSection: React.FC = () => {
         scrollTrigger: {
           trigger: leftItems[0] as Element,
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -53,7 +53,7 @@ const DesignSection: React.FC = () => {
         scrollTrigger: {
           trigger: rightItems[0] as Element,
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
     },

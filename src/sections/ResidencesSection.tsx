@@ -95,7 +95,7 @@ const ResidencesSection: React.FC = () => {
         scrollTrigger: {
           trigger: cards[0] as Element,
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -109,7 +109,7 @@ const ResidencesSection: React.FC = () => {
         scrollTrigger: {
           trigger: tierCards[0] as Element,
           start: 'top 82%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -122,7 +122,7 @@ const ResidencesSection: React.FC = () => {
         scrollTrigger: {
           trigger: mainPhoto as Element,
           start: 'top 82%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -136,7 +136,7 @@ const ResidencesSection: React.FC = () => {
         scrollTrigger: {
           trigger: thumbs[0] as Element,
           start: 'top 85%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -149,7 +149,7 @@ const ResidencesSection: React.FC = () => {
         scrollTrigger: {
           trigger: essentialsCard as Element,
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -163,7 +163,7 @@ const ResidencesSection: React.FC = () => {
         scrollTrigger: {
           trigger: features[0] as Element,
           start: 'top 85%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -176,7 +176,7 @@ const ResidencesSection: React.FC = () => {
           duration: 1.6,
           ease: 'power2.out',
           onUpdate() { el.textContent = obj.val.toFixed(1); },
-          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
         });
       }
       if (unitsRef.current) {
@@ -187,7 +187,7 @@ const ResidencesSection: React.FC = () => {
           duration: 1.2,
           ease: 'power2.out',
           onUpdate() { el.textContent = String(Math.round(obj.val)); },
-          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
         });
       }
       if (floorsRef.current) {
@@ -198,7 +198,7 @@ const ResidencesSection: React.FC = () => {
           duration: 0.9,
           ease: 'power2.out',
           onUpdate() { el.textContent = String(Math.round(obj.val)); },
-          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
         });
       }
     },

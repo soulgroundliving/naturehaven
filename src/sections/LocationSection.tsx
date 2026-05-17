@@ -42,7 +42,7 @@ const LocationSection: React.FC = () => {
         scrollTrigger: {
           trigger: mapImage as Element,
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
 
@@ -56,7 +56,7 @@ const LocationSection: React.FC = () => {
         scrollTrigger: {
           trigger: listItems[0] as Element,
           start: 'top 85%',
-          toggleActions: 'play none none none',
+          toggleActions: 'play none none reverse',
         },
       });
     },
