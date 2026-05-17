@@ -13,6 +13,16 @@
       window.scrollTo(0, 0);
     </script>
 
+    <!-- Pre-React scroll lock — iOS Safari ignores scrollRestoration='manual'
+         after the first paint and restores its remembered scroll position
+         from the previous visit, which made the page open mid-RoomJourney
+         instead of at the hero. Locking overflow at HTML parse time (before
+         the body even exists in the layout tree) blocks that restoration.
+         The LoadingOverlay's onComplete handler removes #nh-prelock. -->
+    <style id="nh-prelock">
+      html, body { overflow: hidden !important; height: 100%; }
+    </style>
+
     <!-- Primary SEO -->
     <title>Nature Haven — Quiet Living in Saimai, Bangkok</title>
     <meta name="description" content="อพาร์ตเมนต์ใหม่สไตล์ MUJI minimal ในสายไหม กรุงเทพฯ — 31.5 ตร.ม. 1 นอน ครัวแยก ระเบียง รวม Wi-Fi เริ่ม 5,800 บาท/เดือน เปิดสิงหาคม 2026" />

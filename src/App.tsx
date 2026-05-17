@@ -68,20 +68,16 @@ function App() {
   const activeSection = useSectionObserver(sectionIds);
 
   // ── Safari: prevent page drift during intro + handle bfcache restore ──────
-  // On iOS Safari, the page behind a `position:fixed` overlay can still be
-  // scrolled (URL bar collapse, momentum carry-over, etc.).  If scroll drifts
-  // away from 0 before the overlay dismisses, every ScrollTrigger whose
-  // `start` is already "past" fires simultaneously — causing all animations
-  // to play at once.  Fix: lock body overflow while the overlay is up, then
-  // reset scroll + refresh triggers the moment it comes down.
+  // Pre-React scroll lock lives in index.html (`#nh-prelock` <style>) so the
+  // body can't scroll during HTML parse — iOS Safari ignores
+  // scrollRestoration='manual' once paint commits, and used to open the page
+  // mid-section. The lock is released by LoadingOverlay's onComplete handler.
   //
   // pageshow (persisted:true) fires when Safari restores a page from bfcache
-  // (back/forward button).  The inline <head> script doesn't re-run there,
+  // (back/forward button). The inline <head> script doesn't re-run there,
   // so we reset explicitly from the event listener.
   useEffect(() => {
     if (prerendering) return;
-
-    document.body.style.overflow = 'hidden';
 
     const onPageShow = (e: PageTransitionEvent) => {
       if (e.persisted) {
@@ -170,14 +166,24 @@ function App() {
     <div className="relative">
       {!introComplete && (
         <LoadingOverlay onComplete={() => {
-          // Release scroll lock, reset to top, let React unmount the overlay.
+          // Release the pre-React scroll lock from index.html, reset to top,
+          // then re-pin scroll for two more frames — iOS Safari can still
+          // apply a late "restore to previous scrollY" after the first paint
+          // even with scrollRestoration='manual'. Three rAF-spaced calls
+          // outlast that window without noticeable jank.
+          document.getElementById('nh-prelock')?.remove();
+          window.scrollTo(0, 0);
+          requestAnimationFrame(() => {
+            window.scrollTo(0, 0);
+            requestAnimationFrame(() => {
+              window.scrollTo(0, 0);
+            });
+          });
           // No manual ScrollTrigger.refresh() here — GSAP's own ResizeObserver
           // already refreshes positions as lazy sections load during the intro.
           // An explicit refresh at this moment can fire onUpdate with a stale
           // transient progress (Safari URL-bar virtual scroll) and push the
           // AmenitiesSection track to its end position on first paint.
-          document.body.style.overflow = '';
-          window.scrollTo(0, 0);
           setIntroComplete(true);
         }} />
       )}
