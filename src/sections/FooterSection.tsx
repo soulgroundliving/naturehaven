@@ -12,6 +12,7 @@ const FooterSection: React.FC = () => {
     () => {
       if (!sectionRef.current) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const items = sectionRef.current.querySelectorAll('.footer-animate');
       gsap.from(items, {

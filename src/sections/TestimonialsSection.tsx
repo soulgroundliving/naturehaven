@@ -33,6 +33,7 @@ const TestimonialsSection: React.FC = () => {
   useGSAP(
     () => {
       if (!sectionRef.current) return;
+      if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const header = sectionRef.current.querySelector('.tm-header');
       gsap.from(header, {

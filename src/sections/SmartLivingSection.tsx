@@ -90,6 +90,7 @@ const SmartLivingSection: React.FC = () => {
   useGSAP(
     () => {
       if (!sectionRef.current) return;
+      if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const left = sectionRef.current.querySelectorAll('.sl-left-anim');
       gsap.from(left, {

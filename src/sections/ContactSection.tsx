@@ -35,6 +35,7 @@ const ContactSection: React.FC = () => {
   useGSAP(
     () => {
       if (!sectionRef.current) return;
+      if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const items = sectionRef.current.querySelectorAll('.contact-animate');
       gsap.from(items, {

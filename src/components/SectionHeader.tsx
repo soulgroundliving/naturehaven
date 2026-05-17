@@ -25,6 +25,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   useGSAP(
     () => {
       if (!containerRef.current) return;
+      if (window.matchMedia('(max-width: 767px)').matches) return;
       const els = containerRef.current.querySelectorAll('.sh-animate');
       gsap.from(els, {
         y: 20,

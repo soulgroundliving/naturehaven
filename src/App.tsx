@@ -101,9 +101,16 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Feature 7: frosted section lift-in on scroll
+  // Feature 7: frosted section lift-in on scroll.
+  // Skipped on mobile and for reduced-motion users — running 9+ simultaneous
+  // backdrop-blur-xl repaints on every scroll direction change is the single
+  // biggest source of jank on phones. Mobile users see frosted sections at
+  // their final state from the start.
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const skip =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      window.matchMedia('(max-width: 767px)').matches;
+    if (skip) {
       gsap.set('.frosted-section', { opacity: 1, y: 0 });
       return;
     }

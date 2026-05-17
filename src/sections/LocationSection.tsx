@@ -31,6 +31,7 @@ const LocationSection: React.FC = () => {
   useGSAP(
     () => {
       if (!sectionRef.current) return;
+      if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const mapImage = sectionRef.current.querySelector('.loc-map');
       gsap.from(mapImage, {

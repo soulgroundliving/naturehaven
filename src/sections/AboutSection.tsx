@@ -11,6 +11,9 @@ const AboutSection: React.FC = () => {
   useGSAP(
     () => {
       if (!sectionRef.current) return;
+      // Mobile: skip scroll-triggered reveals — repainting blurred surfaces
+      // on every direction change is the biggest source of scroll jank.
+      if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const philo = sectionRef.current.querySelectorAll('.ph-anim');
       gsap.from(philo, {

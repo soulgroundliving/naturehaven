@@ -34,6 +34,8 @@ export default function OrbScene() {
     const container = containerRef.current;
     const wrapper = wrapperRef.current;
 
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
     const ctx = gsap.context(() => {
       // Center the orb absolutely; xPercent/yPercent are -50 so future `x`
       // animations compose with centering instead of clobbering it.
@@ -49,16 +51,23 @@ export default function OrbScene() {
         : -80;
       gsap.set(container, { y: heroOffset });
 
-      const setOrbY = gsap.quickSetter(container, 'y', 'px');
-      ScrollTrigger.create({
-        trigger: '#hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1,
-        onUpdate: (self) => {
-          setOrbY(heroOffset * (1 - self.progress));
-        },
-      });
+      // On mobile, skip every continuous scrub — they fire on each native
+      // scroll frame and stack with WebGL paint cost. The orb still fades in
+      // and snaps between section states (onEnter/onLeaveBack are cheap).
+      if (isMobile) {
+        gsap.set(container, { y: 0 });
+      } else {
+        const setOrbY = gsap.quickSetter(container, 'y', 'px');
+        ScrollTrigger.create({
+          trigger: '#hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1,
+          onUpdate: (self) => {
+            setOrbY(heroOffset * (1 - self.progress));
+          },
+        });
+      }
 
       // Section-anchored states (scale + tilt) — set targets; Orb lerps toward
       // them each frame via controlsRef.
@@ -104,8 +113,10 @@ export default function OrbScene() {
         },
       });
 
-      // Subtle horizontal drift across the whole scroll range (sin curve)
-      if (!reducedMotion) {
+      // Subtle horizontal drift across the whole scroll range (sin curve).
+      // Desktop only — on mobile the per-frame quickSetter call adds work
+      // while the user is already paint-bound from VideoBackground + R3F.
+      if (!reducedMotion && !isMobile) {
         const drift = gsap.quickSetter(container, 'x', 'vw');
         ScrollTrigger.create({
           trigger: 'main',
@@ -127,19 +138,22 @@ export default function OrbScene() {
         ease: 'power2.inOut',
       });
 
-      // Footer fade — orb retreats so closing copy stands alone.
-      // Numeric scrub (lerp) is smoother on Safari + Lenis and reverses
-      // cleanly when scrolling back up out of the footer.
-      gsap.to(wrapper, {
-        opacity: 0,
-        scrollTrigger: {
-          trigger: 'footer',
-          start: 'top 80%',
-          end: 'top 20%',
-          scrub: 0.5,
-          invalidateOnRefresh: true,
-        },
-      });
+      // Footer fade — orb retreats so closing copy stands alone. Desktop
+      // only: on mobile the scrub fires every native scroll frame near the
+      // footer and stutters. Mobile users see the orb remain at its last
+      // section state through to the end of the page.
+      if (!isMobile) {
+        gsap.to(wrapper, {
+          opacity: 0,
+          scrollTrigger: {
+            trigger: 'footer',
+            start: 'top 80%',
+            end: 'top 20%',
+            scrub: 0.5,
+            invalidateOnRefresh: true,
+          },
+        });
+      }
     });
 
     return () => ctx.revert();

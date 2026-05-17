@@ -27,6 +27,7 @@ const DesignSection: React.FC = () => {
   useGSAP(
     () => {
       if (!sectionRef.current) return;
+      if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const leftItems = sectionRef.current.querySelectorAll('.design-left-animate');
       gsap.from(leftItems, {

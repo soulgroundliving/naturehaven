@@ -29,6 +29,8 @@ const InvitationSection: React.FC = () => {
     () => {
       if (!sectionRef.current) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      // Mobile: skip scroll-driven animations entirely.
+      if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const card  = sectionRef.current.querySelector('.inv-card');
       const pen   = sectionRef.current.querySelector('.inv-pen');

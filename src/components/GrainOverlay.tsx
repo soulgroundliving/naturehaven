@@ -1,3 +1,7 @@
+// Decorative film grain. Hidden on mobile and for reduced-motion users —
+// `mix-blend-mode: overlay` over a 25fps SVG turbulence filter is the
+// single most expensive composite layer on phone GPUs, and on small
+// screens the grain is barely visible anyway.
 export default function GrainOverlay() {
   return (
     <>
@@ -15,9 +19,12 @@ export default function GrainOverlay() {
           90%{transform:translate(-1%,1%)}
         }
         .nh-grain-anim{animation:nh-grain 0.4s steps(1) infinite}
+        @media (max-width: 767px), (prefers-reduced-motion: reduce) {
+          .nh-grain-wrap{display:none}
+        }
       `}</style>
       <div
-        className="fixed inset-0 z-[9999] pointer-events-none select-none overflow-hidden"
+        className="nh-grain-wrap fixed inset-0 z-[9999] pointer-events-none select-none overflow-hidden"
         style={{ opacity: 0.038, mixBlendMode: 'overlay' }}
         aria-hidden="true"
       >

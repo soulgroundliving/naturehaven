@@ -63,9 +63,12 @@ const HeroSection: React.FC = () => {
       // 7. Scroll indicator
       .from(scrollIndicatorRef.current, { opacity: 0, duration: 0.5 }, 2.05);
 
-      // Parallax fade on scroll out — numeric scrub (lerp) is smoother on
-      // Safari + Lenis than `scrub: true` (which can jitter during URL bar
-      // collapse) and still reverses correctly when scrolling back to hero.
+      // Parallax fade on scroll out — desktop only. On mobile, scrub
+      // callbacks fire on every native scroll frame and stack with the
+      // VideoBackground repaints, causing visible stutter. The hero copy
+      // simply scrolls off naturally on phones.
+      if (window.matchMedia('(max-width: 767px)').matches) return;
+
       gsap.to(contentRef.current, {
         y: -150,
         opacity: 0,

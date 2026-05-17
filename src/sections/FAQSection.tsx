@@ -13,6 +13,7 @@ const FAQSection: React.FC = () => {
   useGSAP(
     () => {
       if (!sectionRef.current) return;
+      if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const header = sectionRef.current.querySelectorAll('.faq-header-animate');
       gsap.from(header, {

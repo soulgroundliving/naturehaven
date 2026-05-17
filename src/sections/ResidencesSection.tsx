@@ -84,6 +84,9 @@ const ResidencesSection: React.FC = () => {
   useGSAP(
     () => {
       if (!sectionRef.current) return;
+      // Mobile: skip scroll-triggered reveals + number counters — they all
+      // pile up while the user is scrolling and cause jank.
+      if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const cards = sectionRef.current.querySelectorAll('.res-card');
       gsap.from(cards, {
