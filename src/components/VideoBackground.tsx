@@ -37,17 +37,26 @@ export default function VideoBackground() {
     }
 
     let rafId = 0;
+    // Skip the 0.5s fade-in on the FIRST play only — on iOS Low Power Mode
+    // autoplay is blocked, leaving the video paused at t=0 with the tick
+    // never running. JSX opacity starts at 1 so the frozen first frame is
+    // visible immediately; without this flag, the tick would drop it to 0
+    // when play() finally resolves (e.g. on first touch) and re-fade in,
+    // causing a jarring flash. Subsequent loops re-enable fade-in via the
+    // `ended` handler, preserving the original crossfade between loops.
+    let isFirstPlay = true;
 
     const tick = () => {
       const d = v.duration;
       if (d && !Number.isNaN(d)) {
         const t = v.currentTime;
         let op = 1;
-        if (t < FADE_SECONDS) {
+        if (!isFirstPlay && t < FADE_SECONDS) {
           op = t / FADE_SECONDS;
         } else if (t > d - FADE_SECONDS) {
           op = Math.max(0, (d - t) / FADE_SECONDS);
         }
+        if (t >= FADE_SECONDS) isFirstPlay = false;
         v.style.opacity = String(Math.max(0, Math.min(1, op)));
       }
       rafId = requestAnimationFrame(tick);
@@ -97,7 +106,10 @@ export default function VideoBackground() {
         playsInline
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity: 0 }}
+        // Start visible so the frozen first frame shows immediately, even
+        // when iOS Low Power Mode blocks autoplay. Tick still runs the
+        // end-of-loop fade-out + post-`ended` fade-in for smooth crossfades.
+        style={{ opacity: 1 }}
       />
       {/* Slot-tinted sky overlay — fades from palette sky color at top to
           transparent at bottom so the landscape ground stays natural while
