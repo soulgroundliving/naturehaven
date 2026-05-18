@@ -53,16 +53,20 @@ export default function OrbScene() {
 
       // On mobile, skip the continuous scrub — it fires on each native scroll
       // frame and stacks with WebGL paint cost. Instead: hold the orb at the
-      // H1 anchor for 3 s so the user can read "Nature Haven" with the orb
-      // framed between the two words, then auto-drift to viewport centre over
-      // 2 s. After that the section-anchored triggers (scale/tilt at #about
-      // etc.) take over normally. Cheap onLeave/onEnterBack snap covers the
-      // case where the user scrolls past hero before the auto-drift completes.
+      // H1 anchor for 3 s after the LoadingOverlay finishes opening (~3.5 s
+      // after page load), then auto-drift to viewport centre over 2 s. After
+      // that the section-anchored triggers (scale/tilt at #about etc.) take
+      // over normally. Cheap onLeave/onEnterBack snap covers the case where
+      // the user scrolls past hero before the auto-drift completes.
+      //
+      // The delay is measured from this useEffect (≈ React mount), so it has
+      // to include LoadingOverlay's full 3.5 s curtain timeline plus the 3 s
+      // the user actually wants to spend looking at the framed title.
       if (isMobile) {
         gsap.to(container, {
           y: 0,
           duration: 2,
-          delay: 3,
+          delay: 6.5,
           ease: 'power2.inOut',
         });
         ScrollTrigger.create({
