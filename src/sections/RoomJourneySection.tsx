@@ -30,22 +30,26 @@ const SCENES = [
 ] as const;
 
 const N = SCENES.length;
-// Mobile uses shorter scroll-per-scene so users don't over-scroll on phones
-const VH_PER_SCENE        = 150;
-const VH_PER_SCENE_MOBILE = 80;
+// Per-scene scroll dwell, in dvh. Scene 0 (Bedroom) is the first impression
+// of the scrollytelling so it gets longer dwell — users were reporting they
+// often scrolled straight past Bedroom into Kitchen/Balcony without noticing
+// the first scene at all. Kitchen and Balcony stay at the original pacing.
+// Mobile values are smaller across the board so phones don't consume too
+// many viewport-heights of scroll.
+const SCENE_VH        = [250, 150, 150];
+const SCENE_VH_MOBILE = [130, 80,  80 ];
 
 const RoomJourneySection: React.FC = () => {
   const containerRef  = useRef<HTMLDivElement>(null);
   const frameRef      = useRef<HTMLDivElement>(null);
   const counterRef    = useRef<HTMLSpanElement>(null);
-  // Compute once at mount — smaller vh on mobile so the section doesn't
-  // consume too many phone-lengths of scroll.
-  const [vhPerScene]  = React.useState(() =>
+  // Compute once at mount — choose the desktop or mobile dwell schedule.
+  const [sceneVh]  = React.useState<number[]>(() =>
     typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
-      ? VH_PER_SCENE_MOBILE
-      : VH_PER_SCENE
+      ? SCENE_VH_MOBILE
+      : SCENE_VH
   );
-  const containerVhCalc = N * vhPerScene + 100;
+  const containerVhCalc = sceneVh.reduce((s, v) => s + v, 0) + 100;
 
   useGSAP(
     () => {
@@ -115,12 +119,17 @@ const RoomJourneySection: React.FC = () => {
         }
       };
 
-      // Scene triggers — use vhPerScene (responsive) so mobile doesn't
-      // over-scroll. containerVhCalc pre-computed at component mount.
+      // Scene triggers — fire at the cumulative end-of-scene boundaries so
+      // the per-scene dwell from sceneVh[] is honoured. With Bedroom now at
+      // 250dvh (desktop) the first transition only fires after the user has
+      // scrolled well past the Bedroom frame, giving it real screen time
+      // instead of flashing past.
+      let cumulative = 0;
       for (let i = 1; i < N; i++) {
+        cumulative += sceneVh[i - 1];
         ScrollTrigger.create({
           trigger: containerRef.current,
-          start: `${(i * vhPerScene / containerVhCalc) * 100}% top`,
+          start: `${(cumulative / containerVhCalc) * 100}% top`,
           onEnter:     () => goTo(i),
           onLeaveBack: () => goTo(i - 1),
         });
