@@ -99,15 +99,29 @@ export default function VideoBackground() {
       aria-hidden="true"
       className="fixed inset-0 z-0 pointer-events-none overflow-hidden"
     >
+      {/* Standalone poster <img> — iOS Safari does NOT render <video poster>
+          until the video element is "activated" (user touch / successful
+          play()). On Low Power Mode autoplay is blocked, so without this
+          <img> the user sees only the palette gradient until they touch.
+          Rendering the same still as a real <img> guarantees the meadow
+          scene is visible from first paint, regardless of video state. The
+          frame was extracted at t=2.0s (post fade-in) so when the video
+          eventually starts decoding, frame ~48 lines up with the poster
+          and the transition is invisible. */}
+      <img
+        src="/assets/hero-video-poster.jpg"
+        alt=""
+        decoding="async"
+        loading="eager"
+        fetchPriority="high"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
       <video
         ref={videoRef}
         src={VIDEO_URL}
-        // iOS Low Power Mode blocks autoplay AND skips frame decode for
-        // muted/paused videos — `opacity: 1` alone wasn't enough because
-        // there's no frame to show. The poster is a still extracted from
-        // the same video (t=2s, post fade-in) so the seam between poster
-        // and the first played frame is invisible. iOS Safari renders the
-        // poster instantly, even before video metadata loads.
+        // poster kept as defence-in-depth on browsers that DO honour it
+        // before play() — covers a brief gap if the <img> above is slow
+        // to decode on the first paint.
         poster="/assets/hero-video-poster.jpg"
         muted
         playsInline
