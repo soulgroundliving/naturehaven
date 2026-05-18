@@ -52,29 +52,53 @@ export default function OrbScene() {
       gsap.set(container, { y: heroOffset });
 
       // On mobile, skip the continuous scrub — it fires on each native scroll
-      // frame and stacks with WebGL paint cost. Instead: hold the orb at the
-      // H1 anchor for 3 s after the LoadingOverlay finishes opening (~3.5 s
-      // after page load), then auto-drift to viewport centre over 2 s. After
-      // that the section-anchored triggers (scale/tilt at #about etc.) take
-      // over normally. Cheap onLeave/onEnterBack snap covers the case where
-      // the user scrolls past hero before the auto-drift completes.
+      // frame and stacks with WebGL paint cost. Instead:
+      //   1. Hold the orb at the H1 anchor for 3 s after the LoadingOverlay
+      //      finishes opening (~3.5 s after page load — so delay 6.5 s).
+      //   2. Then begin a soft, continuous up-down "breathing" oscillation
+      //      between the "Nature" and "Haven" lines. Amplitude = H1 height
+      //      / 4 so each extreme of the cycle lands roughly on a line of
+      //      the title regardless of viewport size.
+      //   3. Sine ease + symmetric down/centre/up/centre keyframes give a
+      //      true sine-wave feel without per-frame onUpdate work.
       //
-      // The delay is measured from this useEffect (≈ React mount), so it has
-      // to include LoadingOverlay's full 3.5 s curtain timeline plus the 3 s
-      // the user actually wants to spend looking at the framed title.
+      // Killed when the user scrolls past hero (onLeave snaps y to 0); a
+      // fresh oscillation is spun up on onEnterBack so revisiting hero
+      // restores the breathing motion without a 6.5 s wait.
       if (isMobile) {
-        gsap.to(container, {
-          y: 0,
-          duration: 2,
-          delay: 6.5,
-          ease: 'power2.inOut',
-        });
+        const amplitude = heroH1
+          ? heroH1.getBoundingClientRect().height / 4
+          : 30;
+
+        let oscillate: gsap.core.Tween | null = null;
+        const startOscillate = () => {
+          oscillate = gsap.to(container, {
+            keyframes: [
+              { y: heroOffset + amplitude, duration: 1.25 },
+              { y: heroOffset,             duration: 1.25 },
+              { y: heroOffset - amplitude, duration: 1.25 },
+              { y: heroOffset,             duration: 1.25 },
+            ],
+            ease: 'sine.inOut',
+            repeat: -1,
+          });
+        };
+        const delayedStart = gsap.delayedCall(6.5, startOscillate);
+
         ScrollTrigger.create({
           trigger: '#hero',
           start: 'top top',
           end: 'bottom top',
-          onLeave: () => gsap.set(container, { y: 0 }),
-          onEnterBack: () => gsap.set(container, { y: heroOffset }),
+          onLeave: () => {
+            delayedStart.kill();
+            oscillate?.kill();
+            oscillate = null;
+            gsap.set(container, { y: 0 });
+          },
+          onEnterBack: () => {
+            gsap.set(container, { y: heroOffset });
+            if (!oscillate) startOscillate();
+          },
         });
       } else {
         const setOrbY = gsap.quickSetter(container, 'y', 'px');
