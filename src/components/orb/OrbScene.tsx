@@ -70,26 +70,29 @@ export default function OrbScene() {
           ? heroH1.getBoundingClientRect().height / 4
           : 30;
 
-        let oscillate: gsap.core.Tween | null = null;
+        let oscillate: gsap.core.Timeline | null = null;
         const startOscillate = () => {
-          oscillate = gsap.to(container, {
-            // Linear-velocity legs between centre and each extreme, with a
-            // 0.75s hold AT each extreme so the orb settles before reversing
-            // direction. Previously it reversed instantly at the top/bottom
-            // and read as a bounce. Cycle is centre → down → hold → centre
-            // → up → hold → centre (repeat). GSAP treats two consecutive
-            // keyframes with the same target as a pause.
-            keyframes: [
-              { y: heroOffset + amplitude, duration: 2.5  },  // → down
-              { y: heroOffset + amplitude, duration: 0.75 },  // hold (down)
-              { y: heroOffset,             duration: 2.5  },  // → centre
-              { y: heroOffset - amplitude, duration: 2.5  },  // → up
-              { y: heroOffset - amplitude, duration: 0.75 },  // hold (up)
-              { y: heroOffset,             duration: 2.5  },  // → centre
-            ],
-            ease: 'none',
-            repeat: -1,
+          // Intro half-leg (centre → bottom) then a nested infinite cycle
+          // that swings full length between extremes with 0.75s holds at
+          // each end. sine.inOut on every motion leg eases the orb out of
+          // each hold AND back into the next one, so there's no abrupt
+          // velocity snap when leaving/entering a stop. The 5s legs pass
+          // straight through centre (no waypoint), so the ease curve is
+          // applied to the full traversal — no mid-leg deceleration that
+          // would read as "some parts speed up".
+          oscillate = gsap.timeline();
+          oscillate.to(container, {
+            y: heroOffset + amplitude,
+            duration: 2.5,
+            ease: 'sine.inOut',
           });
+          const cycle = gsap.timeline({ repeat: -1 });
+          cycle
+            .to(container, { y: heroOffset + amplitude, duration: 0.75 })
+            .to(container, { y: heroOffset - amplitude, duration: 5, ease: 'sine.inOut' })
+            .to(container, { y: heroOffset - amplitude, duration: 0.75 })
+            .to(container, { y: heroOffset + amplitude, duration: 5, ease: 'sine.inOut' });
+          oscillate.add(cycle);
         };
         const delayedStart = gsap.delayedCall(6.5, startOscillate);
 
