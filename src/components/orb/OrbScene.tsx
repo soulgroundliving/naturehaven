@@ -51,11 +51,21 @@ export default function OrbScene() {
         : -80;
       gsap.set(container, { y: heroOffset });
 
-      // On mobile, skip every continuous scrub — they fire on each native
-      // scroll frame and stack with WebGL paint cost. The orb still fades in
-      // and snaps between section states (onEnter/onLeaveBack are cheap).
+      // On mobile, skip the continuous scrub — it fires on each native scroll
+      // frame and stacks with WebGL paint cost. Use a cheap onLeave/onEnterBack
+      // snap so the orb stays anchored to the hero H1 while the hero is on
+      // screen, then jumps to centre for the rest of the page. (Previously
+      // `gsap.set(container, { y: 0 })` ran unconditionally on mobile, which
+      // dropped the orb to viewport centre — visibly below the "Nature Haven"
+      // heading instead of centred on it.)
       if (isMobile) {
-        gsap.set(container, { y: 0 });
+        ScrollTrigger.create({
+          trigger: '#hero',
+          start: 'top top',
+          end: 'bottom top',
+          onLeave: () => gsap.set(container, { y: 0 }),
+          onEnterBack: () => gsap.set(container, { y: heroOffset }),
+        });
       } else {
         const setOrbY = gsap.quickSetter(container, 'y', 'px');
         ScrollTrigger.create({
