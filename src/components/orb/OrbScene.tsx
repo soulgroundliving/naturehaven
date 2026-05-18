@@ -52,13 +52,19 @@ export default function OrbScene() {
       gsap.set(container, { y: heroOffset });
 
       // On mobile, skip the continuous scrub — it fires on each native scroll
-      // frame and stacks with WebGL paint cost. Use a cheap onLeave/onEnterBack
-      // snap so the orb stays anchored to the hero H1 while the hero is on
-      // screen, then jumps to centre for the rest of the page. (Previously
-      // `gsap.set(container, { y: 0 })` ran unconditionally on mobile, which
-      // dropped the orb to viewport centre — visibly below the "Nature Haven"
-      // heading instead of centred on it.)
+      // frame and stacks with WebGL paint cost. Instead: hold the orb at the
+      // H1 anchor for 3 s so the user can read "Nature Haven" with the orb
+      // framed between the two words, then auto-drift to viewport centre over
+      // 2 s. After that the section-anchored triggers (scale/tilt at #about
+      // etc.) take over normally. Cheap onLeave/onEnterBack snap covers the
+      // case where the user scrolls past hero before the auto-drift completes.
       if (isMobile) {
+        gsap.to(container, {
+          y: 0,
+          duration: 2,
+          delay: 3,
+          ease: 'power2.inOut',
+        });
         ScrollTrigger.create({
           trigger: '#hero',
           start: 'top top',
