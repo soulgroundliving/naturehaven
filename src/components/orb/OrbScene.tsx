@@ -73,13 +73,19 @@ export default function OrbScene() {
         let oscillate: gsap.core.Tween | null = null;
         const startOscillate = () => {
           oscillate = gsap.to(container, {
+            // Linear ease + equal-duration segments → constant velocity all
+            // the way through. Previous sine.inOut produced visible
+            // accel/decel at every keyframe boundary, which the user read
+            // as "some parts speed up and down". Now each 2.5s leg covers
+            // the same vertical distance at the same speed for a slow,
+            // steady drift between the two title lines.
             keyframes: [
-              { y: heroOffset + amplitude, duration: 1.25 },
-              { y: heroOffset,             duration: 1.25 },
-              { y: heroOffset - amplitude, duration: 1.25 },
-              { y: heroOffset,             duration: 1.25 },
+              { y: heroOffset + amplitude, duration: 2.5 },
+              { y: heroOffset,             duration: 2.5 },
+              { y: heroOffset - amplitude, duration: 2.5 },
+              { y: heroOffset,             duration: 2.5 },
             ],
-            ease: 'sine.inOut',
+            ease: 'none',
             repeat: -1,
           });
         };
