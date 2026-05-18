@@ -102,13 +102,17 @@ export default function VideoBackground() {
       <video
         ref={videoRef}
         src={VIDEO_URL}
+        // iOS Low Power Mode blocks autoplay AND skips frame decode for
+        // muted/paused videos — `opacity: 1` alone wasn't enough because
+        // there's no frame to show. The poster is a still extracted from
+        // the same video (t=2s, post fade-in) so the seam between poster
+        // and the first played frame is invisible. iOS Safari renders the
+        // poster instantly, even before video metadata loads.
+        poster="/assets/hero-video-poster.jpg"
         muted
         playsInline
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
-        // Start visible so the frozen first frame shows immediately, even
-        // when iOS Low Power Mode blocks autoplay. Tick still runs the
-        // end-of-loop fade-out + post-`ended` fade-in for smooth crossfades.
         style={{ opacity: 1 }}
       />
       {/* Slot-tinted sky overlay — fades from palette sky color at top to
