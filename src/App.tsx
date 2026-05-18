@@ -81,7 +81,16 @@ function App() {
 
     const onPageShow = (e: PageTransitionEvent) => {
       if (e.persisted) {
+        // bfcache restore triggers Safari's saved-scroll animation just like
+        // a normal load. Same 60-frame pin as LoadingOverlay onComplete below
+        // — three rAFs (~50ms) didn't outlast iOS's smooth-restore on phone.
         window.scrollTo(0, 0);
+        let frame = 0;
+        const pinTop = () => {
+          window.scrollTo(0, 0);
+          if (frame++ < 60) requestAnimationFrame(pinTop);
+        };
+        requestAnimationFrame(pinTop);
         requestAnimationFrame(() =>
           requestAnimationFrame(() => ScrollTrigger.refresh())
         );
@@ -166,19 +175,20 @@ function App() {
     <div className="relative">
       {!introComplete && (
         <LoadingOverlay onComplete={() => {
-          // Release the pre-React scroll lock from index.html, reset to top,
-          // then re-pin scroll for two more frames — iOS Safari can still
-          // apply a late "restore to previous scrollY" after the first paint
-          // even with scrollRestoration='manual'. Three rAF-spaced calls
-          // outlast that window without noticeable jank.
+          // Release the pre-React scroll lock and pin scrollY = 0 for ~1s.
+          // iOS Safari ignores scrollRestoration='manual' once paint commits
+          // and animates back to a remembered scroll position from the prior
+          // visit — three rAFs (~50ms) didn't outlast that animation, so
+          // users saw the page jerk to mid-RoomJourney before snapping to
+          // hero. 60 frame-by-frame pins (~1s) outlast even a slow restore.
           document.getElementById('nh-prelock')?.remove();
           window.scrollTo(0, 0);
-          requestAnimationFrame(() => {
+          let frame = 0;
+          const pinTop = () => {
             window.scrollTo(0, 0);
-            requestAnimationFrame(() => {
-              window.scrollTo(0, 0);
-            });
-          });
+            if (frame++ < 60) requestAnimationFrame(pinTop);
+          };
+          requestAnimationFrame(pinTop);
           // No manual ScrollTrigger.refresh() here — GSAP's own ResizeObserver
           // already refreshes positions as lazy sections load during the intro.
           // An explicit refresh at this moment can fire onUpdate with a stale
