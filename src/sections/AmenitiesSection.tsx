@@ -64,12 +64,14 @@ const AmenitiesSection: React.FC = () => {
       if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const getDistance = () => track.scrollWidth - section.offsetWidth;
-      // Extra scroll pixels held at end so CTA card has time to be read
-      const getDwell    = () => window.innerHeight * 1.5;
 
-      // Set wrapper height to create the scroll space (sticky section stays 100vh)
+      // Set wrapper height to create the scroll space (sticky section stays 100vh).
+      // No dwell — a forward-only "hold at CTA" pause produces a dead zone on
+      // reverse scroll where the track is locked at -d for the same number of
+      // pixels, which reads as the page being blocked/frozen on desktop. Keep
+      // scroll symmetric: animation covers the full wrapper scroll range.
       const setWrapperHeight = () => {
-        wrapper.style.height = `${window.innerHeight + getDistance() + getDwell()}px`;
+        wrapper.style.height = `${window.innerHeight + getDistance()}px`;
       };
       setWrapperHeight();
 
@@ -88,7 +90,7 @@ const AmenitiesSection: React.FC = () => {
       ScrollTrigger.create({
         trigger: wrapper,
         start: 'top top',
-        end: () => `+=${getDistance() + getDwell()}`,
+        end: () => `+=${getDistance()}`,
         invalidateOnRefresh: true,
         onRefresh: setWrapperHeight,
         // When scrolling back above the trigger, reset track to start position.
@@ -97,11 +99,9 @@ const AmenitiesSection: React.FC = () => {
           if (setProgress) setProgress(0);
         },
         onUpdate: (st) => {
-          const d     = getDistance();
-          const total = d + getDwell();
-          const hp    = Math.min(1, (st.progress * total) / d);
-          setX(-d * hp);
-          if (setProgress) setProgress(hp);
+          const d = getDistance();
+          setX(-d * st.progress);
+          if (setProgress) setProgress(st.progress);
         },
       });
     },
