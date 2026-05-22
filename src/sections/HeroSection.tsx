@@ -7,7 +7,7 @@ import { ArrowDown } from '@/components/icons';
 gsap.registerPlugin(ScrollTrigger);
 
 // Each word in its own mask container — editorial mask-reveal effect
-const LABEL_WORDS = ['Quiet', 'Living', 'in', 'Saimai,', 'Bangkok'];
+const LABEL_WORDS = ['Lite', 'Service', 'Apartment', '·', 'Saimai,', 'Bangkok'];
 const HEADLINE_LINES = ['Nature', 'Haven'];
 
 const HeroSection: React.FC = () => {
@@ -114,7 +114,7 @@ const HeroSection: React.FC = () => {
         <p
           className="font-sans text-[10px] md:text-xs uppercase tracking-[0.22em] mb-8 flex flex-wrap justify-center gap-x-[0.55em] gap-y-1"
           style={{ color: 'var(--text-on-bg, #2B2B2B)', textShadow: 'var(--text-shadow-hero)' }}
-          aria-label="Quiet Living in Saimai, Bangkok"
+          aria-label="Lite Service Apartment · Saimai, Bangkok"
         >
           {LABEL_WORDS.map((word, i) => (
             <span key={i} className="inline-block overflow-hidden" style={{ lineHeight: 1.3 }}>
