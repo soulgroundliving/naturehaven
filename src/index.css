@@ -103,6 +103,16 @@
     transition: background 600ms ease;
   }
 
+  /* Desktop + no reduced-motion: sections start hidden so GSAP can lift
+     them in on scroll. Mobile and reduced-motion users see them at full
+     opacity immediately (GSAP skips the animation for those contexts). */
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .frosted-section {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+  }
+
   .card-surface {
     background: var(--card-bg, rgba(255,255,255,0.85));
     transition: background 600ms ease;

@@ -107,21 +107,25 @@ function App() {
   }, []);
 
   // Feature 7: frosted section lift-in on scroll.
-  // Skipped on mobile and for reduced-motion users — running 9+ simultaneous
-  // backdrop-blur-xl repaints on every scroll direction change is the single
-  // biggest source of jank on phones. Mobile users see frosted sections at
-  // their final state from the start.
+  // Skipped on mobile and for reduced-motion users. CSS (index.css) owns the
+  // initial hidden state for desktop — opacity:0 + translateY(22px) via media
+  // query — so sections are hidden before JS runs. This effect wires the
+  // ScrollTrigger animations and watches for lazy-loaded sections via
+  // MutationObserver so every section gets the lift-in regardless of when
+  // React.lazy() resolves it.
   useEffect(() => {
     const skip =
       window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
       window.matchMedia('(max-width: 767px)').matches;
-    if (skip) {
-      gsap.set('.frosted-section', { opacity: 1, y: 0 });
-      return;
-    }
-    gsap.set('.frosted-section', { opacity: 0, y: 22 });
-    const ctx = gsap.context(() => {
-      document.querySelectorAll<HTMLElement>('.frosted-section').forEach(section => {
+    if (skip) return; // CSS keeps sections at natural opacity:1 on these breakpoints
+
+    const animated = new WeakSet<Element>();
+    const ctx = gsap.context(() => {});
+
+    const animateSection = (section: HTMLElement) => {
+      if (animated.has(section)) return;
+      animated.add(section);
+      ctx.add(() => {
         gsap.to(section, {
           opacity: 1,
           y: 0,
@@ -136,8 +140,22 @@ function App() {
           },
         });
       });
+    };
+
+    // Wire up any sections already in the DOM (none on initial mount since all
+    // frosted sections are in lazy-loaded chunks, but kept for correctness).
+    document.querySelectorAll<HTMLElement>('.frosted-section').forEach(animateSection);
+
+    // Watch for lazy sections mounting after the initial render
+    const mo = new MutationObserver(() => {
+      document.querySelectorAll<HTMLElement>('.frosted-section').forEach(animateSection);
     });
-    return () => ctx.revert();
+    mo.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      mo.disconnect();
+      ctx.revert();
+    };
   }, []);
 
   useEffect(() => {
