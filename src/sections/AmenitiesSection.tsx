@@ -63,17 +63,32 @@ const AmenitiesSection: React.FC = () => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       if (window.matchMedia('(max-width: 767px)').matches) return;
 
-      const getDistance = () => track.scrollWidth - section.offsetWidth;
+      // cachedDist is the authoritative scroll distance for this refresh cycle.
+      // It is updated in refreshState() and read by end() and onUpdate() so all
+      // three always agree on the same value.
+      //
+      // Calling track.scrollWidth live in onUpdate() causes two problems:
+      //   1. Forced layout reflow on every scroll frame (expensive).
+      //   2. The value can differ from what GSAP used for `end`, making the
+      //      track over- or undershoot the intended final position.
+      //
+      // Math.max(0, …) guards against negative distance: once all cards fit
+      // within the viewport (≥ ~2866 px wide), getDistance() goes negative.
+      // Without the guard, wrapper height = 100vh − |d| which is shorter than
+      // the sticky section (100dvh). A sticky element taller than its container
+      // never un-sticks — the section freezes on screen and scroll appears stuck.
+      let cachedDist = 0;
 
-      // Set wrapper height to create the scroll space (sticky section stays 100vh).
+      const refreshState = () => {
+        cachedDist = Math.max(0, track.scrollWidth - section.offsetWidth);
+        wrapper.style.height = `${window.innerHeight + cachedDist}px`;
+      };
+
       // No dwell — a forward-only "hold at CTA" pause produces a dead zone on
       // reverse scroll where the track is locked at -d for the same number of
       // pixels, which reads as the page being blocked/frozen on desktop. Keep
       // scroll symmetric: animation covers the full wrapper scroll range.
-      const setWrapperHeight = () => {
-        wrapper.style.height = `${window.innerHeight + getDistance()}px`;
-      };
-      setWrapperHeight();
+      refreshState();
 
       const setX        = gsap.quickSetter(track, 'x', 'px') as (v: number) => void;
       const setProgress = progressRef.current
@@ -86,21 +101,31 @@ const AmenitiesSection: React.FC = () => {
       // This explicit set acts as the authoritative initial position.
       gsap.set(track, { x: 0 });
 
-      // No pin:true — sticky CSS handles visual pinning, avoiding Lenis conflicts
+      // No pin:true — sticky CSS handles visual pinning, avoiding Lenis conflicts.
+      //
+      // onRefreshInit fires BEFORE GSAP recalculates start/end positions, so
+      // cachedDist and wrapper height are stable when end() runs. onRefresh
+      // (fired after) left a one-cycle lag: end was computed with the previous
+      // cachedDist, then setWrapperHeight changed the page height — the two
+      // values were out of sync until the next refresh.
       ScrollTrigger.create({
         trigger: wrapper,
         start: 'top top',
-        end: () => `+=${getDistance()}`,
+        // Math.max(1, …) keeps the trigger range at least 1 px so GSAP never
+        // sees a degenerate zero-length trigger (start === end) which can cause
+        // unpredictable clamping behavior on narrow-range refreshes.
+        end: () => `+=${Math.max(1, cachedDist)}`,
         invalidateOnRefresh: true,
-        onRefresh: setWrapperHeight,
+        onRefreshInit: refreshState,
         // When scrolling back above the trigger, reset track to start position.
         onLeaveBack: () => {
           gsap.set(track, { x: 0 });
           if (setProgress) setProgress(0);
         },
         onUpdate: (st) => {
-          const d = getDistance();
-          setX(-d * st.progress);
+          // Guard: if cards fit the viewport there is nothing to translate.
+          if (cachedDist <= 0) return;
+          setX(-cachedDist * st.progress);
           if (setProgress) setProgress(st.progress);
         },
       });
