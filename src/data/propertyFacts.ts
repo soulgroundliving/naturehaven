@@ -32,7 +32,7 @@ export const UNITS = [
     hasKitchen: true,
     hasBalcony: true,
     petsAllowed: false,
-    priceOpening: 5800,
+    priceOpening: 7000,
     priceRegular: 6000,
   },
   {
@@ -46,7 +46,7 @@ export const UNITS = [
     hasBalcony: true,
     petsAllowed: true,
     petPolicy: 'สัตว์เลี้ยงขนาดเล็ก 1–2 ตัว',
-    priceOpening: 6200,
+    priceOpening: 7800,
     priceRegular: 6500,
   },
 ] as const;
@@ -67,8 +67,8 @@ export const FAQ_ITEMS = [
     id: 'price',
     q_th: 'ค่าเช่าต่อเดือนเท่าไหร่?',
     q_en: 'What is the monthly rent?',
-    a_th: 'Standard (units 1–2) เริ่มต้น 5,800 บาท/เดือน · Pet-Friendly (units 3–4) 6,200 บาท/เดือน (เรทเปิดตัว — ปกติ 6,000 และ 6,500 บาทตามลำดับ)',
-    a_en: 'Standard units 1–2 from 5,800 THB/month · Pet-friendly units 3–4 from 6,200 THB/month (opening rates).',
+    a_th: 'Standard (units 1–2) เริ่มต้น 7,000 บาท/เดือน · Pet-Friendly (units 3–4) 7,800 บาท/เดือน',
+    a_en: 'Standard units 1–2 from 7,000 THB/month · Pet-friendly units 3–4 from 7,800 THB/month.',
   },
   {
     id: 'inclusive',

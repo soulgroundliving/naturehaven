@@ -159,7 +159,7 @@ const HeroSection: React.FC = () => {
         <p
           className="hero-cta font-sans text-[11px] uppercase tracking-[0.18em] mt-7 text-white opacity-60"
         >
-          From 5,800 THB / mo · Available August 2026
+          From 7,000 THB / mo · Available August 2026
         </p>
 
       </div>

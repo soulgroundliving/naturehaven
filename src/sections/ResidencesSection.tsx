@@ -51,7 +51,7 @@ const TIERS = [
     label: 'Floors 1–2',
     name: 'Standard',
     unitCount: 10,
-    openingPrice: '5,800',
+    openingPrice: '7,000',
     standardPrice: '6,000',
     isPet: false,
     details: [
@@ -64,7 +64,7 @@ const TIERS = [
     label: 'Floors 3–4',
     name: 'Pet Friendly',
     unitCount: 10,
-    openingPrice: '6,200',
+    openingPrice: '7,800',
     standardPrice: '6,500',
     isPet: true,
     details: [
