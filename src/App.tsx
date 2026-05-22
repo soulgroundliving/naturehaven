@@ -109,10 +109,12 @@ function App() {
   // Feature 7: frosted section lift-in on scroll.
   // Skipped on mobile and for reduced-motion users. CSS (index.css) owns the
   // initial hidden state for desktop — opacity:0 + translateY(22px) via media
-  // query — so sections are hidden before JS runs. This effect wires the
-  // ScrollTrigger animations and watches for lazy-loaded sections via
-  // MutationObserver so every section gets the lift-in regardless of when
-  // React.lazy() resolves it.
+  // query — so sections are hidden before JS runs.
+  //
+  // IntersectionObserver drives the trigger instead of GSAP ScrollTrigger.
+  // This keeps the frosted-section animation completely independent of GSAP's
+  // scroll machinery — creating observers never calls ScrollTrigger.refresh(),
+  // so the AmenitiesSection track stays at x:0 on load.
   useEffect(() => {
     const skip =
       window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
@@ -120,41 +122,46 @@ function App() {
     if (skip) return; // CSS keeps sections at natural opacity:1 on these breakpoints
 
     const animated = new WeakSet<Element>();
-    const ctx = gsap.context(() => {});
+    const tweens: gsap.core.Tween[] = [];
 
-    const animateSection = (section: HTMLElement) => {
-      if (animated.has(section)) return;
-      animated.add(section);
-      ctx.add(() => {
-        gsap.to(section, {
-          opacity: 1,
-          y: 0,
-          duration: 0.85,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 90%',
-            toggleActions: 'play none none reverse',
-            invalidateOnRefresh: true,
-            fastScrollEnd: true,
-          },
+    // rootMargin '-10% bottom' ≈ GSAP's 'top 90%' — fires when element top
+    // crosses 90% of viewport height from the top.
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const section = entry.target as HTMLElement;
+          if (animated.has(section)) return;
+          animated.add(section);
+          io.unobserve(section);
+          tweens.push(
+            gsap.to(section, { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' })
+          );
         });
-      });
-    };
+      },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0 }
+    );
 
-    // Wire up any sections already in the DOM (none on initial mount since all
-    // frosted sections are in lazy-loaded chunks, but kept for correctness).
-    document.querySelectorAll<HTMLElement>('.frosted-section').forEach(animateSection);
+    // Wire up sections already in the DOM
+    document.querySelectorAll<HTMLElement>('.frosted-section').forEach(el => io.observe(el));
 
-    // Watch for lazy sections mounting after the initial render
+    // Watch for lazy sections — debounced so rapid DOM mutations don't flood
+    let debounceTimer: ReturnType<typeof setTimeout> | null = null;
     const mo = new MutationObserver(() => {
-      document.querySelectorAll<HTMLElement>('.frosted-section').forEach(animateSection);
+      if (debounceTimer) clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        document.querySelectorAll<HTMLElement>('.frosted-section').forEach(el => {
+          if (!animated.has(el)) io.observe(el);
+        });
+      }, 50);
     });
     mo.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       mo.disconnect();
-      ctx.revert();
+      if (debounceTimer) clearTimeout(debounceTimer);
+      io.disconnect();
+      tweens.forEach(t => t.kill());
     };
   }, []);
 
