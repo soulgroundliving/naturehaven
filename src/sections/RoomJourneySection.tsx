@@ -33,11 +33,12 @@ const N = SCENES.length;
 // Per-scene scroll dwell, in dvh. Scene 0 (Bedroom) is the first impression
 // of the scrollytelling so it gets longer dwell — users were reporting they
 // often scrolled straight past Bedroom into Kitchen/Balcony without noticing
-// the first scene at all. Kitchen and Balcony stay at the original pacing.
-// Mobile values are smaller across the board so phones don't consume too
-// many viewport-heights of scroll.
-const SCENE_VH        = [250, 150, 150];
-const SCENE_VH_MOBILE = [130, 80,  80 ];
+// the first scene at all. Bedroom now holds for 4 viewport-heights on
+// desktop / 2.2 on mobile so the image has time to fully register before
+// the crossfade to Kitchen starts. Kitchen and Balcony stay shorter — they
+// land in an already-engaged viewer.
+const SCENE_VH        = [400, 150, 150];
+const SCENE_VH_MOBILE = [220, 80,  80 ];
 
 const RoomJourneySection: React.FC = () => {
   const containerRef  = useRef<HTMLDivElement>(null);
