@@ -262,7 +262,7 @@ const ResidencesSection: React.FC = () => {
                 </div>
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">{r.openingRateTag[lang]}</span>
-                  <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">6,000 THB</span>
+                  <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">8,500 THB</span>
                 </div>
               </div>
               <div className="mt-5 pt-5 border-t sec-border">
@@ -293,7 +293,7 @@ const ResidencesSection: React.FC = () => {
                 </div>
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">{r.openingRateTag[lang]}</span>
-                  <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">6,500 THB</span>
+                  <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">9,200 THB</span>
                 </div>
               </div>
               <div className="mt-5 pt-5 border-t border-sage-green/15">

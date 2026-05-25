@@ -33,7 +33,7 @@ export const UNITS = [
     hasBalcony: true,
     petsAllowed: false,
     priceOpening: 7000,
-    priceRegular: 6000,
+    priceRegular: 8500,
   },
   {
     id: 'pet-friendly',
@@ -47,7 +47,7 @@ export const UNITS = [
     petsAllowed: true,
     petPolicy: 'สัตว์เลี้ยงขนาดเล็ก 1–2 ตัว',
     priceOpening: 7800,
-    priceRegular: 6500,
+    priceRegular: 9200,
   },
 ] as const;
 
