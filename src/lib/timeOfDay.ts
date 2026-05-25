@@ -229,7 +229,7 @@ const NIGHT: TimePalette = {
   skyVia: '#152937',
   skyTo: '#1A2A2E',
   orbTint: [0.95, 0.97, 1.0], // faint cool hint, mostly clear
-  overlayOpacity: 0.90,
+  overlayOpacity: 0.75,
   lightColor: '#9FB8D9',
   sparkleColor: '#C8D8F0',       // cool silver-blue — visible against dark navy
   lightIntensity: 0.7,
@@ -237,7 +237,7 @@ const NIGHT: TimePalette = {
   ambientIntensity: 0.25,
   envPreset: 'night',
   envMapIntensity: 2.8,
-  glassTransmission: 0.96,
+  glassTransmission: 0.85,
   glassIridescence: 0.80,   // visible rainbow shimmer against the dark sky
   textOnBg: '#F5F1EA',
   textMuted: '#A8B4BC',
