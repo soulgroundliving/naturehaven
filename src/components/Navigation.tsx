@@ -161,7 +161,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
       {/* Mobile Menu Overlay */}
       <div
         className={`fixed inset-0 z-[200] transition-all duration-500 lg:hidden ${
-          mobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          mobileOpen ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none'
         }`}
         style={{ backgroundColor: menuBg }}
       >
