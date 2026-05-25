@@ -122,7 +122,7 @@ const SmartLivingSection: React.FC = () => {
           {/* LEFT */}
           <div>
             <p className="sl-left-anim section-label sec-text-60 mb-4 tracking-[0.2em]">
-              {sl.sectionLabel[lang]}
+              {sl.leftLabel[lang]}
             </p>
             <h2 className="sl-left-anim font-serif text-3xl md:text-4xl lg:text-[44px] sec-text leading-[1.1] mb-5">
               {sl.leftHeadline[lang].split('\n').map((line, i, arr) => (
@@ -215,7 +215,7 @@ const SmartLivingSection: React.FC = () => {
           {/* RIGHT — Sustainability */}
           <div>
             <p className="sl-right-anim section-label sec-text-60 mb-4 tracking-[0.2em]">
-              {sl.sustainLabel[lang]}
+              {sl.rightLabel[lang]}
             </p>
             <h3 className="sl-right-anim font-serif text-3xl md:text-4xl lg:text-[40px] sec-text leading-[1.1] mb-2">
               {sl.rightHeadline[lang].split('\n').map((line, i, arr) => (

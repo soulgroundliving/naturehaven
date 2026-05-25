@@ -95,12 +95,12 @@ const AmenitiesSection: React.FC = () => {
               className="font-serif leading-[1.05]"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', color: 'var(--sec-text)' }}
             >
-              {am.introHeadline[lang].split('\n').map((line, i, arr) => (
+              {am.headline[lang].split('\n').map((line, i, arr) => (
                 <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>
               ))}
             </h2>
             <p className="font-sans font-light mt-5 leading-relaxed" style={{ fontSize: '0.9375rem', color: 'var(--sec-text-70)', maxWidth: '340px' }}>
-              {am.introBody[lang]}
+              {am.subtext[lang]}
             </p>
           </div>
           <div className="hidden md:flex items-center gap-3" style={{ color: 'var(--sec-text-55)' }}>
@@ -164,7 +164,7 @@ const AmenitiesSection: React.FC = () => {
           <p className="font-sans font-light leading-relaxed mb-10" style={{ fontSize: '0.9375rem', color: 'var(--sec-text-70)', maxWidth: '300px' }}>
             {am.ctaBody[lang]}
           </p>
-          <PrimaryButton href="#contact">{am.ctaBtn[lang]}</PrimaryButton>
+          <PrimaryButton href="#contact">{am.ctaButton[lang]}</PrimaryButton>
         </div>
       </div>
 

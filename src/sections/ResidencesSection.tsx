@@ -204,8 +204,8 @@ const ResidencesSection: React.FC = () => {
               <span className="font-sans text-base sec-text-60">sq.m.</span>
             </div>
             <div className="w-full h-px my-4" style={{ background: 'var(--sec-border)' }} />
-            <p className="font-sans text-base font-light sec-text mb-1">{r.spaceLayout[lang]}</p>
-            <p className="font-sans text-base font-light sec-text mb-5">{r.spaceKitchen[lang]}</p>
+            <p className="font-sans text-base font-light sec-text mb-1">{r.bedroom[lang]}</p>
+            <p className="font-sans text-base font-light sec-text mb-5">{r.kitchen[lang]}</p>
             <div className="flex items-center gap-2">
               <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full">
                 <span ref={unitsRef}>20</span> units total
@@ -223,21 +223,21 @@ const ResidencesSection: React.FC = () => {
             </h3>
             <ul className="flex flex-col gap-5">
               <li className="flex flex-col gap-1">
-                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.termContract[lang]}</span>
-                <span className="font-sans text-base font-light sec-text">{r.termContractVal[lang]}</span>
+                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.contractLabel[lang]}</span>
+                <span className="font-sans text-base font-light sec-text">{r.contractValue[lang]}</span>
               </li>
               <li className="flex flex-col gap-1">
-                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.termMoveIn[lang]}</span>
-                <span className="font-sans text-base font-light sec-text">{r.termMoveInVal[lang]}</span>
+                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.moveinLabel[lang]}</span>
+                <span className="font-sans text-base font-light sec-text">{r.moveinValue[lang]}</span>
               </li>
               <li className="flex flex-col gap-1">
-                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.termAvail[lang]}</span>
-                <span className="font-sans text-base font-light sec-text">{r.termAvailVal[lang]}</span>
+                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.availableLabel[lang]}</span>
+                <span className="font-sans text-base font-light sec-text">{r.availableValue[lang]}</span>
               </li>
             </ul>
             <div className="w-full h-px mt-8 mb-5" style={{ background: 'var(--sec-border)' }} />
             <p className="font-sans text-sm italic text-sage-green leading-relaxed">
-              {r.termAllInclusive[lang]}
+              {r.allinclusive[lang]}
             </p>
           </div>
         </div>
@@ -246,7 +246,7 @@ const ResidencesSection: React.FC = () => {
         <div className="mb-10 md:mb-16 lg:mb-20">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
             <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.pricingLabel[lang]}</p>
-            <p className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.pricingSubLabel[lang]}</p>
+            <p className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.pricingNote[lang]}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Standard tier */}
@@ -254,26 +254,26 @@ const ResidencesSection: React.FC = () => {
               <div className="flex items-center gap-2 mb-1">
                 <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.tierFloors1[lang]}</span>
               </div>
-              <p className="font-sans text-base font-medium leading-snug mb-5 sec-text-90">{r.tierName1[lang]}</p>
+              <p className="font-sans text-base font-medium leading-snug mb-5 sec-text-90">{r.tierNameStd[lang]}</p>
               <div className="pt-4 border-t sec-border">
                 <div className="flex items-baseline gap-1 mb-2">
                   <span className="font-serif text-[28px] sec-text leading-none">7,000</span>
                   <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">{r.openingRateTag[lang]}</span>
+                  <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">{r.openingRate[lang]}</span>
                   <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">8,500 THB</span>
                 </div>
               </div>
               <div className="mt-5 pt-5 border-t sec-border">
                 <ul className="flex flex-col gap-3">
                   <li className="flex flex-col gap-0.5">
-                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLabel1a[lang]}</span>
-                    <span className="font-sans text-sm font-light sec-text-80">{r.tierVal1a[lang]}</span>
+                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierUnitsLabel[lang]}</span>
+                    <span className="font-sans text-sm font-light sec-text-80">{"10 units"}</span>
                   </li>
                   <li className="flex flex-col gap-0.5">
-                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLabel1b[lang]}</span>
-                    <span className="font-sans text-sm font-light sec-text-80">{r.tierVal1b[lang]}</span>
+                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLocationLabel[lang]}</span>
+                    <span className="font-sans text-sm font-light sec-text-80">{r.tierLocation1[lang]}</span>
                   </li>
                 </ul>
               </div>
@@ -285,30 +285,30 @@ const ResidencesSection: React.FC = () => {
                 <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.tierFloors2[lang]}</span>
                 <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
               </div>
-              <p className="font-sans text-base font-medium leading-snug mb-5 text-sage-green">{r.tierName2[lang]}</p>
+              <p className="font-sans text-base font-medium leading-snug mb-5 text-sage-green">{r.tierNamePet[lang]}</p>
               <div className="pt-4 border-t border-sage-green/20">
                 <div className="flex items-baseline gap-1 mb-2">
                   <span className="font-serif text-[28px] sec-text leading-none">7,800</span>
                   <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">{r.openingRateTag[lang]}</span>
+                  <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">{r.openingRate[lang]}</span>
                   <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">9,200 THB</span>
                 </div>
               </div>
               <div className="mt-5 pt-5 border-t border-sage-green/15">
                 <ul className="flex flex-col gap-3">
                   <li className="flex flex-col gap-0.5">
-                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLabel2a[lang]}</span>
-                    <span className="font-sans text-sm font-light sec-text-80">{r.tierVal2a[lang]}</span>
+                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierUnitsLabel[lang]}</span>
+                    <span className="font-sans text-sm font-light sec-text-80">{"10 units"}</span>
                   </li>
                   <li className="flex flex-col gap-0.5">
-                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLabel2b[lang]}</span>
-                    <span className="font-sans text-sm font-light sec-text-80">{r.tierVal2b[lang]}</span>
+                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLocationLabel[lang]}</span>
+                    <span className="font-sans text-sm font-light sec-text-80">{r.tierLocation2[lang]}</span>
                   </li>
                   <li className="flex flex-col gap-0.5">
-                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLabel2c[lang]}</span>
-                    <span className="font-sans text-sm font-light sec-text-80">{r.tierVal2c[lang]}</span>
+                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierPetsLabel[lang]}</span>
+                    <span className="font-sans text-sm font-light sec-text-80">{r.tierPetsValue[lang]}</span>
                   </li>
                 </ul>
               </div>
@@ -348,7 +348,7 @@ const ResidencesSection: React.FC = () => {
         {/* Reserve CTA */}
         <div className="mb-10 md:mb-16 lg:mb-20 text-center">
           <p className="font-sans text-[11px] sec-text-55 uppercase tracking-[0.18em] mb-5">
-            {r.reserveLabel[lang]}
+            {r.ctaLabel[lang]}
           </p>
           <a
             href="#contact"
@@ -359,7 +359,7 @@ const ResidencesSection: React.FC = () => {
             className="group inline-flex items-center gap-3 bg-[var(--cta-bg,#3D5A4C)] text-pure-white font-sans text-sm uppercase tracking-wide px-10 py-4 rounded-full overflow-hidden relative transition-transform duration-200 active:scale-[0.98] hover:shadow-lg"
           >
             <span className="absolute inset-0 bg-[var(--cta-bg-hover,#4a6e5d)] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
-            <span className="relative z-10">{r.reserveBtn[lang]}</span>
+            <span className="relative z-10">{r.ctaButton[lang]}</span>
             <svg className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
