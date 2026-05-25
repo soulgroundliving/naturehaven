@@ -4,6 +4,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import SectionHeader from '@/components/SectionHeader';
 import { LocationPin } from '@/components/icons';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { TR } from '@/lib/translations';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,6 +29,8 @@ const lifestyleSurroundings = [
 
 const LocationSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { lang } = useLanguage();
+  const loc = TR.location;
 
   useGSAP(
     () => {
@@ -72,13 +76,12 @@ const LocationSection: React.FC = () => {
     >
       <div className="container-main">
         <SectionHeader
-          label="Location"
-          headline="Set in a peaceful neighborhood — yet effortlessly close to everyday essentials."
+          label={loc.sectionLabel[lang]}
+          headline={loc.sectionHeadline[lang].split('\n').join('\n')}
           dark
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Map Image */}
           <div className="loc-map relative">
             <img
               src="/assets/location-area-map.jpg"
@@ -86,7 +89,6 @@ const LocationSection: React.FC = () => {
               loading="lazy"
               className="w-full rounded-xl shadow-lg object-cover aspect-[3/4] lg:aspect-auto lg:h-[700px]"
             />
-            {/* Location Pin Overlay */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
               <div className="w-10 h-10 rounded-full bg-sage-green flex items-center justify-center shadow-lg">
                 <LocationPin className="text-pure-white" size={20} />
@@ -97,50 +99,37 @@ const LocationSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Location Lists */}
           <div>
             <h3 className="loc-item font-serif text-3xl md:text-[40px] sec-text mb-6">
-              Nearby Essentials
+              {loc.nearbyTitle[lang]}
             </h3>
             <div className="space-y-0">
               {nearbyEssentials.map(({ name, distance }, i) => (
                 <div
                   key={name}
                   className={`loc-item flex items-center justify-between py-3.5 ${
-                    i < nearbyEssentials.length - 1
-                      ? 'border-b border-dotted sec-border'
-                      : ''
+                    i < nearbyEssentials.length - 1 ? 'border-b border-dotted sec-border' : ''
                   }`}
                 >
-                  <span className="font-sans text-base font-normal sec-text">
-                    {name}
-                  </span>
-                  <span className="font-sans text-base font-light sec-text-60">
-                    {distance}
-                  </span>
+                  <span className="font-sans text-base font-normal sec-text">{name}</span>
+                  <span className="font-sans text-base font-light sec-text-60">{distance}</span>
                 </div>
               ))}
             </div>
 
             <h3 className="loc-item font-serif text-2xl md:text-[32px] sec-text mt-12 mb-6">
-              Lifestyle Surroundings
+              {loc.lifestyleTitle[lang]}
             </h3>
             <div className="space-y-0">
               {lifestyleSurroundings.map(({ name, distance }, i) => (
                 <div
                   key={name}
                   className={`loc-item flex items-center justify-between py-3 ${
-                    i < lifestyleSurroundings.length - 1
-                      ? 'border-b border-dotted sec-border'
-                      : ''
+                    i < lifestyleSurroundings.length - 1 ? 'border-b border-dotted sec-border' : ''
                   }`}
                 >
-                  <span className="font-sans text-base font-normal sec-text">
-                    {name}
-                  </span>
-                  <span className="font-sans text-base font-light sec-text-60">
-                    {distance}
-                  </span>
+                  <span className="font-sans text-base font-normal sec-text">{name}</span>
+                  <span className="font-sans text-base font-light sec-text-60">{distance}</span>
                 </div>
               ))}
             </div>

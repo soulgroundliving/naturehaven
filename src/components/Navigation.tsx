@@ -1,22 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Menu, Close } from './icons';
 import type { TimePalette } from '@/lib/timeOfDay';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { TR } from '@/lib/translations';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const navLinks = [
-  { label: 'PHILOSOPHY', href: '#about' },
-  { label: 'RESIDENCES', href: '#residences' },
-  { label: 'AMENITIES', href: '#amenities' },
-  { label: 'LOCATION', href: '#location' },
-  { label: 'DESIGN', href: '#design' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'CONTACT', href: '#contact' },
-];
-
-// contact section now has a fixed white background — only footer is truly dark
+// contact section now has a fixed white background -- only footer is truly dark
 const darkSections = ['footer'];
 
 interface NavigationProps {
@@ -26,6 +18,7 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palette }) => {
+  const { lang, toggle } = useLanguage();
   const isLightSlot = palette.slot === 'day' || palette.slot === 'morning';
   const menuBg = isLightSlot ? '#F5F3EF' : '#0E0E0E';
   const menuText = isLightSlot ? '#2B2B2B' : '#F5F1EA';
@@ -39,22 +32,29 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
   const isOnDarkSection = darkSections.some((id) => activeSection.includes(id));
   const isDark = isOnDarkSection && isPastHero;
 
+  const navLabels = TR.nav.links[lang];
+  const navLinks = [
+    { label: navLabels[0], href: '#about' },
+    { label: navLabels[1], href: '#residences' },
+    { label: navLabels[2], href: '#amenities' },
+    { label: navLabels[3], href: '#location' },
+    { label: navLabels[4], href: '#design' },
+    { label: navLabels[5], href: '#faq' },
+    { label: navLabels[6], href: '#contact' },
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
       const heroHeight = window.innerHeight * 0.8;
-
       setIsPastHero(currentY > heroHeight);
-
       if (currentY > lastScrollY.current && currentY > 200) {
         setIsHidden(true);
       } else {
         setIsHidden(false);
       }
-
       lastScrollY.current = currentY;
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -87,15 +87,9 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
               if (lenisRef.current) lenisRef.current.scrollTo(0);
             }}
             className={`font-serif text-lg transition-colors duration-500 ${
-              isPastHero
-                ? isDark
-                  ? 'text-pure-white'
-                  : 'text-dark-charcoal'
-                : ''
+              isPastHero ? (isDark ? 'text-pure-white' : 'text-dark-charcoal') : ''
             }`}
-            style={
-              !isPastHero ? { color: 'var(--text-on-bg, #FFFFFF)' } : undefined
-            }
+            style={!isPastHero ? { color: 'var(--text-on-bg, #FFFFFF)' } : undefined}
           >
             Nature Haven
           </a>
@@ -111,17 +105,9 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
                   href={link.href}
                   onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
                   className={`relative font-sans text-xs uppercase tracking-[0.05em] transition-colors duration-300 group ${
-                    isPastHero
-                      ? isDark
-                        ? 'text-pure-white'
-                        : 'text-dark-charcoal'
-                      : ''
+                    isPastHero ? (isDark ? 'text-pure-white' : 'text-dark-charcoal') : ''
                   }`}
-                  style={
-                    !isPastHero
-                      ? { color: 'var(--text-on-bg, #FFFFFF)' }
-                      : undefined
-                  }
+                  style={!isPastHero ? { color: 'var(--text-on-bg, #FFFFFF)' } : undefined}
                 >
                   <span className="relative">
                     {link.label}
@@ -137,21 +123,33 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
                 </a>
               );
             })}
+
+            {/* Language toggle -- desktop */}
+            <button
+              onClick={toggle}
+              className={`flex items-center gap-1 font-sans text-[10px] uppercase tracking-[0.1em] transition-colors duration-300 ${
+                isPastHero
+                  ? isDark
+                    ? 'text-pure-white/70 hover:text-pure-white'
+                    : 'text-dark-charcoal/60 hover:text-dark-charcoal'
+                  : ''
+              }`}
+              style={!isPastHero ? { color: 'var(--text-on-bg, rgba(255,255,255,0.65))' } : undefined}
+              aria-label="Switch language"
+            >
+              <span style={{ opacity: lang === 'en' ? 1 : 0.4 }}>EN</span>
+              <span className="mx-0.5 opacity-30">·</span>
+              <span style={{ opacity: lang === 'th' ? 1 : 0.4 }}>TH</span>
+            </button>
           </div>
 
           {/* Mobile Hamburger */}
           <button
             onClick={() => setMobileOpen(true)}
             className={`lg:hidden p-3 transition-colors duration-500 ${
-              isPastHero
-                ? isDark
-                  ? 'text-pure-white'
-                  : 'text-dark-charcoal'
-                : ''
+              isPastHero ? (isDark ? 'text-pure-white' : 'text-dark-charcoal') : ''
             }`}
-            style={
-              !isPastHero ? { color: 'var(--text-on-bg, #FFFFFF)' } : undefined
-            }
+            style={!isPastHero ? { color: 'var(--text-on-bg, #FFFFFF)' } : undefined}
           >
             <Menu size={24} />
           </button>
@@ -167,11 +165,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
       >
         <div className="flex flex-col h-full p-8">
           <div className="flex justify-end">
-            <button
-              onClick={() => setMobileOpen(false)}
-              className="p-2"
-              style={{ color: menuClose }}
-            >
+            <button onClick={() => setMobileOpen(false)} className="p-2" style={{ color: menuClose }}>
               <Close size={28} />
             </button>
           </div>
@@ -192,6 +186,18 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
                 {link.label}
               </a>
             ))}
+
+            {/* Language toggle -- mobile */}
+            <button
+              onClick={toggle}
+              className="mt-4 font-sans text-[13px] uppercase tracking-[0.15em]"
+              style={{ color: menuText, opacity: 0.6 }}
+              aria-label="Switch language"
+            >
+              <span style={{ opacity: lang === 'en' ? 1 : 0.4 }}>EN</span>
+              <span className="mx-1.5 opacity-30">·</span>
+              <span style={{ opacity: lang === 'th' ? 1 : 0.4 }}>TH</span>
+            </button>
           </div>
         </div>
       </div>

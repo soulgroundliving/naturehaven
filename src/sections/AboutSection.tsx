@@ -2,17 +2,19 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { TR } from '@/lib/translations';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { lang } = useLanguage();
+  const a = TR.about;
 
   useGSAP(
     () => {
       if (!sectionRef.current) return;
-      // Mobile: skip scroll-triggered reveals — repainting blurred surfaces
-      // on every direction change is the biggest source of scroll jank.
       if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const philo = sectionRef.current.querySelectorAll('.ph-anim');
@@ -57,7 +59,7 @@ const AboutSection: React.FC = () => {
         },
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [lang] }
   );
 
   return (
@@ -69,22 +71,20 @@ const AboutSection: React.FC = () => {
       {/* Philosophy Block */}
       <div className="container-main mb-12 md:mb-24 lg:mb-32">
         <p className="ph-anim section-label sec-text-60 mb-5 tracking-[0.2em]">
-          Our Philosophy
+          {a.philosophyLabel[lang]}
         </p>
         <h2 className="ph-anim font-serif text-[30px] md:text-5xl lg:text-[58px] sec-text leading-[1.07] max-w-2xl">
-          True comfort is<br />
-          never excessive.
+          {a.philosophyHeadline[lang].split('\n').map((line, i, arr) => (
+            <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>
+          ))}
         </h2>
         <p className="ph-anim font-sans text-[15px] font-light sec-text-70 leading-relaxed mt-7 max-w-[440px]">
-          It is found in stillness — in spaces that are thoughtfully designed,
-          and in a quiet balance that allows each day to unfold with ease.
+          {a.philosophyBody[lang]}
         </p>
       </div>
 
-      {/* About Block — image bleeds to left viewport edge, text padded on right */}
+      {/* About Block */}
       <div className="grid grid-cols-1 lg:grid-cols-[52%_48%] items-stretch">
-
-        {/* Image — no left padding, fills full column to section edge */}
         <div className="ab-image self-stretch">
           <img
             src="/assets/about-minimal-room.jpg"
@@ -95,19 +95,17 @@ const AboutSection: React.FC = () => {
           />
         </div>
 
-        {/* Text — manual padding mirrors container-main right side */}
         <div className="flex flex-col justify-center px-4 md:px-8 lg:pl-14 lg:pr-12 py-10 lg:py-0">
           <p className="ab-text-anim section-label sec-text-60 mb-5 tracking-[0.2em]">
-            About
+            {a.aboutLabel[lang]}
           </p>
           <h3 className="ab-text-anim font-serif text-[28px] md:text-[34px] lg:text-[38px] sec-text leading-[1.12]">
-            A newly built private<br />
-            residence inspired<br />
-            by MUJI minimal living.
+            {a.aboutHeadline[lang].split('\n').map((line, i, arr) => (
+              <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>
+            ))}
           </h3>
           <p className="ab-text-anim font-sans text-[15px] font-light sec-text-70 leading-relaxed mt-7 max-w-sm">
-            Designed for calm, crafted for privacy, and quietly connected
-            to Sai Mai Road. Available from August 2026.
+            {a.aboutBody[lang]}
           </p>
           <button
             onClick={() => {
@@ -116,7 +114,7 @@ const AboutSection: React.FC = () => {
             className="ab-text-anim group mt-9 inline-flex items-center gap-2.5 font-serif italic text-[18px] sec-text hover:text-sage-green transition-colors duration-300 self-start py-2 -my-2"
           >
             <span className="relative">
-              View Residences
+              {a.aboutButton[lang]}
               <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-current group-hover:w-full transition-all duration-500" />
             </span>
             <svg
@@ -134,7 +132,6 @@ const AboutSection: React.FC = () => {
             </svg>
           </button>
         </div>
-
       </div>
     </section>
   );

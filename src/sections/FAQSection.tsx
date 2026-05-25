@@ -4,11 +4,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { ChevronDown } from 'lucide-react';
 import { FAQ_ITEMS } from '@/data/propertyFacts';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { TR } from '@/lib/translations';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const FAQSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { lang } = useLanguage();
+  const f = TR.faq;
 
   useGSAP(
     () => {
@@ -53,13 +57,14 @@ const FAQSection: React.FC = () => {
       className="section-padding frosted-section backdrop-blur-xl"
     >
       <div className="container-main">
-        {/* Header */}
         <div className="text-center mb-10 md:mb-14">
           <p className="faq-header-animate section-label sec-text-60 mb-4 tracking-[0.2em]">
-            FAQ
+            {f.sectionLabel[lang]}
           </p>
           <h2 className="faq-header-animate font-serif text-3xl md:text-5xl lg:text-[56px] sec-text leading-[1.1] mb-3">
-            คำถามที่พบบ่อย
+            {f.headline[lang].split('\n').map((line, i, arr) => (
+              <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>
+            ))}
           </h2>
           <div className="faq-header-animate flex items-center justify-center gap-4 mt-7">
             <div className="h-px w-14" style={{ background: 'var(--sec-border)' }} />
@@ -70,34 +75,20 @@ const FAQSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Accordion */}
         <div className="max-w-3xl mx-auto card-surface backdrop-blur-sm rounded-xl overflow-hidden divide-y sec-border">
           {FAQ_ITEMS.map((item) => (
-            <details
-              key={item.id}
-              className="faq-item group"
-            >
+            <details key={item.id} className="faq-item group">
               <summary className="flex items-start justify-between gap-4 px-6 py-5 cursor-pointer list-none select-none hover:bg-black/[0.025] transition-colors duration-200">
                 <div className="flex-1 min-w-0">
                   <p className="font-sans text-[15px] font-medium sec-text-90 leading-snug">
-                    {item.q_th}
-                  </p>
-                  <p className="font-sans text-[12px] sec-text-55 mt-0.5 leading-snug" lang="en">
-                    {item.q_en}
+                    {lang === 'en' ? item.q_en : item.q_th}
                   </p>
                 </div>
-                <ChevronDown
-                  size={18}
-                  className="flex-shrink-0 mt-0.5 sec-text-55 transition-transform duration-300 group-open:rotate-180"
-                />
+                <ChevronDown size={18} className="flex-shrink-0 mt-0.5 sec-text-55 transition-transform duration-300 group-open:rotate-180" />
               </summary>
-
               <div className="px-6 pb-5 pt-1">
                 <p className="font-sans text-[15px] font-light sec-text-80 leading-relaxed">
-                  {item.a_th}
-                </p>
-                <p className="font-sans text-[12px] sec-text-55 mt-1.5 leading-relaxed" lang="en">
-                  {item.a_en}
+                  {lang === 'en' ? item.a_en : item.a_th}
                 </p>
               </div>
             </details>

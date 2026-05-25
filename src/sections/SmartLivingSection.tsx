@@ -20,41 +20,15 @@ import {
   User,
   type LucideIcon,
 } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { TR } from '@/lib/translations';
 
 gsap.registerPlugin(ScrollTrigger);
 
 type SimpleIcon = React.FC<{ size?: number; className?: string }>;
 
-const features: { Icon: SimpleIcon; label: string; sub: string }[] = [
-  { Icon: KeyIcon,    label: 'Digital door lock', sub: 'Unit & building' },
-  { Icon: ShieldIcon, label: 'CCTV security',     sub: '24/7 monitoring' },
-  { Icon: WifiIcon,   label: 'Free Wi-Fi',        sub: 'AIS Fiber' },
-];
-
-const appFeatures: { Icon: LucideIcon; label: string; sub: string }[] = [
-  { Icon: CalendarCheck, label: 'Bookings',     sub: 'Common spaces' },
-  { Icon: Receipt,       label: 'Payments',     sub: 'Auto · LINE Pay' },
-  { Icon: Wrench,        label: 'Maintenance',  sub: 'Request anytime' },
-  { Icon: PawPrint,      label: 'Pet records',  sub: 'Vaccination history' },
-];
-
-const sustainable = [
-  {
-    num: '01',
-    title: 'Solar energy integration',
-    body: "Rooftop solar offsets common-area power, reducing the building's footprint year-round.",
-  },
-  {
-    num: '02',
-    title: 'Energy-conscious design',
-    body: 'Cross-ventilation, blackout curtains and inverter cooling — designed to use less from day one.',
-  },
-  {
-    num: '03',
-    title: 'Long-term material durability',
-    body: 'Selected for how they age — quietly, without losing their character.',
-  },
-];
+const FEATURE_ICONS: SimpleIcon[] = [KeyIcon, ShieldIcon, WifiIcon];
+const APP_FEATURE_ICONS: LucideIcon[] = [CalendarCheck, Receipt, Wrench, PawPrint];
 
 const PhoneTile: React.FC<{
   Icon: LucideIcon | SimpleIcon;
@@ -64,28 +38,24 @@ const PhoneTile: React.FC<{
 }> = ({ Icon, title, sub, accent = false }) => (
   <div
     className={`rounded-lg p-3 aspect-[1.4] flex flex-col justify-between border ${
-      accent
-        ? 'bg-sage-green/30 border-transparent'
-        : 'bg-pure-white border-dark-charcoal/12'
+      accent ? 'bg-sage-green/30 border-transparent' : 'bg-pure-white border-dark-charcoal/12'
     }`}
   >
-    <Icon
-      size={18}
-      className={accent ? 'text-sage-green' : 'text-dark-charcoal/60'}
-    />
+    <Icon size={18} className={accent ? 'text-sage-green' : 'text-dark-charcoal/60'} />
     <div>
-      <div className="text-[11px] font-medium text-dark-charcoal leading-tight">
-        {title}
-      </div>
-      <div className="text-[9px] text-dark-charcoal/55 mt-0.5 leading-tight">
-        {sub}
-      </div>
+      <div className="text-[11px] font-medium text-dark-charcoal leading-tight">{title}</div>
+      <div className="text-[9px] text-dark-charcoal/55 mt-0.5 leading-tight">{sub}</div>
     </div>
   </div>
 );
 
 const SmartLivingSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { lang } = useLanguage();
+  const sl = TR.smart;
+  const features = sl.features[lang];
+  const appFeatures = sl.appFeatures[lang];
+  const sustainable = sl.sustainable[lang];
 
   useGSAP(
     () => {
@@ -149,99 +119,80 @@ const SmartLivingSection: React.FC = () => {
       <div className="container-main">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.9fr_1fr] gap-8 lg:gap-16 items-start">
 
-          {/* LEFT — Quietly Connected */}
+          {/* LEFT */}
           <div>
             <p className="sl-left-anim section-label sec-text-60 mb-4 tracking-[0.2em]">
-              Quietly Connected
+              {sl.sectionLabel[lang]}
             </p>
             <h2 className="sl-left-anim font-serif text-3xl md:text-4xl lg:text-[44px] sec-text leading-[1.1] mb-5">
-              Managed simply,<br />
-              through one<br />
-              application.
+              {sl.leftHeadline[lang].split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>
+              ))}
             </h2>
             <p className="sl-left-anim font-sans text-[15px] font-light sec-text-70 leading-relaxed mb-8 max-w-md">
-              Smart Living gathers everything you might ever need — bookings,
-              payments, maintenance, even the air around you — into a single
-              quiet surface.
+              {sl.leftBody[lang]}
             </p>
 
-            {/* Feature list */}
             <div className="sl-left-anim flex flex-col gap-5">
-              {features.map(({ Icon, label, sub }) => (
-                <div key={label} className="flex items-start gap-2.5">
-                  <Icon
-                    size={20}
-                    className="sec-text-80 flex-shrink-0 mt-[2px]"
-                  />
-                  <div>
-                    <p className="font-sans text-[15px] font-normal sec-text-90 leading-snug">
-                      {label}
-                    </p>
-                    <p className="font-sans text-[13px] sec-text-60 leading-snug mt-0.5">
-                      {sub}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* App-managed workflows */}
-            <div className="sl-left-anim mt-7 pt-6 border-t sec-border">
-              <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.2em] mb-4">
-                Also in-app
-              </p>
-              <div className="grid grid-cols-2 gap-x-5 gap-y-3">
-                {appFeatures.map(({ Icon, label, sub }) => (
-                  <div key={label} className="flex items-start gap-2">
-                    <Icon
-                      size={13}
-                      className="sec-text-60 flex-shrink-0 mt-[2px]"
-                    />
+              {features.map(({ label, sub }, i) => {
+                const Icon = FEATURE_ICONS[i];
+                return (
+                  <div key={i} className="flex items-start gap-2.5">
+                    <Icon size={20} className="sec-text-80 flex-shrink-0 mt-[2px]" />
                     <div>
-                      <p className="font-sans text-[15px] font-medium sec-text-80 leading-snug">
-                        {label}
-                      </p>
-                      <p className="font-sans text-[13px] sec-text-60 leading-snug mt-0.5">
-                        {sub}
-                      </p>
+                      <p className="font-sans text-[15px] font-normal sec-text-90 leading-snug">{label}</p>
+                      <p className="font-sans text-[13px] sec-text-60 leading-snug mt-0.5">{sub}</p>
                     </div>
                   </div>
-                ))}
+                );
+              })}
+            </div>
+
+            <div className="sl-left-anim mt-7 pt-6 border-t sec-border">
+              <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.2em] mb-4">
+                {sl.rightHeadline[lang].split('\n')[0]}
+              </p>
+              <div className="grid grid-cols-2 gap-x-5 gap-y-3">
+                {appFeatures.map(({ label, sub }, i) => {
+                  const Icon = APP_FEATURE_ICONS[i];
+                  return (
+                    <div key={i} className="flex items-start gap-2">
+                      <Icon size={13} className="sec-text-60 flex-shrink-0 mt-[2px]" />
+                      <div>
+                        <p className="font-sans text-[15px] font-medium sec-text-80 leading-snug">{label}</p>
+                        <p className="font-sans text-[13px] sec-text-60 leading-snug mt-0.5">{sub}</p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
 
-          {/* CENTER — Phone mockup */}
+          {/* CENTER — Phone mockup (static) */}
           <div className="sl-phone-anim flex justify-center order-first lg:order-none">
             <div
               className="relative w-full max-w-[260px] sm:max-w-[300px] bg-near-black rounded-[36px] p-3"
               style={{
                 aspectRatio: '9 / 19',
                 maxHeight: '70vh',
-                boxShadow:
-                  '0 24px 48px rgba(31,27,22,0.22), inset 0 0 0 2px rgba(255,255,255,0.06)',
+                boxShadow: '0 24px 48px rgba(31,27,22,0.22), inset 0 0 0 2px rgba(255,255,255,0.06)',
               }}
             >
               <div className="absolute top-[18px] left-1/2 -translate-x-1/2 w-24 h-[22px] bg-near-black rounded-xl z-10" />
               <div className="w-full h-full bg-[#F5F2EE] rounded-[26px] overflow-hidden flex flex-col">
                 <div className="px-5 pt-4 pb-1 flex justify-between text-[11px] text-dark-charcoal font-medium">
-                  <span>9:41</span>
-                  <span>● ● ●</span>
+                  <span>9:41</span><span>● ● ●</span>
                 </div>
                 <div className="px-5 pt-5 pb-4 flex justify-between items-center border-b border-dark-charcoal/10">
                   <div>
-                    <span className="block text-[9px] text-dark-charcoal/45 uppercase tracking-[0.35em] mb-1">
-                      NATURE HAVEN
-                    </span>
-                    <span className="font-serif text-[18px] font-light leading-tight">
-                      Good morning.
-                    </span>
+                    <span className="block text-[9px] text-dark-charcoal/45 uppercase tracking-[0.35em] mb-1">NATURE HAVEN</span>
+                    <span className="font-serif text-[18px] font-light leading-tight">Good morning.</span>
                   </div>
                   <div className="w-8 h-8 rounded-full bg-soft-taupe/50 border border-dark-charcoal/10" />
                 </div>
                 <div className="mx-5 mt-4 mb-4 px-3.5 py-2.5 bg-pure-white rounded-full flex gap-2 items-center text-[11px] text-dark-charcoal/40 shadow-sm">
-                  <Search size={13} />
-                  <span>Search the residence…</span>
+                  <Search size={13} /><span>Search the residence…</span>
                 </div>
                 <div className="px-5 grid grid-cols-2 gap-2">
                   <PhoneTile Icon={CalendarCheck} title="Booking"     sub="Common spaces"   accent />
@@ -261,31 +212,28 @@ const SmartLivingSection: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT — Sustainable by Intention */}
+          {/* RIGHT — Sustainability */}
           <div>
             <p className="sl-right-anim section-label sec-text-60 mb-4 tracking-[0.2em]">
-              Sustainable by Intention
+              {sl.sustainLabel[lang]}
             </p>
             <h3 className="sl-right-anim font-serif text-3xl md:text-4xl lg:text-[40px] sec-text leading-[1.1] mb-2">
-              Built to last —<br />
-              not to impress.
+              {sl.rightHeadline[lang].split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>
+              ))}
             </h3>
             <ul className="mt-8 flex flex-col">
-              {sustainable.map(({ num, title, body }) => (
+              {sustainable.map(({ title, body }, i) => (
                 <li
-                  key={num}
+                  key={i}
                   className="sl-right-anim py-6 border-t sec-border last:border-b flex gap-5 items-start"
                 >
                   <span className="font-serif text-[22px] font-light sec-text-60 min-w-[36px] leading-none pt-1">
-                    {num}
+                    {String(i + 1).padStart(2, '0')}
                   </span>
                   <div>
-                    <h4 className="font-sans text-[15px] font-medium sec-text-90 mb-1.5">
-                      {title}
-                    </h4>
-                    <p className="font-sans text-sm sec-text-70 leading-relaxed">
-                      {body}
-                    </p>
+                    <h4 className="font-sans text-[15px] font-medium sec-text-90 mb-1.5">{title}</h4>
+                    <p className="font-sans text-sm sec-text-70 leading-relaxed">{body}</p>
                   </div>
                 </li>
               ))}

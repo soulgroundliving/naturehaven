@@ -3,34 +3,16 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { LineIcon } from '@/components/icons';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { TR } from '@/lib/translations';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const journeySteps = [
-  {
-    num: '01',
-    title: 'Explore',
-    body: 'Browse the residences. Decide if Nature Haven is the right fit.',
-  },
-  {
-    num: '02',
-    title: 'Reach out',
-    body: "Message us on LINE. We'll answer questions and arrange a viewing.",
-  },
-  {
-    num: '03',
-    title: 'Reserve',
-    body: 'Pay the deposit via PromptPay to hold your unit.',
-  },
-  {
-    num: '04',
-    title: 'Move in',
-    body: 'Sign the lease. Residences open from August 2026.',
-  },
-];
-
 const ContactSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { lang } = useLanguage();
+  const c = TR.contact;
+  const steps = c.steps[lang];
 
   useGSAP(
     () => {
@@ -51,15 +33,15 @@ const ContactSection: React.FC = () => {
         },
       });
 
-      const steps = sectionRef.current.querySelectorAll('.journey-step');
-      gsap.from(steps, {
+      const stepEls = sectionRef.current.querySelectorAll('.journey-step');
+      gsap.from(stepEls, {
         y: 16,
         opacity: 0,
         duration: 0.55,
         stagger: 0.1,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: steps[0] as Element,
+          trigger: stepEls[0] as Element,
           start: 'top 82%',
           toggleActions: 'play none none reverse',
         },
@@ -77,16 +59,16 @@ const ContactSection: React.FC = () => {
       <div className="container-main">
         <div className="text-center mb-12">
           <p className="contact-animate section-label mb-4 tracking-[0.2em]">
-            Contact
+            {c.sectionLabel[lang]}
           </p>
           <h2 className="contact-animate font-serif text-[28px] md:text-5xl lg:text-6xl xl:text-[80px] leading-[1.1] sec-text">
-            Reserve your space quietly.
+            {c.headline[lang]}
           </h2>
         </div>
 
         {/* Booking journey */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-14 md:mb-20">
-          {journeySteps.map(({ num, title, body }) => (
+          {steps.map(({ num, title, body }) => (
             <div key={num} className="journey-step border-t-2 sec-border pt-5">
               <span className="block font-serif text-[80px] md:text-[96px] font-light leading-[1] mb-3 sec-text-55">
                 {num}
@@ -114,7 +96,7 @@ const ContactSection: React.FC = () => {
             <span className="relative z-10">Reserve via LINE</span>
           </a>
           <p className="font-sans text-base font-light text-center sec-text-60">
-            We answer fastest on LINE.
+            {c.lineNote[lang]}
           </p>
         </div>
       </div>

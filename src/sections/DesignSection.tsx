@@ -4,25 +4,19 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import SectionHeader from '@/components/SectionHeader';
 import { Check } from '@/components/icons';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { TR } from '@/lib/translations';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const materials = [
-  { color: '#D4C5B5', text: 'SPC flooring — light tone, soft contrast with furniture' },
-  { color: '#EDE7DE', text: 'Soft light wall palette (Nippon Paint OW 2154P)' },
-  { color: '#C4A882', text: 'Built-in HMR E1 laminate — natural wood tone' },
-  { color: '#C8A951', text: 'Modern switch design' },
-];
-
-const architectureSpecs = [
-  '20-unit low-rise residence (no elevator)',
-  'North–South airflow optimization',
-  'Ergonomic layout planning',
-  'Sky Hook feature for vertical utility use',
-];
+const materialColors = ['#D4C5B5', '#EDE7DE', '#C4A882', '#C8A951'];
 
 const DesignSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { lang } = useLanguage();
+  const d = TR.design;
+  const materialTexts = d.materials[lang];
+  const archSpecs = d.archSpecs[lang];
 
   useGSAP(
     () => {
@@ -65,8 +59,8 @@ const DesignSection: React.FC = () => {
     <section ref={sectionRef} id="design" className="frosted-section backdrop-blur-xl section-padding">
       <div className="container-main">
         <SectionHeader
-          label="Design & Architecture"
-          headline="Designed with intention. Built for calm."
+          label={d.sectionLabel[lang]}
+          headline={d.sectionHeadline[lang].split('\n').join('\n')}
           dark
         />
 
@@ -74,22 +68,20 @@ const DesignSection: React.FC = () => {
           {/* Left Column — Materials */}
           <div>
             <h3 className="design-left-animate headline-sm mb-2 sec-text">
-              Design & Materials
+              {d.materialsTitle[lang]}
             </h3>
             <p className="design-left-animate font-sans text-base italic sec-text-70 mb-8">
-              Every material chosen with care.
+              {d.materialsSub[lang]}
             </p>
 
             <div className="space-y-5 mb-8">
-              {materials.map(({ color, text }) => (
-                <div key={text} className="design-left-animate flex items-center gap-4">
+              {materialTexts.map((text, i) => (
+                <div key={i} className="design-left-animate flex items-center gap-4">
                   <div
                     className="w-8 h-8 rounded-md shadow-sm flex-shrink-0 border border-pure-white/20"
-                    style={{ backgroundColor: color }}
+                    style={{ backgroundColor: materialColors[i] }}
                   />
-                  <span className="font-sans text-base font-light sec-text-80">
-                    {text}
-                  </span>
+                  <span className="font-sans text-base font-light sec-text-80">{text}</span>
                 </div>
               ))}
             </div>
@@ -107,16 +99,14 @@ const DesignSection: React.FC = () => {
           {/* Right Column — Architecture */}
           <div>
             <h3 className="design-right-animate headline-sm mb-8 sec-text">
-              Architecture & Living Concept
+              {d.archTitle[lang]}
             </h3>
 
             <ul className="space-y-4 mb-10">
-              {architectureSpecs.map((spec) => (
-                <li key={spec} className="design-right-animate flex items-start gap-3">
+              {archSpecs.map((spec, i) => (
+                <li key={i} className="design-right-animate flex items-start gap-3">
                   <Check className="text-sage-green mt-0.5 flex-shrink-0" size={18} />
-                  <span className="font-sans text-base font-light sec-text-80 leading-relaxed">
-                    {spec}
-                  </span>
+                  <span className="font-sans text-base font-light sec-text-80 leading-relaxed">{spec}</span>
                 </li>
               ))}
             </ul>

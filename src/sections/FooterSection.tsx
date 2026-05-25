@@ -2,11 +2,15 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { TR } from '@/lib/translations';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const FooterSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { lang } = useLanguage();
+  const f = TR.footer;
 
   useGSAP(
     () => {
@@ -50,22 +54,22 @@ const FooterSection: React.FC = () => {
         <div className="text-center mb-12">
           <p className="footer-animate font-serif text-[13px] tracking-[0.35em] sec-text-55 mb-5">N · H</p>
           <h3 className="footer-animate font-serif text-xl md:text-2xl sec-text">
-            Nature Haven — Quiet Living in Saimai
+            {f.headline[lang]}
           </h3>
           <p className="footer-animate font-sans text-sm font-light sec-text-60 mt-2">
-            A residence shaped by intention.
+            {f.sub[lang]}
           </p>
           <address
             className="footer-animate not-italic mt-3 font-sans text-[13px] sec-text-55 leading-relaxed"
             itemScope
             itemType="https://schema.org/PostalAddress"
           >
-            <span itemProp="addressLocality">Sai Mai</span
-            >{', '}
-            <span itemProp="addressRegion">Bangkok</span
-            >{' · '}
-            <span itemProp="postalCode">10220</span
-            >{' · '}
+            <span itemProp="addressLocality">Sai Mai</span>
+            {', '}
+            <span itemProp="addressRegion">Bangkok</span>
+            {' · '}
+            <span itemProp="postalCode">10220</span>
+            {' · '}
             <span itemProp="addressCountry">Thailand</span>
           </address>
         </div>
@@ -76,7 +80,7 @@ const FooterSection: React.FC = () => {
         {/* Bottom Area */}
         <div className="footer-animate flex flex-col-reverse md:flex-row items-center justify-between gap-4">
           <p className="font-sans text-[13px] sec-text-55">
-            © 2026 Nature Haven. All rights reserved.
+            {f.copyright[lang]}
           </p>
           <div className="flex items-center gap-8">
             <a

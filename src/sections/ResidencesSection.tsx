@@ -5,73 +5,26 @@ import { useGSAP } from '@gsap/react';
 import SectionHeader from '@/components/SectionHeader';
 import { Check } from '@/components/icons';
 import { PawPrint } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { TR } from '@/lib/translations';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const suitableFor = [
-  '1–2 residents',
-  'Working professionals',
-  'Couples',
-  'Those who value quiet living',
-];
-
-const essentials = [
-  'Built-in furniture (functional & minimal)',
-  '5 ft bed with ergonomic mattress',
-  'Work desk / wardrobe / shelving / chair',
-  'Full-length mirror',
-  'Air conditioner',
-  'Refrigerator & microwave',
-  'Water heater',
-  'Full blackout curtains',
-  'Air ventilation system',
-];
 
 const roomPhotos = [
   {
     src: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&fit=crop&auto=format&q=80',
-    label: 'Bathroom',
     alt: 'Minimal bathroom with natural light',
+    key: 'galleryBathroom',
   },
   {
     src: 'https://images.unsplash.com/photo-1757439402103-fc35542f96f8?w=800&fit=crop&auto=format&q=80',
-    label: 'Kitchen',
     alt: 'Separate kitchen with minimal fittings',
+    key: 'galleryKitchen',
   },
   {
     src: 'https://images.unsplash.com/photo-1725399103001-200ce2bb5350?w=800&fit=crop&auto=format&q=80',
-    label: 'Balcony',
     alt: 'Private balcony overlooking the garden',
-  },
-];
-
-const TIERS = [
-  {
-    id: 'standard' as const,
-    label: 'Floors 1–2',
-    name: 'Standard',
-    unitCount: 10,
-    openingPrice: '7,000',
-    standardPrice: '6,000',
-    isPet: false,
-    details: [
-      { label: 'Units available', value: '10 units' },
-      { label: 'Location', value: 'Ground & second floor' },
-    ],
-  },
-  {
-    id: 'pet' as const,
-    label: 'Floors 3–4',
-    name: 'Pet Friendly',
-    unitCount: 10,
-    openingPrice: '7,800',
-    standardPrice: '6,500',
-    isPet: true,
-    details: [
-      { label: 'Units available', value: '10 units' },
-      { label: 'Location', value: 'Third & fourth floor' },
-      { label: 'Pets', value: 'Small pets welcome (1–2 per unit)' },
-    ],
+    key: 'galleryBalcony',
   },
 ] as const;
 
@@ -80,12 +33,14 @@ const ResidencesSection: React.FC = () => {
   const sqmRef    = useRef<HTMLSpanElement>(null);
   const unitsRef  = useRef<HTMLSpanElement>(null);
   const floorsRef = useRef<HTMLSpanElement>(null);
+  const { lang } = useLanguage();
+  const r = TR.residences;
+  const suitableFor = r.suitableFor[lang];
+  const essentials = r.essentials[lang];
 
   useGSAP(
     () => {
       if (!sectionRef.current) return;
-      // Mobile: skip scroll-triggered reveals + number counters — they all
-      // pile up while the user is scrolling and cause jank.
       if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const cards = sectionRef.current.querySelectorAll('.res-card');
@@ -170,7 +125,6 @@ const ResidencesSection: React.FC = () => {
         },
       });
 
-      // Number counters
       if (sqmRef.current) {
         const el = sqmRef.current;
         const obj = { val: 28 };
@@ -216,8 +170,8 @@ const ResidencesSection: React.FC = () => {
     >
       <div className="container-main">
         <SectionHeader
-          label="Residences"
-          headline="Spaces designed for real living — comfortable, intentional, and meant to last."
+          label={r.sectionLabel[lang]}
+          headline={r.sectionHeadline[lang].split('\n').join('\n')}
           dark
         />
 
@@ -226,15 +180,13 @@ const ResidencesSection: React.FC = () => {
           {/* Suitable For */}
           <div className="res-card card-surface backdrop-blur-sm rounded-xl p-8 md:p-12">
             <h3 className="font-serif text-2xl md:text-[32px] sec-text mb-6">
-              Suitable For
+              {r.suitableForTitle[lang]}
             </h3>
             <ul className="space-y-3">
               {suitableFor.map((item) => (
                 <li key={item} className="flex items-center gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-sage-green flex-shrink-0" />
-                  <span className="font-sans text-base font-light sec-text">
-                    {item}
-                  </span>
+                  <span className="font-sans text-base font-light sec-text">{item}</span>
                 </li>
               ))}
             </ul>
@@ -243,23 +195,17 @@ const ResidencesSection: React.FC = () => {
           {/* Space & Layout */}
           <div className="res-card card-surface backdrop-blur-sm rounded-xl p-8 md:p-12">
             <h3 className="font-serif text-2xl md:text-[32px] sec-text mb-4">
-              Space & Layout
+              {r.spaceTitle[lang]}
             </h3>
             <div className="flex items-baseline gap-2 mb-2">
               <span ref={sqmRef} className="font-serif text-6xl md:text-7xl lg:text-[80px] sec-text leading-none">
                 31.5
               </span>
-              <span className="font-sans text-base sec-text-60">
-                sq.m.
-              </span>
+              <span className="font-sans text-base sec-text-60">sq.m.</span>
             </div>
             <div className="w-full h-px my-4" style={{ background: 'var(--sec-border)' }} />
-            <p className="font-sans text-base font-light sec-text mb-1">
-              1 Bedroom / 1 Bathroom
-            </p>
-            <p className="font-sans text-base font-light sec-text mb-5">
-              Separate kitchen with balcony
-            </p>
+            <p className="font-sans text-base font-light sec-text mb-1">{r.spaceLayout[lang]}</p>
+            <p className="font-sans text-base font-light sec-text mb-5">{r.spaceKitchen[lang]}</p>
             <div className="flex items-center gap-2">
               <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full">
                 <span ref={unitsRef}>20</span> units total
@@ -273,37 +219,25 @@ const ResidencesSection: React.FC = () => {
           {/* Terms */}
           <div className="res-card card-surface backdrop-blur-sm rounded-xl p-8 md:p-12">
             <h3 className="font-serif text-2xl md:text-[32px] sec-text mb-8">
-              Terms
+              {r.termsTitle[lang]}
             </h3>
             <ul className="flex flex-col gap-5">
               <li className="flex flex-col gap-1">
-                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
-                  Contract
-                </span>
-                <span className="font-sans text-base font-light sec-text">
-                  Annual (12 months)
-                </span>
+                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.termContract[lang]}</span>
+                <span className="font-sans text-base font-light sec-text">{r.termContractVal[lang]}</span>
               </li>
               <li className="flex flex-col gap-1">
-                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
-                  Move-in
-                </span>
-                <span className="font-sans text-base font-light sec-text">
-                  1-month deposit + 1-month advance
-                </span>
+                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.termMoveIn[lang]}</span>
+                <span className="font-sans text-base font-light sec-text">{r.termMoveInVal[lang]}</span>
               </li>
               <li className="flex flex-col gap-1">
-                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
-                  Available from
-                </span>
-                <span className="font-sans text-base font-light sec-text">
-                  August 2026
-                </span>
+                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.termAvail[lang]}</span>
+                <span className="font-sans text-base font-light sec-text">{r.termAvailVal[lang]}</span>
               </li>
             </ul>
             <div className="w-full h-px mt-8 mb-5" style={{ background: 'var(--sec-border)' }} />
             <p className="font-sans text-sm italic text-sage-green leading-relaxed">
-              All-inclusive — amenities, Wi-Fi, cleaning &amp; A/C service covered in monthly rate.
+              {r.termAllInclusive[lang]}
             </p>
           </div>
         </div>
@@ -311,75 +245,74 @@ const ResidencesSection: React.FC = () => {
         {/* Pricing Tiers */}
         <div className="mb-10 md:mb-16 lg:mb-20">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-            <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
-              Pricing
-            </p>
-            <p className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">
-              Opening rate · August 2026 · 20 units
-            </p>
+            <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.pricingLabel[lang]}</p>
+            <p className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.pricingSubLabel[lang]}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {TIERS.map((tier) => (
-              <div
-                key={tier.id}
-                className={[
-                  'tier-card rounded-xl border p-6 md:p-8',
-                  tier.isPet
-                    ? 'border-sage-green/30 bg-sage-green/5'
-                    : 'sec-border card-surface',
-                ].join(' ')}
-              >
-                {/* Header row */}
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">
-                    {tier.label}
-                  </span>
-                  {tier.isPet && (
-                    <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
-                  )}
+            {/* Standard tier */}
+            <div className="tier-card rounded-xl border sec-border card-surface p-6 md:p-8">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.tierFloors1[lang]}</span>
+              </div>
+              <p className="font-sans text-base font-medium leading-snug mb-5 sec-text-90">{r.tierName1[lang]}</p>
+              <div className="pt-4 border-t sec-border">
+                <div className="flex items-baseline gap-1 mb-2">
+                  <span className="font-serif text-[28px] sec-text leading-none">7,000</span>
+                  <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
                 </div>
-                <p className={[
-                  'font-sans text-base font-medium leading-snug mb-5',
-                  tier.isPet ? 'text-sage-green' : 'sec-text-90',
-                ].join(' ')}>
-                  {tier.name}
-                </p>
-
-                {/* Price */}
-                <div className={['pt-4 border-t', tier.isPet ? 'border-sage-green/20' : 'sec-border'].join(' ')}>
-                  <div className="flex items-baseline gap-1 mb-2">
-                    <span className="font-serif text-[28px] sec-text leading-none">
-                      {tier.openingPrice}
-                    </span>
-                    <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">
-                      Opening Rate
-                    </span>
-                    <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">
-                      {tier.standardPrice} THB
-                    </span>
-                  </div>
-                </div>
-
-                {/* Details — always visible */}
-                <div className={['mt-5 pt-5 border-t', tier.isPet ? 'border-sage-green/15' : 'sec-border'].join(' ')}>
-                  <ul className="flex flex-col gap-3">
-                    {tier.details.map(({ label, value }) => (
-                      <li key={label} className="flex flex-col gap-0.5">
-                        <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">
-                          {label}
-                        </span>
-                        <span className="font-sans text-sm font-light sec-text-80">
-                          {value}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">{r.openingRateTag[lang]}</span>
+                  <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">6,000 THB</span>
                 </div>
               </div>
-            ))}
+              <div className="mt-5 pt-5 border-t sec-border">
+                <ul className="flex flex-col gap-3">
+                  <li className="flex flex-col gap-0.5">
+                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLabel1a[lang]}</span>
+                    <span className="font-sans text-sm font-light sec-text-80">{r.tierVal1a[lang]}</span>
+                  </li>
+                  <li className="flex flex-col gap-0.5">
+                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLabel1b[lang]}</span>
+                    <span className="font-sans text-sm font-light sec-text-80">{r.tierVal1b[lang]}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Premium / pet tier */}
+            <div className="tier-card rounded-xl border border-sage-green/30 bg-sage-green/5 p-6 md:p-8">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.tierFloors2[lang]}</span>
+                <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
+              </div>
+              <p className="font-sans text-base font-medium leading-snug mb-5 text-sage-green">{r.tierName2[lang]}</p>
+              <div className="pt-4 border-t border-sage-green/20">
+                <div className="flex items-baseline gap-1 mb-2">
+                  <span className="font-serif text-[28px] sec-text leading-none">7,800</span>
+                  <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
+                </div>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">{r.openingRateTag[lang]}</span>
+                  <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">6,500 THB</span>
+                </div>
+              </div>
+              <div className="mt-5 pt-5 border-t border-sage-green/15">
+                <ul className="flex flex-col gap-3">
+                  <li className="flex flex-col gap-0.5">
+                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLabel2a[lang]}</span>
+                    <span className="font-sans text-sm font-light sec-text-80">{r.tierVal2a[lang]}</span>
+                  </li>
+                  <li className="flex flex-col gap-0.5">
+                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLabel2b[lang]}</span>
+                    <span className="font-sans text-sm font-light sec-text-80">{r.tierVal2b[lang]}</span>
+                  </li>
+                  <li className="flex flex-col gap-0.5">
+                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLabel2c[lang]}</span>
+                    <span className="font-sans text-sm font-light sec-text-80">{r.tierVal2c[lang]}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -394,22 +327,17 @@ const ResidencesSection: React.FC = () => {
             />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/35 to-transparent p-4 md:p-6">
               <span className="font-sans text-[10px] md:text-[11px] text-white/75 uppercase tracking-[0.2em]">
-                Bedroom
+                {r.galleryBedroom[lang]}
               </span>
             </div>
           </div>
           <div className="grid grid-cols-3 gap-2.5">
-            {roomPhotos.map(({ src, label, alt }) => (
-              <div key={label} className="gallery-thumb relative rounded-xl overflow-hidden aspect-square">
-                <img
-                  src={src}
-                  alt={alt}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+            {roomPhotos.map(({ src, alt, key }) => (
+              <div key={key} className="gallery-thumb relative rounded-xl overflow-hidden aspect-square">
+                <img src={src} alt={alt} className="w-full h-full object-cover" loading="lazy" />
                 <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/40 to-transparent p-2 md:p-4">
                   <span className="font-sans text-[9px] md:text-[11px] text-white/75 uppercase tracking-[0.2em]">
-                    {label}
+                    {r[key as keyof typeof r][lang]}
                   </span>
                 </div>
               </div>
@@ -420,7 +348,7 @@ const ResidencesSection: React.FC = () => {
         {/* Reserve CTA */}
         <div className="mb-10 md:mb-16 lg:mb-20 text-center">
           <p className="font-sans text-[11px] sec-text-55 uppercase tracking-[0.18em] mb-5">
-            Ready to make it yours?
+            {r.reserveLabel[lang]}
           </p>
           <a
             href="#contact"
@@ -431,13 +359,8 @@ const ResidencesSection: React.FC = () => {
             className="group inline-flex items-center gap-3 bg-[var(--cta-bg,#3D5A4C)] text-pure-white font-sans text-sm uppercase tracking-wide px-10 py-4 rounded-full overflow-hidden relative transition-transform duration-200 active:scale-[0.98] hover:shadow-lg"
           >
             <span className="absolute inset-0 bg-[var(--cta-bg-hover,#4a6e5d)] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
-            <span className="relative z-10">Reserve a Unit</span>
-            <svg
-              className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <span className="relative z-10">{r.reserveBtn[lang]}</span>
+            <svg className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
@@ -446,18 +369,16 @@ const ResidencesSection: React.FC = () => {
         {/* In-Room Essentials */}
         <div className="essentials-card card-surface backdrop-blur-sm rounded-xl p-8 md:p-12 lg:p-16">
           <h3 className="font-serif text-3xl md:text-[40px] sec-text text-center mb-2">
-            In-Room Essentials
+            {r.essentialsTitle[lang]}
           </h3>
           <p className="font-sans text-base italic sec-text-70 text-center mb-10 md:mb-12">
-            Every element is selected with purpose.
+            {r.essentialsSub[lang]}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5">
             {essentials.map((item) => (
               <div key={item} className="ess-item flex items-center gap-3">
                 <Check className="text-sage-green flex-shrink-0" size={20} />
-                <span className="font-sans text-base font-light sec-text">
-                  {item}
-                </span>
+                <span className="font-sans text-base font-light sec-text">{item}</span>
               </div>
             ))}
           </div>
