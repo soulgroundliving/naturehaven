@@ -339,8 +339,8 @@ const ResidencesSection: React.FC = () => {
         </div>
 
         {/* Photo Gallery — pinned scrollytelling on desktop, vertical stack on mobile */}
-        <div className="gallery-wrap relative mb-10 md:mb-16 lg:mb-20 md:[height:calc(100vh*4)]">
-          <div className="gallery-sticky relative md:sticky md:top-0 md:h-screen w-full md:overflow-hidden md:rounded-xl flex flex-col md:block gap-2.5 md:gap-0">
+        <div className="gallery-wrap relative mb-10 md:mb-16 lg:mb-20 md:w-screen md:left-1/2 md:right-1/2 md:-ml-[50vw] md:-mr-[50vw] md:[height:calc(100vh*4)]">
+          <div className="gallery-sticky relative md:sticky md:top-0 md:h-screen w-full md:overflow-hidden flex flex-col md:block gap-2.5 md:gap-0">
             {ALL_ROOMS.map((room, i) => (
               <div
                 key={room.key}
