@@ -66,7 +66,7 @@ const AmenitiesSection: React.FC = () => {
         },
       });
     },
-    { scope: wrapperRef, dependencies: [lang] }
+    { scope: wrapperRef }
   );
 
   return (

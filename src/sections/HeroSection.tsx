@@ -79,7 +79,7 @@ const HeroSection: React.FC = () => {
         },
       });
     },
-    { scope: sectionRef, dependencies: [lang] }
+    { scope: sectionRef }
   );
 
   return (

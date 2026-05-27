@@ -64,7 +64,7 @@ const InvitationSection: React.FC = () => {
         onLeave: () => { setPenLeft(96); setRuleScale(1); setPenOpacity(1); },
       });
     },
-    { scope: sectionRef, dependencies: [lang] }
+    { scope: sectionRef }
   );
 
   return (
