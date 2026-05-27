@@ -10,21 +10,30 @@ import { TR } from '@/lib/translations';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const roomPhotos = [
+const ALL_ROOMS = [
   {
-    src: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&fit=crop&auto=format&q=80',
-    alt: 'Minimal bathroom with natural light',
+    key: 'galleryBedroom',
+    src: '/assets/room-3d-render.jpg',
+    alt: 'Bedroom interior — 31.5 sq.m.',
+    eager: true,
+  },
+  {
     key: 'galleryBathroom',
+    src: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&fit=crop&auto=format&q=80',
+    alt: 'Minimal bathroom with natural light',
+    eager: false,
   },
   {
-    src: 'https://images.unsplash.com/photo-1757439402103-fc35542f96f8?w=800&fit=crop&auto=format&q=80',
-    alt: 'Separate kitchen with minimal fittings',
     key: 'galleryKitchen',
+    src: 'https://images.unsplash.com/photo-1757439402103-fc35542f96f8?w=1600&fit=crop&auto=format&q=80',
+    alt: 'Separate kitchen with minimal fittings',
+    eager: false,
   },
   {
-    src: 'https://images.unsplash.com/photo-1725399103001-200ce2bb5350?w=800&fit=crop&auto=format&q=80',
-    alt: 'Private balcony overlooking the garden',
     key: 'galleryBalcony',
+    src: 'https://images.unsplash.com/photo-1725399103001-200ce2bb5350?w=1600&fit=crop&auto=format&q=80',
+    alt: 'Private balcony overlooking the garden',
+    eager: false,
   },
 ] as const;
 
@@ -71,19 +80,45 @@ const ResidencesSection: React.FC = () => {
         },
       });
 
-      const tiles = sectionRef.current.querySelectorAll('.gallery-tile');
-      gsap.from(tiles, {
-        y: 20,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: tiles[0] as Element,
-          start: 'top 82%',
-          toggleActions: 'play none none reverse',
-        },
-      });
+      // Pinned scrollytelling room gallery — desktop only (mobile stacks vertically)
+      const galleryWrap = sectionRef.current.querySelector('.gallery-wrap');
+      const frames = galleryWrap?.querySelectorAll<HTMLElement>('.gallery-frame');
+      const dots   = galleryWrap?.querySelectorAll<HTMLElement>('.gal-dot');
+      if (galleryWrap && frames && frames.length > 0) {
+        const N = frames.length;
+        const opSetters  = Array.from(frames).map(f => gsap.quickSetter(f, 'opacity') as (v: number) => void);
+        const dotSetters = dots ? Array.from(dots).map(d => gsap.quickSetter(d, 'backgroundColor') as (v: string) => void) : [];
+        // Initial state — only first frame visible
+        opSetters.forEach((set, i) => set(i === 0 ? 1 : 0));
+        dotSetters.forEach((set, i) => set(i === 0 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.3)'));
+
+        ScrollTrigger.create({
+          trigger: galleryWrap,
+          start: 'top top',
+          end: 'bottom bottom',
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const p = self.progress;
+            const fadeWindow = 0.05; // crossfade band before each frame's anchor
+            // Stack-layered crossfade: each frame i becomes visible at progress i/N
+            for (let i = 0; i < N; i++) {
+              if (i === 0) {
+                opSetters[i](1); // frame 0 always present underneath
+                continue;
+              }
+              const target = i / N;
+              const fadeStart = target - fadeWindow;
+              let op = 0;
+              if (p >= target) op = 1;
+              else if (p >= fadeStart) op = (p - fadeStart) / fadeWindow;
+              opSetters[i](op);
+            }
+            // Active dot — based on which slot the progress is currently in
+            const activeIdx = Math.min(N - 1, Math.floor(p * N + fadeWindow));
+            dotSetters.forEach((set, i) => set(i === activeIdx ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.3)'));
+          },
+        });
+      }
 
       const essentialsCard = sectionRef.current.querySelector('.essentials-card');
       gsap.from(essentialsCard, {
@@ -303,34 +338,44 @@ const ResidencesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Photo Gallery — 2x2 equal grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 mb-10 md:mb-16 lg:mb-20">
-          {/* Bedroom (local asset) */}
-          <div className="gallery-tile relative rounded-xl overflow-hidden aspect-[4/3]">
-            <img
-              src="/assets/room-3d-render.jpg"
-              alt="Bedroom interior — 31.5 sq.m."
-              loading="lazy"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/40 to-transparent p-3 md:p-4">
-              <span className="font-sans text-[10px] md:text-[11px] text-white/75 uppercase tracking-[0.2em]">
-                {r.galleryBedroom[lang]}
-              </span>
+        {/* Photo Gallery — pinned scrollytelling on desktop, vertical stack on mobile */}
+        <div className="gallery-wrap relative mb-10 md:mb-16 lg:mb-20 md:[height:calc(100vh*4)]">
+          <div className="gallery-sticky relative md:sticky md:top-0 md:h-screen w-full md:overflow-hidden md:rounded-xl flex flex-col md:block gap-2.5 md:gap-0">
+            {ALL_ROOMS.map((room, i) => (
+              <div
+                key={room.key}
+                className="gallery-frame relative md:absolute md:inset-0 aspect-[4/3] md:aspect-auto md:h-full rounded-xl md:rounded-none overflow-hidden"
+                data-idx={i}
+              >
+                <img
+                  src={room.src}
+                  alt={room.alt}
+                  loading={room.eager ? 'eager' : 'lazy'}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent p-6 md:p-12 lg:p-16">
+                  <span className="block font-sans text-[10px] md:text-[11px] text-white/70 uppercase tracking-[0.25em] mb-2">
+                    {String(i + 1).padStart(2, '0')} <span className="opacity-50">/ 04</span>
+                  </span>
+                  <h3 className="font-serif text-2xl md:text-5xl lg:text-6xl text-white leading-[1.05]">
+                    {r[room.key as keyof typeof r][lang]}
+                  </h3>
+                </div>
+              </div>
+            ))}
+
+            {/* Progress dots — desktop only */}
+            <div className="hidden md:flex absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 gap-2.5 z-10">
+              {ALL_ROOMS.map((_, i) => (
+                <div
+                  key={i}
+                  className="gal-dot w-2 h-2 rounded-full transition-colors duration-300"
+                  data-idx={i}
+                  style={{ backgroundColor: i === 0 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.3)' }}
+                />
+              ))}
             </div>
           </div>
-
-          {/* Bathroom / Kitchen / Balcony (remote) */}
-          {roomPhotos.map(({ src, alt, key }) => (
-            <div key={key} className="gallery-tile relative rounded-xl overflow-hidden aspect-[4/3]">
-              <img src={src} alt={alt} className="w-full h-full object-cover" loading="lazy" />
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/40 to-transparent p-3 md:p-4">
-                <span className="font-sans text-[10px] md:text-[11px] text-white/75 uppercase tracking-[0.2em]">
-                  {r[key as keyof typeof r][lang]}
-                </span>
-              </div>
-            </div>
-          ))}
         </div>
 
         {/* Reserve CTA */}
