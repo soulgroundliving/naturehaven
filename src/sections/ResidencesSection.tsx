@@ -71,29 +71,16 @@ const ResidencesSection: React.FC = () => {
         },
       });
 
-      const mainPhoto = sectionRef.current.querySelector('.gallery-main');
-      gsap.from(mainPhoto, {
+      const tiles = sectionRef.current.querySelectorAll('.gallery-tile');
+      gsap.from(tiles, {
         y: 20,
         opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: mainPhoto as Element,
-          start: 'top 82%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      const thumbs = sectionRef.current.querySelectorAll('.gallery-thumb');
-      gsap.from(thumbs, {
-        y: 16,
-        opacity: 0,
-        duration: 0.6,
+        duration: 0.7,
         stagger: 0.1,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: thumbs[0] as Element,
-          start: 'top 85%',
+          trigger: tiles[0] as Element,
+          start: 'top 82%',
           toggleActions: 'play none none reverse',
         },
       });
@@ -316,33 +303,34 @@ const ResidencesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Photo Gallery */}
-        <div className="mb-10 md:mb-16 lg:mb-20 flex flex-col gap-2.5">
-          <div className="gallery-main relative rounded-xl overflow-hidden">
+        {/* Photo Gallery — 2x2 equal grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 mb-10 md:mb-16 lg:mb-20">
+          {/* Bedroom (local asset) */}
+          <div className="gallery-tile relative rounded-xl overflow-hidden aspect-[4/3]">
             <img
               src="/assets/room-3d-render.jpg"
               alt="Bedroom interior — 31.5 sq.m."
               loading="lazy"
-              className="w-full object-cover aspect-[16/9] md:aspect-[21/9]"
+              className="w-full h-full object-cover"
             />
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/35 to-transparent p-4 md:p-6">
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/40 to-transparent p-3 md:p-4">
               <span className="font-sans text-[10px] md:text-[11px] text-white/75 uppercase tracking-[0.2em]">
                 {r.galleryBedroom[lang]}
               </span>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-2.5">
-            {roomPhotos.map(({ src, alt, key }) => (
-              <div key={key} className="gallery-thumb relative rounded-xl overflow-hidden aspect-square">
-                <img src={src} alt={alt} className="w-full h-full object-cover" loading="lazy" />
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/40 to-transparent p-2 md:p-4">
-                  <span className="font-sans text-[9px] md:text-[11px] text-white/75 uppercase tracking-[0.2em]">
-                    {r[key as keyof typeof r][lang]}
-                  </span>
-                </div>
+
+          {/* Bathroom / Kitchen / Balcony (remote) */}
+          {roomPhotos.map(({ src, alt, key }) => (
+            <div key={key} className="gallery-tile relative rounded-xl overflow-hidden aspect-[4/3]">
+              <img src={src} alt={alt} className="w-full h-full object-cover" loading="lazy" />
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/40 to-transparent p-3 md:p-4">
+                <span className="font-sans text-[10px] md:text-[11px] text-white/75 uppercase tracking-[0.2em]">
+                  {r[key as keyof typeof r][lang]}
+                </span>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         {/* Reserve CTA */}
