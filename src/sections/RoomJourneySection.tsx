@@ -14,14 +14,21 @@ const SCENES = [
     alt: 'Bedroom interior — 31.5 sq.m.',
   },
   {
-    tag: '02 / Kitchen',
+    tag: '02 / Bathroom',
+    headline: 'Quiet\nRituals',
+    body: 'Soft tile and clean light — a space made for the small daily rituals that shape the rhythm of home.',
+    src: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1400&fit=crop&auto=format&q=80',
+    alt: 'Minimal bathroom with natural light',
+  },
+  {
+    tag: '03 / Kitchen',
     headline: 'Separate.\nFully Yours.',
     body: 'A proper kitchen — not a kitchenette. Refrigerator, microwave, ventilation. Room to cook, room to think.',
     src: 'https://images.unsplash.com/photo-1757439402103-fc35542f96f8?w=1400&fit=crop&auto=format&q=80',
     alt: 'Separate kitchen with minimal fittings',
   },
   {
-    tag: '03 / Balcony',
+    tag: '04 / Balcony',
     headline: 'Where the\nDay Ends',
     body: 'Step outside to green — a private balcony overlooking the garden. The place where quiet living becomes visible.',
     src: 'https://images.unsplash.com/photo-1725399103001-200ce2bb5350?w=1400&fit=crop&auto=format&q=80',
@@ -37,8 +44,8 @@ const N = SCENES.length;
 // desktop / 2.2 on mobile so the image has time to fully register before
 // the crossfade to Kitchen starts. Kitchen and Balcony stay shorter — they
 // land in an already-engaged viewer.
-const SCENE_VH        = [400, 150, 150];
-const SCENE_VH_MOBILE = [220, 80,  80 ];
+const SCENE_VH        = [350, 140, 140, 140];
+const SCENE_VH_MOBILE = [200, 75,  75,  75 ];
 
 const RoomJourneySection: React.FC = () => {
   const containerRef  = useRef<HTMLDivElement>(null);
