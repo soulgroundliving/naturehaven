@@ -16,7 +16,7 @@ export const PROPERTY = {
   latitude: 13.9135,
   longitude: 100.662,
   lineUrl: 'https://lin.ee/ZoujovB6',
-  availableFrom: '2026-08-01',
+  availableFrom: '2026-09-01',
   totalUnits: 20,
   hasElevator: false,
 } as const;
@@ -112,8 +112,8 @@ export const FAQ_ITEMS = [
     id: 'open',
     q_th: 'เปิดให้เข้าอยู่เมื่อไหร่?',
     q_en: 'When can I move in?',
-    a_th: 'เปิดให้เข้าอยู่สิงหาคม 2026',
-    a_en: 'Available from August 2026.',
+    a_th: 'เปิดให้เข้าอยู่กันยายน 2026',
+    a_en: 'Available from September 2026.',
   },
   {
     id: 'contact',
