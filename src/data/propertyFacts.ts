@@ -21,33 +21,36 @@ export const PROPERTY = {
   hasElevator: false,
 } as const;
 
+// Every unit is pet-friendly. Opening price is set by floor: the top floor (4)
+// is the entry rate at 6,900 THB/mo, increasing 200 THB per floor going down to
+// the ground floor (1) at 7,500. 20 units total · 5 per floor.
+export const PRICE_FROM = 6900;
+
+export const PETS_POLICY = {
+  th: 'รับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัว ได้ทุกห้องทุกชั้น',
+  en: 'Small pets (1–2 per unit) are welcome in every unit, on every floor.',
+} as const;
+
 export const UNITS = [
   {
-    id: 'standard',
-    label: 'Standard',
-    unitRange: '1–2',
-    sqm: 31.5,
-    bedrooms: 1,
-    bathrooms: 1,
-    hasKitchen: true,
-    hasBalcony: true,
-    petsAllowed: false,
-    priceOpening: 7000,
-    priceRegular: 8500,
+    id: 'floor-4', label: 'Floor 4', floor: 4,
+    sqm: 31.5, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
+    petsAllowed: true, priceOpening: 6900,
   },
   {
-    id: 'pet-friendly',
-    label: 'Pet Friendly',
-    unitRange: '3–4',
-    sqm: 31.5,
-    bedrooms: 1,
-    bathrooms: 1,
-    hasKitchen: true,
-    hasBalcony: true,
-    petsAllowed: true,
-    petPolicy: 'สัตว์เลี้ยงขนาดเล็ก 1–2 ตัว',
-    priceOpening: 7800,
-    priceRegular: 9200,
+    id: 'floor-3', label: 'Floor 3', floor: 3,
+    sqm: 31.5, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
+    petsAllowed: true, priceOpening: 7100,
+  },
+  {
+    id: 'floor-2', label: 'Floor 2', floor: 2,
+    sqm: 31.5, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
+    petsAllowed: true, priceOpening: 7300,
+  },
+  {
+    id: 'floor-1', label: 'Floor 1', floor: 1,
+    sqm: 31.5, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
+    petsAllowed: true, priceOpening: 7500,
   },
 ] as const;
 
@@ -67,8 +70,8 @@ export const FAQ_ITEMS = [
     id: 'price',
     q_th: 'ค่าเช่าต่อเดือนเท่าไหร่?',
     q_en: 'What is the monthly rent?',
-    a_th: 'Standard (units 1–2) เริ่มต้น 7,000 บาท/เดือน · Pet-Friendly (units 3–4) 7,800 บาท/เดือน',
-    a_en: 'Standard units 1–2 from 7,000 THB/month · Pet-friendly units 3–4 from 7,800 THB/month.',
+    a_th: 'ทุกห้องเลี้ยงสัตว์ได้ · คิดราคาตามชั้น เริ่มต้น 6,900 บาท/เดือน (ชั้น 4) ไล่ขึ้นชั้นละ 200 บาท ถึง 7,500 บาท/เดือน (ชั้น 1)',
+    a_en: 'Every unit is pet-friendly. Pricing is by floor — from 6,900 THB/month (4th floor), +200 THB per floor down to 7,500 THB/month (ground floor).',
   },
   {
     id: 'inclusive',
@@ -88,8 +91,8 @@ export const FAQ_ITEMS = [
     id: 'pets',
     q_th: 'รับสัตว์เลี้ยงไหม?',
     q_en: 'Are pets allowed?',
-    a_th: 'รับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัว ใน units 3–4 (Pet-Friendly) เท่านั้น',
-    a_en: 'Small pets (1–2 animals) are allowed in units 3–4 only.',
+    a_th: 'เลี้ยงได้ทุกห้องทุกชั้น — รับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง',
+    a_en: 'Yes — pets are welcome in every unit on every floor. Small pets, 1–2 per unit.',
   },
   {
     id: 'contract',
@@ -123,8 +126,8 @@ export const FAQ_ITEMS = [
     id: 'elevator',
     q_th: 'มีลิฟต์ไหม?',
     q_en: 'Is there an elevator?',
-    a_th: 'ไม่มีลิฟต์ — เป็น low-rise 3 ชั้น ออกแบบเพื่อความเป็นส่วนตัวและประหยัดพลังงาน',
-    a_en: 'No elevator — low-rise 3 floors, designed for privacy and energy efficiency.',
+    a_th: 'ไม่มีลิฟต์ — เป็น low-rise 4 ชั้น ออกแบบเพื่อความเป็นส่วนตัวและประหยัดพลังงาน',
+    a_en: 'No elevator — low-rise 4 floors, designed for privacy and energy efficiency.',
   },
   {
     id: 'location',

@@ -28,6 +28,15 @@ const roomPhotos = [
   },
 ] as const;
 
+// Every unit is pet-friendly. Price is set by floor — the top floor (4) is the
+// entry rate at 6,900, +200 THB per floor down to the ground floor (1) at 7,500.
+const FLOORS = [
+  { floor: 4, price: '6,900', entry: true },
+  { floor: 3, price: '7,100', entry: false },
+  { floor: 2, price: '7,300', entry: false },
+  { floor: 1, price: '7,500', entry: false },
+] as const;
+
 const ResidencesSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const sqmRef    = useRef<HTMLSpanElement>(null);
@@ -229,77 +238,55 @@ const ResidencesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Pricing Tiers */}
+        {/* Pricing — by floor, every unit pet-friendly */}
         <div className="mb-10 md:mb-16 lg:mb-20">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
             <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.pricingLabel[lang]}</p>
             <p className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.pricingNote[lang]}</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Standard tier */}
-            <div className="tier-card rounded-xl border sec-border card-surface p-6 md:p-8">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.tierFloors1[lang]}</span>
-              </div>
-              <p className="font-sans text-base font-medium leading-snug mb-5 sec-text-90">{r.tierNameStd[lang]}</p>
-              <div className="pt-4 border-t sec-border">
-                <div className="flex items-baseline gap-1 mb-2">
-                  <span className="font-serif text-[28px] sec-text leading-none">7,000</span>
-                  <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
-                </div>
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">{r.openingRate[lang]}</span>
-                  <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">8,500 THB</span>
-                </div>
-              </div>
-              <div className="mt-5 pt-5 border-t sec-border">
-                <ul className="flex flex-col gap-3">
-                  <li className="flex flex-col gap-0.5">
-                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierUnitsLabel[lang]}</span>
-                    <span className="font-sans text-sm font-light sec-text-80">{"10 units"}</span>
-                  </li>
-                  <li className="flex flex-col gap-0.5">
-                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLocationLabel[lang]}</span>
-                    <span className="font-sans text-sm font-light sec-text-80">{r.tierLocation1[lang]}</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
 
-            {/* Premium / pet tier */}
-            <div className="tier-card rounded-xl border border-sage-green/30 bg-sage-green/5 p-6 md:p-8">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.18em]">{r.tierFloors2[lang]}</span>
-                <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
-              </div>
-              <p className="font-sans text-base font-medium leading-snug mb-5 text-sage-green">{r.tierNamePet[lang]}</p>
-              <div className="pt-4 border-t border-sage-green/20">
-                <div className="flex items-baseline gap-1 mb-2">
-                  <span className="font-serif text-[28px] sec-text leading-none">7,800</span>
+          {/* Pet-friendly banner — every floor */}
+          <div className="flex items-center gap-3 mb-5 rounded-xl border border-sage-green/30 bg-sage-green/5 px-5 py-3.5">
+            <PawPrint size={18} className="text-sage-green flex-shrink-0" />
+            <p className="font-sans text-sm font-light leading-snug">
+              <span className="font-medium text-sage-green">{r.petsEverywhere[lang]}</span>
+              <span className="sec-text-70"> — {r.petsEverywhereSub[lang]}</span>
+            </p>
+          </div>
+
+          {/* Floor price ladder — 6,900 (top floor) up to 7,500 (ground) */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            {FLOORS.map(({ floor, price, entry }) => (
+              <div
+                key={floor}
+                className={[
+                  'tier-card rounded-xl border p-5 md:p-6',
+                  entry ? 'border-sage-green/40 bg-sage-green/5' : 'sec-border card-surface',
+                ].join(' ')}
+              >
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.16em]">
+                    {r.floorWord[lang]} {floor}
+                  </span>
+                  <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
+                </div>
+                <div className="flex items-baseline gap-1 mb-2.5">
+                  <span className="font-serif text-[26px] md:text-[28px] sec-text leading-none">{price}</span>
                   <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="inline-block bg-subtle-taupe/20 sec-text text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap">{r.openingRate[lang]}</span>
-                  <span className="font-sans text-[11px] sec-text-60 line-through whitespace-nowrap">9,200 THB</span>
+                  <span
+                    className={[
+                      'inline-block text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap',
+                      entry ? 'bg-sage-green/15 text-sage-green font-medium' : 'bg-subtle-taupe/20 sec-text',
+                    ].join(' ')}
+                  >
+                    {entry ? r.fromLabel[lang] : r.openingRate[lang]}
+                  </span>
+                  <span className="font-sans text-[10px] sec-text-55 whitespace-nowrap">{r.unitsPerFloor[lang]}</span>
                 </div>
               </div>
-              <div className="mt-5 pt-5 border-t border-sage-green/15">
-                <ul className="flex flex-col gap-3">
-                  <li className="flex flex-col gap-0.5">
-                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierUnitsLabel[lang]}</span>
-                    <span className="font-sans text-sm font-light sec-text-80">{"10 units"}</span>
-                  </li>
-                  <li className="flex flex-col gap-0.5">
-                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierLocationLabel[lang]}</span>
-                    <span className="font-sans text-sm font-light sec-text-80">{r.tierLocation2[lang]}</span>
-                  </li>
-                  <li className="flex flex-col gap-0.5">
-                    <span className="font-sans text-[10px] sec-text-55 uppercase tracking-[0.14em]">{r.tierPetsLabel[lang]}</span>
-                    <span className="font-sans text-sm font-light sec-text-80">{r.tierPetsValue[lang]}</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
