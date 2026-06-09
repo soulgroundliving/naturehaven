@@ -14,7 +14,7 @@ export const TR = {
   hero: {
     labelWords: {
       en: ['Lite', 'Service', 'Apartment', '·', 'Pet-Friendly', '·', 'Saimai,', 'Bangkok'],
-      th: ['ที่พักเลี้ยงสัตว์ได้', 'ทุกห้อง', '·', 'สายไหม,', 'กรุงเทพฯ'],
+      th: ['ที่พักเลี้ยงสัตว์ได้', 'ทั้งตึก', '·', 'สายไหม,', 'กรุงเทพฯ'],
     },
     subtitle: {
       en: 'A residence shaped by intention — where life, and the ones you love, gently return to a natural rhythm.',
@@ -78,8 +78,8 @@ export const TR = {
     pricingLabel: { en: 'Pricing', th: 'ราคา' },
     pricingNote: { en: 'Opening rate · From 6,900 THB/mo · Aug 2026', th: 'ราคาเปิดตัว · เริ่ม 6,900 บาท/เดือน · ส.ค. 2569' },
     openingRate: { en: 'Opening Rate', th: 'ราคาเปิดตัว' },
-    petsEverywhere: { en: 'Every home is pet-friendly', th: 'ทุกห้องเลี้ยงสัตว์ได้' },
-    petsEverywhereSub: { en: 'Small pets welcome on every floor — 1–2 per unit.', th: 'รับสัตว์เลี้ยงขนาดเล็กได้ทุกชั้น — 1–2 ตัวต่อห้อง' },
+    petsEverywhere: { en: 'Pet-friendly — the whole building', th: 'เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น' },
+    petsEverywhereSub: { en: 'No floor restrictions — small pets (1–2 per unit) welcome in every home, on every floor.', th: 'ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง' },
     floorWord: { en: 'Floor', th: 'ชั้น' },
     fromLabel: { en: 'From', th: 'เริ่มต้น' },
     unitsPerFloor: { en: '5 units', th: '5 ห้อง' },

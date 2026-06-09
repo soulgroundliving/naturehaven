@@ -27,8 +27,8 @@ export const PROPERTY = {
 export const PRICE_FROM = 6900;
 
 export const PETS_POLICY = {
-  th: 'รับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัว ได้ทุกห้องทุกชั้น',
-  en: 'Small pets (1–2 per unit) are welcome in every unit, on every floor.',
+  th: 'เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น — รับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง',
+  en: 'Pet-friendly throughout the entire building — no floor restrictions. Small pets, 1–2 per unit.',
 } as const;
 
 export const UNITS = [
@@ -70,8 +70,8 @@ export const FAQ_ITEMS = [
     id: 'price',
     q_th: 'ค่าเช่าต่อเดือนเท่าไหร่?',
     q_en: 'What is the monthly rent?',
-    a_th: 'ทุกห้องเลี้ยงสัตว์ได้ · คิดราคาตามชั้น เริ่มต้น 6,900 บาท/เดือน (ชั้น 4) ไล่ขึ้นชั้นละ 200 บาท ถึง 7,500 บาท/เดือน (ชั้น 1)',
-    a_en: 'Every unit is pet-friendly. Pricing is by floor — from 6,900 THB/month (4th floor), +200 THB per floor down to 7,500 THB/month (ground floor).',
+    a_th: 'เลี้ยงสัตว์ได้ทั้งตึก · คิดราคาตามชั้น เริ่มต้น 6,900 บาท/เดือน (ชั้น 4) ไล่ขึ้นชั้นละ 200 บาท ถึง 7,500 บาท/เดือน (ชั้น 1)',
+    a_en: 'Pet-friendly throughout the building. Pricing is by floor — from 6,900 THB/month (4th floor), +200 THB per floor down to 7,500 THB/month (ground floor).',
   },
   {
     id: 'inclusive',
@@ -91,8 +91,8 @@ export const FAQ_ITEMS = [
     id: 'pets',
     q_th: 'รับสัตว์เลี้ยงไหม?',
     q_en: 'Are pets allowed?',
-    a_th: 'เลี้ยงได้ทุกห้องทุกชั้น — รับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง',
-    a_en: 'Yes — pets are welcome in every unit on every floor. Small pets, 1–2 per unit.',
+    a_th: 'เลี้ยงได้ทั้งตึก ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง',
+    a_en: 'Yes — pets are welcome throughout the entire building, with no floor restrictions. Small pets, 1–2 per unit.',
   },
   {
     id: 'contract',
