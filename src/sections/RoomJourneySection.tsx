@@ -10,8 +10,8 @@ const SCENES = [
     tag: '01 / Bedroom',
     headline: 'The Morning\nBegins Here',
     body: '31.5 m² shaped around rest and focus — a 5-ft bed, full blackout curtains, and a desk that makes staying in feel intentional.',
-    src: '/assets/room-3d-render.jpg',
-    alt: 'Bedroom interior — 31.5 sq.m.',
+    src: '/assets/room-view-in.jpg',
+    alt: 'Bedroom interior looking toward the private balcony — 31.5 sq.m.',
   },
   {
     tag: '02 / Bathroom',

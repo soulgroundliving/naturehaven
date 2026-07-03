@@ -295,8 +295,8 @@ const ResidencesSection: React.FC = () => {
           {/* Bedroom (local asset) */}
           <div className="gallery-tile relative rounded-xl overflow-hidden aspect-[4/3]">
             <img
-              src="/assets/room-3d-render.jpg"
-              alt="Bedroom interior — 31.5 sq.m."
+              src="/assets/room-view-out.jpg"
+              alt="Bedroom interior looking toward the entrance — 31.5 sq.m."
               loading="lazy"
               className="w-full h-full object-cover"
             />

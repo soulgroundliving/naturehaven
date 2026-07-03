@@ -13,10 +13,10 @@ const article: Article = {
   },
   date: '2026-07-03',
   readMinutes: 5,
-  hero: '/assets/about-minimal-room.jpg',
+  hero: '/assets/room-view-in.jpg',
   heroAlt: {
-    en: 'Minimal warm-toned room interior at Nature Haven',
-    th: 'ห้องพักโทนอบอุ่นสไตล์มินิมอลของ Nature Haven',
+    en: 'Nature Haven bedroom — view into the room toward the private balcony',
+    th: 'ห้องพัก Nature Haven — มุมมองเข้าห้อง เห็นระเบียงส่วนตัว',
   },
   blocks: [
     {

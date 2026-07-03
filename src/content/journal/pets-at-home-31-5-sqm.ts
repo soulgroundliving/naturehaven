@@ -13,10 +13,10 @@ const article: Article = {
   },
   date: '2026-06-26',
   readMinutes: 6,
-  hero: '/assets/room-3d-render.jpg',
+  hero: '/assets/room-view-out.jpg',
   heroAlt: {
-    en: 'Nature Haven bedroom render with warm wood and green accents',
-    th: 'ภาพเรนเดอร์ห้องนอน Nature Haven โทนไม้อบอุ่นแซมเขียว',
+    en: 'Nature Haven bedroom — view from the bed toward the entrance, desk and wardrobe',
+    th: 'ห้องพัก Nature Haven — มุมมองออกห้อง เห็นโต๊ะทำงานและตู้เสื้อผ้า',
   },
   blocks: [
     {
