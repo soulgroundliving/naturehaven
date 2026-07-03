@@ -10,8 +10,11 @@ interface LanguageContextValue {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 const STORAGE_KEY = 'nh_lang';
 
+// Default = Thai (owner decision 2026-07-03): the audience is Thai renters in
+// Saimai, and the prerendered crawler snapshots should carry the Thai
+// keywords. ?lang= param and a stored preference still win.
 function readInitialLang(): Lang {
-  if (typeof window === 'undefined') return 'en';
+  if (typeof window === 'undefined') return 'th';
   const params = new URLSearchParams(window.location.search);
   const p = params.get('lang');
   if (p === 'en' || p === 'th') return p;
@@ -19,11 +22,11 @@ function readInitialLang(): Lang {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored === 'en' || stored === 'th') return stored as Lang;
   } catch {}
-  return 'en';
+  return 'th';
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>('en');
+  const [lang, setLang] = useState<Lang>('th');
 
   useEffect(() => {
     setLang(readInitialLang());

@@ -16,6 +16,8 @@ import MarqueeStrip from '@/components/MarqueeStrip';
 import Navigation from '@/components/Navigation';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 import SectionDots from '@/components/SectionDots';
+import FloatingLineChat from '@/components/FloatingLineChat';
+import StickyMobileCTA from '@/components/StickyMobileCTA';
 import { useTimeOfDay } from '@/contexts/TimeOfDayContext';
 import VideoBackground from '@/components/VideoBackground';
 import useSectionObserver from '@/hooks/useSectionObserver';
@@ -37,7 +39,10 @@ const ResidencesSection = lazy(() => import('@/sections/ResidencesSection'));
 const LocationSection   = lazy(() => import('@/sections/LocationSection'));
 const DesignSection     = lazy(() => import('@/sections/DesignSection'));
 const SmartLivingSection   = lazy(() => import('@/sections/SmartLivingSection'));
-const TestimonialsSection  = lazy(() => import('@/sections/TestimonialsSection'));
+// TestimonialsSection intentionally NOT rendered until real residents exist
+// (owner decision 2026-07-03 — "เอาตามความจริง": no placeholder quotes while
+// the brand is selling transparency). The component + TR copy stay in the
+// repo for re-wiring after opening.
 const JournalSection       = lazy(() => import('@/sections/JournalSection'));
 const FAQSection           = lazy(() => import('@/sections/FAQSection'));
 const ContactSection    = lazy(() => import('@/sections/ContactSection'));
@@ -73,7 +78,6 @@ function App() {
     'about',
     'residences',
     'amenities',
-    'testimonials',
     'journal',
     'location',
     'design',
@@ -274,6 +278,8 @@ function App() {
         Skip to content
       </a>
       <ScrollProgressBar />
+      <FloatingLineChat />
+      <StickyMobileCTA />
       <Navigation lenisRef={lenisRef} activeSection={activeSection} palette={palette} />
       <SectionDots
         activeSection={activeSection}
@@ -309,7 +315,6 @@ function App() {
         <MarqueeStrip speed={28} />
         <AmenitiesSection />
         <Suspense fallback={null}>
-          <TestimonialsSection />
           <JournalSection />
           <LocationSection />
           <DesignSection />

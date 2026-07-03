@@ -7,6 +7,7 @@ import { Check } from '@/components/icons';
 import { PawPrint } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
+import { PROPERTY } from '@/data/propertyFacts';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -285,6 +286,14 @@ const ResidencesSection: React.FC = () => {
                   </span>
                   <span className="font-sans text-[10px] sec-text-55 whitespace-nowrap">{r.unitsPerFloor[lang]}</span>
                 </div>
+                <a
+                  href={PROPERTY.lineUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-1.5 font-sans text-[11px] uppercase tracking-[0.12em] text-sage-green border-b border-sage-green/40 pb-0.5 transition-opacity duration-200 hover:opacity-70"
+                >
+                  {r.tierCta[lang]} →
+                </a>
               </div>
             ))}
           </div>

@@ -2,13 +2,17 @@
 // src/content/journal/<slug>.ts and importing it here — tools/prerender.mjs
 // picks the route up automatically from the directory listing.
 import type { Article } from '@/data/journalTypes';
+import buildDiary02 from '@/content/journal/build-diary-02-materials';
 import quietByDesign from '@/content/journal/quiet-by-design';
+import saimaiInNumbers from '@/content/journal/saimai-in-numbers';
 import petsAtHome from '@/content/journal/pets-at-home-25-sqm';
 import buildDiary01 from '@/content/journal/build-diary-01';
 
 export type { Article, ArticleBlock, Bilingual } from '@/data/journalTypes';
 
-export const ARTICLES: Article[] = [quietByDesign, petsAtHome, buildDiary01]
+// Sort is stable, so array order breaks date ties — keep the intended
+// featured article (homepage JournalSection shows ARTICLES[0]) first.
+export const ARTICLES: Article[] = [buildDiary02, quietByDesign, saimaiInNumbers, petsAtHome, buildDiary01]
   .slice()
   .sort((a, b) => b.date.localeCompare(a.date));
 

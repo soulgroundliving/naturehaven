@@ -11,6 +11,12 @@ export const TR = {
       th: ['ปรัชญา', 'ห้องพัก', 'สิ่งอำนวย', 'บันทึก', 'ทำเล', 'ดีไซน์', 'คำถาม', 'ติดต่อ'],
     },
   },
+  cta: {
+    mobileBar: {
+      en: 'Book a viewing via LINE · From 6,900 THB/mo',
+      th: 'นัดชมห้องผ่าน LINE · เริ่ม 6,900 บาท/เดือน',
+    },
+  },
   journal: {
     navLabel: { en: 'Journal', th: 'บันทึกจากเฮเวน' },
     sectionLabel: { en: 'The Haven Journal', th: 'บันทึกจากเฮเวน' },
@@ -105,6 +111,7 @@ export const TR = {
     petsEverywhereSub: { en: 'No floor restrictions — small pets (1–2 per unit) welcome in every home, on every floor.', th: 'ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง' },
     floorWord: { en: 'Floor', th: 'ชั้น' },
     fromLabel: { en: 'From', th: 'เริ่มต้น' },
+    tierCta: { en: 'Book a viewing', th: 'นัดชมห้อง' },
     unitsPerFloor: { en: '5 units', th: '5 ห้อง' },
     ctaLabel: { en: 'Ready to make it yours?', th: 'พร้อมจองห้องของคุณแล้วหรือยัง?' },
     ctaButton: { en: 'Reserve a Unit', th: 'จองห้องพัก' },

@@ -6,7 +6,6 @@ const SECTIONS = [
   { id: 'about',         label: 'Philosophy' },
   { id: 'residences',    label: 'Residences' },
   { id: 'amenities',     label: 'Amenities' },
-  { id: 'testimonials',  label: 'Residents' },
   { id: 'journal',       label: 'Journal' },
   { id: 'location',      label: 'Location' },
   { id: 'design',        label: 'Design' },
