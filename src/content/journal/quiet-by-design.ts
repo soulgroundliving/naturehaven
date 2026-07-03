@@ -54,19 +54,19 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'มันยังทำให้ราคาตรงไปตรงมา: ชั้นบนสุด (ชั้น 4) คือเรทเริ่มต้น 6,900 บาท/เดือน แล้วเพิ่มชั้นละ 200 บาทลงมาจนถึงชั้น 1 ที่ 7,500 บาท — เดินบันไดมากขึ้น จ่ายน้อยลง เดินน้อยลง จ่ายเพิ่มขึ้น กติกาเดียว เข้าใจได้ในประโยคเดียว',
-        en: 'It also makes pricing honest: the top floor (4) is the entry rate at 6,900 THB/month, increasing 200 THB per floor down to 7,500 on the ground floor. More stairs, lower rent; fewer stairs, a little more. One rule, understood in one sentence.',
+        th: 'มันยังทำให้ราคาตรงไปตรงมา: ราคามีสองระดับ — ชั้น 3–4 คือเรทเริ่มต้น 6,900 บาท/เดือน ส่วนชั้น 1–2 ที่ขึ้นบันไดน้อยกว่าอยู่ที่ 7,200 บาท — เดินบันไดมากขึ้น จ่ายน้อยลง เดินน้อยลง จ่ายเพิ่มอีกนิด กติกาเดียว เข้าใจได้ในประโยคเดียว',
+        en: 'It also makes pricing honest: there are two rates — floors 3–4 are the entry rate at 6,900 THB/month, while floors 1–2, with fewer stairs, are 7,200. More stairs, lower rent; fewer stairs, a little more. One rule, understood in one sentence.',
       },
     },
     {
       type: 'h2',
-      text: { th: '31.5 ตร.ม. ที่ห้องนอนได้เป็นห้องนอนจริง ๆ', en: '31.5 square metres where the bedroom is actually a bedroom' },
+      text: { th: '25 ตร.ม. ที่ห้องนอนได้เป็นห้องนอนจริง ๆ', en: '25 square metres where the bedroom is actually a bedroom' },
     },
     {
       type: 'p',
       text: {
-        th: 'ทุกยูนิตคือ 31.5 ตร.ม. — 1 ห้องนอน 1 ห้องน้ำ ครัวแยก และระเบียงส่วนตัว การแยกครัวออกจากห้องนอนฟังดูเป็นเรื่องเล็ก แต่มันคือเส้นแบ่งระหว่าง "ห้องเช่า" กับ "บ้าน": กลิ่นอาหารไม่ค้างบนหมอน เสื้อผ้าไม่ต้องอยู่ร่วมห้องกับกระทะ และตอนเช้าแสงจากระเบียงเข้าถึงพื้นที่นั่งเล่นโดยไม่ต้องปลุกใคร',
-        en: 'Every unit is 31.5 sqm — one bedroom, one bathroom, a separate kitchen, and a private balcony. Separating the kitchen sounds minor, but it is the line between a rented room and a home: cooking smells never settle on your pillow, your clothes never share a wall with the stove, and morning light from the balcony reaches the living space without waking anyone.',
+        th: 'ทุกยูนิตคือ 25 ตร.ม. — 1 ห้องนอน 1 ห้องน้ำ ครัวแยก และระเบียงส่วนตัว การแยกครัวออกจากห้องนอนฟังดูเป็นเรื่องเล็ก แต่มันคือเส้นแบ่งระหว่าง "ห้องเช่า" กับ "บ้าน": กลิ่นอาหารไม่ค้างบนหมอน เสื้อผ้าไม่ต้องอยู่ร่วมห้องกับกระทะ และตอนเช้าแสงจากระเบียงเข้าถึงพื้นที่นั่งเล่นโดยไม่ต้องปลุกใคร',
+        en: 'Every unit is 25 sqm — one bedroom, one bathroom, a separate kitchen, and a private balcony. Separating the kitchen sounds minor, but it is the line between a rented room and a home: cooking smells never settle on your pillow, your clothes never share a wall with the stove, and morning light from the balcony reaches the living space without waking anyone.',
       },
     },
     {

@@ -1,11 +1,11 @@
 import type { Article } from '@/data/journalTypes';
 
 const article: Article = {
-  slug: 'pets-at-home-31-5-sqm',
+  slug: 'pets-at-home-25-sqm',
   category: { en: 'Pet Life', th: 'ชีวิตกับสัตว์เลี้ยง' },
   title: {
-    en: 'Pets on every floor — how 31.5 sqm becomes home for both of you',
-    th: 'เลี้ยงสัตว์ได้ทุกชั้น — ทำอย่างไรให้ 31.5 ตร.ม. เป็นบ้านของทั้งคุณและเขา',
+    en: 'Pets on every floor — how 25 sqm becomes home for both of you',
+    th: 'เลี้ยงสัตว์ได้ทุกชั้น — ทำอย่างไรให้ 25 ตร.ม. เป็นบ้านของทั้งคุณและเขา',
   },
   excerpt: {
     en: 'No pet floors, no pet wings — the whole building welcomes small pets, 1–2 per unit. Here is why we chose one rule for everyone, and how the unit layout works for animals too.',
@@ -51,8 +51,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ห้อง 31.5 ตร.ม. ของเราแบ่งเป็นห้องนอน ห้องน้ำ ครัวแยก และระเบียงส่วนตัว — สำหรับคนเลี้ยงสัตว์ การแยกส่วนแบบนี้มีความหมายมากกว่าความสวย: ครัวแยกทำให้เก็บอาหาร (ของคุณและของเขา) พ้นจมูกที่อยากรู้อยากเห็น ห้องนอนที่ปิดได้ให้พื้นที่ปลอดขนบนหมอนเมื่อต้องการ และระเบียงคือจุดอาบแดดประจำตัวที่สัตว์เลี้ยงส่วนใหญ่เลือกเองภายในสัปดาห์แรก',
-        en: 'Each 31.5 sqm unit divides into a bedroom, a bathroom, a separate kitchen, and a private balcony. For a pet household this separation is more than aesthetics: a closed kitchen keeps food — yours and theirs — away from curious noses, a bedroom door gives you a fur-free pillow when you need one, and the balcony becomes the personal sunbathing spot most animals claim within the first week.',
+        th: 'ห้อง 25 ตร.ม. ของเราแบ่งเป็นห้องนอน ห้องน้ำ ครัวแยก และระเบียงส่วนตัว — สำหรับคนเลี้ยงสัตว์ การแยกส่วนแบบนี้มีความหมายมากกว่าความสวย: ครัวแยกทำให้เก็บอาหาร (ของคุณและของเขา) พ้นจมูกที่อยากรู้อยากเห็น ห้องนอนที่ปิดได้ให้พื้นที่ปลอดขนบนหมอนเมื่อต้องการ และระเบียงคือจุดอาบแดดประจำตัวที่สัตว์เลี้ยงส่วนใหญ่เลือกเองภายในสัปดาห์แรก',
+        en: 'Each 25 sqm unit divides into a bedroom, a bathroom, a separate kitchen, and a private balcony. For a pet household this separation is more than aesthetics: a closed kitchen keeps food — yours and theirs — away from curious noses, a bedroom door gives you a fur-free pillow when you need one, and the balcony becomes the personal sunbathing spot most animals claim within the first week.',
       },
     },
     {

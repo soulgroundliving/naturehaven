@@ -1,6 +1,6 @@
-import { StrictMode, Suspense, lazy } from 'react'
+import { StrictMode, Suspense, lazy, useLayoutEffect } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { TimeOfDayProvider } from '@/contexts/TimeOfDayContext'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 // Brand typography — IBM Plex Sans Thai Looped (Thai + Latin in one family),
@@ -20,11 +20,26 @@ import App from './App.tsx'
 const JournalPage = lazy(() => import('@/pages/JournalPage'))
 const ArticlePage = lazy(() => import('@/pages/ArticlePage'))
 
+// Reset scroll BEFORE the destination route's components mount their
+// ScrollTriggers. Rendered before <Routes>, so this layout effect flushes
+// first (sibling tree order) — without it, navigating /journal → / mounts
+// the homepage at the journal page's scroll offset and GSAP computes
+// trigger progress from that stale position (AmenitiesSection then paints
+// its track mid-scroll instead of at the far left).
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+  return null
+}
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <TimeOfDayProvider>
       <LanguageProvider>
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<App />} />
             <Route

@@ -59,6 +59,17 @@ const AmenitiesSection: React.FC = () => {
           gsap.set(track, { x: 0 });
           if (setProgress) setProgress(0);
         },
+        // Self-heal after ANY refresh: onUpdate only fires when progress
+        // CHANGES, so a transient progress during a refresh (lazy sections
+        // mounting above, URL-bar resize, route return) can leave the track
+        // painted mid/right while real progress settles back at 0 — and
+        // nothing repaints it until the user reaches the section ("doesn't
+        // start from the far left"). Re-applying x from the FINAL computed
+        // progress at the end of every refresh kills that stale-x class.
+        onRefresh: (st) => {
+          setX(cachedDist > 0 ? -cachedDist * st.progress : 0);
+          if (setProgress) setProgress(st.progress);
+        },
         onUpdate: (st) => {
           if (cachedDist <= 0) return;
           setX(-cachedDist * st.progress);

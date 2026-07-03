@@ -29,12 +29,12 @@ const roomPhotos = [
 ] as const;
 
 // Every unit is pet-friendly. Price is set by floor — the top floor (4) is the
-// entry rate at 6,900, +200 THB per floor down to the ground floor (1) at 7,500.
+// two tiers: floors 3–4 at the 6,900 entry rate, floors 1–2 at 7,200.
 const FLOORS = [
   { floor: 4, price: '6,900', entry: true },
-  { floor: 3, price: '7,100', entry: false },
-  { floor: 2, price: '7,300', entry: false },
-  { floor: 1, price: '7,500', entry: false },
+  { floor: 3, price: '6,900', entry: true },
+  { floor: 2, price: '7,200', entry: false },
+  { floor: 1, price: '7,200', entry: false },
 ] as const;
 
 const ResidencesSection: React.FC = () => {
@@ -123,12 +123,12 @@ const ResidencesSection: React.FC = () => {
 
       if (sqmRef.current) {
         const el = sqmRef.current;
-        const obj = { val: 28 };
+        const obj = { val: 21 };
         gsap.to(obj, {
-          val: 31.5,
+          val: 25,
           duration: 1.6,
           ease: 'power2.out',
-          onUpdate() { el.textContent = obj.val.toFixed(1); },
+          onUpdate() { el.textContent = String(Math.round(obj.val)); },
           scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
         });
       }
@@ -195,7 +195,7 @@ const ResidencesSection: React.FC = () => {
             </h3>
             <div className="flex items-baseline gap-2 mb-2">
               <span ref={sqmRef} className="font-serif text-6xl md:text-7xl lg:text-[80px] sec-text leading-none">
-                31.5
+                25
               </span>
               <span className="font-sans text-base sec-text-60">sq.m.</span>
             </div>
@@ -254,7 +254,7 @@ const ResidencesSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Floor price ladder — 6,900 (top floor) up to 7,500 (ground) */}
+          {/* Floor price tiers — 6,900 (floors 3–4) · 7,200 (floors 1–2) */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {FLOORS.map(({ floor, price, entry }) => (
               <div
@@ -296,7 +296,7 @@ const ResidencesSection: React.FC = () => {
           <div className="gallery-tile relative rounded-xl overflow-hidden aspect-[4/3]">
             <img
               src="/assets/room-view-out.jpg"
-              alt="Bedroom interior looking toward the entrance — 31.5 sq.m."
+              alt="Bedroom interior looking toward the entrance — 25 sq.m."
               loading="lazy"
               className="w-full h-full object-cover"
             />

@@ -9,7 +9,7 @@ const ITEMS = [
   'September 2026',
   'Pet-Friendly',
   'All-Inclusive',
-  '31.5 m²',
+  '25 m²',
   '20 Units',
   'Private Balcony',
 ];

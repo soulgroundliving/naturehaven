@@ -3,7 +3,7 @@
 // picks the route up automatically from the directory listing.
 import type { Article } from '@/data/journalTypes';
 import quietByDesign from '@/content/journal/quiet-by-design';
-import petsAtHome from '@/content/journal/pets-at-home-31-5-sqm';
+import petsAtHome from '@/content/journal/pets-at-home-25-sqm';
 import buildDiary01 from '@/content/journal/build-diary-01';
 
 export type { Article, ArticleBlock, Bilingual } from '@/data/journalTypes';

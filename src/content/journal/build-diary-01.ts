@@ -33,8 +33,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'หนึ่ง — ราคา: ทุกห้องเลี้ยงสัตว์ได้ และคิดราคาตามชั้น เริ่ม 6,900 บาท/เดือนที่ชั้น 4 เพิ่มชั้นละ 200 บาท จนถึง 7,500 ที่ชั้น 1 ไม่มีค่าธรรมเนียมซ่อน ไม่มี "ราคาพิเศษสำหรับสัตว์เลี้ยง" เพราะสัตว์เลี้ยงไม่ใช่ข้อยกเว้นของตึกนี้ตั้งแต่แรก',
-        en: 'One — pricing: every unit is pet-friendly, priced by floor. From 6,900 THB/month on floor 4, +200 THB per floor, to 7,500 on floor 1. No hidden fees, no "pet premium" — because pets were never an exception in this building to begin with.',
+        th: 'หนึ่ง — ราคา: ทุกห้องเลี้ยงสัตว์ได้ ราคามีสองระดับตามชั้น — ชั้น 3–4 อยู่ที่ 6,900 บาท/เดือน ชั้น 1–2 อยู่ที่ 7,200 บาท/เดือน ไม่มีค่าธรรมเนียมซ่อน ไม่มี "ราคาพิเศษสำหรับสัตว์เลี้ยง" เพราะสัตว์เลี้ยงไม่ใช่ข้อยกเว้นของตึกนี้ตั้งแต่แรก',
+        en: 'One — pricing: every unit is pet-friendly, with two rates by floor — floors 3–4 at 6,900 THB/month, floors 1–2 at 7,200 THB/month. No hidden fees, no "pet premium" — because pets were never an exception in this building to begin with.',
       },
     },
     {
