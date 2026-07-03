@@ -123,6 +123,31 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Keep ScrollTrigger positions in sync with the REAL layout. Lazy sections
+  // mounting above Amenities/RoomJourney grow the page by thousands of px
+  // after triggers are created; without an explicit refresh the triggers keep
+  // their mount-time start/end and play out ~6,000px too early (verified live:
+  // Amenities track sat at its END while the section was still 2,000px below
+  // the viewport — the recurring "doesn't start at far left"). GSAP's own
+  // autoRefreshEvents cover load/resize, not client-side route remounts with
+  // Suspense chunks landing over several seconds. Debounced body
+  // ResizeObserver closes the gap; AmenitiesSection.onRefresh then re-applies
+  // its track x from the freshly computed progress, so a refresh is always
+  // safe here (the historical §855d0e0 poison can no longer stick).
+  useEffect(() => {
+    if (prerendering) return;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const ro = new ResizeObserver(() => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => ScrollTrigger.refresh(), 250);
+    });
+    ro.observe(document.body);
+    return () => {
+      ro.disconnect();
+      if (timer) clearTimeout(timer);
+    };
+  }, [prerendering]);
+
   // Feature 7: frosted section lift-in on scroll.
   // Skipped on mobile and for reduced-motion users. CSS (index.css) owns the
   // initial hidden state for desktop — opacity:0 + translateY(22px) via media
