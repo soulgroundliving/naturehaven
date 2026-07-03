@@ -7,6 +7,7 @@ const SECTIONS = [
   { id: 'residences',    label: 'Residences' },
   { id: 'amenities',     label: 'Amenities' },
   { id: 'testimonials',  label: 'Residents' },
+  { id: 'journal',       label: 'Journal' },
   { id: 'location',      label: 'Location' },
   { id: 'design',        label: 'Design' },
   { id: 'smart-living',  label: 'Smart Living' },

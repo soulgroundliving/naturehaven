@@ -52,8 +52,11 @@ module.exports = {
         },
       },
       fontFamily: {
+        // serif = wordmark + EN display only (no Thai glyphs — never set Thai
+        // copy in font-serif). sans = IBM Plex Sans Thai Looped, the same
+        // family as the resident app, covering Thai + Latin in one voice.
         serif: ['"DM Serif Display"', 'serif'],
-        sans: ['Outfit', 'sans-serif'],
+        sans: ['"IBM Plex Sans Thai Looped"', 'sans-serif'],
       },
       borderRadius: {
         xl: "calc(var(--radius) + 4px)",

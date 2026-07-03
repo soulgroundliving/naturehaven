@@ -38,6 +38,7 @@ const LocationSection   = lazy(() => import('@/sections/LocationSection'));
 const DesignSection     = lazy(() => import('@/sections/DesignSection'));
 const SmartLivingSection   = lazy(() => import('@/sections/SmartLivingSection'));
 const TestimonialsSection  = lazy(() => import('@/sections/TestimonialsSection'));
+const JournalSection       = lazy(() => import('@/sections/JournalSection'));
 const FAQSection           = lazy(() => import('@/sections/FAQSection'));
 const ContactSection    = lazy(() => import('@/sections/ContactSection'));
 const FooterSection     = lazy(() => import('@/sections/FooterSection'));
@@ -50,7 +51,22 @@ function App() {
   // During puppeteer prerender, skip the intro overlay entirely so the
   // snapshotted HTML shows real content instead of a white-out splash.
   const prerendering = isPrerender();
-  const [introComplete, setIntroComplete] = useState(prerendering);
+  // Intro plays once per tab session — client-side nav to /journal and back
+  // (or a same-tab revisit) must not replay the 3s overlay.
+  const [introComplete, setIntroComplete] = useState(() => {
+    if (prerendering) return true;
+    try {
+      return sessionStorage.getItem('nh_intro_done') === '1';
+    } catch {
+      return false;
+    }
+  });
+  // When the intro is skipped, LoadingOverlay's onComplete never runs — the
+  // pre-React scroll lock (#nh-prelock in index.html) must be released here.
+  useEffect(() => {
+    if (introComplete) document.getElementById('nh-prelock')?.remove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [isPastHero, setIsPastHero] = useState(false);
 
   const sectionIds = [
@@ -58,6 +74,7 @@ function App() {
     'residences',
     'amenities',
     'testimonials',
+    'journal',
     'location',
     'design',
     'smart-living',
@@ -207,6 +224,7 @@ function App() {
           // users saw the page jerk to mid-RoomJourney before snapping to
           // hero. 60 frame-by-frame pins (~1s) outlast even a slow restore.
           document.getElementById('nh-prelock')?.remove();
+          try { sessionStorage.setItem('nh_intro_done', '1'); } catch { /* private mode */ }
           window.scrollTo(0, 0);
           let frame = 0;
           const pinTop = () => {
@@ -267,6 +285,7 @@ function App() {
         <AmenitiesSection />
         <Suspense fallback={null}>
           <TestimonialsSection />
+          <JournalSection />
           <LocationSection />
           <DesignSection />
           <SmartLivingSection />

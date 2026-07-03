@@ -7,9 +7,32 @@ export { pick };
 export const TR = {
   nav: {
     links: {
-      en: ['PHILOSOPHY', 'RESIDENCES', 'AMENITIES', 'LOCATION', 'DESIGN', 'FAQ', 'CONTACT'],
-      th: ['ปรัชญา', 'ห้องพัก', 'สิ่งอำนวย', 'ทำเล', 'ดีไซน์', 'คำถาม', 'ติดต่อ'],
+      en: ['PHILOSOPHY', 'RESIDENCES', 'AMENITIES', 'JOURNAL', 'LOCATION', 'DESIGN', 'FAQ', 'CONTACT'],
+      th: ['ปรัชญา', 'ห้องพัก', 'สิ่งอำนวย', 'บันทึก', 'ทำเล', 'ดีไซน์', 'คำถาม', 'ติดต่อ'],
     },
+  },
+  journal: {
+    navLabel: { en: 'Journal', th: 'บันทึกจากเฮเวน' },
+    sectionLabel: { en: 'The Haven Journal', th: 'บันทึกจากเฮเวน' },
+    sectionHeadline: {
+      en: 'Notes on quiet living,\nwritten while we build',
+      th: 'เรื่องเล่าการอยู่อย่างสงบ\nเขียนไประหว่างสร้างไป',
+    },
+    indexIntro: {
+      en: 'Stories from the making of Nature Haven — quiet living, life with pets, the neighbourhood, and honest build diaries on the road to September 2026.',
+      th: 'เรื่องเล่าระหว่างการสร้าง Nature Haven — การอยู่อย่างสงบ ชีวิตกับสัตว์เลี้ยง ย่านสายไหม และบันทึกการสร้างแบบตรงไปตรงมา จนถึงกันยายน 2026',
+    },
+    readAll: { en: 'Read all stories', th: 'อ่านบทความทั้งหมด' },
+    readMin: { en: 'min read', th: 'นาที' },
+    byLine: { en: 'By the Nature Haven team', th: 'โดยทีม Nature Haven' },
+    backHome: { en: 'Home', th: 'หน้าแรก' },
+    related: { en: 'More from the Journal', th: 'บทความอื่นจากบันทึก' },
+    ctaTitle: { en: 'Want to see the space in person?', th: 'อยากเห็นห้องจริงไหม?' },
+    ctaBody: {
+      en: 'Reserve a viewing via LINE — opening September 2026.',
+      th: 'นัดชมห้องตัวอย่างผ่าน LINE — เปิดให้เข้าอยู่กันยายน 2026',
+    },
+    ctaButton: { en: 'Chat on LINE', th: 'ทักไลน์เลย' },
   },
   hero: {
     labelWords: {

@@ -26,7 +26,21 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot  = path.resolve(__dirname, '..');
 const distDir   = path.join(repoRoot, 'dist');
 
-const ROUTES = ['/'];
+// Route list = homepage + journal index + one route per article. Article
+// filenames ARE the slugs (see src/data/journalTypes.ts), so the directory
+// listing is the single source of truth — adding an article file adds its
+// prerender route automatically.
+const journalDir = path.join(repoRoot, 'src', 'content', 'journal');
+let journalSlugs = [];
+try {
+  journalSlugs = (await fs.readdir(journalDir))
+    .filter((f) => f.endsWith('.ts') && !f.startsWith('_'))
+    .map((f) => f.replace(/\.ts$/, ''));
+} catch {
+  console.warn('[prerender] no journal content dir found — rendering base routes only');
+}
+const ROUTES = ['/', '/journal', ...journalSlugs.map((s) => `/journal/${s}`)];
+console.log(`[prerender] routes: ${ROUTES.join(', ')}`);
 
 // On Linux CI (Vercel sets VERCEL=1; GitHub Actions sets CI=true) load the
 // Lambda-bundled Chromium. Locally puppeteer's auto-downloaded binary works.

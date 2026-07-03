@@ -37,10 +37,11 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
     { label: navLabels[0], href: '#about' },
     { label: navLabels[1], href: '#residences' },
     { label: navLabels[2], href: '#amenities' },
-    { label: navLabels[3], href: '#location' },
-    { label: navLabels[4], href: '#design' },
-    { label: navLabels[5], href: '#faq' },
-    { label: navLabels[6], href: '#contact' },
+    { label: navLabels[3], href: '#journal' },
+    { label: navLabels[4], href: '#location' },
+    { label: navLabels[5], href: '#design' },
+    { label: navLabels[6], href: '#faq' },
+    { label: navLabels[7], href: '#contact' },
   ];
 
   useEffect(() => {
