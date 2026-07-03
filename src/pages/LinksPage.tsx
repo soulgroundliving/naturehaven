@@ -4,7 +4,7 @@ import usePageMeta from '@/hooks/usePageMeta';
 import { PROPERTY } from '@/data/propertyFacts';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
-import { LineIcon, LocationPin, ArrowRight } from '@/components/icons';
+import { LineIcon, InstagramIcon, LocationPin, ArrowRight } from '@/components/icons';
 
 // The "master link" (ลิงค์แม่) — one URL for every Nature Haven channel,
 // meant to live in a social bio (Instagram/Facebook/TikTok) or get shared
@@ -37,6 +37,15 @@ const LinksPage: React.FC = () => {
       external: true,
       primary: true,
       Icon: LineIcon,
+    },
+    {
+      key: 'instagram',
+      label: l.instagram[lang],
+      sub: l.instagramSub[lang],
+      href: PROPERTY.instagramUrl,
+      external: true,
+      primary: false,
+      Icon: InstagramIcon,
     },
     {
       key: 'journal',

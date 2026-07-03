@@ -16,6 +16,7 @@ export const PROPERTY = {
   latitude: 13.9135,
   longitude: 100.662,
   lineUrl: 'https://lin.ee/ZoujovB6',
+  instagramUrl: 'https://www.instagram.com/naturehaven_official/',
   availableFrom: '2026-09-01',
   totalUnits: 20,
   hasElevator: false,

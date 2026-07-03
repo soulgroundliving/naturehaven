@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
+import { PROPERTY } from '@/data/propertyFacts';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -92,9 +93,17 @@ const FooterSection: React.FC = () => {
             >
               LINE
             </a>
-            {/* /links is the master hub — every channel (incl. IG/FB once
-                real accounts exist) lives there instead of dead placeholder
-                links here. */}
+            <a
+              href={PROPERTY.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-sans text-[13px] uppercase tracking-[0.05em] sec-text-60 hover:text-sage-green transition-colors duration-300"
+            >
+              Instagram
+            </a>
+            {/* /links is the master hub — every channel (incl. Facebook/
+                TikTok once real accounts exist) lives there instead of a
+                dead placeholder link here. */}
             <Link
               to="/links"
               className="font-sans text-[13px] uppercase tracking-[0.05em] sec-text-60 hover:text-sage-green transition-colors duration-300"

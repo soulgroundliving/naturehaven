@@ -123,6 +123,14 @@ export const XIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => (
   </svg>
 );
 
+export const InstagramIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className}>
+    <rect x="3" y="3" width="18" height="18" rx="5" strokeWidth={1.5} />
+    <circle cx="12" cy="12" r="4" strokeWidth={1.5} />
+    <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+  </svg>
+);
+
 export const LinkIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => (
   <svg width={size} height={size} fill="none" stroke="currentColor" viewBox="0 0 24 24" className={className}>
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.828 10.172a4 4 0 010 5.656l-3 3a4 4 0 01-5.656-5.656l1.5-1.5M10.172 13.828a4 4 0 010-5.656l3-3a4 4 0 015.656 5.656l-1.5 1.5" />

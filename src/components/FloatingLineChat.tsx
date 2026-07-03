@@ -1,8 +1,8 @@
 import { MessageCircle } from 'lucide-react';
 
-// Sticky bottom-right CTA — LINE-only contact path. Always visible across
-// the page so prospects can reach out without scrolling back to the contact
-// section. The white ping dot subtly signals availability.
+// Sticky bottom-right CTA — LINE-only contact path. Desktop only: on mobile,
+// StickyMobileCTA's full-width bottom bar covers the same job, and the two
+// would otherwise stack/overlap in the same bottom-right corner.
 export default function FloatingLineChat() {
   return (
     <a
@@ -10,7 +10,7 @@ export default function FloatingLineChat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on LINE"
-      className="fixed right-6 bottom-6 z-[60] inline-flex items-center gap-2.5 bg-[var(--cta-bg,#3D5A4C)] hover:bg-[var(--cta-bg-hover,#4a6e5d)] text-pure-white px-5 py-3.5 rounded-full font-sans text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
+      className="hidden md:inline-flex fixed right-6 bottom-6 z-[60] items-center gap-2.5 bg-[var(--cta-bg,#3D5A4C)] hover:bg-[var(--cta-bg-hover,#4a6e5d)] text-pure-white px-5 py-3.5 rounded-full font-sans text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
       style={{
         boxShadow:
           '0 12px 32px -8px rgba(31,27,22,0.28), 0 4px 12px rgba(31,27,22,0.12)',

@@ -25,6 +25,8 @@ export const TR = {
     },
     line: { en: 'Chat on LINE', th: 'ทักไลน์' },
     lineSub: { en: 'Reserve a viewing · ask us anything', th: 'นัดชมห้อง · ถามอะไรก็ได้' },
+    instagram: { en: 'Follow on Instagram', th: 'ติดตามใน Instagram' },
+    instagramSub: { en: '@naturehaven_official', th: '@naturehaven_official' },
     journal: { en: 'The Haven Journal', th: 'บันทึกจากเฮเวน' },
     journalSub: { en: 'Stories from the build', th: 'เรื่องเล่าระหว่างสร้าง' },
     home: { en: 'Nature Haven — full site', th: 'เว็บไซต์ Nature Haven' },
