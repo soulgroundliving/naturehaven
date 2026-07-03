@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -91,12 +92,15 @@ const FooterSection: React.FC = () => {
             >
               LINE
             </a>
-            <span className="font-sans text-[13px] uppercase tracking-[0.05em] sec-text-60 hover:text-sage-green transition-colors duration-300 cursor-default">
-              Instagram
-            </span>
-            <span className="font-sans text-[13px] uppercase tracking-[0.05em] sec-text-60 hover:text-sage-green transition-colors duration-300 cursor-default">
-              Facebook
-            </span>
+            {/* /links is the master hub — every channel (incl. IG/FB once
+                real accounts exist) lives there instead of dead placeholder
+                links here. */}
+            <Link
+              to="/links"
+              className="font-sans text-[13px] uppercase tracking-[0.05em] sec-text-60 hover:text-sage-green transition-colors duration-300"
+            >
+              {f.allChannels[lang]}
+            </Link>
           </div>
         </div>
       </div>

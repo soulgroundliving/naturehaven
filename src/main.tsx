@@ -19,6 +19,7 @@ import App from './App.tsx'
 // The homepage stays exactly as it was — the router wraps around it.
 const JournalPage = lazy(() => import('@/pages/JournalPage'))
 const ArticlePage = lazy(() => import('@/pages/ArticlePage'))
+const LinksPage = lazy(() => import('@/pages/LinksPage'))
 
 // Reset scroll BEFORE the destination route's components mount their
 // ScrollTriggers. Rendered before <Routes>, so this layout effect flushes
@@ -55,6 +56,14 @@ createRoot(document.getElementById('root')!).render(
               element={
                 <Suspense fallback={null}>
                   <ArticlePage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/links"
+              element={
+                <Suspense fallback={null}>
+                  <LinksPage />
                 </Suspense>
               }
             />

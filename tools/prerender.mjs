@@ -39,7 +39,7 @@ try {
 } catch {
   console.warn('[prerender] no journal content dir found — rendering base routes only');
 }
-const ROUTES = ['/', '/journal', ...journalSlugs.map((s) => `/journal/${s}`)];
+const ROUTES = ['/', '/journal', '/links', ...journalSlugs.map((s) => `/journal/${s}`)];
 console.log(`[prerender] routes: ${ROUTES.join(', ')}`);
 
 // On Linux CI (Vercel sets VERCEL=1; GitHub Actions sets CI=true) load the

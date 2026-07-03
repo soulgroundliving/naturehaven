@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import JournalShell from '@/components/JournalShell';
 import JournalCard, { titleFont } from '@/components/JournalCard';
+import ShareRow from '@/components/ShareRow';
 import usePageMeta, { useJsonLd } from '@/hooks/usePageMeta';
 import { ARTICLES, formatArticleDate, getArticle } from '@/data/journal';
 import { PROPERTY } from '@/data/propertyFacts';
@@ -22,6 +23,9 @@ const ArticlePage: React.FC = () => {
     description: article ? article.excerpt[lang] : '',
     canonical,
     ogImage: article ? `${PROPERTY.url}${article.hero}` : undefined,
+    ogType: 'article',
+    publishedTime: article ? `${article.date}T00:00:00+07:00` : undefined,
+    section: article ? article.category.en : undefined,
   });
 
   const jsonLd = useMemo(
@@ -76,6 +80,9 @@ const ArticlePage: React.FC = () => {
                 {article.readMinutes} {j.readMin[lang]}
               </span>
               <span>{j.byLine[lang]}</span>
+            </div>
+            <div className="mt-5">
+              <ShareRow url={canonical} title={article.title[lang]} />
             </div>
 
             <div className="mt-8 overflow-hidden rounded-xl">
@@ -136,6 +143,10 @@ const ArticlePage: React.FC = () => {
               >
                 {j.ctaButton[lang]}
               </a>
+            </div>
+
+            <div className="mt-8 pt-8 border-t sec-border">
+              <ShareRow url={canonical} title={article.title[lang]} />
             </div>
           </div>
 

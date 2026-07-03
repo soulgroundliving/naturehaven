@@ -17,6 +17,21 @@ export const TR = {
       th: 'นัดชมห้องผ่าน LINE · เริ่ม 6,900 บาท/เดือน',
     },
   },
+  links: {
+    subtitle: { en: 'Every way to reach us, in one place', th: 'รวมทุกช่องทางไว้ที่เดียว' },
+    pageDescription: {
+      en: 'All Nature Haven channels — LINE, the Journal, the site, and directions — in one link.',
+      th: 'รวมทุกช่องทางของ Nature Haven — LINE, บันทึกจากเฮเวน, เว็บไซต์ และแผนที่ — ไว้ในลิงก์เดียว',
+    },
+    line: { en: 'Chat on LINE', th: 'ทักไลน์' },
+    lineSub: { en: 'Reserve a viewing · ask us anything', th: 'นัดชมห้อง · ถามอะไรก็ได้' },
+    journal: { en: 'The Haven Journal', th: 'บันทึกจากเฮเวน' },
+    journalSub: { en: 'Stories from the build', th: 'เรื่องเล่าระหว่างสร้าง' },
+    home: { en: 'Nature Haven — full site', th: 'เว็บไซต์ Nature Haven' },
+    homeSub: { en: 'Rooms, pricing, amenities', th: 'ห้องพัก ราคา สิ่งอำนวยความสะดวก' },
+    maps: { en: 'Get directions', th: 'ดูแผนที่ / นำทาง' },
+    mapsSub: { en: 'Sai Mai, Bangkok', th: 'สายไหม กรุงเทพฯ' },
+  },
   journal: {
     navLabel: { en: 'Journal', th: 'บันทึกจากเฮเวน' },
     sectionLabel: { en: 'The Haven Journal', th: 'บันทึกจากเฮเวน' },
@@ -39,6 +54,11 @@ export const TR = {
       th: 'นัดชมห้องตัวอย่างผ่าน LINE — เปิดให้เข้าอยู่กันยายน 2026',
     },
     ctaButton: { en: 'Chat on LINE', th: 'ทักไลน์เลย' },
+    share: {
+      label: { en: 'Share', th: 'แชร์' },
+      copyLink: { en: 'Copy link', th: 'คัดลอกลิงก์' },
+      copied: { en: 'Copied!', th: 'คัดลอกแล้ว' },
+    },
   },
   hero: {
     labelWords: {
@@ -321,5 +341,6 @@ export const TR = {
     headline: { en: 'Nature Haven — Quiet Living in Saimai', th: 'Nature Haven — ที่พักเงียบสงบในสายไหม' },
     sub: { en: 'A residence shaped by intention.', th: 'ที่พักที่ออกแบบด้วยเจตนา' },
     copyright: { en: '© 2026 Nature Haven. All rights reserved.', th: '© 2569 Nature Haven สงวนสิทธิ์ทั้งหมด' },
+    allChannels: { en: 'All Channels', th: 'ช่องทางทั้งหมด' },
   },
 } as const;
