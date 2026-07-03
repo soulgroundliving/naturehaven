@@ -22,7 +22,7 @@ const JournalPage: React.FC = () => {
 
   return (
     <JournalShell>
-      <section className="frosted-section backdrop-blur-xl">
+      <section className="frosted-page backdrop-blur-xl">
         <div className="container-main py-14 md:py-20">
           <p className="section-label mb-4">{j.sectionLabel[lang]}</p>
           <h1

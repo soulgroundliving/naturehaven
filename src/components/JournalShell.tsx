@@ -60,7 +60,7 @@ const JournalShell: React.FC<{ children: ReactNode }> = ({ children }) => {
 
       <main className="relative z-[1] pt-16">{children}</main>
 
-      <footer className="relative z-[1] frosted-section backdrop-blur-xl border-t sec-border">
+      <footer className="relative z-[1] frosted-page backdrop-blur-xl border-t sec-border">
         <div className="container-main flex flex-col items-center justify-between gap-3 py-8 text-center md:flex-row md:text-left">
           <p className="font-sans text-xs sec-text-60">
             © {new Date().getFullYear()} {PROPERTY.legalName} · Nature Haven — Saimai, Bangkok

@@ -51,7 +51,7 @@ const ArticlePage: React.FC = () => {
 
   return (
     <JournalShell>
-      <article className="frosted-section backdrop-blur-xl">
+      <article className="frosted-page backdrop-blur-xl">
         <div className="container-main py-12 md:py-16">
           <div className="mx-auto w-full max-w-[720px]">
             <Link
