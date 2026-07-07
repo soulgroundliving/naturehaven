@@ -21,6 +21,8 @@ export const PROPERTY = {
   // Verify: the lin.ee link 301s to https://line.me/R/ti/p/@929pthtt
   lineId: '@929pthtt',
   instagramUrl: 'https://www.instagram.com/naturehaven_official/',
+  facebookUrl: 'https://www.facebook.com/share/1E49MQVqhr/?mibextid=wwXIfr',
+  tiktokUrl: 'https://www.tiktok.com/@nature.haven9',
   availableFrom: '2026-09-01',
   totalUnits: 20,
   hasElevator: false,

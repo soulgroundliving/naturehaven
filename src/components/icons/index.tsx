@@ -131,6 +131,12 @@ export const InstagramIcon: React.FC<IconProps> = ({ className = '', size = 20 }
   </svg>
 );
 
+export const TikTokIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M16.6 5.82c-1.05-.9-1.72-2.2-1.72-3.65h-3.25v13.1c0 1.53-1.24 2.77-2.77 2.77a2.77 2.77 0 01-2.77-2.77 2.77 2.77 0 013.32-2.72V9.13a6.02 6.02 0 00-.55-.03c-3.32 0-6.02 2.7-6.02 6.02 0 3.32 2.7 6.02 6.02 6.02 3.32 0 6.02-2.7 6.02-6.02V9.4a8.36 8.36 0 004.7 1.44V7.6c-1.06 0-2.05-.36-2.98-1.18z" />
+  </svg>
+);
+
 export const LinkIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => (
   <svg width={size} height={size} fill="none" stroke="currentColor" viewBox="0 0 24 24" className={className}>
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.828 10.172a4 4 0 010 5.656l-3 3a4 4 0 01-5.656-5.656l1.5-1.5M10.172 13.828a4 4 0 010-5.656l3-3a4 4 0 015.656 5.656l-1.5 1.5" />
