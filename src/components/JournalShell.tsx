@@ -1,6 +1,7 @@
 import React, { useEffect, type ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
+import LineLinkGuard from '@/components/LineLinkGuard';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
 import { PROPERTY } from '@/data/propertyFacts';
@@ -27,6 +28,7 @@ const JournalShell: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <div className="relative min-h-screen">
       <ScrollProgressBar />
+      <LineLinkGuard />
       <header className="fixed top-0 left-0 right-0 z-[100] bg-white/85 backdrop-blur-xl shadow-sm">
         <div className="container-main flex h-16 items-center justify-between">
           <Link to="/" className="font-serif text-lg text-dark-charcoal">

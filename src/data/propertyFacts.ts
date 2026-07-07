@@ -16,6 +16,10 @@ export const PROPERTY = {
   latitude: 13.9135,
   longitude: 100.662,
   lineUrl: 'https://lin.ee/ZoujovB6',
+  // LINE OA ID for manual "Add Friends → Search ID" fallback — used when an
+  // in-app browser (Facebook/Instagram) blocks the lin.ee → line.me redirect.
+  // Verify: the lin.ee link 301s to https://line.me/R/ti/p/@929pthtt
+  lineId: '@929pthtt',
   instagramUrl: 'https://www.instagram.com/naturehaven_official/',
   availableFrom: '2026-09-01',
   totalUnits: 20,
