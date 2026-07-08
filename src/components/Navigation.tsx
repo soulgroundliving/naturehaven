@@ -5,6 +5,7 @@ import { Menu, Close } from './icons';
 import type { TimePalette } from '@/lib/timeOfDay';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
+import { scrollToTarget } from '@/lib/scrollTo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,9 +64,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
   const scrollTo = (href: string) => {
     setMobileOpen(false);
     const target = document.querySelector(href);
-    if (target && lenisRef.current) {
-      lenisRef.current.scrollTo(target, { offset: -80 });
-    }
+    if (target) scrollToTarget(target, lenisRef.current, -80);
   };
 
   return (
@@ -85,7 +84,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              if (lenisRef.current) lenisRef.current.scrollTo(0);
+              scrollToTarget(0, lenisRef.current);
             }}
             className={`font-serif text-lg transition-colors duration-500 ${
               isPastHero ? (isDark ? 'text-pure-white' : 'text-dark-charcoal') : ''

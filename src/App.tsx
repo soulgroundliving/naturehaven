@@ -23,6 +23,7 @@ import { useTimeOfDay } from '@/contexts/TimeOfDayContext';
 import VideoBackground from '@/components/VideoBackground';
 import useSectionObserver from '@/hooks/useSectionObserver';
 import { isPrerender } from '@/lib/isPrerender';
+import { scrollToTarget } from '@/lib/scrollTo';
 
 // Code-split the 3D scene — three + r3f + drei is ~1MB. Body CSS gradient
 // paints the sky immediately while this chunk loads.
@@ -307,9 +308,9 @@ function App() {
         activeSection={activeSection}
         isPastHero={isPastHero}
         onDotClick={(id) => {
+          if (id === 'hero') { scrollToTarget(0, lenisRef.current); return; }
           const target = document.getElementById(id);
-          if (target && lenisRef.current) lenisRef.current.scrollTo(target, { offset: -80 });
-          else if (id === 'hero' && lenisRef.current) lenisRef.current.scrollTo(0);
+          if (target) scrollToTarget(target, lenisRef.current, -80);
         }}
       />
       {/* Video + 3D Orb are useless in the crawler snapshot AND slow puppeteer
