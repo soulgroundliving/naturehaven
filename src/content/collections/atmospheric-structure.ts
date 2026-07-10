@@ -17,10 +17,10 @@ const collection: Collection = {
     en: 'Before the first material was chosen, we chose the direction of the wind. Every residence sits on a north–south line — the door receives the breeze, the balcony releases it — and the whole is wrapped in a structure and a paint that are safe to breathe, for every life in the room.',
     th: 'ก่อนจะเลือกวัสดุชิ้นแรก เราเลือกทิศของลมก่อน ห้องทุกห้องวางตัวในแนวเหนือ–ใต้ ประตูรับลมเข้า ระเบียงปล่อยลมออก อากาศจึงหมุนเวียนเองตลอดปี จากนั้นจึงห่อทั้งหมดด้วยโครงสร้างและสีที่ปลอดภัยต่อลมหายใจของทุกชีวิตในห้อง',
   },
-  hero: '/assets/design-philosophy-interior.jpg',
+  hero: '/assets/corridor-approach.jpg',
   heroAlt: {
-    en: 'Light-filled interior planned around natural north–south airflow',
-    th: 'ห้องโปร่งแสงที่วางผังตามการไหลของลมแนวเหนือ–ใต้',
+    en: 'The building corridor — warm recessed light, digital-locked doors, open to the breeze and greenery',
+    th: 'โถงทางเดินของอาคาร — ไฟ warm light ประตูพร้อมล็อกดิจิทัล เปิดรับลมและแนวต้นไม้',
   },
   details: [
     {

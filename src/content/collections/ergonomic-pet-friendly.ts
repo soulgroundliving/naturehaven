@@ -17,10 +17,10 @@ const collection: Collection = {
     en: 'This home has two species of resident. So every distance is calculated — the height of a chair, the sightline from the bed, the position of a switch — precise for your body, and safe for their curiosity, at the same time.',
     th: 'บ้านหลังนี้มีผู้อยู่อาศัยสองสายพันธุ์ เราจึงคำนวณทุกระยะ — ความสูงของเก้าอี้ ระดับสายตาจากเตียง ตำแหน่งของสวิตช์ — ให้พอดีกับสรีระของคุณ และปลอดภัยกับความซนของพวกเขา ในเวลาเดียวกัน',
   },
-  hero: '/assets/design-materials-detail.jpg',
+  hero: '/assets/room-view-out.jpg',
   heroAlt: {
-    en: 'Natural material palette — laminate, wood tones, and soft finishes',
-    th: 'วัสดุโทนธรรมชาติ — ลามิเนต โทนไม้ และผิวสัมผัสนุ่มนวล',
+    en: 'Looking out from the bedroom — the 3-metre desk, quiet pantry and built-ins in one view',
+    th: 'มุมมองออกจากห้องนอน — เห็นโต๊ะยาว 3 เมตร มุมครัวเงียบ และตู้บิ้วอินในภาพเดียว',
   },
   details: [
     {
