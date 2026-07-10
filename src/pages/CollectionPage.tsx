@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import JournalShell from '@/components/JournalShell';
 import { titleFont } from '@/components/JournalCard';
+import AiRenderBadge from '@/components/AiRenderBadge';
 import usePageMeta, { useJsonLd } from '@/hooks/usePageMeta';
 import { COLLECTIONS, getCollection } from '@/data/collections';
 import { PROPERTY } from '@/data/propertyFacts';
@@ -77,17 +78,18 @@ const CollectionPage: React.FC = () => {
               {collection.essence[lang]}
             </p>
 
-            {/* Hero */}
-            <div className="mt-10 overflow-hidden rounded-xl shadow-[0_18px_44px_rgba(43,43,43,0.14)]">
+            {/* Hero — fixed-height matte frame, full image via object-contain
+                (most Lookbook renders are portrait; a landscape crop was
+                cutting more than half of them off). */}
+            <div className="relative mt-10 h-[50vh] overflow-hidden rounded-xl shadow-[0_18px_44px_rgba(43,43,43,0.14)] card-surface md:h-[65vh]">
               <img
                 src={collection.hero}
                 alt={collection.heroAlt[lang]}
-                width={1440}
-                height={810}
                 loading="eager"
                 fetchPriority="high"
-                className="aspect-[16/9] w-full object-cover"
+                className="h-full w-full object-contain"
               />
+              <AiRenderBadge className="absolute bottom-3 right-3" />
             </div>
 
             {/* Manifesto */}

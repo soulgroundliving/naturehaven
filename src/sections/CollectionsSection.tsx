@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { titleFont } from '@/components/JournalCard';
+import AiRenderBadge from '@/components/AiRenderBadge';
 import { COLLECTIONS } from '@/data/collections';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
@@ -41,9 +42,10 @@ const CollectionsSection: React.FC = () => {
                 className="group grid grid-cols-1 items-center gap-5 md:grid-cols-2 md:gap-12 cursor-pointer"
                 aria-label={`${lb.collectionWord[lang]} ${c.index} — ${c.title[lang]}`}
               >
-                {/* Image */}
+                {/* Image — fixed-height matte frame, full image via
+                    object-contain (most heroes are portrait renders). */}
                 <div
-                  className={`overflow-hidden rounded-2xl shadow-[0_14px_36px_rgba(43,43,43,0.12)] ${
+                  className={`relative h-72 overflow-hidden rounded-2xl shadow-[0_14px_36px_rgba(43,43,43,0.12)] card-surface md:h-96 ${
                     reversed ? 'md:order-2' : ''
                   }`}
                 >
@@ -51,8 +53,9 @@ const CollectionsSection: React.FC = () => {
                     src={c.hero}
                     alt={c.heroAlt[lang]}
                     loading="lazy"
-                    className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    className="h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   />
+                  <AiRenderBadge className="absolute bottom-2.5 right-2.5" />
                 </div>
 
                 {/* Text */}
