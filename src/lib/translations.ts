@@ -7,8 +7,8 @@ export { pick };
 export const TR = {
   nav: {
     links: {
-      en: ['PHILOSOPHY', 'RESIDENCES', 'AMENITIES', 'JOURNAL', 'LOCATION', 'FAQ', 'CONTACT'],
-      th: ['ปรัชญา', 'ห้องพัก', 'สิ่งอำนวย', 'บันทึก', 'ทำเล', 'คำถาม', 'ติดต่อ'],
+      en: ['PHILOSOPHY', 'LOOKBOOK', 'RESIDENCES', 'AMENITIES', 'JOURNAL', 'LOCATION', 'CONTACT'],
+      th: ['ปรัชญา', 'คอลเลกชัน', 'ห้องพัก', 'สิ่งอำนวย', 'บันทึก', 'ทำเล', 'ติดต่อ'],
     },
   },
   cta: {

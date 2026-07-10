@@ -30,12 +30,12 @@ const OrbScene = lazy(() => import('@/components/orb/OrbScene'));
 
 // Hero + scroll-pinned sections stay eager so ScrollTrigger has DOM refs immediately.
 import HeroSection from '@/sections/HeroSection';
-import RoomJourneySection from '@/sections/RoomJourneySection';
 import AmenitiesSection from '@/sections/AmenitiesSection';
 
 // Below-fold sections lazy-loaded — reduces initial JS parse time significantly.
 const AboutSection      = lazy(() => import('@/sections/AboutSection'));
 const InvitationSection = lazy(() => import('@/sections/InvitationSection'));
+const CollectionsSection = lazy(() => import('@/sections/CollectionsSection'));
 const ResidencesSection = lazy(() => import('@/sections/ResidencesSection'));
 const LocationSection   = lazy(() => import('@/sections/LocationSection'));
 const SmartLivingSection   = lazy(() => import('@/sections/SmartLivingSection'));
@@ -76,6 +76,7 @@ function App() {
 
   const sectionIds = [
     'about',
+    'collections',
     'residences',
     'amenities',
     'journal',
@@ -127,7 +128,7 @@ function App() {
   }, []);
 
   // Keep ScrollTrigger positions in sync with the REAL layout. Lazy sections
-  // mounting above Amenities/RoomJourney grow the page by thousands of px
+  // mounting above Amenities grow the page by thousands of px
   // after triggers are created; without an explicit refresh the triggers keep
   // their mount-time start/end and play out ~6,000px too early (verified live:
   // Amenities track sat at its END while the section was still 2,000px below
@@ -245,11 +246,9 @@ function App() {
   // touch devices. It routes native touch-scroll through a virtual scroller
   // to make pinned/sticky ScrollTriggers behave — but the trade-off is a
   // sluggish, "sticky" scroll feel in the LINE in-app browser (reported:
-  // "ปัดขึ้นติด ฝืดๆ"). Instead we remove the mobile pin at its source:
-  // RoomJourneySection renders a plain vertical stack on mobile (no sticky
-  // pin), and AmenitiesSection already unpins via CSS. With no scroll-hijack
-  // pins left on phones, native momentum scroll is smooth and normalizeScroll
-  // is unnecessary.
+  // "ปัดขึ้นติด ฝืดๆ"). The only scroll-hijack left anywhere is Amenities'
+  // desktop horizontal track, which unpins via CSS on mobile — so phones
+  // ride pure native momentum scroll and normalizeScroll is unnecessary.
 
   return (
     <div className="relative">
@@ -317,9 +316,7 @@ function App() {
         <Suspense fallback={null}>
           <AboutSection />
           <InvitationSection />
-        </Suspense>
-        <RoomJourneySection />
-        <Suspense fallback={null}>
+          <CollectionsSection />
           <ResidencesSection />
         </Suspense>
         <MarqueeStrip speed={28} />

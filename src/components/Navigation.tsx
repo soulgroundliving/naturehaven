@@ -36,11 +36,11 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
   const navLabels = TR.nav.links[lang];
   const navLinks = [
     { label: navLabels[0], href: '#about' },
-    { label: navLabels[1], href: '#residences' },
-    { label: navLabels[2], href: '#amenities' },
-    { label: navLabels[3], href: '#journal' },
-    { label: navLabels[4], href: '#location' },
-    { label: navLabels[5], href: '#faq' },
+    { label: navLabels[1], href: '#collections' },
+    { label: navLabels[2], href: '#residences' },
+    { label: navLabels[3], href: '#amenities' },
+    { label: navLabels[4], href: '#journal' },
+    { label: navLabels[5], href: '#location' },
     { label: navLabels[6], href: '#contact' },
   ];
 
