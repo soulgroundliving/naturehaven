@@ -13,8 +13,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const roomPhotos = [
   {
-    src: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&fit=crop&auto=format&q=80',
-    alt: 'Minimal bathroom with natural light',
+    src: '/assets/bathroom-functional.jpg',
+    alt: 'The bathroom — oval mirror, D-shape closet and constant-temperature shower',
     key: 'galleryBathroom',
   },
   {

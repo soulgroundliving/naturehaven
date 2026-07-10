@@ -17,10 +17,10 @@ const collection: Collection = {
     en: 'The rooms you use every day should ask nothing of you. So we did the thinking in advance — from the height of a tap, to the tilt of a bottle ledge, to the thickness of a balcony frame.',
     th: 'พื้นที่ที่คุณใช้ทุกวันไม่ควรมีเรื่องให้ต้องคิด เราจึงคิดแทนให้ทั้งหมดล่วงหน้า — ตั้งแต่ความสูงของก๊อกน้ำ องศาของชั้นวางขวด ไปจนถึงความหนาของกรอบบานเลื่อนที่ระเบียง',
   },
-  hero: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1400&fit=crop&auto=format&q=80',
+  hero: '/assets/bathroom-functional.jpg',
   heroAlt: {
-    en: 'Minimal bathroom with natural light',
-    th: 'ห้องน้ำมินิมอลรับแสงธรรมชาติ',
+    en: 'The bathroom — oval mirror, one-piece D-shape closet, constant-temperature shower and the tilted bottle ledge',
+    th: 'ห้องน้ำจริงของโครงการ — กระจกวงรี สุขภัณฑ์ชิ้นเดียวทรง D ฝักบัวน้ำอุ่นอุณหภูมิคงที่ และชั้นวางขวดหลังโถ',
   },
   details: [
     {
