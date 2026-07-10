@@ -12,6 +12,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 const HEADLINE_LINES = ['Nature', 'Haven'];
 
+// Fixed cream — NOT var(--text-on-bg). The old palette-adaptive text only
+// worked because the hero had no photo behind it; now that a real room photo
+// sits full-bleed under a permanent dark scrim, the text needs one reliable
+// light tone regardless of time-of-day slot. See feedback_naturehaven_hero_text_colors.
+const HERO_TEXT = '#F5F1EA';
+const HERO_TEXT_SHADOW = '0 2px 24px rgba(20,16,10,0.45), 0 1px 4px rgba(20,16,10,0.35)';
+
 const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -88,21 +95,45 @@ const HeroSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative w-full min-h-[100dvh] overflow-hidden flex flex-col"
+      className="relative flex min-h-[100dvh] w-full flex-col items-center justify-center overflow-hidden"
     >
-      {/* Text zone — sits on the clean, palette-adaptive page background (no
-          full-bleed footage behind the copy), so the wordmark, subtitle and
-          pricing stay legible in every time-of-day slot. */}
+      {/* The room itself, full-bleed — real estate first, mood second. */}
+      <img
+        src="/assets/hero-room.jpg"
+        alt="Inside a Nature Haven residence — bedroom with private balcony"
+        className="absolute inset-0 h-full w-full object-cover"
+        fetchPriority="high"
+      />
+
+      {/* Legibility scrim — fixed dark layers (NOT time-of-day tinted; a real
+          photo re-colored per palette would look like a bug, not a feature).
+          Stronger over the text zone and the bottom CTA/scroll-cue band,
+          lighter at the corners so the room still reads as a room. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 75% 62% at 50% 38%, rgba(12,10,7,0.55) 0%, rgba(12,10,7,0.28) 55%, transparent 85%), ' +
+            'linear-gradient(to top, rgba(12,10,7,0.55) 0%, rgba(12,10,7,0.18) 24%, transparent 46%), ' +
+            'rgba(12,10,7,0.22)',
+        }}
+      />
+
+      {/* Bottom-left, not bottom-right — FloatingLineChat sits fixed at
+          bottom-right on every screen and would otherwise collide with it. */}
+      <AiRenderBadge className="absolute bottom-4 left-4 z-20 md:bottom-5 md:left-5" />
+
       <div
         ref={contentRef}
-        className="relative z-10 flex-1 flex flex-col items-center justify-center text-center w-full max-w-[1300px] mx-auto px-4 md:px-8 lg:px-12 pt-24 pb-4"
-        style={{ willChange: 'transform, opacity', color: 'var(--text-on-bg, #2B2B2B)' }}
+        className="relative z-10 flex w-full max-w-[1300px] flex-col items-center px-4 pt-10 text-center md:px-8 lg:px-12"
+        style={{ willChange: 'transform, opacity', color: HERO_TEXT }}
       >
-        <div className="hero-rule-top w-20 h-px mb-6 opacity-25" style={{ background: 'var(--text-on-bg, #2B2B2B)' }} />
+        <div className="hero-rule-top mb-6 h-px w-20 opacity-30" style={{ background: HERO_TEXT }} />
 
         <p
-          className="font-sans text-[10px] md:text-xs uppercase tracking-[0.22em] mb-7 flex flex-wrap justify-center gap-x-[0.55em] gap-y-1"
-          style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
+          className="mb-7 flex flex-wrap justify-center gap-x-[0.55em] gap-y-1 font-sans text-[10px] uppercase tracking-[0.22em] md:text-xs"
+          style={{ color: HERO_TEXT, textShadow: HERO_TEXT_SHADOW }}
         >
           {labelWords.map((word, i) => (
             <span key={i} className="inline-block overflow-hidden" style={{ lineHeight: 1.3 }}>
@@ -112,8 +143,9 @@ const HeroSection: React.FC = () => {
         </p>
 
         <h1
-          className="font-serif leading-[0.88] text-[13vw] sm:text-[11vw] md:text-[9.5vw] lg:text-[8.5vw] tracking-[-0.01em]"
+          className="font-serif leading-[0.88] text-[13vw] tracking-[-0.01em] sm:text-[11vw] md:text-[9.5vw] lg:text-[8.5vw]"
           aria-label="Nature Haven"
+          style={{ textShadow: HERO_TEXT_SHADOW }}
         >
           {HEADLINE_LINES.map((line, i) => (
             <span
@@ -127,21 +159,18 @@ const HeroSection: React.FC = () => {
           ))}
         </h1>
 
-        <div
-          className="hero-rule-bottom w-[220px] h-px mt-6 mb-6 opacity-20"
-          style={{ background: 'var(--text-on-bg, #2B2B2B)' }}
-        />
+        <div className="hero-rule-bottom mb-6 mt-6 h-px w-[220px] opacity-25" style={{ background: HERO_TEXT }} />
 
         <p
-          className="hero-subtitle font-sans text-[15px] md:text-lg font-light max-w-[520px] leading-relaxed"
-          style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
+          className="hero-subtitle max-w-[520px] font-sans text-[15px] font-light leading-relaxed md:text-lg"
+          style={{ color: HERO_TEXT, textShadow: HERO_TEXT_SHADOW }}
         >
           {h.subtitle[lang]}
         </p>
 
         <p
-          className="hero-cta font-sans text-[11px] uppercase tracking-[0.16em] mt-6 opacity-55"
-          style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
+          className="hero-cta mt-6 font-sans text-[11px] uppercase tracking-[0.16em] opacity-80"
+          style={{ color: HERO_TEXT, textShadow: HERO_TEXT_SHADOW }}
         >
           {h.cta[lang]}
         </p>
@@ -159,26 +188,10 @@ const HeroSection: React.FC = () => {
         </a>
       </div>
 
-      {/* The room itself — a real render, not a mood shot, so the site reads
-          unmistakably as a residence from the first screen. Fixed-height
-          matte frame + object-contain (same "gallery print" treatment used
-          across the Lookbook) so the image is never cropped. */}
-      <div className="relative z-10 w-full px-4 md:px-8 lg:px-12 pb-14 md:pb-16">
-        <div className="relative mx-auto h-[34vh] w-full max-w-[1080px] overflow-hidden rounded-2xl shadow-[0_18px_44px_rgba(43,43,43,0.16)] card-surface sm:h-[40vh] md:h-[52vh]">
-          <img
-            src="/assets/room-view-in.jpg"
-            alt="Inside a Nature Haven residence — bedroom with private balcony"
-            className="h-full w-full object-contain"
-            fetchPriority="high"
-          />
-          <AiRenderBadge className="absolute bottom-3 right-3" />
-        </div>
-      </div>
-
       <div
         ref={scrollIndicatorRef}
-        className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1"
-        style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
+        className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-1"
+        style={{ color: HERO_TEXT, textShadow: HERO_TEXT_SHADOW }}
       >
         <span className="font-sans text-[10px] uppercase tracking-[0.15em]">{h.scroll[lang]}</span>
         <div className="animate-bounce-gentle">

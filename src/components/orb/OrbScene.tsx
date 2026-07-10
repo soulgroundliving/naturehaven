@@ -51,6 +51,15 @@ export default function OrbScene() {
         : -80;
       gsap.set(container, { y: heroOffset });
 
+      // The hero is now a full-bleed room photo (2026-07 redesign) — an
+      // abstract glass orb floating over a real photo reads as a bug, not a
+      // feature, and undercuts "this is obviously a real listing". Stay
+      // hidden through the hero; fade in only once the user scrolls past it
+      // (the #hero onLeave/onEnterBack hooks below, shared with the existing
+      // Y-position logic). Target < 1 on light slots so the bubble reads as
+      // delicate/ethereal once it does appear.
+      const targetOpacity = palette.slot === 'night' || palette.slot === 'sunset' ? 1 : 0.72;
+
       // On mobile, skip the continuous scrub — it fires on each native scroll
       // frame and stacks with WebGL paint cost. Instead:
       //   1. Hold the orb at the H1 anchor for 3 s after the LoadingOverlay
@@ -105,10 +114,12 @@ export default function OrbScene() {
             oscillate?.kill();
             oscillate = null;
             gsap.set(container, { y: 0 });
+            gsap.to(wrapper, { opacity: targetOpacity, duration: 1, ease: 'power2.inOut' });
           },
           onEnterBack: () => {
             gsap.set(container, { y: heroOffset });
             if (!oscillate) startOscillate();
+            gsap.to(wrapper, { opacity: 0, duration: 0.5, ease: 'power2.inOut' });
           },
         });
       } else {
@@ -120,6 +131,12 @@ export default function OrbScene() {
           scrub: 1,
           onUpdate: (self) => {
             setOrbY(heroOffset * (1 - self.progress));
+          },
+          onLeave: () => {
+            gsap.to(wrapper, { opacity: targetOpacity, duration: 1, ease: 'power2.inOut' });
+          },
+          onEnterBack: () => {
+            gsap.to(wrapper, { opacity: 0, duration: 0.5, ease: 'power2.inOut' });
           },
         });
       }
@@ -168,16 +185,6 @@ export default function OrbScene() {
           },
         });
       }
-
-      // Fade in on load — orb materialises gently instead of popping.
-      // Target < 1 on light slots so the bubble reads as delicate/ethereal.
-      const targetOpacity = palette.slot === 'night' || palette.slot === 'sunset' ? 1 : 0.72;
-      gsap.to(wrapper, {
-        opacity: targetOpacity,
-        duration: 2,
-        delay: 0.5,
-        ease: 'power2.inOut',
-      });
 
       // Footer fade — orb retreats so closing copy stands alone. Desktop
       // only: on mobile the scrub fires every native scroll frame near the
