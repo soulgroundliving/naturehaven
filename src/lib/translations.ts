@@ -99,8 +99,8 @@ export const TR = {
       th: 'ที่พักที่ออกแบบด้วยเจตนา — ที่ซึ่งชีวิตและสัตว์เลี้ยงที่คุณรักค่อยๆ กลับคืนสู่จังหวะธรรมชาติ',
     },
     cta: {
-      en: 'Pets welcome on every floor · Move in September 2026',
-      th: 'เลี้ยงสัตว์ได้ทั้งตึก · พร้อมเข้าอยู่ กันยายน 2569',
+      en: 'Apartment · Pet-friendly · Saimai\nMove in September 2026',
+      th: 'อพาร์ทเม้นท์ · เลี้ยงสัตว์ได้ · สายไหม\nพร้อมเข้าอยู่ กันยายน 2569',
     },
     scroll: { en: 'Scroll to explore', th: 'เลื่อนเพื่อสำรวจ' },
   },

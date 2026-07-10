@@ -144,10 +144,12 @@ const HeroSection: React.FC = () => {
         <div className="hero-rule-bottom mb-6 mt-6 h-px w-[220px] opacity-25" style={{ background: HERO_TEXT }} />
 
         <p
-          className="hero-cta mt-7 font-sans text-[11px] uppercase tracking-[0.16em] opacity-80"
+          className="hero-cta mt-7 font-sans text-[11px] uppercase tracking-[0.16em] leading-[1.9] opacity-80"
           style={{ color: HERO_TEXT, textShadow: HERO_TEXT_SHADOW }}
         >
-          {h.cta[lang]}
+          {h.cta[lang].split('\n').map((line, i, arr) => (
+            <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>
+          ))}
         </p>
 
         <a

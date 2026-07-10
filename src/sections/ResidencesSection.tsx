@@ -3,13 +3,38 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import SectionHeader from '@/components/SectionHeader';
-import { Check } from '@/components/icons';
-import { PawPrint } from 'lucide-react';
+import {
+  PawPrint,
+  Boxes,
+  BedDouble,
+  Armchair,
+  RectangleVertical,
+  Snowflake,
+  Refrigerator,
+  ShowerHead,
+  Blinds,
+  Wind,
+} from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
 import { PROPERTY } from '@/data/propertyFacts';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// One icon per In-Room Essential, index-aligned with TR.residences.essentials
+// (built-ins · mattress · desk/wardrobe · mirror · AC · fridge · water heater ·
+// blackout curtains · ventilation). Colour follows the time-of-day theme.
+const ESSENTIAL_ICONS = [
+  Boxes,
+  BedDouble,
+  Armchair,
+  RectangleVertical,
+  Snowflake,
+  Refrigerator,
+  ShowerHead,
+  Blinds,
+  Wind,
+];
 
 const ResidencesSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -229,12 +254,15 @@ const ResidencesSection: React.FC = () => {
             {r.essentialsSub[lang]}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5">
-            {essentials.map((item) => (
-              <div key={item} className="ess-item flex items-center gap-3">
-                <Check className="text-sage-green flex-shrink-0" size={20} />
-                <span className="font-sans text-base font-light sec-text">{item}</span>
-              </div>
-            ))}
+            {essentials.map((item, i) => {
+              const Icon = ESSENTIAL_ICONS[i] ?? Boxes;
+              return (
+                <div key={item} className="ess-item flex items-center gap-3">
+                  <Icon className="sec-text-70 flex-shrink-0" size={20} strokeWidth={1.5} />
+                  <span className="font-sans text-base font-light sec-text">{item}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
