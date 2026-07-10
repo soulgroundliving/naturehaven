@@ -25,18 +25,18 @@ const SLIDES: Slide[] = [
   },
   {
     src: '/assets/room-view-in.jpg',
-    caption: { en: 'The room', th: 'ห้องพัก' },
+    caption: { en: 'Looking out', th: 'มองภายนอก' },
     alt: {
-      en: 'Inside a Nature Haven residence, looking in',
-      th: 'ภายในห้องพัก Nature Haven มองเข้า',
+      en: 'Inside a Nature Haven residence, looking out toward the balcony window',
+      th: 'ภายในห้องพัก Nature Haven มองออกไปทางหน้าต่างและระเบียง',
     },
   },
   {
     src: '/assets/room-view-out.jpg',
-    caption: { en: 'Toward the balcony', th: 'สู่ระเบียง' },
+    caption: { en: 'Looking in', th: 'มองภายใน' },
     alt: {
-      en: 'The room opening toward its private balcony',
-      th: 'ห้องที่เปิดออกสู่ระเบียงส่วนตัว',
+      en: 'The interior of a Nature Haven residence, seen from the balcony side',
+      th: 'มุมมองภายในห้องพัก Nature Haven จากฝั่งระเบียง',
     },
   },
   {
@@ -57,10 +57,10 @@ const SLIDES: Slide[] = [
   },
   {
     src: '/assets/unit-overview.jpg',
-    caption: { en: 'The whole unit', th: 'ภาพรวมห้อง' },
+    caption: { en: 'Toward the balcony', th: 'สู่ระเบียง' },
     alt: {
-      en: 'A Nature Haven residence, room to balcony to ensuite bath',
-      th: 'ห้องพัก Nature Haven ตั้งแต่ห้องถึงระเบียงและห้องน้ำ',
+      en: 'A Nature Haven residence opening toward its private balcony and ensuite bath',
+      th: 'ห้องพัก Nature Haven ที่เปิดออกสู่ระเบียงและห้องน้ำในตัว',
     },
   },
 ];
