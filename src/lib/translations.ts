@@ -13,8 +13,8 @@ export const TR = {
   },
   cta: {
     mobileBar: {
-      en: 'Book a viewing via LINE · From 6,900 THB/mo',
-      th: 'นัดชมห้องผ่าน LINE · เริ่ม 6,900 บาท/เดือน',
+      en: 'Request Private Viewing · LINE',
+      th: 'นัดชมห้องส่วนตัว · ทัก LINE',
     },
   },
   links: {
@@ -91,16 +91,16 @@ export const TR = {
   },
   hero: {
     labelWords: {
-      en: ['Lite', 'Service', 'Apartment', '·', 'Pet-Friendly', '·', 'Saimai,', 'Bangkok'],
-      th: ['ที่พักเลี้ยงสัตว์ได้', 'ทั้งตึก', '·', 'สายไหม,', 'กรุงเทพฯ'],
+      en: ['A', 'Quiet', 'Luxury', 'Residence', '·', 'Pet-Friendly', '·', 'Saimai,', 'Bangkok'],
+      th: ['Quiet', 'Luxury', 'Residence', '·', 'เลี้ยงสัตว์ได้ทั้งตึก', '·', 'สายไหม,', 'กรุงเทพฯ'],
     },
     subtitle: {
       en: 'A residence shaped by intention — where life, and the ones you love, gently return to a natural rhythm.',
       th: 'ที่พักที่ออกแบบด้วยเจตนา — ที่ซึ่งชีวิตและสัตว์เลี้ยงที่คุณรักค่อยๆ กลับคืนสู่จังหวะธรรมชาติ',
     },
     cta: {
-      en: 'From 6,900 THB / mo · Pet-friendly · Available September 2026',
-      th: 'เริ่มต้น 6,900 บาท / เดือน · เลี้ยงสัตว์ได้ · พร้อมเข้าอยู่ กันยายน 2569',
+      en: 'Private viewings by appointment · Opening September 2026',
+      th: 'เปิดชมห้องส่วนตัวตามนัดหมาย · พร้อมเข้าอยู่ กันยายน 2569',
     },
     scroll: { en: 'Scroll to explore', th: 'เลื่อนเพื่อสำรวจ' },
   },
@@ -154,7 +154,11 @@ export const TR = {
       th: 'ราคาเดียวครบ — รวมสิ่งอำนวยความสะดวก, Wi-Fi, ทำความสะอาด และล้างแอร์',
     },
     pricingLabel: { en: 'Pricing', th: 'ราคา' },
-    pricingNote: { en: 'Opening rate · From 6,900 THB/mo · Sep 2026', th: 'ราคาเปิดตัว · เริ่ม 6,900 บาท/เดือน · ก.ย. 2569' },
+    pricingNote: { en: 'Opening rates · shared privately via LINE', th: 'ราคาเปิดตัว · แจ้งแบบส่วนตัวทาง LINE' },
+    privateBody: {
+      en: 'Current rates, floor availability and opening offers are shared privately — message us on LINE and we will arrange a viewing around your schedule.',
+      th: 'ราคาแต่ละชั้น ห้องที่ว่าง และข้อเสนอช่วงเปิดตัว เราแจ้งให้แบบส่วนตัว — ทัก LINE แล้วเรานัดเวลาเข้าชมห้องตามที่คุณสะดวก',
+    },
     openingRate: { en: 'Opening Rate', th: 'ราคาเปิดตัว' },
     petsEverywhere: { en: 'Pet-friendly — the whole building', th: 'เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น' },
     petsEverywhereSub: { en: 'No floor restrictions — small pets (1–2 per unit) welcome in every home, on every floor.', th: 'ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง' },
@@ -162,8 +166,8 @@ export const TR = {
     fromLabel: { en: 'From', th: 'เริ่มต้น' },
     tierCta: { en: 'Book a viewing', th: 'นัดชมห้อง' },
     unitsPerFloor: { en: '5 units', th: '5 ห้อง' },
-    ctaLabel: { en: 'Ready to make it yours?', th: 'พร้อมจองห้องของคุณแล้วหรือยัง?' },
-    ctaButton: { en: 'Reserve a Unit', th: 'จองห้องพัก' },
+    ctaLabel: { en: 'Ready to see it in person?', th: 'อยากเห็นห้องจริงด้วยตาตัวเอง?' },
+    ctaButton: { en: 'Request Private Viewing', th: 'นัดชมห้องส่วนตัว' },
     galleryBedroom: { en: 'Bedroom', th: 'ห้องนอน' },
     galleryBathroom: { en: 'Bathroom', th: 'ห้องน้ำ' },
     galleryKitchen: { en: 'Kitchen', th: 'ครัว' },
@@ -172,8 +176,8 @@ export const TR = {
     essentialsSub: { en: 'Every element is selected with purpose.', th: 'ทุกองค์ประกอบคัดสรรด้วยความตั้งใจ' },
     essentials: {
       en: [
-        'Built-in furniture (functional & minimal)',
-        '5 ft bed with ergonomic mattress',
+        'Formica built-ins throughout (soft-close)',
+        'Sleep Happy 10″ pocket-spring mattress — 5-star hotel grade',
         'Work desk / wardrobe / shelving / chair',
         'Full-length mirror',
         'Air conditioner',
@@ -183,8 +187,8 @@ export const TR = {
         'Air ventilation system',
       ],
       th: [
-        'เฟอร์นิเจอร์บิลต์อิน (ใช้งานได้จริง มินิมอล)',
-        'เตียง 5 ฟุต พร้อมที่นอน Ergonomic',
+        'เฟอร์นิเจอร์บิ้วอิน Formica ทั้งห้อง (soft-close)',
+        'ที่นอน Sleep Happy Pocket Spring 10 นิ้ว — มาตรฐานโรงแรม 5 ดาว',
         'โต๊ะทำงาน / ตู้เสื้อผ้า / ชั้นวาง / เก้าอี้',
         'กระจกบานใหญ่',
         'เครื่องปรับอากาศ',
@@ -208,16 +212,16 @@ export const TR = {
     scrollHint: { en: 'Scroll', th: 'เลื่อน' },
     items: {
       en: [
-        { label: 'Parking', desc: 'One dedicated bay per unit — no searching, no waiting.' },
+        { label: 'Parking', desc: 'One covered bay per residence — no searching, no waiting.' },
         { label: 'Pocket Garden', desc: 'A communal garden to slow down in. Green, quiet, yours.' },
-        { label: 'Laundry & Drying', desc: 'On-site facility, clean and always available.' },
+        { label: 'Laundry & Dryer', desc: 'Washers and dryers on site, with a drinking-water refill station.' },
         { label: 'Cleaning Service', desc: 'Common areas professionally maintained every six months.' },
         { label: 'A/C Maintenance', desc: 'Serviced annually — no extra cost, no surprises.' },
       ],
       th: [
-        { label: 'ที่จอดรถ', desc: 'ที่จอดรถประจำห้อง — ไม่ต้องหา ไม่ต้องรอ' },
+        { label: 'ที่จอดรถ', desc: 'ที่จอดมีหลังคา ประจำห้องละ 1 คัน — ไม่ต้องหา ไม่ต้องรอ' },
         { label: 'สวนกระเป๋า', desc: 'สวนส่วนกลาง — สีเขียว สงบ เป็นของคุณ' },
-        { label: 'ซักผ้า & ตากผ้า', desc: 'สิ่งอำนวยความสะดวกในอาคาร สะอาด พร้อมใช้เสมอ' },
+        { label: 'ซักผ้า & อบผ้า', desc: 'เครื่องซักและเครื่องอบในอาคาร พร้อมจุดเติมน้ำดื่ม' },
         { label: 'บริการทำความสะอาด', desc: 'ทำความสะอาดพื้นที่ส่วนกลางโดยมืออาชีพทุก 6 เดือน' },
         { label: 'บริการล้างแอร์', desc: 'ล้างแอร์ปีละครั้ง — ไม่มีค่าใช้จ่ายเพิ่ม ไม่มีเซอร์ไพร์ส์' },
       ],
@@ -225,10 +229,10 @@ export const TR = {
     ctaTag: { en: 'All included', th: 'รวมทุกอย่าง' },
     ctaHeadline: { en: 'Ready when\nyou are.', th: 'พร้อมเมื่อ\nคุณพร้อม' },
     ctaBody: {
-      en: 'Reserve your unit and move in knowing every detail has already been handled.',
-      th: 'จองห้องพักและย้ายเข้าอยู่ โดยรู้ว่าทุกรายละเอียดได้รับการดูแลแล้ว',
+      en: 'Come see it in person — every detail here has already been handled.',
+      th: 'มาเห็นด้วยตาตัวเอง — ทุกรายละเอียดที่นี่ได้รับการดูแลไว้แล้ว',
     },
-    ctaButton: { en: 'Reserve a Unit', th: 'จองห้องพัก' },
+    ctaButton: { en: 'Request Private Viewing', th: 'นัดชมห้องส่วนตัว' },
   },
   location: {
     sectionLabel: { en: 'Location', th: 'ที่ตั้ง' },
@@ -246,8 +250,8 @@ export const TR = {
       th: 'จัดการง่าย\nผ่านแอป\nเดียว',
     },
     leftBody: {
-      en: 'Smart Living gathers everything you might ever need — bookings, payments, maintenance, even the air around you — into a single quiet surface.',
-      th: 'Smart Living รวบรวมทุกสิ่งที่คุณต้องการ — การจอง การชำระเงิน การแจ้งซ่อม แม้แต่อากาศรอบข้าง — ไว้ในพื้นที่เดียวที่เงียบงาม',
+      en: 'Smart Living gathers everything you might ever need — bookings, payments, maintenance, even the air around you — into a single quiet surface, with a personal assistant on LINE who remembers, reminds, and knows the neighbourhood.',
+      th: 'Smart Living รวบรวมทุกสิ่งที่คุณต้องการ — การจอง การชำระเงิน การแจ้งซ่อม แม้แต่อากาศรอบข้าง — ไว้ในพื้นที่เดียวที่เงียบงาม พร้อมผู้ช่วยส่วนตัวใน LINE ที่ช่วยจำ ช่วยเตือน และรู้จักย่านนี้เป็นอย่างดี',
     },
     features: {
       en: [
@@ -311,7 +315,7 @@ export const TR = {
   },
   contact: {
     sectionLabel: { en: 'Contact', th: 'ติดต่อ' },
-    headline: { en: 'Reserve your space quietly.', th: 'จองพื้นที่ของคุณอย่างเงียบๆ' },
+    headline: { en: 'Request a private viewing.', th: 'นัดชมห้องส่วนตัว — อย่างเงียบ ๆ' },
     steps: {
       en: [
         { num: '01', title: 'Explore', body: 'Browse the residences. Decide if Nature Haven is the right fit.' },

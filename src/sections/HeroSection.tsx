@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react';
 import { ArrowDown } from '@/components/icons';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
+import { PROPERTY } from '@/data/propertyFacts';
 import VideoBackground from '@/components/VideoBackground';
 import { isPrerender } from '@/lib/isPrerender';
 
@@ -145,6 +146,18 @@ const HeroSection: React.FC = () => {
         >
           {h.cta[lang]}
         </p>
+
+        <a
+          href={PROPERTY.lineUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hero-cta mt-6 inline-flex cursor-pointer items-center gap-2.5 rounded-full bg-[var(--cta-bg,#3D5A4C)] px-9 py-4 font-sans text-xs uppercase tracking-[0.12em] text-pure-white shadow-lg transition-transform duration-200 hover:shadow-xl active:scale-[0.98]"
+        >
+          {TR.lookbook.ctaButton[lang]}
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+            <path d="M17 8l4 4m0 0l-4 4m4-4H3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </a>
       </div>
 
       {/* Meadow — now its own framed block instead of a full-bleed image

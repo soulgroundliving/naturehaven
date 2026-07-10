@@ -41,22 +41,22 @@ export const PETS_POLICY = {
 export const UNITS = [
   {
     id: 'floor-4', label: 'Floor 4', floor: 4,
-    sqm: 25, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
+    sqm: 25.2, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
     petsAllowed: true, priceOpening: 6900,
   },
   {
     id: 'floor-3', label: 'Floor 3', floor: 3,
-    sqm: 25, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
+    sqm: 25.2, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
     petsAllowed: true, priceOpening: 6900,
   },
   {
     id: 'floor-2', label: 'Floor 2', floor: 2,
-    sqm: 25, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
+    sqm: 25.2, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
     petsAllowed: true, priceOpening: 7200,
   },
   {
     id: 'floor-1', label: 'Floor 1', floor: 1,
-    sqm: 25, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
+    sqm: 25.2, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
     petsAllowed: true, priceOpening: 7200,
   },
 ] as const;
@@ -77,8 +77,8 @@ export const FAQ_ITEMS = [
     id: 'price',
     q_th: 'ค่าเช่าต่อเดือนเท่าไหร่?',
     q_en: 'What is the monthly rent?',
-    a_th: 'เลี้ยงสัตว์ได้ทั้งตึก · ราคาสองระดับตามชั้น — ชั้น 3–4 อยู่ที่ 6,900 บาท/เดือน ชั้น 1–2 อยู่ที่ 7,200 บาท/เดือน',
-    a_en: 'Pet-friendly throughout the building. Two rates by floor — floors 3–4 at 6,900 THB/month, floors 1–2 at 7,200 THB/month.',
+    a_th: 'เริ่มต้น 6,900 บาท/เดือน แบบรวมทุกอย่าง — ราคาแต่ละชั้นและข้อเสนอช่วงเปิดตัว เราแจ้งแบบส่วนตัวทาง LINE พร้อมนัดชมห้อง',
+    a_en: 'From 6,900 THB/month, all-inclusive — per-floor rates and opening offers are shared privately via LINE, along with your viewing appointment.',
   },
   {
     id: 'inclusive',
@@ -91,8 +91,8 @@ export const FAQ_ITEMS = [
     id: 'size',
     q_th: 'ห้องขนาดเท่าไหร่?',
     q_en: 'How big is each unit?',
-    a_th: '25 ตร.ม. · 1 ห้องนอน · 1 ห้องน้ำ · ครัวแยก · ระเบียงส่วนตัว',
-    a_en: '25 sqm · 1 bedroom · 1 bathroom · separate kitchen · private balcony.',
+    a_th: '25.2 ตร.ม. สี่เหลี่ยมผืนผ้า · 1 ห้องนอน · 1 ห้องน้ำ · ครัวแยก · ระเบียงส่วนตัว · ทางเข้าทิศเหนือ–ระเบียงทิศใต้ รับลมธรรมชาติตลอดปี',
+    a_en: '25.2 sqm rectangular plan · 1 bedroom · 1 bathroom · separate kitchen · private balcony · north entrance, south balcony for year-round airflow.',
   },
   {
     id: 'pets',
@@ -126,8 +126,8 @@ export const FAQ_ITEMS = [
     id: 'contact',
     q_th: 'ติดต่อจองได้ทางไหน?',
     q_en: 'How do I reserve a unit?',
-    a_th: 'ติดต่อทาง LINE เท่านั้น — กดปุ่ม "Reserve via LINE" ในส่วน Contact ด้านล่าง',
-    a_en: 'LINE only — tap "Reserve via LINE" in the Contact section.',
+    a_th: 'ติดต่อทาง LINE เท่านั้น — กดปุ่ม "นัดชมห้องส่วนตัว" บนหน้าเว็บ แล้วทีมงานจะดูแลต่อให้ทั้งหมด',
+    a_en: 'LINE only — tap "Request Private Viewing" anywhere on the site and we will take care of the rest.',
   },
   {
     id: 'elevator',

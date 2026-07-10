@@ -319,7 +319,6 @@ function App() {
           <CollectionsSection />
           <ResidencesSection />
         </Suspense>
-        <MarqueeStrip speed={28} />
         <AmenitiesSection />
         <Suspense fallback={null}>
           <JournalSection />

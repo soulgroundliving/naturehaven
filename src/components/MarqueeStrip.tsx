@@ -4,13 +4,13 @@ import { useGSAP } from '@gsap/react';
 
 const ITEMS = [
   'Nature Haven',
-  'Quiet Living',
+  'Quiet Luxury',
   'Saimai · Bangkok',
   'September 2026',
   'Pet-Friendly',
   'All-Inclusive',
-  '25 m²',
-  '20 Units',
+  '25.2 m²',
+  '20 Residences',
   'Private Balcony',
 ];
 

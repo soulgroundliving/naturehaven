@@ -18,9 +18,9 @@ interface PageMeta {
 // then kept the journal title. The only route that sets no meta is the
 // homepage, so restoring these constants is always correct.
 const HOME_META = {
-  title: 'Nature Haven — Lite Service Apartment in Saimai, Bangkok',
+  title: 'Nature Haven — Quiet Luxury Residence in Saimai, Bangkok',
   description:
-    'Lite Service Apartment เลี้ยงสัตว์ได้ทั้งตึก สไตล์ MUJI minimal ในสายไหม กรุงเทพฯ — 25 ตร.ม. 1 นอน ครัวแยก ระเบียง รวม Wi-Fi + ทำความสะอาด + ดูแลแอร์ เริ่ม 6,900 บาท/เดือน เปิดกันยายน 2026',
+    'Quiet Luxury Residence เลี้ยงสัตว์ได้ทั้งตึก ในสายไหม กรุงเทพฯ — 25.2 ตร.ม. ครัวแยก ระเบียงส่วนตัว รวม Wi-Fi + ทำความสะอาด + ดูแลแอร์ เริ่มต้น 6,900 บาท/เดือน · นัดชมห้องส่วนตัวทาง LINE · เปิดกันยายน 2026',
   canonical: 'https://naturehaven-living.vercel.app/',
   ogImage: 'https://naturehaven-living.vercel.app/og-image.jpg',
   ogType: 'website',

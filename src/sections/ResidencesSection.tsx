@@ -29,15 +29,6 @@ const roomPhotos = [
   },
 ] as const;
 
-// Every unit is pet-friendly. Price is set by floor — the top floor (4) is the
-// two tiers: floors 3–4 at the 6,900 entry rate, floors 1–2 at 7,200.
-const FLOORS = [
-  { floor: 4, price: '6,900', entry: true },
-  { floor: 3, price: '6,900', entry: true },
-  { floor: 2, price: '7,200', entry: false },
-  { floor: 1, price: '7,200', entry: false },
-] as const;
-
 const ResidencesSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const sqmRef    = useRef<HTMLSpanElement>(null);
@@ -63,20 +54,6 @@ const ResidencesSection: React.FC = () => {
         scrollTrigger: {
           trigger: cards[0] as Element,
           start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      const tierCards = sectionRef.current.querySelectorAll('.tier-card');
-      gsap.from(tierCards, {
-        y: 24,
-        opacity: 0,
-        duration: 0.65,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: tierCards[0] as Element,
-          start: 'top 82%',
           toggleActions: 'play none none reverse',
         },
       });
@@ -126,10 +103,10 @@ const ResidencesSection: React.FC = () => {
         const el = sqmRef.current;
         const obj = { val: 21 };
         gsap.to(obj, {
-          val: 25,
+          val: 25.2,
           duration: 1.6,
           ease: 'power2.out',
-          onUpdate() { el.textContent = String(Math.round(obj.val)); },
+          onUpdate() { el.textContent = obj.val.toFixed(1); },
           scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
         });
       }
@@ -196,7 +173,7 @@ const ResidencesSection: React.FC = () => {
             </h3>
             <div className="flex items-baseline gap-2 mb-2">
               <span ref={sqmRef} className="font-serif text-6xl md:text-7xl lg:text-[80px] sec-text leading-none">
-                25
+                25.2
               </span>
               <span className="font-sans text-base sec-text-60">sq.m.</span>
             </div>
@@ -255,47 +232,23 @@ const ResidencesSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Floor price tiers — 6,900 (floors 3–4) · 7,200 (floors 1–2) */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {FLOORS.map(({ floor, price, entry }) => (
-              <div
-                key={floor}
-                className={[
-                  'tier-card rounded-xl border p-5 md:p-6',
-                  entry ? 'border-sage-green/40 bg-sage-green/5' : 'sec-border card-surface',
-                ].join(' ')}
-              >
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.16em]">
-                    {r.floorWord[lang]} {floor}
-                  </span>
-                  <PawPrint size={11} className="text-sage-green opacity-70 flex-shrink-0" />
-                </div>
-                <div className="flex items-baseline gap-1 mb-2.5">
-                  <span className="font-serif text-[26px] md:text-[28px] sec-text leading-none">{price}</span>
-                  <span className="font-sans text-[11px] sec-text-60">THB / mo</span>
-                </div>
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <span
-                    className={[
-                      'inline-block text-[10px] font-sans px-2.5 py-1 rounded-full whitespace-nowrap',
-                      entry ? 'bg-sage-green/15 text-sage-green font-medium' : 'bg-subtle-taupe/20 sec-text',
-                    ].join(' ')}
-                  >
-                    {entry ? r.fromLabel[lang] : r.openingRate[lang]}
-                  </span>
-                  <span className="font-sans text-[10px] sec-text-55 whitespace-nowrap">{r.unitsPerFloor[lang]}</span>
-                </div>
-                <a
-                  href={PROPERTY.lineUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-1.5 font-sans text-[11px] uppercase tracking-[0.12em] text-sage-green border-b border-sage-green/40 pb-0.5 transition-opacity duration-200 hover:opacity-70"
-                >
-                  {r.tierCta[lang]} →
-                </a>
-              </div>
-            ))}
+          {/* Private pricing — quiet-luxury posture: rates shared 1:1 via LINE,
+              never as a public ladder. */}
+          <div className="rounded-xl sec-border border card-surface backdrop-blur-sm p-7 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <p className="font-sans text-[15px] font-light leading-relaxed sec-text-80 max-w-[560px]">
+              {r.privateBody[lang]}
+            </p>
+            <a
+              href={PROPERTY.lineUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex flex-none cursor-pointer items-center gap-2 rounded-full bg-sage-green px-7 py-3.5 font-sans text-xs uppercase tracking-[0.1em] text-pure-white transition-opacity duration-300 hover:opacity-85"
+            >
+              {r.ctaButton[lang]}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <path d="M17 8l4 4m0 0l-4 4m4-4H3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
           </div>
         </div>
 
@@ -305,7 +258,7 @@ const ResidencesSection: React.FC = () => {
           <div className="gallery-tile relative rounded-xl overflow-hidden aspect-[4/3]">
             <img
               src="/assets/room-view-out.jpg"
-              alt="Bedroom interior looking toward the entrance — 25 sq.m."
+              alt="Bedroom interior looking toward the entrance — 25.2 sq.m."
               loading="lazy"
               className="w-full h-full object-cover"
             />
