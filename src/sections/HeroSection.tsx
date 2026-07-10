@@ -25,12 +25,11 @@ const HeroSection: React.FC = () => {
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
   const { lang } = useLanguage();
   const h = TR.hero;
-  const labelWords = h.labelWords[lang];
 
   useGSAP(
     () => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        gsap.set(['.hero-rule-top', '.hero-label-word', '.hero-line-inner', '.hero-rule-bottom', '.hero-subtitle', '.hero-cta', scrollIndicatorRef.current], { clearProps: 'all' });
+        gsap.set(['.hero-rule-top', '.hero-line-inner', '.hero-rule-bottom', '.hero-cta', scrollIndicatorRef.current], { clearProps: 'all' });
         return;
       }
 
@@ -43,11 +42,6 @@ const HeroSection: React.FC = () => {
         0.15
       )
       .from(
-        '.hero-label-word',
-        { y: '115%', duration: 0.65, stagger: 0.055, ease: 'power3.out' },
-        0.45
-      )
-      .from(
         '.hero-line-inner',
         { y: 110, duration: 1.0, stagger: 0.13, ease: 'power4.out' },
         0.7
@@ -58,7 +52,6 @@ const HeroSection: React.FC = () => {
         { scaleX: 1, duration: 0.55, ease: 'power2.inOut' },
         1.45
       )
-      .from('.hero-subtitle', { y: 18, opacity: 0, duration: 0.7 }, 1.6)
       .from('.hero-cta', { y: 14, opacity: 0, duration: 0.6 }, 1.8)
       .from(scrollIndicatorRef.current, { opacity: 0, duration: 0.5 }, 2.05);
 
@@ -131,17 +124,6 @@ const HeroSection: React.FC = () => {
       >
         <div className="hero-rule-top mb-6 h-px w-20 opacity-30" style={{ background: HERO_TEXT }} />
 
-        <p
-          className="mb-7 flex flex-wrap justify-center gap-x-[0.55em] gap-y-1 font-sans text-[10px] uppercase tracking-[0.22em] md:text-xs"
-          style={{ color: HERO_TEXT, textShadow: HERO_TEXT_SHADOW }}
-        >
-          {labelWords.map((word, i) => (
-            <span key={i} className="inline-block overflow-hidden" style={{ lineHeight: 1.3 }}>
-              <span className="hero-label-word inline-block">{word}</span>
-            </span>
-          ))}
-        </p>
-
         <h1
           className="font-serif leading-[0.88] text-[13vw] tracking-[-0.01em] sm:text-[11vw] md:text-[9.5vw] lg:text-[8.5vw]"
           aria-label="Nature Haven"
@@ -162,14 +144,7 @@ const HeroSection: React.FC = () => {
         <div className="hero-rule-bottom mb-6 mt-6 h-px w-[220px] opacity-25" style={{ background: HERO_TEXT }} />
 
         <p
-          className="hero-subtitle max-w-[520px] font-sans text-[15px] font-light leading-relaxed md:text-lg"
-          style={{ color: HERO_TEXT, textShadow: HERO_TEXT_SHADOW }}
-        >
-          {h.subtitle[lang]}
-        </p>
-
-        <p
-          className="hero-cta mt-6 font-sans text-[11px] uppercase tracking-[0.16em] opacity-80"
+          className="hero-cta mt-7 font-sans text-[11px] uppercase tracking-[0.16em] opacity-80"
           style={{ color: HERO_TEXT, textShadow: HERO_TEXT_SHADOW }}
         >
           {h.cta[lang]}
