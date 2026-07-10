@@ -7,13 +7,15 @@ import type { Collection } from '@/data/collectionTypes';
 import atmosphericStructure from '@/content/collections/atmospheric-structure';
 import theSanctuary from '@/content/collections/the-sanctuary';
 import ergonomicPetFriendly from '@/content/collections/ergonomic-pet-friendly';
-import functionalZones from '@/content/collections/functional-zones';
+import theBath from '@/content/collections/the-bath';
+import theBalcony from '@/content/collections/the-balcony';
 
 export const COLLECTIONS: Collection[] = [
   atmosphericStructure,
   theSanctuary,
   ergonomicPetFriendly,
-  functionalZones,
+  theBath,
+  theBalcony,
 ].sort((a, b) => a.index.localeCompare(b.index));
 
 export function getCollection(slug: string): Collection | undefined {

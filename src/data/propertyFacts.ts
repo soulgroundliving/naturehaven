@@ -91,8 +91,8 @@ export const FAQ_ITEMS = [
     id: 'size',
     q_th: 'ห้องขนาดเท่าไหร่?',
     q_en: 'How big is each unit?',
-    a_th: '25.2 ตร.ม. สี่เหลี่ยมผืนผ้า · 1 ห้องนอน · 1 ห้องน้ำ · ครัวแยก · ระเบียงส่วนตัว · ทางเข้าทิศเหนือ–ระเบียงทิศใต้ รับลมธรรมชาติตลอดปี',
-    a_en: '25.2 sqm rectangular plan · 1 bedroom · 1 bathroom · separate kitchen · private balcony · north entrance, south balcony for year-round airflow.',
+    a_th: '25.2 ตร.ม. สี่เหลี่ยมผืนผ้า · 1 ห้องนอน · 1 ห้องน้ำ · มุมครัวในตัว (ตู้เย็น ไมโครเวฟ เตาไฟฟ้า) · ซิงก์ล้างจานที่ระเบียง · ระเบียงส่วนตัว · ทางเข้าทิศเหนือ–ระเบียงทิศใต้ รับลมธรรมชาติตลอดปี',
+    a_en: '25.2 sqm rectangular plan · 1 bedroom · 1 bathroom · in-room kitchenette (fridge, microwave, electric stove) · dish sink on the balcony · private balcony · north entrance, south balcony for year-round airflow.',
   },
   {
     id: 'pets',

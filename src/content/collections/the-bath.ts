@@ -1,21 +1,22 @@
 import type { Collection } from '@/data/collectionTypes';
 
-// Collection 04 — The Functional Zones
-// The bathroom and the balcony: worry engineered away.
+// Collection 04 — The Private Bath
+// The bathroom, engineered so it asks nothing of you.
+// (The balcony split out into Collection 05 — 2026-07-10, owner call.)
 const collection: Collection = {
-  slug: 'functional-zones',
+  slug: 'the-bath',
   index: '04',
   title: {
-    en: 'The Functional Zones',
-    th: 'สเปซส่วนตัวที่ไร้ความกังวล',
+    en: 'The Private Bath',
+    th: 'ห้องน้ำที่ไร้กังวล',
   },
   essence: {
-    en: 'A bathroom and balcony considered to the last degree — nothing left to worry about.',
-    th: 'ห้องน้ำและระเบียงที่คิดเผื่อไว้หมดแล้ว — จนคุณไม่เหลืออะไรต้องกังวล',
+    en: 'A bathroom considered to the last degree — nothing left to worry about.',
+    th: 'ห้องน้ำที่คิดเผื่อไว้หมดแล้ว — จนคุณไม่เหลืออะไรต้องกังวล',
   },
   manifesto: {
-    en: 'The rooms you use every day should ask nothing of you. So we did the thinking in advance — from the height of a tap, to the tilt of a bottle ledge, to the thickness of a balcony frame.',
-    th: 'พื้นที่ที่คุณใช้ทุกวันไม่ควรมีเรื่องให้ต้องคิด เราจึงคิดแทนให้ทั้งหมดล่วงหน้า — ตั้งแต่ความสูงของก๊อกน้ำ องศาของชั้นวางขวด ไปจนถึงความหนาของกรอบบานเลื่อนที่ระเบียง',
+    en: 'The room you use most quietly should ask nothing of you. So we did the thinking in advance — from the height of a tap, to the tilt of a bottle ledge, to the fan that closes itself once the last of the damp has gone.',
+    th: 'ห้องที่คุณใช้อย่างเงียบที่สุดไม่ควรมีเรื่องให้ต้องคิด เราจึงคิดแทนให้ทั้งหมดล่วงหน้า — ตั้งแต่ความสูงของก๊อกน้ำ องศาของชั้นวางขวด ไปจนถึงพัดลมที่ปิดตัวเองเมื่อความชื้นหมดไป',
   },
   hero: '/assets/bathroom-functional.jpg',
   heroAlt: {
@@ -61,18 +62,6 @@ const collection: Collection = {
       spec: {
         en: 'Floor 60×60 matte · walls 30×60 white · full-fall slope, no pooling',
         th: 'พื้น 60×60 ผิวด้าน · ผนังขาว 30×60 · slope เต็มผืน ไร้น้ำขัง',
-      },
-    },
-    {
-      label: 'The Balcony',
-      title: { en: 'The engineered balcony', th: 'ระเบียงนวัตกรรม' },
-      body: {
-        en: 'A specially developed slider: a 10 cm aluminium frame, 6 mm green-tinted glass, built-in pet mesh and hook locks top and bottom — better against rain and insects than the standard kind. Inside: a dish sink with a low tap, a drying rail, a floor drain, matte anti-slip tiles on a full-fall slope, and a raised threshold for everyone’s safety.',
-        th: 'บานเลื่อนรุ่นพัฒนาพิเศษ กรอบอะลูมิเนียมหนา 10 ซม. กระจกเขียวใสหนา 6 มม. มุ้งกันสัตว์เลี้ยงในตัว และตัวล็อกตะขอทั้งบน-ล่าง — กันฝนสาดและกันแมลงได้เหนือกว่าบานทั่วไป ภายในระเบียงมีซิงก์ล้างจานพร้อมก๊อกด้านล่าง ราวตากผ้า ตะแกรงระบายน้ำ พื้นกระเบื้องด้านกันลื่นเทลาดไม่ขังน้ำ และฐานระเบียงยกสูงขึ้นเพื่อความปลอดภัยของทุกชีวิต',
-      },
-      spec: {
-        en: 'Aluminium frame 10 cm · glass 6 mm · built-in pet mesh · hook locks top + bottom',
-        th: 'กรอบอะลูมิเนียม 10 ซม. · กระจก 6 มม. · มุ้งกันสัตว์ในตัว · ล็อกตะขอบน-ล่าง',
       },
     },
   ],

@@ -69,12 +69,12 @@ export const TR = {
   lookbook: {
     sectionLabel: { en: 'The Architectural Lookbook', th: 'The Architectural Lookbook' },
     sectionHeadline: {
-      en: 'Four collections\nof thoughtfulness.',
-      th: 'สี่คอลเลกชัน\nแห่งความใส่ใจ',
+      en: 'Five collections\nof thoughtfulness.',
+      th: 'ห้าคอลเลกชัน\nแห่งความใส่ใจ',
     },
     intro: {
-      en: 'Not a spec sheet — a lookbook. Every considered detail of the residence, arranged as four small collections you can wander through, one at a time.',
-      th: 'เราไม่เล่าด้วยตารางสเปกยาว ๆ แต่เรียงความใส่ใจทั้งหมดไว้เป็นสี่คอลเลกชันเล็ก ๆ ให้คุณค่อย ๆ เปิดดูทีละเรื่อง',
+      en: 'Not a spec sheet — a lookbook. Every considered detail of the residence, arranged as five small collections you can wander through, one at a time.',
+      th: 'เราไม่เล่าด้วยตารางสเปกยาว ๆ แต่เรียงความใส่ใจทั้งหมดไว้เป็นห้าคอลเลกชันเล็ก ๆ ให้คุณค่อย ๆ เปิดดูทีละเรื่อง',
     },
     collectionWord: { en: 'Collection', th: 'คอลเลกชัน' },
     openCollection: { en: 'View the collection', th: 'เปิดดูคอลเลกชัน' },
@@ -139,7 +139,7 @@ export const TR = {
     spaceTitle: { en: 'Space & Layout', th: 'พื้นที่และผังห้อง' },
     sqm: { en: 'sq.m.', th: 'ตร.ม.' },
     bedroom: { en: '1 Bedroom / 1 Bathroom', th: '1 ห้องนอน / 1 ห้องน้ำ' },
-    kitchen: { en: 'Separate kitchen with balcony', th: 'ครัวแยก พร้อมระเบียง' },
+    kitchen: { en: 'Kitchenette + sink on the balcony', th: 'มุมครัวในตัว + ซิงก์ที่ระเบียง' },
     unitsTotal: { en: 'units total', th: 'ยูนิตรวม' },
     floors: { en: 'floors', th: 'ชั้น' },
     termsTitle: { en: 'Terms', th: 'เงื่อนไข' },

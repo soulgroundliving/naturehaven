@@ -51,8 +51,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ห้อง 25.2 ตร.ม. ของเราแบ่งเป็นห้องนอน ห้องน้ำ ครัวแยก และระเบียงส่วนตัว — สำหรับคนเลี้ยงสัตว์ การแยกส่วนแบบนี้มีความหมายมากกว่าความสวย: ครัวแยกทำให้เก็บอาหาร (ของคุณและของเขา) พ้นจมูกที่อยากรู้อยากเห็น ห้องนอนที่ปิดได้ให้พื้นที่ปลอดขนบนหมอนเมื่อต้องการ และระเบียงคือจุดอาบแดดประจำตัวที่สัตว์เลี้ยงส่วนใหญ่เลือกเองภายในสัปดาห์แรก',
-        en: 'Each 25.2 sqm unit divides into a bedroom, a bathroom, a separate kitchen, and a private balcony. For a pet household this separation is more than aesthetics: a closed kitchen keeps food — yours and theirs — away from curious noses, a bedroom door gives you a fur-free pillow when you need one, and the balcony becomes the personal sunbathing spot most animals claim within the first week.',
+        th: 'ห้อง 25.2 ตร.ม. ของเรามีโซนนอน ห้องน้ำ มุมครัวในตัว และระเบียงส่วนตัว — สำหรับคนเลี้ยงสัตว์ ความใส่ใจอยู่ในรายละเอียด: อาหาร (ของคุณและของเขา) เก็บในตู้บิ้วอินด้านบนที่ปิดมิดชิด พ้นจมูกที่อยากรู้อยากเห็น ซิงก์ล้างจานอยู่ที่ระเบียงไม่ใช่ข้างเตียง ประตูห้องน้ำที่ปิดได้ให้พื้นที่เป็นส่วนตัวเมื่อต้องการ และระเบียงคือจุดอาบแดดประจำตัวที่สัตว์เลี้ยงส่วนใหญ่เลือกเองภายในสัปดาห์แรก',
+        en: 'Each 25.2 sqm unit holds a sleeping zone, a bathroom, an in-room kitchenette, and a private balcony. For a pet household the thought is in the details: food — yours and theirs — stores up high in closed built-in cabinets away from curious noses, the dish sink sits out on the balcony rather than by the bed, a closable bathroom gives you privacy when you need it, and the balcony becomes the personal sunbathing spot most animals claim within the first week.',
       },
     },
     {

@@ -8,8 +8,8 @@ const article: Article = {
     th: 'เงียบโดยตั้งใจ — ทำไมตึก 20 ห้องที่ไม่มีลิฟต์ ถึงเป็นความตั้งใจ ไม่ใช่ข้อจำกัด',
   },
   excerpt: {
-    en: 'Every decision at Nature Haven starts from one question: does it make daily life quieter? This is the reasoning behind the low-rise form, the separate kitchen, and the all-inclusive rent.',
-    th: 'ทุกการตัดสินใจของ Nature Haven เริ่มจากคำถามเดียว: มันทำให้ชีวิตประจำวันเงียบขึ้นไหม — นี่คือเหตุผลเบื้องหลังตึกเตี้ย ครัวแยก และค่าเช่าที่รวมทุกอย่าง',
+    en: 'Every decision at Nature Haven starts from one question: does it make daily life quieter? This is the reasoning behind the low-rise form, moving the wet work out to the balcony, and the all-inclusive rent.',
+    th: 'ทุกการตัดสินใจของ Nature Haven เริ่มจากคำถามเดียว: มันทำให้ชีวิตประจำวันเงียบขึ้นไหม — นี่คือเหตุผลเบื้องหลังตึกเตี้ย การย้ายงานล้างไปไว้ที่ระเบียง และค่าเช่าที่รวมทุกอย่าง',
   },
   date: '2026-07-03',
   readMinutes: 5,
@@ -65,8 +65,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ทุกยูนิตคือ 25.2 ตร.ม. — 1 ห้องนอน 1 ห้องน้ำ ครัวแยก และระเบียงส่วนตัว การแยกครัวออกจากห้องนอนฟังดูเป็นเรื่องเล็ก แต่มันคือเส้นแบ่งระหว่าง "ห้องเช่า" กับ "บ้าน": กลิ่นอาหารไม่ค้างบนหมอน เสื้อผ้าไม่ต้องอยู่ร่วมห้องกับกระทะ และตอนเช้าแสงจากระเบียงเข้าถึงพื้นที่นั่งเล่นโดยไม่ต้องปลุกใคร',
-        en: 'Every unit is 25.2 sqm — one bedroom, one bathroom, a separate kitchen, and a private balcony. Separating the kitchen sounds minor, but it is the line between a rented room and a home: cooking smells never settle on your pillow, your clothes never share a wall with the stove, and morning light from the balcony reaches the living space without waking anyone.',
+        th: 'ทุกยูนิตคือ 25.2 ตร.ม. — 1 ห้องนอน 1 ห้องน้ำ ระเบียงส่วนตัว และมุมครัวในตัวที่ย้ายซิงก์ล้างจานออกไปไว้ที่ระเบียง ไม่ใช่ข้างเตียง การเอางานเปียกออกไปข้างนอกฟังดูเป็นเรื่องเล็ก แต่มันคือเส้นแบ่งระหว่าง "ห้องเช่า" กับ "บ้าน": ไม่มีจานกองข้างหมอน ไม่มีมุมชื้นในพื้นที่นั่งเล่น และตอนเช้าแสงจากระเบียงเข้าถึงห้องโดยไม่ต้องปลุกใคร',
+        en: 'Every unit is 25.2 sqm — one bedroom, one bathroom, a private balcony, and an in-room kitchenette whose dish sink lives out on the balcony, not by your bed. Keeping the wet work outside sounds minor, but it is the line between a rented room and a home: no dishes stacked beside your pillow, no damp corner in the living space, and morning light from the balcony reaches the room without waking anyone.',
       },
     },
     {

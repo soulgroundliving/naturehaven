@@ -20,7 +20,7 @@ interface PageMeta {
 const HOME_META = {
   title: 'Nature Haven — Quiet Luxury Residence in Saimai, Bangkok',
   description:
-    'Quiet Luxury Residence เลี้ยงสัตว์ได้ทั้งตึก ในสายไหม กรุงเทพฯ — 25.2 ตร.ม. ครัวแยก ระเบียงส่วนตัว รวม Wi-Fi + ทำความสะอาด + ดูแลแอร์ เริ่มต้น 6,900 บาท/เดือน · นัดชมห้องส่วนตัวทาง LINE · เปิดกันยายน 2026',
+    'Quiet Luxury Residence เลี้ยงสัตว์ได้ทั้งตึก ในสายไหม กรุงเทพฯ — 25.2 ตร.ม. มุมครัวในตัว ระเบียงส่วนตัว รวม Wi-Fi + ทำความสะอาด + ดูแลแอร์ เริ่มต้น 6,900 บาท/เดือน · นัดชมห้องส่วนตัวทาง LINE · เปิดกันยายน 2026',
   canonical: 'https://naturehaven-living.vercel.app/',
   ogImage: 'https://naturehaven-living.vercel.app/og-image.jpg',
   ogType: 'website',
