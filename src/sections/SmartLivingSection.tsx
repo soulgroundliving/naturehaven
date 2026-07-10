@@ -150,7 +150,7 @@ const SmartLivingSection: React.FC = () => {
 
             <div className="sl-left-anim mt-7 pt-6 border-t sec-border">
               <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.2em] mb-4">
-                {sl.rightHeadline[lang].split('\n')[0]}
+                {lang === 'th' ? 'ฟีเจอร์ในแอป' : 'In the app'}
               </p>
               <div className="grid grid-cols-2 gap-x-5 gap-y-3">
                 {appFeatures.map(({ label, sub }, i) => {
@@ -169,13 +169,14 @@ const SmartLivingSection: React.FC = () => {
             </div>
           </div>
 
-          {/* CENTER — Phone mockup (static) */}
-          <div className="sl-phone-anim flex justify-center order-first lg:order-none">
+          {/* CENTER — Phone mockup (static). On mobile it sits AFTER the copy
+              (context first) and is capped smaller so it doesn't eat the whole
+              first screen. */}
+          <div className="sl-phone-anim flex justify-center">
             <div
-              className="relative w-full max-w-[260px] sm:max-w-[300px] bg-near-black rounded-[36px] p-3"
+              className="relative w-full max-w-[200px] max-h-[50vh] sm:max-w-[260px] sm:max-h-[64vh] lg:max-w-[300px] lg:max-h-[70vh] bg-near-black rounded-[36px] p-3"
               style={{
                 aspectRatio: '9 / 19',
-                maxHeight: '70vh',
                 boxShadow: '0 24px 48px rgba(31,27,22,0.22), inset 0 0 0 2px rgba(255,255,255,0.06)',
               }}
             >
