@@ -9,23 +9,24 @@ import { TR } from '@/lib/translations';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Generic place-TYPES only — no brand names here (owner: specific shops belong
-// in the journal article, not this list; Café Amazon removed, it closed).
+// Real nearby places (brand names are fine HERE — owner's "no brand names"
+// note was about the in-room essentials, not this list). Café Amazon dropped
+// only because that shop closed.
 const nearbyEssentials = [
-  { name: { th: 'ไฮเปอร์มาร์เก็ต', en: 'Hypermarket' },     distance: { th: '280 ม.', en: '280 m' } },
-  { name: { th: 'โรงพยาบาล', en: 'Hospital' },             distance: { th: '300 ม.', en: '300 m' } },
-  { name: { th: 'ตลาดสด', en: 'Fresh market' },            distance: { th: '700 ม.', en: '700 m' } },
-  { name: { th: 'ร้านค้าส่ง', en: 'Wholesale store' },      distance: { th: '750 ม.', en: '750 m' } },
-  { name: { th: 'สถานีรถไฟฟ้า', en: 'Skytrain station' },   distance: { th: '5 กม. · ~15 นาที', en: '5 km · ~15 min' } },
+  { name: 'Big C', distance: '280 m' },
+  { name: 'CGH Sai Mai Hospital', distance: '300 m' },
+  { name: 'Wongsakorn Market', distance: '700 m' },
+  { name: 'Makro Sai Mai', distance: '750 m' },
+  { name: 'BTS Khu Khot', distance: '5 km · ~15 min by taxi' },
 ];
 
 const lifestyleSurroundings = [
-  { name: { th: 'คอมมูนิตี้มอลล์', en: 'Community mall' },   distance: { th: '1 กม.', en: '1 km' } },
-  { name: { th: 'ซูเปอร์มาร์เก็ต', en: 'Supermarket' },      distance: { th: '3.3 กม.', en: '3.3 km' } },
-  { name: { th: 'ตลาดสด', en: 'Fresh market' },            distance: { th: '4.4 กม.', en: '4.4 km' } },
-  { name: { th: 'ตลาดนัด', en: 'Weekend market' },         distance: { th: '5 กม.', en: '5 km' } },
-  { name: { th: 'ซูเปอร์สโตร์', en: 'Superstore' },         distance: { th: '7 กม.', en: '7 km' } },
-  { name: { th: 'ช้อปปิ้งมอลล์', en: 'Shopping mall' },      distance: { th: '9.7 กม.', en: '9.7 km' } },
+  { name: 'Saimai Avenue', distance: '1 km' },
+  { name: 'Maruay Market', distance: '4.4 km' },
+  { name: 'AC Sai Mai Market', distance: '5 km' },
+  { name: 'Foodland', distance: '3.3 km' },
+  { name: 'Save One Go Market', distance: '7 km' },
+  { name: 'Market Place Theprak', distance: '9.7 km' },
 ];
 
 const LocationSection: React.FC = () => {
@@ -107,13 +108,13 @@ const LocationSection: React.FC = () => {
             <div className="space-y-0">
               {nearbyEssentials.map(({ name, distance }, i) => (
                 <div
-                  key={name.en}
+                  key={name}
                   className={`loc-item flex items-center justify-between py-3.5 ${
                     i < nearbyEssentials.length - 1 ? 'border-b border-dotted sec-border' : ''
                   }`}
                 >
-                  <span className="font-sans text-base font-normal sec-text">{name[lang]}</span>
-                  <span className="font-sans text-base font-light sec-text-60">{distance[lang]}</span>
+                  <span className="font-sans text-base font-normal sec-text">{name}</span>
+                  <span className="font-sans text-base font-light sec-text-60">{distance}</span>
                 </div>
               ))}
             </div>
@@ -124,13 +125,13 @@ const LocationSection: React.FC = () => {
             <div className="space-y-0">
               {lifestyleSurroundings.map(({ name, distance }, i) => (
                 <div
-                  key={name.en}
+                  key={name}
                   className={`loc-item flex items-center justify-between py-3 ${
                     i < lifestyleSurroundings.length - 1 ? 'border-b border-dotted sec-border' : ''
                   }`}
                 >
-                  <span className="font-sans text-base font-normal sec-text">{name[lang]}</span>
-                  <span className="font-sans text-base font-light sec-text-60">{distance[lang]}</span>
+                  <span className="font-sans text-base font-normal sec-text">{name}</span>
+                  <span className="font-sans text-base font-light sec-text-60">{distance}</span>
                 </div>
               ))}
             </div>

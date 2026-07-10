@@ -176,8 +176,8 @@ export const TR = {
     essentialsSub: { en: 'Every element is selected with purpose.', th: 'ทุกองค์ประกอบคัดสรรด้วยความตั้งใจ' },
     essentials: {
       en: [
-        'Formica built-ins throughout (soft-close)',
-        'Sleep Happy 10″ pocket-spring mattress — 5-star hotel grade',
+        'Built-in furniture throughout (soft-close)',
+        '10″ pocket-spring mattress — 5-star hotel grade',
         'Work desk / wardrobe / shelving / chair',
         'Full-length mirror',
         'Air conditioner',
@@ -187,8 +187,8 @@ export const TR = {
         'Air ventilation system',
       ],
       th: [
-        'เฟอร์นิเจอร์บิ้วอิน Formica ทั้งห้อง (soft-close)',
-        'ที่นอน Sleep Happy Pocket Spring 10 นิ้ว — มาตรฐานโรงแรม 5 ดาว',
+        'เฟอร์นิเจอร์บิ้วอินทั้งห้อง (soft-close)',
+        'ที่นอน Pocket Spring 10 นิ้ว — มาตรฐานโรงแรม 5 ดาว',
         'โต๊ะทำงาน / ตู้เสื้อผ้า / ชั้นวาง / เก้าอี้',
         'กระจกบานใหญ่',
         'เครื่องปรับอากาศ',
