@@ -6,8 +6,7 @@ import { ArrowDown } from '@/components/icons';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
 import { PROPERTY } from '@/data/propertyFacts';
-import VideoBackground from '@/components/VideoBackground';
-import { isPrerender } from '@/lib/isPrerender';
+import AiRenderBadge from '@/components/AiRenderBadge';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -160,21 +159,19 @@ const HeroSection: React.FC = () => {
         </a>
       </div>
 
-      {/* Meadow — now its own framed block instead of a full-bleed image
-          behind the copy. Poster still during prerender (crawler snapshot),
-          the ambient video mounts client-side. */}
+      {/* The room itself — a real render, not a mood shot, so the site reads
+          unmistakably as a residence from the first screen. Fixed-height
+          matte frame + object-contain (same "gallery print" treatment used
+          across the Lookbook) so the image is never cropped. */}
       <div className="relative z-10 w-full px-4 md:px-8 lg:px-12 pb-14 md:pb-16">
-        <div className="relative mx-auto w-full max-w-[1080px] h-[22vh] md:h-[30vh] min-h-[130px] overflow-hidden rounded-2xl shadow-[0_18px_44px_rgba(43,43,43,0.16)]">
-          {isPrerender() ? (
-            <img
-              src="/assets/hero-video-poster.jpg"
-              alt="The Nature Haven meadow — Sai Mai, Bangkok"
-              className="absolute inset-0 w-full h-full object-cover"
-              fetchPriority="high"
-            />
-          ) : (
-            <VideoBackground />
-          )}
+        <div className="relative mx-auto h-[34vh] w-full max-w-[1080px] overflow-hidden rounded-2xl shadow-[0_18px_44px_rgba(43,43,43,0.16)] card-surface sm:h-[40vh] md:h-[52vh]">
+          <img
+            src="/assets/room-view-in.jpg"
+            alt="Inside a Nature Haven residence — bedroom with private balcony"
+            className="h-full w-full object-contain"
+            fetchPriority="high"
+          />
+          <AiRenderBadge className="absolute bottom-3 right-3" />
         </div>
       </div>
 

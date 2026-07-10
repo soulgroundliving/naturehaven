@@ -8,8 +8,8 @@ const article: Article = {
     th: 'Build Diary #2 — วัสดุจริงที่เลือกแล้ว บอกชื่อทีละชิ้น',
   },
   excerpt: {
-    en: 'We promised to show the real materials. Here they are — floor, walls, built-ins, and the entrance — with the actual product names and the reasoning behind each choice.',
-    th: 'ฉบับที่แล้วเราสัญญาว่าจะพาดูวัสดุจริง — นี่คือรายการทั้งหมด พื้น ผนัง บิลต์อิน และทางเข้าตึก พร้อมชื่อจริงของวัสดุและเหตุผลที่เลือกทีละชิ้น',
+    en: 'The materials, named plainly — floor, walls, built-ins, and the entrance — with the actual product names and the reasoning behind each choice.',
+    th: 'วัสดุจริง บอกชื่อตรงไปตรงมา — พื้น ผนัง บิลต์อิน และทางเข้าตึก พร้อมชื่อผลิตภัณฑ์จริงและเหตุผลเบื้องหลังการเลือกแต่ละชิ้น',
   },
   date: '2026-07-03',
   readMinutes: 5,
@@ -22,8 +22,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ในบันทึกฉบับที่แล้ว เราทิ้งท้ายไว้ว่าฉบับหน้าจะพาไปดูวัสดุจริงที่เลือกแล้ว — วันนี้ตามสัญญา และเราตั้งใจบอก "ชื่อจริง" ของทุกอย่าง เพราะเชื่อว่าความโปร่งใสไม่ได้อยู่ที่คำโฆษณา แต่อยู่ที่รายละเอียดที่กล้าเขียนลงกระดาษ',
-        en: 'The last entry ended with a promise: next time, the real materials. Today we keep it — and we are naming everything specifically, because we believe transparency lives in the details you are willing to put in writing, not in slogans.',
+        th: 'บันทึกฉบับนี้บอกสิ่งที่ฉบับก่อนเพียงชี้ทางไว้ — วัสดุจริงที่เลือกแล้ว ระบุอย่างตรงไปตรงมา เพราะความโปร่งใสอยู่ที่รายละเอียดซึ่งกล้าเขียนลงกระดาษ ไม่ใช่คำโฆษณาสวยหรู',
+        en: 'This entry names what the last one only pointed toward — the actual materials, specified plainly, because transparency lives in the details a builder is willing to commit to paper, not in a slogan.',
       },
     },
     {
@@ -33,26 +33,26 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'พื้นทุกห้องเป็น SPC โทนอ่อน — เลือกเพราะทนน้ำ ทนรอยขีดข่วน และดูแลง่าย ซึ่งสำคัญเป็นพิเศษในตึกที่ทุกห้องเลี้ยงสัตว์ได้ ผนังภายในใช้สีโทนสว่าง Nippon Paint เบอร์ OW 2154P — ใช่ เราบอกเบอร์สีเลย ถ้าอยากรู้ว่าห้องคุณจะเป็นสีอะไร ไปเปิดดูได้ทันที',
-        en: 'Every floor is pale-tone SPC — chosen for water resistance, scratch resistance, and easy care, which matters twice as much in a building where every unit welcomes pets. Interior walls are Nippon Paint OW 2154P, a soft light tone — yes, that is the actual paint code. If you want to know exactly what colour your room will be, you can look it up right now.',
+        th: 'พื้นทุกห้องเป็น SPC โทนอ่อน เลือกเพราะทนน้ำ ทนรอยขีดข่วน และดูแลรักษาง่าย คุณสมบัติที่สำคัญเป็นสองเท่าในตึกที่ทุกห้องต้อนรับสัตว์เลี้ยง ผนังภายในใช้สี Nippon Paint เบอร์ OW 2154P โทนสว่างนุ่มนวล ระบุไว้ตรงตามที่ปรากฏบนกระป๋องสี เผื่อคุณอยากเห็นสีจริงก่อนจะมาถึง',
+        en: 'Every floor is pale-tone SPC, chosen for its resistance to water and scratches and for how easily it is kept — qualities that matter doubly in a building where every unit welcomes a pet. The interior walls carry Nippon Paint OW 2154P, a soft, light tone, named here exactly as it appears on the tin, should you wish to see the colour for yourself before you arrive.',
       },
     },
     {
       type: 'p',
       text: {
-        th: 'ภายนอกตึกใช้จานสีเดียวกันทั้งหลัง: ผนังหลักโทน Berry Scent · กรอบระเบียงและคานโทน Sandcastle · ลูกกรงเหล็กโทน Cedarwood · มือจับและโคมไฟโทน Dark Bronze — สี่สี จบ ไม่มีสีที่ห้า ความสงบของตึกเริ่มจากวินัยของจานสี',
-        en: 'The exterior uses one palette for the whole building: main walls in Berry Scent · balcony frames and beams in Sandcastle · steel railings in Cedarwood · handles and lamps in Dark Bronze. Four colours, and no fifth. A building feels calm when its palette has discipline.',
+        th: 'ภายนอกตึกใช้จานสีเดียวกันทั้งหลัง — ผนังหลักโทน Berry Scent กรอบระเบียงและคานโทน Sandcastle ลูกกรงเหล็กโทน Cedarwood มือจับและโคมไฟโทน Dark Bronze สี่สีเท่านั้น ไม่มีสีที่ห้า ตึกมักดูสงบกว่าเมื่อจานสีของมันมีวินัย',
+        en: 'The exterior draws from one palette for the entire building: the main walls in Berry Scent, balcony frames and beams in Sandcastle, steel railings in Cedarwood, handles and lamps in Dark Bronze. Four colours, and nothing beyond them — a building tends to feel calmer when its palette is disciplined.',
       },
     },
     {
       type: 'h2',
-      text: { th: 'บิลต์อินที่อากาศในห้องขอบคุณ', en: 'Built-ins your indoor air will thank' },
+      text: { th: 'บิลต์อินที่เลือกเพราะอากาศที่มันทิ้งไว้', en: 'Built-ins chosen for the air they leave behind' },
     },
     {
       type: 'p',
       text: {
-        th: 'เฟอร์นิเจอร์บิลต์อินทั้งหมดเป็นลามิเนต HMR มาตรฐาน E1 โทนไม้ธรรมชาติ — HMR คือบอร์ดทนความชื้นสูง เหมาะกับอากาศเมืองไทย ส่วน E1 คือมาตรฐานการปล่อยสารฟอร์มัลดีไฮด์ระดับต่ำ พูดง่าย ๆ คืออากาศในห้องสะอาดกว่า สำหรับทั้งคุณและสัตว์เลี้ยงที่ใช้เวลาในห้องมากกว่าคุณเสียอีก',
-        en: 'All built-in furniture is HMR laminate to E1 standard, in a natural wood tone. HMR means high moisture resistance — right for Thai humidity. E1 is the low-formaldehyde emission standard — in plain words, cleaner indoor air, for you and for the animal who spends even more hours in the room than you do.',
+        th: 'เฟอร์นิเจอร์บิลต์อินทั้งหมดเป็นลามิเนต HMR มาตรฐาน E1 โทนไม้ธรรมชาติ HMR หมายถึงทนความชื้นสูง เหมาะกับสภาพอากาศเมืองไทย ส่วน E1 คือมาตรฐานการปล่อยสารฟอร์มัลดีไฮด์ต่ำ พูดง่าย ๆ คืออากาศภายในห้องสะอาดกว่า สำหรับทั้งคุณและสัตว์เลี้ยงที่ใช้เวลาอยู่ในห้องมากกว่าคุณเสียอีก',
+        en: 'All built-in furniture is HMR laminate to E1 standard, in a natural wood tone. HMR denotes high moisture resistance, suited to the Thai climate; E1 denotes low formaldehyde emission — plainly put, cleaner air inside the room, for you and for the animal who spends even more hours in it than you do.',
       },
     },
     {
@@ -69,22 +69,22 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ประตูทางเข้าหลักเป็นกระจกนิรภัย (tempered) กรอบอลูมิเนียมสองบาน กว้างรวม 160 ซม. — บานเปิดกว้าง 110 ซม. เผื่อวันขนของเข้าหรือเข็นเฟอร์นิเจอร์ชิ้นใหญ่ มีช่องแสงเหนือประตูให้โถงบันไดสว่างด้วยแสงธรรมชาติ ล็อกด้วย Digital Door Lock รองรับสแกนใบหน้า สแกนนิ้ว รหัส และคีย์การ์ด',
-        en: 'The main entrance is tempered glass in a two-leaf aluminium frame, 160 cm in total — the operable leaf is 110 cm wide, sized for moving days and large furniture. A transom window above the door lets natural light into the stairwell, and the digital door lock accepts face scan, fingerprint, PIN, and key card.',
+        th: 'ประตูทางเข้าหลักเป็นกระจกนิรภัยกรอบอลูมิเนียมสองบาน กว้างรวม 160 ซม. บานที่เปิดใช้งานกว้าง 110 ซม. เผื่อไว้สำหรับวันขนย้ายและเฟอร์นิเจอร์ชิ้นใหญ่ ช่องแสงเหนือประตูนำแสงธรรมชาติเข้าสู่โถงบันได และล็อกดิจิทัลอ่านได้ทั้งใบหน้า ลายนิ้วมือ รหัสผ่าน และคีย์การ์ด',
+        en: 'The main entrance is tempered glass set in a two-leaf aluminium frame, 160 cm across; the operable leaf opens to 110 cm, wide enough for moving day and the largest furniture. A transom window above lets daylight reach the stairwell, and the digital lock reads a face, a fingerprint, a PIN, or a key card.',
       },
     },
     {
       type: 'p',
       text: {
-        th: 'เหนือประตูมีกันสาดยื่นออกมา 1.50 เมตร ฝ้าใต้กันสาดกรุไม้เทียมโทน Cedarwood พร้อมไฟ Warm White 3000K — องศาแสงเดียวกับไฟทางเดินทั้งตึก วันฝนตกคุณจะยืนกดล็อกหน้าประตูโดยไม่เปียก และกลับบ้านกี่โมงตึกก็ต้อนรับด้วยแสงอุ่นเสมอ ส่วนราวระเบียงเป็นเหล็กสูง 0.90–1.00 เมตร ซี่ห่างเพียง 8–10 ซม. ตามแนวคิดเดียวกันทั้งตึก: อบอุ่น ปลอดภัย เป็นส่วนตัว',
-        en: 'Above the door, a canopy extends 1.50 metres, its underside clad in Cedarwood-tone composite with 3000K warm-white light — the same colour temperature as every walkway in the building. On a rainy day you unlock the door without getting wet, and whatever time you come home, the building greets you in warm light. Balcony railings are steel, 0.90–1.00 m high with gaps of just 8–10 cm — the same idea running through the whole building: warm, safe, private.',
+        th: 'เหนือประตูมีกันสาดยื่นออกมา 1.50 เมตร ฝ้าใต้กันสาดกรุวัสดุเทียมโทน Cedarwood พร้อมไฟ Warm White 3000K อุณหภูมิแสงเดียวกับทางเดินทุกจุดในตึก ค่ำคืนฝนตก คุณปลดล็อกประตูได้โดยไม่โดนฝนแม้แต่หยดเดียว และไม่ว่าจะกลับถึงตึกเวลาใด แสงที่ต้อนรับคุณก็ยังเป็นแสงอุ่นเดิม ราวระเบียงเป็นเหล็กสูง 0.90–1.00 เมตร ช่องห่างเพียง 8–10 ซม. — เจตนาเดียวกันที่วิ่งผ่านทั้งตึก: อบอุ่น ปลอดภัย และเป็นส่วนตัว เรียงตามลำดับนี้',
+        en: 'Above it, a canopy reaches out 1.50 metres, its underside finished in Cedarwood-tone composite and lit at 3000K warm white — the same temperature as every walkway in the building. On a wet evening, the door is unlocked without a drop of rain; at any hour, the light that meets you is the same warm one. Balcony railings stand 0.90–1.00 m, with gaps of only 8–10 cm between them — the same intention carried through the whole building: warmth, safety, and privacy, in that order.',
       },
     },
     {
       type: 'p',
       text: {
-        th: 'บันทึกฉบับหน้า: ความคืบหน้างานจริงจากหน้าไซต์ ระหว่างนี้ถ้ามีวัสดุหรือดีเทลไหนที่อยากให้เจาะลึก ทักมาทาง LINE ได้เลย — เราอ่านทุกข้อความ',
-        en: 'Next entry: real progress from the site. Until then, if there is a material or detail you want us to go deeper on, tell us on LINE — we read everything.',
+        th: 'บันทึกฉบับหน้าจะติดตามความคืบหน้าจริงจากหน้าไซต์ วัสดุหรือรายละเอียดใดที่อยากให้เจาะลึกกว่านี้ แจ้งเราได้ทาง LINE',
+        en: 'The next entry follows real progress from the site. A material or detail worth going deeper on is always welcome to raise, on LINE.',
       },
     },
   ],

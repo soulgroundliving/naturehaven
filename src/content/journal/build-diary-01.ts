@@ -8,8 +8,8 @@ const article: Article = {
     th: 'Build Diary #1 — สิ่งที่เคาะแล้ว ระหว่างทางสู่กันยายน 2026',
   },
   excerpt: {
-    en: 'We are building in public. This first entry covers what is locked in — floor-based pricing, the all-inclusive rate, solar on the common areas — and what we are working on next.',
-    th: 'เราตั้งใจสร้างแบบเปิดเผย — บันทึกฉบับแรกนี้เล่าสิ่งที่ตัดสินใจแล้ว: ราคาตามชั้น ค่าเช่ารวมทุกอย่าง โซลาร์ในส่วนกลาง และสิ่งที่กำลังทำต่อ',
+    en: 'A record kept as the building rises. This first entry covers what has already been decided — the pricing structure, the all-inclusive rent, solar power for the common areas — and what comes next.',
+    th: 'บันทึกที่เก็บไว้ระหว่างตึกค่อย ๆ เป็นรูปเป็นร่าง ฉบับแรกนี้ว่าด้วยสิ่งที่เคาะแล้ว — โครงสร้างราคา ค่าเช่าแบบรวมทุกอย่าง พลังงานโซลาร์สำหรับพื้นที่ส่วนกลาง — และสิ่งที่กำลังดำเนินต่อไป',
   },
   date: '2026-06-19',
   readMinutes: 4,
@@ -22,8 +22,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ตึกส่วนใหญ่เงียบจนถึงวันเปิด แล้วค่อยพูดทุกอย่างพร้อมกันในโบรชัวร์ — เราอยากลองทางกลับกัน: เล่าไปเรื่อย ๆ ระหว่างสร้าง ให้คนที่กำลังตัดสินใจได้เห็นวิธีคิด ไม่ใช่แค่ผลลัพธ์ นี่คือบันทึกฉบับแรก',
-        en: 'Most buildings stay silent until opening day, then say everything at once in a brochure. We want to try the opposite: telling the story as we build, so anyone deciding where to live next can see how we think — not just the finished result. This is entry one.',
+        th: 'ตึกส่วนใหญ่เก็บความเงียบไว้จนถึงวันเปิดตัว แล้วค่อยพูดทุกอย่างพร้อมกันในโบรชัวร์ที่เขียนย้อนหลัง นี่คือบันทึกอีกแบบหนึ่ง — เก็บไว้ระหว่างที่ตึกกำลังก่อร่างขึ้นจริง เพื่อให้ผู้ที่กำลังพิจารณาที่พักแห่งต่อไปได้เห็นความคิดเบื้องหลัง ไม่ใช่แค่ห้องที่เสร็จสมบูรณ์แล้ว บันทึกฉบับที่หนึ่ง',
+        en: 'Most buildings hold their silence until the day the doors open, then say everything at once, in a brochure written after the fact. This is a different kind of record — kept as the building actually rises, so that anyone considering where to live next can see the thinking, not only the finished rooms. Entry one.',
       },
     },
     {
@@ -33,47 +33,40 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'หนึ่ง — ราคา: ทุกห้องเลี้ยงสัตว์ได้ เริ่มต้น 6,900 บาท/เดือนแบบรวมทุกอย่าง ไม่มีค่าธรรมเนียมซ่อน ไม่มี "ราคาพิเศษสำหรับสัตว์เลี้ยง" เพราะสัตว์เลี้ยงไม่ใช่ข้อยกเว้นของตึกนี้ตั้งแต่แรก — ราคาแต่ละชั้น เราแจ้งแบบส่วนตัวทาง LINE',
-        en: 'One — pricing: every unit is pet-friendly, from 6,900 THB/month all-inclusive. No hidden fees, no "pet premium" — because pets were never an exception in this building to begin with. Per-floor rates are shared privately via LINE.',
+        th: 'เงื่อนไขทางการค้าทั้งหมดเคาะแล้ว ทุกยูนิตเลี้ยงสัตว์ได้ เริ่มต้นที่ 6,900 บาทต่อเดือนแบบรวมทุกอย่าง ไม่มีค่าธรรมเนียมแฝง ไม่มีราคาพิเศษสำหรับการเลี้ยงสัตว์ เพราะสัตว์เลี้ยงไม่เคยถูกมองเป็นข้อยกเว้นที่นี่ตั้งแต่แรก ค่าเช่ารวม Wi-Fi (AIS Fiber) บริการทำความสะอาด และดูแลแอร์ไว้แล้ว ตัวเลขเดียวครอบคลุมทั้งเดือน สัญญาเช่ามีระยะ 12 เดือน วางมัดจำ 1 เดือน บวกล่วงหน้าอีก 1 เดือน ตัวเลขทั้งหมดข้างต้นพูดครั้งเดียวและตรงกันทุกที่ที่คุณจะพบเจอ — ส่วนราคาที่แท้จริงของแต่ละชั้น เราแจ้งให้เป็นการส่วนตัวเมื่อมีผู้สนใจ',
+        en: 'The commercial terms are settled. Every residence is pet-friendly, from 6,900 THB a month, all-inclusive — no hidden fees, no premium attached to keeping an animal, because pets were never treated as an exception here. Rent already carries Wi-Fi (AIS Fiber), cleaning, and air-conditioning service, so one figure covers the month. The lease runs twelve months, against a deposit of one month plus one month in advance. Every number above is stated once, and it will match wherever you encounter it — the exact rate for each floor is shared privately, on request.',
       },
     },
     {
       type: 'p',
       text: {
-        th: 'สอง — บิลเดียวจบ: ค่าเช่ารวม Wi-Fi (AIS Fiber) บริการทำความสะอาด และบริการล้างแอร์ สาม — สัญญา 12 เดือน มัดจำ 1 เดือน + ล่วงหน้า 1 เดือน ตัวเลขทั้งหมดพูดครั้งเดียวและตรงกันทุกที่ที่เราสื่อสาร',
-        en: 'Two — one bill: rent includes Wi-Fi (AIS Fiber), cleaning service, and A/C maintenance. Three — a 12-month lease with 1-month deposit + 1-month advance. Every number is said once, and matches everywhere we publish it.',
-      },
-    },
-    {
-      type: 'p',
-      text: {
-        th: 'สี่ — พลังงาน: ส่วนกลางของตึกออกแบบให้ทำงานร่วมกับโซลาร์เซลล์ แสงแดดที่ทำให้ระเบียงคุณอุ่นตอนเช้า คือแสงเดียวกับที่ช่วยจ่ายไฟทางเดินตอนกลางคืน — เล็ก ๆ แต่เป็นทิศทางที่ตึกนี้จะเดินต่อ',
-        en: 'Four — energy: the common areas are designed to work with solar. The same sun that warms your balcony in the morning helps light the walkways at night. A small thing, but it points where this building is headed.',
+        th: 'และยังมีอีกหนึ่งความตั้งใจที่เงียบกว่าเรื่องอื่น — พื้นที่ส่วนกลางออกแบบให้ทำงานร่วมกับพลังงานโซลาร์ แสงแดดเดียวกันที่ให้ความอบอุ่นแก่ระเบียงคุณยามเช้า คือส่วนหนึ่งของแสงเดียวกันที่ช่วยให้ทางเดินสว่างอยู่ยามค่ำ กลไกเล็ก ๆ แต่บ่งบอกทิศทางที่ตึกนี้ตั้งใจจะเดินต่อไป',
+        en: 'There is one more commitment, quieter than the others: the common areas are designed to draw on solar power. The same sun that warms your balcony each morning is, in part, the same light that keeps the walkways lit after dark — a small mechanism, but it marks the direction this building intends to keep moving.',
       },
     },
     {
       type: 'pull',
       text: {
-        th: 'ความโปร่งใสก่อนวันเปิด คือของขวัญที่ดีที่สุดที่เราให้ผู้เช่ารุ่นแรกได้',
-        en: 'Transparency before opening day is the best gift we can give our first residents.',
+        th: 'สิ่งที่พูดอย่างตรงไปตรงมาก่อนวันเปิดตัว มีค่ามากกว่าสิ่งใดที่พิมพ์ออกมาภายหลัง',
+        en: 'What is said honestly before opening day is worth more than anything printed after it.',
       },
     },
     {
       type: 'h2',
-      text: { th: 'สิ่งที่กำลังทำ', en: 'What we are working on' },
+      text: { th: 'สิ่งที่กำลังดำเนินต่อไป', en: 'What comes next' },
     },
     {
       type: 'p',
       text: {
-        th: 'ตอนนี้โฟกัสอยู่ที่งานภายใน — ให้ห้องจริงซื่อสัตย์กับภาพเรนเดอร์ที่คุณเห็น: ไม้โทนอ่อน ผนังครีมอุ่น แสงซ่อนใต้หัวเตียง และระเบียงที่เป็นของห้องคุณจริง ๆ บันทึกฉบับหน้าเราจะพาไปดูวัสดุจริงที่เลือกแล้ว',
-        en: 'Right now the focus is interior work — making the real rooms honest to the renders you have seen: pale wood, warm cream walls, concealed light above the headboard, and a balcony that genuinely belongs to your unit. In the next entry we will show the actual materials we have chosen.',
+        th: 'ตอนนี้โฟกัสอยู่ที่งานภายใน — ให้ห้องจริงยืนอยู่ในมาตรฐานเดียวกับภาพเรนเดอร์ที่เคยแสดงไว้: ไม้โทนอ่อน ผนังครีมอบอุ่น แสงซ่อนเหนือหัวเตียง และระเบียงที่เป็นของยูนิตนั้นจริง ๆ บันทึกฉบับหน้าจะบอกชื่อวัสดุจริงที่เลือกแล้ว',
+        en: 'The present focus is interior work — holding the finished rooms to the same standard as the renderings already shown: pale wood, warm cream walls, concealed light above the headboard, a balcony that genuinely belongs to the unit it serves. The next entry names the actual materials chosen.',
       },
     },
     {
       type: 'p',
       text: {
-        th: 'เปิดให้เข้าอยู่กันยายน 2026 — ระหว่างนี้ถ้ามีคำถามที่อยากให้บันทึกฉบับต่อไปตอบ ทักมาทาง LINE ได้เลย เราอ่านทุกข้อความ',
-        en: 'Move-in opens September 2026. Until then, if there is a question you want the next diary entry to answer, send it to us on LINE — we read everything.',
+        th: 'เปิดให้เข้าอยู่กันยายน 2026 หากมีคำถามที่อยากให้บันทึกฉบับต่อไปตอบ ทักทายเราได้ทาง LINE',
+        en: 'Move-in opens September 2026. Questions for the next entry are always welcome, on LINE.',
       },
     },
   ],

@@ -47,15 +47,15 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'คำถามที่เราได้รับบ่อยที่สุดข้อหนึ่งคือ "มีลิฟต์ไหม" — ไม่มี และนั่นคือการตัดสินใจ ไม่ใช่การประหยัด ตึกเตี้ยที่ไม่มีลิฟต์หมายถึงไม่มีเสียงเครื่องจักรทำงานข้างห้องคุณตอนตีสอง ไม่มีคนแปลกหน้ารอหน้าประตูชั้นคุณ และค่าส่วนกลางที่ไม่ต้องแบกค่าบำรุงรักษาระบบใหญ่ตลอดอายุตึก',
-        en: 'One of the questions we hear most often is "is there an elevator?" There is not — and that is a decision, not a cost-saving. A low-rise without an elevator means no machinery humming beside your wall at 2 a.m., no strangers waiting on your floor, and shared costs that never have to carry heavy mechanical maintenance for the life of the building.',
+        th: 'ที่นี่ไม่มีลิฟต์ — และการไม่มีคือการตัดสินใจ ไม่ใช่การประหยัด ตึกเตี้ยที่ไร้ลิฟต์หมายถึงไม่มีเสียงเครื่องจักรผ่านผนังตอนตีสอง ไม่มีคนแปลกหน้าหยุดพักที่หน้าห้องคุณ และงบส่วนกลางที่ไม่ต้องแบกภาระบำรุงรักษาของสิ่งใหญ่ขนาดนั้นไปตลอดอายุตึก',
+        en: 'There is no elevator here — and that absence is a decision, not an economy. A low-rise with no elevator means no machinery humming through the wall at two in the morning, no strangers pausing on your landing, and a shared budget that never has to carry the lifetime maintenance of something so large.',
       },
     },
     {
       type: 'p',
       text: {
-        th: 'มันยังทำให้ราคาตรงไปตรงมา: ชั้นที่ต้องเดินบันไดมากกว่าคือเรทเริ่มต้น 6,900 บาท/เดือน ส่วนชั้นล่างที่เดินน้อยกว่าขยับขึ้นอีกเล็กน้อย — เดินมากขึ้น จ่ายน้อยลง กติกาเดียว เข้าใจได้ในประโยคเดียว (ราคาเต็มแต่ละชั้น สอบถามทาง LINE)',
-        en: 'It also makes pricing honest: the floors with more stairs are the entry rate — from 6,900 THB/month — and the lower floors sit slightly above it. More stairs, lower rent. One rule, understood in one sentence; exact per-floor rates are shared via LINE.',
+        th: 'มันยังทำให้ราคามีความซื่อตรงในตัวมันเอง — ชั้นที่ต้องใช้แรงขาเดินมากกว่า เริ่มต้นที่ 6,900 บาทต่อเดือน ส่วนชั้นล่างขยับสูงขึ้นมาเพียงเล็กน้อย เดินมากขึ้น จ่ายน้อยลง — กติกาเงียบ ๆ ข้อเดียว และตัวเลขของแต่ละชั้นเราแจ้งให้เป็นการส่วนตัวเมื่อมีผู้สนใจ',
+        en: 'It also lends the pricing a certain honesty: the floors that ask more of your legs begin at 6,900 THB a month, and the floors below sit only slightly above it. More stairs, less rent — one quiet rule, and the exact figure for each floor is shared privately, by request.',
       },
     },
     {
@@ -65,22 +65,22 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ทุกยูนิตคือ 25.2 ตร.ม. — 1 ห้องนอน 1 ห้องน้ำ ระเบียงส่วนตัว และมุมครัวในตัวที่ย้ายซิงก์ล้างจานออกไปไว้ที่ระเบียง ไม่ใช่ข้างเตียง การเอางานเปียกออกไปข้างนอกฟังดูเป็นเรื่องเล็ก แต่มันคือเส้นแบ่งระหว่าง "ห้องเช่า" กับ "บ้าน": ไม่มีจานกองข้างหมอน ไม่มีมุมชื้นในพื้นที่นั่งเล่น และตอนเช้าแสงจากระเบียงเข้าถึงห้องโดยไม่ต้องปลุกใคร',
-        en: 'Every unit is 25.2 sqm — one bedroom, one bathroom, a private balcony, and an in-room kitchenette whose dish sink lives out on the balcony, not by your bed. Keeping the wet work outside sounds minor, but it is the line between a rented room and a home: no dishes stacked beside your pillow, no damp corner in the living space, and morning light from the balcony reaches the room without waking anyone.',
+        th: 'ทุกยูนิตมีขนาด 25.2 ตร.ม. — หนึ่งห้องนอน หนึ่งห้องน้ำ ระเบียงส่วนตัว และมุมครัวในตัวที่ย้ายซิงก์ล้างจานออกไปพักอยู่ที่ระเบียง แทนที่จะอยู่ข้างเตียง เป็นการย้ายเล็ก ๆ ที่ให้ผลลัพธ์ไม่เล็กเลย: ไม่มีจานกองใกล้หมอน ไม่มีมุมชื้นในพื้นที่ที่คุณใช้ชีวิตจริง และแสงยามเช้าจากระเบียงเข้าถึงห้องโดยไม่รบกวนใคร',
+        en: 'Every residence measures 25.2 sqm — one bedroom, one bathroom, a private balcony, and an in-room kitchenette whose dish sink rests outside on the balcony rather than beside the bed. It is a small relocation with an outsized effect: no plates gathering near the pillow, no damp corner in the room where you actually live, and morning light reaching in from the balcony without disturbing anyone.',
       },
     },
     {
       type: 'p',
       text: {
-        th: 'ความเงียบข้อสุดท้ายไม่ได้อยู่ในผนัง แต่อยู่ในบิล: ค่าเช่ารวม Wi-Fi (AIS Fiber) บริการทำความสะอาด และบริการล้างแอร์ไว้แล้ว เดือนหนึ่งจ่ายครั้งเดียว ไม่มีตัวเลขงอกกลางเดือนให้ต้องคิด — นั่นคือ "ทางสายกลาง" ในเวอร์ชันของใบแจ้งหนี้',
-        en: 'The last kind of quiet is not in the walls but in the bill: rent includes Wi-Fi (AIS Fiber), cleaning service, and A/C maintenance. One payment a month, no numbers sprouting mid-month — the middle path, in invoice form.',
+        th: 'และยังมีความเงียบอีกชั้นหนึ่งที่ไม่ได้อยู่ในผนัง แต่อยู่ในใบแจ้งหนี้ — ค่าเช่ารวม Wi-Fi (AIS Fiber) บริการทำความสะอาด และดูแลแอร์ไว้แล้ว ตัวเลขเดียว จ่ายครั้งเดียวต่อเดือน ไม่มีอะไรงอกขึ้นกลางทางให้ต้องคิดคำนวณ — ทางสายกลาง ในรูปแบบของใบแจ้งหนี้',
+        en: 'There is a last, quieter register too — not in the walls, but in the bill. Rent already includes Wi-Fi (AIS Fiber), cleaning, and air-conditioning service. One figure, once a month, nothing appearing mid-cycle to be reckoned with — a middle path, written as an invoice.',
       },
     },
     {
       type: 'p',
       text: {
-        th: 'Nature Haven เปิดให้เข้าอยู่กันยายน 2026 — ถ้าเสียงแรกที่คุณอยากได้ยินตอนกลับถึงห้องคือความเงียบ เรากำลังสร้างที่แบบนั้นอยู่',
-        en: 'Nature Haven opens in September 2026. If the first thing you want to hear when you come home is nothing at all — that is exactly what we are building.',
+        th: 'Nature Haven เปิดให้เข้าอยู่กันยายน 2026 หากสิ่งแรกที่คุณอยากได้ยินตอนกลับถึงบ้านคือความว่างเปล่าของเสียง นี่คือตึกที่สร้างขึ้นเพื่อความปรารถนานั้นโดยเฉพาะ',
+        en: 'Nature Haven opens in September 2026. If the first thing you wish to hear on returning home is nothing at all, this is the building made for that wish.',
       },
     },
   ],
