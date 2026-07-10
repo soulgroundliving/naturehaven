@@ -39,7 +39,24 @@ try {
 } catch {
   console.warn('[prerender] no journal content dir found — rendering base routes only');
 }
-const ROUTES = ['/', '/journal', '/links', ...journalSlugs.map((s) => `/journal/${s}`)];
+// Same contract for the Architectural Lookbook: one file per collection in
+// src/content/collections/, filename IS the slug.
+const collectionsDir = path.join(repoRoot, 'src', 'content', 'collections');
+let collectionSlugs = [];
+try {
+  collectionSlugs = (await fs.readdir(collectionsDir))
+    .filter((f) => f.endsWith('.ts') && !f.startsWith('_'))
+    .map((f) => f.replace(/\.ts$/, ''));
+} catch {
+  console.warn('[prerender] no collections content dir found — skipping lookbook routes');
+}
+const ROUTES = [
+  '/',
+  '/journal',
+  '/links',
+  ...journalSlugs.map((s) => `/journal/${s}`),
+  ...collectionSlugs.map((s) => `/collections/${s}`),
+];
 console.log(`[prerender] routes: ${ROUTES.join(', ')}`);
 
 // On Linux CI (Vercel sets VERCEL=1; GitHub Actions sets CI=true) load the

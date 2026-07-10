@@ -66,6 +66,29 @@ export const TR = {
       copied: { en: 'Copied!', th: 'คัดลอกแล้ว' },
     },
   },
+  lookbook: {
+    sectionLabel: { en: 'The Architectural Lookbook', th: 'The Architectural Lookbook' },
+    sectionHeadline: {
+      en: 'Four collections\nof thoughtfulness.',
+      th: 'สี่คอลเลกชัน\nแห่งความใส่ใจ',
+    },
+    intro: {
+      en: 'Not a spec sheet — a lookbook. Every considered detail of the residence, arranged as four small collections you can wander through, one at a time.',
+      th: 'เราไม่เล่าด้วยตารางสเปกยาว ๆ แต่เรียงความใส่ใจทั้งหมดไว้เป็นสี่คอลเลกชันเล็ก ๆ ให้คุณค่อย ๆ เปิดดูทีละเรื่อง',
+    },
+    collectionWord: { en: 'Collection', th: 'คอลเลกชัน' },
+    openCollection: { en: 'View the collection', th: 'เปิดดูคอลเลกชัน' },
+    backToLookbook: { en: 'The Lookbook', th: 'The Lookbook' },
+    prevCollection: { en: 'Previous', th: 'ก่อนหน้า' },
+    nextCollection: { en: 'Next collection', th: 'คอลเลกชันถัดไป' },
+    detailsWord: { en: 'The details', th: 'รายละเอียดทั้งหมด' },
+    ctaTitle: { en: 'See these details in person', th: 'อยากเห็นรายละเอียดเหล่านี้ด้วยตาตัวเอง?' },
+    ctaBody: {
+      en: 'Private viewings by appointment — message us on LINE.',
+      th: 'เปิดชมห้องแบบส่วนตัวตามนัดหมาย — ทักเราทาง LINE ได้เลย',
+    },
+    ctaButton: { en: 'Request Private Viewing', th: 'นัดชมห้องส่วนตัว' },
+  },
   hero: {
     labelWords: {
       en: ['Lite', 'Service', 'Apartment', '·', 'Pet-Friendly', '·', 'Saimai,', 'Bangkok'],
