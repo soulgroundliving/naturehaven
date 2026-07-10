@@ -4,26 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import SectionHeader from '@/components/SectionHeader';
 import { Check } from '@/components/icons';
-import AiRenderBadge from '@/components/AiRenderBadge';
 import { PawPrint } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
 import { PROPERTY } from '@/data/propertyFacts';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const roomPhotos = [
-  {
-    src: '/assets/bathroom-functional.jpg',
-    alt: 'The bathroom — oval mirror, D-shape closet and constant-temperature shower',
-    key: 'galleryBathroom',
-  },
-  {
-    src: '/assets/balcony-view.jpg',
-    alt: 'The private balcony — stainless dish sink, drying rail and engineered slider frame',
-    key: 'galleryBalcony',
-  },
-] as const;
 
 const ResidencesSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -50,20 +36,6 @@ const ResidencesSection: React.FC = () => {
         scrollTrigger: {
           trigger: cards[0] as Element,
           start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      const tiles = sectionRef.current.querySelectorAll('.gallery-tile');
-      gsap.from(tiles, {
-        y: 20,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: tiles[0] as Element,
-          start: 'top 82%',
           toggleActions: 'play none none reverse',
         },
       });
@@ -246,61 +218,6 @@ const ResidencesSection: React.FC = () => {
               </svg>
             </a>
           </div>
-        </div>
-
-        {/* Photo Gallery — real project renders (bedroom · bathroom · balcony).
-            Fixed-height matte frames + object-contain so portrait renders
-            show in full instead of being cropped to a 4:3 landscape slot. */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 mb-10 md:mb-16 lg:mb-20">
-          {/* Bedroom (local asset) */}
-          <div className="gallery-tile relative h-56 overflow-hidden rounded-xl card-surface md:h-72">
-            <img
-              src="/assets/room-view-out.jpg"
-              alt="Bedroom interior looking toward the entrance — 25.2 sq.m."
-              loading="lazy"
-              className="w-full h-full object-contain"
-            />
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/40 to-transparent p-3 md:p-4">
-              <span className="font-sans text-[10px] md:text-[11px] text-white/75 uppercase tracking-[0.2em]">
-                {r.galleryBedroom[lang]}
-              </span>
-            </div>
-            <AiRenderBadge className="absolute top-2.5 right-2.5" />
-          </div>
-
-          {/* Bathroom / Balcony (local assets) */}
-          {roomPhotos.map(({ src, alt, key }) => (
-            <div key={key} className="gallery-tile relative h-56 overflow-hidden rounded-xl card-surface md:h-72">
-              <img src={src} alt={alt} className="w-full h-full object-contain" loading="lazy" />
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/40 to-transparent p-3 md:p-4">
-                <span className="font-sans text-[10px] md:text-[11px] text-white/75 uppercase tracking-[0.2em]">
-                  {r[key as keyof typeof r][lang]}
-                </span>
-              </div>
-              <AiRenderBadge className="absolute top-2.5 right-2.5" />
-            </div>
-          ))}
-        </div>
-
-        {/* Reserve CTA */}
-        <div className="mb-10 md:mb-16 lg:mb-20 text-center">
-          <p className="font-sans text-[11px] sec-text-55 uppercase tracking-[0.18em] mb-5">
-            {r.ctaLabel[lang]}
-          </p>
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="group inline-flex items-center gap-3 bg-[var(--cta-bg,#3D5A4C)] text-pure-white font-sans text-sm uppercase tracking-wide px-10 py-4 rounded-full overflow-hidden relative transition-transform duration-200 active:scale-[0.98] hover:shadow-lg"
-          >
-            <span className="absolute inset-0 bg-[var(--cta-bg-hover,#4a6e5d)] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
-            <span className="relative z-10">{r.ctaButton[lang]}</span>
-            <svg className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
         </div>
 
         {/* In-Room Essentials */}
