@@ -1,7 +1,4 @@
-import React, { useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import React from 'react';
 import PrimaryButton from '@/components/PrimaryButton';
 import {
   CarIcon,
@@ -13,185 +10,68 @@ import {
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const ICONS = [CarIcon, LeafIcon, WashingIcon, SparkleIcon, SnowflakeIcon];
 const NUMS  = ['01', '02', '03', '04', '05'];
 
+// Compact, all-five-at-once list. Replaces the former desktop horizontal
+// scroll-hijack (the last pinned track on the site) — every amenity is now
+// visible on one screen, and the section rides native scroll like the rest.
 const AmenitiesSection: React.FC = () => {
-  const wrapperRef  = useRef<HTMLDivElement>(null);
-  const sectionRef  = useRef<HTMLDivElement>(null);
-  const trackRef    = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
   const { lang } = useLanguage();
   const am = TR.amenities;
   const items = am.items[lang];
 
-  useGSAP(
-    () => {
-      const track   = trackRef.current;
-      const section = sectionRef.current;
-      const wrapper = wrapperRef.current;
-      if (!track || !section || !wrapper) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      if (window.matchMedia('(max-width: 767px)').matches) return;
-
-      let cachedDist = 0;
-      const refreshState = () => {
-        cachedDist = Math.max(0, track.scrollWidth - section.offsetWidth);
-        wrapper.style.height = `${window.innerHeight + cachedDist}px`;
-      };
-      refreshState();
-
-      const setX        = gsap.quickSetter(track, 'x', 'px') as (v: number) => void;
-      const setProgress = progressRef.current
-        ? gsap.quickSetter(progressRef.current, 'scaleX') as (v: number) => void
-        : null;
-      gsap.set(track, { x: 0 });
-
-      ScrollTrigger.create({
-        trigger: wrapper,
-        start: 'top top',
-        end: () => `+=${Math.max(1, cachedDist)}`,
-        invalidateOnRefresh: true,
-        onRefreshInit: refreshState,
-        onLeaveBack: () => {
-          gsap.set(track, { x: 0 });
-          if (setProgress) setProgress(0);
-        },
-        // Self-heal after ANY refresh: onUpdate only fires when progress
-        // CHANGES, so a transient progress during a refresh (lazy sections
-        // mounting above, URL-bar resize, route return) can leave the track
-        // painted mid/right while real progress settles back at 0 — and
-        // nothing repaints it until the user reaches the section ("doesn't
-        // start from the far left"). Re-applying x from the FINAL computed
-        // progress at the end of every refresh kills that stale-x class.
-        onRefresh: (st) => {
-          setX(cachedDist > 0 ? -cachedDist * st.progress : 0);
-          if (setProgress) setProgress(st.progress);
-        },
-        onUpdate: (st) => {
-          if (cachedDist <= 0) return;
-          setX(-cachedDist * st.progress);
-          if (setProgress) setProgress(st.progress);
-        },
-      });
-    },
-    { scope: wrapperRef }
-  );
-
   return (
-    <div ref={wrapperRef}>
-    <section
-      ref={sectionRef}
-      id="amenities"
-      className="overflow-hidden relative"
-      style={{ background: 'var(--sec-bg, rgba(255,255,255,0.55))', position: 'sticky', top: 0 }}
-    >
-      <div
-        ref={trackRef}
-        className="am-track flex items-stretch md:h-[100dvh]"
-        style={{ willChange: 'transform' }}
-      >
-        {/* Intro card */}
-        <div
-          className="am-intro flex-shrink-0 flex flex-col justify-between p-8 md:p-10 lg:p-16"
-          style={{ width: 'clamp(300px, 38vw, 520px)' }}
-        >
-          <p className="font-sans text-[10px] uppercase tracking-[0.22em]" style={{ color: 'var(--sec-text-60)' }}>
-            {am.sectionLabel[lang]}
+    <section id="amenities" className="section-padding frosted-section backdrop-blur-xl">
+      <div className="container-main">
+        {/* Header */}
+        <div className="mb-8 md:mb-12 max-w-[620px]">
+          <p className="section-label sec-text-60 mb-4">{am.sectionLabel[lang]}</p>
+          <h2 className="headline-lg sec-text">
+            {am.headline[lang].split('\n').map((line, i, arr) => (
+              <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>
+            ))}
+          </h2>
+          <p className="mt-4 font-sans text-[15px] font-light leading-relaxed sec-text-70 max-w-[440px]">
+            {am.subtext[lang]}
           </p>
-          <div>
-            <h2
-              className="font-serif leading-[1.05]"
-              style={{ fontSize: 'clamp(1.65rem, 4vw, 3.25rem)', color: 'var(--sec-text)' }}
-            >
-              {am.headline[lang].split('\n').map((line, i, arr) => (
-                <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>
-              ))}
-            </h2>
-            <p className="font-sans font-light mt-5 leading-relaxed" style={{ fontSize: '0.9375rem', color: 'var(--sec-text-70)', maxWidth: '340px' }}>
-              {am.subtext[lang]}
-            </p>
-          </div>
-          <div className="hidden md:flex items-center gap-3" style={{ color: 'var(--sec-text-55)' }}>
-            <span className="font-sans text-[10px] uppercase tracking-[0.2em]">{am.scrollHint[lang]}</span>
-            <svg width="28" height="10" viewBox="0 0 28 10" fill="none" aria-hidden="true">
-              <path d="M1 5h26M22 1l5 4-5 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
         </div>
 
-        <div className="am-divider flex-shrink-0 self-stretch" style={{ width: '1px', background: 'var(--sec-border)', margin: '2.5rem 0' }} />
-
-        {items.map(({ label, desc }, idx) => {
-          const Icon = ICONS[idx];
-          const num  = NUMS[idx];
-          return (
-            <React.Fragment key={idx}>
-              <div
-                className="am-card flex-shrink-0 flex flex-col justify-between px-10 py-12 md:px-14 md:py-16 relative"
-                style={{ width: 'clamp(260px, 28vw, 380px)' }}
+        {/* All five — one screen, no scroll-hijack */}
+        <ul className="border-t sec-border">
+          {items.map(({ label, desc }, idx) => {
+            const Icon = ICONS[idx];
+            return (
+              <li
+                key={idx}
+                className="flex items-center gap-4 border-b sec-border py-4 md:gap-6 md:py-5"
               >
-                <span
-                  className="absolute bottom-10 right-8 font-serif select-none pointer-events-none"
-                  style={{ fontSize: 'clamp(5rem, 12vw, 9rem)', lineHeight: 1, color: 'var(--sec-text)', opacity: 0.045 }}
-                  aria-hidden="true"
-                >
-                  {num}
+                <span className="w-6 flex-none font-serif text-base tabular-nums sec-text-55 md:text-lg">
+                  {NUMS[idx]}
                 </span>
-                <div className="flex flex-col gap-6">
-                  <span className="font-sans text-[10px] uppercase tracking-[0.2em]" style={{ color: 'var(--sec-text-55)' }}>{num}</span>
-                  <Icon size={22} className="text-sage-green opacity-80" />
-                </div>
-                <div>
-                  <div className="w-8 h-px mb-6" style={{ background: 'var(--sec-border)' }} />
-                  <h3 className="font-serif leading-tight mb-3" style={{ fontSize: 'clamp(1.5rem, 2.8vw, 2.25rem)', color: 'var(--sec-text)' }}>
+                <Icon size={22} className="flex-none text-sage-green" />
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-serif text-lg leading-tight sec-text md:text-2xl">
                     {label}
                   </h3>
-                  <p className="font-sans font-light leading-relaxed" style={{ fontSize: '0.875rem', color: 'var(--sec-text-70)', maxWidth: '240px' }}>
+                  <p className="mt-0.5 font-sans text-[13px] font-light leading-snug sec-text-70 md:text-sm">
                     {desc}
                   </p>
                 </div>
-              </div>
-              <div className="am-divider flex-shrink-0 self-stretch" style={{ width: '1px', background: 'var(--sec-border)', margin: '2.5rem 0' }} />
-            </React.Fragment>
-          );
-        })}
+              </li>
+            );
+          })}
+        </ul>
 
-        {/* CTA card */}
-        <div
-          className="am-cta flex-shrink-0 flex flex-col justify-center px-8 py-10 md:px-12 lg:px-16"
-          style={{ width: 'clamp(280px, 32vw, 440px)' }}
-        >
-          <p className="font-sans text-[10px] uppercase tracking-[0.22em] mb-6" style={{ color: 'var(--sec-text-55)' }}>
-            {am.ctaTag[lang]}
-          </p>
-          <p className="font-serif leading-snug mb-8" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--sec-text)' }}>
-            {am.ctaHeadline[lang].split('\n').map((line, i, arr) => (
-              <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>
-            ))}
-          </p>
-          <p className="font-sans font-light leading-relaxed mb-10" style={{ fontSize: '0.9375rem', color: 'var(--sec-text-70)', maxWidth: '300px' }}>
-            {am.ctaBody[lang]}
+        {/* CTA */}
+        <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between md:mt-12">
+          <p className="max-w-[420px] font-serif text-xl leading-snug sec-text md:text-2xl">
+            {am.ctaHeadline[lang].split('\n').join(' ')}
           </p>
           <PrimaryButton href="#contact">{am.ctaButton[lang]}</PrimaryButton>
         </div>
       </div>
-
-      <div
-        className="am-progress absolute bottom-0 left-0 w-full pointer-events-none"
-        style={{ height: '1px', background: 'var(--sec-border)' }}
-        aria-hidden="true"
-      >
-        <div
-          ref={progressRef}
-          className="h-full"
-          style={{ background: 'var(--sec-text-55)', transformOrigin: 'left center', transform: 'scaleX(0)' }}
-        />
-      </div>
     </section>
-    </div>
   );
 };
 

@@ -33,7 +33,6 @@ import AmenitiesSection from '@/sections/AmenitiesSection';
 
 // Below-fold sections lazy-loaded — reduces initial JS parse time significantly.
 const AboutSection      = lazy(() => import('@/sections/AboutSection'));
-const InvitationSection = lazy(() => import('@/sections/InvitationSection'));
 const CollectionsSection = lazy(() => import('@/sections/CollectionsSection'));
 const ResidencesSection = lazy(() => import('@/sections/ResidencesSection'));
 const LocationSection   = lazy(() => import('@/sections/LocationSection'));
@@ -313,7 +312,6 @@ function App() {
         <MarqueeStrip />
         <Suspense fallback={null}>
           <AboutSection />
-          <InvitationSection />
           <CollectionsSection />
           <ResidencesSection />
         </Suspense>

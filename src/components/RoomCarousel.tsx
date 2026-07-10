@@ -2,12 +2,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import AiRenderBadge from '@/components/AiRenderBadge';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-// Every room render, walked in the order you'd actually move through a unit:
-// approach → room → the view out → bath → balcony → the whole thing. Each is an
-// AI visualization, so one AiRenderBadge covers the set. object-contain keeps
-// every frame whole (portrait + landscape renders coexist) against the
-// palette-reactive card-surface matte — same "gallery print" treatment used
-// across the site, never a crop.
+// Every room render, walked in the order you'd actually move through a unit.
+// Captions describe the VIEW DIRECTION, not the filename's camera position
+// (room-view-in shows the outward view, room-view-out the interior — verified
+// against the actual images).
 type Slide = {
   src: string;
   caption: { en: string; th: string };
@@ -68,29 +66,57 @@ const SLIDES: Slide[] = [
 const AUTO_MS = 4800;
 const SWIPE_THRESHOLD = 40; // px of horizontal travel before a release counts as a swipe
 
+// True infinite loop: clone the last slide before the first and the first after
+// the last → track = [Llast, 0..N-1, Lfirst]. Real slides live at track
+// positions 1..N. When a step lands on a clone, we let the slide animate there
+// (seamless — the clone looks identical to the real slide it mirrors), then on
+// transitionend snap WITHOUT animation to the matching real position. No
+// backward "rewind" when wrapping past the end.
 export default function RoomCarousel({ className = '' }: { className?: string }) {
   const { lang } = useLanguage();
   const count = SLIDES.length;
-  const [index, setIndex] = useState(0);
+  const track = [SLIDES[count - 1], ...SLIDES, SLIDES[0]];
+
+  const [pos, setPos] = useState(1); // track position; 1..count are the real slides
+  const [animate, setAnimate] = useState(true);
   const [paused, setPaused] = useState(false);
+  const activeIndex = ((pos - 1) % count + count) % count;
 
-  const go = useCallback((i: number) => setIndex(((i % count) + count) % count), [count]);
-  const next = useCallback(() => setIndex((i) => (i + 1) % count), [count]);
+  const next = useCallback(() => setPos((p) => p + 1), []);
+  const prev = useCallback(() => setPos((p) => p - 1), []);
+  const goTo = useCallback((realIdx: number) => setPos(realIdx + 1), []);
 
-  // Auto-advance — restarts on every index change (so manual nav resets the
-  // clock) and holds while paused. Skipped entirely for reduced-motion users;
-  // dots + swipe still drive it manually.
+  // Auto-advance — restarts on every pos change (manual nav resets the clock);
+  // holds while paused; skipped for reduced-motion (dots + swipe still work).
   useEffect(() => {
     if (paused) return;
     if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const id = window.setInterval(next, AUTO_MS);
+    const id = window.setInterval(() => setPos((p) => p + 1), AUTO_MS);
     return () => window.clearInterval(id);
-  }, [paused, next, index]);
+  }, [paused, pos]);
 
-  // Loose swipe — decide on release rather than following the finger, so the
-  // gesture never fights the page's vertical scroll (no preventDefault, and we
-  // only act when the horizontal travel dominates). touch-action:pan-y lets the
-  // browser keep vertical panning.
+  // Landed on a clone → jump to the real twin with animation off.
+  const onTransitionEnd = (e: React.TransitionEvent) => {
+    if (e.propertyName !== 'transform') return;
+    if (pos === count + 1) {
+      setAnimate(false);
+      setPos(1);
+    } else if (pos === 0) {
+      setAnimate(false);
+      setPos(count);
+    }
+  };
+
+  // Re-enable the transition the frame after a snap (double rAF so the browser
+  // commits the no-transition jump before transitions come back).
+  useEffect(() => {
+    if (animate) return;
+    const r = requestAnimationFrame(() => requestAnimationFrame(() => setAnimate(true)));
+    return () => cancelAnimationFrame(r);
+  }, [animate]);
+
+  // Loose swipe — decide on release, only when horizontal travel dominates, so
+  // it never fights the page's vertical scroll (touch-action:pan-y).
   const start = useRef<{ x: number; y: number } | null>(null);
   const onPointerDown = (e: React.PointerEvent) => {
     start.current = { x: e.clientX, y: e.clientY };
@@ -103,7 +129,7 @@ export default function RoomCarousel({ className = '' }: { className?: string })
     const dy = e.clientY - s.y;
     if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
       if (dx < 0) next();
-      else go(index - 1);
+      else prev();
     }
   };
 
@@ -120,24 +146,26 @@ export default function RoomCarousel({ className = '' }: { className?: string })
       onPointerUp={onPointerUp}
       onPointerCancel={() => (start.current = null)}
     >
-      {/* Track — one viewport-width slide each, translated by index. */}
       <div
-        className="flex h-full transition-transform duration-700 ease-out"
-        style={{ transform: `translateX(-${index * 100}%)` }}
+        className="flex h-full"
+        style={{
+          transform: `translateX(-${pos * 100}%)`,
+          transition: animate ? 'transform 700ms cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+        }}
+        onTransitionEnd={onTransitionEnd}
       >
-        {SLIDES.map((s, i) => (
+        {track.map((s, i) => (
           <div
-            key={s.src}
+            key={i}
             className="relative h-full w-full flex-none"
             role="group"
             aria-roledescription="slide"
-            aria-label={`${i + 1} / ${count}`}
-            aria-hidden={i !== index}
+            aria-hidden={i !== pos}
           >
             <img
               src={s.src}
               alt={s.alt[lang]}
-              loading={i === 0 ? 'eager' : 'lazy'}
+              loading={i === 1 ? 'eager' : 'lazy'}
               draggable={false}
               className="h-full w-full object-contain select-none"
             />
@@ -145,14 +173,13 @@ export default function RoomCarousel({ className = '' }: { className?: string })
         ))}
       </div>
 
-      {/* Room label — understated pill, top-left, out of the way of the badge
-          (bottom-right) and dots (bottom-centre). */}
+      {/* Room label — understated pill, top-left, clear of the badge and dots. */}
       <div
-        key={index}
+        key={activeIndex}
         className="pointer-events-none absolute top-3 left-3 rounded-full bg-black/50 px-2.5 py-1 font-sans text-[10px] uppercase tracking-[0.18em] text-white/90 backdrop-blur-sm nh-caption-fade"
         aria-hidden="true"
       >
-        {SLIDES[index].caption[lang]}
+        {SLIDES[activeIndex].caption[lang]}
       </div>
 
       <AiRenderBadge className="absolute bottom-3 right-3 z-10" />
@@ -163,13 +190,11 @@ export default function RoomCarousel({ className = '' }: { className?: string })
           <button
             key={s.src}
             type="button"
-            onClick={() => go(i)}
-            aria-label={
-              lang === 'th' ? `ไปภาพที่ ${i + 1}` : `Go to render ${i + 1}`
-            }
-            aria-current={i === index}
+            onClick={() => goTo(i)}
+            aria-label={lang === 'th' ? `ไปภาพที่ ${i + 1}` : `Go to render ${i + 1}`}
+            aria-current={i === activeIndex}
             className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === index ? 'w-5 bg-white' : 'w-1.5 bg-white/55 hover:bg-white/80'
+              i === activeIndex ? 'w-5 bg-white' : 'w-1.5 bg-white/55 hover:bg-white/80'
             }`}
           />
         ))}

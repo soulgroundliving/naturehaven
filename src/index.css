@@ -187,39 +187,5 @@ a[class*="bg-[var(--cta-bg"]:focus-visible {
   text-shadow: var(--text-shadow-hero);
 }
 
-/* ── Amenities — mobile vertical stack ───────────────────────────────
-   GSAP scroll-hijacking is skipped on mobile (max-width: 767px).
-   Cards stack vertically; fixed widths are overridden to full-width.
-   Vertical dividers and the progress bar are hidden (irrelevant in
-   a block-flow layout).
-*/
-@media (max-width: 767px) {
-  /* The section has position:sticky as an inline style (needed for the
-     desktop GSAP scroll-hijack). On mobile GSAP exits early and never sets
-     the wrapper height to a large scroll-space value, so the wrapper ends up
-     only as tall as the section itself. A sticky element whose parent is
-     exactly its own height sticks on first entry and never unsticks — the
-     user sees one frozen card instead of a scrollable column. Override to
-     relative so the section flows normally. */
-  #amenities {
-    position: relative !important;
-  }
-  #amenities .am-track {
-    flex-direction: column !important;
-    height: auto !important;
-    transform: none !important;
-  }
-  #amenities .am-intro,
-  #amenities .am-card,
-  #amenities .am-cta {
-    width: 100% !important;
-    border-bottom: 1px solid var(--sec-border, rgba(43,43,43,0.12));
-  }
-  #amenities .am-cta {
-    border-bottom: none;
-  }
-  #amenities .am-divider,
-  #amenities .am-progress {
-    display: none !important;
-  }
-}
+/* Amenities is now a plain block-flow list (no scroll-hijack) — the former
+   .am-track / .am-card mobile overrides are gone with it. */
