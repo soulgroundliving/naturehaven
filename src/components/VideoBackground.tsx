@@ -1,12 +1,9 @@
 import { useEffect, useRef } from 'react';
 
-// Cinematic looping video bg with manual fade-in/out logic. Sits at the
-// fixed-viewport bottom of the z-stack:
-//   body gradient (CSS fallback) → video → slot-tinted overlay → orb → main
-//
-// The orb canvas is also `position:fixed; z-index:0` and is rendered AFTER
-// this component in App.tsx, so it paints on top (same z, later DOM order).
-// `<main>` sits at z-[1] above everything, so section content always wins.
+// Cinematic looping meadow video. Fills its positioned parent (absolute
+// inset-0) — as of the 2026-07 hero redesign it lives inside the hero's
+// framed image block rather than as a full-bleed fixed background, so the
+// hero copy sits on the clean palette surface instead of over the footage.
 //
 // Autoplay strategy: NO `autoPlay` attribute on the element — that causes
 // iOS Safari to render a native play overlay when blocked, which the orb
@@ -97,7 +94,7 @@ export default function VideoBackground() {
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-0 z-0 pointer-events-none overflow-hidden"
+      className="absolute inset-0 pointer-events-none overflow-hidden"
     >
       {/* Standalone poster <img> — iOS Safari does NOT render <video poster>
           until the video element is "activated" (user touch / successful

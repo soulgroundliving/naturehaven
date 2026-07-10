@@ -5,6 +5,8 @@ import { useGSAP } from '@gsap/react';
 import { ArrowDown } from '@/components/icons';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
+import VideoBackground from '@/components/VideoBackground';
+import { isPrerender } from '@/lib/isPrerender';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,18 +88,21 @@ const HeroSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative w-full min-h-[100dvh] overflow-hidden flex items-center justify-center"
+      className="relative w-full min-h-[100dvh] overflow-hidden flex flex-col"
     >
+      {/* Text zone — sits on the clean, palette-adaptive page background (no
+          full-bleed footage behind the copy), so the wordmark, subtitle and
+          pricing stay legible in every time-of-day slot. */}
       <div
         ref={contentRef}
-        className="relative z-10 text-center w-full max-w-[1300px] mx-auto px-4 md:px-8 lg:px-12 flex flex-col items-center"
+        className="relative z-10 flex-1 flex flex-col items-center justify-center text-center w-full max-w-[1300px] mx-auto px-4 md:px-8 lg:px-12 pt-24 pb-4"
         style={{ willChange: 'transform, opacity', color: 'var(--text-on-bg, #2B2B2B)' }}
       >
         <div className="hero-rule-top w-20 h-px mb-6 opacity-25" style={{ background: 'var(--text-on-bg, #2B2B2B)' }} />
 
         <p
-          className="font-sans text-[10px] md:text-xs uppercase tracking-[0.22em] mb-8 flex flex-wrap justify-center gap-x-[0.55em] gap-y-1"
-          style={{ color: 'var(--text-on-bg, #2B2B2B)', textShadow: 'var(--text-shadow-hero)' }}
+          className="font-sans text-[10px] md:text-xs uppercase tracking-[0.22em] mb-7 flex flex-wrap justify-center gap-x-[0.55em] gap-y-1"
+          style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
         >
           {labelWords.map((word, i) => (
             <span key={i} className="inline-block overflow-hidden" style={{ lineHeight: 1.3 }}>
@@ -107,9 +112,8 @@ const HeroSection: React.FC = () => {
         </p>
 
         <h1
-          className="font-serif leading-[0.88] text-[11vw] sm:text-[10.5vw] md:text-[10.5vw] lg:text-[10vw] tracking-[-0.01em]"
+          className="font-serif leading-[0.88] text-[13vw] sm:text-[11vw] md:text-[9.5vw] lg:text-[8.5vw] tracking-[-0.01em]"
           aria-label="Nature Haven"
-          style={{ textShadow: 'var(--text-shadow-hero)' }}
         >
           {HEADLINE_LINES.map((line, i) => (
             <span
@@ -124,29 +128,51 @@ const HeroSection: React.FC = () => {
         </h1>
 
         <div
-          className="hero-rule-bottom w-[260px] h-px mt-7 mb-8 opacity-20"
+          className="hero-rule-bottom w-[220px] h-px mt-6 mb-6 opacity-20"
           style={{ background: 'var(--text-on-bg, #2B2B2B)' }}
         />
 
         <p
-          className="hero-subtitle font-sans text-base md:text-lg font-light max-w-[520px] leading-relaxed"
-          style={{ color: 'var(--text-on-bg, #2B2B2B)', textShadow: 'var(--text-shadow-hero)' }}
+          className="hero-subtitle font-sans text-[15px] md:text-lg font-light max-w-[520px] leading-relaxed"
+          style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
         >
           {h.subtitle[lang]}
         </p>
 
-        <p className="hero-cta font-sans text-[11px] uppercase tracking-[0.18em] mt-7 text-white opacity-60">
+        <p
+          className="hero-cta font-sans text-[11px] uppercase tracking-[0.16em] mt-6 opacity-55"
+          style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
+        >
           {h.cta[lang]}
         </p>
       </div>
 
+      {/* Meadow — now its own framed block instead of a full-bleed image
+          behind the copy. Poster still during prerender (crawler snapshot),
+          the ambient video mounts client-side. */}
+      <div className="relative z-10 w-full px-4 md:px-8 lg:px-12 pb-14 md:pb-16">
+        <div className="relative mx-auto w-full max-w-[1080px] h-[22vh] md:h-[30vh] min-h-[130px] overflow-hidden rounded-2xl shadow-[0_18px_44px_rgba(43,43,43,0.16)]">
+          {isPrerender() ? (
+            <img
+              src="/assets/hero-video-poster.jpg"
+              alt="The Nature Haven meadow — Sai Mai, Bangkok"
+              className="absolute inset-0 w-full h-full object-cover"
+              fetchPriority="high"
+            />
+          ) : (
+            <VideoBackground />
+          )}
+        </div>
+      </div>
+
       <div
         ref={scrollIndicatorRef}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white"
+        className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1"
+        style={{ color: 'var(--text-on-bg, #2B2B2B)' }}
       >
-        <span className="font-sans text-xs uppercase tracking-[0.15em]">{h.scroll[lang]}</span>
+        <span className="font-sans text-[10px] uppercase tracking-[0.15em]">{h.scroll[lang]}</span>
         <div className="animate-bounce-gentle">
-          <ArrowDown size={20} />
+          <ArrowDown size={18} />
         </div>
       </div>
     </section>

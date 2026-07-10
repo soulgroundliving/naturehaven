@@ -20,7 +20,6 @@ import FloatingLineChat from '@/components/FloatingLineChat';
 import StickyMobileCTA from '@/components/StickyMobileCTA';
 import LineLinkGuard from '@/components/LineLinkGuard';
 import { useTimeOfDay } from '@/contexts/TimeOfDayContext';
-import VideoBackground from '@/components/VideoBackground';
 import useSectionObserver from '@/hooks/useSectionObserver';
 import { isPrerender } from '@/lib/isPrerender';
 import { scrollToTarget } from '@/lib/scrollTo';
@@ -301,10 +300,10 @@ function App() {
           if (target) scrollToTarget(target, lenisRef.current, -80);
         }}
       />
-      {/* Video + 3D Orb are useless in the crawler snapshot AND slow puppeteer
-          down (remote video fetch + WebGL init). Skip them during prerender —
-          real client mount re-renders the tree and they appear normally. */}
-      {!prerendering && <VideoBackground />}
+      {/* The 3D orb is useless in the crawler snapshot AND slows puppeteer
+          down (WebGL init). Skip during prerender — the real client mount
+          re-renders the tree and it appears normally. The meadow video now
+          lives inside HeroSection's framed block, not here. */}
       {!prerendering && (
         <OrbErrorBoundary>
           <Suspense fallback={null}>
