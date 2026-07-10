@@ -87,8 +87,8 @@ const AboutSection: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-[52%_48%] items-stretch">
         <div className="ab-image self-stretch">
           <img
-            src="/assets/about-minimal-room.jpg"
-            alt="Minimal bedroom interior"
+            src="/assets/unit-overview.jpg"
+            alt="Inside a Nature Haven residence — the room opening to its private balcony and ensuite bath"
             loading="lazy"
             className="w-full object-cover aspect-[4/3] lg:aspect-auto lg:h-full"
             style={{ minHeight: '420px' }}

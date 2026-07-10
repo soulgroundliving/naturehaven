@@ -18,13 +18,8 @@ const roomPhotos = [
     key: 'galleryBathroom',
   },
   {
-    src: 'https://images.unsplash.com/photo-1757439402103-fc35542f96f8?w=800&fit=crop&auto=format&q=80',
-    alt: 'Separate kitchen with minimal fittings',
-    key: 'galleryKitchen',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1725399103001-200ce2bb5350?w=800&fit=crop&auto=format&q=80',
-    alt: 'Private balcony overlooking the garden',
+    src: '/assets/balcony-view.jpg',
+    alt: 'The private balcony — stainless dish sink, drying rail and engineered slider frame',
     key: 'galleryBalcony',
   },
 ] as const;
@@ -252,8 +247,8 @@ const ResidencesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Photo Gallery — 2x2 equal grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 mb-10 md:mb-16 lg:mb-20">
+        {/* Photo Gallery — real project renders (bedroom · bathroom · balcony) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 mb-10 md:mb-16 lg:mb-20">
           {/* Bedroom (local asset) */}
           <div className="gallery-tile relative rounded-xl overflow-hidden aspect-[4/3]">
             <img
