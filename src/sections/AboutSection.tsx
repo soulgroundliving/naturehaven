@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
-import AiRenderBadge from '@/components/AiRenderBadge';
+import RoomCarousel from '@/components/RoomCarousel';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,19 +84,14 @@ const AboutSection: React.FC = () => {
         </p>
       </div>
 
-      {/* About Block */}
-      <div className="grid grid-cols-1 lg:grid-cols-[52%_48%] items-stretch">
-        <div className="ab-image relative h-[320px] self-stretch overflow-hidden card-surface md:h-[420px] lg:h-full">
-          <img
-            src="/assets/unit-overview.jpg"
-            alt="Inside a Nature Haven residence — the room opening to its private balcony and ensuite bath"
-            loading="lazy"
-            className="h-full w-full object-contain"
-          />
-          <AiRenderBadge className="absolute bottom-3 right-3" />
-        </div>
+      {/* About Block — capped, centred editorial columns. The image frame is
+          held near-square (≤540 × 600) so the mostly-portrait renders fill it
+          instead of floating in wide matte bars; minmax lets both columns
+          shrink together on smaller desktops. */}
+      <div className="grid grid-cols-1 items-center lg:grid-cols-[minmax(0,540px)_minmax(0,640px)] lg:justify-center lg:gap-14">
+        <RoomCarousel className="ab-image h-[380px] md:h-[440px] lg:h-[600px]" />
 
-        <div className="flex flex-col justify-center px-4 md:px-8 lg:pl-14 lg:pr-12 py-10 lg:py-0">
+        <div className="flex flex-col justify-center px-4 md:px-8 lg:px-0 py-10 lg:py-0">
           <p className="ab-text-anim section-label sec-text-60 mb-5 tracking-[0.2em]">
             {a.aboutLabel[lang]}
           </p>

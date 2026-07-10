@@ -151,6 +151,14 @@
   }
 }
 
+/* Room carousel caption — gentle fade-in on each slide change. The global
+   reduced-motion reset above neutralizes this automatically (0.01ms). */
+@keyframes nhCaptionFade {
+  from { opacity: 0; transform: translateY(2px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.nh-caption-fade { animation: nhCaptionFade 0.5s ease-out; }
+
 /* Focus ring on slot-aware CTAs — sage on light slots, slate on night */
 .hero-cta:focus-visible,
 button[class*="bg-[var(--cta-bg"]:focus-visible,
