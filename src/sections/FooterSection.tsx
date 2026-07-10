@@ -50,10 +50,10 @@ const FooterSection: React.FC = () => {
   );
 
   return (
-    <footer ref={sectionRef} id="footer" className="frosted-section backdrop-blur-xl shadow-sm pt-16 md:pt-20 pb-10 md:pb-10">
+    <footer ref={sectionRef} id="footer" className="frosted-section backdrop-blur-xl shadow-sm pt-10 md:pt-16 pb-8">
       <div className="container-main">
         {/* Top Area */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <p className="footer-animate font-serif text-[13px] tracking-[0.35em] sec-text-55 mb-5">N · H</p>
           <h3 className="footer-animate font-serif text-xl md:text-2xl sec-text">
             {f.headline[lang]}
@@ -77,7 +77,7 @@ const FooterSection: React.FC = () => {
         </div>
 
         {/* Divider */}
-        <div className="footer-divider w-full h-px sec-border mb-8 origin-center" style={{ background: 'var(--sec-border)' }} />
+        <div className="footer-divider w-full h-px sec-border mb-6 origin-center" style={{ background: 'var(--sec-border)' }} />
 
         {/* Bottom Area */}
         <div className="footer-animate flex flex-col-reverse md:flex-row items-center justify-between gap-4">

@@ -78,7 +78,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
             : 'bg-transparent nav-on-hero'
         }`}
       >
-        <div className="container-main flex items-center justify-between h-20">
+        <div className="container-main flex items-center justify-between h-14 md:h-16">
           <a
             href="#"
             onClick={(e) => {

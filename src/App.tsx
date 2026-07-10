@@ -242,25 +242,15 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    // Touch-primary devices skip Lenis entirely (above effect returns early),
-    // which leaves the RoomJourneySection's `position: sticky` pin driven by
-    // raw native touch-scroll. That combination is a known WebKit/iOS mobile
-    // bug class: the sticky element can fail to release when scrolling back
-    // UP past its trigger start, leaving the page feeling "locked" — exactly
-    // the reported symptom (mobile/LINE in-app browser only, can't scroll up).
-    // ScrollTrigger.normalizeScroll(true) is GSAP's official fix for this: it
-    // normalizes touch scroll input through a virtual scroller so pinned/
-    // sticky ScrollTriggers behave consistently on mobile. Scoped to touch
-    // devices only — desktop already gets correct behavior via Lenis.
-    const isTouchPrimary = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-    if (!isTouchPrimary) return;
-
-    const normalizer = ScrollTrigger.normalizeScroll(true);
-    return () => {
-      normalizer?.kill?.();
-    };
-  }, []);
+  // NOTE: we deliberately do NOT call ScrollTrigger.normalizeScroll() on
+  // touch devices. It routes native touch-scroll through a virtual scroller
+  // to make pinned/sticky ScrollTriggers behave — but the trade-off is a
+  // sluggish, "sticky" scroll feel in the LINE in-app browser (reported:
+  // "ปัดขึ้นติด ฝืดๆ"). Instead we remove the mobile pin at its source:
+  // RoomJourneySection renders a plain vertical stack on mobile (no sticky
+  // pin), and AmenitiesSection already unpins via CSS. With no scroll-hijack
+  // pins left on phones, native momentum scroll is smooth and normalizeScroll
+  // is unnecessary.
 
   return (
     <div className="relative">

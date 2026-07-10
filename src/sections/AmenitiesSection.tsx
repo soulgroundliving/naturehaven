@@ -104,7 +104,7 @@ const AmenitiesSection: React.FC = () => {
           <div>
             <h2
               className="font-serif leading-[1.05]"
-              style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', color: 'var(--sec-text)' }}
+              style={{ fontSize: 'clamp(1.65rem, 4vw, 3.25rem)', color: 'var(--sec-text)' }}
             >
               {am.headline[lang].split('\n').map((line, i, arr) => (
                 <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>

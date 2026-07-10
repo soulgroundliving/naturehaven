@@ -52,10 +52,11 @@ const RoomJourneySection: React.FC = () => {
   const frameRef      = useRef<HTMLDivElement>(null);
   const counterRef    = useRef<HTMLSpanElement>(null);
   // Compute once at mount — choose the desktop or mobile dwell schedule.
-  const [sceneVh]  = React.useState<number[]>(() =>
+  const [isMobile] = React.useState<boolean>(() =>
     typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
-      ? SCENE_VH_MOBILE
-      : SCENE_VH
+  );
+  const [sceneVh]  = React.useState<number[]>(() =>
+    isMobile ? SCENE_VH_MOBILE : SCENE_VH
   );
   const containerVhCalc = sceneVh.reduce((s, v) => s + v, 0) + 100;
 
@@ -63,6 +64,9 @@ const RoomJourneySection: React.FC = () => {
     () => {
       if (!containerRef.current || !frameRef.current) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      // Mobile renders a plain vertical stack (no sticky pin) — skip all the
+      // scroll-hijack ScrollTriggers so native touch-scroll stays smooth.
+      if (window.matchMedia('(max-width: 767px)').matches) return;
 
       const images = gsap.utils.toArray<HTMLElement>('.rj-img');
       const texts  = gsap.utils.toArray<HTMLElement>('.rj-text');
@@ -145,6 +149,48 @@ const RoomJourneySection: React.FC = () => {
     },
     { scope: containerRef }
   );
+
+  // ── Mobile: plain vertical stack ────────────────────────────────────────
+  // No sticky pin, no scroll-hijack — each scene is a normal block the user
+  // scrolls through with native momentum. Fixes the "can't scroll / sticky"
+  // feel the pinned 500dvh desktop journey caused on phones.
+  if (isMobile) {
+    return (
+      <section aria-label="Room journey" className="w-full">
+        {SCENES.map((scene, i) => (
+          <div key={scene.tag} className="relative w-full h-[64vh] overflow-hidden">
+            <img
+              src={scene.src}
+              alt={scene.alt}
+              className="absolute inset-0 w-full h-full object-cover"
+              loading={i === 0 ? 'eager' : 'lazy'}
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  'linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.34) 46%, rgba(0,0,0,0.05) 78%, transparent 100%)',
+              }}
+            />
+            <div className="absolute bottom-7 left-6 right-6">
+              <span className="block font-sans text-[10px] uppercase tracking-[0.22em] text-white/60 mb-2.5">
+                {scene.tag}
+              </span>
+              <h2
+                className="font-serif text-white leading-[1.05] mb-2.5"
+                style={{ fontSize: 'clamp(1.6rem, 7vw, 2.4rem)', whiteSpace: 'pre-line' }}
+              >
+                {scene.headline}
+              </h2>
+              <p className="font-sans font-light text-white/75 leading-relaxed text-sm max-w-[420px]">
+                {scene.body}
+              </p>
+            </div>
+          </div>
+        ))}
+      </section>
+    );
+  }
 
   return (
     // Container taller than viewport — provides scroll space
