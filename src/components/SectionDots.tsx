@@ -1,4 +1,4 @@
-// Vertical dot nav — fixed right edge, shows which of the 10 main sections is
+// Vertical dot nav — fixed right edge, shows which of the 9 main sections is
 // active. Fades in after user scrolls past the hero. Each dot is an <a> tag
 // so keyboard users can jump directly to any section.
 const SECTIONS = [
@@ -8,7 +8,6 @@ const SECTIONS = [
   { id: 'amenities',     label: 'Amenities' },
   { id: 'journal',       label: 'Journal' },
   { id: 'location',      label: 'Location' },
-  { id: 'design',        label: 'Design' },
   { id: 'smart-living',  label: 'Smart Living' },
   { id: 'faq',           label: 'FAQ' },
   { id: 'contact',       label: 'Contact' },

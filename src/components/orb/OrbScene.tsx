@@ -141,20 +141,6 @@ export default function OrbScene() {
       });
 
       ScrollTrigger.create({
-        trigger: '#design',
-        start: 'top center',
-        end: 'bottom center',
-        onEnter: () => {
-          controlsRef.current.scale = 1.4;
-          controlsRef.current.tilt = 0;
-        },
-        onLeaveBack: () => {
-          controlsRef.current.scale = 1;
-          controlsRef.current.tilt = 0.14;
-        },
-      });
-
-      ScrollTrigger.create({
         trigger: '#smart-living',
         start: 'top center',
         end: 'bottom center',
@@ -163,8 +149,8 @@ export default function OrbScene() {
           controlsRef.current.tilt = 0;
         },
         onLeaveBack: () => {
-          controlsRef.current.scale = 1.4;
-          controlsRef.current.tilt = 0;
+          controlsRef.current.scale = 1;
+          controlsRef.current.tilt = 0.14;
         },
       });
 

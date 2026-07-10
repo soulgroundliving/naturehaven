@@ -7,8 +7,8 @@ export { pick };
 export const TR = {
   nav: {
     links: {
-      en: ['PHILOSOPHY', 'RESIDENCES', 'AMENITIES', 'JOURNAL', 'LOCATION', 'DESIGN', 'FAQ', 'CONTACT'],
-      th: ['ปรัชญา', 'ห้องพัก', 'สิ่งอำนวย', 'บันทึก', 'ทำเล', 'ดีไซน์', 'คำถาม', 'ติดต่อ'],
+      en: ['PHILOSOPHY', 'RESIDENCES', 'AMENITIES', 'JOURNAL', 'LOCATION', 'FAQ', 'CONTACT'],
+      th: ['ปรัชญา', 'ห้องพัก', 'สิ่งอำนวย', 'บันทึก', 'ทำเล', 'คำถาม', 'ติดต่อ'],
     },
   },
   cta: {
@@ -215,44 +215,6 @@ export const TR = {
     },
     nearbyTitle: { en: 'Nearby Essentials', th: 'สถานที่ใกล้เคียง' },
     lifestyleTitle: { en: 'Lifestyle Surroundings', th: 'ห้างร้านและตลาดรอบข้าง' },
-  },
-  design: {
-    sectionLabel: { en: 'Design & Architecture', th: 'การออกแบบและสถาปัตยกรรม' },
-    sectionHeadline: {
-      en: 'Designed with intention. Built for calm.',
-      th: 'ออกแบบด้วยเจตนา สร้างเพื่อความสงบ',
-    },
-    materialsTitle: { en: 'Design & Materials', th: 'ดีไซน์และวัสดุ' },
-    materialsSub: { en: 'Every material chosen with care.', th: 'ทุกวัสดุคัดสรรอย่างใส่ใจ' },
-    materials: {
-      en: [
-        'SPC flooring — light tone, soft contrast with furniture',
-        'Soft light wall palette (Nippon Paint OW 2154P)',
-        'Built-in HMR E1 laminate — natural wood tone',
-        'Modern switch design',
-      ],
-      th: [
-        'พื้น SPC — โทนอ่อน ตัดกับเฟอร์นิเจอร์อย่างนุ่มนวล',
-        'สีผนังโทนสว่าง (Nippon Paint OW 2154P)',
-        'เฟอร์นิเจอร์บิลต์อิน HMR E1 ลามิเนต — โทนไม้ธรรมชาติ',
-        'สวิตช์ดีไซน์โมเดิร์น',
-      ],
-    },
-    archTitle: { en: 'Architecture & Living Concept', th: 'แนวคิดสถาปัตยกรรมและการอยู่อาศัย' },
-    archSpecs: {
-      en: [
-        '20-unit low-rise residence (no elevator)',
-        'North–South airflow optimization',
-        'Ergonomic layout planning',
-        'Sky Hook feature for vertical utility use',
-      ],
-      th: [
-        'อาคารพักอาศัย 20 ยูนิต ไม่สูง (ไม่มีลิฟต์)',
-        'ออกแบบให้อากาศถ่ายเทในแนวเหนือ–ใต้',
-        'การวางผังห้องตามหลักสรีรศาสตร์',
-        'ฟีเจอร์ Sky Hook สำหรับการใช้งานแนวตั้ง',
-      ],
-    },
   },
   smart: {
     leftLabel: { en: 'Quietly Connected', th: 'เชื่อมต่ออย่างเงียบงาม' },

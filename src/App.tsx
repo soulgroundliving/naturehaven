@@ -39,7 +39,6 @@ const AboutSection      = lazy(() => import('@/sections/AboutSection'));
 const InvitationSection = lazy(() => import('@/sections/InvitationSection'));
 const ResidencesSection = lazy(() => import('@/sections/ResidencesSection'));
 const LocationSection   = lazy(() => import('@/sections/LocationSection'));
-const DesignSection     = lazy(() => import('@/sections/DesignSection'));
 const SmartLivingSection   = lazy(() => import('@/sections/SmartLivingSection'));
 // TestimonialsSection intentionally NOT rendered until real residents exist
 // (owner decision 2026-07-03 — "เอาตามความจริง": no placeholder quotes while
@@ -82,7 +81,6 @@ function App() {
     'amenities',
     'journal',
     'location',
-    'design',
     'smart-living',
     'faq',
     'contact',
@@ -340,7 +338,6 @@ function App() {
         <Suspense fallback={null}>
           <JournalSection />
           <LocationSection />
-          <DesignSection />
           <SmartLivingSection />
           <FAQSection />
           <ContactSection />
