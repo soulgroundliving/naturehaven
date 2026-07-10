@@ -1,10 +1,8 @@
-import React, { useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import React, { useState } from 'react';
 
-gsap.registerPlugin(ScrollTrigger);
-
+// Click-to-select room gallery (replaced the scroll-hijack scrollytelling
+// 2026-07-10 — owner: "ไม่เอาเป็นการเลื่อน มีปุ่มกดให้เลือกดูภาพดีกว่า").
+// No GSAP, no sticky pin, no ScrollTrigger — pure React state + CSS crossfade.
 const SCENES = [
   {
     tag: '01 / Bedroom',
@@ -36,293 +34,122 @@ const SCENES = [
   },
 ] as const;
 
-const N = SCENES.length;
-// Per-scene scroll dwell, in dvh. Scene 0 (Bedroom) is the first impression
-// of the scrollytelling so it gets longer dwell — users were reporting they
-// often scrolled straight past Bedroom into Kitchen/Balcony without noticing
-// the first scene at all. Bedroom now holds for 4 viewport-heights on
-// desktop / 2.2 on mobile so the image has time to fully register before
-// the crossfade to Kitchen starts. Kitchen and Balcony stay shorter — they
-// land in an already-engaged viewer.
-const SCENE_VH        = [350, 140, 140, 140];
-const SCENE_VH_MOBILE = [200, 75,  75,  75 ];
-
 const RoomJourneySection: React.FC = () => {
-  const containerRef  = useRef<HTMLDivElement>(null);
-  const frameRef      = useRef<HTMLDivElement>(null);
-  const counterRef    = useRef<HTMLSpanElement>(null);
-  // Compute once at mount — choose the desktop or mobile dwell schedule.
-  const [isMobile] = React.useState<boolean>(() =>
-    typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
-  );
-  const [sceneVh]  = React.useState<number[]>(() =>
-    isMobile ? SCENE_VH_MOBILE : SCENE_VH
-  );
-  const containerVhCalc = sceneVh.reduce((s, v) => s + v, 0) + 100;
+  const [active, setActive] = useState(0);
+  const scene = SCENES[active];
 
-  useGSAP(
-    () => {
-      if (!containerRef.current || !frameRef.current) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      // Mobile renders a plain vertical stack (no sticky pin) — skip all the
-      // scroll-hijack ScrollTriggers so native touch-scroll stays smooth.
-      if (window.matchMedia('(max-width: 767px)').matches) return;
+  return (
+    <section aria-label="The room" className="section-padding">
+      <div className="container-main">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-8 lg:gap-14 items-center">
 
-      const images = gsap.utils.toArray<HTMLElement>('.rj-img');
-      const texts  = gsap.utils.toArray<HTMLElement>('.rj-text');
-      const dots   = gsap.utils.toArray<HTMLElement>('.rj-dot');
-      const tags   = gsap.utils.toArray<HTMLElement>('.rj-tag');
-      const bar    = containerRef.current.querySelector<HTMLElement>('.rj-progress-bar');
-
-      // Set initial states — only scene 0 visible
-      gsap.set(images.slice(1), { opacity: 0 });
-      gsap.set(texts.slice(1), { opacity: 0, y: 32 });
-      gsap.set(dots.slice(1), { opacity: 0.25, scale: 0.8 });
-      gsap.set(dots[0], { opacity: 1, scale: 1 });
-      gsap.set(tags.slice(1), { opacity: 0 });
-
-      let active = 0;
-
-      const goTo = (next: number) => {
-        if (next === active) return;
-        const prev = active;
-        active = next;
-
-        // Image crossfade — overwrite kills any in-progress opacity tween on
-        // the same image (prevents competing tweens during rapid back-and-forth)
-        gsap.to(images[prev], { opacity: 0, duration: 0.75, ease: 'power2.inOut', overwrite: true });
-        gsap.to(images[next], { opacity: 1, duration: 0.75, ease: 'power2.inOut', overwrite: true });
-
-        // Text swap: hide prev instantly, slide next in.
-        // duration:0 + overwrite:true kills any in-progress fromTo on texts[prev]
-        // so fast back-and-forth never leaves two text blocks visible at once.
-        gsap.to(texts[prev], { opacity: 0, y: -24, duration: 0, overwrite: true });
-        gsap.fromTo(
-          texts[next],
-          { opacity: 0, y: 28 },
-          { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', overwrite: true }
-        );
-
-        // Tags — also instant-hide prev to match text behaviour
-        gsap.to(tags[prev],  { opacity: 0, duration: 0, overwrite: true });
-        gsap.to(tags[next],  { opacity: 1, duration: 0.35, delay: 0.2, overwrite: true });
-
-        // Dots
-        dots.forEach((d, i) => {
-          gsap.to(d, {
-            opacity: i === next ? 1 : 0.25,
-            scale: i === next ? 1 : 0.8,
-            duration: 0.3,
-          });
-        });
-
-        // Progress bar
-        if (bar) {
-          gsap.to(bar, {
-            scaleY: (next + 1) / N,
-            duration: 0.5,
-            ease: 'power2.inOut',
-          });
-        }
-
-        // Scene counter
-        if (counterRef.current) {
-          counterRef.current.textContent = `${next + 1} / ${N}`;
-        }
-      };
-
-      // Scene triggers — fire at the cumulative end-of-scene boundaries so
-      // the per-scene dwell from sceneVh[] is honoured. With Bedroom now at
-      // 250dvh (desktop) the first transition only fires after the user has
-      // scrolled well past the Bedroom frame, giving it real screen time
-      // instead of flashing past.
-      let cumulative = 0;
-      for (let i = 1; i < N; i++) {
-        cumulative += sceneVh[i - 1];
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: `${(cumulative / containerVhCalc) * 100}% top`,
-          onEnter:     () => goTo(i),
-          onLeaveBack: () => goTo(i - 1),
-        });
-      }
-    },
-    { scope: containerRef }
-  );
-
-  // ── Mobile: plain vertical stack ────────────────────────────────────────
-  // No sticky pin, no scroll-hijack — each scene is a normal block the user
-  // scrolls through with native momentum. Fixes the "can't scroll / sticky"
-  // feel the pinned 500dvh desktop journey caused on phones.
-  if (isMobile) {
-    return (
-      <section aria-label="Room journey" className="w-full">
-        {SCENES.map((scene, i) => (
-          <div key={scene.tag} className="relative w-full h-[64vh] overflow-hidden">
-            <img
-              src={scene.src}
-              alt={scene.alt}
-              className="absolute inset-0 w-full h-full object-cover"
-              loading={i === 0 ? 'eager' : 'lazy'}
-            />
+          {/* Image frame — the 4 room photos are stacked and crossfaded on click */}
+          <div
+            className="relative w-full overflow-hidden rounded-2xl shadow-[0_18px_44px_rgba(43,43,43,0.16)]"
+            style={{ height: 'clamp(300px, 54vh, 620px)' }}
+          >
+            {SCENES.map((s, i) => (
+              <img
+                key={s.tag}
+                src={s.src}
+                alt={s.alt}
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out"
+                style={{ opacity: i === active ? 1 : 0 }}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                aria-hidden={i !== active}
+              />
+            ))}
+            {/* Soft top/bottom scrims so the tag stays legible over any frame */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  'linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.34) 46%, rgba(0,0,0,0.05) 78%, transparent 100%)',
+                  'linear-gradient(to bottom, rgba(0,0,0,0.30) 0%, transparent 26%, transparent 72%, rgba(0,0,0,0.18) 100%)',
               }}
             />
-            <div className="absolute bottom-7 left-6 right-6">
-              <span className="block font-sans text-[10px] uppercase tracking-[0.22em] text-white/60 mb-2.5">
-                {scene.tag}
-              </span>
-              <h2
-                className="font-serif text-white leading-[1.05] mb-2.5"
-                style={{ fontSize: 'clamp(1.6rem, 7vw, 2.4rem)', whiteSpace: 'pre-line' }}
-              >
-                {scene.headline}
-              </h2>
-              <p className="font-sans font-light text-white/75 leading-relaxed text-sm max-w-[420px]">
-                {scene.body}
-              </p>
-            </div>
-          </div>
-        ))}
-      </section>
-    );
-  }
-
-  return (
-    // Container taller than viewport — provides scroll space
-    <div
-      ref={containerRef}
-      style={{ height: `${containerVhCalc}dvh` }}
-    >
-      {/* Pinned frame — stays fixed during the scroll journey */}
-      <div
-        ref={frameRef}
-        className="relative w-full overflow-hidden"
-        style={{ position: 'sticky', top: 0, height: '100dvh' }}
-        aria-label="Room journey — scroll to explore"
-      >
-        {/* Scene images (stacked, crossfade) */}
-        {SCENES.map((scene, i) => (
-          <img
-            key={scene.tag}
-            src={scene.src}
-            alt={scene.alt}
-            className={`rj-img absolute inset-0 w-full h-full object-cover ${i === 0 ? '' : 'opacity-0'}`}
-            loading={i === 0 ? 'eager' : 'lazy'}
-          />
-        ))}
-
-        {/* Dark gradient — bottom for text legibility */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.28) 45%, rgba(0,0,0,0.08) 75%, transparent 100%)',
-          }}
-        />
-
-        {/* Scene tags — top-left */}
-        <div className="absolute top-8 left-8 md:top-12 md:left-14">
-          {SCENES.map((scene, i) => (
-            <span
-              key={scene.tag}
-              className={`rj-tag absolute font-sans text-[10px] uppercase tracking-[0.22em] text-white/60 ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
-              style={{ whiteSpace: 'nowrap' }}
-              aria-hidden="true"
-            >
+            <span className="absolute top-5 left-5 md:top-6 md:left-7 font-sans text-[10px] uppercase tracking-[0.22em] text-white/85">
               {scene.tag}
             </span>
-          ))}
-        </div>
+            <span className="absolute top-5 right-5 md:top-6 md:right-7 font-sans text-[9px] uppercase tracking-[0.22em] text-white/45 select-none">
+              The Room
+            </span>
+          </div>
 
-        {/* "A Room" section label — top right */}
-        <p
-          className="absolute top-8 right-16 md:top-12 md:right-20 font-sans text-[9px] uppercase tracking-[0.22em] text-white/35 select-none"
-          aria-hidden="true"
-        >
-          The Room
-        </p>
+          {/* Copy + room selector buttons */}
+          <div>
+            <p className="font-sans text-[10px] uppercase tracking-[0.22em] mb-5" style={{ color: 'var(--sec-text-60)' }}>
+              Explore the room
+            </p>
 
-        {/* Scene text blocks — bottom-left */}
-        {/* width explicit — all children are absolute so parent collapses to h:0 intentionally */}
-        <div className="absolute bottom-10 left-8 md:bottom-16 md:left-14 w-[460px] max-w-[calc(100vw-64px)]">
-          {SCENES.map((scene, i) => (
-            <div
-              key={scene.tag}
-              className={`rj-text absolute bottom-0 left-0 ${i === 0 ? '' : 'opacity-0'}`}
-            >
+            <div key={active} className="animate-in fade-in slide-in-from-bottom-2 duration-500 mb-8 min-h-[128px]">
               <h2
-                className="font-serif text-white leading-[1.05] mb-4"
-                style={{ fontSize: 'clamp(2rem, 4.5vw, 3.5rem)', whiteSpace: 'pre-line' }}
+                className="font-serif leading-[1.08] mb-3"
+                style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--sec-text)', whiteSpace: 'pre-line' }}
               >
                 {scene.headline}
               </h2>
               <p
-                className="font-sans font-light text-white/70 leading-relaxed max-w-[380px]"
-                style={{ fontSize: 'clamp(0.875rem, 1.1vw, 1rem)' }}
+                className="font-sans font-light leading-relaxed text-sm md:text-[15px] max-w-[420px]"
+                style={{ color: 'var(--sec-text-70)' }}
               >
                 {scene.body}
               </p>
             </div>
-          ))}
-        </div>
 
-        {/* Progress dots + bar — right edge */}
-        <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col items-center gap-3">
-          {/* Thin track */}
-          <div
-            className="relative rounded-full overflow-hidden"
-            style={{ width: '1px', height: `${N * 20}px`, background: 'rgba(255,255,255,0.15)' }}
-          >
-            <div
-              className="rj-progress-bar absolute top-0 left-0 w-full rounded-full"
-              style={{
-                background: 'rgba(255,255,255,0.75)',
-                height: '100%',
-                transformOrigin: 'top center',
-                transform: `scaleY(${1 / N})`,
-              }}
-            />
+            <div className="flex flex-col gap-2.5">
+              {SCENES.map((s, i) => {
+                const parts = s.tag.split(' / ');
+                const num = parts[0];
+                const name = parts[1] ?? s.tag;
+                const isActive = i === active;
+                return (
+                  <button
+                    key={s.tag}
+                    type="button"
+                    onClick={() => setActive(i)}
+                    aria-pressed={isActive}
+                    className="group flex items-center gap-4 px-4 py-3 rounded-xl border text-left transition-all duration-300 hover:-translate-y-px"
+                    style={{
+                      background: isActive ? 'var(--cta-bg, #3D5A4C)' : 'var(--card-bg, rgba(255,255,255,0.55))',
+                      borderColor: isActive ? 'transparent' : 'var(--sec-border)',
+                    }}
+                  >
+                    <span
+                      className="font-sans text-[11px] tracking-[0.15em] tabular-nums"
+                      style={{ color: isActive ? 'rgba(255,255,255,0.65)' : 'var(--sec-text-55)' }}
+                    >
+                      {num}
+                    </span>
+                    <span
+                      className="font-sans text-sm font-medium"
+                      style={{ color: isActive ? '#FFFFFF' : 'var(--sec-text-90)' }}
+                    >
+                      {name}
+                    </span>
+                    <svg
+                      className="ml-auto transition-all duration-300"
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      style={{
+                        color: isActive ? '#FFFFFF' : 'var(--sec-text-55)',
+                        opacity: isActive ? 1 : 0,
+                        transform: isActive ? 'translateX(0)' : 'translateX(-6px)',
+                      }}
+                      aria-hidden="true"
+                    >
+                      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Dots */}
-          <div className="flex flex-col gap-2.5 mt-1">
-            {SCENES.map((_, i) => (
-              <div
-                key={i}
-                className={`rj-dot rounded-full ${i === 0 ? 'opacity-100 scale-100' : 'opacity-25 scale-[0.8]'}`}
-                style={{
-                  width: '6px',
-                  height: '6px',
-                  background: 'white',
-                  transition: 'none', // GSAP handles this
-                }}
-                aria-hidden="true"
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Scroll hint + scene counter — bottom-right */}
-        <div className="absolute bottom-10 right-8 md:bottom-16 md:right-14 flex flex-col items-end gap-2 select-none">
-          <span ref={counterRef} className="font-sans text-[9px] uppercase tracking-[0.18em] text-white/60">
-            1 / {N}
-          </span>
-          <div className="flex items-center gap-2">
-            <span className="font-sans text-[9px] uppercase tracking-[0.2em] text-white/60">
-              Scroll
-            </span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.60)" strokeWidth="1.5" aria-hidden="true">
-              <path d="M12 5v14M5 12l7 7 7-7" />
-            </svg>
-          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
