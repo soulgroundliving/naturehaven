@@ -12,9 +12,11 @@ export const PROPERTY = {
   region: 'Bangkok',
   postalCode: '10220',
   country: 'TH',
-  // TODO: replace with confirmed coordinates once exact address is known
-  latitude: 13.9135,
-  longitude: 100.662,
+  // Confirmed 2026-07-12 from owner-shared pin (maps.app.goo.gl/vG5CV42xX6bqJ1Vs8)
+  // — the Nest building. Google's base map is outdated in this area; these are the
+  // real coordinates, so the "directions" link drops the pin on the actual building.
+  latitude: 13.9266178,
+  longitude: 100.6829022,
   lineUrl: 'https://lin.ee/ZoujovB6',
   // LINE OA ID for manual "Add Friends → Search ID" fallback — used when an
   // in-app browser (Facebook/Instagram) blocks the lin.ee → line.me redirect.
