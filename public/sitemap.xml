@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://naturehaven-living.vercel.app/</loc>
-    <lastmod>2026-05-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="th"        href="https://naturehaven-living.vercel.app/" />
-    <xhtml:link rel="alternate" hreflang="en"        href="https://naturehaven-living.vercel.app/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://naturehaven-living.vercel.app/" />
-  </url>
+<!-- Mirror of tools/prerender.mjs ROUTES (/, /journal, /links + one per file in
+     src/content/journal/ and src/content/collections/). Update when a route is
+     added or removed. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://naturehaven-living.vercel.app/</loc><lastmod>2026-07-12</lastmod><priority>1.0</priority></url>
+  <url><loc>https://naturehaven-living.vercel.app/journal</loc><lastmod>2026-07-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://naturehaven-living.vercel.app/links</loc><lastmod>2026-07-12</lastmod><priority>0.6</priority></url>
+  <url><loc>https://naturehaven-living.vercel.app/journal/quiet-by-design</loc><lastmod>2026-07-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://naturehaven-living.vercel.app/journal/pets-at-home-25-sqm</loc><lastmod>2026-07-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://naturehaven-living.vercel.app/journal/build-diary-01</loc><lastmod>2026-07-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://naturehaven-living.vercel.app/journal/build-diary-02-materials</loc><lastmod>2026-07-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://naturehaven-living.vercel.app/journal/saimai-in-numbers</loc><lastmod>2026-07-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://naturehaven-living.vercel.app/collections/atmospheric-structure</loc><lastmod>2026-07-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://naturehaven-living.vercel.app/collections/the-sanctuary</loc><lastmod>2026-07-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://naturehaven-living.vercel.app/collections/ergonomic-pet-friendly</loc><lastmod>2026-07-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://naturehaven-living.vercel.app/collections/the-bath</loc><lastmod>2026-07-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://naturehaven-living.vercel.app/collections/the-balcony</loc><lastmod>2026-07-12</lastmod><priority>0.7</priority></url>
 </urlset>

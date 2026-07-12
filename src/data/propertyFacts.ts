@@ -104,8 +104,8 @@ export const FAQ_ITEMS = [
     id: 'pets',
     q_th: 'รับสัตว์เลี้ยงไหม?',
     q_en: 'Are pets allowed?',
-    a_th: 'เลี้ยงได้ทั้งตึก ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง',
-    a_en: 'Yes — pets are welcome throughout the entire building, with no floor restrictions. Small pets, 1–2 per unit.',
+    a_th: 'เลี้ยงได้ทั้งตึก ไม่กำหนดว่าชั้นไหน — ทุกห้องรับสัตว์เลี้ยงขนาดเล็ก–กลาง 1–2 ตัวต่อห้อง มีค่าสัตว์เลี้ยงรายเดือนต่อตัว (แจ้งยอดทาง LINE)',
+    a_en: 'Yes — pets are welcome throughout the entire building, with no floor restrictions. Small–medium pets, 1–2 per unit; a monthly per-pet fee applies (details on LINE).',
   },
   {
     id: 'contract',

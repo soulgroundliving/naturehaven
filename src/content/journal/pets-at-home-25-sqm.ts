@@ -33,8 +33,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ที่พักส่วนใหญ่ตอบโจทย์สัตว์เลี้ยงด้วยการกันโซนออกไป — ชั้นเฉพาะ ปีกแยก หรือราคาพิเศษที่แนบมาด้วย ผลที่ตามมาอย่างเงียบ ๆ คือคนเลี้ยงสัตว์กลายเป็นเพียงแขกในบ้านของตัวเอง Nature Haven เลือกเส้นทางที่ตรงกว่าและยากกว่า — กติกาเดียวสำหรับผู้อยู่อาศัยทุกคน ชัดเจนพอที่เพื่อนบ้าน ไม่ว่าจะมีสัตว์เลี้ยงหรือไม่ จะอยู่ร่วมตึกเดียวกันได้จริง',
-        en: 'Most rentals answer the pet question by zoning it away — a designated floor, a separate wing, a premium attached to the privilege. The quiet cost of that arrangement is that pet owners become guests in their own building. Nature Haven takes the harder, more direct route instead: a single rule for every resident, clear enough that neighbours — with an animal or without — can genuinely share the building.',
+        th: 'ที่พักส่วนใหญ่ตอบโจทย์สัตว์เลี้ยงด้วยการกันโซนออกไป — ชั้นเฉพาะ ปีกแยก หรือเงื่อนไขที่ต้องขออนุญาตเป็นกรณีพิเศษ ผลที่ตามมาอย่างเงียบ ๆ คือคนเลี้ยงสัตว์กลายเป็นเพียงแขกในบ้านของตัวเอง Nature Haven เลือกเส้นทางที่ตรงกว่าและยากกว่า — กติกาเดียวสำหรับผู้อยู่อาศัยทุกคน ชัดเจนพอที่เพื่อนบ้าน ไม่ว่าจะมีสัตว์เลี้ยงหรือไม่ จะอยู่ร่วมตึกเดียวกันได้จริง',
+        en: 'Most rentals answer the pet question by zoning it away — a designated floor, a separate wing, a special-case approval attached to the privilege. The quiet cost of that arrangement is that pet owners become guests in their own building. Nature Haven takes the harder, more direct route instead: a single rule for every resident, clear enough that neighbours — with an animal or without — can genuinely share the building.',
       },
     },
     {
