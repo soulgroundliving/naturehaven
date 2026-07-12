@@ -29,8 +29,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ที่พักส่วนใหญ่ถูกออกแบบจากคำถามว่า "ใส่ห้องได้กี่ห้อง" — เราเริ่มจากคำถามกลับด้าน: ต้องมีกี่ห้อง ชีวิตข้างในถึงยังเงียบอยู่ คำตอบของเราคือยี่สิบ พอให้มีเพื่อนบ้าน แต่ไม่มากพอให้กลายเป็นทางผ่าน',
-        en: 'Most rental buildings begin with the question "how many rooms can we fit?" We started from the opposite direction: how few units can this building hold and still feel calm inside? Our answer was twenty — enough for neighbours, never enough to feel like a corridor of strangers.',
+        th: 'เราเริ่มออกแบบจากคำถามเดียว: ต้องมีกี่ห้อง ชีวิตข้างในถึงยังเงียบอยู่ คำตอบของเราคือยี่สิบ พอให้มีเพื่อนบ้าน แต่ไม่มากพอให้กลายเป็นทางผ่าน',
+        en: 'We began the design with a single question: how few units can this building hold and still feel calm inside? Our answer was twenty — enough for neighbours, never enough to feel like a corridor of strangers.',
       },
     },
     {

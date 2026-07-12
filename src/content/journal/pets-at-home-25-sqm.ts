@@ -33,8 +33,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ที่พักส่วนใหญ่ตอบโจทย์สัตว์เลี้ยงด้วยการกันโซนออกไป — ชั้นเฉพาะ ปีกแยก หรือเงื่อนไขที่ต้องขออนุญาตเป็นกรณีพิเศษ ผลที่ตามมาอย่างเงียบ ๆ คือคนเลี้ยงสัตว์กลายเป็นเพียงแขกในบ้านของตัวเอง Nature Haven เลือกเส้นทางที่ตรงกว่าและยากกว่า — กติกาเดียวสำหรับผู้อยู่อาศัยทุกคน ชัดเจนพอที่เพื่อนบ้าน ไม่ว่าจะมีสัตว์เลี้ยงหรือไม่ จะอยู่ร่วมตึกเดียวกันได้จริง',
-        en: 'Most rentals answer the pet question by zoning it away — a designated floor, a separate wing, a special-case approval attached to the privilege. The quiet cost of that arrangement is that pet owners become guests in their own building. Nature Haven takes the harder, more direct route instead: a single rule for every resident, clear enough that neighbours — with an animal or without — can genuinely share the building.',
+        th: 'เราตัดสินใจตั้งแต่แบบร่างแรกว่าสัตว์เลี้ยงอยู่ได้ทั้งตึก ไม่ใช่แค่บางชั้นหรือบางปีก — เพราะคนที่ใช้ชีวิตร่วมกับสัตว์เลี้ยงควรได้เป็นเจ้าของบ้านเต็มตัว ไม่ใช่แขกในบ้านของตัวเอง กติกาของเราจึงมีชุดเดียวสำหรับผู้อยู่อาศัยทุกคน ชัดเจนพอที่เพื่อนบ้าน ไม่ว่าจะมีสัตว์เลี้ยงหรือไม่ จะอยู่ร่วมตึกเดียวกันได้จริง',
+        en: 'We decided from the first draft that pets belong to the whole building, not to a floor or a wing — because someone who shares their life with an animal should be fully at home, never a guest in their own building. So there is one rule for every resident, clear enough that neighbours — with an animal or without — can genuinely share the building.',
       },
     },
     {

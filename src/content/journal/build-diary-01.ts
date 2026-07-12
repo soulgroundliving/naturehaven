@@ -22,8 +22,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ตึกส่วนใหญ่เก็บความเงียบไว้จนถึงวันเปิดตัว แล้วค่อยพูดทุกอย่างพร้อมกันในโบรชัวร์ที่เขียนย้อนหลัง นี่คือบันทึกอีกแบบหนึ่ง — เก็บไว้ระหว่างที่ตึกกำลังก่อร่างขึ้นจริง เพื่อให้ผู้ที่กำลังพิจารณาที่พักแห่งต่อไปได้เห็นความคิดเบื้องหลัง ไม่ใช่แค่ห้องที่เสร็จสมบูรณ์แล้ว บันทึกฉบับที่หนึ่ง',
-        en: 'Most buildings hold their silence until the day the doors open, then say everything at once, in a brochure written after the fact. This is a different kind of record — kept as the building actually rises, so that anyone considering where to live next can see the thinking, not only the finished rooms. Entry one.',
+        th: 'เราเลือกเปิดบันทึกของตึกไว้ตั้งแต่ตอนที่มันกำลังก่อร่างขึ้นจริง — เขียนเก็บไว้ทีละฉบับระหว่างทาง เพื่อให้ผู้ที่กำลังพิจารณาบ้านหลังต่อไปได้เห็นความคิดเบื้องหลัง ไม่ใช่แค่ห้องที่เสร็จสมบูรณ์แล้ว นี่คือบันทึกฉบับที่หนึ่ง',
+        en: 'We chose to keep this record open while the building actually rises — written entry by entry along the way, so that anyone considering where to live next can see the thinking, not only the finished rooms. This is entry one.',
       },
     },
     {

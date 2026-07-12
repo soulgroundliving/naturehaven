@@ -14,8 +14,8 @@ const collection: Collection = {
     th: 'ขอบกลางแจ้งของบ้าน — ที่อยู่ของงานเปียก ราวตากผ้า และอากาศบริสุทธิ์ คิดมาแล้วทุกตะขอและทุกองศา',
   },
   manifesto: {
-    en: 'The balcony is the south end of the room’s north–south airflow — and the place where a residence is usually neglected. Not here. This one is engineered like a room of its own: the dishes and the damp live out here, not by your bed, and every fitting is chosen so the open edge stays safe, dry and quiet.',
-    th: 'ระเบียงคือปลายทิศใต้ของแนวลมเหนือ–ใต้ที่ไหลผ่านห้อง และมักเป็นจุดที่ที่พักส่วนใหญ่ปล่อยผ่าน — แต่ที่นี่ไม่ใช่ เราออกแบบมันเหมือนอีกห้องหนึ่ง: งานล้างและความชื้นถูกย้ายมาอยู่ตรงนี้ ไม่ใช่ข้างเตียง และทุกชิ้นส่วนถูกเลือกมาเพื่อให้ขอบกลางแจ้งนี้ปลอดภัย แห้ง และเงียบสงบ',
+    en: 'The balcony is the south end of the room’s north–south airflow, so we engineered it like a room of its own: the dishes and the damp live out here, not by your bed, and every fitting is chosen so the open edge stays safe, dry and quiet.',
+    th: 'ระเบียงคือปลายทิศใต้ของแนวลมเหนือ–ใต้ที่ไหลผ่านห้อง เราจึงตั้งใจออกแบบมันเหมือนอีกห้องหนึ่ง: งานล้างและความชื้นถูกย้ายมาอยู่ตรงนี้ ไม่ใช่ข้างเตียง และทุกชิ้นส่วนถูกเลือกมาเพื่อให้ขอบกลางแจ้งนี้ปลอดภัย แห้ง และเงียบสงบ',
   },
   hero: '/assets/balcony-view.jpg',
   heroAlt: {
