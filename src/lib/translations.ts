@@ -146,7 +146,7 @@ export const TR = {
     contractLabel: { en: 'Contract', th: 'สัญญา' },
     contractValue: { en: 'Annual (12 months)', th: 'รายปี (12 เดือน)' },
     moveinLabel: { en: 'Move-in', th: 'เข้าอยู่' },
-    moveinValue: { en: '1-mo deposit + 1-mo advance + ฿5,000 security', th: 'มัดจำ 1 เดือน + ล่วงหน้า 1 เดือน + ประกัน 5,000฿' },
+    moveinValue: { en: 'Deposit · advance · security (details on LINE)', th: 'มัดจำ · ล่วงหน้า · ค่าประกัน (แจ้งยอดทาง LINE)' },
     availableLabel: { en: 'Available from', th: 'พร้อมเข้าอยู่' },
     availableValue: { en: 'September 2026', th: 'กันยายน 2569' },
     allinclusive: {
