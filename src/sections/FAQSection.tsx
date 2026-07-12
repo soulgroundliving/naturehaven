@@ -80,14 +80,14 @@ const FAQSection: React.FC = () => {
             <details key={item.id} className="faq-item group">
               <summary className="flex items-start justify-between gap-4 px-6 py-5 cursor-pointer list-none select-none hover:bg-black/[0.025] transition-colors duration-200">
                 <div className="flex-1 min-w-0">
-                  <p className="font-sans text-[15px] font-medium sec-text-90 leading-snug">
+                  <p className="font-sans text-[16px] font-medium sec-text-90 leading-snug">
                     {lang === 'en' ? item.q_en : item.q_th}
                   </p>
                 </div>
                 <ChevronDown size={18} className="flex-shrink-0 mt-0.5 sec-text-55 transition-transform duration-300 group-open:rotate-180" />
               </summary>
               <div className="px-6 pb-5 pt-1">
-                <p className="font-sans text-[15px] font-light sec-text-80 leading-relaxed">
+                <p className="font-sans text-[16px] font-light sec-text-80 leading-relaxed">
                   {lang === 'en' ? item.a_en : item.a_th}
                 </p>
               </div>

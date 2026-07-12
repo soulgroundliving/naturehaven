@@ -5,7 +5,6 @@ import { useGSAP } from '@gsap/react';
 import { ArrowDown } from '@/components/icons';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
-import { PROPERTY } from '@/data/propertyFacts';
 import AiRenderBadge from '@/components/AiRenderBadge';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -29,7 +28,7 @@ const HeroSection: React.FC = () => {
   useGSAP(
     () => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        gsap.set(['.hero-rule-top', '.hero-line-inner', '.hero-rule-bottom', '.hero-cta', scrollIndicatorRef.current], { clearProps: 'all' });
+        gsap.set(['.hero-rule-top', '.hero-line-inner', '.hero-rule-bottom', scrollIndicatorRef.current], { clearProps: 'all' });
         return;
       }
 
@@ -52,8 +51,7 @@ const HeroSection: React.FC = () => {
         { scaleX: 1, duration: 0.55, ease: 'power2.inOut' },
         1.45
       )
-      .from('.hero-cta', { y: 14, opacity: 0, duration: 0.6 }, 1.8)
-      .from(scrollIndicatorRef.current, { opacity: 0, duration: 0.5 }, 2.05);
+      .from(scrollIndicatorRef.current, { opacity: 0, duration: 0.5 }, 1.85);
 
       if (window.matchMedia('(max-width: 767px)').matches) return;
 
@@ -141,28 +139,11 @@ const HeroSection: React.FC = () => {
           ))}
         </h1>
 
+        {/* Sansiri-level clean (owner call 2026-07-12): image + wordmark only.
+            The support facts live in the MarqueeStrip right below (Pet-Friendly ·
+            September 2026 · …) and the ONE site-wide CTA is the floating LINE
+            pill — nothing else to say up here. */}
         <div className="hero-rule-bottom mb-6 mt-6 h-px w-[220px] opacity-25" style={{ background: HERO_TEXT }} />
-
-        <p
-          className="hero-cta mt-7 font-sans text-[11px] uppercase tracking-[0.16em] leading-[1.9] opacity-80"
-          style={{ color: HERO_TEXT, textShadow: HERO_TEXT_SHADOW }}
-        >
-          {h.cta[lang].split('\n').map((line, i, arr) => (
-            <React.Fragment key={i}>{line}{i < arr.length - 1 && <br />}</React.Fragment>
-          ))}
-        </p>
-
-        <a
-          href={PROPERTY.lineUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hero-cta mt-6 inline-flex cursor-pointer items-center gap-2.5 rounded-full bg-[var(--cta-bg,#3D5A4C)] px-9 py-4 font-sans text-xs uppercase tracking-[0.12em] text-pure-white shadow-lg transition-transform duration-200 hover:shadow-xl active:scale-[0.98]"
-        >
-          {TR.lookbook.ctaButton[lang]}
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-            <path d="M17 8l4 4m0 0l-4 4m4-4H3" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </a>
       </div>
 
       <div

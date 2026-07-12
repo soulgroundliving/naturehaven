@@ -5,6 +5,7 @@ import { Menu, Close } from './icons';
 import type { TimePalette } from '@/lib/timeOfDay';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
+import { PROPERTY } from '@/data/propertyFacts';
 import { scrollToTarget } from '@/lib/scrollTo';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -26,9 +27,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
   const menuClose = isLightSlot ? '#2B2B2B' : '#F5F1EA';
   const navRef = useRef<HTMLElement>(null);
   const [isPastHero, setIsPastHero] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const lastScrollY = useRef(0);
 
   const isOnDarkSection = darkSections.some((id) => activeSection.includes(id));
   const isDark = isOnDarkSection && isPastHero;
@@ -44,17 +43,21 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
     { label: navLabels[6], href: '#contact' },
   ];
 
+  // Second menu group (Sansiri-style density): standalone destinations.
+  // /journal and /links are deliberate full-page navigations, so plain
+  // anchors — every row leaves the homepage, hence the ↗ on all of them.
+  const secondaryLinks = [
+    { label: TR.links.journal[lang], href: '/journal' },
+    { label: TR.footer.allChannels[lang], href: '/links' },
+    { label: TR.links.maps[lang], href: PROPERTY.mapsUrl, external: true },
+    { label: TR.links.line[lang], href: PROPERTY.lineUrl, external: true },
+  ];
+
   useEffect(() => {
+    // Header stays pinned through the whole scroll (Sansiri-style, owner call
+    // 2026-07-12) — no hide-on-scroll; only the background flips past the hero.
     const handleScroll = () => {
-      const currentY = window.scrollY;
-      const heroHeight = window.innerHeight * 0.8;
-      setIsPastHero(currentY > heroHeight);
-      if (currentY > lastScrollY.current && currentY > 200) {
-        setIsHidden(true);
-      } else {
-        setIsHidden(false);
-      }
-      lastScrollY.current = currentY;
+      setIsPastHero(window.scrollY > window.innerHeight * 0.8);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -71,8 +74,6 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
       <nav
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-          isHidden && isPastHero ? '-translate-y-full' : 'translate-y-0'
-        } ${
           isPastHero
             ? 'bg-white/85 backdrop-blur-xl shadow-sm'
             : 'bg-transparent nav-on-hero'
@@ -103,7 +104,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
                   key={link.href}
                   href={link.href}
                   onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                  className={`relative font-sans text-xs uppercase tracking-[0.05em] transition-colors duration-300 group ${
+                  className={`relative font-sans text-[13px] uppercase tracking-[0.05em] transition-colors duration-300 group ${
                     isPastHero ? (isDark ? 'text-pure-white' : 'text-dark-charcoal') : ''
                   }`}
                   style={!isPastHero ? { color: 'var(--text-on-bg, #FFFFFF)' } : undefined}
@@ -162,34 +163,61 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
         }`}
         style={{ backgroundColor: menuBg }}
       >
-        <div className="flex flex-col h-full p-8">
+        <div className="flex flex-col h-full p-8 overflow-y-auto">
           <div className="flex justify-end">
-            <button onClick={() => setMobileOpen(false)} className="p-2" style={{ color: menuClose }}>
+            <button onClick={() => setMobileOpen(false)} className="p-2" style={{ color: menuClose }} aria-label="Close menu">
               <Close size={28} />
             </button>
           </div>
-          <div className="flex-1 flex flex-col items-center justify-center gap-8">
-            {navLinks.map((link, i) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                className="font-serif text-3xl md:text-4xl transition-opacity duration-300 hover:opacity-60"
-                style={{
-                  color: menuText,
-                  opacity: mobileOpen ? 1 : 0,
-                  transform: mobileOpen ? 'translateY(0)' : 'translateY(20px)',
-                  transition: `all 0.5s ease ${i * 0.1}s`,
-                }}
-              >
-                {link.label}
-              </a>
-            ))}
+
+          {/* Editorial two-group menu (Sansiri-style structure, our restraint):
+              on-page sections first, then the standalone destinations with ↗. */}
+          <div className="flex-1 flex w-full max-w-[420px] mx-auto flex-col justify-center gap-7 py-6">
+            <div className="flex flex-col gap-5">
+              {navLinks.map((link, i) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
+                  className="font-serif text-[28px] md:text-4xl leading-tight transition-opacity duration-300 hover:opacity-60"
+                  style={{
+                    color: menuText,
+                    opacity: mobileOpen ? 1 : 0,
+                    transform: mobileOpen ? 'translateY(0)' : 'translateY(20px)',
+                    transition: `all 0.5s ease ${i * 0.07}s`,
+                  }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            <div className="h-px w-full" style={{ background: menuText, opacity: 0.15 }} />
+
+            <div className="flex flex-col gap-4">
+              {secondaryLinks.map((item, i) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  className="flex items-center justify-between font-sans text-[16px] transition-opacity duration-300 hover:opacity-60"
+                  style={{
+                    color: menuText,
+                    opacity: mobileOpen ? 0.85 : 0,
+                    transform: mobileOpen ? 'translateY(0)' : 'translateY(20px)',
+                    transition: `all 0.5s ease ${(navLinks.length + i) * 0.07}s`,
+                  }}
+                >
+                  <span>{item.label}</span>
+                  <span aria-hidden="true" className="text-[15px] opacity-60">↗</span>
+                </a>
+              ))}
+            </div>
 
             {/* Language toggle -- mobile */}
             <button
               onClick={toggle}
-              className="mt-4 font-sans text-[13px] uppercase tracking-[0.15em]"
+              className="self-start font-sans text-[13px] uppercase tracking-[0.15em]"
               style={{ color: menuText, opacity: 0.6 }}
               aria-label="Switch language"
             >

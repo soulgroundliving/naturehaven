@@ -16,7 +16,6 @@ import Navigation from '@/components/Navigation';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 import SectionDots from '@/components/SectionDots';
 import FloatingLineChat from '@/components/FloatingLineChat';
-import StickyMobileCTA from '@/components/StickyMobileCTA';
 import LineLinkGuard from '@/components/LineLinkGuard';
 import { useTimeOfDay } from '@/contexts/TimeOfDayContext';
 import useSectionObserver from '@/hooks/useSectionObserver';
@@ -285,7 +284,6 @@ function App() {
       <ScrollProgressBar />
       <LineLinkGuard />
       <FloatingLineChat />
-      <StickyMobileCTA />
       <Navigation lenisRef={lenisRef} activeSection={activeSection} palette={palette} />
       <SectionDots
         activeSection={activeSection}

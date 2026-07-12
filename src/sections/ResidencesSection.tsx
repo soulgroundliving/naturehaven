@@ -17,7 +17,6 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
-import { PROPERTY } from '@/data/propertyFacts';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -226,22 +225,12 @@ const ResidencesSection: React.FC = () => {
           </div>
 
           {/* Private pricing — quiet-luxury posture: rates shared 1:1 via LINE,
-              never as a public ladder. */}
-          <div className="rounded-xl sec-border border card-surface backdrop-blur-sm p-7 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <p className="font-sans text-[15px] font-light leading-relaxed sec-text-80 max-w-[560px]">
+              never as a public ladder. No button here (one-CTA rule, owner
+              2026-07-12): the floating LINE pill is always on screen. */}
+          <div className="rounded-xl sec-border border card-surface backdrop-blur-sm p-7 md:p-10">
+            <p className="font-sans text-[16px] font-light leading-relaxed sec-text-80 max-w-[640px]">
               {r.privateBody[lang]}
             </p>
-            <a
-              href={PROPERTY.lineUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex flex-none cursor-pointer items-center gap-2 rounded-full bg-sage-green px-7 py-3.5 font-sans text-xs uppercase tracking-[0.1em] text-pure-white transition-opacity duration-300 hover:opacity-85"
-            >
-              {r.ctaButton[lang]}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-                <path d="M17 8l4 4m0 0l-4 4m4-4H3" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
           </div>
         </div>
 

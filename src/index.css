@@ -75,7 +75,7 @@
   }
 
   .headline-lg {
-    @apply font-serif text-[25px] md:text-5xl lg:text-6xl xl:text-[70px] leading-[1.15] md:leading-[1.1] text-dark-charcoal text-pretty;
+    @apply font-serif text-[27px] md:text-5xl lg:text-6xl xl:text-[70px] leading-[1.15] md:leading-[1.1] text-dark-charcoal text-pretty;
   }
 
   .headline-md {
@@ -87,7 +87,7 @@
   }
 
   .body-text {
-    @apply font-sans text-base lg:text-[17px] font-light leading-relaxed text-dark-charcoal;
+    @apply font-sans text-[17px] lg:text-[18px] font-light leading-relaxed text-dark-charcoal;
   }
 }
 
