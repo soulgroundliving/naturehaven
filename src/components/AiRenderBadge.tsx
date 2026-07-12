@@ -13,7 +13,7 @@ export default function AiRenderBadge({ className = '' }: AiRenderBadgeProps) {
   const { lang } = useLanguage();
   return (
     <span
-      className={`pointer-events-none z-10 inline-flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 font-sans text-[9px] uppercase tracking-[0.14em] text-white/90 backdrop-blur-sm ${className}`}
+      className={`pointer-events-none z-10 inline-flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 font-sans text-[11px] uppercase tracking-[0.12em] text-white/90 backdrop-blur-sm ${className}`}
     >
       {lang === 'th' ? 'ภาพจำลองด้วย AI' : 'AI-generated visualization'}
     </span>
