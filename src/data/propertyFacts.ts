@@ -112,8 +112,8 @@ export const FAQ_ITEMS = [
     id: 'deposit',
     q_th: 'เงินที่ต้องเตรียมวันเข้าอยู่?',
     q_en: 'What deposit is required to move in?',
-    a_th: 'มัดจำ 1 เดือน + ค่าเช่าล่วงหน้า 1 เดือน',
-    a_en: '1-month security deposit + 1-month advance rent.',
+    a_th: 'มัดจำ 1 เดือน + ค่าเช่าล่วงหน้า 1 เดือน + ค่าประกัน 5,000 บาท (ชำระครั้งเดียว) · ค่าจอง ฿500 ที่ชำระตอนจอง หักออกจากยอดวันเข้าอยู่',
+    a_en: '1-month deposit + 1-month advance rent + a one-time 5,000 THB security deposit. The 500 THB booking fee paid to reserve is credited toward the move-in total.',
   },
   {
     id: 'open',

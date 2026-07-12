@@ -146,7 +146,7 @@ export const TR = {
     contractLabel: { en: 'Contract', th: 'สัญญา' },
     contractValue: { en: 'Annual (12 months)', th: 'รายปี (12 เดือน)' },
     moveinLabel: { en: 'Move-in', th: 'เข้าอยู่' },
-    moveinValue: { en: '1-month deposit + 1-month advance', th: 'มัดจำ 1 เดือน + ล่วงหน้า 1 เดือน' },
+    moveinValue: { en: '1-mo deposit + 1-mo advance + ฿5,000 security', th: 'มัดจำ 1 เดือน + ล่วงหน้า 1 เดือน + ประกัน 5,000฿' },
     availableLabel: { en: 'Available from', th: 'พร้อมเข้าอยู่' },
     availableValue: { en: 'September 2026', th: 'กันยายน 2569' },
     allinclusive: {
@@ -315,7 +315,7 @@ export const TR = {
   },
   contact: {
     sectionLabel: { en: 'Contact', th: 'ติดต่อ' },
-    headline: { en: 'Request a private viewing.', th: 'นัดชมห้องส่วนตัว — อย่างเงียบ ๆ' },
+    headline: { en: 'Request a private viewing.', th: 'นัดชมห้องส่วนตัว' },
     steps: {
       en: [
         { num: '01', title: 'Explore', body: 'Browse the residences. Decide if Nature Haven is the right fit.' },

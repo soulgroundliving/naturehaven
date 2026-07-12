@@ -50,7 +50,11 @@ const FooterSection: React.FC = () => {
   );
 
   return (
-    <footer ref={sectionRef} id="footer" className="frosted-section backdrop-blur-xl shadow-sm pt-10 md:pt-16 pb-8">
+    <footer
+      ref={sectionRef}
+      id="footer"
+      className="frosted-section backdrop-blur-xl shadow-sm pt-10 md:pt-16 pb-[calc(env(safe-area-inset-bottom,0px)+80px)] md:pb-8"
+    >
       <div className="container-main">
         {/* Top Area */}
         <div className="text-center mb-8">

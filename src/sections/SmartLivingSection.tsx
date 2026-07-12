@@ -173,10 +173,16 @@ const SmartLivingSection: React.FC = () => {
               (context first) and is capped smaller so it doesn't eat the whole
               first screen. */}
           <div className="sl-phone-anim flex justify-center">
+            {/* Fixed display box reserves the on-screen footprint; the phone is
+                authored once at its natural 300px width (where all six tiles +
+                the nav bar fit) and uniformly scaled down to fill the box — so
+                the content never clips and stays perfectly proportioned at every
+                breakpoint. Replaces the old max-h cap, which shrank the frame
+                but not its fixed-size content, clipping the bottom rows. */}
+            <div className="relative w-[200px] h-[422px] sm:w-[260px] sm:h-[549px] lg:w-[300px] lg:h-[633px]">
             <div
-              className="relative w-full max-w-[200px] max-h-[50vh] sm:max-w-[260px] sm:max-h-[64vh] lg:max-w-[300px] lg:max-h-[70vh] bg-near-black rounded-[36px] p-3"
+              className="absolute top-0 left-0 origin-top-left scale-[0.6667] sm:scale-[0.8667] lg:scale-100 w-[300px] h-[633px] bg-near-black rounded-[36px] p-3"
               style={{
-                aspectRatio: '9 / 19',
                 boxShadow: '0 24px 48px rgba(31,27,22,0.22), inset 0 0 0 2px rgba(255,255,255,0.06)',
               }}
             >
@@ -210,6 +216,7 @@ const SmartLivingSection: React.FC = () => {
                   <User          size={17} className="text-dark-charcoal/35" />
                 </div>
               </div>
+            </div>
             </div>
           </div>
 
