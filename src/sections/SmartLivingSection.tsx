@@ -141,7 +141,8 @@ const SmartLivingSection: React.FC = () => {
                     <Icon size={20} className="sec-text-80 flex-shrink-0 mt-[2px]" />
                     <div>
                       <p className="font-sans text-[15px] font-normal sec-text-90 leading-snug">{label}</p>
-                      <p className="font-sans text-[13px] sec-text-60 leading-snug mt-0.5">{sub}</p>
+                      {/* Sub-lines fold away on phones (owner 2026-07-12) — titles carry the list */}
+                      <p className="hidden sm:block font-sans text-[13px] sec-text-60 leading-snug mt-0.5">{sub}</p>
                     </div>
                   </div>
                 );
@@ -160,7 +161,7 @@ const SmartLivingSection: React.FC = () => {
                       <Icon size={13} className="sec-text-60 flex-shrink-0 mt-[2px]" />
                       <div>
                         <p className="font-sans text-[15px] font-medium sec-text-80 leading-snug">{label}</p>
-                        <p className="font-sans text-[13px] sec-text-60 leading-snug mt-0.5">{sub}</p>
+                        <p className="hidden sm:block font-sans text-[13px] sec-text-60 leading-snug mt-0.5">{sub}</p>
                       </div>
                     </div>
                   );
@@ -241,7 +242,7 @@ const SmartLivingSection: React.FC = () => {
                   </span>
                   <div>
                     <h4 className="font-sans text-[15px] font-medium sec-text-90 mb-1.5">{title}</h4>
-                    <p className="font-sans text-sm sec-text-70 leading-relaxed">{body}</p>
+                    <p className="hidden sm:block font-sans text-sm sec-text-70 leading-relaxed">{body}</p>
                   </div>
                 </li>
               ))}

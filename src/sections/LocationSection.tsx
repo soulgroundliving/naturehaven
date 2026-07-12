@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -33,6 +33,10 @@ const LocationSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { lang } = useLanguage();
   const loc = TR.location;
+  // Mobile: the 5 essentials always show; the 6 lifestyle rows collapse behind
+  // "ดูทั้งหมด" (owner 2026-07-12 — trims the 1.7-screen list). Desktop: both
+  // lists always full. GSAP reveals skip mobile entirely, so no conflict.
+  const [showAll, setShowAll] = useState(false);
 
   useGSAP(
     () => {
@@ -122,7 +126,17 @@ const LocationSection: React.FC = () => {
             <h3 className="loc-item font-serif text-2xl md:text-[32px] sec-text mt-12 mb-6">
               {loc.lifestyleTitle[lang]}
             </h3>
-            <div className="space-y-0">
+            {!showAll && (
+              <button
+                type="button"
+                onClick={() => setShowAll(true)}
+                className="md:hidden flex w-full items-center justify-between py-3 font-sans text-[15px] sec-text-70"
+              >
+                <span>{lang === 'th' ? `ดูทั้งหมด ${lifestyleSurroundings.length} ที่` : `Show all ${lifestyleSurroundings.length} places`}</span>
+                <span aria-hidden="true" className="sec-text-55">▾</span>
+              </button>
+            )}
+            <div className={`space-y-0 ${showAll ? '' : 'hidden md:block'}`}>
               {lifestyleSurroundings.map(({ name, distance }, i) => (
                 <div
                   key={name}
