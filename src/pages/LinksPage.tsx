@@ -19,6 +19,15 @@ const LinksPage: React.FC = () => {
   const { lang } = useLanguage();
   const l = TR.links;
 
+  // index.html hard-locks scroll before React mounts (#nh-prelock →
+  // `html, body { overflow: hidden !important }`) so iOS restores at the top,
+  // not mid-page. The homepage App and JournalShell release it on mount; this
+  // standalone route must too, or /links can't scroll (only the first viewport
+  // is reachable). Matches JournalShell.tsx.
+  React.useEffect(() => {
+    document.getElementById('nh-prelock')?.remove();
+  }, []);
+
   usePageMeta({
     title: 'Nature Haven — ช่องทางทั้งหมด',
     description: l.pageDescription[lang],
