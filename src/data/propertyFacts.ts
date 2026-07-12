@@ -17,6 +17,9 @@ export const PROPERTY = {
   // real coordinates, so the "directions" link drops the pin on the actual building.
   latitude: 13.9266178,
   longitude: 100.6829022,
+  // Short share link for the same pin — used on /links so the destination stays
+  // clean instead of a long ?query=lat,lng URL; resolves to the coords above.
+  mapsUrl: 'https://maps.app.goo.gl/vG5CV42xX6bqJ1Vs8',
   lineUrl: 'https://lin.ee/ZoujovB6',
   // LINE OA ID for manual "Add Friends → Search ID" fallback — used when an
   // in-app browser (Facebook/Instagram) blocks the lin.ee → line.me redirect.

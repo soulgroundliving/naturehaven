@@ -35,7 +35,7 @@ const LinksPage: React.FC = () => {
     ogImage: `${PROPERTY.url}/og-image.jpg`,
   });
 
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${PROPERTY.latitude},${PROPERTY.longitude}`;
+  const mapsUrl = PROPERTY.mapsUrl;
 
   const items = [
     {
@@ -110,7 +110,7 @@ const LinksPage: React.FC = () => {
         <h1 className="font-serif text-3xl text-dark-charcoal text-center leading-tight">Nature Haven</h1>
         <p className="font-sans text-[13px] text-dark-charcoal/60 mt-2 text-center">{l.subtitle[lang]}</p>
 
-        <div className="w-full flex flex-col gap-3 mt-10">
+        <div className="w-full flex flex-col gap-2.5 mt-8">
           {items.map(({ key, label, sub, href, external, primary, Icon }) =>
             external ? (
               <a
@@ -118,21 +118,21 @@ const LinksPage: React.FC = () => {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group flex items-center gap-4 w-full rounded-2xl px-5 py-4 transition-all duration-200 hover:-translate-y-0.5 ${
+                className={`group flex items-center gap-3.5 w-full rounded-xl px-4 py-2.5 transition-all duration-200 hover:-translate-y-0.5 ${
                   primary
                     ? 'bg-sage-green text-pure-white shadow-md'
                     : 'bg-pure-white text-dark-charcoal border border-dark-charcoal/10 shadow-sm'
                 }`}
               >
                 <span
-                  className={`flex-none inline-flex items-center justify-center w-10 h-10 rounded-full ${
+                  className={`flex-none inline-flex items-center justify-center w-9 h-9 rounded-full ${
                     primary ? 'bg-white/15' : 'bg-sage-green/10 text-sage-green'
                   }`}
                 >
-                  <Icon size={18} />
+                  <Icon size={16} />
                 </span>
                 <span className="flex-1 text-left">
-                  <span className="block font-sans text-[15px] font-medium">{label}</span>
+                  <span className="block font-sans text-[15px] font-medium leading-tight">{label}</span>
                   <span className={`block font-sans text-[12px] ${primary ? 'text-white/75' : 'text-dark-charcoal/55'}`}>
                     {sub}
                   </span>
@@ -142,13 +142,13 @@ const LinksPage: React.FC = () => {
               <Link
                 key={key}
                 to={href}
-                className="group flex items-center gap-4 w-full rounded-2xl px-5 py-4 bg-pure-white text-dark-charcoal border border-dark-charcoal/10 shadow-sm transition-all duration-200 hover:-translate-y-0.5"
+                className="group flex items-center gap-3.5 w-full rounded-xl px-4 py-2.5 bg-pure-white text-dark-charcoal border border-dark-charcoal/10 shadow-sm transition-all duration-200 hover:-translate-y-0.5"
               >
-                <span className="flex-none inline-flex items-center justify-center w-10 h-10 rounded-full bg-sage-green/10 text-sage-green">
+                <span className="flex-none inline-flex items-center justify-center w-9 h-9 rounded-full bg-sage-green/10 text-sage-green">
                   <Icon size={16} />
                 </span>
                 <span className="flex-1 text-left">
-                  <span className="block font-sans text-[15px] font-medium">{label}</span>
+                  <span className="block font-sans text-[15px] font-medium leading-tight">{label}</span>
                   <span className="block font-sans text-[12px] text-dark-charcoal/55">{sub}</span>
                 </span>
               </Link>
