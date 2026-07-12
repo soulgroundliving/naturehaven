@@ -49,6 +49,14 @@ const CollectionsSection: React.FC = () => {
                     <span className="flex-none font-serif text-2xl font-light leading-none tabular-nums sec-text-55 md:text-3xl">
                       {c.index}
                     </span>
+                    {/* Small render thumb — the closed list reads visual, not
+                        text-only (owner 2026-07-12: "มีแต่ตัวอักษร"). The full
+                        uncropped render WITH its AI badge lives in the expanded
+                        panel right below; this is a UI affordance, so a cover
+                        crop at thumbnail size is fine. Decorative → alt="". */}
+                    <span className="relative h-12 w-12 flex-none overflow-hidden rounded-lg card-surface md:h-14 md:w-14">
+                      <img src={c.hero} alt="" loading="lazy" className="h-full w-full object-cover" />
+                    </span>
                     <span className="min-w-0 flex-1">
                       <span className="block font-sans text-[9px] uppercase tracking-[0.24em] sec-text-55">
                         {c.title.en}

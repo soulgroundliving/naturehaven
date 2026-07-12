@@ -11,6 +11,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import LoadingOverlay from '@/components/LoadingOverlay';
 import GrainOverlay from '@/components/GrainOverlay';
+import IdentityStrip from '@/components/IdentityStrip';
 import MarqueeStrip from '@/components/MarqueeStrip';
 import Navigation from '@/components/Navigation';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
@@ -307,6 +308,7 @@ function App() {
       )}
       <main id="main" className="relative z-[1]">
         <HeroSection />
+        <IdentityStrip />
         <MarqueeStrip />
         <Suspense fallback={null}>
           <AboutSection />
