@@ -42,6 +42,12 @@ const JournalShell: React.FC<{ children: ReactNode }> = ({ children }) => {
               {TR.journal.navLabel[lang]}
             </Link>
             <Link
+              to="/places"
+              className="font-sans text-xs uppercase tracking-[0.12em] text-dark-charcoal/70 transition-colors duration-300 hover:text-dark-charcoal"
+            >
+              {lang === 'th' ? 'ไปไหนดี' : 'Neighbourhood'}
+            </Link>
+            <Link
               to="/"
               className="hidden sm:block font-sans text-xs uppercase tracking-[0.12em] text-dark-charcoal/70 transition-colors duration-300 hover:text-dark-charcoal"
             >

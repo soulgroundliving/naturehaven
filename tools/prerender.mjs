@@ -54,6 +54,7 @@ const ROUTES = [
   '/',
   '/journal',
   '/links',
+  '/places',
   ...journalSlugs.map((s) => `/journal/${s}`),
   ...collectionSlugs.map((s) => `/collections/${s}`),
 ];
