@@ -1,6 +1,7 @@
 import { StrictMode, Suspense, lazy, useLayoutEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import { TimeOfDayProvider } from '@/contexts/TimeOfDayContext'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 // Brand typography — IBM Plex Sans Thai Looped (Thai + Latin in one family),
@@ -78,6 +79,10 @@ createRoot(document.getElementById('root')!).render(
             />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          {/* First-party, cookieless traffic + referrer analytics. Mounted
+              inside the router root so it tracks every route, not just /. Only
+              collects once Web Analytics is enabled in the Vercel dashboard. */}
+          <Analytics />
         </BrowserRouter>
       </LanguageProvider>
     </TimeOfDayProvider>
