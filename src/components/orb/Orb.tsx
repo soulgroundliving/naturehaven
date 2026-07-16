@@ -4,6 +4,17 @@ import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import type { TimePalette } from '@/lib/timeOfDay';
 
+// Self-hosted drei HDR environment maps (public/hdri/), pulled from
+// pmndrs/drei-assets. Serving them from our own origin avoids the flaky
+// raw.githack.com CDN that drei's `preset=` fetches from (it 503s while its
+// cache warms) and lets the CSP keep connect-src locked to 'self'.
+const ENV_FILES: Record<TimePalette['envPreset'], string> = {
+  dawn: '/hdri/kiara_1_dawn_1k.hdr',
+  studio: '/hdri/studio_small_03_1k.hdr',
+  sunset: '/hdri/venice_sunset_1k.hdr',
+  night: '/hdri/dikhololo_night_1k.hdr',
+};
+
 export interface OrbControls {
   scale: number;
   tilt: number;
@@ -62,7 +73,7 @@ export default function Orb({ palette, controlsRef, reducedFidelity }: OrbProps)
         intensity={palette.lightIntensity}
         color={palette.lightColor}
       />
-      <Environment preset={palette.envPreset} />
+      <Environment files={ENV_FILES[palette.envPreset]} />
       <Sparkles
         count={sparkleCount}
         speed={0.5}
