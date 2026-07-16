@@ -8,8 +8,8 @@ const article: Article = {
     th: 'สายไหมวัดเป็นเมตร — "เงียบแต่สะดวก" ของจริงหน้าตาเป็นแบบนี้',
   },
   excerpt: {
-    en: '"Quiet neighbourhood" may be the most overused phrase in Thai real estate. In its place, the actual distances — measured from our front gate.',
-    th: '"ย่านสงบ" อาจเป็นวลีที่ถูกใช้จนเปลืองที่สุดในวงการที่พักไทย เราขอแทนที่ด้วยระยะทางจริง วัดจากหน้าประตูโครงการ',
+    en: 'We describe this neighbourhood in metres, not adjectives — the actual distances, measured from our front gate.',
+    th: 'เราขอเล่าย่านนี้ด้วยระยะทางจริงแทนคำคุณศัพท์ — ทุกระยะวัดจากหน้าประตูโครงการ',
   },
   date: '2026-07-02',
   readMinutes: 4,
@@ -22,8 +22,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ประกาศที่พักในกรุงเทพฯ เกือบทุกแห่งอ้างสิ่งเดียวกัน — เงียบ สะดวก ทำเลดี วลีเหล่านี้ไร้น้ำหนักจนกว่าจะมีตัวเลขรองรับ นี่คือตัวเลขจริง วัดจากหน้าประตูโครงการของเราเอง — ระยะทางที่จะกำหนดชีวิตประจำวันของคุณในย่านสายไหม',
-        en: 'Every rental listing in Bangkok claims the same thing: quiet, convenient, well-located. The phrase carries no weight until numbers stand behind it — so here they are, measured from our own front gate: the real distances that will shape daily life in Sai Mai.',
+        th: 'คำว่า เงียบ สะดวก ทำเลดี จะมีน้ำหนักก็ต่อเมื่อมีตัวเลขรองรับ นี่คือตัวเลขจริง วัดจากหน้าประตูโครงการของเราเอง — ระยะทางที่จะกำหนดชีวิตประจำวันของคุณในย่านสายไหม',
+        en: 'Quiet, convenient, well-located — words like these carry weight only when numbers stand behind them. So here they are, measured from our own front gate: the real distances that will shape daily life in Sai Mai.',
       },
     },
     {
@@ -33,8 +33,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'กาแฟยามเช้า: Café Amazon อยู่ตรงหน้าโครงการ เพียงไม่กี่ก้าวจากประตู ของใช้ชิ้นใหญ่: Big C ระยะ 280 เมตร วัตถุดิบสด: ตลาดวงศกร 700 เมตร ซื้อยกลัง: Makro สายไหม 750 เมตร และระยะทางที่เราให้น้ำหนักมากที่สุดตอนเลือกที่ดินผืนนี้ — โรงพยาบาล CGH สายไหม ห่างเพียง 300 เมตร ใกล้พอที่คำว่า "กรณีฉุกเฉิน" จะยังเป็นแผนการจริง ไม่ใช่แค่คำปลอบใจ',
-        en: 'Morning coffee: Café Amazon sits directly in front of the property, a few steps from the door. The larger errand: Big C at 280 m. Fresh ingredients: Wongsakorn Market at 700 m. A bulk run: Makro Sai Mai at 750 m. And the distance we weighed most heavily when choosing this land — CGH Sai Mai Hospital, just 300 m away, close enough that "in case of emergency" remains a real plan rather than a reassuring phrase.',
+        th: 'ของใช้ชิ้นใหญ่: Big C ระยะ 280 เมตร วัตถุดิบสด: ตลาดวงศกร 700 เมตร ซื้อยกลัง: Makro สายไหม 750 เมตร และระยะทางที่เราให้น้ำหนักมากที่สุดตอนเลือกที่ดินผืนนี้ — โรงพยาบาล CGH สายไหม ห่างเพียง 300 เมตร ใกล้พอที่คำว่า "กรณีฉุกเฉิน" จะยังเป็นแผนการจริง ไม่ใช่แค่คำปลอบใจ',
+        en: 'The larger errand: Big C at 280 m. Fresh ingredients: Wongsakorn Market at 700 m. A bulk run: Makro Sai Mai at 750 m. And the distance we weighed most heavily when choosing this land — CGH Sai Mai Hospital, just 300 m away, close enough that "in case of emergency" remains a real plan rather than a reassuring phrase.',
       },
     },
     {

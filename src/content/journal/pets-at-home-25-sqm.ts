@@ -51,8 +51,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'แต่ละยูนิตขนาด 25.2 ตร.ม. มีโซนนอน ห้องน้ำ มุมครัวในตัว และระเบียงส่วนตัว — และสำหรับบ้านที่มีสัตว์เลี้ยง ความใส่ใจอยู่ในรายละเอียดเล็ก ๆ เหล่านี้: อาหารของคุณและของเขาเก็บไว้สูงหลังบานตู้บิลต์อินที่ปิดมิดชิด พ้นจากจมูกที่อยากรู้อยากเห็น ซิงก์ล้างจานพักอยู่ที่ระเบียงแทนที่จะอยู่ข้างเตียง ประตูห้องน้ำที่ปิดได้ให้ความเป็นส่วนตัวเมื่อต้องการ และระเบียงเองก็กลายเป็นมุมอาบแดดที่สัตว์เลี้ยงส่วนใหญ่เลือกเป็นของตัวเองภายในสัปดาห์แรก',
-        en: 'Each 25.2 sqm residence holds a sleeping zone, a bathroom, an in-room kitchenette, and a private balcony — and for a pet household, the consideration lives in the details. Food, yours and theirs, stays up high behind closed built-in doors, away from curious noses. The dish sink rests on the balcony rather than beside the bed. A bathroom door that closes gives you privacy on demand. And the balcony itself becomes the sunbathing spot most animals claim as their own within the first week.',
+        th: 'แต่ละยูนิตขนาด 25.2 ตร.ม. มีโซนนอน ห้องน้ำ มุมครัวในตัว และระเบียงส่วนตัว — และสำหรับบ้านที่มีสัตว์เลี้ยง ความใส่ใจอยู่ในรายละเอียดเล็ก ๆ เหล่านี้: อาหารของคุณและของเขาเก็บไว้สูงหลังบานตู้บิลต์อินที่ปิดมิดชิด พ้นจากจมูกที่อยากรู้อยากเห็น ซิงก์ล้างจานพักอยู่ที่ระเบียงแทนที่จะอยู่ข้างเตียง ประตูห้องน้ำที่ปิดได้ให้ความเป็นส่วนตัวเมื่อต้องการ ส่วนระเบียงเป็นพื้นที่เปิดรับแดด — หากอยากให้น้องออกไปนั่งรับลมด้วยกัน แนะนำติดตาข่ายเสริมของคุณเองก่อน เพื่อความปลอดภัยของเขา',
+        en: 'Each 25.2 sqm residence holds a sleeping zone, a bathroom, an in-room kitchenette, and a private balcony — and for a pet household, the consideration lives in the details. Food, yours and theirs, stays up high behind closed built-in doors, away from curious noses. The dish sink rests on the balcony rather than beside the bed. A bathroom door that closes gives you privacy on demand. And the balcony is an open, sun-washed space — if you would like your companion to enjoy it with you, we recommend fitting your own safety netting first.',
       },
     },
     {
