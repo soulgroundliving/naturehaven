@@ -90,7 +90,7 @@ const FooterSection: React.FC = () => {
           </p>
           <div className="flex items-center gap-8">
             <a
-              href="https://lin.ee/ZoujovB6"
+              href={PROPERTY.lineUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="font-sans text-[13px] uppercase tracking-[0.05em] sec-text-60 hover:text-sage-green transition-colors duration-300"

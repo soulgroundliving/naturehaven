@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react';
 import { LineIcon } from '@/components/icons';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
+import { PROPERTY } from '@/data/propertyFacts';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,7 +87,7 @@ const ContactSection: React.FC = () => {
         {/* LINE-only CTA */}
         <div className="contact-animate flex flex-col items-center gap-6">
           <a
-            href="https://lin.ee/ZoujovB6"
+            href={PROPERTY.lineUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-flex items-center gap-3 bg-[var(--cta-bg,#3D5A4C)] text-pure-white font-sans text-sm uppercase tracking-wide px-10 py-4 rounded-full overflow-hidden transition-transform duration-200 active:scale-[0.98] hover:shadow-lg"

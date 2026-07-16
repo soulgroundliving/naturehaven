@@ -21,10 +21,13 @@ export const PROPERTY = {
   // place (reviews, hours, directions), not just a bare pin. Used on /links +
   // as hasMap/sameAs in the JSON-LD. Supersedes the earlier coordinate-pin link.
   mapsUrl: 'https://maps.app.goo.gl/cGk79bn9tuBktvad9',
-  lineUrl: 'https://lin.ee/ZoujovB6',
-  // LINE OA ID for manual "Add Friends → Search ID" fallback — used when an
-  // in-app browser (Facebook/Instagram) blocks the lin.ee → line.me redirect.
-  // Verify: the lin.ee link 301s to https://line.me/R/ti/p/@929pthtt
+  // Permanent add-friend deep link, derived from the OA basic ID — it never
+  // regenerates the way lin.ee short links do (create-new-link mints a fresh
+  // code each time). Using line.me directly also skips the lin.ee → line.me
+  // redirect hop that hangs in FB/IG in-app webviews (see inAppBrowser.ts).
+  lineUrl: 'https://line.me/R/ti/p/@929pthtt',
+  // LINE OA ID for the manual "Add Friends → Search ID" fallback (LineLinkGuard),
+  // shown when an in-app browser (Facebook/Instagram) can't hand off to LINE.
   lineId: '@929pthtt',
   instagramUrl: 'https://www.instagram.com/naturehaven_official/',
   facebookUrl: 'https://www.facebook.com/share/1E49MQVqhr/?mibextid=wwXIfr',
