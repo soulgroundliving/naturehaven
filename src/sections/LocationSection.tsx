@@ -3,7 +3,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import SectionHeader from '@/components/SectionHeader';
-import { LocationPin } from '@/components/icons';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
 
@@ -90,19 +89,11 @@ const LocationSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div className="loc-map relative">
             <img
-              src="/assets/location-area-map.jpg"
-              alt="Sai Mai neighborhood map"
+              src="/assets/location-area-map.webp"
+              alt="Illustrated map of Nature Haven and nearby Sai Mai landmarks — Big C Lam Luk Ka 2, CGH Sai Mai Hospital, Saimai Avenue, Wongsakorn Market"
               loading="lazy"
               className="w-full rounded-xl shadow-lg object-cover aspect-[3/4] lg:aspect-auto lg:h-[700px]"
             />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-              <div className="w-10 h-10 rounded-full bg-sage-green flex items-center justify-center shadow-lg">
-                <LocationPin className="text-pure-white" size={20} />
-              </div>
-              <span className="mt-2 bg-pure-white/90 backdrop-blur-sm px-3 py-1 rounded-full font-sans text-xs text-dark-charcoal shadow-sm">
-                Nature Haven
-              </span>
-            </div>
           </div>
 
           <div>
