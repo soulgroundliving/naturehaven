@@ -4,7 +4,7 @@ import usePageMeta from '@/hooks/usePageMeta';
 import { PROPERTY } from '@/data/propertyFacts';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
-import { LineIcon, InstagramIcon, FacebookIcon, TikTokIcon, LocationPin, ArrowRight } from '@/components/icons';
+import { LineIcon, InstagramIcon, FacebookIcon, TikTokIcon, LocationPin, ChevronRight, HomeIcon, EditIcon, LeafIcon } from '@/components/icons';
 
 // The "master link" (ลิงค์แม่) — one URL for every Nature Haven channel,
 // meant to live in a social bio (Instagram/Facebook/TikTok) or get shared
@@ -81,7 +81,7 @@ const LinksPage: React.FC = () => {
       href: '/journal',
       external: false,
       primary: false,
-      Icon: ArrowRight,
+      Icon: EditIcon,
     },
     {
       key: 'home',
@@ -90,7 +90,7 @@ const LinksPage: React.FC = () => {
       href: '/',
       external: false,
       primary: false,
-      Icon: ArrowRight,
+      Icon: HomeIcon,
     },
     {
       key: 'maps',
@@ -104,13 +104,18 @@ const LinksPage: React.FC = () => {
   ] as const;
 
   return (
-    <div className="min-h-screen flex flex-col items-center px-6 pt-4 pb-5 md:py-16" style={{ background: '#F5F1EA' }}>
+    <div
+      className="min-h-screen flex flex-col items-center px-6 pt-3 pb-3 md:py-16"
+      style={{
+        background: "#F5F1EA url('/assets/links-leaf-bg.webp') center top / cover no-repeat",
+      }}
+    >
       <div className="w-full max-w-[420px] flex flex-col items-center">
-        <p className="font-serif text-[13px] tracking-[0.35em] text-dark-charcoal/70 mb-1">N · H</p>
+        <p className="font-serif text-[13px] tracking-[0.35em] text-dark-charcoal/70 mb-0.5">N · H</p>
         <h1 className="font-serif text-2xl text-dark-charcoal text-center leading-tight">Nature Haven</h1>
         <p className="font-sans text-[13px] text-dark-charcoal/60 mt-0.5 text-center">{l.subtitle[lang]}</p>
 
-        <div className="w-full flex flex-col gap-1.5 mt-3">
+        <div className="w-full flex flex-col gap-1 mt-2">
           {items.map(({ key, label, sub, href, external, primary, Icon }) =>
             external ? (
               <a
@@ -137,6 +142,7 @@ const LinksPage: React.FC = () => {
                     {sub}
                   </span>
                 </span>
+                <ChevronRight size={16} className={`flex-none ${primary ? 'text-white/70' : 'text-dark-charcoal/30'}`} />
               </a>
             ) : (
               <Link
@@ -151,14 +157,23 @@ const LinksPage: React.FC = () => {
                   <span className="block font-sans text-[15px] font-medium leading-tight">{label}</span>
                   <span className="block font-sans text-[12px] leading-tight text-dark-charcoal/55">{sub}</span>
                 </span>
+                <ChevronRight size={16} className="flex-none text-dark-charcoal/30" />
               </Link>
             )
           )}
         </div>
 
-        <p className="font-sans text-[11px] text-dark-charcoal/40 mt-3 text-center">
-          {PROPERTY.legalName} · {PROPERTY.locality}, {PROPERTY.region}
-        </p>
+        <div className="w-full flex items-center gap-3 rounded-xl border border-sage-green/15 bg-pure-white/70 px-4 py-2 mt-2">
+          <span className="flex-none inline-flex items-center justify-center w-8 h-8 rounded-full border border-sage-green/30 text-sage-green">
+            <LeafIcon size={15} />
+          </span>
+          <span className="flex-1 text-left">
+            <span className="block font-serif text-[13px] text-dark-charcoal/80 leading-tight">{PROPERTY.legalName}</span>
+            <span className="block font-sans text-[11px] text-dark-charcoal/50 leading-tight">
+              {PROPERTY.locality}, {PROPERTY.region}
+            </span>
+          </span>
+        </div>
       </div>
     </div>
   );
