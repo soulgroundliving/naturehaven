@@ -104,13 +104,17 @@ const LinksPage: React.FC = () => {
   ] as const;
 
   return (
-    <div
-      className="min-h-screen flex flex-col items-center px-6 pt-3 pb-3 md:py-16"
-      style={{
-        background: "#F5F1EA url('/assets/links-leaf-bg.webp') center top / cover no-repeat",
-      }}
-    >
-      <div className="w-full max-w-[420px] flex flex-col items-center">
+    <div className="relative min-h-[100dvh] w-full overflow-x-hidden">
+      {/* iOS/IG-webview toolbars resize the visual viewport after paint, so this
+          layer is sized to the wrapper's own box (inset-0 + wrapper's min-h-dvh)
+          rather than to a background-size:cover on the flex wrapper itself —
+          that combo previously left a gap once the address bar collapsed. */}
+      <div
+        className="absolute inset-0 -z-10 bg-[#F5F1EA] bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/assets/links-leaf-bg.webp')" }}
+      />
+
+      <div className="relative mx-auto flex w-full max-w-[430px] flex-col items-center px-5 pt-3 pb-3 md:pt-16 md:pb-16">
         <p className="font-serif text-[13px] tracking-[0.35em] text-dark-charcoal/70 mb-0.5">N · H</p>
         <h1 className="font-serif text-2xl text-dark-charcoal text-center leading-tight">Nature Haven</h1>
         <p className="font-sans text-[13px] text-dark-charcoal/60 mt-0.5 text-center">{l.subtitle[lang]}</p>
