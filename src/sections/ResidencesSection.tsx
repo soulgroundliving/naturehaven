@@ -23,7 +23,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // One icon per In-Room Essential, index-aligned with TR.residences.essentials
 // (built-ins · mattress · desk/wardrobe · mirror · AC · fridge · water heater ·
-// blackout curtains · ventilation). Colour follows the time-of-day theme.
+// UV-blocking curtains · ventilation). Colour follows the time-of-day theme.
 const ESSENTIAL_ICONS = [
   Boxes,
   BedDouble,

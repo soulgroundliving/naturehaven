@@ -49,7 +49,7 @@ const collection: Collection = {
     },
     {
       label: 'The Veil',
-      title: { en: 'Blackout, without the cord', th: 'ม่านที่มืดสนิทและไร้สาย' },
+      title: { en: 'UV-blocking, without the cord', th: 'กัน UV และไร้สาย' },
       body: {
         en: 'Deep-cream UV-blocking curtains mounted flush to the ceiling, on a cordless hand-drawn rail — cleaner to the eye, and safer for pets, in one decision.',
         th: 'ม่านโทนครีมเข้มกัน UV ติดตั้งชิดฝ้าเพื่อเก็บแสงลอดด้านบน รางแบบจับเลื่อน ไม่มีสายห้อย — เรียบตากว่า และปลอดภัยกับสัตว์เลี้ยงกว่า ในการตัดสินใจเดียว',

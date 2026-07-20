@@ -183,7 +183,7 @@ export const TR = {
         'Air conditioner',
         'Refrigerator & microwave',
         'Water heater',
-        'Full blackout curtains',
+        'Full UV-blocking curtains',
         'Air ventilation system',
       ],
       th: [
@@ -194,7 +194,7 @@ export const TR = {
         'เครื่องปรับอากาศ',
         'ตู้เย็น & ไมโครเวฟ',
         'เครื่องทำน้ำอุ่น',
-        'ม่านบังแสงสมบูรณ์',
+        'ม่านกัน UV สมบูรณ์',
         'ระบบระบายอากาศ',
       ],
     },
@@ -206,8 +206,8 @@ export const TR = {
       th: 'ทุกอย่างพร้อมแล้ว\nก่อนที่คุณจะมาถึง',
     },
     subtext: {
-      en: 'Every item below is included in your monthly rate — nothing hidden, nothing extra.',
-      th: 'ทุกอย่างรวมอยู่ในค่าเช่ารายเดือน — ไม่มีค่าใช้จ่ายซ่อน ไม่มีค่าเพิ่มเติม',
+      en: 'Every item below is included in your monthly rate — stated clearly from day one.',
+      th: 'ทุกอย่างรวมอยู่ในค่าเช่ารายเดือน — แจ้งชัดเจนตั้งแต่วันแรก',
     },
     scrollHint: { en: 'Scroll', th: 'เลื่อน' },
     items: {
@@ -216,14 +216,14 @@ export const TR = {
         { label: 'Pocket Garden', desc: 'A communal garden to slow down in. Green, quiet, yours.' },
         { label: 'Laundry & Dryer', desc: 'Washers and dryers on site, with a drinking-water refill station.' },
         { label: 'Cleaning Service', desc: 'Common areas professionally maintained every six months.' },
-        { label: 'A/C Maintenance', desc: 'Serviced annually — no extra cost, no surprises.' },
+        { label: 'A/C Maintenance', desc: 'Serviced annually, included in your rate.' },
       ],
       th: [
         { label: 'ที่จอดรถ', desc: 'ที่จอดมีหลังคา ประจำห้องละ 1 คัน — ไม่ต้องหา ไม่ต้องรอ' },
         { label: 'สวนกระเป๋า', desc: 'สวนส่วนกลาง — สีเขียว สงบ เป็นของคุณ' },
         { label: 'ซักผ้า & อบผ้า', desc: 'เครื่องซักและเครื่องอบในอาคาร พร้อมจุดเติมน้ำดื่ม' },
         { label: 'บริการทำความสะอาด', desc: 'ทำความสะอาดพื้นที่ส่วนกลางโดยมืออาชีพทุก 6 เดือน' },
-        { label: 'บริการล้างแอร์', desc: 'ล้างแอร์ปีละครั้ง — ไม่มีค่าใช้จ่ายเพิ่ม ไม่มีเซอร์ไพร์ส์' },
+        { label: 'บริการล้างแอร์', desc: 'ล้างแอร์ปีละครั้ง รวมอยู่ในค่าเช่าแล้ว' },
       ],
     },
     ctaTag: { en: 'All included', th: 'รวมทุกอย่าง' },
@@ -288,12 +288,12 @@ export const TR = {
     sustainable: {
       en: [
         { title: 'Solar energy integration', body: "Rooftop solar offsets common-area power, reducing the building's footprint year-round." },
-        { title: 'Energy-conscious design', body: 'Cross-ventilation, blackout curtains and inverter cooling — designed to use less from day one.' },
+        { title: 'Energy-conscious design', body: 'Cross-ventilation, UV-blocking curtains and inverter cooling — designed to use less from day one.' },
         { title: 'Long-term material durability', body: 'Selected for how they age — quietly, without losing their character.' },
       ],
       th: [
         { title: 'ใช้พลังงานโซลาร์', body: 'โซลาร์เซลล์บนหลังคาช่วยลดการใช้ไฟฟ้าในพื้นที่ส่วนกลาง ลดรอยเท้าคาร์บอนตลอดปี' },
-        { title: 'ดีไซน์ประหยัดพลังงาน', body: 'การระบายอากาศไขว้ ม่านบังแสง และแอร์อินเวอร์เตอร์ — ออกแบบมาให้ใช้ไฟน้อยตั้งแต่วันแรก' },
+        { title: 'ดีไซน์ประหยัดพลังงาน', body: 'การระบายอากาศไขว้ ม่านกัน UV และแอร์อินเวอร์เตอร์ — ออกแบบมาให้ใช้ไฟน้อยตั้งแต่วันแรก' },
         { title: 'ความทนทานของวัสดุในระยะยาว', body: 'คัดเลือกตามวิธีที่มันจะเก่าอย่างงดงาม — โดยไม่สูญเสน่ห์' },
       ],
     },
