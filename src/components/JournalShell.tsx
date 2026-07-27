@@ -87,6 +87,26 @@ const JournalShell: React.FC<{ children: ReactNode }> = ({ children }) => {
             </a>
           </div>
         </div>
+        {/* Legal — docs live on the operating company's system (the-green-haven.vercel.app),
+            same split used on the homepage FooterSection and /links. */}
+        <div className="container-main flex items-center justify-center gap-6 pb-6">
+          <a
+            href={PROPERTY.privacyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-[11px] sec-text-55 hover:opacity-70 transition-opacity duration-300"
+          >
+            {TR.footer.privacy[lang]}
+          </a>
+          <a
+            href={PROPERTY.termsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-[11px] sec-text-55 hover:opacity-70 transition-opacity duration-300"
+          >
+            {TR.footer.terms[lang]}
+          </a>
+        </div>
       </footer>
     </div>
   );
