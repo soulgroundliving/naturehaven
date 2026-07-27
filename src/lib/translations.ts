@@ -337,5 +337,7 @@ export const TR = {
     sub: { en: 'A residence shaped by intention.', th: 'ที่พักที่ออกแบบด้วยเจตนา' },
     copyright: { en: '© 2026 Nature Haven. All rights reserved.', th: '© 2569 Nature Haven สงวนสิทธิ์ทั้งหมด' },
     allChannels: { en: 'All Channels', th: 'ช่องทางทั้งหมด' },
+    privacy: { en: 'Privacy Policy', th: 'นโยบายความเป็นส่วนตัว' },
+    terms: { en: 'Terms of Service', th: 'ข้อตกลงการใช้งาน' },
   },
 } as const;

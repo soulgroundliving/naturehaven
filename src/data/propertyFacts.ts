@@ -32,6 +32,10 @@ export const PROPERTY = {
   instagramUrl: 'https://www.instagram.com/naturehaven_official/',
   facebookUrl: 'https://www.facebook.com/share/1E49MQVqhr/?mibextid=wwXIfr',
   tiktokUrl: 'https://www.tiktok.com/@nature.haven9',
+  // Legal docs are hosted on the operating company's system (separate repo/domain),
+  // not on this marketing site — same split as the login/booking links in HeroSection.
+  privacyUrl: 'https://the-green-haven.vercel.app/privacy',
+  termsUrl: 'https://the-green-haven.vercel.app/terms',
   availableFrom: '2026-09-01',
   totalUnits: 20,
   hasElevator: false,

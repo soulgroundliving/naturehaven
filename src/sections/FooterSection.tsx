@@ -116,6 +116,27 @@ const FooterSection: React.FC = () => {
             </Link>
           </div>
         </div>
+
+        {/* Legal — docs live on the operating company's system (the-green-haven.vercel.app),
+            same split as the login/booking links in HeroSection. */}
+        <div className="footer-animate flex items-center justify-center gap-6 mt-6">
+          <a
+            href={PROPERTY.privacyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-[12px] sec-text-55 hover:text-sage-green transition-colors duration-300"
+          >
+            {f.privacy[lang]}
+          </a>
+          <a
+            href={PROPERTY.termsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-[12px] sec-text-55 hover:text-sage-green transition-colors duration-300"
+          >
+            {f.terms[lang]}
+          </a>
+        </div>
       </div>
     </footer>
   );
