@@ -180,6 +180,29 @@ const LinksPage: React.FC = () => {
             )
           )}
         </div>
+
+        {/* Legal — text-only, not a row card: this page is fit tightly to the
+            IG in-app-browser viewport (~520-550px, zero scroll overflow), so a
+            full card here would blow that budget again. Docs live on the
+            operating company's system, same as FooterSection's legal row. */}
+        <div className="w-full flex items-center justify-center gap-4 mt-1">
+          <a
+            href={PROPERTY.privacyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-[10px] leading-none text-dark-charcoal/50 hover:text-dark-charcoal/80 transition-colors duration-200"
+          >
+            {TR.footer.privacy[lang]}
+          </a>
+          <a
+            href={PROPERTY.termsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-[10px] leading-none text-dark-charcoal/50 hover:text-dark-charcoal/80 transition-colors duration-200"
+          >
+            {TR.footer.terms[lang]}
+          </a>
+        </div>
       </div>
     </div>
   );
