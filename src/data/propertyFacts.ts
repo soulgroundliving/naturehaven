@@ -132,8 +132,8 @@ export const FAQ_ITEMS = [
     id: 'open',
     q_th: 'เปิดให้เข้าอยู่เมื่อไหร่?',
     q_en: 'When can I move in?',
-    a_th: 'เปิดให้เข้าอยู่กันยายน 2026',
-    a_en: 'Available from September 2026.',
+    a_th: 'เปิดให้เข้าอยู่ตุลาคม 2026',
+    a_en: 'Available from October 2026.',
   },
   {
     id: 'contact',

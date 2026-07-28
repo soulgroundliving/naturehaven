@@ -72,8 +72,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'Nature Haven เปิดให้เข้าอยู่กันยายน 2026 ตั้งแต่วันแรก คำต้อนรับที่หน้าประตูมีความหมายตามตัวอักษร — สำหรับผู้อยู่อาศัยทั้งสองขา และสี่ขา',
-        en: 'Nature Haven opens in September 2026. From the first day, the welcome at the door is meant literally — for residents on two legs, and on four.',
+        th: 'Nature Haven เปิดให้เข้าอยู่ตุลาคม 2026 ตั้งแต่วันแรก คำต้อนรับที่หน้าประตูมีความหมายตามตัวอักษร — สำหรับผู้อยู่อาศัยทั้งสองขา และสี่ขา',
+        en: 'Nature Haven opens in October 2026. From the first day, the welcome at the door is meant literally — for residents on two legs, and on four.',
       },
     },
   ],

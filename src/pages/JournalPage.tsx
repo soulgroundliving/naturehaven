@@ -15,8 +15,8 @@ const JournalPage: React.FC = () => {
     title: 'The Haven Journal — Nature Haven · บันทึกจากเฮเวน',
     description:
       lang === 'th'
-        ? 'บันทึกจากเฮเวน — เรื่องเล่าการอยู่อย่างสงบ ชีวิตกับสัตว์เลี้ยง และบันทึกการสร้าง Nature Haven สายไหม กรุงเทพฯ เปิดกันยายน 2026'
-        : 'The Haven Journal — notes on quiet living, pet life, and the building of Nature Haven, Saimai, Bangkok. Opening September 2026.',
+        ? 'บันทึกจากเฮเวน — เรื่องเล่าการอยู่อย่างสงบ ชีวิตกับสัตว์เลี้ยง และบันทึกการสร้าง Nature Haven สายไหม กรุงเทพฯ เปิดตุลาคม 2026'
+        : 'The Haven Journal — notes on quiet living, pet life, and the building of Nature Haven, Saimai, Bangkok. Opening October 2026.',
     canonical: `${PROPERTY.url}/journal`,
   });
 

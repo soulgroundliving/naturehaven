@@ -141,7 +141,7 @@ const HeroSection: React.FC = () => {
 
         {/* Sansiri-level clean (owner call 2026-07-12): image + wordmark only.
             The support facts live in the MarqueeStrip right below (Pet-Friendly ·
-            September 2026 · …) and the ONE site-wide CTA is the floating LINE
+            October 2026 · …) and the ONE site-wide CTA is the floating LINE
             pill — nothing else to say up here. */}
         <div className="hero-rule-bottom mb-6 mt-6 h-px w-[220px] opacity-25" style={{ background: HERO_TEXT }} />
       </div>

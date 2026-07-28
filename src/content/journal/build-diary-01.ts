@@ -4,8 +4,8 @@ const article: Article = {
   slug: 'build-diary-01',
   category: { en: 'Build Diary', th: 'บันทึกการสร้าง' },
   title: {
-    en: 'Build Diary #1 — what is already decided, on the road to September 2026',
-    th: 'Build Diary #1 — สิ่งที่เคาะแล้ว ระหว่างทางสู่กันยายน 2026',
+    en: 'Build Diary #1 — what is already decided, on the road to October 2026',
+    th: 'Build Diary #1 — สิ่งที่เคาะแล้ว ระหว่างทางสู่ตุลาคม 2026',
   },
   excerpt: {
     en: 'A record kept as the building rises. This first entry covers what has already been decided — the pricing structure, the all-inclusive rent, solar power for the common areas — and what comes next.',
@@ -65,8 +65,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'เปิดให้เข้าอยู่กันยายน 2026 หากมีคำถามที่อยากให้บันทึกฉบับต่อไปตอบ ทักทายเราได้ทาง LINE',
-        en: 'Move-in opens September 2026. Questions for the next entry are always welcome, on LINE.',
+        th: 'เปิดให้เข้าอยู่ตุลาคม 2026 หากมีคำถามที่อยากให้บันทึกฉบับต่อไปตอบ ทักทายเราได้ทาง LINE',
+        en: 'Move-in opens October 2026. Questions for the next entry are always welcome, on LINE.',
       },
     },
   ],

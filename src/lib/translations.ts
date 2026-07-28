@@ -46,8 +46,8 @@ export const TR = {
       th: 'เรื่องเล่าการอยู่อย่างสงบ\nเขียนไประหว่างสร้างไป',
     },
     indexIntro: {
-      en: 'Stories from the making of Nature Haven — quiet living, life with pets, the neighbourhood, and honest build diaries on the road to September 2026.',
-      th: 'เรื่องเล่าระหว่างการสร้าง Nature Haven — การอยู่อย่างสงบ ชีวิตกับสัตว์เลี้ยง ย่านสายไหม และบันทึกการสร้างแบบตรงไปตรงมา จนถึงกันยายน 2026',
+      en: 'Stories from the making of Nature Haven — quiet living, life with pets, the neighbourhood, and honest build diaries on the road to October 2026.',
+      th: 'เรื่องเล่าระหว่างการสร้าง Nature Haven — การอยู่อย่างสงบ ชีวิตกับสัตว์เลี้ยง ย่านสายไหม และบันทึกการสร้างแบบตรงไปตรงมา จนถึงตุลาคม 2026',
     },
     readAll: { en: 'Read all stories', th: 'อ่านบทความทั้งหมด' },
     readMin: { en: 'min read', th: 'นาที' },
@@ -56,8 +56,8 @@ export const TR = {
     related: { en: 'More from the Journal', th: 'บทความอื่นจากบันทึก' },
     ctaTitle: { en: 'Want to see the space in person?', th: 'อยากเห็นห้องจริงไหม?' },
     ctaBody: {
-      en: 'Reserve a viewing via LINE — opening September 2026.',
-      th: 'นัดชมห้องตัวอย่างผ่าน LINE — เปิดให้เข้าอยู่กันยายน 2026',
+      en: 'Reserve a viewing via LINE — opening October 2026.',
+      th: 'นัดชมห้องตัวอย่างผ่าน LINE — เปิดให้เข้าอยู่ตุลาคม 2026',
     },
     ctaButton: { en: 'Chat on LINE', th: 'ทักไลน์เลย' },
     share: {
@@ -99,8 +99,8 @@ export const TR = {
       th: 'ที่พักที่ออกแบบด้วยเจตนา — ที่ซึ่งชีวิตและสัตว์เลี้ยงที่คุณรักค่อยๆ กลับคืนสู่จังหวะธรรมชาติ',
     },
     cta: {
-      en: 'Apartment · Pet-friendly · Saimai\nMove in September 2026',
-      th: 'อพาร์ทเม้นท์ · เลี้ยงสัตว์ได้ · สายไหม\nพร้อมเข้าอยู่ กันยายน 2569',
+      en: 'Apartment · Pet-friendly · Saimai\nMove in October 2026',
+      th: 'อพาร์ทเม้นท์ · เลี้ยงสัตว์ได้ · สายไหม\nพร้อมเข้าอยู่ ตุลาคม 2569',
     },
     scroll: { en: 'Scroll to explore', th: 'เลื่อนเพื่อสำรวจ' },
   },
@@ -120,8 +120,8 @@ export const TR = {
       th: 'ที่พักส่วนตัวสร้างใหม่\nได้รับแรงบันดาลใจจาก\nการใช้ชีวิตแบบมินิมอล',
     },
     aboutBody: {
-      en: 'Designed for calm, crafted for privacy, and quietly connected to Sai Mai Road. Available from September 2026.',
-      th: 'ออกแบบเพื่อความสงบ สร้างเพื่อความเป็นส่วนตัว และเชื่อมต่อกับถนนสายไหมอย่างเงียบงาม พร้อมเข้าอยู่กันยายน 2569',
+      en: 'Designed for calm, crafted for privacy, and quietly connected to Sai Mai Road. Available from October 2026.',
+      th: 'ออกแบบเพื่อความสงบ สร้างเพื่อความเป็นส่วนตัว และเชื่อมต่อกับถนนสายไหมอย่างเงียบงาม พร้อมเข้าอยู่ตุลาคม 2569',
     },
     aboutButton: { en: 'View Residences', th: 'ดูห้องพัก' },
   },
@@ -148,7 +148,7 @@ export const TR = {
     moveinLabel: { en: 'Move-in', th: 'เข้าอยู่' },
     moveinValue: { en: 'Deposit · advance · security (details on LINE)', th: 'มัดจำ · ล่วงหน้า · ค่าประกัน (แจ้งยอดทาง LINE)' },
     availableLabel: { en: 'Available from', th: 'พร้อมเข้าอยู่' },
-    availableValue: { en: 'September 2026', th: 'กันยายน 2569' },
+    availableValue: { en: 'October 2026', th: 'ตุลาคม 2569' },
     allinclusive: {
       en: 'All-inclusive — amenities, Wi-Fi, cleaning & A/C service covered in monthly rate.',
       th: 'ราคาเดียวครบ — รวมสิ่งอำนวยความสะดวก, Wi-Fi, ทำความสะอาด และล้างแอร์',
@@ -321,13 +321,13 @@ export const TR = {
         { num: '01', title: 'Explore', body: 'Browse the residences. Decide if Nature Haven is the right fit.' },
         { num: '02', title: 'Reach out', body: "Message us on LINE. We'll answer questions and arrange a viewing." },
         { num: '03', title: 'Reserve', body: 'Pay the deposit via PromptPay to hold your unit.' },
-        { num: '04', title: 'Move in', body: 'Sign the lease. Residences open from September 2026.' },
+        { num: '04', title: 'Move in', body: 'Sign the lease. Residences open from October 2026.' },
       ],
       th: [
         { num: '01', title: 'สำรวจ', body: 'ดูห้องพัก ตัดสินใจว่า Nature Haven เหมาะกับคุณไหม' },
         { num: '02', title: 'ติดต่อ', body: 'ส่งข้อความทาง LINE เราจะตอบคำถามและนัดชมห้อง' },
         { num: '03', title: 'จอง', body: 'ชำระมัดจำผ่าน PromptPay เพื่อยึดห้องของคุณ' },
-        { num: '04', title: 'ย้ายเข้า', body: 'เซ็นสัญญา พร้อมเข้าอยู่กันยายน 2569' },
+        { num: '04', title: 'ย้ายเข้า', body: 'เซ็นสัญญา พร้อมเข้าอยู่ตุลาคม 2569' },
       ],
     },
     lineNote: { en: 'We answer fastest on LINE.', th: 'เราตอบเร็วที่สุดทาง LINE' },

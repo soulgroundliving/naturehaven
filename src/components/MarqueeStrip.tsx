@@ -6,7 +6,7 @@ const ITEMS = [
   'Nature Haven',
   'Quiet Luxury',
   'Saimai · Bangkok',
-  'September 2026',
+  'October 2026',
   'Pet-Friendly',
   'All-Inclusive',
   '25.2 m²',

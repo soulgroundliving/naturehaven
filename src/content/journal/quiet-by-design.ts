@@ -79,8 +79,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'Nature Haven เปิดให้เข้าอยู่กันยายน 2026 หากสิ่งแรกที่คุณอยากได้ยินตอนกลับถึงบ้านคือความว่างเปล่าของเสียง นี่คือตึกที่สร้างขึ้นเพื่อความปรารถนานั้นโดยเฉพาะ',
-        en: 'Nature Haven opens in September 2026. If the first thing you wish to hear on returning home is nothing at all, this is the building made for that wish.',
+        th: 'Nature Haven เปิดให้เข้าอยู่ตุลาคม 2026 หากสิ่งแรกที่คุณอยากได้ยินตอนกลับถึงบ้านคือความว่างเปล่าของเสียง นี่คือตึกที่สร้างขึ้นเพื่อความปรารถนานั้นโดยเฉพาะ',
+        en: 'Nature Haven opens in October 2026. If the first thing you wish to hear on returning home is nothing at all, this is the building made for that wish.',
       },
     },
   ],

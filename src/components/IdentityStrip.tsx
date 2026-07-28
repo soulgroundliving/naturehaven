@@ -2,7 +2,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
 
 // The two identity facts that used to sit ON the hero photo (อพาร์ทเม้นท์ ·
-// เลี้ยงสัตว์ได้ · สายไหม / พร้อมเข้าอยู่ กันยายน 2569). Owner call 2026-07-12:
+// เลี้ยงสัตว์ได้ · สายไหม / พร้อมเข้าอยู่ ตุลาคม 2569). Owner call 2026-07-12:
 // keep the hero Sansiri-clean but keep the facts visible — so they live here
 // as a slim editorial dateline on the page surface, right under the cover.
 // Reuses the existing TR.hero.cta key (two lines, \n-separated).
