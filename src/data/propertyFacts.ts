@@ -32,9 +32,16 @@ export const PROPERTY = {
   instagramUrl: 'https://www.instagram.com/naturehaven_official/',
   facebookUrl: 'https://www.facebook.com/share/1E49MQVqhr/?mibextid=wwXIfr',
   tiktokUrl: 'https://www.tiktok.com/@nature.haven9',
-  // Legal docs are hosted on the operating company's system (separate repo/domain),
-  // not on this marketing site — same split as the login/booking links in HeroSection.
-  privacyUrl: 'https://the-green-haven.vercel.app/privacy',
+  // Privacy policy is THIS site's own (/privacy, src/pages/PrivacyPage.tsx) —
+  // it used to point straight at the tenant app's privacy.html, which
+  // documents an entirely different data set (KYC, CCTV, meters, gamification
+  // etc.) that a marketing-site visitor never triggers. That page still
+  // exists and governs the tenant app + booking flow once someone leaves via
+  // LINE — PrivacyPage links out to it (tenantAppPrivacyUrl) for that step.
+  privacyUrl: '/privacy',
+  tenantAppPrivacyUrl: 'https://the-green-haven.vercel.app/privacy',
+  // Terms of service is still the operating company's shared doc — out of
+  // scope for the privacy-policy split above (owner asked about privacy only).
   termsUrl: 'https://the-green-haven.vercel.app/terms',
   availableFrom: '2026-09-01',
   totalUnits: 20,

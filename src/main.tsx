@@ -23,6 +23,7 @@ const ArticlePage = lazy(() => import('@/pages/ArticlePage'))
 const LinksPage = lazy(() => import('@/pages/LinksPage'))
 const CollectionPage = lazy(() => import('@/pages/CollectionPage'))
 const PlacesPage = lazy(() => import('@/pages/PlacesPage'))
+const PrivacyPage = lazy(() => import('@/pages/PrivacyPage'))
 
 // Reset scroll BEFORE the destination route's components mount their
 // ScrollTriggers. Rendered before <Routes>, so this layout effect flushes
@@ -83,6 +84,14 @@ createRoot(document.getElementById('root')!).render(
               element={
                 <Suspense fallback={null}>
                   <PlacesPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/privacy"
+              element={
+                <Suspense fallback={null}>
+                  <PrivacyPage />
                 </Suspense>
               }
             />

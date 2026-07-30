@@ -345,6 +345,8 @@ export const TR = {
       en: "This site stores your language choice in your browser and uses cookieless, first-party analytics. See our",
       th: 'เว็บไซต์นี้จัดเก็บภาษาที่คุณเลือกไว้ในเบราว์เซอร์ และใช้ระบบวิเคราะห์แบบไม่ใช้คุกกี้ อ่านรายละเอียดเพิ่มเติมได้ที่',
     },
-    accept: { en: 'Got it', th: 'เข้าใจแล้ว' },
+    accept: { en: 'Accept All', th: 'ยอมรับทั้งหมด' },
+    reject: { en: 'Reject', th: 'ปฏิเสธ' },
+    customize: { en: 'Customize', th: 'เลือกเอง' },
   },
 } as const;
