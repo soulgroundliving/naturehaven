@@ -6,6 +6,9 @@
   "installCommand": "npm install",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/og-image.jpg", "destination": "/og-image-v2.jpg", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",

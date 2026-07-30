@@ -22,7 +22,7 @@ const HOME_META = {
   description:
     'Quiet Luxury Residence เลี้ยงสัตว์ได้ทั้งตึก ในสายไหม กรุงเทพฯ — 25.2 ตร.ม. มุมครัวในตัว ระเบียงส่วนตัว รวม Wi-Fi + ทำความสะอาด + ดูแลแอร์ เริ่มต้น 6,900 บาท/เดือน · นัดชมห้องส่วนตัวทาง LINE · เปิดตุลาคม 2026',
   canonical: 'https://naturehaven-living.vercel.app/',
-  ogImage: 'https://naturehaven-living.vercel.app/og-image.jpg',
+  ogImage: 'https://naturehaven-living.vercel.app/og-image-v2.jpg',
   ogType: 'website',
 } as const;
 

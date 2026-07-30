@@ -32,7 +32,7 @@ const LinksPage: React.FC = () => {
     title: 'Nature Haven — ช่องทางทั้งหมด',
     description: l.pageDescription[lang],
     canonical: `${PROPERTY.url}/links`,
-    ogImage: `${PROPERTY.url}/og-image.jpg`,
+    ogImage: `${PROPERTY.url}/og-image-v2.jpg`,
   });
 
   const mapsUrl = PROPERTY.mapsUrl;
