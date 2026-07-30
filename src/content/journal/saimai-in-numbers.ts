@@ -13,7 +13,7 @@ const article: Article = {
   },
   date: '2026-07-02',
   readMinutes: 4,
-  hero: '/assets/location-area-map.webp',
+  hero: '/assets/location-area-map-th.png',
   heroAlt: {
     en: 'Map of the area around Nature Haven, Sai Mai, Bangkok',
     th: 'แผนที่บริเวณรอบ Nature Haven ย่านสายไหม กรุงเทพฯ',
