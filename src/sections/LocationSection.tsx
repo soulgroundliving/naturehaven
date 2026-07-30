@@ -89,8 +89,12 @@ const LocationSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div className="loc-map relative">
             <img
-              src="/assets/location-area-map.webp"
-              alt="Illustrated map of Nature Haven and nearby Sai Mai landmarks — Big C Lam Luk Ka 2, CGH Sai Mai Hospital, Saimai Avenue, Wongsakorn Market"
+              src={lang === 'th' ? '/assets/location-area-map-th.png' : '/assets/location-area-map-en.png'}
+              alt={
+                lang === 'th'
+                  ? 'ภาพประกอบแผนที่ Nature Haven และจุดสังเกตใกล้เคียงย่านสายไหม — Big C ลำลูกกา 2, รพ. CGH สายไหม, ตลาดวงศกร, Makro'
+                  : 'Illustrated map of Nature Haven and nearby Sai Mai landmarks — Big C Lam Luk Ka 2, CGH Sai Mai Hospital, Wongsakorn Market, Makro'
+              }
               loading="lazy"
               className="w-full rounded-xl shadow-lg object-cover aspect-[3/4] lg:aspect-auto lg:h-[700px]"
             />
