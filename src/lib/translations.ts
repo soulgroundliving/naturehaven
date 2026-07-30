@@ -340,4 +340,11 @@ export const TR = {
     privacy: { en: 'Privacy Policy', th: 'นโยบายความเป็นส่วนตัว' },
     terms: { en: 'Terms of Service', th: 'ข้อตกลงการใช้งาน' },
   },
+  cookieNotice: {
+    message: {
+      en: "This site stores your language choice in your browser and uses cookieless, first-party analytics. See our",
+      th: 'เว็บไซต์นี้จัดเก็บภาษาที่คุณเลือกไว้ในเบราว์เซอร์ และใช้ระบบวิเคราะห์แบบไม่ใช้คุกกี้ อ่านรายละเอียดเพิ่มเติมได้ที่',
+    },
+    accept: { en: 'Got it', th: 'เข้าใจแล้ว' },
+  },
 } as const;

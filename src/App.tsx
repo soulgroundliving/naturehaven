@@ -18,6 +18,7 @@ import ScrollProgressBar from '@/components/ScrollProgressBar';
 import SectionDots from '@/components/SectionDots';
 import FloatingLineChat from '@/components/FloatingLineChat';
 import LineLinkGuard from '@/components/LineLinkGuard';
+import CookieConsent from '@/components/CookieConsent';
 import { useTimeOfDay } from '@/contexts/TimeOfDayContext';
 import useSectionObserver from '@/hooks/useSectionObserver';
 import { isPrerender } from '@/lib/isPrerender';
@@ -285,6 +286,7 @@ function App() {
       <ScrollProgressBar />
       <LineLinkGuard />
       <FloatingLineChat />
+      <CookieConsent />
       <Navigation lenisRef={lenisRef} activeSection={activeSection} palette={palette} />
       <SectionDots
         activeSection={activeSection}
