@@ -179,12 +179,14 @@ a[class*="bg-[var(--cta-bg"]:focus-visible {
   text-shadow: var(--text-shadow-hero);
 }
 
-/* Top nav over the video bg — same halo so PHILOSOPHY/RESIDENCES/etc.
-   read at all times. The .nav-on-hero class is added by Navigation when
-   the user is still in the hero (no frosted nav bg yet). */
+/* Top nav over the hero photo — same fixed halo as HeroSection's HERO_TEXT
+   (not var(--text-shadow-hero), which is slot-adaptive and wrong against a
+   permanently dark-scrimmed photo; see feedback_naturehaven_hero_text_colors).
+   The .nav-on-hero class is added by Navigation when the user is still in
+   the hero (no frosted nav bg yet). */
 .nav-on-hero a,
 .nav-on-hero button {
-  text-shadow: var(--text-shadow-hero);
+  text-shadow: 0 2px 24px rgba(20,16,10,0.45), 0 1px 4px rgba(20,16,10,0.35);
 }
 
 /* Amenities is now a plain block-flow list (no scroll-hijack) — the former

@@ -13,6 +13,13 @@ gsap.registerPlugin(ScrollTrigger);
 // contact section now has a fixed white background -- only footer is truly dark
 const darkSections = ['footer'];
 
+// Fixed cream, not var(--text-on-bg) -- the nav sits on the same permanently
+// dark-scrimmed hero photo as the headline (see HeroSection.tsx's HERO_TEXT),
+// so palette-adaptive color is wrong here too: on light slots it resolves to
+// dark text, invisible against the scrim. See feedback_naturehaven_hero_text_colors.
+const NAV_HERO_TEXT = '#F5F1EA';
+const NAV_HERO_TEXT_MUTED = 'rgba(245,241,234,0.65)';
+
 interface NavigationProps {
   lenisRef: React.RefObject<any>;
   activeSection: string;
@@ -89,7 +96,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
             className={`font-serif text-lg transition-colors duration-500 ${
               isPastHero ? (isDark ? 'text-pure-white' : 'text-dark-charcoal') : ''
             }`}
-            style={!isPastHero ? { color: 'var(--text-on-bg, #FFFFFF)' } : undefined}
+            style={!isPastHero ? { color: NAV_HERO_TEXT } : undefined}
           >
             Nature Haven
           </a>
@@ -107,7 +114,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
                   className={`relative font-sans text-[13px] uppercase tracking-[0.05em] transition-colors duration-300 group ${
                     isPastHero ? (isDark ? 'text-pure-white' : 'text-dark-charcoal') : ''
                   }`}
-                  style={!isPastHero ? { color: 'var(--text-on-bg, #FFFFFF)' } : undefined}
+                  style={!isPastHero ? { color: NAV_HERO_TEXT } : undefined}
                 >
                   <span className="relative">
                     {link.label}
@@ -134,7 +141,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
                     : 'text-dark-charcoal/60 hover:text-dark-charcoal'
                   : ''
               }`}
-              style={!isPastHero ? { color: 'var(--text-on-bg, rgba(255,255,255,0.65))' } : undefined}
+              style={!isPastHero ? { color: NAV_HERO_TEXT_MUTED } : undefined}
               aria-label="Switch language"
             >
               <span style={{ opacity: lang === 'en' ? 1 : 0.4 }}>EN</span>
@@ -149,7 +156,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
             className={`lg:hidden p-3 transition-colors duration-500 ${
               isPastHero ? (isDark ? 'text-pure-white' : 'text-dark-charcoal') : ''
             }`}
-            style={!isPastHero ? { color: 'var(--text-on-bg, #FFFFFF)' } : undefined}
+            style={!isPastHero ? { color: NAV_HERO_TEXT } : undefined}
           >
             <Menu size={24} />
           </button>
