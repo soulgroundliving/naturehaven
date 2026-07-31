@@ -168,22 +168,6 @@ const PrivacyPage: React.FC = () => {
                 </div>
               ))}
             </div>
-
-            <div className="mt-10 rounded-xl border sec-border bg-pure-white/50 p-6 backdrop-blur-sm">
-              <p className="font-sans text-sm font-light sec-text-70">
-                {lang === 'th'
-                  ? 'นโยบายความเป็นส่วนตัวของแอปผู้เช่า Nature Haven (ครอบคลุมข้อมูลผู้เช่า การจอง สัญญาเช่า และอื่น ๆ)'
-                  : "The Nature Haven Resident App's privacy policy (covers tenant data, bookings, leases, and more)"}
-              </p>
-              <a
-                href={PROPERTY.tenantAppPrivacyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 inline-block font-sans text-sm font-medium text-sage-green underline transition-opacity duration-300 hover:opacity-80"
-              >
-                {lang === 'th' ? 'อ่านนโยบายของแอปผู้เช่า ↗' : 'Read the Resident App policy ↗'}
-              </a>
-            </div>
           </div>
         </div>
       </article>
