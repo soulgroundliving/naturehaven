@@ -43,7 +43,8 @@ export const PROPERTY = {
   // Terms of service is still the operating company's shared doc — out of
   // scope for the privacy-policy split above (owner asked about privacy only).
   termsUrl: 'https://the-green-haven.vercel.app/terms',
-  availableFrom: '2026-09-01',
+  // Public copy and opening communications use October 2026; keep the machine-readable date aligned.
+  availableFrom: '2026-10-01',
   totalUnits: 20,
   hasElevator: false,
 } as const;
