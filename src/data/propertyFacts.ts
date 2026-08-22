@@ -53,6 +53,11 @@ export const PROPERTY = {
 // 7,200 THB/mo. 20 units total · 5 per floor.
 export const PRICE_FROM = 6900;
 
+// Owner-confirmed public Landing rate (2026-08-23). This marketing constant does
+// not change The Green Haven's operational billing source; align that system
+// separately through its authorized, audited path before treating it as billing SoT.
+export const PET_FEE_MONTHLY = 500;
+
 export const PETS_POLICY = {
   th: 'เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น — รับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง',
   en: 'Pet-friendly throughout the entire building — no floor restrictions. Small pets, 1–2 per unit.',
@@ -118,8 +123,8 @@ export const FAQ_ITEMS = [
     id: 'pets',
     q_th: 'รับสัตว์เลี้ยงไหม?',
     q_en: 'Are pets allowed?',
-    a_th: 'เลี้ยงได้ทั้งตึก ไม่กำหนดว่าชั้นไหน — ทุกห้องรับสัตว์เลี้ยงขนาดเล็ก–กลาง 1–2 ตัวต่อห้อง มีค่าสัตว์เลี้ยงรายเดือนต่อตัว (แจ้งยอดทาง LINE)',
-    a_en: 'Yes — pets are welcome throughout the entire building, with no floor restrictions. Small–medium pets, 1–2 per unit; a monthly per-pet fee applies (details on LINE).',
+    a_th: `เลี้ยงได้ทั้งตึก ไม่กำหนดว่าชั้นไหน — ทุกห้องรับสัตว์เลี้ยงขนาดเล็ก–กลาง 1–2 ตัวต่อห้อง มีค่าสัตว์เลี้ยง ${PET_FEE_MONTHLY.toLocaleString('en-US')} บาท/ตัว/เดือน`,
+    a_en: `Yes — pets are welcome throughout the entire building, with no floor restrictions. Small–medium pets, 1–2 per unit; the monthly fee is ${PET_FEE_MONTHLY.toLocaleString('en-US')} THB per pet.`,
   },
   {
     id: 'contract',

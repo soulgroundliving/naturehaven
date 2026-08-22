@@ -40,6 +40,7 @@ for (const route of ['/', '/places', '/journal', '/links', '/privacy']) {
       assert(types.includes(type), `homepage must include ${type}`);
     }
     assert(html.includes('2026-10-01'), 'homepage schema must use October 2026 availability');
+    assert(html.includes('500 บาท/ตัว/เดือน'), 'homepage FAQ schema must include the confirmed 500 THB pet fee');
     assert(!types.includes('LocalBusiness'), 'homepage must not claim LocalBusiness without an eligible office');
   } else if (route === '/places') {
     assert(types.includes('CollectionPage'), '/places must include CollectionPage');
