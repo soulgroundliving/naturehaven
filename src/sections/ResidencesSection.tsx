@@ -294,6 +294,7 @@ const ResidencesSection: React.FC = () => {
             <p className="font-sans text-sm font-light leading-snug">
               <span className="font-medium text-sage-green">{r.petsEverywhere[lang]}</span>
               <span className="sec-text-70"> — {r.petsEverywhereSub[lang]}</span>
+              <span className="sec-text-70" data-pet-fee> · {r.petFeeNote[lang]}</span>
             </p>
           </div>
 

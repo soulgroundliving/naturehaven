@@ -181,6 +181,7 @@ export const TR = {
     openingRate: { en: 'Opening Rate', th: 'ราคาเปิดตัว' },
     petsEverywhere: { en: 'Pet-friendly — the whole building', th: 'เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น' },
     petsEverywhereSub: { en: 'No floor restrictions — small pets (1–2 per unit) welcome in every home, on every floor.', th: 'ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง' },
+    petFeeNote: { en: 'Monthly pet fee: 500 THB per pet.', th: 'ค่าสัตว์เลี้ยง 500 บาท/ตัว/เดือน' },
     floorWord: { en: 'Floor', th: 'ชั้น' },
     fromLabel: { en: 'From', th: 'เริ่มต้น' },
     tierCta: { en: 'Book a viewing', th: 'นัดชมห้อง' },
