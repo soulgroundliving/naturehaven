@@ -17,9 +17,8 @@ export const PROPERTY = {
   // real coordinates, so the "directions" link drops the pin on the actual building.
   latitude: 13.9266178,
   longitude: 100.6829022,
-  // Google Business Profile listing share link — opens the named "Nature Haven"
-  // place (reviews, hours, directions), not just a bare pin. Used on /links +
-  // as hasMap/sameAs in the JSON-LD. Supersedes the earlier coordinate-pin link.
+  // Confirmed project map/directions link. This is a location pin, not proof of
+  // a customer-facing office or Google Business Profile eligibility.
   mapsUrl: 'https://maps.app.goo.gl/cGk79bn9tuBktvad9',
   // Permanent add-friend deep link, derived from the OA basic ID — it never
   // regenerates the way lin.ee short links do (create-new-link mints a fresh
