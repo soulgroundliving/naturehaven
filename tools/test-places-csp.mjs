@@ -11,6 +11,12 @@ if(!csp) throw new Error('CSP header missing');
 
 const server=http.createServer((req,res)=>{
   const pathname=(req.url||'/').split('?')[0];
+  // Vercel injects this in production; serve a harmless local stub so the
+  // smoke test measures the Places integration rather than a missing platform asset.
+  if(pathname==='/_vercel/insights/script.js'){
+    res.writeHead(200,{'Content-Type':'text/javascript'});
+    return res.end('');
+  }
   const safe=pathname==='/'?'/index.html':pathname;
   const file=path.join(dist,safe.replace(/^\//,''));
   let target=file;
@@ -27,9 +33,26 @@ const browser=await puppeteer.launch({executablePath:'/usr/bin/chromium',headles
 const page=await browser.newPage();
 const errors=[]; const failed=[];
 page.on('console',m=>{if(m.type()==='error') errors.push(m.text().slice(0,300));});
+page.on('pageerror',e=>errors.push('pageerror: ' + e.message.slice(0,300) + (e.stack ? ' @ ' + e.stack.split('\n')[1] : '')));
 page.on('requestfailed',r=>failed.push({url:r.url(),error:r.failure()?.errorText||'unknown'}));
+page.on('response',response=>{
+  const type=response.request().resourceType();
+  const contentType=response.headers()['content-type']||'';
+  if(type==='script' && /text\/html/i.test(contentType)) {
+    errors.push('script received HTML: ' + response.url());
+  }
+});
 await page.goto('http://127.0.0.1:4173/places',{waitUntil:'domcontentloaded',timeout:30000});
-await new Promise(r=>setTimeout(r,2500));
+try {
+  await page.waitForFunction(() => document.querySelector('#root')?.innerText.trim().length > 0, { timeout: 15000 });
+  await page.waitForFunction(() => {
+    const text = document.body.innerText;
+    const loading = text.includes('กำลังโหลดไกด์') || text.includes('Loading the guide');
+    return document.querySelectorAll('article').length > 0 || !loading;
+  }, { timeout: 15000 });
+} catch (e) {
+  errors.push('places state did not settle within 15s: ' + e.message);
+}
 const state=await page.evaluate(()=>({
   text:document.body.innerText.replace(/\\s+/g,' ').trim().slice(0,800),
   cards:document.querySelectorAll('article').length,
