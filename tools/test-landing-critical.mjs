@@ -75,11 +75,22 @@ const placesState = await places.evaluate(() => ({
   h1: Boolean(document.querySelector('h1')),
   cards: document.querySelectorAll('article').length,
   filters: [...document.querySelectorAll('[aria-pressed]')].length,
-  filterGroup: Boolean(document.querySelector('[role="group"][aria-label]')),
+  filterGroup: Boolean(document.querySelector('[role="group"][aria-label][aria-controls="places-list"]')),
+  filterRailOverflowX: document.querySelector('[aria-controls="places-list"]') ? getComputedStyle(document.querySelector('[aria-controls="places-list"]')).overflowX : 'missing',
+  filterRailScrollWidth: document.querySelector('[aria-controls="places-list"]')?.scrollWidth ?? 0,
+  filterRailClientWidth: document.querySelector('[aria-controls="places-list"]')?.clientWidth ?? 0,
+  filterShellSticky: document.querySelector('.places-filter-shell') ? getComputedStyle(document.querySelector('.places-filter-shell')).position : 'missing',
+  firstMapCta: Boolean(document.querySelector('#places-list article a[href*="maps."]')),
   errorOrLoading: document.body.innerText.includes('กำลังโหลดไกด์') || document.body.innerText.includes('Loading the guide'),
   overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
 }));
-results.push({ viewport: 'mobile', path: '/places', state: placesState, errors: placesErrors, failed: placesFailed });
+await places.click('[aria-pressed]:not([aria-pressed="true"])');
+await places.waitForFunction(() => [...document.querySelectorAll('[aria-pressed]')].filter((button) => button.getAttribute('aria-pressed') === 'true').length === 1, { timeout: 5000 });
+const categoryState = await places.evaluate(() => ({
+  categoryFilterActive: [...document.querySelectorAll('[aria-pressed]')].filter((button) => button.getAttribute('aria-pressed') === 'true').length,
+  categoryCards: document.querySelectorAll('#places-list article').length,
+}));
+results.push({ viewport: 'mobile', path: '/places', state: { ...placesState, ...categoryState }, errors: placesErrors, failed: placesFailed });
 await places.close();
 
 console.log(JSON.stringify(results, null, 2));
@@ -90,7 +101,7 @@ const failedChecks = results.flatMap((result) => [
   ...result.failed.map((request) => `${result.path}@${result.viewport}: request failed ${request.url}`),
   ...(result.state.overflow ? [`${result.path}@${result.viewport}: horizontal overflow`] : []),
   ...(result.path === '/' && (!result.state.h1 || !result.state.main || !result.state.navLabel || result.state.lineCtas < 1 || result.state.missingAlt > 0 || !result.state.menuA11y) ? [`${result.path}@${result.viewport}: critical landmark/CTA/alt/menu assertion failed`] : []),
-  ...(result.path === '/places' && (!result.state.h1 || result.state.cards < 1 || result.state.filters < 1 || !result.state.filterGroup || result.state.errorOrLoading) ? [`${result.path}@${result.viewport}: places assertion failed`] : []),
+  ...(result.path === '/places' && (!result.state.h1 || result.state.cards < 1 || result.state.filters < 1 || !result.state.filterGroup || result.state.errorOrLoading || !result.state.firstMapCta || result.state.categoryFilterActive !== 1 || result.state.categoryCards < 1 || result.state.filterRailOverflowX !== 'auto' || result.state.filterRailScrollWidth <= result.state.filterRailClientWidth || result.state.filterShellSticky !== 'sticky') ? [`${result.path}@${result.viewport}: places mobile redesign assertion failed`] : []),
 ]);
 if (failedChecks.length) {
   console.error(failedChecks.join('\n'));
