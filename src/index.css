@@ -167,6 +167,15 @@ a[class*="bg-[var(--cta-bg"]:focus-visible {
   outline-offset: 4px;
 }
 
+/* All interactive controls retain a visible keyboard target, including
+   text links and route-specific buttons that do not use the CTA utility. */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--cta-bg, #3D5A4C);
+  outline-offset: 3px;
+}
+
+:where(button, a) { touch-action: manipulation; }
+
 /* Hero text legibility over the video bg — slot-aware shadow halo.
    Light slots (morning/day) get a white glow behind dark text;
    dark slots (sunset/night) get a dark grounding behind light text.

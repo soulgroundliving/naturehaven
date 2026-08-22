@@ -62,7 +62,8 @@ const ROUTES = [
 console.log(`[prerender] routes: ${ROUTES.join(', ')}`);
 
 // On Linux CI (Vercel sets VERCEL=1; GitHub Actions sets CI=true) load the
-// Lambda-bundled Chromium. Locally puppeteer's auto-downloaded binary works.
+// Lambda-bundled Chromium. Local Linux sandboxes may not have Puppeteer's
+// downloaded browser, so use the system binary when it is available.
 const isLinuxCI =
   process.platform === 'linux' &&
   (process.env.VERCEL === '1' || process.env.CI === 'true' || process.env.AWS_LAMBDA_FUNCTION_NAME);
@@ -76,6 +77,19 @@ if (isLinuxCI) {
     headless: chromium.headless,
   };
   console.log('[prerender] using @sparticuz/chromium for Linux CI');
+} else if (process.platform === 'linux') {
+  const systemChromium = process.env.CHROMIUM_PATH || '/usr/bin/chromium';
+  try {
+    await fs.access(systemChromium);
+    launchOptions = {
+      executablePath: systemChromium,
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+      headless: true,
+    };
+    console.log(`[prerender] using system Chromium (${systemChromium})`);
+  } catch {
+    console.log(`[prerender] using puppeteer's bundled Chromium (platform=${process.platform})`);
+  }
 } else {
   console.log(`[prerender] using puppeteer's bundled Chromium (platform=${process.platform})`);
 }

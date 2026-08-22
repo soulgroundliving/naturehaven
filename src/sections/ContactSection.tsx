@@ -90,11 +90,12 @@ const ContactSection: React.FC = () => {
             href={PROPERTY.lineUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-3 bg-[var(--cta-bg,#3D5A4C)] text-pure-white font-sans text-sm uppercase tracking-wide px-10 py-4 rounded-full overflow-hidden transition-transform duration-200 active:scale-[0.98] hover:shadow-lg"
+            aria-label={c.ctaButton[lang]}
+            className="group relative inline-flex min-h-12 items-center gap-3 bg-[var(--cta-bg,#3D5A4C)] text-pure-white font-sans text-sm uppercase tracking-wide px-10 py-4 rounded-full overflow-hidden transition-transform duration-200 active:scale-[0.98] hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sage-green"
           >
             <span className="absolute inset-0 bg-[var(--cta-bg-hover,#4a6e5d)] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
             <LineIcon className="relative z-10" size={20} />
-            <span className="relative z-10">Reserve via LINE</span>
+            <span className="relative z-10">{c.ctaButton[lang]}</span>
           </a>
           <p className="font-sans text-base font-light text-center sec-text-60">
             {c.lineNote[lang]}

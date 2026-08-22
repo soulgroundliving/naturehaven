@@ -18,9 +18,9 @@ const server=http.createServer((req,res)=>{
     return res.end('');
   }
   const safe=pathname==='/'?'/index.html':pathname;
-  const file=path.join(dist,safe.replace(/^\//,''));
-  let target=file;
-  if(!fs.existsSync(target)) target=path.join(dist,'index.html');
+  let target=path.join(dist,safe.replace(/^\//,''));
+  if(fs.existsSync(target) && fs.statSync(target).isDirectory()) target=path.join(target,'index.html');
+  if(!fs.existsSync(target) || !fs.statSync(target).isFile()) target=path.join(dist,'index.html');
   if(!fs.existsSync(target)){res.writeHead(404);return res.end('not found');}
   const ext=path.extname(target);
   const types={'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.svg':'image/svg+xml','.woff2':'font/woff2','.woff':'font/woff'};
