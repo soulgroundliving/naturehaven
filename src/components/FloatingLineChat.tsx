@@ -14,8 +14,8 @@ export default function FloatingLineChat() {
       href={PROPERTY.lineUrl}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat on LINE — book a private viewing"
-      className="inline-flex fixed right-4 md:right-6 z-[60] items-center gap-2.5 bg-[var(--cta-bg,#3D5A4C)] hover:bg-[var(--cta-bg-hover,#4a6e5d)] text-pure-white px-5 py-3.5 rounded-full font-sans text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
+      aria-label={lang === 'th' ? 'ทัก LINE เพื่อนัดชมห้องส่วนตัว' : 'Chat on LINE to request a private viewing'}
+      className="inline-flex fixed right-4 md:right-6 z-[60] min-h-12 items-center gap-2.5 bg-[var(--cta-bg,#3D5A4C)] hover:bg-[var(--cta-bg-hover,#4a6e5d)] text-pure-white px-5 py-3.5 rounded-full font-sans text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sage-green"
       style={{
         bottom: 'calc(env(safe-area-inset-bottom, 0px) + 16px)',
         boxShadow:

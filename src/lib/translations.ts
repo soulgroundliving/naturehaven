@@ -330,6 +330,7 @@ export const TR = {
         { num: '04', title: 'ย้ายเข้า', body: 'เซ็นสัญญา พร้อมเข้าอยู่ตุลาคม 2569' },
       ],
     },
+    ctaButton: { en: 'Request a private viewing on LINE', th: 'นัดชมห้องส่วนตัวผ่าน LINE' },
     lineNote: { en: 'We answer fastest on LINE.', th: 'เราตอบเร็วที่สุดทาง LINE' },
   },
   footer: {

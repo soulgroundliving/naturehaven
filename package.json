@@ -10,7 +10,8 @@
     "prerender": "node tools/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "verify:contrast": "node tools/verify-contrast.mjs"
+    "verify:contrast": "node tools/verify-contrast.mjs",
+    "test:critical": "node tools/test-landing-critical.mjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans-thai-looped": "^5.2.8",

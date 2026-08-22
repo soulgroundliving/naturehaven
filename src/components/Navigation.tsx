@@ -33,6 +33,8 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
   const menuText = isLightSlot ? '#2B2B2B' : '#F5F1EA';
   const menuClose = isLightSlot ? '#2B2B2B' : '#F5F1EA';
   const navRef = useRef<HTMLElement>(null);
+  const mobileTriggerRef = useRef<HTMLButtonElement>(null);
+  const mobileCloseRef = useRef<HTMLButtonElement>(null);
   const [isPastHero, setIsPastHero] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -70,6 +72,23 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMobileOpen(false);
+    };
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleKeyDown);
+    const focusFrame = window.requestAnimationFrame(() => mobileCloseRef.current?.focus());
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+      window.cancelAnimationFrame(focusFrame);
+      window.requestAnimationFrame(() => mobileTriggerRef.current?.focus());
+    };
+  }, [mobileOpen]);
+
   const scrollTo = (href: string) => {
     setMobileOpen(false);
     const target = document.querySelector(href);
@@ -80,6 +99,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
     <>
       <nav
         ref={navRef}
+        aria-label={lang === 'th' ? 'เมนูหลัก' : 'Main navigation'}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
           isPastHero
             ? 'bg-white/85 backdrop-blur-xl shadow-sm'
@@ -89,6 +109,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
         <div className="container-main flex items-center justify-between h-14 md:h-16">
           <a
             href="#"
+            aria-label="Nature Haven — back to top"
             onClick={(e) => {
               e.preventDefault();
               scrollToTarget(0, lenisRef.current);
@@ -110,6 +131,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
                 <a
                   key={link.href}
                   href={link.href}
+                  aria-current={isActive ? 'location' : undefined}
                   onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
                   className={`relative font-sans text-[13px] uppercase tracking-[0.05em] transition-colors duration-300 group ${
                     isPastHero ? (isDark ? 'text-pure-white' : 'text-dark-charcoal') : ''
@@ -152,8 +174,13 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
 
           {/* Mobile Hamburger */}
           <button
+            ref={mobileTriggerRef}
+            type="button"
             onClick={() => setMobileOpen(true)}
-            className={`lg:hidden p-3 transition-colors duration-500 ${
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            aria-label={lang === 'th' ? 'เปิดเมนู' : 'Open menu'}
+            className={`lg:hidden min-h-12 min-w-12 p-3 transition-colors duration-500 ${
               isPastHero ? (isDark ? 'text-pure-white' : 'text-dark-charcoal') : ''
             }`}
             style={!isPastHero ? { color: NAV_HERO_TEXT } : undefined}
@@ -165,6 +192,11 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
 
       {/* Mobile Menu Overlay */}
       <div
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label={lang === 'th' ? 'เมนูเว็บไซต์' : 'Website menu'}
+        aria-hidden={!mobileOpen}
         className={`fixed inset-0 z-[200] transition-all duration-500 lg:hidden ${
           mobileOpen ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none'
         }`}
@@ -172,7 +204,7 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
       >
         <div className="flex flex-col h-full p-8 overflow-y-auto">
           <div className="flex justify-end">
-            <button onClick={() => setMobileOpen(false)} className="p-2" style={{ color: menuClose }} aria-label="Close menu">
+            <button ref={mobileCloseRef} type="button" onClick={() => setMobileOpen(false)} className="min-h-12 min-w-12 p-2" style={{ color: menuClose }} aria-label={lang === 'th' ? 'ปิดเมนู' : 'Close menu'}>
               <Close size={28} />
             </button>
           </div>
