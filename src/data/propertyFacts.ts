@@ -163,9 +163,9 @@ export const FAQ_ITEMS = [
   },
   {
     id: 'location',
-    q_th: 'Nature Haven อยู่ที่ไหน?',
+    q_th: 'อพาร์ทเม้นท์สายไหมอยู่แถวไหน?',
     q_en: 'Where is Nature Haven located?',
-    a_th: 'ย่านสายไหม กรุงเทพฯ — สงบ เป็นส่วนตัว เดินทางสะดวก',
+    a_th: 'Nature Haven เป็นอพาร์ทเมนท์สายไหมในกรุงเทพฯ ตั้งอยู่ในย่านสงบ เป็นส่วนตัว และเดินทางสะดวก',
     a_en: 'Sai Mai district, Bangkok — quiet, private, and well-connected.',
   },
 ] as const;

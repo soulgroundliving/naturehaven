@@ -25,7 +25,7 @@ export const homeStructuredData = [
     name: PROPERTY.name,
     alternateName: ['เนเจอร์ เฮเว่น', PROPERTY.legalName],
     description:
-      'Pet-friendly apartment residence in Sai Mai, Bangkok. 25.2 sqm one-bedroom homes with an in-room kitchenette and a private balcony (with dish sink) — pets welcome throughout the entire building; Wi-Fi, housekeeping, and A/C maintenance all included. From 6,900 THB/month, private viewings by appointment via LINE. Opening October 2026.',
+      'Nature Haven อพาร์ทเมนท์สายไหม เลี้ยงสัตว์ได้ทั้งตึกในกรุงเทพฯ. 25.2 sqm one-bedroom homes with an in-room kitchenette and a private balcony (with dish sink) — pets welcome throughout the entire building; Wi-Fi, housekeeping, and A/C maintenance all included. From 6,900 THB/month, private viewings by appointment via LINE. Opening October 2026.',
     url: siteUrl,
     image: `${siteUrl}/og-image-v2.jpg`,
     priceRange: '฿฿',
@@ -52,7 +52,7 @@ export const homeStructuredData = [
     '@id': `${siteUrl}/#apartmentcomplex`,
     name: PROPERTY.name,
     description:
-      'Newly built 20-unit pet-friendly apartment residence in Sai Mai, Bangkok. 25.2 sqm homes with 1 bedroom, 1 bathroom, an in-room kitchenette and a private balcony — quiet low-density community. All-inclusive monthly rate. Opening October 2026.',
+      'Nature Haven is a newly built 20-unit อพาร์ทเมนท์เลี้ยงสัตว์ได้ in Sai Mai, Bangkok. 25.2 sqm homes with 1 bedroom, 1 bathroom, an in-room kitchenette and a private balcony — quiet low-density community. All-inclusive monthly rate. Opening October 2026.',
     url: siteUrl,
     image: `${siteUrl}/og-image-v2.jpg`,
     address: postalAddress,
