@@ -18,6 +18,7 @@ interface Place {
 }
 interface Category { key: string; label: string; order: number; places: Place[] }
 interface Feed { categories: Category[]; count: number; generatedAt: string }
+const EMPTY_CATEGORIES: Category[] = [];
 
 type Lang = 'en' | 'th';
 const COPY = {
@@ -159,7 +160,7 @@ const PlacesPage: React.FC = () => {
     };
   }, [retryKey]);
 
-  const categories = feed?.categories ?? [];
+  const categories = feed?.categories ?? EMPTY_CATEGORIES;
   const visible = useMemo(() => {
     const list = active === 'all'
       ? categories.flatMap((category) => category.places)
