@@ -13,6 +13,8 @@ assert(!sitemap.includes('2026-09-01'), 'sitemap must not retain the stale Septe
 
 const index = read('index.html');
 assert(index.includes('"@type": "WebSite"'), 'index must retain the site-wide WebSite schema');
+assert(index.includes('<title>อพาร์ทเม้นท์สายไหม เลี้ยงสัตว์ได้ | Nature Haven</title>'), 'index title must target Saimai apartment + pet-friendly intent');
+assert(index.includes('Nature Haven อพาร์ทเม้นท์สายไหม เลี้ยงสัตว์ได้ทั้งตึก'), 'index description must describe the Saimai pet-friendly residence');
 assert(!index.includes('"@type": "FAQPage"'), 'FAQPage must not be global in the static shell');
 assert(!index.includes('"@type": "LocalBusiness"'), 'LocalBusiness must not be global in the static shell');
 assert(!index.includes('"@type": "ApartmentComplex"'), 'ApartmentComplex must not be global in the static shell');
@@ -41,6 +43,8 @@ for (const route of ['/', '/places', '/journal', '/links', '/privacy']) {
     }
     assert(html.includes('2026-10-01'), 'homepage schema must use October 2026 availability');
     assert(html.includes('500 บาท/ตัว/เดือน'), 'homepage FAQ schema must include the confirmed 500 THB pet fee');
+    assert(html.includes('อพาร์ทเม้นท์สายไหม'), 'homepage must retain the Saimai apartment search phrase');
+    assert(html.includes('อพาร์ทเมนท์เลี้ยงสัตว์ได้'), 'homepage must retain the pet-friendly apartment search phrase');
     assert(!types.includes('LocalBusiness'), 'homepage must not claim LocalBusiness without an eligible office');
   } else if (route === '/places') {
     assert(types.includes('CollectionPage'), '/places must include CollectionPage');

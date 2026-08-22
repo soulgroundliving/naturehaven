@@ -100,7 +100,7 @@ export const TR = {
     },
     cta: {
       en: 'Apartment · Pet-friendly · Saimai\nMove in October 2026',
-      th: 'อพาร์ทเม้นท์ · เลี้ยงสัตว์ได้ · สายไหม\nพร้อมเข้าอยู่ ตุลาคม 2569',
+      th: 'อพาร์ทเม้นท์สายไหม · เลี้ยงสัตว์ได้ทั้งตึก\nพร้อมเข้าอยู่ ตุลาคม 2569',
     },
     scroll: { en: 'Scroll to explore', th: 'เลื่อนเพื่อสำรวจ' },
   },
@@ -121,7 +121,7 @@ export const TR = {
     },
     aboutBody: {
       en: 'Designed for calm, crafted for privacy, and quietly connected to Sai Mai Road. Available from October 2026.',
-      th: 'ออกแบบเพื่อความสงบ สร้างเพื่อความเป็นส่วนตัว และเชื่อมต่อกับถนนสายไหมอย่างเงียบงาม พร้อมเข้าอยู่ตุลาคม 2569',
+      th: 'อพาร์ทเมนท์สร้างใหม่ในสายไหม ออกแบบเพื่อความสงบและความเป็นส่วนตัว พร้อมเข้าอยู่ตุลาคม 2569',
     },
     aboutButton: { en: 'View Residences', th: 'ดูห้องพัก' },
   },
@@ -179,7 +179,7 @@ export const TR = {
       th: 'ราคาแต่ละชั้น ห้องที่ว่าง และข้อเสนอช่วงเปิดตัว เราแจ้งให้แบบส่วนตัว — ทัก LINE แล้วเรานัดเวลาเข้าชมห้องตามที่คุณสะดวก',
     },
     openingRate: { en: 'Opening Rate', th: 'ราคาเปิดตัว' },
-    petsEverywhere: { en: 'Pet-friendly — the whole building', th: 'เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น' },
+    petsEverywhere: { en: 'Pet-friendly — the whole building', th: 'อพาร์ทเมนท์เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น' },
     petsEverywhereSub: { en: 'No floor restrictions — small pets (1–2 per unit) welcome in every home, on every floor.', th: 'ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง' },
     petFeeNote: { en: 'Monthly pet fee: 500 THB per pet.', th: 'ค่าสัตว์เลี้ยง 500 บาท/ตัว/เดือน' },
     floorWord: { en: 'Floor', th: 'ชั้น' },
@@ -258,7 +258,7 @@ export const TR = {
     sectionLabel: { en: 'Location', th: 'ที่ตั้ง' },
     sectionHeadline: {
       en: 'Set in a peaceful neighborhood — yet effortlessly close to everyday essentials.',
-      th: 'ตั้งอยู่ในย่านสงบ — แต่ใกล้ชิดกับสิ่งอำนวยความสะดวกในชีวิตประจำวัน',
+      th: 'อพาร์ทเม้นท์สายไหมในย่านสงบ — แต่ใกล้ชิดกับสิ่งอำนวยความสะดวกในชีวิตประจำวัน',
     },
     nearbyTitle: { en: 'Nearby Essentials', th: 'สถานที่ใกล้เคียง' },
     lifestyleTitle: { en: 'Lifestyle Surroundings', th: 'ห้างร้านและตลาดรอบข้าง' },
