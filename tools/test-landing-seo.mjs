@@ -36,10 +36,11 @@ for (const route of ['/', '/places', '/journal', '/links', '/privacy']) {
   assert(html.includes('<link rel="canonical"'), `canonical is missing: ${route}`);
   const types = schemaTypes(html);
   if (route === '/') {
-    for (const type of ['WebSite', 'LocalBusiness', 'ApartmentComplex', 'FAQPage']) {
+    for (const type of ['WebSite', 'Organization', 'ApartmentComplex', 'FAQPage']) {
       assert(types.includes(type), `homepage must include ${type}`);
     }
     assert(html.includes('2026-10-01'), 'homepage schema must use October 2026 availability');
+    assert(!types.includes('LocalBusiness'), 'homepage must not claim LocalBusiness without an eligible office');
   } else if (route === '/places') {
     assert(types.includes('CollectionPage'), '/places must include CollectionPage');
     assert(!types.includes('FAQPage') && !types.includes('ApartmentComplex') && !types.includes('LocalBusiness'), '/places must not include homepage-only schemas');

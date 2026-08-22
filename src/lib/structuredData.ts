@@ -15,14 +15,13 @@ const sameAs = [
   PROPERTY.instagramUrl,
   PROPERTY.facebookUrl,
   PROPERTY.tiktokUrl,
-  PROPERTY.mapsUrl,
 ];
 
 export const homeStructuredData = [
   {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': `${siteUrl}/#localbusiness`,
+    '@type': 'Organization',
+    '@id': `${siteUrl}/#organization`,
     name: PROPERTY.name,
     alternateName: ['เนเจอร์ เฮเว่น', PROPERTY.legalName],
     description:
@@ -40,11 +39,12 @@ export const homeStructuredData = [
     areaServed: { '@type': 'City', name: PROPERTY.region },
     contactPoint: {
       '@type': 'ContactPoint',
-      contactType: 'reservations',
+      contactType: 'customer service',
       url: PROPERTY.lineUrl,
       availableLanguage: ['th', 'en'],
     },
     sameAs,
+    subjectOf: { '@id': `${siteUrl}/#apartmentcomplex` },
   },
   {
     '@context': 'https://schema.org',

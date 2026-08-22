@@ -100,6 +100,12 @@ const ContactSection: React.FC = () => {
           <p className="font-sans text-base font-light text-center sec-text-60">
             {c.lineNote[lang]}
           </p>
+          <p
+            className="max-w-xl font-sans text-sm font-light leading-relaxed text-center sec-text-55"
+            data-appointment-note
+          >
+            {c.appointmentNote[lang]}
+          </p>
         </div>
       </div>
     </section>

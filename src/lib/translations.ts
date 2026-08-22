@@ -351,6 +351,10 @@ export const TR = {
     },
     ctaButton: { en: 'Request a private viewing on LINE', th: 'นัดชมห้องส่วนตัวผ่าน LINE' },
     lineNote: { en: 'We answer fastest on LINE.', th: 'เราตอบเร็วที่สุดทาง LINE' },
+    appointmentNote: {
+      en: 'There is no walk-in office. After we connect on LINE, we will confirm a time to meet you at the project.',
+      th: 'โครงการไม่มีสำนักงานสำหรับ walk-in กรุณาทัก LINE ก่อน แล้วเราจะยืนยันเวลานัดพบที่โครงการ',
+    },
   },
   footer: {
     headline: { en: 'Nature Haven — Quiet Living in Saimai', th: 'Nature Haven — ที่พักเงียบสงบในสายไหม' },
