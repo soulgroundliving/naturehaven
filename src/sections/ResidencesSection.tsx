@@ -5,6 +5,11 @@ import { useGSAP } from '@gsap/react';
 import SectionHeader from '@/components/SectionHeader';
 import {
   PawPrint,
+  Banknote,
+  CalendarDays,
+  FileText,
+  Ruler,
+  Sparkles,
   Boxes,
   BedDouble,
   Armchair,
@@ -17,6 +22,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import AiRenderBadge from '@/components/AiRenderBadge';
+import { PRICE_FROM, UNITS } from '@/data/propertyFacts';
 import { TR } from '@/lib/translations';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -141,6 +147,72 @@ const ResidencesSection: React.FC = () => {
           headline={r.sectionHeadline[lang].split('\n').join('\n')}
           dark
         />
+
+        {/* Decision summary: surface the facts people need before starting a
+            LINE conversation. Unknown values stay explicitly on LINE rather
+            than being guessed or presented as real-time availability. */}
+        <div
+          className="mb-10 md:mb-16 lg:mb-20 rounded-2xl card-surface backdrop-blur-sm p-6 md:p-10"
+          data-decision-summary
+          aria-labelledby="decision-summary-title"
+        >
+          <div className="max-w-3xl mb-7 md:mb-10">
+            <h3 id="decision-summary-title" className="font-serif text-3xl md:text-[40px] sec-text mb-3">
+              {r.decisionTitle[lang]}
+            </h3>
+            <p className="font-sans text-base font-light leading-relaxed sec-text-70">
+              {r.decisionIntro[lang]}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-4">
+            {[
+              {
+                icon: <Banknote size={19} strokeWidth={1.5} aria-hidden="true" />,
+                label: r.decisionPriceLabel[lang],
+                value: lang === 'th' ? `${PRICE_FROM.toLocaleString('en-US')} บาท/เดือน` : `${PRICE_FROM.toLocaleString('en-US')} THB/month`,
+                detail: r.decisionPriceDetail[lang],
+              },
+              {
+                icon: <Ruler size={19} strokeWidth={1.5} aria-hidden="true" />,
+                label: r.decisionSizeLabel[lang],
+                value: lang === 'th' ? `${UNITS[0].sqm} ตร.ม.` : `${UNITS[0].sqm} sqm`,
+                detail: r.decisionSizeDetail[lang],
+              },
+              {
+                icon: <FileText size={19} strokeWidth={1.5} aria-hidden="true" />,
+                label: r.decisionLeaseLabel[lang],
+                value: r.contractValue[lang],
+                detail: r.decisionLeaseDetail[lang],
+              },
+              {
+                icon: <CalendarDays size={19} strokeWidth={1.5} aria-hidden="true" />,
+                label: r.decisionMoveinLabel[lang],
+                value: r.availableValue[lang],
+                detail: r.decisionMoveinDetail[lang],
+              },
+              {
+                icon: <Sparkles size={19} strokeWidth={1.5} aria-hidden="true" />,
+                label: r.decisionIncludedLabel[lang],
+                value: lang === 'th' ? 'รวมบริการหลัก' : 'Core services included',
+                detail: r.decisionIncludedDetail[lang],
+              },
+            ].map((item) => (
+              <div key={item.label} className="rounded-xl border border-sage-green/20 bg-pure-white/40 p-4 md:p-5" data-decision-item>
+                <div className="flex items-center gap-2 text-sage-green mb-3">
+                  {item.icon}
+                  <span className="font-sans text-[11px] uppercase tracking-[0.14em] sec-text-60">{item.label}</span>
+                </div>
+                <p className="font-serif text-xl md:text-2xl sec-text leading-tight mb-2">{item.value}</p>
+                <p className="font-sans text-sm font-light leading-relaxed sec-text-70">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-6 md:mt-8 font-sans text-sm italic text-sage-green leading-relaxed max-w-3xl">
+            {r.decisionCostNote[lang]}
+          </p>
+        </div>
 
         {/* Three Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 md:mb-16 lg:mb-20">
