@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import JournalShell from '@/components/JournalShell';
 import usePageMeta from '@/hooks/usePageMeta';
 import { PROPERTY } from '@/data/propertyFacts';
@@ -23,10 +23,10 @@ const EMPTY_CATEGORIES: Category[] = [];
 type Lang = 'en' | 'th';
 const COPY = {
   label: { en: 'The Neighbourhood', th: 'ย่านของเรา' },
-  headline: { en: 'Where to go around Nature Haven', th: 'ไปไหนดี · ร้านเด็ดย่านสายไหม' },
+  headline: { en: 'Restaurants, cafés & local places around Nature Haven', th: 'ร้านอาหาร คาเฟ่ และสถานที่ใกล้เคียงในสายไหม' },
   intro: {
-    en: 'A living guide to the cafés, restaurants, and everyday spots we love around Saimai — the same picks Green shares on LINE.',
-    th: 'ไกด์ร้านรอบ ๆ เฮเวน — คาเฟ่ ร้านอาหาร และที่เด็ด ๆ ย่านสายไหมที่เราคัดมาให้ ชุดเดียวกับที่น้อง Green แนะนำในไลน์ค่ะ',
+    en: 'A practical guide to cafés, restaurants, markets, pharmacies, and everyday places around Nature Haven in Sai Mai, Bangkok — the same picks Green shares on LINE.',
+    th: 'คู่มือร้านอาหาร คาเฟ่ ตลาด ร้านยา และสถานที่ใกล้เคียง Nature Haven ในย่านสายไหม กรุงเทพฯ — ชุดเดียวกับที่น้อง Green แนะนำใน LINE ค่ะ',
   },
   all: { en: 'All', th: 'ทั้งหมด' },
   loading: { en: 'Loading the guide…', th: 'กำลังโหลดไกด์ย่าน…' },
@@ -38,7 +38,9 @@ const COPY = {
   call: { en: 'Call', th: 'โทร' },
   recommended: { en: 'Top pick', th: 'แนะนำ' },
   filterLabel: { en: 'Filter neighbourhood places', th: 'เลือกหมวดหมู่สถานที่ใกล้เคียง' },
-  filterHint: { en: 'Swipe to browse categories', th: 'ปัดเพื่อดูหมวดหมู่ทั้งหมด' },
+  filterHint: { en: 'Choose a category to narrow the list.', th: 'เลือกหมวดหมู่เพื่อดูรายการที่ตรงใจ' },
+  filterOpen: { en: 'Browse categories', th: 'ดูหมวดหมู่ทั้งหมด' },
+  filterClose: { en: 'Close categories', th: 'ปิดหมวดหมู่' },
   resultCount: { en: 'places selected', th: 'สถานที่ที่คัดไว้' },
   source: {
     en: 'Our picks from around the neighbourhood · call ahead to confirm hours.',
@@ -126,10 +128,14 @@ const PlacesPage: React.FC = () => {
   const [failed, setFailed] = useState(false);
   const [active, setActive] = useState('all');
   const [retryKey, setRetryKey] = useState(0);
+  const [filterOpen, setFilterOpen] = useState(false);
+  const filterTriggerRef = useRef<HTMLButtonElement>(null);
 
   usePageMeta({
-    title: lang === 'th' ? 'ไปไหนดี · ย่านสายไหม — Nature Haven' : 'Neighbourhood Guide — Nature Haven',
-    description: COPY.intro[lang],
+    title: lang === 'th' ? 'ร้านอาหาร คาเฟ่ และสถานที่ใกล้เคียงสายไหม | Nature Haven' : 'Sai Mai Restaurants, Cafés & Local Guide | Nature Haven',
+    description: lang === 'th'
+      ? 'คู่มือร้านอาหาร คาเฟ่ ตลาด ร้านยา และสถานที่ใกล้เคียง Nature Haven ในสายไหม กรุงเทพฯ พร้อมลิงก์แผนที่'
+      : 'A practical guide to restaurants, cafés, markets, pharmacies, and local places around Nature Haven in Sai Mai, Bangkok, with map links',
     canonical: `${PROPERTY.url}/places`,
   });
 
@@ -175,6 +181,24 @@ const PlacesPage: React.FC = () => {
   const showFeedEmpty = feed !== null && !failed && feed.count === 0;
   const showFilterEmpty = feed !== null && !failed && feed.count > 0 && visible.length === 0;
 
+  useEffect(() => {
+    if (!filterOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setFilterOpen(false);
+        window.requestAnimationFrame(() => filterTriggerRef.current?.focus());
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [filterOpen]);
+
+  const selectCategory = (key: string) => {
+    setActive(key);
+    setFilterOpen(false);
+    window.requestAnimationFrame(() => filterTriggerRef.current?.focus());
+  };
+
   return (
     <JournalShell>
       <section className="frosted-page backdrop-blur-xl" aria-labelledby="places-heading">
@@ -198,26 +222,43 @@ const PlacesPage: React.FC = () => {
               className="places-filter-shell sticky top-16 z-20 -mx-4 mt-6 border-y sec-border px-4 py-3 backdrop-blur-xl md:static md:mx-0 md:mt-10 md:border-0 md:px-0 md:py-0"
               style={{ backgroundColor: 'var(--sec-bg)' }}
             >
-              <div className="flex items-center justify-between gap-3 md:hidden">
-                <span className="font-sans text-xs font-medium sec-text">{COPY.filterLabel[lang]}</span>
-                <span className="font-sans text-[11px] sec-text-60" aria-live="polite">
+              <div className="flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="font-sans text-xs font-medium sec-text md:sr-only">{COPY.filterLabel[lang]}</p>
+                  <p className="mt-1 hidden font-sans text-xs sec-text-60 md:block">{COPY.filterHint[lang]}</p>
+                </div>
+                <span className="shrink-0 font-sans text-[11px] sec-text-60" aria-live="polite">
                   {visible.length} {COPY.resultCount[lang]}
                 </span>
               </div>
-              <p className="sr-only md:not-sr-only md:mb-3 font-sans text-xs sec-text-60">{COPY.filterHint[lang]}</p>
+
+              <button
+                ref={filterTriggerRef}
+                type="button"
+                aria-expanded={filterOpen}
+                aria-controls="places-category-panel"
+                onClick={() => setFilterOpen((open) => !open)}
+                className="mt-3 flex min-h-11 w-full items-center justify-between gap-3 rounded-xl border sec-border px-4 py-2.5 text-left font-sans text-sm sec-text transition-colors hover:border-sage-green focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-green md:hidden"
+              >
+                <span>{categories.find((category) => category.key === active)?.label ?? COPY.all[lang]}</span>
+                <span aria-hidden="true" className={`text-base transition-transform duration-200 ${filterOpen ? 'rotate-180' : ''}`}>⌄</span>
+                <span className="sr-only">{filterOpen ? COPY.filterClose[lang] : COPY.filterOpen[lang]}</span>
+              </button>
+
               <div
-                className="mt-2 flex snap-x snap-mandatory flex-nowrap gap-2 overflow-x-auto overscroll-x-contain pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mt-0 md:flex-wrap md:overflow-visible"
+                id="places-category-panel"
                 role="group"
                 aria-label={COPY.filterLabel[lang]}
                 aria-controls="places-list"
+                className={`${filterOpen ? 'mt-3 grid' : 'hidden'} grid-cols-2 gap-2 md:mt-0 md:flex md:flex-wrap md:gap-2`}
               >
-                <FilterChip label={COPY.all[lang]} active={active === 'all'} onClick={() => setActive('all')} />
+                <FilterChip label={COPY.all[lang]} active={active === 'all'} onClick={() => selectCategory('all')} />
                 {categories.map((category) => (
                   <FilterChip
                     key={category.key}
                     label={category.label}
                     active={active === category.key}
-                    onClick={() => setActive(category.key)}
+                    onClick={() => selectCategory(category.key)}
                   />
                 ))}
               </div>
@@ -268,7 +309,7 @@ const FilterChip: React.FC<{ label: string; active: boolean; onClick: () => void
     type="button"
     aria-pressed={active}
     onClick={onClick}
-    className={`min-h-11 shrink-0 snap-start rounded-full border px-4 py-2 font-sans text-xs whitespace-nowrap transition-colors duration-200 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-green md:px-4 md:py-1.5 ${
+    className={`min-h-11 min-w-0 rounded-xl border px-3 py-2 font-sans text-xs leading-5 transition-colors duration-200 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-green md:min-h-11 md:shrink-0 md:rounded-full md:px-4 md:py-1.5 ${
       active ? 'border-sage-green bg-sage-green text-pure-white' : 'sec-border sec-text-70 hover:border-sage-green/60'
     }`}
   >

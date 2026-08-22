@@ -1,6 +1,6 @@
-import { StrictMode, Suspense, lazy, useLayoutEffect } from 'react'
+import { StrictMode, Suspense, lazy } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
 import { TimeOfDayProvider } from '@/contexts/TimeOfDayContext'
 import { LanguageProvider } from '@/contexts/LanguageContext'
@@ -14,6 +14,8 @@ import '@fontsource/ibm-plex-sans-thai-looped/500.css'
 import '@fontsource/ibm-plex-sans-thai-looped/600.css'
 import './index.css'
 import App from './App.tsx'
+import ScrollToTop from '@/components/ScrollToTop'
+import RouteStructuredData from '@/components/RouteStructuredData'
 
 // Journal routes are real prerendered pages (tools/prerender.mjs renders
 // every route to dist/<route>/index.html), so each article is crawlable HTML.
@@ -25,26 +27,15 @@ const CollectionPage = lazy(() => import('@/pages/CollectionPage'))
 const PlacesPage = lazy(() => import('@/pages/PlacesPage'))
 const PrivacyPage = lazy(() => import('@/pages/PrivacyPage'))
 
-// Reset scroll BEFORE the destination route's components mount their
-// ScrollTriggers. Rendered before <Routes>, so this layout effect flushes
-// first (sibling tree order) — without it, navigating /journal → / mounts
-// the homepage at the journal page's scroll offset and GSAP computes
-// trigger progress from that stale position (AmenitiesSection then paints
-// its track mid-scroll instead of at the far left).
-function ScrollToTop() {
-  const { pathname } = useLocation()
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
-  return null
-}
-
+// ScrollToTop and RouteStructuredData mount before <Routes> so navigation
+// resets the scroll position and schema before route content is prerendered.
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <TimeOfDayProvider>
       <LanguageProvider>
         <BrowserRouter>
           <ScrollToTop />
+          <RouteStructuredData />
           <Routes>
             <Route path="/" element={<App />} />
             <Route

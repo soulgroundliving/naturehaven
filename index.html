@@ -6,9 +6,7 @@
     <meta name="theme-color" content="#0e1f17" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f3ee" media="(prefers-color-scheme: light)" />
 
-    <!-- Favicon — the FULL Nature Haven lockup (leaves + wordmark); owner
-         call 2026-07-30 replaced the earlier leaf-only crop. Source logo
-         lives in the main repo as /nature-haven-logo.png. -->
+    <!-- Favicon — full Nature Haven lockup. -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
@@ -21,57 +19,46 @@
       window.scrollTo(0, 0);
     </script>
 
-    <!-- Pre-React scroll lock — iOS Safari ignores scrollRestoration='manual'
-         after the first paint and restores its remembered scroll position
-         from the previous visit, which made the page open mid-RoomJourney
-         instead of at the hero. Locking overflow at HTML parse time (before
-         the body even exists in the layout tree) blocks that restoration.
-         The LoadingOverlay's onComplete handler removes #nh-prelock. -->
+    <!-- Pre-React scroll lock — released by the intro overlay or App mount. -->
     <style id="nh-prelock">
       html, body { overflow: hidden !important; height: 100%; }
     </style>
 
-    <!-- Primary SEO -->
+    <!-- Site-wide defaults. Route-specific title/description/canonical are
+         applied by usePageMeta and captured into each prerendered route. -->
     <title>Nature Haven | Pet Friendly Apartment in Saimai, Bangkok</title>
     <meta name="description" content="Discover quiet living in Saimai. Pet-friendly apartments with private balconies, modern interiors, Wi-Fi, housekeeping, and a peaceful community designed for everyday comfort." />
     <link rel="canonical" href="https://naturehaven-living.vercel.app/" />
-    <!-- Indexing ENABLED 2026-07-12 (owner call) — stealth era over: GBP live,
-         FB channel started. Keep in sync with public/robots.txt. -->
     <meta name="robots" content="index, follow" />
-    <!-- Google Search Console ownership proof — the token is PUBLIC by design
-         (proves control of this page, grants nothing by itself). Property is
-         owned by TansudaUnaphak@gmail.com (verified 2026-07-30; auto-verified
-         via HTML-file method — this tag is the durable backup method). -->
     <meta name="google-site-verification" content="lfmViR4_otOKaA708EpvpiDPPb2qI3q9NRWz45VT1TA" />
 
-    <!-- Open Graph -->
-    <meta property="og:type"              content="website" />
-    <meta property="og:site_name"         content="Nature Haven" />
-    <meta property="og:title"             content="Nature Haven | Pet Friendly Apartment in Saimai, Bangkok" />
-    <meta property="og:description"       content="Discover quiet living in Saimai. Pet-friendly apartments with private balconies, modern interiors, Wi-Fi, housekeeping, and a peaceful community designed for everyday comfort." />
-    <meta property="og:url"               content="https://naturehaven-living.vercel.app/" />
-    <meta property="og:image"             content="https://naturehaven-living.vercel.app/og-image-v2.jpg" />
-    <meta property="og:image:width"       content="1200" />
-    <meta property="og:image:height"      content="630" />
-    <meta property="og:image:alt"         content="Nature Haven — MUJI-inspired apartment in Saimai, Bangkok" />
-    <meta property="og:locale"            content="th_TH" />
-    <meta property="og:locale:alternate"  content="en_US" />
+    <!-- Open Graph defaults; route metadata overrides these during prerender. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nature Haven" />
+    <meta property="og:title" content="Nature Haven | Pet Friendly Apartment in Saimai, Bangkok" />
+    <meta property="og:description" content="Discover quiet living in Saimai. Pet-friendly apartments with private balconies, modern interiors, Wi-Fi, housekeeping, and a peaceful community designed for everyday comfort." />
+    <meta property="og:url" content="https://naturehaven-living.vercel.app/" />
+    <meta property="og:image" content="https://naturehaven-living.vercel.app/og-image-v2.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Nature Haven — MUJI-inspired apartment in Saimai, Bangkok" />
+    <meta property="og:locale" content="th_TH" />
+    <meta property="og:locale:alternate" content="en_US" />
 
-    <!-- Twitter / X -->
-    <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content="Nature Haven | Pet Friendly Apartment in Saimai, Bangkok" />
+    <!-- Twitter / X defaults; route metadata overrides these during prerender. -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nature Haven | Pet Friendly Apartment in Saimai, Bangkok" />
     <meta name="twitter:description" content="Discover quiet living in Saimai. Pet-friendly apartments with private balconies, modern interiors, Wi-Fi, housekeeping, and a peaceful community designed for everyday comfort." />
-    <meta name="twitter:image"       content="https://naturehaven-living.vercel.app/og-image-v2.jpg" />
+    <meta name="twitter:image" content="https://naturehaven-living.vercel.app/og-image-v2.jpg" />
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- DM Serif Display = wordmark / EN display only. Body face (IBM Plex
-         Sans Thai Looped) is self-hosted via @fontsource in main.tsx. -->
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 
-    <!-- JSON-LD: WebSite — Google reads this for the SITE NAME shown in
-         search results (was falling back to "Vercel" without it). -->
+    <!-- WebSite is site-wide. LocalBusiness, ApartmentComplex, FAQPage,
+         CollectionPage, and WebPage are injected by route in main.tsx and
+         prerendered with the route that actually contains the content. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -80,202 +67,6 @@
       "name": "Nature Haven",
       "alternateName": ["เนเจอร์ เฮเว่น", "Nature Haven Living"],
       "url": "https://naturehaven-living.vercel.app/"
-    }
-    </script>
-
-    <!-- JSON-LD: LocalBusiness (GEO) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": "https://naturehaven-living.vercel.app/#localbusiness",
-      "name": "Nature Haven",
-      "alternateName": ["เนเจอร์ เฮเว่น", "The Green Haven"],
-      "description": "Pet-friendly apartment residence in Sai Mai, Bangkok. 25.2 sqm one-bedroom homes with an in-room kitchenette and a private balcony (with dish sink) — pets welcome throughout the entire building; Wi-Fi, housekeeping, and A/C maintenance all included. From 6,900 THB/month, private viewings by appointment via LINE. Opening October 2026.",
-      "url": "https://naturehaven-living.vercel.app",
-      "image": "https://naturehaven-living.vercel.app/og-image-v2.jpg",
-      "priceRange": "฿฿",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Sai Mai",
-        "addressRegion": "Bangkok",
-        "postalCode": "10220",
-        "addressCountry": "TH"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 13.9266178,
-        "longitude": 100.6829022
-      },
-      "hasMap": "https://maps.app.goo.gl/cGk79bn9tuBktvad9",
-      "areaServed": {
-        "@type": "City",
-        "name": "Bangkok"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "reservations",
-        "url": "https://line.me/R/ti/p/@929pthtt",
-        "availableLanguage": ["th", "en"]
-      },
-      "sameAs": [
-        "https://line.me/R/ti/p/@929pthtt",
-        "https://www.instagram.com/naturehaven_official/",
-        "https://www.facebook.com/share/1E49MQVqhr/?mibextid=wwXIfr",
-        "https://www.tiktok.com/@nature.haven9",
-        "https://maps.app.goo.gl/cGk79bn9tuBktvad9"
-      ]
-    }
-    </script>
-
-    <!-- JSON-LD: ApartmentComplex (AIO) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ApartmentComplex",
-      "@id": "https://naturehaven-living.vercel.app/#apartmentcomplex",
-      "name": "Nature Haven",
-      "description": "Newly built 20-unit pet-friendly apartment residence in Sai Mai, Bangkok. 25.2 sqm homes with 1 bedroom, 1 bathroom, an in-room kitchenette and a private balcony — north–south airflow, five-star-grade mattress, pet-friendly on every floor, quiet low-density community. All-inclusive monthly rate. Opening October 2026.",
-      "url": "https://naturehaven-living.vercel.app",
-      "image": "https://naturehaven-living.vercel.app/og-image-v2.jpg",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Sai Mai",
-        "addressRegion": "Bangkok",
-        "postalCode": "10220",
-        "addressCountry": "TH"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 13.9266178,
-        "longitude": 100.6829022
-      },
-      "numberOfAccommodationUnits": {
-        "@type": "QuantitativeValue",
-        "value": 20
-      },
-      "petsAllowed": "Small–medium pets (1–2 per unit) welcome throughout the entire building — no floor restrictions; a monthly per-pet fee applies.",
-      "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "Pet friendly (every floor)",       "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Quiet, low-density community",     "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Private balcony",                  "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Free Wi-Fi (AIS Fiber)",          "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Solar energy integration",         "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Digital door lock",                "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "24/7 CCTV",                        "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Smart resident app",               "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Housekeeping included",             "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "A/C maintenance included",         "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Common garden area",               "value": true }
-      ],
-      "accommodationFloorPlan": {
-        "@type": "FloorPlan",
-        "name": "1-Bedroom (25.2 sqm) — Pet-Friendly",
-        "numberOfBedrooms": 1,
-        "numberOfBathroomsTotal": 1,
-        "floorSize": { "@type": "QuantitativeValue", "value": 25.2, "unitCode": "MTK" },
-        "petsAllowed": true
-      },
-      "makesOffer": {
-        "@type": "AggregateOffer",
-        "name": "Pet-Friendly Residence — Opening Rate",
-        "description": "Every unit is pet-friendly. From 6,900 THB/month all-inclusive — per-floor rates and opening offers shared privately via LINE.",
-        "priceCurrency": "THB",
-        "lowPrice": "6900",
-        "offerCount": 20,
-        "availabilityStarts": "2026-09-01",
-        "eligibleDuration": { "@type": "QuantitativeValue", "value": 12, "unitCode": "MON" }
-      }
-    }
-    </script>
-
-    <!-- JSON-LD: FAQPage (AEO) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "ค่าเช่าต่อเดือนเท่าไหร่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "เริ่มต้น 6,900 บาท/เดือน แบบรวมทุกอย่าง — ราคาแต่ละชั้นและข้อเสนอช่วงเปิดตัว แจ้งแบบส่วนตัวทาง LINE พร้อมนัดชมห้อง. From 6,900 THB/month all-inclusive — per-floor rates and opening offers are shared privately via LINE."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "ค่าเช่ารวมอะไรบ้าง?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ค่าเช่ารวม Wi-Fi (AIS Fiber), บริการทำความสะอาด, บริการล้างแอร์ และสิ่งอำนวยความสะดวกส่วนกลางทั้งหมด — จ่ายรายเดือนรวมทุกอย่าง. Monthly rate includes Wi-Fi, cleaning service, A/C maintenance, and all common amenities."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "ห้องขนาดเท่าไหร่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "25.2 ตร.ม. สี่เหลี่ยมผืนผ้า · 1 ห้องนอน · 1 ห้องน้ำ · มุมครัวในตัว · ซิงก์ล้างจานที่ระเบียง · ระเบียงส่วนตัว · ทางเข้าทิศเหนือ–ระเบียงทิศใต้. Each unit is 25.2 sqm with 1 bedroom, 1 bathroom, an in-room kitchenette, a dish sink on the balcony, and a private balcony — north entrance, south balcony for year-round airflow."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "รับสัตว์เลี้ยงไหม?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "เลี้ยงได้ทั้งตึก ไม่กำหนดว่าชั้นไหน — ทุกห้องรับสัตว์เลี้ยงขนาดเล็ก–กลาง 1–2 ตัวต่อห้อง มีค่าสัตว์เลี้ยงรายเดือนต่อตัว แจ้งยอดทาง LINE. Pets are welcome throughout the entire building with no floor restrictions — small–medium pets, 1–2 per unit; a monthly per-pet fee applies."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "สัญญาเช่ากี่เดือน?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "12 เดือน (สัญญารายปี). 12-month annual lease."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "เงินที่ต้องเตรียมวันเข้าอยู่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "มีค่ามัดจำ ค่าเช่าล่วงหน้า และค่าประกัน (ชำระวันเข้าอยู่) รวมถึงค่าจองที่หักคืนเมื่อทำสัญญา แจ้งยอดเป็นการส่วนตัวทาง LINE. A deposit, advance rent, and a security deposit paid on move-in, plus a booking fee credited toward move-in; exact amounts are shared privately on LINE."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "เปิดให้เข้าอยู่เมื่อไหร่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "เปิดให้เข้าอยู่ตุลาคม 2026. Available from October 2026."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "ติดต่อจองได้ทางไหน?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ติดต่อทาง LINE เท่านั้น — https://line.me/R/ti/p/@929pthtt. Reservations via LINE only."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "มีลิฟต์ไหม?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ไม่มีลิฟต์ — เป็น low-rise 4 ชั้น ออกแบบเพื่อความเป็นส่วนตัวและประหยัดพลังงาน. No elevator — low-rise 4-floor design for privacy and energy efficiency."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Nature Haven อยู่ที่ไหน?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ย่านสายไหม กรุงเทพฯ — สงบ เป็นส่วนตัว เดินทางสะดวก. Located in Sai Mai district, Bangkok."
-          }
-        }
-      ]
     }
     </script>
   </head>

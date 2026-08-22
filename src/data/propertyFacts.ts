@@ -1,6 +1,6 @@
 // Single source of truth for Nature Haven property data.
-// Both FAQ UI (FAQSection.tsx) and JSON-LD schemas (index.html) derive from here.
-// When content changes, update here — schemas + UI stay in sync.
+// FAQ UI (FAQSection.tsx) and route-specific JSON-LD (structuredData.ts)
+// derive from here. When content changes, update here so schemas + UI stay in sync.
 
 export const PROPERTY = {
   name: 'Nature Haven',
@@ -43,7 +43,8 @@ export const PROPERTY = {
   // Terms of service is still the operating company's shared doc — out of
   // scope for the privacy-policy split above (owner asked about privacy only).
   termsUrl: 'https://the-green-haven.vercel.app/terms',
-  availableFrom: '2026-09-01',
+  // Public copy and availability promise use October 2026; keep ISO date aligned.
+  availableFrom: '2026-10-01',
   totalUnits: 20,
   hasElevator: false,
 } as const;

@@ -71,14 +71,15 @@ places.on('requestfailed', (request) => placesFailed.push({ url: request.url(), 
 await places.goto('http://127.0.0.1:4174/places', { waitUntil: 'domcontentloaded', timeout: 30000 });
 await places.waitForFunction(() => document.querySelector('#root')?.innerText.trim().length > 0, { timeout: 15000 });
 await places.waitForFunction(() => document.querySelectorAll('article').length > 0 || !document.body.innerText.includes('กำลังโหลดไกด์'), { timeout: 15000 });
+await places.click('[aria-controls="places-category-panel"]');
+await places.waitForSelector('#places-category-panel [aria-pressed]', { timeout: 5000 });
 const placesState = await places.evaluate(() => ({
   h1: Boolean(document.querySelector('h1')),
   cards: document.querySelectorAll('article').length,
   filters: [...document.querySelectorAll('[aria-pressed]')].length,
   filterGroup: Boolean(document.querySelector('[role="group"][aria-label][aria-controls="places-list"]')),
-  filterRailOverflowX: document.querySelector('[aria-controls="places-list"]') ? getComputedStyle(document.querySelector('[aria-controls="places-list"]')).overflowX : 'missing',
-  filterRailScrollWidth: document.querySelector('[aria-controls="places-list"]')?.scrollWidth ?? 0,
-  filterRailClientWidth: document.querySelector('[aria-controls="places-list"]')?.clientWidth ?? 0,
+  filterPanelVisible: document.querySelector('#places-category-panel') ? getComputedStyle(document.querySelector('#places-category-panel')).display !== 'none' : false,
+  filterTriggerExpanded: document.querySelector('[aria-controls="places-category-panel"]')?.getAttribute('aria-expanded') === 'true',
   filterShellSticky: document.querySelector('.places-filter-shell') ? getComputedStyle(document.querySelector('.places-filter-shell')).position : 'missing',
   firstMapCta: Boolean(document.querySelector('#places-list article a[href*="maps."]')),
   errorOrLoading: document.body.innerText.includes('กำลังโหลดไกด์') || document.body.innerText.includes('Loading the guide'),
@@ -101,7 +102,7 @@ const failedChecks = results.flatMap((result) => [
   ...result.failed.map((request) => `${result.path}@${result.viewport}: request failed ${request.url}`),
   ...(result.state.overflow ? [`${result.path}@${result.viewport}: horizontal overflow`] : []),
   ...(result.path === '/' && (!result.state.h1 || !result.state.main || !result.state.navLabel || result.state.lineCtas < 1 || result.state.missingAlt > 0 || !result.state.menuA11y) ? [`${result.path}@${result.viewport}: critical landmark/CTA/alt/menu assertion failed`] : []),
-  ...(result.path === '/places' && (!result.state.h1 || result.state.cards < 1 || result.state.filters < 1 || !result.state.filterGroup || result.state.errorOrLoading || !result.state.firstMapCta || result.state.categoryFilterActive !== 1 || result.state.categoryCards < 1 || result.state.filterRailOverflowX !== 'auto' || result.state.filterRailScrollWidth <= result.state.filterRailClientWidth || result.state.filterShellSticky !== 'sticky') ? [`${result.path}@${result.viewport}: places mobile redesign assertion failed`] : []),
+  ...(result.path === '/places' && (!result.state.h1 || result.state.cards < 1 || result.state.filters < 1 || !result.state.filterGroup || result.state.errorOrLoading || !result.state.firstMapCta || result.state.categoryFilterActive !== 1 || result.state.categoryCards < 1 || !result.state.filterPanelVisible || !result.state.filterTriggerExpanded || result.state.filterShellSticky !== 'sticky') ? [`${result.path}@${result.viewport}: places mobile redesign assertion failed`] : []),
 ]);
 if (failedChecks.length) {
   console.error(failedChecks.join('\n'));
