@@ -81,17 +81,21 @@ export default function usePageMeta(meta: PageMeta) {
   }, [title, description, canonical, ogImage, ogType, publishedTime, section]);
 }
 
-/** Inject a JSON-LD block for the lifetime of the page. Pass null to skip. */
+/** Inject or update a JSON-LD block for the lifetime of the page. Pass null to skip.
+ * Prerendered routes already contain the same id; reuse it during hydration so
+ * crawlers and client-rendered pages never get duplicate route schemas.
+ */
 export function useJsonLd(id: string, data: object | null) {
   useEffect(() => {
     if (!data) return;
-    const script = document.createElement('script');
+    const existing = document.head.querySelector<HTMLScriptElement>(`script#${id}`);
+    const script = existing ?? document.createElement('script');
     script.type = 'application/ld+json';
     script.id = id;
     script.textContent = JSON.stringify(data);
-    document.head.appendChild(script);
+    if (!existing) document.head.appendChild(script);
     return () => {
-      script.remove();
+      if (!existing) script.remove();
     };
   }, [id, data]);
 }
