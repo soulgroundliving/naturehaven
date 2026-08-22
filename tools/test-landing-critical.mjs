@@ -55,6 +55,9 @@ for (const viewport of [{ name: 'mobile', width: 390, height: 844 }, { name: 'de
     missingAlt: [...document.images].filter((image) => !image.hasAttribute('alt')).length,
     overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
     menuA11y: Boolean(document.querySelector('#mobile-menu[role="dialog"][aria-hidden]')),
+    decisionSummary: Boolean(document.querySelector('[data-decision-summary]')),
+    decisionItems: document.querySelectorAll('[data-decision-summary] [data-decision-item]').length,
+    decisionPrice: document.querySelector('[data-decision-summary]')?.innerText.includes('6,900') || false,
     bodyText: document.body.innerText.slice(0, 300),
   }));
   results.push({ viewport: viewport.name, path: '/', state, errors, failed });
@@ -101,7 +104,7 @@ const failedChecks = results.flatMap((result) => [
   ...result.errors.map((error) => `${result.path}@${result.viewport}: ${error}`),
   ...result.failed.map((request) => `${result.path}@${result.viewport}: request failed ${request.url}`),
   ...(result.state.overflow ? [`${result.path}@${result.viewport}: horizontal overflow`] : []),
-  ...(result.path === '/' && (!result.state.h1 || !result.state.main || !result.state.navLabel || result.state.lineCtas < 1 || result.state.missingAlt > 0 || !result.state.menuA11y) ? [`${result.path}@${result.viewport}: critical landmark/CTA/alt/menu assertion failed`] : []),
+  ...(result.path === '/' && (!result.state.h1 || !result.state.main || !result.state.navLabel || result.state.lineCtas < 1 || result.state.missingAlt > 0 || !result.state.menuA11y || !result.state.decisionSummary || result.state.decisionItems !== 5 || !result.state.decisionPrice) ? [`${result.path}@${result.viewport}: critical landmark/CTA/alt/menu/decision-summary assertion failed`] : []),
   ...(result.path === '/places' && (!result.state.h1 || result.state.cards < 1 || result.state.filters < 1 || !result.state.filterGroup || result.state.errorOrLoading || !result.state.firstMapCta || result.state.categoryFilterActive !== 1 || result.state.categoryCards < 1 || !result.state.filterPanelVisible || !result.state.filterTriggerExpanded || result.state.filterShellSticky !== 'sticky') ? [`${result.path}@${result.viewport}: places mobile redesign assertion failed`] : []),
 ]);
 if (failedChecks.length) {
