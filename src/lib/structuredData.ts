@@ -1,4 +1,4 @@
-import { FAQ_ITEMS, PETS_POLICY, PRICE_FROM, PROPERTY } from '@/data/propertyFacts';
+import { FAQ_ITEMS, PARKING_CAPACITY_APPROX, PETS_POLICY, PRICE_FROM, PRICE_TO, PROPERTY } from '@/data/propertyFacts';
 
 const siteUrl = PROPERTY.url;
 
@@ -25,7 +25,7 @@ export const homeStructuredData = [
     name: PROPERTY.name,
     alternateName: ['เนเจอร์ เฮเว่น', PROPERTY.legalName],
     description:
-      'Nature Haven อพาร์ทเมนท์สายไหม เลี้ยงสัตว์ได้ทั้งตึกในกรุงเทพฯ. 25.2 sqm one-bedroom homes with an in-room kitchenette and a private balcony (with dish sink) — pets welcome throughout the entire building; Wi-Fi, housekeeping, and A/C maintenance all included. From 6,900 THB/month, private viewings by appointment via LINE. Opening October 2026.',
+      `Nature Haven อพาร์ทเมนท์สายไหม บนถนนเฉลิมพงษ์ เลี้ยงสัตว์ได้ทั้งตึกในกรุงเทพฯ. 25.2 sqm one-bedroom homes with an in-room kitchenette and a private balcony (with dish sink) — pets welcome throughout the entire building; Wi-Fi, housekeeping, and A/C maintenance included (electricity and water metered separately). ${PRICE_FROM.toLocaleString('en-US')}–${PRICE_TO.toLocaleString('en-US')} THB/month by floor, private viewings by appointment via LINE. Opening October 2026.`,
     url: siteUrl,
     image: `${siteUrl}/og-image-v2.jpg`,
     priceRange: '฿฿',
@@ -52,7 +52,7 @@ export const homeStructuredData = [
     '@id': `${siteUrl}/#apartmentcomplex`,
     name: PROPERTY.name,
     description:
-      'Nature Haven is a newly built 20-unit อพาร์ทเมนท์เลี้ยงสัตว์ได้ in Sai Mai, Bangkok. 25.2 sqm homes with 1 bedroom, 1 bathroom, an in-room kitchenette and a private balcony — quiet low-density community. All-inclusive monthly rate. Opening October 2026.',
+      'Nature Haven is a newly built 20-unit อพาร์ทเมนท์เลี้ยงสัตว์ได้ on Chaloem Phong Road, Sai Mai, Bangkok. 25.2 sqm homes with 1 bedroom, 1 bathroom, an in-room kitchenette and a private balcony — quiet low-density community. Rent includes Wi-Fi, cleaning and A/C maintenance; electricity and water are metered separately. Opening October 2026.',
     url: siteUrl,
     image: `${siteUrl}/og-image-v2.jpg`,
     address: postalAddress,
@@ -78,6 +78,7 @@ export const homeStructuredData = [
       { '@type': 'LocationFeatureSpecification', name: 'Housekeeping included', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'A/C maintenance included', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'Common garden area', value: true },
+      { '@type': 'LocationFeatureSpecification', name: `Resident parking (~${PARKING_CAPACITY_APPROX} spaces, first-come first-served)`, value: true },
     ],
     accommodationFloorPlan: {
       '@type': 'FloorPlan',
@@ -90,9 +91,10 @@ export const homeStructuredData = [
     makesOffer: {
       '@type': 'AggregateOffer',
       name: 'Pet-Friendly Residence — Opening Rate',
-      description: 'Every unit is pet-friendly. From 6,900 THB/month all-inclusive — per-floor rates and opening offers shared privately via LINE.',
+      description: `Every unit is pet-friendly. ${PRICE_FROM.toLocaleString('en-US')} THB/month on floors 3–4, ${PRICE_TO.toLocaleString('en-US')} THB/month on floors 1–2. Wi-Fi, cleaning and A/C maintenance included; electricity and water metered separately.`,
       priceCurrency: 'THB',
       lowPrice: String(PRICE_FROM),
+      highPrice: String(PRICE_TO),
       offerCount: PROPERTY.totalUnits,
       availabilityStarts: PROPERTY.availableFrom,
       eligibleDuration: { '@type': 'QuantitativeValue', value: 12, unitCode: 'MON' },

@@ -52,11 +52,26 @@ export const PROPERTY = {
 // floors (3–4) are the entry rate at 6,900 THB/mo; lower floors (1–2) are
 // 7,200 THB/mo. 20 units total · 5 per floor.
 export const PRICE_FROM = 6900;
+export const PRICE_TO = 7200;
 
 // Owner-confirmed public Landing rate (2026-08-23). This marketing constant does
 // not change The Green Haven's operational billing source; align that system
 // separately through its authorized, audited path before treating it as billing SoT.
 export const PET_FEE_MONTHLY = 500;
+
+// Owner-confirmed 2026-09-11. Rent covers Wi-Fi, cleaning and A/C maintenance;
+// electricity and water are metered and billed separately at these per-unit
+// rates. There is no separate common-area fee.
+export const ELECTRICITY_RATE_PER_UNIT = 6;
+export const WATER_RATE_PER_UNIT = 20;
+export const HAS_COMMON_FEE = false;
+
+// Owner-confirmed 2026-09-11. NEST has 20 rooms but only ~16 practical parking
+// spaces around the building — do NOT state or imply a 1-room-to-1-space
+// guarantee anywhere on the site. Reserved/assigned parking pricing has not
+// been approved yet, so it is intentionally NOT published here — see
+// OWNER_CONFIRMATION_REQUIRED in the audit report.
+export const PARKING_CAPACITY_APPROX = 16;
 
 export const PETS_POLICY = {
   th: 'เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น — รับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง',
@@ -102,15 +117,15 @@ export const FAQ_ITEMS = [
     id: 'price',
     q_th: 'ค่าเช่าต่อเดือนเท่าไหร่?',
     q_en: 'What is the monthly rent?',
-    a_th: 'เริ่มต้น 6,900 บาท/เดือน แบบรวมทุกอย่าง — ราคาแต่ละชั้นและข้อเสนอช่วงเปิดตัว เราแจ้งแบบส่วนตัวทาง LINE พร้อมนัดชมห้อง',
-    a_en: 'From 6,900 THB/month, all-inclusive — per-floor rates and opening offers are shared privately via LINE, along with your viewing appointment.',
+    a_th: `ชั้น 3-4 เริ่มต้น ${PRICE_FROM.toLocaleString('en-US')} บาท/เดือน และชั้น 1-2 ${PRICE_TO.toLocaleString('en-US')} บาท/เดือน — ยิ่งชั้นสูง (เดินขึ้นมากกว่า ไม่มีลิฟต์) ค่าเช่ายิ่งเบากว่า ราคานี้ยังไม่รวมค่าน้ำค่าไฟ ยืนยันห้องว่างล่าสุดและนัดชมทาง LINE`,
+    a_en: `From ${PRICE_FROM.toLocaleString('en-US')} THB/month on floors 3–4, and ${PRICE_TO.toLocaleString('en-US')} THB/month on floors 1–2 — the higher the floor (more stairs, no elevator), the lower the rent. Electricity and water are metered separately. Confirm current availability and book a viewing on LINE.`,
   },
   {
     id: 'inclusive',
     q_th: 'ค่าเช่ารวมอะไรบ้าง?',
     q_en: "What's included in the rent?",
-    a_th: 'ค่าเช่ารวม Wi-Fi (AIS Fiber), บริการทำความสะอาด, บริการล้างแอร์ และสิ่งอำนวยความสะดวกส่วนกลางทั้งหมด — จ่ายรายเดือนรวมทุกอย่าง',
-    a_en: 'Monthly rate is all-inclusive: Wi-Fi, cleaning service, A/C maintenance, and all common amenities.',
+    a_th: `ค่าเช่ารวม Wi-Fi (AIS Fiber), บริการทำความสะอาด และบริการล้างแอร์ไว้แล้ว ส่วนค่าไฟฟ้าคิดตามหน่วยจริง ${ELECTRICITY_RATE_PER_UNIT} บาท/หน่วย และค่าน้ำ ${WATER_RATE_PER_UNIT} บาท/หน่วย (แยกจากค่าเช่า ตามการใช้งานจริง) ไม่มีค่าส่วนกลางเพิ่มเติม`,
+    a_en: `Rent includes Wi-Fi (AIS Fiber), cleaning service, and A/C maintenance. Electricity and water are metered and billed separately by actual usage — ${ELECTRICITY_RATE_PER_UNIT} THB/unit and ${WATER_RATE_PER_UNIT} THB/unit. There is no additional common-area fee.`,
   },
   {
     id: 'size',
@@ -137,9 +152,20 @@ export const FAQ_ITEMS = [
     id: 'deposit',
     q_th: 'เงินที่ต้องเตรียมวันเข้าอยู่?',
     q_en: 'What deposit is required to move in?',
-    a_th: 'มีค่ามัดจำ ค่าเช่าล่วงหน้า และค่าประกัน (ชำระวันเข้าอยู่) รวมถึงค่าจองที่หักคืนในยอดเมื่อทำสัญญา — ยอดละเอียดแจ้งเป็นการส่วนตัวทาง LINE',
-    a_en: 'A deposit, advance rent, and a security deposit (paid on move-in), plus a booking fee that is credited toward your move-in total. Exact amounts are shared privately on LINE.',
+    a_th: 'ค่าเช่าล่วงหน้า 1 เดือน และเงินมัดจำ 1 เดือน รวมถึงค่าประกันและค่าจอง (ค่าจองหักคืนในยอดเมื่อทำสัญญา) — ยอดค่าประกันและค่าจองแจ้งเป็นการส่วนตัวทาง LINE',
+    a_en: 'One month of advance rent and a one-month deposit, plus a security deposit and a booking fee (credited toward your move-in total when you sign). Exact security-deposit and booking-fee amounts are shared privately on LINE.',
   },
+  {
+    id: 'parking',
+    q_th: 'มีที่จอดรถไหม?',
+    q_en: 'Is parking available?',
+    a_th: `มีที่จอดรถสำหรับผู้พักอาศัยที่ลงทะเบียนรถ — พื้นที่จอดจริงประมาณ ${PARKING_CAPACITY_APPROX} คันรอบอาคาร (จากทั้งหมด ${PROPERTY.totalUnits} ห้อง) ให้บริการแบบมาก่อนได้จอดก่อน ไม่ได้การันตีว่าทุกห้องจะมีที่จอดประจำ`,
+    a_en: `Yes — parking is available for registered residents, with approximately ${PARKING_CAPACITY_APPROX} practical spaces around the building (out of ${PROPERTY.totalUnits} units total), on a first-come, first-served basis. A dedicated space per unit is not guaranteed.`,
+  },
+  // Reserved/assigned parking (~300 THB/month) was proposed but is NOT
+  // confirmed anywhere in code or ops docs as of 2026-09-11 — deliberately
+  // not published as a FAQ item or commercial policy. See audit report
+  // OWNER_CONFIRMATION_REQUIRED.
   {
     id: 'open',
     q_th: 'เปิดให้เข้าอยู่เมื่อไหร่?',
@@ -165,8 +191,8 @@ export const FAQ_ITEMS = [
     id: 'location',
     q_th: 'อพาร์ทเม้นท์สายไหมอยู่แถวไหน?',
     q_en: 'Where is Nature Haven located?',
-    a_th: 'Nature Haven เป็นอพาร์ทเมนท์สายไหมในกรุงเทพฯ ตั้งอยู่ในย่านสงบ เป็นส่วนตัว และเดินทางสะดวก',
-    a_en: 'Sai Mai district, Bangkok — quiet, private, and well-connected.',
+    a_th: 'Nature Haven เป็นอพาร์ทเมนท์สายไหมในกรุงเทพฯ ตั้งอยู่บนถนนเฉลิมพงษ์ ย่านสงบ เป็นส่วนตัว และเดินทางสะดวก',
+    a_en: 'Nature Haven is an apartment in Sai Mai, Bangkok, on Chaloem Phong Road — a quiet, private neighborhood that is still well-connected.',
   },
 ] as const;
 

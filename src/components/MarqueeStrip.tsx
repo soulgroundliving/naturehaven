@@ -8,7 +8,7 @@ const ITEMS = [
   'Saimai · Bangkok',
   'October 2026',
   'Pet-Friendly',
-  'All-Inclusive',
+  'No Common Fee',
   '25.2 m²',
   '20 Residences',
   'Private Balcony',

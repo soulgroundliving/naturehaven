@@ -54,8 +54,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'มันยังทำให้ราคามีความซื่อตรงในตัวมันเอง — ชั้นที่ต้องใช้แรงขาเดินมากกว่า เริ่มต้นที่ 6,900 บาทต่อเดือน ส่วนชั้นล่างขยับสูงขึ้นมาเพียงเล็กน้อย เดินมากขึ้น จ่ายน้อยลง — กติกาเงียบ ๆ ข้อเดียว และตัวเลขของแต่ละชั้นเราแจ้งให้เป็นการส่วนตัวเมื่อมีผู้สนใจ',
-        en: 'It also lends the pricing a certain honesty: the floors that ask more of your legs begin at 6,900 THB a month, and the floors below sit only slightly above it. More stairs, less rent — one quiet rule, and the exact figure for each floor is shared privately, by request.',
+        th: 'มันยังทำให้ราคามีความซื่อตรงในตัวมันเอง — ชั้นที่ต้องใช้แรงขาเดินมากกว่า เริ่มต้นที่ 6,900 บาทต่อเดือน ส่วนชั้นล่างอยู่ที่ 7,200 บาท เดินมากขึ้น จ่ายน้อยลง — กติกาเงียบ ๆ ข้อเดียว บอกตรง ๆ ไว้ตั้งแต่แรก ไม่ต้องทักมาถามก่อน',
+        en: 'It also lends the pricing a certain honesty: the floors that ask more of your legs begin at 6,900 THB a month, and the floors below sit at 7,200. More stairs, less rent — one quiet rule, stated plainly from the start rather than held back for a conversation.',
       },
     },
     {
@@ -72,8 +72,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'และยังมีความเงียบอีกชั้นหนึ่งที่ไม่ได้อยู่ในผนัง แต่อยู่ในใบแจ้งหนี้ — ค่าเช่ารวม Wi-Fi (AIS Fiber) บริการทำความสะอาด และดูแลแอร์ไว้แล้ว ตัวเลขเดียว จ่ายครั้งเดียวต่อเดือน ไม่มีอะไรงอกขึ้นกลางทางให้ต้องคิดคำนวณ — ทางสายกลาง ในรูปแบบของใบแจ้งหนี้',
-        en: 'There is a last, quieter register too — not in the walls, but in the bill. Rent already includes Wi-Fi (AIS Fiber), cleaning, and air-conditioning service. One figure, once a month, nothing appearing mid-cycle to be reckoned with — a middle path, written as an invoice.',
+        th: 'และยังมีความเงียบอีกชั้นหนึ่งที่ไม่ได้อยู่ในผนัง แต่อยู่ในใบแจ้งหนี้ — ค่าเช่ารวม Wi-Fi (AIS Fiber) บริการทำความสะอาด และดูแลแอร์ไว้แล้วในตัวเลขเดียว ส่วนค่าน้ำค่าไฟคิดตามการใช้จริงในอัตราที่ตรงไปตรงมา — ไฟหน่วยละ 6 บาท น้ำหน่วยละ 20 บาท ไม่มีค่าส่วนกลางแอบแฝง',
+        en: 'There is a last, quieter register too — not in the walls, but in the bill. Rent already bundles Wi-Fi (AIS Fiber), cleaning, and air-conditioning service into one figure. Electricity and water are metered at plain, stated rates — 6 THB and 20 THB per unit — with no hidden common fee.',
       },
     },
     {

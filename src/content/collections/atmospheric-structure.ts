@@ -79,8 +79,8 @@ const collection: Collection = {
       label: 'The Approach',
       title: { en: 'The way home', th: 'เส้นทางกลับบ้าน' },
       body: {
-        en: 'A 1.6-metre corridor in soft cream tile, warm recessed light along the way, access-key entry, CCTV and perimeter lighting through the night — and one covered parking bay per residence.',
-        th: 'ทางเดินภายในอาคารกว้าง 1.6 เมตร ปูกระเบื้องโทนครีมเงานวล ไฟ warm light ฝังตามทาง ประตูอาคารเข้าด้วย access key พร้อมกล้องวงจรปิดและไฟรอบอาคารตลอดคืน — และที่จอดรถมีหลังคา ห้องละ 1 คัน',
+        en: 'A 1.6-metre corridor in soft cream tile, warm recessed light along the way, access-key entry, CCTV and perimeter lighting through the night — and covered parking around the building for registered residents, on a first-come, first-served basis.',
+        th: 'ทางเดินภายในอาคารกว้าง 1.6 เมตร ปูกระเบื้องโทนครีมเงานวล ไฟ warm light ฝังตามทาง ประตูอาคารเข้าด้วย access key พร้อมกล้องวงจรปิดและไฟรอบอาคารตลอดคืน — และที่จอดรถมีหลังคารอบอาคารสำหรับผู้พักอาศัยที่ลงทะเบียน แบบมาก่อนได้จอดก่อน',
       },
     },
   ],

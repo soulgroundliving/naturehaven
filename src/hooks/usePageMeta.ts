@@ -20,7 +20,7 @@ interface PageMeta {
 const HOME_META = {
   title: 'อพาร์ทเม้นท์สายไหม เลี้ยงสัตว์ได้ | Nature Haven',
   description:
-    'Nature Haven อพาร์ทเม้นท์สายไหม เลี้ยงสัตว์ได้ทั้งตึก ห้อง 25.2 ตร.ม. พร้อมระเบียงส่วนตัว Wi-Fi และบริการส่วนกลาง นัดชมโครงการผ่าน LINE',
+    'Nature Haven อพาร์ทเม้นท์สายไหม เลี้ยงสัตว์ได้ทั้งตึก ห้อง 25.2 ตร.ม. เริ่มต้น 6,900–7,200 บาท/เดือน พร้อมระเบียงส่วนตัว Wi-Fi นัดชมโครงการผ่าน LINE',
   canonical: 'https://naturehaven-living.vercel.app/',
   ogImage: 'https://naturehaven-living.vercel.app/og-image-v2.jpg',
   ogType: 'website',

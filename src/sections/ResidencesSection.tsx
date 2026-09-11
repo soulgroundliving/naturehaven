@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import AiRenderBadge from '@/components/AiRenderBadge';
-import { PRICE_FROM, UNITS } from '@/data/propertyFacts';
+import { PRICE_FROM, PRICE_TO, UNITS } from '@/data/propertyFacts';
 import { TR } from '@/lib/translations';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -170,7 +170,7 @@ const ResidencesSection: React.FC = () => {
               {
                 icon: <Banknote size={19} strokeWidth={1.5} aria-hidden="true" />,
                 label: r.decisionPriceLabel[lang],
-                value: lang === 'th' ? `${PRICE_FROM.toLocaleString('en-US')} บาท/เดือน` : `${PRICE_FROM.toLocaleString('en-US')} THB/month`,
+                value: `${PRICE_FROM.toLocaleString('en-US')}–${PRICE_TO.toLocaleString('en-US')}${lang === 'th' ? ' บาท/เดือน' : ' THB/month'}`,
                 detail: r.decisionPriceDetail[lang],
               },
               {
@@ -273,6 +273,14 @@ const ResidencesSection: React.FC = () => {
                 <span className="font-sans text-[11px] sec-text-60 uppercase tracking-[0.18em]">{r.availableLabel[lang]}</span>
                 <span className="font-sans text-base font-light sec-text">{r.availableValue[lang]}</span>
               </li>
+              <li className="flex flex-col gap-1">
+                <span className="font-sans text-[11px] sec-text-60 uppercase tracking-[0.18em]">{r.utilitiesLabel[lang]}</span>
+                <span className="font-sans text-base font-light sec-text">{r.utilitiesValue[lang]}</span>
+              </li>
+              <li className="flex flex-col gap-1">
+                <span className="font-sans text-[11px] sec-text-60 uppercase tracking-[0.18em]">{r.parkingLabel[lang]}</span>
+                <span className="font-sans text-base font-light sec-text">{r.parkingValue[lang]}</span>
+              </li>
             </ul>
             <div className="w-full h-px mt-8 mb-5" style={{ background: 'var(--sec-border)' }} />
             <p className="font-sans text-sm italic text-sage-green leading-relaxed">
@@ -298,9 +306,30 @@ const ResidencesSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Private pricing — quiet-luxury posture: rates shared 1:1 via LINE,
-              never as a public ladder. No button here (one-CTA rule, owner
-              2026-07-12): the floating LINE pill is always on screen. */}
+          {/* Floor pricing ladder — public per owner directive 2026-09-11: base
+              rent must be crawlable text on the page, not gated behind LINE.
+              (Supersedes the 2026-07-12 "shared 1:1 via LINE" posture.) No
+              button here (one-CTA rule, owner 2026-07-12): the floating LINE
+              pill is always on screen. */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+            <div className="rounded-xl sec-border border card-surface backdrop-blur-sm p-6 md:p-7">
+              <p className="font-sans text-[11px] sec-text-60 uppercase tracking-[0.16em] mb-2">{r.floorTierUpper[lang]}</p>
+              <p className="font-serif text-3xl md:text-4xl sec-text leading-none mb-2">
+                {PRICE_FROM.toLocaleString('en-US')}
+                <span className="font-sans text-sm sec-text-60"> {lang === 'th' ? 'บาท/เดือน' : 'THB/mo'}</span>
+              </p>
+              <p className="font-sans text-sm font-light sec-text-70">{r.floorTierUpperNote[lang]}</p>
+            </div>
+            <div className="rounded-xl sec-border border card-surface backdrop-blur-sm p-6 md:p-7">
+              <p className="font-sans text-[11px] sec-text-60 uppercase tracking-[0.16em] mb-2">{r.floorTierLower[lang]}</p>
+              <p className="font-serif text-3xl md:text-4xl sec-text leading-none mb-2">
+                {PRICE_TO.toLocaleString('en-US')}
+                <span className="font-sans text-sm sec-text-60"> {lang === 'th' ? 'บาท/เดือน' : 'THB/mo'}</span>
+              </p>
+              <p className="font-sans text-sm font-light sec-text-70">{r.floorTierLowerNote[lang]}</p>
+            </div>
+          </div>
+
           <div className="rounded-xl sec-border border card-surface backdrop-blur-sm p-7 md:p-10">
             <p className="font-sans text-[16px] font-light leading-relaxed sec-text-80 max-w-[640px]">
               {r.privateBody[lang]}
