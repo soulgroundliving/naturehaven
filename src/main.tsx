@@ -25,6 +25,9 @@ const ArticlePage = lazy(() => import('@/pages/ArticlePage'))
 const LinksPage = lazy(() => import('@/pages/LinksPage'))
 const CollectionPage = lazy(() => import('@/pages/CollectionPage'))
 const ResidencePage = lazy(() => import('@/pages/ResidencePage'))
+// Structure-only shell, not yet linked from anywhere or prerendered — see
+// AboutPage.tsx for why. Reachable at /about in local dev for review only.
+const AboutPage = lazy(() => import('@/pages/AboutPage'))
 const PlacesPage = lazy(() => import('@/pages/PlacesPage'))
 const PrivacyPage = lazy(() => import('@/pages/PrivacyPage'))
 
@@ -76,6 +79,14 @@ createRoot(document.getElementById('root')!).render(
               element={
                 <Suspense fallback={null}>
                   <ResidencePage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <Suspense fallback={null}>
+                  <AboutPage />
                 </Suspense>
               }
             />

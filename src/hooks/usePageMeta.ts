@@ -10,6 +10,9 @@ interface PageMeta {
   ogType?: 'website' | 'article';
   publishedTime?: string;
   section?: string;
+  /** Overrides the static shell's "index, follow" — use 'noindex, nofollow'
+   * for pages not ready for search engines (e.g. a placeholder shell). */
+  robots?: string;
 }
 
 // Homepage defaults to restore on unmount. Restoring the *captured previous*
@@ -24,6 +27,7 @@ const HOME_META = {
   canonical: 'https://naturehaven-living.vercel.app/',
   ogImage: 'https://naturehaven-living.vercel.app/og-image-v2.jpg',
   ogType: 'website',
+  robots: 'index, follow',
 } as const;
 
 function setAttr(selector: string, attr: string, value: string | undefined): void {
@@ -49,9 +53,10 @@ function setArticleMeta(property: string, content: string | undefined): void {
   el.setAttribute('content', content);
 }
 
-function applyMeta({ title, description, canonical, ogImage, ogType = 'website', publishedTime, section }: PageMeta): void {
+function applyMeta({ title, description, canonical, ogImage, ogType = 'website', publishedTime, section, robots = 'index, follow' }: PageMeta): void {
   document.title = title;
   setAttr('meta[name="description"]', 'content', description);
+  setAttr('meta[name="robots"]', 'content', robots);
   setAttr('link[rel="canonical"]', 'href', canonical);
   setAttr('meta[property="og:title"]', 'content', title);
   setAttr('meta[property="og:description"]', 'content', description);
@@ -72,13 +77,13 @@ function applyMeta({ title, description, canonical, ogImage, ogType = 'website',
  * effects run, so crawlers see the per-article title/description/canonical.
  */
 export default function usePageMeta(meta: PageMeta) {
-  const { title, description, canonical, ogImage, ogType, publishedTime, section } = meta;
+  const { title, description, canonical, ogImage, ogType, publishedTime, section, robots } = meta;
   useEffect(() => {
-    applyMeta({ title, description, canonical, ogImage, ogType, publishedTime, section });
+    applyMeta({ title, description, canonical, ogImage, ogType, publishedTime, section, robots });
     return () => {
       applyMeta(HOME_META);
     };
-  }, [title, description, canonical, ogImage, ogType, publishedTime, section]);
+  }, [title, description, canonical, ogImage, ogType, publishedTime, section, robots]);
 }
 
 /** Inject or update a JSON-LD block for the lifetime of the page. Pass null to skip.
