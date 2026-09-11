@@ -42,8 +42,14 @@ export const PROPERTY = {
   // Terms of service is still the operating company's shared doc — out of
   // scope for the privacy-policy split above (owner asked about privacy only).
   termsUrl: 'https://the-green-haven.vercel.app/terms',
-  // Public copy and availability promise use October 2026; keep ISO date aligned.
+  // October 2026 = reservations/bookings open (this ISO date feeds
+  // AggregateOffer.availabilityStarts in structuredData.ts — tools/test-landing-seo.mjs
+  // asserts it stays '2026-10-01', so change that test too if this ever moves).
+  // Actual move-in is November 2026 — a separate fact, stated in prose (FAQ 'open',
+  // hero tagline, decision-summary Move-in field) rather than a second schema field.
+  // Owner-clarified 2026-09-11: the two dates are intentionally different milestones.
   availableFrom: '2026-10-01',
+  moveInFrom: '2026-11-01',
   totalUnits: 20,
   hasElevator: false,
 } as const;
@@ -177,8 +183,8 @@ export const FAQ_ITEMS = [
     id: 'open',
     q_th: 'เปิดให้เข้าอยู่เมื่อไหร่?',
     q_en: 'When can I move in?',
-    a_th: 'เปิดให้เข้าอยู่ตุลาคม 2026',
-    a_en: 'Available from October 2026.',
+    a_th: 'เปิดให้จองตั้งแต่ตุลาคม 2569 · พร้อมเข้าอยู่จริงพฤศจิกายน 2569',
+    a_en: 'Reservations open October 2026 · actual move-in from November 2026.',
   },
   {
     id: 'contact',
