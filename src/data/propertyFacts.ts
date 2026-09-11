@@ -131,8 +131,15 @@ export const FAQ_ITEMS = [
     id: 'size',
     q_th: 'ห้องขนาดเท่าไหร่?',
     q_en: 'How big is each unit?',
-    a_th: '25.2 ตร.ม. สี่เหลี่ยมผืนผ้า · 1 ห้องนอน · 1 ห้องน้ำ · มุมครัวในตัว (ตู้เย็น ไมโครเวฟ เตาไฟฟ้า) · ซิงก์ล้างจานที่ระเบียง · ระเบียงส่วนตัว · ทางเข้าทิศเหนือ–ระเบียงทิศใต้ รับลมธรรมชาติตลอดปี',
-    a_en: '25.2 sqm rectangular plan · 1 bedroom · 1 bathroom · in-room kitchenette (fridge, microwave, electric stove) · dish sink on the balcony · private balcony · north entrance, south balcony for year-round airflow.',
+    a_th: '25.2 ตร.ม. สี่เหลี่ยมผืนผ้า · 1 ห้องนอน · 1 ห้องน้ำ · ตู้เก็บของอเนกประสงค์พร้อมเคาน์เตอร์วางไมโครเวฟ (ติดตู้เย็น) · ซิงก์ล้างจานที่ระเบียง · ระเบียงส่วนตัว · ทางเข้าทิศเหนือ–ระเบียงทิศใต้ รับลมธรรมชาติตลอดปี',
+    a_en: '25.2 sqm rectangular plan · 1 bedroom · 1 bathroom · a multi-purpose storage cabinet with a microwave station next to the refrigerator · dish sink on the balcony · private balcony · north entrance, south balcony for year-round airflow.',
+  },
+  {
+    id: 'kitchen',
+    q_th: 'มีครัวไหม?',
+    q_en: 'Is there a kitchen?',
+    a_th: 'ไม่มีครัวเต็มรูปแบบหรือเตาทำอาหาร — ในห้องมีตู้เก็บของอเนกประสงค์ 2 บานเปิดเข้าหากึ่งกลาง พร้อมชั้นวางของภายใน 2 ชั้น และเคาน์เตอร์ด้านบนสำหรับวางไมโครเวฟ ตั้งอยู่ติดตู้เย็น ใช้เก็บของครัวหรือของใช้ส่วนตัวได้อย่างยืดหยุ่น ส่วนซิงก์ล้างจานอยู่ที่ระเบียง',
+    a_en: 'There is no full kitchen or cooking stove — the room has a multi-purpose storage cabinet with two doors that open toward the centre, two internal shelves, and a countertop sized for a microwave, positioned next to the refrigerator. It flexibly stores kitchen items or personal belongings. The dish sink is on the balcony.',
   },
   {
     id: 'pets',

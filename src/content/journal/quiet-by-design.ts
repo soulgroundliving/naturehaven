@@ -65,8 +65,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ทุกยูนิตมีขนาด 25.2 ตร.ม. — หนึ่งห้องนอน หนึ่งห้องน้ำ ระเบียงส่วนตัว และมุมครัวในตัวที่ย้ายซิงก์ล้างจานออกไปพักอยู่ที่ระเบียง แทนที่จะอยู่ข้างเตียง เป็นการย้ายเล็ก ๆ ที่ให้ผลลัพธ์ไม่เล็กเลย: ไม่มีจานกองใกล้หมอน ไม่มีมุมชื้นในพื้นที่ที่คุณใช้ชีวิตจริง และแสงยามเช้าจากระเบียงเข้าถึงห้องโดยไม่รบกวนใคร',
-        en: 'Every residence measures 25.2 sqm — one bedroom, one bathroom, a private balcony, and an in-room kitchenette whose dish sink rests outside on the balcony rather than beside the bed. It is a small relocation with an outsized effect: no plates gathering near the pillow, no damp corner in the room where you actually live, and morning light reaching in from the balcony without disturbing anyone.',
+        th: 'ทุกยูนิตมีขนาด 25.2 ตร.ม. — หนึ่งห้องนอน หนึ่งห้องน้ำ ระเบียงส่วนตัว และตู้เก็บของอเนกประสงค์พร้อมที่วางไมโครเวฟ ที่ย้ายซิงก์ล้างจานออกไปพักอยู่ที่ระเบียง แทนที่จะอยู่ข้างเตียง เป็นการย้ายเล็ก ๆ ที่ให้ผลลัพธ์ไม่เล็กเลย: ไม่มีจานกองใกล้หมอน ไม่มีมุมชื้นในพื้นที่ที่คุณใช้ชีวิตจริง และแสงยามเช้าจากระเบียงเข้าถึงห้องโดยไม่รบกวนใคร',
+        en: 'Every residence measures 25.2 sqm — one bedroom, one bathroom, a private balcony, and a multi-purpose storage cabinet with a microwave station, whose dish sink rests outside on the balcony rather than beside the bed. It is a small relocation with an outsized effect: no plates gathering near the pillow, no damp corner in the room where you actually live, and morning light reaching in from the balcony without disturbing anyone.',
       },
     },
     {

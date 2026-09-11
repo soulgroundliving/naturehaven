@@ -19,8 +19,8 @@ const collection: Collection = {
   },
   hero: '/assets/room-view-out.jpg',
   heroAlt: {
-    en: 'Looking out from the bedroom — the 3-metre desk, quiet pantry and built-ins in one view',
-    th: 'มุมมองออกจากห้องนอน — เห็นโต๊ะยาว 3 เมตร มุมครัวเงียบ และตู้บิ้วอินในภาพเดียว',
+    en: 'Looking out from the bedroom — the 3-metre desk, quiet storage cabinet and built-ins in one view',
+    th: 'มุมมองออกจากห้องนอน — เห็นโต๊ะยาว 3 เมตร ตู้เก็บของเงียบ และตู้บิ้วอินในภาพเดียว',
   },
   details: [
     {
@@ -56,11 +56,11 @@ const collection: Collection = {
       },
     },
     {
-      label: 'The Quiet Pantry',
-      title: { en: 'The quiet pantry', th: 'มุมครัวที่ไม่ส่งเสียง' },
+      label: 'The Quiet Cabinet',
+      title: { en: 'The quiet cabinet', th: 'ตู้เก็บของที่ไม่ส่งเสียง' },
       body: {
-        en: 'A two-door inverter refrigerator — freezer separated, near-silent, frugal with power — set off the bed’s end with a 90 cm walkway. Beside it, a grooved-door appliance cabinet with a microwave provided in every room. Electric stoves only; the building is entirely smoke-free.',
-        th: 'ตู้เย็น 2 ประตูแยกช่องแช่แข็ง ระบบอินเวอร์เตอร์เสียงเบา ประหยัดไฟ ตั้งเยื้องปลายเตียงโดยเว้นทางเดินกว้าง 90 ซม. ถัดกันคือตู้เครื่องใช้ไฟฟ้าแบบบานเซาะร่อง พร้อมไมโครเวฟที่ให้ประจำทุกห้อง — ใช้ได้เฉพาะเตาไฟฟ้า และทั้งอาคารปลอดบุหรี่ในทุกกรณี',
+        en: 'A two-door inverter refrigerator — freezer separated, near-silent, frugal with power — set off the bed’s end with a 90 cm walkway. Beside it, a multi-purpose storage cabinet: two grooved doors that open toward the centre, two internal shelves, and a countertop sized for a microwave — flexible enough for kitchen items or everyday belongings. There is no cooking hob; the building is entirely smoke-free and open-flame cooking is not permitted.',
+        th: 'ตู้เย็น 2 ประตูแยกช่องแช่แข็ง ระบบอินเวอร์เตอร์เสียงเบา ประหยัดไฟ ตั้งเยื้องปลายเตียงโดยเว้นทางเดินกว้าง 90 ซม. ถัดกันคือตู้เก็บของอเนกประสงค์: บานเซาะร่อง 2 บานเปิดเข้าหากึ่งกลาง ชั้นวางของภายใน 2 ชั้น และเคาน์เตอร์ด้านบนสำหรับวางไมโครเวฟ — ใช้เก็บของครัวหรือของใช้ส่วนตัวได้ยืดหยุ่น ห้องพักไม่มีเตาทำอาหาร และทั้งอาคารไม่อนุญาตให้ทำอาหารแบบเปิดไฟหรือสูบบุหรี่ในทุกกรณี',
       },
     },
     {

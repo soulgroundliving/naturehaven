@@ -345,7 +345,7 @@ const ResidencesSection: React.FC = () => {
         <div className="relative mb-10 md:mb-16 h-64 md:h-96 overflow-hidden rounded-2xl card-surface">
           <img
             src="/assets/room-view-out.jpg"
-            alt={lang === 'th' ? 'มุมมองภายในห้อง — โต๊ะทำงานยาว มุมครัว และเฟอร์นิเจอร์บิลต์อิน' : 'Room interior — long desk, kitchenette corner and built-in furniture'}
+            alt={lang === 'th' ? 'มุมมองภายในห้อง — โต๊ะทำงานยาว ตู้เก็บของอเนกประสงค์ และเฟอร์นิเจอร์บิลต์อิน' : 'Room interior — long desk, multi-purpose storage cabinet and built-in furniture'}
             loading="lazy"
             className="h-full w-full object-contain"
           />
