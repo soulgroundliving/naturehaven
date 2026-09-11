@@ -9,7 +9,6 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import LoadingOverlay from '@/components/LoadingOverlay';
 import GrainOverlay from '@/components/GrainOverlay';
 import IdentityStrip from '@/components/IdentityStrip';
 import MarqueeStrip from '@/components/MarqueeStrip';
@@ -52,23 +51,25 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   const { palette } = useTimeOfDay();
   const lenisRef = useRef<Lenis | null>(null);
-  // During puppeteer prerender, skip the intro overlay entirely so the
-  // snapshotted HTML shows real content instead of a white-out splash.
+  // During puppeteer prerender, keep prerender-only skips (below) so the
+  // snapshotted HTML matches a real client render.
   const prerendering = isPrerender();
-  // Intro plays once per tab session — client-side nav to /journal and back
-  // (or a same-tab revisit) must not replay the 3s overlay.
-  const [introComplete, setIntroComplete] = useState(() => {
-    if (prerendering) return true;
-    try {
-      return sessionStorage.getItem('nh_intro_done') === '1';
-    } catch {
-      return false;
-    }
-  });
-  // When the intro is skipped, LoadingOverlay's onComplete never runs — the
-  // pre-React scroll lock (#nh-prelock in index.html) must be released here.
+  // Release the pre-React scroll lock (#nh-prelock in index.html — prevents
+  // scroll during initial HTML parse) as soon as React mounts, and pin
+  // scrollY = 0 briefly: iOS Safari ignores scrollRestoration='manual' once
+  // paint commits and animates back to a remembered scroll position from a
+  // prior visit — three rAFs (~50ms) didn't outlast that restore, so a
+  // 60-frame pin (~1s) is used instead.
   useEffect(() => {
-    if (introComplete) document.getElementById('nh-prelock')?.remove();
+    document.getElementById('nh-prelock')?.remove();
+    if (prerendering) return;
+    window.scrollTo(0, 0);
+    let frame = 0;
+    const pinTop = () => {
+      window.scrollTo(0, 0);
+      if (frame++ < 60) requestAnimationFrame(pinTop);
+    };
+    requestAnimationFrame(pinTop);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [isPastHero, setIsPastHero] = useState(false);
@@ -87,11 +88,11 @@ function App() {
   ];
   const activeSection = useSectionObserver(sectionIds);
 
-  // ── Safari: prevent page drift during intro + handle bfcache restore ──────
+  // ── Safari: prevent page drift on load + handle bfcache restore ──────────
   // Pre-React scroll lock lives in index.html (`#nh-prelock` <style>) so the
   // body can't scroll during HTML parse — iOS Safari ignores
   // scrollRestoration='manual' once paint commits, and used to open the page
-  // mid-section. The lock is released by LoadingOverlay's onComplete handler.
+  // mid-section. The lock is released by the mount effect above.
   //
   // pageshow (persisted:true) fires when Safari restores a page from bfcache
   // (back/forward button). The inline <head> script doesn't re-run there,
@@ -102,8 +103,8 @@ function App() {
     const onPageShow = (e: PageTransitionEvent) => {
       if (e.persisted) {
         // bfcache restore triggers Safari's saved-scroll animation just like
-        // a normal load. Same 60-frame pin as LoadingOverlay onComplete below
-        // — three rAFs (~50ms) didn't outlast iOS's smooth-restore on phone.
+        // a normal load. Same 60-frame pin as the mount effect above — three
+        // rAFs (~50ms) didn't outlast iOS's smooth-restore on phone.
         window.scrollTo(0, 0);
         let frame = 0;
         const pinTop = () => {
@@ -251,31 +252,6 @@ function App() {
 
   return (
     <div className="relative">
-      {!introComplete && (
-        <LoadingOverlay onComplete={() => {
-          // Release the pre-React scroll lock and pin scrollY = 0 for ~1s.
-          // iOS Safari ignores scrollRestoration='manual' once paint commits
-          // and animates back to a remembered scroll position from the prior
-          // visit — three rAFs (~50ms) didn't outlast that animation, so
-          // users saw the page jerk to mid-RoomJourney before snapping to
-          // hero. 60 frame-by-frame pins (~1s) outlast even a slow restore.
-          document.getElementById('nh-prelock')?.remove();
-          try { sessionStorage.setItem('nh_intro_done', '1'); } catch { /* private mode */ }
-          window.scrollTo(0, 0);
-          let frame = 0;
-          const pinTop = () => {
-            window.scrollTo(0, 0);
-            if (frame++ < 60) requestAnimationFrame(pinTop);
-          };
-          requestAnimationFrame(pinTop);
-          // No manual ScrollTrigger.refresh() here — GSAP's own ResizeObserver
-          // already refreshes positions as lazy sections load during the intro.
-          // An explicit refresh at this moment can fire onUpdate with a stale
-          // transient progress (Safari URL-bar virtual scroll) and push the
-          // AmenitiesSection track to its end position on first paint.
-          setIntroComplete(true);
-        }} />
-      )}
       <GrainOverlay />
       <a
         href="#main"

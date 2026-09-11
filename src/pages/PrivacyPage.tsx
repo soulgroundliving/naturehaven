@@ -45,7 +45,6 @@ const PrivacyPage: React.FC = () => {
             ],
             list: [
               'nh_lang — ภาษาที่คุณเลือก (ไทย/อังกฤษ) เก็บถาวรใน localStorage',
-              "nh_intro_done — สถานะว่าคุณเคยดูอินโทรของเว็บไซต์แล้ว เก็บชั่วคราวใน sessionStorage (หายเมื่อปิดแท็บ)",
               'nh_cookie_consent — ตัวเลือกที่คุณกดในแบนเนอร์แจ้งเตือนนี้เอง เก็บถาวรใน localStorage',
             ],
             after: 'ข้อมูลทั้งหมดนี้อยู่ในเบราว์เซอร์ของคุณเท่านั้น ไม่ถูกส่งขึ้นเซิร์ฟเวอร์ของเรา และไม่สามารถระบุตัวตนคุณได้',
@@ -90,7 +89,6 @@ const PrivacyPage: React.FC = () => {
             body: ["This website has no data-collection forms and sets no tracking cookies. The only things stored in your browser are:"],
             list: [
               'nh_lang — your chosen language (Thai/English), kept permanently in localStorage',
-              "nh_intro_done — whether you've seen the site's intro animation, kept in sessionStorage (cleared when you close the tab)",
               'nh_cookie_consent — the choice you make in this notice banner, kept permanently in localStorage',
             ],
             after: "All of this lives in your browser only — none of it is sent to our servers, and none of it identifies you.",

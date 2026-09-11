@@ -62,8 +62,9 @@ export default function OrbScene() {
 
       // On mobile, skip the continuous scrub — it fires on each native scroll
       // frame and stacks with WebGL paint cost. Instead:
-      //   1. Hold the orb at the H1 anchor for 3 s after the LoadingOverlay
-      //      finishes opening (~3.5 s after page load — so delay 6.5 s).
+      //   1. Hold the orb at the H1 anchor for 3 s after page load (there is
+      //      no intro overlay anymore, so page load and hero-visible are the
+      //      same moment).
       //   2. Then begin a soft, continuous up-down "breathing" oscillation
       //      between the "Nature" and "Haven" lines. Amplitude = H1 height
       //      / 4 so each extreme of the cycle lands roughly on a line of
@@ -103,7 +104,7 @@ export default function OrbScene() {
             .to(container, { y: heroOffset + amplitude, duration: 5, ease: 'sine.inOut' });
           oscillate.add(cycle);
         };
-        const delayedStart = gsap.delayedCall(6.5, startOscillate);
+        const delayedStart = gsap.delayedCall(3, startOscillate);
 
         ScrollTrigger.create({
           trigger: '#hero',

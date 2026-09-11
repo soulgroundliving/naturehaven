@@ -8,9 +8,10 @@ const STORAGE_KEY = 'nh_cookie_consent';
 // PDPA-style notice, not a blocking consent gate — this site sets no
 // tracking cookies (Vercel Web Analytics is cookieless, see src/main.tsx).
 // What it DOES store in the browser is functional only: language preference
-// (localStorage `nh_lang`) and the one-time intro-skip flag (sessionStorage
-// `nh_intro_done`). The copy says exactly that — no generic "we use cookies
-// to improve your experience" line, since that wouldn't be true here.
+// (localStorage `nh_lang`) and this banner's own dismissal choice
+// (localStorage `nh_cookie_consent`). The copy says exactly that — no
+// generic "we use cookies to improve your experience" line, since that
+// wouldn't be true here.
 export default function CookieConsent() {
   const { lang } = useLanguage();
   const t = TR.cookieNotice;

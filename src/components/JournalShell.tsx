@@ -14,9 +14,9 @@ const JournalShell: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { pathname } = useLocation();
 
   // index.html locks scrolling before React mounts (#nh-prelock) so iOS
-  // Safari can't restore a stale scroll position. On the homepage the
-  // LoadingOverlay releases it — journal routes must release it themselves
-  // or the page stays frozen.
+  // Safari can't restore a stale scroll position. App.tsx releases it for
+  // the homepage — journal routes mount this shell instead, so they must
+  // release it themselves or the page stays frozen.
   useEffect(() => {
     document.getElementById('nh-prelock')?.remove();
   }, []);
