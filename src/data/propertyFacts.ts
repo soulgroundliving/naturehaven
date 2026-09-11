@@ -54,6 +54,19 @@ export const PROPERTY = {
   hasElevator: false,
 } as const;
 
+// Computed display labels for the two dates above — every "November 2026" /
+// "October 2026" shown anywhere on the site should come from these, not be
+// retyped, after a prior bug where the two milestones got mixed up in copy
+// (see the 2026-09-11 owner clarification comment above).
+const TH_MONTHS = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+const EN_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+function monthYearLabel(iso: string): { en: string; th: string } {
+  const [y, m] = iso.split('-').map(Number);
+  return { en: `${EN_MONTHS[m - 1]} ${y}`, th: `${TH_MONTHS[m - 1]} ${y + 543}` };
+}
+export const MOVE_IN_LABEL = monthYearLabel(PROPERTY.moveInFrom);
+export const AVAILABLE_FROM_LABEL = monthYearLabel(PROPERTY.availableFrom);
+
 // Every unit is pet-friendly. Opening price has two tiers by floor: upper
 // floors (3–4) are the entry rate at 6,900 THB/mo; lower floors (1–2) are
 // 7,200 THB/mo. 20 units total · 5 per floor.
@@ -183,8 +196,8 @@ export const FAQ_ITEMS = [
     id: 'open',
     q_th: 'เปิดให้เข้าอยู่เมื่อไหร่?',
     q_en: 'When can I move in?',
-    a_th: 'เปิดให้จองตั้งแต่ตุลาคม 2569 · พร้อมเข้าอยู่จริงพฤศจิกายน 2569',
-    a_en: 'Reservations open October 2026 · actual move-in from November 2026.',
+    a_th: `เปิดให้จองตั้งแต่${AVAILABLE_FROM_LABEL.th} · พร้อมเข้าอยู่จริง${MOVE_IN_LABEL.th}`,
+    a_en: `Reservations open ${AVAILABLE_FROM_LABEL.en} · actual move-in from ${MOVE_IN_LABEL.en}.`,
   },
   {
     id: 'contact',
@@ -210,3 +223,25 @@ export const FAQ_ITEMS = [
 ] as const;
 
 export type FaqItem = (typeof FAQ_ITEMS)[number];
+
+// Nearby places + distances — moved here from LocationSection.tsx (was a
+// component-local const), since the same distances are also stated in prose
+// in src/content/journal/saimai-in-numbers.ts. That article isn't imported
+// from here (it's editorial narrative, not a data consumer) — if a distance
+// below ever changes, re-check that article by hand.
+export const NEARBY_ESSENTIALS = [
+  { name: 'Big C', distance: '280 m' },
+  { name: 'CGH Sai Mai Hospital', distance: '300 m' },
+  { name: 'Wongsakorn Market', distance: '700 m' },
+  { name: 'Makro Sai Mai', distance: '750 m' },
+  { name: 'BTS Khu Khot', distance: '5 km · ~15 min by taxi' },
+] as const;
+
+export const LIFESTYLE_SURROUNDINGS = [
+  { name: 'Saimai Avenue', distance: '1 km' },
+  { name: 'Maruay Market', distance: '4.4 km' },
+  { name: 'AC Sai Mai Market', distance: '5 km' },
+  { name: 'Foodland', distance: '3.3 km' },
+  { name: 'Save One Go Market', distance: '7 km' },
+  { name: 'Market Place Theprak', distance: '9.7 km' },
+] as const;

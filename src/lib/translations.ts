@@ -1,4 +1,14 @@
 import type { Lang } from '@/contexts/LanguageContext';
+import {
+  PRICE_FROM,
+  PRICE_TO,
+  ELECTRICITY_RATE_PER_UNIT,
+  WATER_RATE_PER_UNIT,
+  PET_FEE_MONTHLY,
+  PARKING_CAPACITY_APPROX,
+  MOVE_IN_LABEL,
+  AVAILABLE_FROM_LABEL,
+} from '@/data/propertyFacts';
 
 type T = { en: string; th: string };
 function pick(t: T, lang: Lang): string { return t[lang]; }
@@ -99,8 +109,8 @@ export const TR = {
       th: 'ที่พักที่ออกแบบด้วยเจตนา — ที่ซึ่งชีวิตและสัตว์เลี้ยงที่คุณรักค่อยๆ กลับคืนสู่จังหวะธรรมชาติ',
     },
     cta: {
-      en: 'Apartment · Pet-friendly · Saimai\nMove in November 2026',
-      th: 'อพาร์ทเม้นท์สายไหม · เลี้ยงสัตว์ได้ทั้งตึก\nพร้อมเข้าอยู่ พฤศจิกายน 2569',
+      en: `Apartment · Pet-friendly · Saimai\nMove in ${MOVE_IN_LABEL.en}`,
+      th: `อพาร์ทเม้นท์สายไหม · เลี้ยงสัตว์ได้ทั้งตึก\nพร้อมเข้าอยู่ ${MOVE_IN_LABEL.th}`,
     },
     scroll: { en: 'Scroll to explore', th: 'เลื่อนเพื่อสำรวจ' },
   },
@@ -125,6 +135,30 @@ export const TR = {
     },
     aboutButton: { en: 'View Residences', th: 'ดูห้องพัก' },
   },
+  // /about shell (AboutPage.tsx) — structure only, no invented content.
+  // Section labels are structural (requested directly), the body copy under
+  // each is an explicit placeholder marker, not a first draft. Do not treat
+  // any string here as real founder/brand copy.
+  aboutPage: {
+    metaTitle: { en: 'About Nature Haven (in progress)', th: 'เกี่ยวกับ Nature Haven (กำลังจัดทำ)' },
+    metaDescription: {
+      en: 'This page is being written and is not yet public.',
+      th: 'หน้านี้อยู่ระหว่างจัดทำเนื้อหา ยังไม่เผยแพร่ต่อสาธารณะ',
+    },
+    eyebrow: { en: 'About', th: 'เกี่ยวกับเรา' },
+    draftNote: {
+      en: 'This page is still being written. The structure below is ready — the words are not. Every section is a placeholder until the owner provides real content.',
+      th: 'หน้านี้ยังอยู่ระหว่างจัดทำ โครงสร้างด้านล่างพร้อมแล้ว แต่ยังไม่มีข้อความจริง ทุกส่วนเป็นเพียงตัวยึดพื้นที่ รอเนื้อหาจริงจากเจ้าของโครงการ',
+    },
+    placeholderBody: {
+      en: 'Awaiting content from the project owner — no real copy has been written for this section yet.',
+      th: 'รอเนื้อหาจากเจ้าของโครงการ — ยังไม่มีการเขียนข้อความจริงในส่วนนี้',
+    },
+    sections: {
+      en: ['Why We Started', 'Who We Are', 'What Nature Means', 'Our Standard'],
+      th: ['ทำไมเราเริ่มทำโครงการนี้', 'เราเป็นใคร', 'Nature หมายถึงอะไรสำหรับเรา', 'มาตรฐานของเรา'],
+    },
+  },
   residences: {
     sectionLabel: { en: 'Residences', th: 'ห้องพัก' },
     sectionHeadline: {
@@ -137,15 +171,24 @@ export const TR = {
       th: 'สรุปข้อมูลสำคัญสำหรับเริ่มต้นคุย ห้องว่างล่าสุดและยอดค่าใช้จ่ายวันเข้าอยู่ยืนยันเป็นรายบุคคลทาง LINE',
     },
     decisionPriceLabel: { en: 'Rent, by floor', th: 'ค่าเช่าตามชั้น' },
-    decisionPriceDetail: { en: 'Floors 3–4: 6,900 · Floors 1–2: 7,200. Availability confirmed on LINE.', th: 'ชั้น 3-4: 6,900 · ชั้น 1-2: 7,200 บาท ยืนยันห้องว่างทาง LINE' },
+    decisionPriceDetail: {
+      en: `Floors 3–4: ${PRICE_FROM.toLocaleString('en-US')} · Floors 1–2: ${PRICE_TO.toLocaleString('en-US')}. Availability confirmed on LINE.`,
+      th: `ชั้น 3-4: ${PRICE_FROM.toLocaleString('en-US')} · ชั้น 1-2: ${PRICE_TO.toLocaleString('en-US')} บาท ยืนยันห้องว่างทาง LINE`,
+    },
     decisionSizeLabel: { en: 'Room size', th: 'ขนาดห้อง' },
     decisionSizeDetail: { en: 'One bedroom, one bathroom, multi-purpose storage cabinet and private balcony.', th: '1 ห้องนอน 1 ห้องน้ำ ตู้เก็บของอเนกประสงค์ และระเบียงส่วนตัว' },
     decisionLeaseLabel: { en: 'Lease', th: 'สัญญาเช่า' },
     decisionLeaseDetail: { en: 'Annual contract; move-in costs are confirmed on LINE.', th: 'สัญญารายปี และยืนยันค่าใช้จ่ายวันเข้าอยู่ทาง LINE' },
     decisionMoveinLabel: { en: 'Move-in', th: 'พร้อมเข้าอยู่' },
-    decisionMoveinDetail: { en: 'From November 2026 (reservations open October).', th: 'พฤศจิกายน 2569 (เปิดจองตุลาคม)' },
+    decisionMoveinDetail: {
+      en: `From ${MOVE_IN_LABEL.en} (reservations open ${AVAILABLE_FROM_LABEL.en.split(' ')[0]}).`,
+      th: `${MOVE_IN_LABEL.th} (เปิดจอง${AVAILABLE_FROM_LABEL.th.split(' ')[0]})`,
+    },
     decisionIncludedLabel: { en: 'Monthly rate', th: 'ค่าเช่ารายเดือน' },
-    decisionIncludedDetail: { en: 'Wi-Fi, cleaning & A/C included. Electricity 6 · water 20 THB/unit, metered.', th: 'รวม Wi-Fi ทำความสะอาด ล้างแอร์ ค่าไฟ 6 · ค่าน้ำ 20 บาท/หน่วย คิดตามจริง' },
+    decisionIncludedDetail: {
+      en: `Wi-Fi, cleaning & A/C included. Electricity ${ELECTRICITY_RATE_PER_UNIT} · water ${WATER_RATE_PER_UNIT} THB/unit, metered.`,
+      th: `รวม Wi-Fi ทำความสะอาด ล้างแอร์ ค่าไฟ ${ELECTRICITY_RATE_PER_UNIT} · ค่าน้ำ ${WATER_RATE_PER_UNIT} บาท/หน่วย คิดตามจริง`,
+    },
     decisionCostNote: {
       en: 'Move-in costs: 1 month deposit + 1 month advance rent, plus a security deposit and booking fee. Exact security-deposit/booking-fee amounts, current room availability and viewing times are confirmed on LINE.',
       th: 'ค่าใช้จ่ายวันเข้าอยู่: มัดจำ 1 เดือน + ค่าเช่าล่วงหน้า 1 เดือน รวมค่าประกันและค่าจอง — ยอดค่าประกัน/ค่าจอง ห้องว่างล่าสุด และเวลานัดชม ยืนยันทาง LINE',
@@ -167,11 +210,17 @@ export const TR = {
     moveinLabel: { en: 'Move-in', th: 'เข้าอยู่' },
     moveinValue: { en: '1 mo. deposit + 1 mo. advance + security (amount on LINE)', th: 'มัดจำ 1 เดือน + ล่วงหน้า 1 เดือน + ค่าประกัน (แจ้งยอดทาง LINE)' },
     availableLabel: { en: 'Available from', th: 'พร้อมเข้าอยู่' },
-    availableValue: { en: 'November 2026', th: 'พฤศจิกายน 2569' },
+    availableValue: { en: MOVE_IN_LABEL.en, th: MOVE_IN_LABEL.th },
     utilitiesLabel: { en: 'Utilities', th: 'ค่าน้ำ-ค่าไฟ' },
-    utilitiesValue: { en: 'Electricity 6 · Water 20 THB/unit (metered)', th: 'ไฟ 6 · น้ำ 20 บาท/หน่วย (ตามจริง)' },
+    utilitiesValue: {
+      en: `Electricity ${ELECTRICITY_RATE_PER_UNIT} · Water ${WATER_RATE_PER_UNIT} THB/unit (metered)`,
+      th: `ไฟ ${ELECTRICITY_RATE_PER_UNIT} · น้ำ ${WATER_RATE_PER_UNIT} บาท/หน่วย (ตามจริง)`,
+    },
     parkingLabel: { en: 'Parking', th: 'ที่จอดรถ' },
-    parkingValue: { en: '~16 spaces, first-come, first-served', th: 'ประมาณ 16 คัน มาก่อนได้จอดก่อน' },
+    parkingValue: {
+      en: `~${PARKING_CAPACITY_APPROX} spaces, first-come, first-served`,
+      th: `ประมาณ ${PARKING_CAPACITY_APPROX} คัน มาก่อนได้จอดก่อน`,
+    },
     allinclusive: {
       en: 'Wi-Fi, cleaning & A/C service are included in the rent. Electricity and water are metered separately — no common fee.',
       th: 'ค่าเช่ารวม Wi-Fi ทำความสะอาด และล้างแอร์ไว้แล้ว ส่วนค่าน้ำค่าไฟคิดตามหน่วยจริงแยกต่างหาก — ไม่มีค่าส่วนกลาง',
@@ -189,7 +238,10 @@ export const TR = {
     openingRate: { en: 'Opening Rate', th: 'ราคาเปิดตัว' },
     petsEverywhere: { en: 'Pet-friendly — the whole building', th: 'อพาร์ทเมนท์เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น' },
     petsEverywhereSub: { en: 'No floor restrictions — small pets (1–2 per unit) welcome in every home, on every floor.', th: 'ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง' },
-    petFeeNote: { en: 'Monthly pet fee: 500 THB per pet.', th: 'ค่าสัตว์เลี้ยง 500 บาท/ตัว/เดือน' },
+    petFeeNote: {
+      en: `Monthly pet fee: ${PET_FEE_MONTHLY.toLocaleString('en-US')} THB per pet.`,
+      th: `ค่าสัตว์เลี้ยง ${PET_FEE_MONTHLY.toLocaleString('en-US')} บาท/ตัว/เดือน`,
+    },
     floorWord: { en: 'Floor', th: 'ชั้น' },
     fromLabel: { en: 'From', th: 'เริ่มต้น' },
     tierCta: { en: 'Book a viewing', th: 'นัดชมห้อง' },
@@ -258,14 +310,14 @@ export const TR = {
     scrollHint: { en: 'Scroll', th: 'เลื่อน' },
     items: {
       en: [
-        { label: 'Parking', desc: 'Registered residents · ~16 spaces around the building · first-come, first-served.' },
+        { label: 'Parking', desc: `Registered residents · ~${PARKING_CAPACITY_APPROX} spaces around the building · first-come, first-served.` },
         { label: 'Pocket Garden', desc: 'A communal garden to slow down in. Green, quiet, yours.' },
         { label: 'Laundry & Dryer', desc: 'Washers and dryers on site, with a drinking-water refill station.' },
         { label: 'Cleaning Service', desc: 'Common areas professionally maintained every six months.' },
         { label: 'A/C Maintenance', desc: 'Serviced annually, included in your rate.' },
       ],
       th: [
-        { label: 'ที่จอดรถ', desc: 'สำหรับผู้พักอาศัยที่ลงทะเบียน · พื้นที่จอดจริงประมาณ 16 คันรอบอาคาร · มาก่อนได้จอดก่อน' },
+        { label: 'ที่จอดรถ', desc: `สำหรับผู้พักอาศัยที่ลงทะเบียน · พื้นที่จอดจริงประมาณ ${PARKING_CAPACITY_APPROX} คันรอบอาคาร · มาก่อนได้จอดก่อน` },
         { label: 'สวนกระเป๋า', desc: 'สวนส่วนกลาง — สีเขียว สงบ เป็นของคุณ' },
         { label: 'ซักผ้า & อบผ้า', desc: 'เครื่องซักและเครื่องอบในอาคาร พร้อมจุดเติมน้ำดื่ม' },
         { label: 'บริการทำความสะอาด', desc: 'ทำความสะอาดพื้นที่ส่วนกลางโดยมืออาชีพทุก 6 เดือน' },
@@ -288,6 +340,7 @@ export const TR = {
     },
     nearbyTitle: { en: 'Nearby Essentials', th: 'สถานที่ใกล้เคียง' },
     lifestyleTitle: { en: 'Lifestyle Surroundings', th: 'ห้างร้านและตลาดรอบข้าง' },
+    guideLink: { en: 'See the full neighbourhood guide', th: 'ดูคู่มือย่านฉบับเต็ม' },
   },
   smart: {
     leftLabel: { en: 'Quietly Connected', th: 'เชื่อมต่ออย่างเงียบงาม' },

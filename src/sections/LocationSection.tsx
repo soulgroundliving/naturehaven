@@ -1,32 +1,20 @@
 import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import SectionHeader from '@/components/SectionHeader';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
+import { NEARBY_ESSENTIALS as nearbyEssentials, LIFESTYLE_SURROUNDINGS as lifestyleSurroundings } from '@/data/propertyFacts';
 
 gsap.registerPlugin(ScrollTrigger);
 
 // Real nearby places (brand names are fine HERE — owner's "no brand names"
 // note was about the in-room essentials, not this list). Café Amazon dropped
-// only because that shop closed.
-const nearbyEssentials = [
-  { name: 'Big C', distance: '280 m' },
-  { name: 'CGH Sai Mai Hospital', distance: '300 m' },
-  { name: 'Wongsakorn Market', distance: '700 m' },
-  { name: 'Makro Sai Mai', distance: '750 m' },
-  { name: 'BTS Khu Khot', distance: '5 km · ~15 min by taxi' },
-];
-
-const lifestyleSurroundings = [
-  { name: 'Saimai Avenue', distance: '1 km' },
-  { name: 'Maruay Market', distance: '4.4 km' },
-  { name: 'AC Sai Mai Market', distance: '5 km' },
-  { name: 'Foodland', distance: '3.3 km' },
-  { name: 'Save One Go Market', distance: '7 km' },
-  { name: 'Market Place Theprak', distance: '9.7 km' },
-];
+// only because that shop closed. Canonical list lives in propertyFacts.ts —
+// the same distances are also stated in prose in the "Sai Mai, measured in
+// metres" journal article.
 
 const LocationSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -144,6 +132,17 @@ const LocationSection: React.FC = () => {
                 </div>
               ))}
             </div>
+
+            {/* /places has no other homepage entry point (only reachable via
+                the lightweight JournalShell chrome on other subpages) — this
+                closes that gap without adding a persistent nav item. */}
+            <Link
+              to="/places"
+              className="loc-item group mt-8 inline-flex items-center gap-2 font-sans text-sm sec-text-70 transition-colors duration-300 hover:text-sage-green"
+            >
+              {loc.guideLink[lang]}
+              <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </Link>
           </div>
         </div>
       </div>
