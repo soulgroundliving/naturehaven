@@ -8,8 +8,8 @@ const article: Article = {
     th: 'เงียบโดยตั้งใจ — ทำไมตึก 20 ห้องที่ไม่มีลิฟต์ ถึงเป็นความตั้งใจ ไม่ใช่ข้อจำกัด',
   },
   excerpt: {
-    en: 'Every decision at Nature Haven starts from one question: does it make daily life quieter? This is the reasoning behind the low-rise form, moving the wet work out to the balcony, and the all-inclusive rent.',
-    th: 'ทุกการตัดสินใจของ Nature Haven เริ่มจากคำถามเดียว: มันทำให้ชีวิตประจำวันเงียบขึ้นไหม — นี่คือเหตุผลเบื้องหลังตึกเตี้ย การย้ายงานล้างไปไว้ที่ระเบียง และค่าเช่าที่รวมทุกอย่าง',
+    en: 'Every decision at Nature Haven starts from one question: does it make daily life quieter? This is the reasoning behind the low-rise form, moving the wet work out to the balcony, and what the rent covers.',
+    th: 'ทุกการตัดสินใจของ Nature Haven เริ่มจากคำถามเดียว: มันทำให้ชีวิตประจำวันเงียบขึ้นไหม — นี่คือเหตุผลเบื้องหลังตึกเตี้ย การย้ายงานล้างไปไว้ที่ระเบียง และสิ่งที่ค่าเช่าครอบคลุม',
   },
   date: '2026-07-03',
   readMinutes: 5,

@@ -8,8 +8,8 @@ const article: Article = {
     th: 'Build Diary #1 — สิ่งที่เคาะแล้ว ระหว่างทางสู่พฤศจิกายน 2026',
   },
   excerpt: {
-    en: 'A record kept as the building rises. This first entry covers what has already been decided — the pricing structure, the all-inclusive rent, solar power for the common areas — and what comes next.',
-    th: 'บันทึกที่เก็บไว้ระหว่างตึกค่อย ๆ เป็นรูปเป็นร่าง ฉบับแรกนี้ว่าด้วยสิ่งที่เคาะแล้ว — โครงสร้างราคา ค่าเช่าแบบรวมทุกอย่าง พลังงานโซลาร์สำหรับพื้นที่ส่วนกลาง — และสิ่งที่กำลังดำเนินต่อไป',
+    en: 'A record kept as the building rises. This first entry covers what has already been decided — the pricing structure, what the rent includes, solar power for the common areas — and what comes next.',
+    th: 'บันทึกที่เก็บไว้ระหว่างตึกค่อย ๆ เป็นรูปเป็นร่าง ฉบับแรกนี้ว่าด้วยสิ่งที่เคาะแล้ว — โครงสร้างราคา สิ่งที่ค่าเช่าครอบคลุม พลังงานโซลาร์สำหรับพื้นที่ส่วนกลาง — และสิ่งที่กำลังดำเนินต่อไป',
   },
   date: '2026-06-19',
   readMinutes: 4,
@@ -33,8 +33,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'เงื่อนไขทางการค้าทั้งหมดเคาะแล้ว ทุกยูนิตเลี้ยงสัตว์ได้ เริ่มต้นที่ 6,900 บาทต่อเดือนแบบรวมทุกอย่าง ค่าสัตว์เลี้ยงเป็นอัตรารายเดือนต่อตัว แจ้งชัดเจนตรงไปตรงมาตั้งแต่แรก — กติกาเดียวกันทุกห้อง ไม่ใช่ข้อยกเว้นที่ต้องต่อรองเป็นราย ๆ ค่าเช่ารวม Wi-Fi (AIS Fiber) บริการทำความสะอาด และดูแลแอร์ไว้แล้ว ตัวเลขเดียวครอบคลุมทั้งเดือน สัญญาเช่ามีระยะ 12 เดือน โดยมีค่ามัดจำ ค่าเช่าล่วงหน้า และค่าประกันตามปกติ ตัวเลขทั้งหมดข้างต้นพูดครั้งเดียวและตรงกันทุกที่ที่คุณจะพบเจอ — ส่วนยอดมัดจำและราคาที่แท้จริงของแต่ละชั้น เราแจ้งให้เป็นการส่วนตัวเมื่อมีผู้สนใจ',
-        en: 'The commercial terms are settled. Every residence is pet-friendly, from 6,900 THB a month, all-inclusive; the pet fee is a clear per-animal monthly rate, stated upfront: one rule for every home, never an exception to negotiate. Rent already carries Wi-Fi (AIS Fiber), cleaning, and air-conditioning service, so one figure covers the month. The lease runs twelve months, with a deposit, advance rent, and a security deposit as usual. Every number above is stated once, and it will match wherever you encounter it — the deposit figures and the exact rate for each floor are shared privately, on request.',
+        th: 'เงื่อนไขทางการค้าทั้งหมดเคาะแล้ว ทุกยูนิตเลี้ยงสัตว์ได้ เริ่มต้นที่ 6,900 บาทต่อเดือน ค่าสัตว์เลี้ยงเป็นอัตรารายเดือนต่อตัว แจ้งชัดเจนตรงไปตรงมาตั้งแต่แรก — กติกาเดียวกันทุกห้อง ไม่ใช่ข้อยกเว้นที่ต้องต่อรองเป็นราย ๆ ค่าเช่ารวม Wi-Fi (AIS Fiber) บริการทำความสะอาด และดูแลแอร์ไว้แล้ว ส่วนค่าน้ำค่าไฟคิดตามการใช้จริงแยกต่างหาก สัญญาเช่ามีระยะ 12 เดือน โดยมีค่ามัดจำ ค่าเช่าล่วงหน้า และค่าประกันตามปกติ ตัวเลขทั้งหมดข้างต้นพูดครั้งเดียวและตรงกันทุกที่ที่คุณจะพบเจอ — ส่วนยอดมัดจำและราคาที่แท้จริงของแต่ละชั้น เราแจ้งให้เป็นการส่วนตัวเมื่อมีผู้สนใจ',
+        en: 'The commercial terms are settled. Every residence is pet-friendly, from 6,900 THB a month; the pet fee is a clear per-animal monthly rate, stated upfront: one rule for every home, never an exception to negotiate. Rent already carries Wi-Fi (AIS Fiber), cleaning, and air-conditioning service — electricity and water are metered separately, billed at actual usage. The lease runs twelve months, with a deposit, advance rent, and a security deposit as usual. Every number above is stated once, and it will match wherever you encounter it — the deposit figures and the exact rate for each floor are shared privately, on request.',
       },
     },
     {

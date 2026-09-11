@@ -87,22 +87,22 @@ export const PETS_POLICY = {
 export const UNITS = [
   {
     id: 'floor-4', label: 'Floor 4', floor: 4,
-    sqm: 25.2, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
+    sqm: 25.2, bedrooms: 1, bathrooms: 1, hasKitchen: false, hasBalcony: true,
     petsAllowed: true, priceOpening: 6900,
   },
   {
     id: 'floor-3', label: 'Floor 3', floor: 3,
-    sqm: 25.2, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
+    sqm: 25.2, bedrooms: 1, bathrooms: 1, hasKitchen: false, hasBalcony: true,
     petsAllowed: true, priceOpening: 6900,
   },
   {
     id: 'floor-2', label: 'Floor 2', floor: 2,
-    sqm: 25.2, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
+    sqm: 25.2, bedrooms: 1, bathrooms: 1, hasKitchen: false, hasBalcony: true,
     petsAllowed: true, priceOpening: 7200,
   },
   {
     id: 'floor-1', label: 'Floor 1', floor: 1,
-    sqm: 25.2, bedrooms: 1, bathrooms: 1, hasKitchen: true, hasBalcony: true,
+    sqm: 25.2, bedrooms: 1, bathrooms: 1, hasKitchen: false, hasBalcony: true,
     petsAllowed: true, priceOpening: 7200,
   },
 ] as const;
@@ -130,8 +130,8 @@ export const FAQ_ITEMS = [
     id: 'inclusive',
     q_th: 'ค่าเช่ารวมอะไรบ้าง?',
     q_en: "What's included in the rent?",
-    a_th: `ค่าเช่ารวม Wi-Fi (AIS Fiber), บริการทำความสะอาด และบริการล้างแอร์ไว้แล้ว ส่วนค่าไฟฟ้าคิดตามหน่วยจริง ${ELECTRICITY_RATE_PER_UNIT} บาท/หน่วย และค่าน้ำ ${WATER_RATE_PER_UNIT} บาท/หน่วย (แยกจากค่าเช่า ตามการใช้งานจริง) ไม่มีค่าส่วนกลางเพิ่มเติม`,
-    a_en: `Rent includes Wi-Fi (AIS Fiber), cleaning service, and A/C maintenance. Electricity and water are metered and billed separately by actual usage — ${ELECTRICITY_RATE_PER_UNIT} THB/unit and ${WATER_RATE_PER_UNIT} THB/unit. There is no additional common-area fee.`,
+    a_th: `ค่าเช่ารวม Wi-Fi (AIS Fiber), บริการทำความสะอาดพื้นที่ส่วนกลาง (ปีละ 2 ครั้ง) และบริการล้างแอร์ไว้แล้ว ส่วนค่าไฟฟ้าคิดตามหน่วยจริง ${ELECTRICITY_RATE_PER_UNIT} บาท/หน่วย และค่าน้ำ ${WATER_RATE_PER_UNIT} บาท/หน่วย (แยกจากค่าเช่า ตามการใช้งานจริง) ไม่มีค่าส่วนกลางเพิ่มเติม`,
+    a_en: `Rent includes Wi-Fi (AIS Fiber), common-area cleaning (twice a year), and A/C maintenance. Electricity and water are metered and billed separately by actual usage — ${ELECTRICITY_RATE_PER_UNIT} THB/unit and ${WATER_RATE_PER_UNIT} THB/unit. There is no additional common-area fee.`,
   },
   {
     id: 'size',
