@@ -135,14 +135,22 @@ const ArticlePage: React.FC = () => {
                 <p className="font-sans text-[15px] font-medium sec-text">{j.ctaTitle[lang]}</p>
                 <p className="mt-1 font-sans text-sm font-light sec-text-70">{j.ctaBody[lang]}</p>
               </div>
-              <a
-                href={PROPERTY.lineUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block flex-none rounded-full bg-sage-green px-7 py-3 font-sans text-xs uppercase tracking-[0.1em] text-pure-white transition-opacity duration-300 hover:opacity-85"
-              >
-                {j.ctaButton[lang]}
-              </a>
+              <div className="flex flex-none items-center gap-5">
+                <Link
+                  to="/residence"
+                  className="font-sans text-xs uppercase tracking-[0.1em] sec-text-70 underline decoration-sage-green/40 underline-offset-4 transition-colors duration-300 hover:text-sage-green"
+                >
+                  {TR.about.aboutButton[lang]}
+                </Link>
+                <a
+                  href={PROPERTY.lineUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block rounded-full bg-sage-green px-7 py-3 font-sans text-xs uppercase tracking-[0.1em] text-pure-white transition-opacity duration-300 hover:opacity-85"
+                >
+                  {j.ctaButton[lang]}
+                </a>
+              </div>
             </div>
 
             <div className="mt-8 pt-8 border-t sec-border">

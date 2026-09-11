@@ -31,7 +31,7 @@ const schemaTypes = (html) => [...html.matchAll(/<script[^>]*type=["']applicatio
   }
 });
 
-for (const route of ['/', '/places', '/journal', '/links', '/privacy']) {
+for (const route of ['/', '/residence', '/places', '/journal', '/links', '/privacy']) {
   const file = routeFile(route);
   assert(fs.existsSync(file), `prerendered route is missing: ${route}`);
   const html = fs.readFileSync(file, 'utf8');
@@ -46,6 +46,9 @@ for (const route of ['/', '/places', '/journal', '/links', '/privacy']) {
     assert(html.includes('อพาร์ทเม้นท์สายไหม'), 'homepage must retain the Saimai apartment search phrase');
     assert(html.includes('อพาร์ทเมนท์เลี้ยงสัตว์ได้'), 'homepage must retain the pet-friendly apartment search phrase');
     assert(!types.includes('LocalBusiness'), 'homepage must not claim LocalBusiness without an eligible office');
+  } else if (route === '/residence') {
+    assert(types.includes('ApartmentComplex'), '/residence must include ApartmentComplex');
+    assert(!types.includes('FAQPage') && !types.includes('Organization'), '/residence must not include homepage-only schemas');
   } else if (route === '/places') {
     assert(types.includes('CollectionPage'), '/places must include CollectionPage');
     assert(!types.includes('FAQPage') && !types.includes('ApartmentComplex') && !types.includes('LocalBusiness'), '/places must not include homepage-only schemas');

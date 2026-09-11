@@ -1,8 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import JournalShell from '@/components/JournalShell';
 import usePageMeta from '@/hooks/usePageMeta';
 import { PROPERTY } from '@/data/propertyFacts';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { TR } from '@/lib/translations';
 
 // Neighbourhood guide ("ไปไหนดี") — fetches the owner-curated ร้านแนะนำย่าน from the resident app's
 // public /api/places feed (the SAME Firestore source the LINE bot reads → no data drift, and this
@@ -45,6 +47,11 @@ const COPY = {
   source: {
     en: 'Our picks from around the neighbourhood · call ahead to confirm hours.',
     th: 'เราเลือกมาให้จากย่านนี้ · โทรเช็กเวลาเปิดก่อนไปนะคะ',
+  },
+  residenceCtaTitle: { en: 'Curious about the residence itself?', th: 'อยากรู้จักตัวห้องพักด้วยไหม?' },
+  residenceCtaBody: {
+    en: 'Room facts, pricing by floor, and what the rent covers — all in one place.',
+    th: 'ข้อมูลห้อง ราคาตามชั้น และสิ่งที่ค่าเช่าครอบคลุม รวมไว้ในที่เดียว',
   },
 };
 
@@ -298,6 +305,19 @@ const PlacesPage: React.FC = () => {
               <p className="mt-8 font-sans text-xs leading-6 sec-text-55 md:mt-10">{COPY.source[lang]}</p>
             </>
           )}
+
+          <div className="mt-10 flex flex-col items-start justify-between gap-4 rounded-2xl border sec-border bg-pure-white/10 p-5 backdrop-blur-sm sm:flex-row sm:items-center md:mt-14 md:p-7">
+            <div>
+              <p className="font-sans text-[15px] font-medium sec-text">{COPY.residenceCtaTitle[lang]}</p>
+              <p className="mt-1 font-sans text-sm font-light sec-text-70">{COPY.residenceCtaBody[lang]}</p>
+            </div>
+            <Link
+              to="/residence"
+              className="inline-flex min-h-11 flex-none items-center justify-center rounded-full bg-sage-green px-6 py-2.5 font-sans text-xs uppercase tracking-[0.1em] text-pure-white transition-opacity duration-300 hover:opacity-85"
+            >
+              {TR.about.aboutButton[lang]}
+            </Link>
+          </div>
         </div>
       </section>
     </JournalShell>

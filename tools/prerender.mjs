@@ -52,6 +52,7 @@ try {
 }
 const ROUTES = [
   '/',
+  '/residence',
   '/journal',
   '/links',
   '/places',

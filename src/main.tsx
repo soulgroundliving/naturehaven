@@ -24,6 +24,7 @@ const JournalPage = lazy(() => import('@/pages/JournalPage'))
 const ArticlePage = lazy(() => import('@/pages/ArticlePage'))
 const LinksPage = lazy(() => import('@/pages/LinksPage'))
 const CollectionPage = lazy(() => import('@/pages/CollectionPage'))
+const ResidencePage = lazy(() => import('@/pages/ResidencePage'))
 const PlacesPage = lazy(() => import('@/pages/PlacesPage'))
 const PrivacyPage = lazy(() => import('@/pages/PrivacyPage'))
 
@@ -67,6 +68,14 @@ createRoot(document.getElementById('root')!).render(
               element={
                 <Suspense fallback={null}>
                   <CollectionPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/residence"
+              element={
+                <Suspense fallback={null}>
+                  <ResidencePage />
                 </Suspense>
               }
             />

@@ -227,6 +227,24 @@ export const TR = {
       ],
     },
   },
+  residencePage: {
+    // Chrome for the standalone /residence route — the shared facts/pricing
+    // content itself lives in TR.residences via ResidenceDetails.tsx.
+    eyebrow: { en: 'The Residence', th: 'ห้องพัก' },
+    metaTitle: {
+      en: 'The Residence — 25.2 sqm, pet-friendly | Nature Haven',
+      th: 'ห้องเช่าสายไหม 25.2 ตร.ม. เลี้ยงสัตว์ได้ | Nature Haven',
+    },
+    metaDescription: {
+      en: 'A 25.2 sqm one-bedroom home in Sai Mai, Bangkok — pet-friendly, from 6,900 THB/month. Room facts, pricing by floor, and what is included, in one place.',
+      th: 'ห้องเช่า 25.2 ตร.ม. 1 ห้องนอน ย่านสายไหม กรุงเทพฯ เลี้ยงสัตว์ได้ เริ่มต้น 6,900 บาท/เดือน รวมข้อมูลห้อง ราคาตามชั้น และสิ่งที่ค่าเช่าครอบคลุมไว้ในที่เดียว',
+    },
+    designLinkTitle: { en: 'See the design decisions behind this room', th: 'ดูการออกแบบเบื้องหลังห้องนี้' },
+    designLinkBody: {
+      en: 'Every detail above — the orientation, the balcony, the bathroom — is explained chapter by chapter in the Architectural Lookbook.',
+      th: 'ทุกรายละเอียดข้างต้น — การวางผัง ระเบียง ห้องน้ำ — อธิบายไว้ทีละคอลเลกชันใน The Architectural Lookbook',
+    },
+  },
   amenities: {
     sectionLabel: { en: 'Amenities', th: 'สิ่งอำนวยความสะดวก' },
     headline: {
