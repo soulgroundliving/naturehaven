@@ -1,4 +1,5 @@
 ﻿import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Menu, Close } from './icons';
@@ -42,10 +43,15 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
   const isDark = isOnDarkSection && isPastHero;
 
   const navLabels = TR.nav.links[lang];
+  // "Residences" points at the standalone /residence page, not the homepage
+  // anchor (owner decision — /residence is now the one official destination
+  // for "see the room" intent, from anywhere). Every other item stays an
+  // in-page scroll anchor; both render branches below key off href shape
+  // (leading '#' vs a real path), not the item's position in this array.
   const navLinks = [
     { label: navLabels[0], href: '#about' },
     { label: navLabels[1], href: '#collections' },
-    { label: navLabels[2], href: '#residences' },
+    { label: navLabels[2], href: '/residence' },
     { label: navLabels[3], href: '#amenities' },
     { label: navLabels[4], href: '#journal' },
     { label: navLabels[5], href: '#location' },
@@ -125,27 +131,39 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => {
-              const sectionId = link.href.replace('#', '');
-              const isActive = activeSection === sectionId;
+              const isAnchor = link.href.startsWith('#');
+              const isActive = isAnchor && activeSection === link.href.slice(1);
+              const linkClassName = `relative font-sans text-[13px] uppercase tracking-[0.05em] transition-colors duration-300 group ${
+                isPastHero ? (isDark ? 'text-pure-white' : 'text-dark-charcoal') : ''
+              }`;
+              const linkStyle = !isPastHero ? { color: NAV_HERO_TEXT } : undefined;
+              const label = (
+                <span className="relative">
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-px bg-current transition-all duration-500 ease-out ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </span>
+              );
+              if (!isAnchor) {
+                return (
+                  <Link key={link.href} to={link.href} className={linkClassName} style={linkStyle}>
+                    {label}
+                  </Link>
+                );
+              }
               return (
                 <a
                   key={link.href}
                   href={link.href}
                   aria-current={isActive ? 'location' : undefined}
                   onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                  className={`relative font-sans text-[13px] uppercase tracking-[0.05em] transition-colors duration-300 group ${
-                    isPastHero ? (isDark ? 'text-pure-white' : 'text-dark-charcoal') : ''
-                  }`}
-                  style={!isPastHero ? { color: NAV_HERO_TEXT } : undefined}
+                  className={linkClassName}
+                  style={linkStyle}
                 >
-                  <span className="relative">
-                    {link.label}
-                    <span
-                      className={`absolute -bottom-1 left-0 h-px bg-current transition-all duration-500 ease-out ${
-                        isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                      }`}
-                    />
-                  </span>
+                  {label}
                   {isActive && (
                     <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-sage-green" />
                   )}
@@ -213,22 +231,34 @@ const Navigation: React.FC<NavigationProps> = ({ lenisRef, activeSection, palett
               on-page sections first, then the standalone destinations with ↗. */}
           <div className="flex-1 flex w-full max-w-[420px] mx-auto flex-col justify-center gap-7 py-6">
             <div className="flex flex-col gap-5">
-              {navLinks.map((link, i) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                  className="font-serif text-[28px] md:text-4xl leading-tight transition-opacity duration-300 hover:opacity-60"
-                  style={{
-                    color: menuText,
-                    opacity: mobileOpen ? 1 : 0,
-                    transform: mobileOpen ? 'translateY(0)' : 'translateY(20px)',
-                    transition: `all 0.5s ease ${i * 0.07}s`,
-                  }}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link, i) => {
+                const isAnchor = link.href.startsWith('#');
+                const itemClassName = 'font-serif text-[28px] md:text-4xl leading-tight transition-opacity duration-300 hover:opacity-60';
+                const itemStyle = {
+                  color: menuText,
+                  opacity: mobileOpen ? 1 : 0,
+                  transform: mobileOpen ? 'translateY(0)' : 'translateY(20px)',
+                  transition: `all 0.5s ease ${i * 0.07}s`,
+                };
+                if (!isAnchor) {
+                  return (
+                    <Link key={link.href} to={link.href} onClick={() => setMobileOpen(false)} className={itemClassName} style={itemStyle}>
+                      {link.label}
+                    </Link>
+                  );
+                }
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
+                    className={itemClassName}
+                    style={itemStyle}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </div>
 
             <div className="h-px w-full" style={{ background: menuText, opacity: 0.15 }} />

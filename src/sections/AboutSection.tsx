@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -103,10 +104,8 @@ const AboutSection: React.FC = () => {
           <p className="ab-text-anim font-sans text-[15px] font-light sec-text-70 leading-relaxed mt-7 max-w-sm">
             {a.aboutBody[lang]}
           </p>
-          <button
-            onClick={() => {
-              document.getElementById('residences')?.scrollIntoView({ behavior: 'smooth' });
-            }}
+          <Link
+            to="/residence"
             className="ab-text-anim group mt-9 inline-flex items-center gap-2.5 font-serif italic text-[18px] sec-text hover:text-sage-green transition-colors duration-300 self-start py-2 -my-2"
           >
             <span className="relative">
@@ -126,7 +125,7 @@ const AboutSection: React.FC = () => {
                 d="M17 8l4 4m0 0l-4 4m4-4H3"
               />
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
     </section>
