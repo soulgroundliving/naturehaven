@@ -59,8 +59,8 @@ const collection: Collection = {
       label: 'The Quiet Cabinet',
       title: { en: 'The quiet cabinet', th: 'ตู้เก็บของที่ไม่ส่งเสียง' },
       body: {
-        en: 'A two-door inverter refrigerator — freezer separated, near-silent, frugal with power — set off the bed’s end with a 90 cm walkway. Beside it, a multi-purpose storage cabinet: two grooved doors that open toward the centre, two internal shelves, and a countertop sized for a microwave — flexible enough for kitchen items or everyday belongings. There is no cooking hob; the building is entirely smoke-free and open-flame cooking is not permitted.',
-        th: 'ตู้เย็น 2 ประตูแยกช่องแช่แข็ง ระบบอินเวอร์เตอร์เสียงเบา ประหยัดไฟ ตั้งเยื้องปลายเตียงโดยเว้นทางเดินกว้าง 90 ซม. ถัดกันคือตู้เก็บของอเนกประสงค์: บานเซาะร่อง 2 บานเปิดเข้าหากึ่งกลาง ชั้นวางของภายใน 2 ชั้น และเคาน์เตอร์ด้านบนสำหรับวางไมโครเวฟ — ใช้เก็บของครัวหรือของใช้ส่วนตัวได้ยืดหยุ่น ห้องพักไม่มีเตาทำอาหาร และทั้งอาคารไม่อนุญาตให้ทำอาหารแบบเปิดไฟหรือสูบบุหรี่ในทุกกรณี',
+        en: 'A two-door inverter refrigerator — freezer separated, near-silent, frugal with power — set off the bed’s end with a 90 cm walkway. Beside it, a multi-purpose storage cabinet: two grooved doors that open toward the centre, two internal shelves, and a countertop sized for a microwave — flexible enough for kitchen items or everyday belongings. There is no cooking hob, and cooking that produces smoke, open flame, or heavy odor isn’t permitted in the room — smoking is limited to the building’s designated smoking area.',
+        th: 'ตู้เย็น 2 ประตูแยกช่องแช่แข็ง ระบบอินเวอร์เตอร์เสียงเบา ประหยัดไฟ ตั้งเยื้องปลายเตียงโดยเว้นทางเดินกว้าง 90 ซม. ถัดกันคือตู้เก็บของอเนกประสงค์: บานเซาะร่อง 2 บานเปิดเข้าหากึ่งกลาง ชั้นวางของภายใน 2 ชั้น และเคาน์เตอร์ด้านบนสำหรับวางไมโครเวฟ — ใช้เก็บของครัวหรือของใช้ส่วนตัวได้ยืดหยุ่น ห้องพักไม่มีเตาทำอาหาร และไม่อนุญาตให้ทำอาหารที่ก่อควัน เปิดเปลวไฟ หรือมีกลิ่นรบกวนภายในห้อง ส่วนการสูบบุหรี่อนุญาตเฉพาะในพื้นที่สูบบุหรี่ที่จัดไว้ให้เท่านั้น',
       },
     },
     {

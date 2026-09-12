@@ -71,8 +71,8 @@ const collection: Collection = {
       label: 'The Air',
       title: { en: 'Cool air, easily kept', th: 'ความเย็นที่ดูแลง่าย' },
       body: {
-        en: '12,000 BTU of cooling, chosen for easy self-cleaning — with a full professional service once a year, on the house.',
-        th: 'เครื่องปรับอากาศ 12,000 BTU เลือกรุ่นที่เน้นถอดล้างง่าย ดูแลเบื้องต้นได้ด้วยตัวเอง และโครงการล้างใหญ่ให้ปีละครั้ง — เพราะอากาศสะอาดไม่ควรต้องรอช่าง',
+        en: '12,000 BTU of cooling, chosen for easy self-cleaning — with a full professional service on a regular schedule, at least yearly, or sooner if condition and inspection call for it.',
+        th: 'เครื่องปรับอากาศ 12,000 BTU เลือกรุ่นที่เน้นถอดล้างง่าย ดูแลเบื้องต้นได้ด้วยตัวเอง และมีโครงการล้างใหญ่ตามรอบ อย่างน้อยปีละครั้ง หรือเร็วกว่านั้นตามสภาพและผลการตรวจ',
       },
     },
   ],

@@ -87,10 +87,19 @@ export const HAS_COMMON_FEE = false;
 
 // Owner-confirmed 2026-09-11. NEST has 20 rooms but only ~16 practical parking
 // spaces around the building — do NOT state or imply a 1-room-to-1-space
-// guarantee anywhere on the site. Reserved/assigned parking pricing has not
-// been approved yet, so it is intentionally NOT published here — see
-// OWNER_CONFIRMATION_REQUIRED in the audit report.
+// guarantee anywhere on the site.
 export const PARKING_CAPACITY_APPROX = 16;
+
+// Owner-confirmed 2026-09-12 (previously proposed but unconfirmed as of
+// 2026-09-11 — now approved for publication). A reserved space on top of the
+// free first-come-first-served spaces above.
+export const RESERVED_PARKING_FEE_MONTHLY = 300;
+
+// Owner-confirmed 2026-09-12. Paid via PromptPay at time of booking; credited
+// toward the move-in total (deposit + advance rent) if the booking proceeds
+// to a signed contract. Refunded if properly cancelled; forfeited on a
+// no-show with no notice.
+export const BOOKING_FEE = 500;
 
 export const PETS_POLICY = {
   th: 'เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น — รับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง',
@@ -160,6 +169,28 @@ export const FAQ_ITEMS = [
     a_th: 'ไม่มีครัวเต็มรูปแบบหรือเตาทำอาหาร — ในห้องมีตู้เก็บของอเนกประสงค์ 2 บานเปิดเข้าหากึ่งกลาง พร้อมชั้นวางของภายใน 2 ชั้น และเคาน์เตอร์ด้านบนสำหรับวางไมโครเวฟ ตั้งอยู่ติดตู้เย็น ใช้เก็บของครัวหรือของใช้ส่วนตัวได้อย่างยืดหยุ่น ส่วนซิงก์ล้างจานอยู่ที่ระเบียง',
     a_en: 'There is no full kitchen or cooking stove — the room has a multi-purpose storage cabinet with two doors that open toward the centre, two internal shelves, and a countertop sized for a microwave, positioned next to the refrigerator. It flexibly stores kitchen items or personal belongings. The dish sink is on the balcony.',
   },
+  // Owner-confirmed 2026-09-12, refined 2026-09-12 with the full allow/ban
+  // breakdown. Rule is based on the EFFECT of the activity (smoke / oil
+  // vapour / open flame / strong odour), not the energy source — an
+  // induction stove and an air fryer have no open flame but are banned
+  // anyway because of the heat/smell/oil vapour they produce. Rice cookers,
+  // toasters, and other electric cooking appliances are explicitly
+  // undecided pending an electrical-load/safety review — do not describe
+  // them as either allowed or banned.
+  {
+    id: 'cooking',
+    q_th: 'ทำอาหารในห้องได้ไหม?',
+    q_en: 'Can I cook in the room?',
+    a_th: 'อุ่นได้ เตรียมได้ เก็บได้ — ใช้ไมโครเวฟ กาต้มน้ำไฟฟ้า หรือเครื่องชงกาแฟได้ตามปกติ อุ่นข้าว อาหารกล่อง ซุปสำเร็จรูป หรือของแช่แข็งได้สบาย แต่ไม่อนุญาตให้ทอด ผัด เจียว ปิ้ง ย่าง คั่ว หรือทำอาหารที่มีควัน ไอน้ำมัน หรือกลิ่นแรง และห้ามใช้เตาแก๊ส เตาเปลวไฟ/เตาถ่าน/เตา Camping กระทะไฟฟ้าสำหรับทอด-ผัด หม้อทอดไร้น้ำมัน และเตาแม่เหล็กไฟฟ้า (แม้ไม่มีเปลวไฟ แต่ให้ความร้อน/กลิ่น/ไอน้ำมันสูง) ส่วนหม้อหุงข้าว เครื่องปิ้งขนมปัง และอุปกรณ์ทำอาหารไฟฟ้าอื่น ๆ อยู่ระหว่างตรวจสอบเรื่องโหลดไฟและกฎความปลอดภัยของอาคาร ยังไม่ยืนยัน',
+    a_en: 'Yes, for heating, preparing, and storing food — a microwave, electric kettle, or coffee machine are fine, and you can reheat rice, boxed meals, instant soup, or frozen food. Frying, stir-frying, pan-frying, grilling, roasting, or any cooking that produces smoke, oil vapor, or strong smells is not permitted — this includes gas stoves, open-flame or charcoal stoves, camping stoves, electric frying pans used for frying, air fryers, and induction stoves (no open flame, but still high heat, smell, and oil vapor). Rice cookers, toasters, and other electric cooking appliances are still under review for electrical load and building safety rules.',
+  },
+  {
+    id: 'smoking',
+    q_th: 'สูบบุหรี่ได้ไหม?',
+    q_en: 'Can I smoke?',
+    a_th: 'ไม่อนุญาตให้สูบบุหรี่ภายในอาคารหรือในห้องพักทุกกรณี สูบได้เฉพาะในพื้นที่สูบบุหรี่ที่จัดไว้ให้เท่านั้น',
+    a_en: 'Smoking is not allowed inside the building or in any unit — it is permitted only in the designated smoking area.',
+  },
   {
     id: 'pets',
     q_th: 'รับสัตว์เลี้ยงไหม?',
@@ -178,20 +209,16 @@ export const FAQ_ITEMS = [
     id: 'deposit',
     q_th: 'เงินที่ต้องเตรียมวันเข้าอยู่?',
     q_en: 'What deposit is required to move in?',
-    a_th: 'ค่าเช่าล่วงหน้า 1 เดือน และเงินมัดจำ 1 เดือน รวมถึงค่าประกันและค่าจอง (ค่าจองหักคืนในยอดเมื่อทำสัญญา) — ยอดค่าประกันและค่าจองแจ้งเป็นการส่วนตัวทาง LINE',
-    a_en: 'One month of advance rent and a one-month deposit, plus a security deposit and a booking fee (credited toward your move-in total when you sign). Exact security-deposit and booking-fee amounts are shared privately on LINE.',
+    a_th: `ค่าใช้จ่ายวันเข้าอยู่มี 3 ส่วน — ค่าจอง ${BOOKING_FEE} บาท (ชำระผ่าน PromptPay ตอนกดจอง คืนได้หากแจ้งยกเลิกตามกำหนด แต่ริบหากไม่มาตามนัดโดยไม่แจ้งล่วงหน้า และหักลบเป็นส่วนหนึ่งของยอดด้านล่างเมื่อทำสัญญา) เงินประกันความเสียหาย 1 เดือน (เท่ากับค่าเช่าห้องนั้น คืนเต็มจำนวนเมื่อสิ้นสุดสัญญาหากไม่มีความเสียหายและไม่มีค้างชำระ) และค่าเช่าล่วงหน้า 1 เดือน`,
+    a_en: `Move-in costs have three parts — a ${BOOKING_FEE} THB booking fee (paid via PromptPay when you book; refundable if you cancel with notice, forfeited on a no-show, and credited toward the total below once you sign), a one-month security deposit (equal to your unit's rent, fully refundable at lease end if there's no damage or unpaid balance), and one month of advance rent.`,
   },
   {
     id: 'parking',
     q_th: 'มีที่จอดรถไหม?',
     q_en: 'Is parking available?',
-    a_th: `มีที่จอดรถสำหรับผู้พักอาศัยที่ลงทะเบียนรถ — พื้นที่จอดจริงประมาณ ${PARKING_CAPACITY_APPROX} คันรอบอาคาร (จากทั้งหมด ${PROPERTY.totalUnits} ห้อง) ให้บริการแบบมาก่อนได้จอดก่อน ไม่ได้การันตีว่าทุกห้องจะมีที่จอดประจำ`,
-    a_en: `Yes — parking is available for registered residents, with approximately ${PARKING_CAPACITY_APPROX} practical spaces around the building (out of ${PROPERTY.totalUnits} units total), on a first-come, first-served basis. A dedicated space per unit is not guaranteed.`,
+    a_th: `มีที่จอดรถสำหรับผู้พักอาศัยที่ลงทะเบียนรถ — พื้นที่จอดฟรีประมาณ ${PARKING_CAPACITY_APPROX} คันรอบอาคาร (จากทั้งหมด ${PROPERTY.totalUnits} ห้อง) ให้บริการแบบมาก่อนได้จอดก่อน ไม่ได้การันตีว่าทุกห้องจะมีที่จอดประจำ หากต้องการที่จอดแบบจองประจำ มีค่าบริการเพิ่มเดือนละ ${RESERVED_PARKING_FEE_MONTHLY} บาท`,
+    a_en: `Yes — free parking is available for registered residents, with approximately ${PARKING_CAPACITY_APPROX} spaces around the building (out of ${PROPERTY.totalUnits} units total), on a first-come, first-served basis. A dedicated space per unit is not guaranteed. A reserved space is available for an additional ${RESERVED_PARKING_FEE_MONTHLY} THB/month.`,
   },
-  // Reserved/assigned parking (~300 THB/month) was proposed but is NOT
-  // confirmed anywhere in code or ops docs as of 2026-09-11 — deliberately
-  // not published as a FAQ item or commercial policy. See audit report
-  // OWNER_CONFIRMATION_REQUIRED.
   {
     id: 'open',
     q_th: 'เปิดให้เข้าอยู่เมื่อไหร่?',
@@ -219,6 +246,16 @@ export const FAQ_ITEMS = [
     q_en: 'Where is Nature Haven located?',
     a_th: 'Nature Haven เป็นอพาร์ทเมนท์สายไหมในกรุงเทพฯ ตั้งอยู่บนถนนเฉลิมพงษ์ ย่านสงบ เป็นส่วนตัว และเดินทางสะดวก',
     a_en: 'Nature Haven is an apartment in Sai Mai, Bangkok, on Chaloem Phong Road — a quiet, private neighborhood that is still well-connected.',
+  },
+  // Owner-confirmed 2026-09-12 — proactive disclosure so residents don't
+  // mistake normal, out-of-our-control neighborhood ambience for a defect
+  // in the building's own sound insulation.
+  {
+    id: 'ambientNoise',
+    q_th: 'ห้องกันเสียงดีแค่ไหน มีเสียงรบกวนจากภายนอกไหม?',
+    q_en: 'How soundproof are the rooms — is there any outside noise?',
+    a_th: 'ห้องออกแบบมาเพื่อกันเสียงตั้งแต่โครงสร้าง — ผนังก่ออิฐมวลเบาฉาบทั้งสองด้านทุกห้อง ผนังกั้นห้องก่อเต็มความสูงและฉาบปิดช่องเหนือฝ้าเรียบร้อยทุกห้อง ประตูมียางกันเสียงและซีลหนา หน้าต่างกระจก 6 มิล อย่างไรก็ตาม ด้วยทำเลที่ตั้ง ผู้พักอาศัยอาจได้ยินเสียงจากภายนอกเป็นครั้งคราว เช่น เสียงพลุช่วงเทศกาลปีใหม่ (จากระยะไกล) เสียงสุนัขเห่า/หอนในบางวัน และเสียงเวทีดนตรีจากหมู่บ้านใกล้เคียงในบางโอกาส ทางโครงการแจ้งไว้ล่วงหน้าเพื่อให้ผู้สนใจเข้าอยู่ประเมินได้ตามความเหมาะสมก่อนตัดสินใจจอง',
+    a_en: "Every unit is built for sound insulation from the structure up — plastered lightweight-brick partition walls on both sides in every room, built full-height and sealed above the ceiling line, plus sealed doors with thick rubber gaskets and 6mm glass windows. That said, given the surrounding area, residents may occasionally hear outside sounds — distant fireworks around the New Year holiday, occasional dog barking or howling on some days, and occasional live music from a neighboring village's event stage. We'd rather you know this before booking than be surprised by it after moving in.",
   },
 ] as const;
 

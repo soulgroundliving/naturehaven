@@ -6,6 +6,7 @@ import {
   WATER_RATE_PER_UNIT,
   PET_FEE_MONTHLY,
   PARKING_CAPACITY_APPROX,
+  BOOKING_FEE,
   MOVE_IN_LABEL,
   AVAILABLE_FROM_LABEL,
 } from '@/data/propertyFacts';
@@ -154,9 +155,11 @@ export const TR = {
       en: 'Awaiting content from the project owner — no real copy has been written for this section yet.',
       th: 'รอเนื้อหาจากเจ้าของโครงการ — ยังไม่มีการเขียนข้อความจริงในส่วนนี้',
     },
+    // Structure updated 2026-09-12 (owner decision) — was Why We Started /
+    // Who We Are / What Nature Means / Our Standard.
     sections: {
-      en: ['Why We Started', 'Who We Are', 'What Nature Means', 'Our Standard'],
-      th: ['ทำไมเราเริ่มทำโครงการนี้', 'เราเป็นใคร', 'Nature หมายถึงอะไรสำหรับเรา', 'มาตรฐานของเรา'],
+      en: ['Why We Started', 'What We Believe', 'What Nature Means', 'How We Choose to Build'],
+      th: ['ทำไมเราเริ่มทำโครงการนี้', 'สิ่งที่เราเชื่อ', 'Nature หมายถึงอะไรสำหรับเรา', 'แนวทางการสร้างของเรา'],
     },
   },
   residences: {
@@ -190,8 +193,8 @@ export const TR = {
       th: `รวม Wi-Fi ทำความสะอาด ล้างแอร์ ค่าไฟ ${ELECTRICITY_RATE_PER_UNIT} · ค่าน้ำ ${WATER_RATE_PER_UNIT} บาท/หน่วย คิดตามจริง`,
     },
     decisionCostNote: {
-      en: 'Move-in costs: 1 month deposit + 1 month advance rent, plus a security deposit and booking fee. Exact security-deposit/booking-fee amounts, current room availability and viewing times are confirmed on LINE.',
-      th: 'ค่าใช้จ่ายวันเข้าอยู่: มัดจำ 1 เดือน + ค่าเช่าล่วงหน้า 1 เดือน รวมค่าประกันและค่าจอง — ยอดค่าประกัน/ค่าจอง ห้องว่างล่าสุด และเวลานัดชม ยืนยันทาง LINE',
+      en: `Move-in costs: a ${BOOKING_FEE} THB booking fee (credited toward the total once you sign), a one-month security deposit, and one month of advance rent. Current room availability and viewing times are confirmed on LINE.`,
+      th: `ค่าใช้จ่ายวันเข้าอยู่: ค่าจอง ${BOOKING_FEE} บาท (หักลบเป็นส่วนหนึ่งของยอดเมื่อทำสัญญา) เงินประกันความเสียหาย 1 เดือน และค่าเช่าล่วงหน้า 1 เดือน — ห้องว่างล่าสุดและเวลานัดชม ยืนยันทาง LINE`,
     },
     suitableForTitle: { en: 'Suitable For', th: 'เหมาะสำหรับ' },
     suitableFor: {
@@ -208,7 +211,10 @@ export const TR = {
     contractLabel: { en: 'Contract', th: 'สัญญา' },
     contractValue: { en: 'Annual (12 months)', th: 'รายปี (12 เดือน)' },
     moveinLabel: { en: 'Move-in', th: 'เข้าอยู่' },
-    moveinValue: { en: '1 mo. deposit + 1 mo. advance + security (amount on LINE)', th: 'มัดจำ 1 เดือน + ล่วงหน้า 1 เดือน + ค่าประกัน (แจ้งยอดทาง LINE)' },
+    moveinValue: {
+      en: `${BOOKING_FEE} THB booking fee + 1 mo. deposit + 1 mo. advance`,
+      th: `ค่าจอง ${BOOKING_FEE} บาท + เงินประกัน 1 เดือน + ค่าเช่าล่วงหน้า 1 เดือน`,
+    },
     availableLabel: { en: 'Available from', th: 'พร้อมเข้าอยู่' },
     availableValue: { en: MOVE_IN_LABEL.en, th: MOVE_IN_LABEL.th },
     utilitiesLabel: { en: 'Utilities', th: 'ค่าน้ำ-ค่าไฟ' },
@@ -314,14 +320,14 @@ export const TR = {
         { label: 'Pocket Garden', desc: 'A communal garden to slow down in. Green, quiet, yours.' },
         { label: 'Laundry & Dryer', desc: 'Washers and dryers on site, with a drinking-water refill station.' },
         { label: 'Cleaning Service', desc: 'Common areas professionally maintained every six months.' },
-        { label: 'A/C Maintenance', desc: 'Serviced annually, included in your rate.' },
+        { label: 'A/C Maintenance', desc: 'Serviced on a regular schedule — at least yearly, or sooner based on condition — included in your rate.' },
       ],
       th: [
         { label: 'ที่จอดรถ', desc: `สำหรับผู้พักอาศัยที่ลงทะเบียน · พื้นที่จอดจริงประมาณ ${PARKING_CAPACITY_APPROX} คันรอบอาคาร · มาก่อนได้จอดก่อน` },
         { label: 'สวนกระเป๋า', desc: 'สวนส่วนกลาง — สีเขียว สงบ เป็นของคุณ' },
         { label: 'ซักผ้า & อบผ้า', desc: 'เครื่องซักและเครื่องอบในอาคาร พร้อมจุดเติมน้ำดื่ม' },
         { label: 'บริการทำความสะอาด', desc: 'ทำความสะอาดพื้นที่ส่วนกลางโดยมืออาชีพทุก 6 เดือน' },
-        { label: 'บริการล้างแอร์', desc: 'ล้างแอร์ปีละครั้ง รวมอยู่ในค่าเช่าแล้ว' },
+        { label: 'บริการล้างแอร์', desc: 'ล้างแอร์ตามรอบ อย่างน้อยปีละครั้ง หรือเร็วกว่านั้นตามสภาพ รวมอยู่ในค่าเช่าแล้ว' },
       ],
     },
     ctaTag: { en: 'All included', th: 'รวมทุกอย่าง' },
