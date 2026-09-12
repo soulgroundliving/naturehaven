@@ -4,6 +4,7 @@ const siteUrl = PROPERTY.url;
 
 const postalAddress = {
   '@type': 'PostalAddress',
+  streetAddress: PROPERTY.streetAddress,
   addressLocality: PROPERTY.locality,
   addressRegion: PROPERTY.region,
   postalCode: PROPERTY.postalCode,

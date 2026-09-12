@@ -6,8 +6,13 @@ export const PROPERTY = {
   name: 'Nature Haven',
   legalName: 'The Green Haven',
   url: 'https://naturehaven-living.vercel.app',
-  // TODO: replace streetAddress with confirmed address before launch
-  streetAddress: '',
+  // Confirmed 2026-09-12 from the property's own Google Business listing
+  // (maps.app.goo.gl/ZG7hr5w3du3CjXmeA → same pin as the coordinates below,
+  // Nature Haven / naturehaven-living.vercel.app). Google's listing shows
+  // "21, 2 ซ. เฉลิมพงษ์ 21 Saimai, เขตสายไหม กรุงเทพมหานคร 10220" verbatim —
+  // romanized here to match locality/region below; kept exactly as Google
+  // formats it (house no., sub-unit) rather than guessing at a "21/2" shorthand.
+  streetAddress: '21, 2 Soi Chaloem Phong 21',
   locality: 'Sai Mai',
   region: 'Bangkok',
   postalCode: '10220',
