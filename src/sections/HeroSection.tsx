@@ -139,6 +139,15 @@ const HeroSection: React.FC = () => {
           ))}
         </h1>
 
+        {lang === 'th' && (
+          <p
+            className="mt-2 font-sans text-[4vw] font-light tracking-[0.12em] sm:text-[2.4vw] md:text-[1.8vw] lg:text-[1.4vw]"
+            style={{ color: HERO_TEXT, textShadow: HERO_TEXT_SHADOW }}
+          >
+            เนเจอร์ เฮฟเว่น
+          </p>
+        )}
+
         {/* Sansiri-level clean (owner call 2026-07-12): image + wordmark only.
             The support facts live in the MarqueeStrip right below (Pet-Friendly ·
             November 2026 · …) and the ONE site-wide CTA is the floating LINE

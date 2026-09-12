@@ -152,8 +152,8 @@ export const FAQ_ITEMS = [
     id: 'inclusive',
     q_th: 'ค่าเช่ารวมอะไรบ้าง?',
     q_en: "What's included in the rent?",
-    a_th: `ค่าเช่ารวม Wi-Fi (AIS Fiber), บริการทำความสะอาดพื้นที่ส่วนกลาง (ปีละ 2 ครั้ง) และบริการล้างแอร์ไว้แล้ว ส่วนค่าไฟฟ้าคิดตามหน่วยจริง ${ELECTRICITY_RATE_PER_UNIT} บาท/หน่วย และค่าน้ำ ${WATER_RATE_PER_UNIT} บาท/หน่วย (แยกจากค่าเช่า ตามการใช้งานจริง) ไม่มีค่าส่วนกลางเพิ่มเติม`,
-    a_en: `Rent includes Wi-Fi (AIS Fiber), common-area cleaning (twice a year), and A/C maintenance. Electricity and water are metered and billed separately by actual usage — ${ELECTRICITY_RATE_PER_UNIT} THB/unit and ${WATER_RATE_PER_UNIT} THB/unit. There is no additional common-area fee.`,
+    a_th: `ค่าเช่ารวม Wi-Fi (AIS Fiber), บริการทำความสะอาดห้องพัก (ปีละ 2 ครั้งสำหรับห้องที่เลี้ยงสัตว์ ปีละครั้งสำหรับห้องที่ไม่เลี้ยงสัตว์) และบริการล้างแอร์ไว้แล้ว ส่วนค่าไฟฟ้าคิดตามหน่วยจริง ${ELECTRICITY_RATE_PER_UNIT} บาท/หน่วย และค่าน้ำ ${WATER_RATE_PER_UNIT} บาท/หน่วย (แยกจากค่าเช่า ตามการใช้งานจริง) ไม่มีค่าส่วนกลางเพิ่มเติม`,
+    a_en: `Rent includes Wi-Fi (AIS Fiber), in-unit cleaning (twice a year for units with a pet, once a year without), and A/C maintenance. Electricity and water are metered and billed separately by actual usage — ${ELECTRICITY_RATE_PER_UNIT} THB/unit and ${WATER_RATE_PER_UNIT} THB/unit. There is no additional common-area fee.`,
   },
   {
     id: 'size',
@@ -195,8 +195,8 @@ export const FAQ_ITEMS = [
     id: 'pets',
     q_th: 'รับสัตว์เลี้ยงไหม?',
     q_en: 'Are pets allowed?',
-    a_th: `เลี้ยงได้ทั้งตึก ไม่กำหนดว่าชั้นไหน — ทุกห้องรับสัตว์เลี้ยงขนาดเล็ก–กลาง 1–2 ตัวต่อห้อง มีค่าสัตว์เลี้ยง ${PET_FEE_MONTHLY.toLocaleString('en-US')} บาท/ตัว/เดือน`,
-    a_en: `Yes — pets are welcome throughout the entire building, with no floor restrictions. Small–medium pets, 1–2 per unit; the monthly fee is ${PET_FEE_MONTHLY.toLocaleString('en-US')} THB per pet.`,
+    a_th: `เลี้ยงได้ทั้งตึก ไม่กำหนดว่าชั้นไหน — รับเฉพาะแมว กระต่าย และหนูแฮมสเตอร์ (หรือสัตว์ขนาดเล็กลักษณะใกล้เคียงที่ไม่ส่งเสียงรบกวน) ไม่รับสุนัขหรือสัตว์ชนิดอื่น 1–2 ตัวต่อห้อง มีค่าสัตว์เลี้ยง ${PET_FEE_MONTHLY.toLocaleString('en-US')} บาท/ตัว/เดือน`,
+    a_en: `Yes — pets are welcome throughout the entire building, with no floor restrictions. We accept cats, rabbits, and hamsters (or similar small, quiet pets) — no dogs or other species. 1–2 per unit; the monthly fee is ${PET_FEE_MONTHLY.toLocaleString('en-US')} THB per pet.`,
   },
   {
     id: 'contract',
@@ -264,8 +264,8 @@ export const FAQ_ITEMS = [
     id: 'noiseEtiquette',
     q_th: 'จัดปาร์ตี้หรือสังสรรค์เสียงดังได้ไหม?',
     q_en: 'Can I host parties or loud gatherings here?',
-    a_th: 'Nature Haven เป็นพื้นที่พักอาศัยเป็นหลัก ไม่เหมาะกับการจัดปาร์ตี้หรือสังสรรค์เสียงดัง ชุมชนโดยรอบค่อนข้างเงียบสงบ จึงขอความร่วมมือผู้พักอาศัยทุกท่านช่วยกันดูแล — งดส่งเสียงดังรบกวนเพื่อนบ้านและพื้นที่ข้างเคียง โดยเฉพาะตั้งแต่ช่วง 2 ทุ่ม (20:00 น.) เป็นต้นไป เพื่อให้ทุกคนพักผ่อนได้อย่างสบายใจ',
-    a_en: 'Nature Haven is a residential space first, not a venue for parties or loud gatherings. The surrounding community is quiet, so we ask every resident to help keep it that way — please avoid noise that could disturb neighbors, especially after 8 PM, so everyone can rest comfortably.',
+    a_th: 'Nature Haven เป็นพื้นที่พักอาศัยเป็นหลัก ไม่เหมาะกับการจัดปาร์ตี้หรือสังสรรค์เสียงดัง ชุมชนโดยรอบค่อนข้างเงียบสงบ จึงขอความร่วมมือผู้พักอาศัยทุกท่านช่วยกันดูแล — งดส่งเสียงดังรบกวนเพื่อนบ้านและพื้นที่ข้างเคียง โดยเฉพาะในช่วงเวลาพักผ่อนของอาคาร 22:00–07:00 น. เพื่อให้ทุกคนพักผ่อนได้อย่างสบายใจ',
+    a_en: 'Nature Haven is a residential space first, not a venue for parties or loud gatherings. The surrounding community is quiet, so we ask every resident to help keep it that way — please avoid noise that could disturb neighbors, especially during the building\'s 22:00–07:00 quiet hours, so everyone can rest comfortably.',
   },
 ] as const;
 
