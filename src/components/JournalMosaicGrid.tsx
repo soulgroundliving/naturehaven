@@ -8,13 +8,16 @@ import { TR } from '@/lib/translations';
 
 type TileSize = 'large' | 'normal';
 
-// Most recent visible article leads at 2x2; every other tile is a plain 1x1.
-// Mixing in wide/tall shapes looked richer but doesn't tile cleanly at
-// small counts — e.g. a lone "tall" next to a "normal" leaves a hole under
-// the shorter one. A single large tile plus uniform 1x1s packs solid with
-// grid-flow-dense for any article count, so there's never a gap to hide.
-function tileSizeAt(index: number): TileSize {
-  return index === 0 ? 'large' : 'normal';
+// Most recent article leads at 2x2 — but only when there are enough other
+// tiles left to fill the space next to it (needs 4 normal tiles at the
+// 4-column breakpoint). Below that — e.g. a category filter down to 2-3
+// articles — a lone hero tile leaves a visible hole beside it, so every
+// tile just falls back to a uniform 1x1. Either way grid-flow-dense packs
+// solid, at most leaving an ordinary partial last row, never a hole
+// punched next to the hero.
+const MIN_FOR_HERO = 5;
+function tileSizeAt(index: number, total: number): TileSize {
+  return index === 0 && total >= MIN_FOR_HERO ? 'large' : 'normal';
 }
 
 const SPAN: Record<TileSize, string> = {
@@ -92,7 +95,7 @@ const JournalMosaicGrid: React.FC<JournalMosaicGridProps> = ({ articles, classNa
 
       <div className="grid grid-flow-dense grid-cols-2 auto-rows-[130px] gap-2.5 md:grid-cols-4 md:auto-rows-[150px] md:gap-3">
         {filtered.map((article, i) => {
-          const size = tileSizeAt(i);
+          const size = tileSizeAt(i, filtered.length);
           return (
             <Link
               key={article.slug}
