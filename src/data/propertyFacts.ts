@@ -8,11 +8,9 @@ export const PROPERTY = {
   url: 'https://naturehaven-living.vercel.app',
   // Confirmed 2026-09-12 from the property's own Google Business listing
   // (maps.app.goo.gl/ZG7hr5w3du3CjXmeA → same pin as the coordinates below,
-  // Nature Haven / naturehaven-living.vercel.app). Google's listing shows
-  // "21, 2 ซ. เฉลิมพงษ์ 21 Saimai, เขตสายไหม กรุงเทพมหานคร 10220" verbatim —
-  // romanized here to match locality/region below; kept exactly as Google
-  // formats it (house no., sub-unit) rather than guessing at a "21/2" shorthand.
-  streetAddress: '21, 2 Soi Chaloem Phong 21',
+  // Nature Haven / naturehaven-living.vercel.app), house-number format
+  // owner-confirmed as 21/2 — romanized here to match locality/region below.
+  streetAddress: '21/2 Soi Chaloem Phong 21',
   locality: 'Sai Mai',
   region: 'Bangkok',
   postalCode: '10220',
@@ -53,8 +51,12 @@ export const PROPERTY = {
   // Actual move-in is November 2026 — a separate fact, stated in prose (FAQ 'open',
   // hero tagline, decision-summary Move-in field) rather than a second schema field.
   // Owner-clarified 2026-09-11: the two dates are intentionally different milestones.
+  // Exact day owner-confirmed 2026-09-12 (matches the "จะเปิด 24 พ.ย." opening
+  // date on the property's own Google Business listing) — MOVE_IN_LABEL below
+  // still only surfaces month+year everywhere it's shown, so this doesn't
+  // change any visible copy, just makes the underlying date accurate.
   availableFrom: '2026-10-01',
-  moveInFrom: '2026-11-01',
+  moveInFrom: '2026-11-24',
   totalUnits: 20,
   hasElevator: false,
 } as const;
