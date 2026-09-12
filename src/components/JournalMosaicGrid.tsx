@@ -39,9 +39,12 @@ const CLAMP: Record<TileSize, string> = {
 interface JournalMosaicGridProps {
   articles: Article[];
   className?: string;
+  /** Hide the category filter row — e.g. a compact homepage teaser that
+   * always shows the same few articles and links to /journal for more. */
+  showFilters?: boolean;
 }
 
-const JournalMosaicGrid: React.FC<JournalMosaicGridProps> = ({ articles, className = '' }) => {
+const JournalMosaicGrid: React.FC<JournalMosaicGridProps> = ({ articles, className = '', showFilters = true }) => {
   const { lang } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
@@ -60,36 +63,38 @@ const JournalMosaicGrid: React.FC<JournalMosaicGridProps> = ({ articles, classNa
 
   return (
     <div className={className}>
-      <div className="mb-5 flex flex-wrap gap-2 md:mb-7" role="group" aria-label={TR.journal.filterLabel[lang]}>
-        <button
-          type="button"
-          onClick={() => setActiveCategory(null)}
-          aria-pressed={activeCategory === null}
-          className={`rounded-full px-3.5 py-1.5 font-sans text-xs transition-colors duration-200 ${
-            activeCategory === null
-              ? 'bg-dark-charcoal text-pure-white'
-              : 'border sec-border sec-text-70 hover:sec-text'
-          }`}
-        >
-          {TR.journal.filterAll[lang]}
-        </button>
-        {categories.map(([catEn, catLabel]) => (
+      {showFilters && (
+        <div className="mb-5 flex flex-wrap gap-2 md:mb-7" role="group" aria-label={TR.journal.filterLabel[lang]}>
           <button
-            key={catEn}
             type="button"
-            onClick={() => setActiveCategory(catEn)}
-            aria-pressed={activeCategory === catEn}
-            className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-sans text-xs transition-colors duration-200 ${
-              activeCategory === catEn
+            onClick={() => setActiveCategory(null)}
+            aria-pressed={activeCategory === null}
+            className={`rounded-full px-3.5 py-1.5 font-sans text-xs transition-colors duration-200 ${
+              activeCategory === null
                 ? 'bg-dark-charcoal text-pure-white'
                 : 'border sec-border sec-text-70 hover:sec-text'
             }`}
           >
-            <span className={`h-[6px] w-[6px] flex-none rounded-full ${getCategoryAccent(catEn)}`} />
-            {catLabel[lang]}
+            {TR.journal.filterAll[lang]}
           </button>
-        ))}
-      </div>
+          {categories.map(([catEn, catLabel]) => (
+            <button
+              key={catEn}
+              type="button"
+              onClick={() => setActiveCategory(catEn)}
+              aria-pressed={activeCategory === catEn}
+              className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-sans text-xs transition-colors duration-200 ${
+                activeCategory === catEn
+                  ? 'bg-dark-charcoal text-pure-white'
+                  : 'border sec-border sec-text-70 hover:sec-text'
+              }`}
+            >
+              <span className={`h-[6px] w-[6px] flex-none rounded-full ${getCategoryAccent(catEn)}`} />
+              {catLabel[lang]}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="grid grid-flow-dense grid-cols-2 auto-rows-[130px] gap-2.5 md:grid-cols-4 md:auto-rows-[150px] md:gap-3">
         {filtered.map((article, i) => {
