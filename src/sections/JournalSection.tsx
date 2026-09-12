@@ -19,7 +19,10 @@ const JournalSection: React.FC = () => {
   const { lang } = useLanguage();
   const j = TR.journal;
 
-  const preview = ARTICLES.slice(0, 4);
+  // Cap the teaser well above today's article count so it always shows
+  // everything there is (no gap in the mosaic) — once the Journal grows
+  // past this, the extra articles are only a "read all" click away.
+  const preview = ARTICLES.slice(0, 6);
 
   useGSAP(
     () => {

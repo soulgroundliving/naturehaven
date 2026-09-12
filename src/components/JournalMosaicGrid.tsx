@@ -6,33 +6,27 @@ import { titleFont } from '@/components/JournalCard';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
 
-type TileSize = 'large' | 'wide' | 'tall' | 'normal';
+type TileSize = 'large' | 'normal';
 
-// Most recent visible article leads at 2x2; everything after cycles through
-// a fixed rhythm so the mosaic stays varied no matter how many articles
-// exist — grid-flow-dense backfills the gaps a fixed cycle would otherwise
-// leave, so this never needs hand-placed positions per article.
-const SIZE_CYCLE: TileSize[] = ['wide', 'normal', 'tall', 'normal'];
+// Most recent visible article leads at 2x2; every other tile is a plain 1x1.
+// Mixing in wide/tall shapes looked richer but doesn't tile cleanly at
+// small counts — e.g. a lone "tall" next to a "normal" leaves a hole under
+// the shorter one. A single large tile plus uniform 1x1s packs solid with
+// grid-flow-dense for any article count, so there's never a gap to hide.
 function tileSizeAt(index: number): TileSize {
-  return index === 0 ? 'large' : SIZE_CYCLE[(index - 1) % SIZE_CYCLE.length];
+  return index === 0 ? 'large' : 'normal';
 }
 
 const SPAN: Record<TileSize, string> = {
   large: 'col-span-2 row-span-2',
-  wide: 'col-span-2 row-span-1',
-  tall: 'col-span-1 row-span-2',
   normal: 'col-span-1 row-span-1',
 };
 const TITLE_SIZE: Record<TileSize, string> = {
   large: 'text-lg md:text-2xl',
-  wide: 'text-base md:text-lg',
-  tall: 'text-sm md:text-base',
   normal: 'text-sm md:text-base',
 };
 const CLAMP: Record<TileSize, string> = {
   large: 'line-clamp-3',
-  wide: 'line-clamp-2',
-  tall: 'line-clamp-3',
   normal: 'line-clamp-2',
 };
 
