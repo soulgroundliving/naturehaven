@@ -181,8 +181,8 @@ export const FAQ_ITEMS = [
     id: 'cooking',
     q_th: 'ทำอาหารในห้องได้ไหม?',
     q_en: 'Can I cook in the room?',
-    a_th: 'อุ่นได้ เตรียมได้ เก็บได้ — ใช้ไมโครเวฟ กาต้มน้ำไฟฟ้า หรือเครื่องชงกาแฟได้ตามปกติ อุ่นข้าว อาหารกล่อง ซุปสำเร็จรูป หรือของแช่แข็งได้สบาย แต่ไม่อนุญาตให้ทอด ผัด เจียว ปิ้ง ย่าง คั่ว หรือทำอาหารที่มีควัน ไอน้ำมัน หรือกลิ่นแรง และห้ามใช้เตาแก๊ส เตาเปลวไฟ/เตาถ่าน/เตา Camping กระทะไฟฟ้าสำหรับทอด-ผัด หม้อทอดไร้น้ำมัน และเตาแม่เหล็กไฟฟ้า (แม้ไม่มีเปลวไฟ แต่ให้ความร้อน/กลิ่น/ไอน้ำมันสูง) ส่วนหม้อหุงข้าว เครื่องปิ้งขนมปัง และอุปกรณ์ทำอาหารไฟฟ้าอื่น ๆ อยู่ระหว่างตรวจสอบเรื่องโหลดไฟและกฎความปลอดภัยของอาคาร ยังไม่ยืนยัน',
-    a_en: 'Yes, for heating, preparing, and storing food — a microwave, electric kettle, or coffee machine are fine, and you can reheat rice, boxed meals, instant soup, or frozen food. Frying, stir-frying, pan-frying, grilling, roasting, or any cooking that produces smoke, oil vapor, or strong smells is not permitted — this includes gas stoves, open-flame or charcoal stoves, camping stoves, electric frying pans used for frying, air fryers, and induction stoves (no open flame, but still high heat, smell, and oil vapor). Rice cookers, toasters, and other electric cooking appliances are still under review for electrical load and building safety rules.',
+    a_th: 'อาหารสำเร็จรูป อาหารกล่อง/Delivery แซนด์วิช ขนมปัง ซีเรียล โยเกิร์ต ผลไม้ สลัด หรืออาหารที่ไม่ต้องปรุงด้วยความร้อน ทานได้ตามปกติ ส่วนการอุ่นข้าว อาหารกล่อง ซุปสำเร็จรูป ของแช่แข็ง นม หรือเครื่องดื่ม ใช้ไมโครเวฟ กาต้มน้ำไฟฟ้า หรือเครื่องชงกาแฟได้สบาย แต่ไม่อนุญาตให้ทอด ผัด เจียว ปิ้ง ย่าง คั่ว อบอาหารที่ก่อควัน/กลิ่นแรง ต้มน้ำมัน หรือทำอาหารที่มีควันมาก และห้ามใช้เตาแก๊ส เตาไฟ/เตาแอลกอฮอล์ เตาถ่าน เตา Camping กระทะไฟฟ้าสำหรับทอด-ผัด หม้อทอดไร้น้ำมัน และเตาแม่เหล็กไฟฟ้า (แม้ไม่มีเปลวไฟ แต่ให้ความร้อน/กลิ่น/ไอน้ำมันสูง จึงห้ามตามวัตถุประสงค์การใช้งาน ไม่ใช่แยกแค่ชนิดพลังงาน) ส่วนเครื่องปิ้งขนมปัง หม้อหุงข้าว และอุปกรณ์ทำอาหารไฟฟ้าอื่น ๆ อยู่ระหว่างตรวจสอบเรื่องโหลดไฟ ความร้อน และกฎความปลอดภัยของอาคาร ยังไม่ยืนยัน — เพราะ "เป็นไฟฟ้า" ไม่ได้แปลว่าปลอดภัยทุกกรณี',
+    a_en: 'Ready-made meals, boxed meals or delivery, sandwiches, bread, cereal, yogurt, fruit, salads, and anything that doesn\'t need heating are all fine any time. For reheating rice, boxed meals, instant soup, frozen food, milk, or drinks, a microwave, electric kettle, or coffee machine work well. Frying, stir-frying, pan-frying, grilling, roasting, smoky/strong-smelling baking, boiling oil, or any cooking that produces a lot of smoke is not permitted — this includes gas stoves, open-flame or alcohol burners, charcoal stoves, camping stoves, electric frying pans used for frying, air fryers, and induction stoves (no open flame, but still high heat, smell, and oil vapor — banned by what it does, not what powers it). Toasters, rice cookers, and other electric cooking appliances are still under review for electrical load, heat, and building safety rules — being electric doesn\'t automatically mean safe in every case.',
   },
   {
     id: 'smoking',
@@ -256,6 +256,16 @@ export const FAQ_ITEMS = [
     q_en: 'How soundproof are the rooms — is there any outside noise?',
     a_th: 'ห้องออกแบบมาเพื่อกันเสียงตั้งแต่โครงสร้าง — ผนังก่ออิฐมวลเบาฉาบทั้งสองด้านทุกห้อง ผนังกั้นห้องก่อเต็มความสูงและฉาบปิดช่องเหนือฝ้าเรียบร้อยทุกห้อง ประตูมียางกันเสียงและซีลหนา หน้าต่างกระจก 6 มิล อย่างไรก็ตาม ด้วยทำเลที่ตั้ง ผู้พักอาศัยอาจได้ยินเสียงจากภายนอกเป็นครั้งคราว เช่น เสียงพลุช่วงเทศกาลปีใหม่ (จากระยะไกล) เสียงสุนัขเห่า/หอนในบางวัน และเสียงเวทีดนตรีจากหมู่บ้านใกล้เคียงในบางโอกาส ทางโครงการแจ้งไว้ล่วงหน้าเพื่อให้ผู้สนใจเข้าอยู่ประเมินได้ตามความเหมาะสมก่อนตัดสินใจจอง',
     a_en: "Every unit is built for sound insulation from the structure up — plastered lightweight-brick partition walls on both sides in every room, built full-height and sealed above the ceiling line, plus sealed doors with thick rubber gaskets and 6mm glass windows. That said, given the surrounding area, residents may occasionally hear outside sounds — distant fireworks around the New Year holiday, occasional dog barking or howling on some days, and occasional live music from a neighboring village's event stage. We'd rather you know this before booking than be surprised by it after moving in.",
+  },
+  // Owner-confirmed 2026-09-12 — proactive disclosure so prospective
+  // residents self-select before booking rather than clash with the
+  // quiet-community expectation after moving in.
+  {
+    id: 'noiseEtiquette',
+    q_th: 'จัดปาร์ตี้หรือสังสรรค์เสียงดังได้ไหม?',
+    q_en: 'Can I host parties or loud gatherings here?',
+    a_th: 'Nature Haven เป็นพื้นที่พักอาศัยเป็นหลัก ไม่เหมาะกับการจัดปาร์ตี้หรือสังสรรค์เสียงดัง ชุมชนโดยรอบค่อนข้างเงียบสงบ จึงขอความร่วมมือผู้พักอาศัยทุกท่านช่วยกันดูแล — งดส่งเสียงดังรบกวนเพื่อนบ้านและพื้นที่ข้างเคียง โดยเฉพาะตั้งแต่ช่วง 2 ทุ่ม (20:00 น.) เป็นต้นไป เพื่อให้ทุกคนพักผ่อนได้อย่างสบายใจ',
+    a_en: 'Nature Haven is a residential space first, not a venue for parties or loud gatherings. The surrounding community is quiet, so we ask every resident to help keep it that way — please avoid noise that could disturb neighbors, especially after 8 PM, so everyone can rest comfortably.',
   },
 ] as const;
 
