@@ -14,8 +14,8 @@ const collection: Collection = {
     th: 'เมื่อประตูปิดลง โลกภายนอกก็เบาลงตาม — ห้องนอนที่เก็บเสียงทีละจุด',
   },
   manifesto: {
-    en: 'The truest luxury of rest is silence, so we chased it point by point — an acoustic-sealed door, a floor with its own cushioning layer, a mattress built to five-star-hotel standard — to give the night back to you.',
-    th: 'ความหรูที่แท้จริงของการพักผ่อนคือความเงียบ เราจึงตามเก็บเสียงทีละจุด — เทปกันเสียงรอบบานประตู พื้นที่มีชั้นโฟมซับในตัว ไปจนถึงที่นอนมาตรฐานเดียวกับโรงแรมห้าดาว — เพื่อคืนค่ำคืนที่สมบูรณ์กลับมาให้คุณ',
+    en: 'The truest comfort of rest is silence, so we chased it point by point — an acoustic-sealed door, a floor with its own cushioning layer, a mattress built for real, uninterrupted sleep — to give the night back to you.',
+    th: 'ความสบายที่แท้จริงของการพักผ่อนคือความเงียบ เราจึงตามเก็บเสียงทีละจุด — เทปกันเสียงรอบบานประตู พื้นที่มีชั้นโฟมซับในตัว ไปจนถึงที่นอนที่ออกแบบมาเพื่อการนอนหลับที่ไม่สะดุด — เพื่อคืนค่ำคืนที่สมบูรณ์กลับมาให้คุณ',
   },
   hero: '/assets/room-view-in.jpg',
   heroAlt: {
@@ -59,8 +59,8 @@ const collection: Collection = {
       label: 'The Masterpiece Bed',
       title: { en: 'The masterpiece bed', th: 'เตียงชิ้นเอกของห้อง' },
       body: {
-        en: 'A Sleep Happy Atlantis Pro V2 — ten inches of pocket springs from the maker behind five-star hotels, breathable for the Thai climate — on a built-in bed with a metre-high full-wall headboard you can truly lean against, lit by a low striplight for the nights that don’t want the big lamp.',
-        th: 'ที่นอน Sleep Happy รุ่น Atlantis Pro V2 พ็อกเก็ตสปริงหนา 10 นิ้ว จากผู้ผลิตที่ทำที่นอนให้โรงแรมห้าดาว ระบายอากาศดีเหมาะกับอากาศเมืองไทย วางบนเตียงบิ้วอินกรุหัวเตียงเต็มผนังสูง 1 เมตร — นั่งพิงอ่านหนังสือได้จริง วางของบนหัวเตียงได้ และมีไฟ striplight แสงสลัวสำหรับคืนที่ไม่อยากเปิดไฟดวงใหญ่',
+        en: 'A Sleep Happy Atlantis Pro V2 — ten inches of pocket springs built to a 25-year standard, breathable for the Thai climate — on a built-in bed with a metre-high full-wall headboard you can truly lean against, lit by a low striplight for the nights that don’t want the big lamp.',
+        th: 'ที่นอน Sleep Happy รุ่น Atlantis Pro V2 พ็อกเก็ตสปริงหนา 10 นิ้ว มาตรฐานการใช้งาน 25 ปี ระบายอากาศดีเหมาะกับอากาศเมืองไทย วางบนเตียงบิ้วอินกรุหัวเตียงเต็มผนังสูง 1 เมตร — นั่งพิงอ่านหนังสือได้จริง วางของบนหัวเตียงได้ และมีไฟ striplight แสงสลัวสำหรับคืนที่ไม่อยากเปิดไฟดวงใหญ่',
       },
       spec: {
         en: 'Sleep Happy Atlantis Pro V2 · 10-inch pocket spring · 25-year standard · 1 m built-in headboard',

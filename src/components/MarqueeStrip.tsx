@@ -8,7 +8,7 @@ import { MOVE_IN_LABEL, PROPERTY, UNITS, HAS_COMMON_FEE } from '@/data/propertyF
 // the site even though the surrounding words stay untranslated.
 const ITEMS = [
   'Nature Haven',
-  'Quiet Luxury',
+  'Quiet Living',
   'Saimai · Bangkok',
   `${MOVE_IN_LABEL.en}`,
   'Pet-Friendly',

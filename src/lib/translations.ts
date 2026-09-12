@@ -104,8 +104,8 @@ export const TR = {
   },
   hero: {
     labelWords: {
-      en: ['A', 'Quiet', 'Luxury', 'Residence', '·', 'Pet-Friendly', '·', 'Saimai,', 'Bangkok'],
-      th: ['Quiet', 'Luxury', 'Residence', '·', 'เลี้ยงสัตว์ได้ทั้งตึก', '·', 'สายไหม,', 'กรุงเทพฯ'],
+      en: ['A', 'Quiet', 'Living', 'Residence', '·', 'Pet-Friendly', '·', 'Saimai,', 'Bangkok'],
+      th: ['Quiet', 'Living', 'Residence', '·', 'เลี้ยงสัตว์ได้ทั้งตึก', '·', 'สายไหม,', 'กรุงเทพฯ'],
     },
     subtitle: {
       en: 'A residence shaped by intention — where life, and the ones you love, gently return to a natural rhythm.',
@@ -265,7 +265,7 @@ export const TR = {
     essentials: {
       en: [
         'Built-in furniture throughout (soft-close)',
-        '10″ pocket-spring mattress — 5-star hotel grade',
+        '10″ pocket-spring mattress',
         'Work desk / wardrobe / shelving / chair',
         'Full-length mirror',
         'Air conditioner',
@@ -276,7 +276,7 @@ export const TR = {
       ],
       th: [
         'เฟอร์นิเจอร์บิ้วอินทั้งห้อง (soft-close)',
-        'ที่นอน Pocket Spring 10 นิ้ว — มาตรฐานโรงแรม 5 ดาว',
+        'ที่นอน Pocket Spring 10 นิ้ว',
         'โต๊ะทำงาน / ตู้เสื้อผ้า / ชั้นวาง / เก้าอี้',
         'กระจกบานใหญ่',
         'เครื่องปรับอากาศ',

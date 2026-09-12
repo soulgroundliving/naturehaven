@@ -43,12 +43,12 @@ const collection: Collection = {
       label: 'The Envelope',
       title: { en: 'A wall that keeps the heat out', th: 'ผนังที่ช่วยกันร้อน' },
       body: {
-        en: 'Aerated lightweight-block walls slow the heat before it ever enters; a premium gypsum ceiling closes the envelope. The room is cool by construction — not only by compressor.',
-        th: 'ผนังอิฐมวลเบาหน่วงความร้อนได้ดีกว่าอิฐทั่วไป ปิดฝ้าด้วยยิปซัมเกรดพรีเมียม — ห้องจึงเย็นตั้งแต่ระดับโครงสร้าง ไม่ใช่แค่จากแอร์',
+        en: 'Aerated lightweight-block walls slow the heat before it ever enters; a gypsum ceiling closes the envelope. The room is cool by construction — not only by compressor.',
+        th: 'ผนังอิฐมวลเบาหน่วงความร้อนได้ดีกว่าอิฐทั่วไป ปิดฝ้าด้วยยิปซัม — ห้องจึงเย็นตั้งแต่ระดับโครงสร้าง ไม่ใช่แค่จากแอร์',
       },
       spec: {
-        en: 'AAC lightweight block · premium gypsum ceiling',
-        th: 'อิฐมวลเบา · ฝ้ายิปซัมเกรดพรีเมียม',
+        en: 'AAC lightweight block · gypsum ceiling',
+        th: 'อิฐมวลเบา · ฝ้ายิปซัม',
       },
     },
     {

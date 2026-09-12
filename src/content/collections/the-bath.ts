@@ -48,8 +48,8 @@ const collection: Collection = {
       label: 'The Shower',
       title: { en: 'Warm water you can trust', th: 'น้ำอุ่นที่ไว้ใจได้' },
       body: {
-        en: 'The water heater comes from a century-old, world-standard maker, TIS-certified, with constant-temperature control — on the days you want to stand there and let your thoughts run, no sudden scald will interrupt.',
-        th: 'เครื่องทำน้ำอุ่นจากแบรนด์อายุกว่าร้อยปีมาตรฐานระดับโลก ผ่าน มอก. พร้อมระบบรักษาอุณหภูมิคงที่ — วันที่อยากยืนอาบนาน ๆ ให้ความคิดไหลไป จะไม่มีจังหวะน้ำร้อนลวกมาขัดจังหวะ',
+        en: 'The water heater comes from a well-established, TIS-certified maker, with constant-temperature control — on the days you want to stand there and let your thoughts run, no sudden scald will interrupt.',
+        th: 'เครื่องทำน้ำอุ่นจากแบรนด์ที่ได้รับความไว้วางใจ ผ่าน มอก. พร้อมระบบรักษาอุณหภูมิคงที่ — วันที่อยากยืนอาบนาน ๆ ให้ความคิดไหลไป จะไม่มีจังหวะน้ำร้อนลวกมาขัดจังหวะ',
       },
     },
     {
