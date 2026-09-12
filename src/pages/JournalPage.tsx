@@ -1,6 +1,7 @@
 import React from 'react';
 import JournalShell from '@/components/JournalShell';
-import JournalCard, { titleFont } from '@/components/JournalCard';
+import { titleFont } from '@/components/JournalCard';
+import JournalMosaicGrid from '@/components/JournalMosaicGrid';
 import usePageMeta from '@/hooks/usePageMeta';
 import { ARTICLES } from '@/data/journal';
 import { PROPERTY } from '@/data/propertyFacts';
@@ -35,11 +36,7 @@ const JournalPage: React.FC = () => {
             {j.indexIntro[lang]}
           </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-6 md:mt-14 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-            {ARTICLES.map((article) => (
-              <JournalCard key={article.slug} article={article} variant="grid" />
-            ))}
-          </div>
+          <JournalMosaicGrid articles={ARTICLES} className="mt-10 md:mt-14" />
 
           <div className="mt-12 flex flex-col items-start justify-between gap-4 rounded-xl border sec-border bg-pure-white/50 p-7 backdrop-blur-sm md:mt-16 md:flex-row md:items-center">
             <div>

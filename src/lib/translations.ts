@@ -61,6 +61,8 @@ export const TR = {
       th: 'เรื่องเล่าระหว่างการสร้าง Nature Haven — การอยู่อย่างสงบ ชีวิตกับสัตว์เลี้ยง ย่านสายไหม และบันทึกการสร้างแบบตรงไปตรงมา จนถึงวันเข้าอยู่พฤศจิกายน 2026',
     },
     readAll: { en: 'Read all stories', th: 'อ่านบทความทั้งหมด' },
+    filterAll: { en: 'All', th: 'ทั้งหมด' },
+    filterLabel: { en: 'Filter by category', th: 'กรองตามหมวด' },
     readMin: { en: 'min read', th: 'นาที' },
     byLine: { en: 'By the Nature Haven team', th: 'โดยทีม Nature Haven' },
     backHome: { en: 'Home', th: 'หน้าแรก' },

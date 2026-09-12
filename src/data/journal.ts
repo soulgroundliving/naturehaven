@@ -20,6 +20,19 @@ export function getArticle(slug: string): Article | undefined {
   return ARTICLES.find((a) => a.slug === slug);
 }
 
+// One brand accent per journal category, keyed by the English label (the
+// stable, code-authored id — category is bilingual copy, not an enum).
+// Falls back to a neutral tone for any future category not yet mapped here.
+const CATEGORY_ACCENT: Record<string, string> = {
+  'Build Diary': 'bg-warm-brown',
+  'Quiet Living': 'bg-sage-green',
+  'Pet Life': 'bg-warm-rose',
+  'Neighborhood': 'bg-soft-taupe',
+};
+export function getCategoryAccent(categoryEn: string): string {
+  return CATEGORY_ACCENT[categoryEn] ?? 'bg-medium-taupe';
+}
+
 const TH_MONTHS = [
   'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.',
   'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.',
