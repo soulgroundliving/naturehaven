@@ -4,7 +4,7 @@ import usePageMeta from '@/hooks/usePageMeta';
 import { PROPERTY } from '@/data/propertyFacts';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
-import { LineIcon, InstagramIcon, FacebookIcon, TikTokIcon, LocationPin, ChevronRight, HomeIcon, EditIcon } from '@/components/icons';
+import { LineIcon, InstagramIcon, FacebookIcon, TikTokIcon, LocationPin, ChevronRight, HomeIcon, EditIcon, NestIcon } from '@/components/icons';
 
 // The "master link" (ลิงค์แม่) — one URL for every Nature Haven channel,
 // meant to live in a social bio (Instagram/Facebook/TikTok) or get shared
@@ -38,6 +38,15 @@ const LinksPage: React.FC = () => {
   const mapsUrl = PROPERTY.mapsUrl;
 
   const items = [
+    {
+      key: 'nest',
+      label: l.nest[lang],
+      sub: l.nestSub[lang],
+      href: '/journal/nest',
+      external: false,
+      primary: false,
+      Icon: NestIcon,
+    },
     {
       key: 'line',
       label: l.line[lang],
@@ -128,7 +137,7 @@ const LinksPage: React.FC = () => {
         <span style={{ opacity: lang === 'th' ? 1 : 0.4 }}>TH</span>
       </button>
 
-      <div className="relative mx-auto flex w-full max-w-[430px] flex-col items-center px-5 py-8">
+      <div className="relative mx-auto flex w-full max-w-[430px] flex-col items-center px-5 py-5">
         <p className="font-serif text-[13px] tracking-[0.35em] text-dark-charcoal/70 mb-0.5">N · H</p>
         <h1 className="font-serif text-2xl text-dark-charcoal text-center leading-tight">Nature Haven</h1>
         <p className="font-sans text-[13px] text-dark-charcoal/60 mt-0.5 text-center">{l.subtitle[lang]}</p>

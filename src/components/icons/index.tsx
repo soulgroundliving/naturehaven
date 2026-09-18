@@ -160,3 +160,11 @@ export const EditIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => 
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.5-9.5a2.121 2.121 0 013 3L12 12l-4 1 1-4 8.5-8.5z" />
   </svg>
 );
+
+export const NestIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => (
+  <svg width={size} height={size} fill="none" stroke="currentColor" viewBox="0 0 24 24" className={className}>
+    <ellipse cx="12" cy="8" rx="2.6" ry="3.3" strokeWidth={1.5} />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.5 12.5c.5 4.6 4.2 7.5 8.5 7.5s8-2.9 8.5-7.5" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12.5c3 1.5 6 2 9 2s6-.5 9-2" />
+  </svg>
+);

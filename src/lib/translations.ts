@@ -34,6 +34,8 @@ export const TR = {
       en: 'All Nature Haven channels — LINE, the Journal, the site, and directions — in one link.',
       th: 'รวมทุกช่องทางของ Nature Haven — LINE, บันทึกจากเฮเวน, เว็บไซต์ และแผนที่ — ไว้ในลิงก์เดียว',
     },
+    nest: { en: 'NEST · ตั้งมั่น', th: 'NEST · ตั้งมั่น' },
+    nestSub: { en: 'The story of our first building', th: 'เรื่องราวของอาคารแรก' },
     line: { en: 'Chat on LINE', th: 'ทักไลน์' },
     lineSub: { en: 'Reserve a viewing · ask us anything', th: 'นัดชมห้อง · ถามอะไรก็ได้' },
     instagram: { en: 'Instagram', th: 'Instagram' },
