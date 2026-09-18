@@ -137,7 +137,7 @@ export const UNITS = [
 ] as const;
 
 export const AMENITIES = [
-  'Free Wi-Fi (AIS Fiber)',
+  'Free Wi-Fi',
   'Solar energy integration',
   'Digital door lock (unit & building)',
   '24/7 CCTV',
@@ -159,8 +159,8 @@ export const FAQ_ITEMS = [
     id: 'inclusive',
     q_th: 'ค่าเช่ารวมอะไรบ้าง?',
     q_en: "What's included in the rent?",
-    a_th: `ค่าเช่ารวม Wi-Fi (AIS Fiber), บริการทำความสะอาดห้องพัก (ปีละ 2 ครั้งสำหรับห้องที่เลี้ยงสัตว์ ปีละครั้งสำหรับห้องที่ไม่เลี้ยงสัตว์) และบริการล้างแอร์ไว้แล้ว ส่วนค่าไฟฟ้าคิดตามหน่วยจริง ${ELECTRICITY_RATE_PER_UNIT} บาท/หน่วย และค่าน้ำ ${WATER_RATE_PER_UNIT} บาท/หน่วย (แยกจากค่าเช่า ตามการใช้งานจริง) ไม่มีค่าส่วนกลางเพิ่มเติม`,
-    a_en: `Rent includes Wi-Fi (AIS Fiber), in-unit cleaning (twice a year for units with a pet, once a year without), and A/C maintenance. Electricity and water are metered and billed separately by actual usage — ${ELECTRICITY_RATE_PER_UNIT} THB/unit and ${WATER_RATE_PER_UNIT} THB/unit. There is no additional common-area fee.`,
+    a_th: `ค่าเช่ารวม Wi-Fi, บริการทำความสะอาดห้องพัก (ปีละ 2 ครั้งสำหรับห้องที่เลี้ยงสัตว์ ปีละครั้งสำหรับห้องที่ไม่เลี้ยงสัตว์) และบริการล้างแอร์ไว้แล้ว ส่วนค่าไฟฟ้าคิดตามหน่วยจริง ${ELECTRICITY_RATE_PER_UNIT} บาท/หน่วย และค่าน้ำ ${WATER_RATE_PER_UNIT} บาท/หน่วย (แยกจากค่าเช่า ตามการใช้งานจริง) ไม่มีค่าส่วนกลางเพิ่มเติม`,
+    a_en: `Rent includes Wi-Fi, in-unit cleaning (twice a year for units with a pet, once a year without), and A/C maintenance. Electricity and water are metered and billed separately by actual usage — ${ELECTRICITY_RATE_PER_UNIT} THB/unit and ${WATER_RATE_PER_UNIT} THB/unit. There is no additional common-area fee.`,
   },
   {
     id: 'size',

@@ -366,12 +366,12 @@ export const TR = {
       en: [
         { label: 'Digital door lock', sub: 'Unit & building' },
         { label: 'CCTV security', sub: '24/7 monitoring' },
-        { label: 'Free Wi-Fi', sub: 'AIS Fiber' },
+        { label: 'Free Wi-Fi', sub: 'Fiber' },
       ],
       th: [
         { label: 'ดิจิทัลล็อค์', sub: 'ยูนิตและอาคาร' },
         { label: 'กล้องวงจรปิด', sub: 'ตรวจจับตลอด 24 ชม.' },
-        { label: 'Wi-Fi ฟรี', sub: 'AIS Fiber' },
+        { label: 'Wi-Fi ฟรี', sub: 'ไฟเบอร์' },
       ],
     },
     appLabel: { en: 'Also in-app', th: 'ในแอปยังมี' },

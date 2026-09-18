@@ -73,7 +73,7 @@ export const apartmentComplexSchema = {
     { '@type': 'LocationFeatureSpecification', name: 'Pet friendly (every floor)', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Quiet, low-density community', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Private balcony', value: true },
-    { '@type': 'LocationFeatureSpecification', name: 'Free Wi-Fi (AIS Fiber)', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Free Wi-Fi', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Solar energy integration', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Digital door lock', value: true },
     { '@type': 'LocationFeatureSpecification', name: '24/7 CCTV', value: true },
