@@ -7,12 +7,13 @@ import quietByDesign from '@/content/journal/quiet-by-design';
 import saimaiInNumbers from '@/content/journal/saimai-in-numbers';
 import petsAtHome from '@/content/journal/pets-at-home-25-sqm';
 import buildDiary01 from '@/content/journal/build-diary-01';
+import nestTangMan from '@/content/journal/nest-tang-man';
 
 export type { Article, ArticleBlock, Bilingual } from '@/data/journalTypes';
 
 // Sort is stable, so array order breaks date ties — keep the intended
 // featured article (homepage JournalSection shows ARTICLES[0]) first.
-export const ARTICLES: Article[] = [buildDiary02, quietByDesign, saimaiInNumbers, petsAtHome, buildDiary01]
+export const ARTICLES: Article[] = [nestTangMan, buildDiary02, quietByDesign, saimaiInNumbers, petsAtHome, buildDiary01]
   .slice()
   .sort((a, b) => b.date.localeCompare(a.date));
 
