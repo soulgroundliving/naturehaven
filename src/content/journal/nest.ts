@@ -1,7 +1,7 @@
 import type { Article } from '@/data/journalTypes';
 
 const article: Article = {
-  slug: 'nest-tang-man',
+  slug: 'nest',
   category: { en: 'Founder Notes', th: 'บันทึกผู้ก่อตั้ง' },
   title: {
     en: "NEST · Tang Man — the story behind our first building's name",
