@@ -80,6 +80,24 @@ export const TR = {
       copyLink: { en: 'Copy link', th: 'คัดลอกลิงก์' },
       copied: { en: 'Copied!', th: 'คัดลอกแล้ว' },
     },
+    // Chrome strings for the article block renderer (src/components/journal/).
+    blocks: {
+      toc: { en: 'On this page', th: 'สารบัญ' },
+      galleryPrev: { en: 'Previous', th: 'ก่อนหน้า' },
+      galleryNext: { en: 'Next', th: 'ถัดไป' },
+      interactiveTag: { en: 'Interactive', th: 'ลองเล่น' },
+      interactiveLoading: { en: 'Loading…', th: 'กำลังโหลด…' },
+      interactiveFailed: {
+        en: 'This interactive piece could not load. The description above still applies.',
+        th: 'ส่วนโต้ตอบนี้โหลดไม่สำเร็จ คำอธิบายด้านบนยังใช้ได้ตามปกติ',
+      },
+      renderBadge: { en: '3D render', th: 'ภาพเรนเดอร์ 3 มิติ' },
+      // Shown when a callout has a tone but no title, so the tone is never conveyed by colour alone.
+      tone: {
+        tip: { en: 'Tip', th: 'เคล็ดลับ' },
+        caution: { en: 'Caution', th: 'ข้อควรระวัง' },
+      },
+    },
   },
   lookbook: {
     sectionLabel: { en: 'The Architectural Lookbook', th: 'The Architectural Lookbook' },

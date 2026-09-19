@@ -30,6 +30,10 @@ const ResidencePage = lazy(() => import('@/pages/ResidencePage'))
 const AboutPage = lazy(() => import('@/pages/AboutPage'))
 const PlacesPage = lazy(() => import('@/pages/PlacesPage'))
 const PrivacyPage = lazy(() => import('@/pages/PrivacyPage'))
+// Every Journal block type on one page, for checking blocks by eye and for
+// tools/test-journal-blocks.mjs. import.meta.env.DEV is a build-time constant,
+// so in a production build this is `null` and the chunk is never emitted.
+const JournalSandbox = import.meta.env.DEV ? lazy(() => import('@/pages/JournalSandbox')) : null
 
 // ScrollToTop and RouteStructuredData mount before <Routes> so navigation
 // resets the scroll position and schema before route content is prerendered.
@@ -106,6 +110,16 @@ createRoot(document.getElementById('root')!).render(
                 </Suspense>
               }
             />
+            {JournalSandbox && (
+              <Route
+                path="/journal-sandbox"
+                element={
+                  <Suspense fallback={null}>
+                    <JournalSandbox />
+                  </Suspense>
+                }
+              />
+            )}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           {/* First-party, cookieless traffic + referrer analytics. Mounted

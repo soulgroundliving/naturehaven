@@ -145,6 +145,42 @@ All sections are in `src/sections/`. Order in `src/pages/Home.tsx`:
 
 ---
 
+## Journal articles
+
+An article is ONE file, `src/content/journal/<slug>.ts` — the filename IS the route slug (prerender derives its route list from the directory; register the article in `src/data/journal.ts` and add it to `public/sitemap.xml`, which `npm run test:seo` checks). It holds metadata plus a list of typed **blocks**. Every text is bilingual `{ en, th }`. Types: `src/data/journalTypes.ts` · renderer: `src/components/journal/` · pure helpers: `src/lib/journalBlocks.ts`.
+
+| Block | Use it for | Notes |
+|---|---|---|
+| `p` `h2` `h3` `pull` | prose | `h2`/`h3` get stable anchor ids from their English text (`#01-the-plan`); override with `id` |
+| `list` | bullets, steps | `ordered: true` for numbered |
+| `callout` | an aside | `tone`: note · tip · caution |
+| `image` | one figure | real `width`/`height`, `alt`, **`origin` (required)**; `size`: narrow 480 · reading 720 · wide 1000 |
+| `gallery` | a swipeable set — a carousel post, a series of views | native scroll-snap; every slide is in the DOM |
+| `video` | a self-hosted clip | `poster` required, `preload="none"`; `ambient: true` = silent loop, plays only while visible, never under reduced-motion |
+| `table` | specs, comparisons | real `<table>`; a cell is a plain string when identical in both languages |
+| `choice` | content that changes by situation ("which describes you?") | tab set; **every option is in the DOM** so crawlers read all of them; the chunk loads only on pages that use it, and until it arrives (or if it never does) the options render as plain stacked sections — no condition is ever hidden by a failed import |
+| `details` | many conditions, terms, an FAQ | native `<details>` |
+| `interactive` | a game, calculator, simulator | see below |
+
+Article-level: `layout: { toc?, hero? }` (a table of contents appears on its own from 4 `h2` sections; `hero: 'none'` for pieces that open with a video or an interactive) · `heroOrigin`. Section headings get anchors (`#01-the-plan`), and a shared `/journal/<slug>#section` link opens at that section.
+
+**Rules the code enforces**
+- `origin` (`photo` · `drawing` · `render` · `ai`) is **required on every image, gallery item and video**, and `render`/`ai` show a visible badge — "AI and 3D renders are always disclosed" is a compile error to skip for body media. **The one exception is the hero:** `heroOrigin` is optional, only the article page shows its badge (cards and tiles never do), and the existing articles' heroes have not been audited — that is an open owner decision, not a guarantee.
+- `alt`, real `width`/`height`, and non-empty `items` / `rows` / `options` are required by the types; both languages must be filled and every table row as wide as its header (`npm run test:journal` checks the rest).
+- Assets live in `public/assets/journal/<slug>/` as WebP, same-site paths only: the CSP is `img-src 'self' data:` + `frame-src 'none'`, so external images and iframes are blocked (YouTube/Vimeo embeds need a CSP change and an owner decision — not supported yet). **Never overwrite an asset under `/assets`:** it is served `immutable` for a year, so a changed picture needs a new filename or returning visitors keep the old one.
+- A clip with speech needs `tracks` (WebVTT captions) — the type cannot know.
+
+**An interactive piece** (game, calculator): write `src/components/journal/interactive/<Name>.tsx` (default export, props `{ lang, reducedMotion }`), register it in `interactive/registry.ts`, then use `{ type: 'interactive', id, title, description }`. `description` is real content — it is what crawlers, no-JS readers, the prerendered snapshot and a failed load see. It loads only when scrolled near, runs same-origin (no iframe), and a crash falls back to the description.
+
+**A new block type:** add it to the union in `journalTypes.ts` — `tsc` then fails until `renderLeaf.tsx` / `JournalBlocks.tsx` handle it.
+
+**Preview and tests**
+- `npm run dev` → `/journal-sandbox`: every block on one page (dev-only, never in the production build; source `src/content/journal-sandbox/kitchen-sink.ts`).
+- `npm run test:journal` — unit tests (`tools/__tests__/`, Node's built-in runner, type-checked by `tsc -b`) + a two-layer contract over EVERY article (`tools/test-journal-content.mjs`; run `npm run build` first). **Source layer** (`src/lib/journalContract.ts`, both languages): no empty text, no empty arrays, rectangular tables, unique tab ids, same-site paths only, every referenced file exists in `public/`. **Output layer** (the prerendered `dist/` pages): alt + size on every image, video poster + `preload="none"`, unique DOM ids, TOC anchors resolve, every block type the source uses actually rendered, interactive ids registered, no literal `**` from a pasted draft. It is **not** part of `npm run build`, so it only protects an article when someone runs it — run it before pushing article changes.
+- `npm run test:journal:ui` — starts the dev server and drives the sandbox in headless Chromium: gallery, tabs, details, video, lazy interactive, TOC jump, `#section` deep link, language switch, reduced motion — and two failure drills (the tab-set chunk failing to download, an interactive piece that throws). `/journal-sandbox?crash` adds the throwing piece.
+
+---
+
 ## Aesthetic rules (Muji Minimal)
 
 - Typography: **DM Serif Display** (headings) + **Outfit** (body, weight 300)

@@ -12,7 +12,9 @@
     "preview": "vite preview",
     "verify:contrast": "node tools/verify-contrast.mjs",
     "test:critical": "node tools/test-landing-critical.mjs",
-    "test:seo": "node tools/test-landing-seo.mjs"
+    "test:seo": "node tools/test-landing-seo.mjs",
+    "test:journal": "node --test \"tools/__tests__/*.test.ts\" && node tools/test-journal-content.mjs",
+    "test:journal:ui": "node tools/test-journal-blocks.mjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans-thai-looped": "^5.2.8",
