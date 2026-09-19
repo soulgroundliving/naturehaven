@@ -1,4 +1,19 @@
-import type { Article } from '@/data/journalTypes';
+import type { Article, ArticleBlock, Bilingual, BlockSize, MediaOrigin } from '@/data/journalTypes';
+
+// The seven carousel slides, converted to WebP (1080×1350). Each one sits
+// beside the section it illustrates. Slide 5 is the only one that is not line
+// art — its four pictures are 3D layout studies, so it is disclosed as a render.
+const SLIDES = '/assets/journal/design-notes-01';
+const slide = (file: string, alt: Bilingual, caption: Bilingual, size: BlockSize = 'narrow', origin: MediaOrigin = 'drawing'): ArticleBlock => ({
+  type: 'image',
+  src: `${SLIDES}/${file}.webp`,
+  alt,
+  caption,
+  width: 1080,
+  height: 1350,
+  origin,
+  size,
+});
 
 const article: Article = {
   slug: 'design-notes-01',
@@ -18,6 +33,8 @@ const article: Article = {
     en: 'The bare floor plan of a Nature Haven room, four layout studies from 2023 to 2026, and the final plan',
     th: 'แปลนพื้นเปล่าของห้อง Nature Haven ภาพทดลองจัดวางสี่เวอร์ชันตั้งแต่ปี 2023 ถึง 2026 และแปลนสุดท้าย',
   },
+  // The hero includes the four Furnish Master studies, so it carries the render badge.
+  heroOrigin: 'render',
   blocks: [
     {
       type: 'p',
@@ -80,6 +97,14 @@ const article: Article = {
         en: 'Its dimensions. Its walls. Its openings. Its entrance. Its balcony. Its bathroom. Its orientation.',
       },
     },
+    slide(
+      '01-plan',
+      {
+        en: 'Floor plan of the empty 25.2 sqm room, with the balcony and bathroom at the top',
+        th: 'แปลนพื้นของห้องเปล่า 25.2 ตร.ม. มีระเบียงและห้องน้ำอยู่ด้านบน',
+      },
+      { en: 'The bare plan. Before furniture, there is the space.', th: 'แปลนเปล่า ก่อนจะมีเฟอร์นิเจอร์ ต้องมีพื้นที่ก่อน' },
+    ),
     {
       type: 'p',
       text: {
@@ -113,6 +138,14 @@ const article: Article = {
         en: 'Instead of treating the room simply as a collection of furniture, we first divided it into functional zones.',
       },
     },
+    slide(
+      '02-brief',
+      {
+        en: 'The plan divided into zones: sleeping, working, cooking, storage, wardrobe, entry, bathroom and balcony',
+        th: 'แปลนที่แบ่งเป็นโซน ได้แก่ โซนนอน โซนทำงาน โซนครัว โซนเก็บของ ตู้เสื้อผ้า ทางเข้า ห้องน้ำ และระเบียง',
+      },
+      { en: 'The Brief. One room. Multiple functions.', th: 'โจทย์ ห้องเดียว หลายหน้าที่' },
+    ),
     {
       type: 'p',
       text: {
@@ -195,6 +228,15 @@ const article: Article = {
         en: 'The entrance has a fixed position. Windows define where natural light enters. The balcony determines the relationship between inside and outside. The bathroom establishes a fixed wet zone. Walls and structural conditions limit what can be changed. These elements became the constraints of the plan.',
       },
     },
+    slide(
+      '03-constraints',
+      {
+        en: 'The plan with the fixed elements marked: window, ventilation, plumbing and wet zone, sliding door, doors and pillars',
+        th: 'แปลนที่ระบุสิ่งที่ย้ายไม่ได้ ได้แก่ หน้าต่าง ช่องระบายอากาศ ท่อน้ำและโซนเปียก ประตูบานเลื่อน ประตู และเสา',
+      },
+      { en: 'The Constraints. Not everything can move.', th: 'ข้อจำกัด ไม่ใช่ทุกอย่างที่ย้ายได้' },
+      'reading',
+    ),
     {
       type: 'p',
       text: {
@@ -256,6 +298,15 @@ const article: Article = {
         en: 'We looked at the clearances between the major elements of the room — around the bed, between the bed and wardrobe, between the bed and kitchen, around the working area, and wherever everyday movement needed to happen.',
       },
     },
+    slide(
+      '04-layout',
+      {
+        en: 'The plan with the furniture placed and the clearances around the bed marked: 120 cm, 90 cm and 120 cm',
+        th: 'แปลนที่วางเฟอร์นิเจอร์แล้ว พร้อมระบุระยะว่างรอบเตียง 120 ซม. 90 ซม. และ 120 ซม.',
+      },
+      { en: 'The Layout. Furniture follows the room.', th: 'การจัดวาง เฟอร์นิเจอร์ตามห้อง' },
+      'reading',
+    ),
     {
       type: 'p',
       text: {
@@ -301,6 +352,25 @@ const article: Article = {
       text: {
         th: '2026 — แปลนเวอร์ชันต้นปี 2026 ที่พัฒนามาไกลแล้ว แต่ยังไม่ใช่แปลนสุดท้าย',
         en: '2026 — an early-2026 version of the plan: already significantly developed, but still before the final one.',
+      },
+    },
+    slide(
+      '05-iterations',
+      {
+        en: 'Four 3D layout studies of the room, from 2023, 2024, 2025 and 2026',
+        th: 'ภาพทดลองจัดวางห้องแบบ 3 มิติสี่เวอร์ชัน จากปี 2023 2024 2025 และ 2026',
+      },
+      { en: 'The Iterations. We tried it on screen first.', th: 'การทดลองซ้ำ เราลองบนหน้าจอก่อน' },
+      'narrow',
+      'render',
+    ),
+    {
+      type: 'callout',
+      tone: 'note',
+      title: { en: 'About these pictures', th: 'เกี่ยวกับภาพเหล่านี้' },
+      text: {
+        en: 'They are 3D layout studies made in Furnish Master — not photographs of the finished room.',
+        th: 'เป็นภาพทดลองจัดวางแบบ 3 มิติจาก Furnish Master ไม่ใช่ภาพถ่ายของห้องที่สร้างเสร็จ',
       },
     },
     {
@@ -350,6 +420,41 @@ const article: Article = {
         en: 'L × D × H — Length. Depth. Height.',
       },
     },
+    slide(
+      '06-measurements',
+      {
+        en: 'The plan with its overall dimensions, 350 by 720 cm, beside the size of each piece of furniture',
+        th: 'แปลนพร้อมขนาดรวม 350 คูณ 720 ซม. และขนาดของเฟอร์นิเจอร์แต่ละชิ้น',
+      },
+      { en: 'The Measurements. Small numbers. Big consequences.', th: 'การวัดขนาด ตัวเลขเล็ก ๆ ผลใหญ่ ๆ' },
+      'reading',
+    ),
+    {
+      type: 'table',
+      caption: { en: 'The room, in centimetres', th: 'ตัวห้อง หน่วยเป็นเซนติเมตร' },
+      head: [{ en: 'Space', th: 'พื้นที่' }, { en: 'Width', th: 'กว้าง' }, { en: 'Length', th: 'ยาว' }],
+      rowHeader: true,
+      rows: [
+        [{ en: 'Whole room (25.2 sqm)', th: 'ทั้งห้อง (25.2 ตร.ม.)' }, '350', '720'],
+        [{ en: 'Balcony', th: 'ระเบียง' }, '140', '160'],
+        [{ en: 'Bathroom', th: 'ห้องน้ำ' }, '210', '160'],
+        [{ en: 'Living area', th: 'พื้นที่ใช้สอย' }, '350', '560'],
+      ],
+    },
+    {
+      type: 'table',
+      caption: { en: 'The pieces, in centimetres', th: 'เฟอร์นิเจอร์แต่ละชิ้น หน่วยเป็นเซนติเมตร' },
+      head: [{ en: 'Piece', th: 'ชิ้น' }, 'L', 'D', 'H'],
+      rowHeader: true,
+      rows: [
+        [{ en: 'Kitchen', th: 'ครัว' }, '195', '45', '100'],
+        [{ en: 'Wall', th: 'ผนัง' }, '260', '10', '240'],
+        [{ en: 'Table', th: 'โต๊ะ' }, '300', '45', '70'],
+        [{ en: 'Shelf', th: 'ชั้นวาง' }, '60', '45', '240'],
+        [{ en: 'Bed', th: 'เตียง' }, '200', '160', '45'],
+        [{ en: 'Closet', th: 'ตู้เสื้อผ้า' }, '150', '60', '240'],
+      ],
+    },
     {
       type: 'p',
       text: {
@@ -369,6 +474,14 @@ const article: Article = {
         en: 'After the iterations, measurements, constraints, and layout decisions, the plan reaches its final form. This is the version that brings everything together.',
       },
     },
+    slide(
+      '07-final-plan',
+      {
+        en: 'The final floor plan with every piece of furniture in its place',
+        th: 'แปลนสุดท้ายที่เฟอร์นิเจอร์ทุกชิ้นอยู่ในตำแหน่งของมัน',
+      },
+      { en: 'The Final Plan. Every piece earns its place.', th: 'แปลนสุดท้าย ทุกชิ้นมีเหตุผลของที่ที่มันอยู่' },
+    ),
     {
       type: 'p',
       text: {
