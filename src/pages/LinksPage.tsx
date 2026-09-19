@@ -4,7 +4,7 @@ import usePageMeta from '@/hooks/usePageMeta';
 import { PROPERTY } from '@/data/propertyFacts';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
-import { LineIcon, InstagramIcon, FacebookIcon, TikTokIcon, LocationPin, ChevronRight, HomeIcon, EditIcon, NestIcon } from '@/components/icons';
+import { LineIcon, InstagramIcon, FacebookIcon, TikTokIcon, LocationPin, ChevronRight, HomeIcon, EditIcon, NestIcon, PlanIcon } from '@/components/icons';
 
 // The "master link" (ลิงค์แม่) — one URL for every Nature Haven channel,
 // meant to live in a social bio (Instagram/Facebook/TikTok) or get shared
@@ -38,6 +38,15 @@ const LinksPage: React.FC = () => {
   const mapsUrl = PROPERTY.mapsUrl;
 
   const items = [
+    {
+      key: 'designNotes',
+      label: l.designNotes[lang],
+      sub: l.designNotesSub[lang],
+      href: '/journal/design-notes-01',
+      external: false,
+      primary: false,
+      Icon: PlanIcon,
+    },
     {
       key: 'nest',
       label: l.nest[lang],
@@ -137,7 +146,7 @@ const LinksPage: React.FC = () => {
         <span style={{ opacity: lang === 'th' ? 1 : 0.4 }}>TH</span>
       </button>
 
-      <div className="relative mx-auto flex w-full max-w-[430px] flex-col items-center px-5 py-5">
+      <div className="relative mx-auto flex w-full max-w-[430px] flex-col items-center px-5 py-3">
         <p className="font-serif text-[13px] tracking-[0.35em] text-dark-charcoal/70 mb-0.5">N · H</p>
         <h1 className="font-serif text-2xl text-dark-charcoal text-center leading-tight">Nature Haven</h1>
         <p className="font-sans text-[13px] text-dark-charcoal/60 mt-0.5 text-center">{l.subtitle[lang]}</p>
@@ -150,7 +159,7 @@ const LinksPage: React.FC = () => {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group flex items-center gap-3.5 w-full rounded-xl px-3.5 py-1.5 transition-all duration-200 hover:-translate-y-0.5 ${
+                className={`group flex items-center gap-3.5 w-full rounded-xl px-3.5 py-1 transition-all duration-200 hover:-translate-y-0.5 ${
                   primary
                     ? 'bg-sage-green text-pure-white shadow-md'
                     : 'bg-pure-white text-dark-charcoal border border-dark-charcoal/10 shadow-sm'
@@ -175,7 +184,7 @@ const LinksPage: React.FC = () => {
               <Link
                 key={key}
                 to={href}
-                className="group flex items-center gap-3.5 w-full rounded-xl px-3.5 py-1.5 bg-pure-white text-dark-charcoal border border-dark-charcoal/10 shadow-sm transition-all duration-200 hover:-translate-y-0.5"
+                className="group flex items-center gap-3.5 w-full rounded-xl px-3.5 py-1 bg-pure-white text-dark-charcoal border border-dark-charcoal/10 shadow-sm transition-all duration-200 hover:-translate-y-0.5"
               >
                 <span className="flex-none inline-flex items-center justify-center w-8 h-8 rounded-full bg-sage-green/10 text-sage-green">
                   <Icon size={15} />

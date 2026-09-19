@@ -161,6 +161,15 @@ export const EditIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => 
   </svg>
 );
 
+// A floor plan: outer walls, a partitioned corner and a bed.
+export const PlanIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => (
+  <svg width={size} height={size} fill="none" stroke="currentColor" viewBox="0 0 24 24" className={className}>
+    <rect x="5" y="3" width="14" height="18" rx="1" strokeWidth={1.5} />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 9h6.5V3" />
+    <rect x="9" y="14" width="7" height="5" rx=".5" strokeWidth={1.5} />
+  </svg>
+);
+
 export const NestIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => (
   <svg width={size} height={size} fill="none" stroke="currentColor" viewBox="0 0 24 24" className={className}>
     <ellipse cx="12" cy="8" rx="2.6" ry="3.3" strokeWidth={1.5} />

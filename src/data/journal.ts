@@ -8,12 +8,13 @@ import saimaiInNumbers from '@/content/journal/saimai-in-numbers';
 import petsAtHome from '@/content/journal/pets-at-home-25-sqm';
 import buildDiary01 from '@/content/journal/build-diary-01';
 import nest from '@/content/journal/nest';
+import designNotes01 from '@/content/journal/design-notes-01';
 
 export type { Article, ArticleBlock, Bilingual } from '@/data/journalTypes';
 
 // Sort is stable, so array order breaks date ties — keep the intended
 // featured article (homepage JournalSection shows ARTICLES[0]) first.
-export const ARTICLES: Article[] = [nest, buildDiary02, quietByDesign, saimaiInNumbers, petsAtHome, buildDiary01]
+export const ARTICLES: Article[] = [designNotes01, nest, buildDiary02, quietByDesign, saimaiInNumbers, petsAtHome, buildDiary01]
   .slice()
   .sort((a, b) => b.date.localeCompare(a.date));
 
@@ -29,6 +30,7 @@ const CATEGORY_ACCENT: Record<string, string> = {
   'Quiet Living': 'bg-sage-green',
   'Pet Life': 'bg-warm-rose',
   'Neighborhood': 'bg-soft-taupe',
+  'Design Notes': 'bg-dark-grey',
 };
 export function getCategoryAccent(categoryEn: string): string {
   return CATEGORY_ACCENT[categoryEn] ?? 'bg-medium-taupe';
