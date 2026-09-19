@@ -11,6 +11,17 @@ const sitemap = read('public/sitemap.xml');
 assert(sitemap.includes('<loc>https://naturehaven-living.vercel.app/places</loc>'), 'sitemap must include /places');
 assert(!sitemap.includes('2026-09-01'), 'sitemap must not retain the stale September availability date');
 
+// public/sitemap.xml is a hand-kept mirror of tools/prerender.mjs ROUTES, and nothing else
+// fails when a route is added without touching it — /journal/nest and /journal/design-notes-01
+// both went live missing. Enforce the mirror for the routes derived from content files.
+for (const [dir, prefix] of [['src/content/journal', '/journal'], ['src/content/collections', '/collections']]) {
+  const slugs = fs.readdirSync(path.join(root, dir)).filter((f) => f.endsWith('.ts') && !f.startsWith('_')).map((f) => f.replace(/\.ts$/, ''));
+  assert(slugs.length > 0, `no content files found in ${dir} — the sitemap mirror check would pass vacuously`);
+  for (const slug of slugs) {
+    assert(sitemap.includes(`<loc>https://naturehaven-living.vercel.app${prefix}/${slug}</loc>`), `sitemap is missing ${prefix}/${slug} — add it to public/sitemap.xml`);
+  }
+}
+
 const index = read('index.html');
 assert(index.includes('"@type": "WebSite"'), 'index must retain the site-wide WebSite schema');
 assert(index.includes('<title>อพาร์ทเม้นท์สายไหม เลี้ยงสัตว์ได้ | Nature Haven</title>'), 'index title must target Saimai apartment + pet-friendly intent');
