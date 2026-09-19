@@ -11,57 +11,11 @@
 //   exit 0  every check passed
 //   exit 1  a check failed (each is listed)
 //   exit 2  the harness could not run (server or browser did not start)
-import { spawn } from 'node:child_process';
-import path from 'node:path';
-import puppeteer from 'puppeteer';
+import { createChecks, sleep, startHarness } from './lib/dev-harness.mjs';
 
-const root = path.resolve('.');
-const PORT = 4177;
-const BASE = `http://127.0.0.1:${PORT}`;
-const SANDBOX = `${BASE}/journal-sandbox`;
-
-const results = [];
-const check = (name, ok, detail = '') => results.push({ name, ok: Boolean(ok), detail: ok ? '' : detail });
-
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-// ── dev server ────────────────────────────────────────────────────────────────
-const vite = spawn(
-  process.execPath,
-  [path.join(root, 'node_modules', 'vite', 'bin', 'vite.js'), '--port', String(PORT), '--strictPort', '--host', '127.0.0.1'],
-  { cwd: root, stdio: ['ignore', 'pipe', 'pipe'] },
-);
-let viteLog = '';
-vite.stdout.on('data', (chunk) => (viteLog += chunk));
-vite.stderr.on('data', (chunk) => (viteLog += chunk));
-
-async function waitForServer() {
-  for (let i = 0; i < 60; i += 1) {
-    if (vite.exitCode !== null) throw new Error(`vite exited early:\n${viteLog}`);
-    try {
-      const res = await fetch(SANDBOX);
-      if (res.ok) return;
-    } catch {
-      /* not up yet */
-    }
-    await sleep(500);
-  }
-  throw new Error(`vite did not answer on ${SANDBOX} within 30s:\n${viteLog}`);
-}
-
-let browser;
-try {
-  await waitForServer();
-  browser = await puppeteer.launch({
-    headless: true,
-    executablePath: process.env.CHROMIUM_PATH || undefined,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  });
-} catch (error) {
-  console.error('[journal-ui] could not start the harness:', error.message);
-  vite.kill();
-  process.exit(2);
-}
+const { check, finish } = createChecks('journal-ui');
+const { browser, base, stop } = await startHarness({ label: 'journal-ui', port: 4177, probe: '/journal-sandbox' });
+const SANDBOX = `${base}/journal-sandbox`;
 
 async function openSandbox({ reducedMotion = false, query = '?lang=en&tod=day' } = {}) {
   const page = await browser.newPage();
@@ -298,14 +252,7 @@ try {
 } catch (error) {
   check('the test run completed', false, error.stack ?? String(error));
 } finally {
-  await browser.close();
-  vite.kill();
+  await stop();
 }
 
-const failed = results.filter((r) => !r.ok);
-results.forEach((r) => console.log(`${r.ok ? 'PASS' : 'FAIL'}  ${r.name}${r.detail ? `\n        ${r.detail}` : ''}`));
-if (failed.length) {
-  console.error(`\n[journal-ui] FAIL — ${failed.length} of ${results.length} checks failed`);
-  process.exit(1);
-}
-console.log(`\n[journal-ui] PASS — ${results.length} checks`);
+finish();

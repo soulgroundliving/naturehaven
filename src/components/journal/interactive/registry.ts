@@ -17,6 +17,8 @@ type Loader = () => Promise<{ default: ComponentType<InteractiveProps> }>;
 // pages that do not have one. They run as ordinary same-origin components:
 // no iframe, so the site CSP (frame-src 'none') does not need to change.
 const LOADERS: Record<string, Loader> = {
+  // Design Notes #01: arrange the 25.2 sqm room yourself (rules: src/lib/roomFit.ts).
+  'room-fit': () => import('./room-fit/RoomFit'),
   // Dev-only stand-ins used by /journal-sandbox and tools/test-journal-blocks.mjs.
   // `import.meta.env.DEV` is a build-time constant, so this branch — and the
   // chunks behind it — are dropped from the production bundle.

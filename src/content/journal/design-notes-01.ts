@@ -462,6 +462,24 @@ const article: Article = {
         en: 'The measurements allow the drawing to move from an abstract arrangement into something that can actually be built, furnished, and used.',
       },
     },
+    {
+      type: 'p',
+      text: {
+        th: 'ตัวเลขเหล่านี้คือทั้งหมดที่ต้องใช้ ลองจัดห้องเดียวกันนี้ด้วยตัวเองดู',
+        en: 'Those numbers are all it takes. Try arranging the same room yourself.',
+      },
+    },
+    {
+      type: 'interactive',
+      id: 'room-fit',
+      title: { en: 'Arrange the room yourself', th: 'ลองจัดห้องเอง' },
+      description: {
+        en: 'The same 25.2 sqm room, with the five pieces at the real sizes from the table above. At the start everything fits — and the room still does not work. Drag the pieces (or select one and use the arrow keys, and R to turn it) until all five rules hold: nothing overlaps, the doors stay clear, the walkways are at least 90 cm wide, each piece has room to be used, and there is 120 cm beside the bed.',
+        th: 'ห้อง 25.2 ตร.ม. เดียวกัน กับเฟอร์นิเจอร์ห้าชิ้นขนาดจริงตามตารางด้านบน ตอนเริ่มทุกชิ้นใส่ได้พอดี แต่ห้องยังใช้งานไม่ได้ ลากชิ้นส่วน (หรือเลือกแล้วใช้ปุ่มลูกศร และกด R เพื่อหมุน) จนผ่านครบห้าข้อ ได้แก่ ไม่มีชิ้นไหนซ้อนกัน ประตูโล่ง ทางเดินกว้างอย่างน้อย 90 ซม. ทุกชิ้นมีที่ใช้งานหน้าตัวเอง และข้างเตียงว่าง 120 ซม.',
+      },
+      size: 'wide',
+      minHeight: 640,
+    },
 
     {
       type: 'h2',
