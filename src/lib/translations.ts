@@ -2,8 +2,6 @@ import type { Lang } from '@/contexts/LanguageContext';
 import {
   PRICE_FROM,
   PRICE_TO,
-  ELECTRICITY_RATE_PER_UNIT,
-  WATER_RATE_PER_UNIT,
   PET_FEE_MONTHLY,
   PARKING_CAPACITY_APPROX,
   BOOKING_FEE,
@@ -193,8 +191,8 @@ export const TR = {
     },
     decisionIncludedLabel: { en: 'Monthly rate', th: 'ค่าเช่ารายเดือน' },
     decisionIncludedDetail: {
-      en: `Wi-Fi, cleaning & A/C included. Electricity ${ELECTRICITY_RATE_PER_UNIT} · water ${WATER_RATE_PER_UNIT} THB/unit, metered.`,
-      th: `รวม Wi-Fi ทำความสะอาด ล้างแอร์ ค่าไฟ ${ELECTRICITY_RATE_PER_UNIT} · ค่าน้ำ ${WATER_RATE_PER_UNIT} บาท/หน่วย คิดตามจริง`,
+      en: 'Wi-Fi, cleaning & A/C included. Electricity and water are metered separately, by actual usage.',
+      th: 'รวม Wi-Fi ทำความสะอาด ล้างแอร์ · ค่าน้ำค่าไฟแยกตามมิเตอร์ที่ใช้จริง',
     },
     decisionCostNote: {
       en: `Move-in costs: a ${BOOKING_FEE} THB booking fee (credited toward the total once you sign), a one-month security deposit, and one month of advance rent. Current room availability and viewing times are confirmed on LINE.`,
@@ -223,8 +221,8 @@ export const TR = {
     availableValue: { en: MOVE_IN_LABEL.en, th: MOVE_IN_LABEL.th },
     utilitiesLabel: { en: 'Utilities', th: 'ค่าน้ำ-ค่าไฟ' },
     utilitiesValue: {
-      en: `Electricity ${ELECTRICITY_RATE_PER_UNIT} · Water ${WATER_RATE_PER_UNIT} THB/unit (metered)`,
-      th: `ไฟ ${ELECTRICITY_RATE_PER_UNIT} · น้ำ ${WATER_RATE_PER_UNIT} บาท/หน่วย (ตามจริง)`,
+      en: 'Metered separately, by actual usage',
+      th: 'แยกตามมิเตอร์ที่ใช้จริง',
     },
     parkingLabel: { en: 'Parking', th: 'ที่จอดรถ' },
     parkingValue: {
@@ -366,12 +364,12 @@ export const TR = {
       en: [
         { label: 'Digital door lock', sub: 'Unit & building' },
         { label: 'CCTV security', sub: '24/7 monitoring' },
-        { label: 'Free Wi-Fi', sub: 'Fiber' },
+        { label: 'Free Wi-Fi', sub: 'Included in rent' },
       ],
       th: [
         { label: 'ดิจิทัลล็อค์', sub: 'ยูนิตและอาคาร' },
         { label: 'กล้องวงจรปิด', sub: 'ตรวจจับตลอด 24 ชม.' },
-        { label: 'Wi-Fi ฟรี', sub: 'ไฟเบอร์' },
+        { label: 'Wi-Fi ฟรี', sub: 'รวมในค่าเช่า' },
       ],
     },
     appLabel: { en: 'Also in-app', th: 'ในแอปยังมี' },
