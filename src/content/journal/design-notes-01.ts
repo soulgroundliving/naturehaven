@@ -98,7 +98,7 @@ const article: Article = {
       },
     },
     slide(
-      '01-plan',
+      '01-plan-2',
       {
         en: 'Floor plan of the empty 25.2 sqm room, with the balcony and bathroom at the top',
         th: 'แปลนพื้นของห้องเปล่า 25.2 ตร.ม. มีระเบียงและห้องน้ำอยู่ด้านบน',
