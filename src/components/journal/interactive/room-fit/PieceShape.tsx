@@ -1,8 +1,8 @@
 import type { KeyboardEvent, PointerEvent } from 'react';
-import { LIVING, footprintOf, specOf } from '@/lib/roomFit';
+import { LIVING, footprintOf, fridgeRectOf, headRectOf, specOf } from '@/lib/roomFit';
 import type { PieceId, Placement, Rect } from '@/lib/roomFit';
 import type { LangCode } from '@/lib/journalBlocks';
-import { COPY, PIECE_NAME, positionLabel } from './copy';
+import { COPY, FRIDGE_NAME, PIECE_NAME, placeLabel } from './copy';
 
 // Fills are brand tokens, so the pieces read the same by day and by night. The OUTLINE, like the
 // selection ring, follows the theme's text colour: fixed dark, a piece's edge measured only
@@ -16,6 +16,10 @@ const STYLE: Record<PieceId, { fill: string; text: string }> = {
 };
 const OUTLINE = { stroke: 'var(--sec-text)', strokeOpacity: 0.7 } as const;
 const MARKER = { fill: 'var(--sec-text)' } as const;
+const HEAD_BAR = { fill: 'var(--sec-text)', fillOpacity: 0.35 } as const;
+
+const width = (r: Rect) => r.x1 - r.x0;
+const height = (r: Rect) => r.y1 - r.y0;
 
 // A small arrowhead on the front edge: which way the piece faces.
 function frontMarker(f: Rect, rot: Placement['rot']): string {
@@ -31,6 +35,12 @@ function frontMarker(f: Rect, rot: Placement['rot']): string {
     case 270:
       return `${f.x1 - 2},${cy - 9} ${f.x1 - 2},${cy + 9} ${f.x1 + 9},${cy}`;
   }
+}
+
+// What is left of a piece once a part at one end of it is taken away (the kitchen counter, without its fridge).
+function restOf(whole: Rect, part: Rect): Rect {
+  if (part.x0 === whole.x0 && part.x1 === whole.x1) return part.y0 === whole.y0 ? { ...whole, y0: part.y1 } : { ...whole, y1: part.y0 };
+  return part.x0 === whole.x0 ? { ...whole, x0: part.x1 } : { ...whole, x1: part.x0 };
 }
 
 /** What a piece reports to the board; each is told which piece it came from. */
@@ -51,20 +61,41 @@ interface PieceShapeProps {
   handlers: PieceHandlers;
 }
 
-// One piece on the plan: a body, an arrowhead for its front, a caption. It is a focusable group
-// so it can be moved with the keyboard as well as by pointer — but Enter and Space do nothing on
-// it, so it calls itself a "movable piece" rather than letting a screen reader promise a button.
+// A caption, turned to read along a piece that is taller than it is wide.
+function Caption({ area, text, size, className }: { area: Rect; text: string; size: number; className: string }) {
+  const cx = area.x0 + width(area) / 2;
+  const cy = area.y0 + height(area) / 2;
+  return (
+    <text
+      x={cx}
+      y={cy}
+      textAnchor="middle"
+      dominantBaseline="central"
+      fontSize={size}
+      transform={height(area) > width(area) && width(area) < 70 ? `rotate(-90 ${cx} ${cy})` : undefined}
+      className={`pointer-events-none ${className}`}
+    >
+      {text}
+    </text>
+  );
+}
+
+// One piece on the plan: a body, an arrowhead for its front (or a bar for the bed's head), a
+// caption — and, for the kitchen unit, its single-door fridge. It is a focusable group so it can
+// be moved with the keyboard as well as by pointer — but Enter and Space do nothing on it, so it
+// calls itself a "movable piece" rather than letting a screen reader promise a button.
 export default function PieceShape({ id, placement, selected, overlapping, lang, handlers }: PieceShapeProps) {
   const f = footprintOf(id, placement);
-  const fw = f.x1 - f.x0;
-  const fh = f.y1 - f.y0;
-  const cx = f.x0 + fw / 2;
-  const cy = f.y0 + fh / 2;
   const spec = specOf(id);
   const name = PIECE_NAME[id][lang];
-  const caption = Math.max(fw, fh) >= 140 ? `${name} ${spec.w}×${spec.d}` : name;
-  const label = `${positionLabel(name, placement.x, placement.y - LIVING.y0, lang)} · ${spec.w}×${spec.d}`;
+  const fridge = fridgeRectOf(id, placement);
+  const head = id === 'bed' ? headRectOf(placement) : null;
+  const label =`${placeLabel(id, placement, LIVING.y0, lang)} · ${spec.w}×${spec.d}`;
   const style = STYLE[id];
+  const short = Math.min(width(f), height(f));
+  // Beside a fridge the caption belongs to the counter, not to the whole unit.
+  const captionArea = fridge ? restOf(f, fridge) : f;
+  const caption = Math.max(width(captionArea), height(captionArea)) >= 100 ? `${name} ${spec.w}×${spec.d}` : name;
   return (
     <g
       role="button"
@@ -89,26 +120,32 @@ export default function PieceShape({ id, placement, selected, overlapping, lang,
       <rect
         x={f.x0}
         y={f.y0}
-        width={fw}
-        height={fh}
+        width={width(f)}
+        height={height(f)}
         rx={3}
         strokeWidth={overlapping ? 3.5 : 1.5}
         strokeDasharray={overlapping ? '6 3' : undefined}
         className={`${style.fill} ${overlapping ? 'stroke-destructive' : ''}`}
         style={overlapping ? undefined : OUTLINE}
       />
+      {head && <rect data-part="head" x={head.x0} y={head.y0} width={width(head)} height={height(head)} className="pointer-events-none" style={HEAD_BAR} />}
+      {fridge && (
+        <>
+          <rect
+            data-part="fridge"
+            x={fridge.x0}
+            y={fridge.y0}
+            width={width(fridge)}
+            height={height(fridge)}
+            className="pointer-events-none fill-pure-white"
+            strokeWidth={1.5}
+            style={OUTLINE}
+          />
+          <Caption area={fridge} text={FRIDGE_NAME[lang]} size={10} className="fill-dark-charcoal" />
+        </>
+      )}
       {spec.frontDepth > 0 && <polygon points={frontMarker(f, placement.rot)} style={MARKER} />}
-      <text
-        x={cx}
-        y={cy}
-        textAnchor="middle"
-        dominantBaseline="central"
-        fontSize={Math.min(fw, fh) >= 55 ? 14 : 12}
-        transform={fh > fw && fw < 70 ? `rotate(-90 ${cx} ${cy})` : undefined}
-        className={`pointer-events-none ${style.text}`}
-      >
-        {caption}
-      </text>
+      <Caption area={captionArea} text={caption} size={short >= 55 ? 14 : 12} className={style.text} />
     </g>
   );
 }

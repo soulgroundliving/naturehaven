@@ -73,13 +73,17 @@ export const DOOR_ZONES: Record<DoorId, Rect> = {
 };
 export const DOOR_IDS: readonly DoorId[] = ['entrance', 'bathroom', 'balcony'];
 
-/** The arrangement from the article's final plan (slide 7): the three units fill the right wall. */
+/**
+ * The arrangement drawn in the article's final plan (slides 4 and 7): the bed with its head
+ * against the left wall, and down the right wall — from the balcony end to the front door —
+ * the table, the kitchen (its fridge at the table end) and the shelf, end to end.
+ */
 export const FINAL_PLAN: Layout = {
   bed: { x: 0, y: 310, rot: 0 },
   closet: { x: 0, y: 660, rot: 180 },
   table: { x: 305, y: 160, rot: 90 },
-  shelf: { x: 305, y: 460, rot: 90 },
-  kitchen: { x: 305, y: 520, rot: 90 },
+  kitchen: { x: 305, y: 460, rot: 90 },
+  shelf: { x: 305, y: 655, rot: 90 },
 };
 
 /** Everything fits — and the room does not work. That is the puzzle. */
@@ -109,7 +113,50 @@ export function footprintOf(id: PieceId, placement: Placement): Rect {
   return { x0: placement.x, y0: placement.y, x1: placement.x + w, y1: placement.y + h };
 }
 
-/** The space to keep free in front of a piece; the front turns clockwise with it (south, west, north, east). */
+/**
+ * The kitchen unit (195 cm in the article's table) is a counter with a single-door fridge at one
+ * end. The plan shows the fridge as a small square next to the table: about 50 cm, taken as 55.
+ */
+export const FRIDGE_LENGTH = 55;
+
+/** How deep the bar drawn along the bed's head is. */
+export const HEAD_DEPTH = 10;
+
+/**
+ * The fridge end of the kitchen unit — its "left" end as you face the front — turning with the
+ * unit: the left, top, right, bottom end at 0, 90, 180, 270. Null for every other piece.
+ */
+export function fridgeRectOf(id: PieceId, placement: Placement): Rect | null {
+  if (id !== 'kitchen') return null;
+  const f = footprintOf(id, placement);
+  switch (placement.rot) {
+    case 0:
+      return { x0: f.x0, y0: f.y0, x1: f.x0 + FRIDGE_LENGTH, y1: f.y1 };
+    case 90:
+      return { x0: f.x0, y0: f.y0, x1: f.x1, y1: f.y0 + FRIDGE_LENGTH };
+    case 180:
+      return { x0: f.x1 - FRIDGE_LENGTH, y0: f.y0, x1: f.x1, y1: f.y1 };
+    case 270:
+      return { x0: f.x0, y0: f.y1 - FRIDGE_LENGTH, x1: f.x1, y1: f.y1 };
+  }
+}
+
+/** The bar along the bed's head (the article's plan has it against the left wall); it turns with the bed. */
+export function headRectOf(placement: Placement): Rect {
+  const f = footprintOf('bed', placement);
+  switch (placement.rot) {
+    case 0:
+      return { x0: f.x0, y0: f.y0, x1: f.x0 + HEAD_DEPTH, y1: f.y1 };
+    case 90:
+      return { x0: f.x0, y0: f.y0, x1: f.x1, y1: f.y0 + HEAD_DEPTH };
+    case 180:
+      return { x0: f.x1 - HEAD_DEPTH, y0: f.y0, x1: f.x1, y1: f.y1 };
+    case 270:
+      return { x0: f.x0, y0: f.y1 - HEAD_DEPTH, x1: f.x1, y1: f.y1 };
+  }
+}
+
+/** The space to keep free in front of a piece; the front turns clockwise with it (down, left, up, right on the plan). */
 export function frontZoneOf(id: PieceId, placement: Placement): Rect | null {
   const depth = SPECS[id].frontDepth;
   if (depth === 0) return null;

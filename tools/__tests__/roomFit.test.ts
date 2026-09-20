@@ -9,6 +9,8 @@ import {
   BED_SIDE,
   DOOR_ZONES,
   FINAL_PLAN,
+  FRIDGE_LENGTH,
+  HEAD_DEPTH,
   LIVING,
   PIECE_IDS,
   SNAP,
@@ -20,7 +22,9 @@ import {
   evaluateFast,
   evaluateWalk,
   footprintOf,
+  fridgeRectOf,
   frontZoneOf,
+  headRectOf,
   movePiece,
   nudgePiece,
   overlaps,
@@ -204,15 +208,55 @@ describe('random play never breaks the rules of the board', () => {
   });
 });
 
+describe('the fridge and the bed\'s head', () => {
+  // The kitchen unit (195 cm, from the article's table) is a counter with a single-door fridge at one end,
+  // and the bed is drawn with its head against a wall: both are DRAWN parts of a piece, so they must turn with it.
+  it('puts the fridge at the "left" end of the kitchen unit and turns it with the unit', () => {
+    assert.equal(FRIDGE_LENGTH, 55);
+    assert.deepEqual(fridgeRectOf('kitchen', place(100, 200, 0)), { x0: 100, y0: 200, x1: 100 + FRIDGE_LENGTH, y1: 245 });
+    assert.deepEqual(fridgeRectOf('kitchen', place(305, 460, 90)), { x0: 305, y0: 460, x1: 350, y1: 460 + FRIDGE_LENGTH }); // the top end
+    assert.deepEqual(fridgeRectOf('kitchen', place(100, 200, 180)), { x0: 295 - FRIDGE_LENGTH, y0: 200, x1: 295, y1: 245 });
+    assert.deepEqual(fridgeRectOf('kitchen', place(305, 460, 270)), { x0: 305, y0: 655 - FRIDGE_LENGTH, x1: 350, y1: 655 });
+  });
+  it('is a part of the kitchen only', () => {
+    for (const id of PIECE_IDS) {
+      if (id === 'kitchen') continue;
+      assert.equal(fridgeRectOf(id, place(100, 200, 0)), null, id);
+    }
+  });
+  it('keeps the fridge inside the kitchen\'s own footprint whichever way it faces', () => {
+    for (const rot of [0, 90, 180, 270] as const) {
+      const at = place(50, 300, rot);
+      const fridge = fridgeRectOf('kitchen', at);
+      const unit = footprintOf('kitchen', at);
+      assert.ok(fridge !== null && fridge.x0 >= unit.x0 && fridge.y0 >= unit.y0 && fridge.x1 <= unit.x1 && fridge.y1 <= unit.y1, `facing ${rot}`);
+    }
+  });
+  it('draws the bed\'s head as a bar along one short side, and turns it with the bed', () => {
+    assert.equal(HEAD_DEPTH, 10);
+    assert.deepEqual(headRectOf(place(0, 310, 0)), { x0: 0, y0: 310, x1: HEAD_DEPTH, y1: 470 }); // head at the left wall
+    assert.deepEqual(headRectOf(place(20, 300, 90)), { x0: 20, y0: 300, x1: 180, y1: 300 + HEAD_DEPTH }); // then the top
+    assert.deepEqual(headRectOf(place(0, 310, 180)), { x0: 200 - HEAD_DEPTH, y0: 310, x1: 200, y1: 470 }); // then the right
+    assert.deepEqual(headRectOf(place(20, 300, 270)), { x0: 20, y0: 500 - HEAD_DEPTH, x1: 180, y1: 500 }); // then the bottom
+  });
+});
+
 describe('the article\'s final plan', () => {
-  it('is exactly the arrangement documented in the design: bed at the left wall, three units filling the right wall', () => {
+  it('is exactly the arrangement drawn in the design (slides 4 and 7): bed head at the left wall, and down the right wall the table, the kitchen and the shelf by the front door', () => {
     assert.deepEqual(FINAL_PLAN.bed, place(0, 310, 0));
     assert.deepEqual(FINAL_PLAN.table, place(305, 160, 90));
-    assert.deepEqual(FINAL_PLAN.shelf, place(305, 460, 90));
-    assert.deepEqual(FINAL_PLAN.kitchen, place(305, 520, 90));
+    assert.deepEqual(FINAL_PLAN.kitchen, place(305, 460, 90));
+    assert.deepEqual(FINAL_PLAN.shelf, place(305, 655, 90));
     assert.deepEqual(FINAL_PLAN.closet, place(0, 660, 180));
-    // 300 + 60 + 195 = 555 of the 560 cm along the right wall
-    assert.equal(footprintOf('kitchen', FINAL_PLAN.kitchen).y1, 715);
+  });
+  it('runs the three right-wall units end to end from the balcony to the door: 300 + 195 + 60 = 555 of the 560 cm', () => {
+    const table = footprintOf('table', FINAL_PLAN.table);
+    const kitchen = footprintOf('kitchen', FINAL_PLAN.kitchen);
+    const shelf = footprintOf('shelf', FINAL_PLAN.shelf);
+    assert.equal(table.y0, LIVING.y0);
+    assert.equal(table.y1, kitchen.y0);
+    assert.equal(kitchen.y1, shelf.y0);
+    assert.equal(shelf.y1, 715); // 5 cm of slack before the bottom wall
   });
   it('fits, and every piece is inside the living area', () => {
     for (const id of PIECE_IDS) assert.ok(inside(footprintOf(id, FINAL_PLAN[id])), id);
@@ -258,11 +302,11 @@ describe('evaluateFast', () => {
   });
 
   it('counts a piece as cramped when another piece stands in its front zone', () => {
-    // The bed pushed against the right wall sits in the front zone of the table (and the shelf) beside it.
+    // The bed pushed against the right wall sits in the front zone of the table (and the kitchen) beside it.
     const r = evaluateFast(withPiece(FINAL_PLAN, 'bed', place(150, 310, 0)));
     assert.ok(r.cramped.includes('table'), JSON.stringify(r.cramped));
-    assert.ok(r.cramped.includes('shelf'), JSON.stringify(r.cramped));
-    assert.ok(!r.cramped.includes('closet'));
+    assert.ok(r.cramped.includes('kitchen'), JSON.stringify(r.cramped));
+    assert.ok(!r.cramped.includes('shelf') && !r.cramped.includes('closet'), JSON.stringify(r.cramped));
   });
 
   it('needs 120 cm free beside the bed on at least one long side', () => {

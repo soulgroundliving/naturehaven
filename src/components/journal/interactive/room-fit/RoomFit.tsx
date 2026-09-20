@@ -16,23 +16,11 @@ import {
 } from '@/lib/roomFit';
 import type { Layout, PieceId, Placement } from '@/lib/roomFit';
 import type { InteractiveProps } from '../registry';
+import OurPlan from './OurPlan';
 import PieceControls from './PieceControls';
 import RoomBoard from './RoomBoard';
 import RulesList from './RulesList';
-import {
-  COPY,
-  PIECE_NAME,
-  bedDetail,
-  doorsDetail,
-  fitDetail,
-  ourPlanCaption,
-  positionLabel,
-  progress,
-  ruleLabels,
-  useDetail,
-  verdict,
-  walkDetail,
-} from './copy';
+import { COPY, bedDetail, doorsDetail, fitDetail, placeLabel, progress, ruleLabels, useDetail, verdict, walkDetail } from './copy';
 import type { RuleView, VerdictKind } from './copy';
 
 // How long the arrangement must hold still before the walkway is measured.
@@ -110,11 +98,9 @@ export default function RoomFit({ lang }: InteractiveProps) {
   const verified = useMemo(() => evaluate(checked), [checked]);
   const settled = checked === state.layout;
   const ourWalk = useMemo(() => (state.showPlan ? evaluateWalk(FINAL_PLAN) : null), [state.showPlan]);
-  // Moving a piece only changes its label, which a screen reader does not re-read: say where it landed, once it has stopped.
-  const spoken =
-    settled && state.moved
-      ? positionLabel(PIECE_NAME[state.moved][lang], state.layout[state.moved].x, state.layout[state.moved].y - LIVING.y0, lang)
-      : '';
+  // Moving a piece only changes its label, which a screen reader does not re-read: say where it landed
+  // and which way it faces, once it has stopped.
+  const spoken = settled && state.moved ? placeLabel(state.moved, state.layout[state.moved], LIVING.y0, lang) : '';
 
   const labels = ruleLabels(WALK_MIN, BED_SIDE);
   const rules: RuleView[] = [
@@ -168,6 +154,7 @@ export default function RoomFit({ lang }: InteractiveProps) {
 
         <PieceControls
           selected={state.selected}
+          rot={state.selected ? state.layout[state.selected].rot : null}
           lang={lang}
           onNudge={(id, dx, dy) => dispatch({ type: 'nudge', id, dx, dy })}
           onRotate={(id) => dispatch({ type: 'rotate', id })}
@@ -184,11 +171,7 @@ export default function RoomFit({ lang }: InteractiveProps) {
           </button>
         </div>
 
-        {ourWalk && (
-          <p data-testid="room-fit-our-plan" className="font-sans text-[13px] leading-snug sec-text-80">
-            {ourPlanCaption(ourWalk.width, lang)}
-          </p>
-        )}
+        {ourWalk && <OurPlan walkWidth={ourWalk.width} lang={lang} />}
 
         <div className="flex flex-col gap-1.5 font-sans text-[12px] leading-snug sec-text-60">
           <p>{COPY.howTo[lang]}</p>

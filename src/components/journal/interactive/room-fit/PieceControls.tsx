@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, RotateCw } from 'lucide-react';
 import { specOf } from '@/lib/roomFit';
-import type { PieceId } from '@/lib/roomFit';
+import type { PieceId, Rotation } from '@/lib/roomFit';
 import type { LangCode } from '@/lib/journalBlocks';
-import { COPY, PIECE_NAME } from './copy';
+import { COPY, PIECE_NAME, PIECE_NOTE, facingLabel } from './copy';
 import useHoldRepeat from './useHoldRepeat';
 
 const BUTTON =
@@ -30,13 +30,16 @@ function NudgeButton({ label, disabled, onPress, testId, children }: NudgeButton
 
 interface PieceControlsProps {
   selected: PieceId | null;
+  /** How the selected piece is turned (null when nothing is selected). */
+  rot: Rotation | null;
   lang: LangCode;
   onNudge: (id: PieceId, dx: number, dy: number) => void;
   onRotate: (id: PieceId) => void;
 }
 
-// The selected piece's name and size, a 3 x 3 pad (arrows around a turn button).
-export default function PieceControls({ selected, lang, onNudge, onRotate }: PieceControlsProps) {
+// The selected piece — its name and size, what it is, which way it faces — and a 3 x 3 pad
+// (arrows around a turn button).
+export default function PieceControls({ selected, rot, lang, onNudge, onRotate }: PieceControlsProps) {
   const none = selected === null;
   const nudge = (dx: number, dy: number) => () => {
     if (selected) onNudge(selected, dx, dy);
@@ -57,6 +60,14 @@ export default function PieceControls({ selected, lang, onNudge, onRotate }: Pie
           COPY.nothingSelected[lang]
         )}
       </p>
+      {selected && rot !== null && (
+        <div data-testid="room-fit-selected-note" className="mt-1 font-sans text-[12.5px] leading-snug">
+          <p className="sec-text-70">{PIECE_NOTE[selected][lang]}</p>
+          <p data-testid="room-fit-facing" className="mt-0.5 font-medium sec-text">
+            {facingLabel(selected, rot, lang)}
+          </p>
+        </div>
+      )}
       <div className="mt-3 grid w-[9.25rem] grid-cols-3 gap-1.5">
         <span />
         <NudgeButton label={COPY.moveUp[lang]} disabled={none} onPress={nudge(0, -5)} testId="nudge-up">

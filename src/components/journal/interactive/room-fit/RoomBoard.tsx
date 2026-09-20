@@ -167,7 +167,7 @@ export default function RoomBoard({ layout, selected, fast, walk, settled, showP
         />
       )}
 
-      {showPlan && <GhostPlan lang={lang} />}
+      {showPlan && <GhostPlan layout={layout} lang={lang} />}
     </svg>
   );
 }

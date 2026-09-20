@@ -30,7 +30,37 @@ const WALLS = [
   `M${bathroom.x1} ${ROOM.topZone}H${ROOM.width}`,
 ].join('');
 
-// The fixed part of the plan: floor, balcony, bathroom, walls, pillars. It never
+// A compass rose, drawn the way slide 3 of the article draws it: S at the top of the plan, N at
+// the bottom (the arrowhead is on N). East then falls on the left and west on the right — see
+// src/lib/roomFitCompass.ts, which the words for "which way it faces" come from.
+const COMPASS_AT = { x: 306, y: 44 };
+
+function Compass() {
+  const { x, y } = COMPASS_AT;
+  const ink = { stroke: 'var(--sec-text-70)', strokeWidth: 1.5 } as const;
+  const letter = { fill: 'var(--sec-text-70)' } as const;
+  return (
+    <g data-testid="room-fit-compass">
+      <line x1={x} y1={y - 16} x2={x} y2={y + 16} style={ink} />
+      <line x1={x - 16} y1={y} x2={x + 16} y2={y} style={ink} />
+      <polygon points={`${x - 4},${y + 12} ${x + 4},${y + 12} ${x},${y + 20}`} style={letter} />
+      <text x={x} y={y - 22} textAnchor="middle" fontSize={10} style={letter}>
+        S
+      </text>
+      <text x={x} y={y + 31} textAnchor="middle" fontSize={10} style={letter}>
+        N
+      </text>
+      <text x={x - 25} y={y} textAnchor="middle" dominantBaseline="central" fontSize={10} style={letter}>
+        E
+      </text>
+      <text x={x + 25} y={y} textAnchor="middle" dominantBaseline="central" fontSize={10} style={letter}>
+        W
+      </text>
+    </g>
+  );
+}
+
+// The fixed part of the plan: floor, balcony, bathroom, walls, pillars, compass. It never
 // changes while a piece is dragged, so it renders once per language.
 function RoomBackdrop({ lang }: { lang: LangCode }) {
   return (
@@ -57,6 +87,7 @@ function RoomBackdrop({ lang }: { lang: LangCode }) {
       >
         {AREA_LABEL.bathroom[lang]}
       </text>
+      <Compass />
       {/* the balcony window, drawn as a gap in its outer wall */}
       <path d="M20 0H120" style={{ stroke: 'var(--card-bg, #fff)', strokeWidth: 3 }} />
       <path d={WALLS} fill="none" strokeLinecap="square" style={{ stroke: 'var(--sec-text)', strokeWidth: WALL }} />

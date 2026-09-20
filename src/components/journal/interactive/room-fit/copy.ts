@@ -1,4 +1,6 @@
-import type { DoorId, PieceId } from '@/lib/roomFit';
+import type { DoorId, PieceId, Placement, Rotation } from '@/lib/roomFit';
+import { COMPASS, frontSide, headSide } from '@/lib/roomFitCompass';
+import type { CompassPoint, Side } from '@/lib/roomFitCompass';
 import type { Bilingual } from '@/data/journalTypes';
 import type { LangCode } from '@/lib/journalBlocks';
 
@@ -15,6 +17,43 @@ export const PIECE_NAME: Record<PieceId, Bilingual> = {
   table: t('Table', 'โต๊ะ'),
   shelf: t('Shelf', 'ชั้นวาง'),
 };
+
+/** A part drawn inside a piece: the kitchen unit's single-door fridge. */
+export const FRIDGE_NAME: Bilingual = t('Fridge', 'ตู้เย็น');
+
+// What each piece is, with the heights from the article's measurements table. The kitchen's
+// fridge and the shelf's two halves are the owner's description of the real room.
+export const PIECE_NOTE: Record<PieceId, Bilingual> = {
+  bed: t('Head against a wall; you get in from a long side · 45 cm high', 'หัวเตียงชิดผนัง ขึ้นลงทางด้านยาว สูง 45 ซม.'),
+  closet: t('Wardrobe, its doors open on the front · 240 cm tall', 'ตู้เสื้อผ้า เปิดประตูทางด้านหน้า สูง 240 ซม.'),
+  kitchen: t('Counter with a single-door fridge at one end · counter 100 cm high', 'เคาน์เตอร์ครัวพร้อมตู้เย็น 1 บานที่ปลายด้านหนึ่ง เคาน์เตอร์สูง 100 ซม.'),
+  table: t('Long desk along a wall, the chair on its front · 70 cm high', 'โต๊ะยาวชิดผนัง วางเก้าอี้ด้านหน้า สูง 70 ซม.'),
+  shelf: t('Shoe rack in the lower half, storage above · 240 cm tall', 'ตู้รองเท้าครึ่งล่าง ที่เก็บของครึ่งบน สูง 240 ซม.'),
+};
+
+const COMPASS_NAME: Record<CompassPoint, Bilingual> = {
+  north: t('north', 'ทิศเหนือ'),
+  east: t('east', 'ทิศตะวันออก'),
+  south: t('south', 'ทิศใต้'),
+  west: t('west', 'ทิศตะวันตก'),
+};
+
+// What is at each side of the plan as drawn: the balcony and bathroom are at the top, the front door at the bottom.
+const SIDE_NAME: Record<Side, Bilingual> = {
+  up: t('the balcony end', 'ฝั่งระเบียง'),
+  down: t('the front-door end', 'ฝั่งประตูห้อง'),
+  left: t('the left wall', 'ผนังซ้าย'),
+  right: t('the right wall', 'ผนังขวา'),
+};
+
+/** Which way a piece faces — or, for the bed, where its head is — by the article's compass, and by what is there. */
+export function facingLabel(id: PieceId, rot: Rotation, lang: LangCode): string {
+  const side = id === 'bed' ? headSide(rot) : frontSide(rot);
+  const point = COMPASS_NAME[COMPASS[side]][lang];
+  const there = SIDE_NAME[side][lang];
+  if (id === 'bed') return lang === 'th' ? `หัวเตียงไปทาง${point} (${there})` : `Head towards the ${point} (${there})`;
+  return lang === 'th' ? `หันหน้าไปทาง${point} (${there})` : `Faces ${point} (${there})`;
+}
 
 export const DOOR_NAME: Record<DoorId, Bilingual> = {
   entrance: t('the front door', 'ประตูทางเข้า'),
@@ -84,6 +123,11 @@ export function positionLabel(name: string, x: number, y: number, lang: LangCode
   return lang === 'th'
     ? `${name} ห่างผนังซ้าย ${x} ซม. ห่างผนังฝั่งห้องน้ำและระเบียง ${y} ซม.`
     : `${name}: ${x} cm from the left wall, ${y} cm from the bathroom and balcony wall`;
+}
+
+/** Where a piece is and which way it faces — what a screen reader says, and what a piece is labelled with. */
+export function placeLabel(id: PieceId, placement: Placement, topOfLiving: number, lang: LangCode): string {
+  return `${positionLabel(PIECE_NAME[id][lang], placement.x, placement.y - topOfLiving, lang)}, ${facingLabel(id, placement.rot, lang)}`;
 }
 
 export function ourPlanCaption(width: number, lang: LangCode): string {

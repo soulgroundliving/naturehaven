@@ -12,7 +12,7 @@
 //   exit 0  every check passed
 //   exit 1  a check failed (each is listed)
 //   exit 2  the harness could not run (server or browser did not start)
-import { FINAL_PLAN, LIVING, PIECE_IDS, START_LAYOUT, footprintOf } from '../src/lib/roomFit.ts';
+import { FINAL_PLAN, LIVING, PIECE_IDS, START_LAYOUT, footprintOf, fridgeRectOf, headRectOf } from '../src/lib/roomFit.ts';
 import { createChecks, sleep, startHarness } from './lib/dev-harness.mjs';
 
 const { check, finish } = createChecks('room-fit');
@@ -27,6 +27,15 @@ const PHONE = { width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, h
 
 const sameSpot = (a, b) => a.x === b.x && a.y === b.y && a.rot === b.rot;
 const allAt = (pieces, layout) => PIECE_IDS.every((id) => sameSpot(pieces[id], layout[id]));
+const sameRect = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
+// The rectangle an SVG <rect> is drawn as, in plan units (cm).
+const rectOf = (page, selector) =>
+  page.$eval(selector, (el) => {
+    const x0 = Number(el.getAttribute('x'));
+    const y0 = Number(el.getAttribute('y'));
+    return { x0, y0, x1: x0 + Number(el.getAttribute('width')), y1: y0 + Number(el.getAttribute('height')) };
+  });
 
 // ── driving the page ─────────────────────────────────────────────────────────
 async function openArticle({ lang = 'en', tod = 'day', viewport = DESKTOP } = {}) {
@@ -205,6 +214,25 @@ try {
     JSON.stringify(routes),
   );
 
+  // Directions come from the article's own compass (slide 3: S at the top of the plan, N at the bottom).
+  const compass = await page.$$eval('[data-testid="room-fit-compass"] text', (nodes) =>
+    nodes.map((n) => ({ letter: n.textContent.trim(), x: Number(n.getAttribute('x')), y: Number(n.getAttribute('y')) })),
+  );
+  const letterAt = Object.fromEntries(compass.map((c) => [c.letter, c]));
+  check(
+    'a compass rose sits on the plan the way slide 3 draws it: S at the top, N at the bottom, east on the left, west on the right',
+    compass.length === 4 && letterAt.S?.y < letterAt.N?.y && letterAt.E?.x < letterAt.W?.x,
+    JSON.stringify(compass),
+  );
+  // The plan shows a single-door fridge at one end of the kitchen unit, and the bed with its head against a wall.
+  const fridgeAtStart = await rectOf(page, '[data-piece="kitchen"] [data-part="fridge"]').catch(() => null);
+  const headAtStart = await rectOf(page, '[data-piece="bed"] [data-part="head"]').catch(() => null);
+  check(
+    'the kitchen unit is drawn with its fridge at one end, and the bed with its head bar',
+    sameRect(fridgeAtStart, fridgeRectOf('kitchen', START_LAYOUT.kitchen)) && sameRect(headAtStart, headRectOf(START_LAYOUT.bed)),
+    JSON.stringify({ fridgeAtStart, headAtStart }),
+  );
+
   // Dragging every piece onto the final plan wins.
   for (const id of ['table', 'kitchen', 'shelf', 'closet', 'bed']) await placeLikeThePlan(page, id);
   const solved = await settle(page);
@@ -217,12 +245,20 @@ try {
   check('the walkway rule prints the true narrowest gap (105 cm: bed to the row of units)', solved.walkDetail === 'narrowest 105 cm', String(solved.walkDetail));
   const routeColours = await page.$$eval('[data-testid="room-fit-route"]', (lines) => lines.map((l) => l.getAttribute('class')));
   check('the routes turn green once the walkway holds', routeColours.length === 2 && routeColours.every((c) => c.includes('stroke-sage-green')), JSON.stringify(routeColours));
+  // As on the plan (slides 4 and 7), the fridge end of the kitchen unit is the end next to the table, and the shelf is last, by the door.
+  const fridgeSolved = await rectOf(page, '[data-piece="kitchen"] [data-part="fridge"]').catch(() => null);
+  check(
+    'in the final plan the fridge is at the table end of the kitchen unit and the shelf is beside the front door, as drawn',
+    fridgeSolved !== null && fridgeSolved.y0 === footprintOf('table', FINAL_PLAN.table).y1 && footprintOf('shelf', solved.pieces.shelf).y1 === 715,
+    JSON.stringify({ fridgeSolved, shelf: solved.pieces.shelf }),
+  );
 
-  // Break ONLY the walkway: 20 cm of bed leaves 85 cm beside it, and every quick rule still passes.
+  // Break ONLY the walkway: the bed 65 cm nearer the top wall leaves 85 cm between them (to the balcony door),
+  // and every quick rule still passes.
   // Right after letting go, the one thing between the visitor and a false "you win" is that the game
   // has not measured the walkway yet — it must say so rather than quote the score it had.
   await showBoard(page);
-  await dragBy(page, 'bed', 20, 0);
+  await dragBy(page, 'bed', 0, -65);
   const unchecked = await readGame(page);
   check(
     'right after a move the game does not claim a win it has not checked',
@@ -235,7 +271,7 @@ try {
     narrowed.rules.walk === false && narrowed.passed === 4 && narrowed.walkDetail === 'narrowest 85 cm',
     JSON.stringify(narrowed),
   );
-  await dragBy(page, 'bed', -20, 0);
+  await dragBy(page, 'bed', 0, 65);
   const restored = await settle(page);
   check('moving it back wins again', restored.won && restored.passed === 5 && allAt(restored.pieces, FINAL_PLAN), JSON.stringify(restored));
 
@@ -258,8 +294,24 @@ try {
       caption: document.querySelector('[data-testid="room-fit-our-plan"]')?.textContent ?? '',
       label: toggle.textContent.trim(),
       hasPressed: toggle.hasAttribute('aria-pressed'), // a button whose LABEL changes must not also carry a pressed state
+      directions: [...document.querySelectorAll('[data-testid="room-fit-our-plan-directions"] li')].map((li) => li.textContent.trim()),
+      labels: [...document.querySelectorAll('[data-testid="room-fit-ghost"] text')].map((t) => t.textContent.trim()),
     };
   });
+  // Four pieces are on their spots and only the bed is not: a ghost label printed over a piece's own caption comes out garbled.
+  check('the plan outline is labelled only where a piece is NOT yet on its spot (here: just the bed)', JSON.stringify(ghost.labels) === JSON.stringify(['Bed']), JSON.stringify(ghost.labels));
+  check(
+    '"Show our plan" states which way each piece faces, in the article\'s compass: the bed\'s head east, the closet south, the right-wall units east',
+    JSON.stringify(ghost.directions) ===
+      JSON.stringify([
+        'Bed — Head towards the east (the left wall)',
+        'Closet — Faces south (the balcony end)',
+        'Table — Faces east (the left wall)',
+        'Kitchen — Faces east (the left wall)',
+        'Shelf — Faces east (the left wall)',
+      ]),
+    JSON.stringify(ghost.directions),
+  );
   check(
     '"Show our plan" outlines the five pieces, states the plan\'s own walkway, and its label — not aria-pressed — carries the state',
     ghost.outlines === 5 && ghost.label === 'Hide our plan' && ghost.hasPressed === false && /narrowest walkway 105 cm/.test(ghost.caption),
@@ -269,7 +321,7 @@ try {
   const reset = await settle(page);
   const ghostAfterReset = await page.$('[data-testid="room-fit-ghost"]');
   check('"Start over" puts every piece back and returns to 2 of 5', allAt(reset.pieces, START_LAYOUT) && reset.passed === 2 && !reset.won, JSON.stringify(reset));
-  check('"Start over" keeps the plan outline the visitor asked to see', ghostAfterReset !== null);
+  check('"Start over" keeps the plan outline the visitor asked to see, now labelled on all five pieces', ghostAfterReset !== null && (await page.$$('[data-testid="room-fit-ghost"] text')).length === 5);
   await page.click('[data-action="toggle-plan"]');
   check('hiding the plan removes the outlines and the caption', (await page.$('[data-testid="room-fit-ghost"]')) === null && (await page.$('[data-testid="room-fit-our-plan"]')) === null);
 
@@ -350,7 +402,8 @@ try {
       buttons: pieces.every((g) => g.getAttribute('role') === 'button' && g.tabIndex === 0),
       // Enter and Space do nothing on a piece, so it must not announce itself as a plain button.
       described: pieces.every((g) => g.getAttribute('aria-roledescription') === 'movable piece'),
-      labelled: pieces.every((g) => /cm from the left wall.*\d+×\d+$/.test(g.getAttribute('aria-label') ?? '')),
+      // where it is, which way it faces (or where the bed's head is), and how big
+      labelled: pieces.every((g) => /cm from the left wall.*(Faces|Head towards) .*\d+×\d+$/.test(g.getAttribute('aria-label') ?? '')),
       board: document.querySelector('svg[role="group"]')?.getAttribute('aria-label'),
       live: document.querySelector('[data-testid="room-fit-progress"]').getAttribute('aria-live'),
       announcer: document.querySelector('[data-testid="room-fit-announce"]')?.getAttribute('aria-live'),
@@ -367,6 +420,17 @@ try {
   const focused = await readGame(kp);
   const selectedName = await kp.$eval('[data-testid="room-fit-selected-name"]', (el) => el.textContent.trim());
   check('focusing a piece selects it and the controls name it', focused.selected === 'shelf' && selectedName === 'Shelf 60×45', JSON.stringify({ selected: focused.selected, selectedName }));
+  const readSelected = () =>
+    kp.evaluate(() => ({
+      note: document.querySelector('[data-testid="room-fit-selected-note"] p')?.textContent.trim() ?? null,
+      facing: document.querySelector('[data-testid="room-fit-facing"]')?.textContent.trim() ?? null,
+    }));
+  const shelfNote = await readSelected();
+  check(
+    'the selected piece is described (the shelf: a shoe rack below, storage above) and the way it faces is stated',
+    shelfNote.note === 'Shoe rack in the lower half, storage above · 240 cm tall' && shelfNote.facing === 'Faces north (the front-door end)',
+    JSON.stringify(shelfNote),
+  );
 
   const home = await pieceOf(kp, 'shelf');
   const scrolledFrom = await scrollOf(kp);
@@ -392,6 +456,8 @@ try {
   const turned = await pieceOf(kp, 'shelf');
   const turnedBox = await kp.$eval('[data-piece="shelf"] rect', (r) => ({ w: Number(r.getAttribute('width')), h: Number(r.getAttribute('height')) }));
   check('R turns the piece 90 degrees clockwise, swapping its footprint', turned.rot === 90 && turnedBox.w === 45 && turnedBox.h === 60, JSON.stringify({ turned, turnedBox }));
+  const turnedNote = await readSelected();
+  check('and the stated direction turns with it: north, then (a quarter turn clockwise) east', turnedNote.facing === 'Faces east (the left wall)', JSON.stringify(turnedNote));
 
   // A screen-reader user gets no spoken confirmation from a piece that merely changed its label,
   // so once a move has settled the new position is said in a polite live region.
@@ -500,11 +566,19 @@ try {
     board: document.querySelector('svg[role="group"]')?.getAttribute('aria-label'),
     walkLabel: document.querySelector('[data-rule="walk"] p')?.textContent ?? '',
     shelf: document.querySelector('[data-piece="shelf"]')?.getAttribute('aria-label') ?? '',
+    note: document.querySelector('[data-testid="room-fit-selected-note"] p')?.textContent.trim() ?? '',
+    facing: document.querySelector('[data-testid="room-fit-facing"]')?.textContent.trim() ?? '',
+    fridge: document.querySelector('[data-piece="kitchen"] [data-part="fridge"] + text')?.textContent.trim() ?? '',
   }));
   check(
     'switching to Thai retitles the game and keeps every piece where the visitor put it',
     thai.progress === `ผ่าน ${english.passed} จาก 5 ข้อ` && thaiText.board.startsWith('แปลนห้อง 25.2 ตร.ม.') && thaiText.walkLabel.includes('ทางเดินกว้างอย่างน้อย 90 ซม.') && thaiText.shelf.includes('ห่างผนังซ้าย') && allAt(thai.pieces, english.pieces),
     JSON.stringify({ progress: thai.progress, ...thaiText }),
+  );
+  check(
+    'in Thai the shelf is described (shoe rack below, storage above), its direction is stated by the compass, and the fridge is labelled',
+    thaiText.note === 'ตู้รองเท้าครึ่งล่าง ที่เก็บของครึ่งบน สูง 240 ซม.' && thaiText.facing === 'หันหน้าไปทางทิศเหนือ (ฝั่งประตูห้อง)' && thaiText.shelf.includes('หันหน้าไปทางทิศเหนือ') && thaiText.fridge === 'ตู้เย็น',
+    JSON.stringify(thaiText),
   );
   check('no console errors or page errors switching language', lang.problems.length === 0, lang.problems.join(' | '));
   await lp.close();
