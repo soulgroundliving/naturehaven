@@ -1,184 +1,81 @@
-import { useEffect, useMemo, useReducer, useState } from 'react';
-import { Eye, EyeOff, RotateCcw } from 'lucide-react';
-import {
-  BED_SIDE,
-  FINAL_PLAN,
-  LIVING,
-  RULE_COUNT,
-  START_LAYOUT,
-  WALK_MIN,
-  evaluate,
-  evaluateFast,
-  evaluateWalk,
-  movePiece,
-  nudgePiece,
-  rotatePiece,
-} from '@/lib/roomFit';
-import type { Layout, PieceId, Placement } from '@/lib/roomFit';
+import { useEffect, useRef, useState } from 'react';
+import type { MouseEvent } from 'react';
 import type { InteractiveProps } from '../registry';
-import OurPlan from './OurPlan';
-import PieceControls from './PieceControls';
-import RoomBoard from './RoomBoard';
-import RulesList from './RulesList';
-import { COPY, bedDetail, doorsDetail, fitDetail, placeLabel, progress, ruleLabels, useDetail, verdict, walkDetail } from './copy';
-import type { RuleView, VerdictKind } from './copy';
+import RoomFitCompact from './RoomFitCompact';
+import RoomFitInline from './RoomFitInline';
+import RoomFitPlay from './RoomFitPlay';
+import useMediaQuery from './useMediaQuery';
+import useRoomFitGame from './useRoomFitGame';
 
-// How long the arrangement must hold still before the walkway is measured.
-const WALK_CHECK_DELAY_MS = 150;
+// "Compact" is anything narrower than the article's two-column layout (Tailwind's `lg`): a phone or a
+// tablet held upright, where the plan and its checks would stack and the buttons end up a screen from the plan.
+// (1023.98, not 1023: a fractional width such as 1023.5 px must land on one side or the other.)
+const COMPACT_QUERY = '(max-width: 1023.98px)';
 
-interface State {
-  layout: Layout;
-  selected: PieceId | null;
-  /** The piece that last changed place (for the spoken announcement); null until one has. */
-  moved: PieceId | null;
-  showPlan: boolean;
-}
+// The dialog gets a history entry of its own, so the Back gesture of a phone (Android's button, iOS's swipe)
+// closes the game instead of leaving the article and losing it. Same URL, so the router sees no navigation.
+const PLAY_ENTRY = 'roomFitPlay';
 
-type Action =
-  | { type: 'select'; id: PieceId }
-  | { type: 'move'; id: PieceId; x: number; y: number }
-  | { type: 'nudge'; id: PieceId; dx: number; dy: number }
-  | { type: 'rotate'; id: PieceId }
-  | { type: 'reset' }
-  | { type: 'togglePlan' };
-
-const INITIAL: State = { layout: START_LAYOUT, selected: null, moved: null, showPlan: false };
-
-const samePlacement = (a: Placement, b: Placement) => a.x === b.x && a.y === b.y && a.rot === b.rot;
-
-// What the headline can honestly say: overlapping pieces are visible at once, but a win only
-// counts for an arrangement whose walkway has been measured.
-function verdictFor(fits: boolean, settled: boolean, won: boolean): VerdictKind {
-  if (!fits) return 'overlap';
-  return settled && won ? 'won' : 'open';
-}
-
-// A move that lands where the piece already is (held against a wall, say) must
-// not count as a change, or every pointer event would re-run the rules.
-function withLayout(state: State, id: PieceId, layout: Layout): State {
-  return samePlacement(layout[id], state.layout[id]) ? state : { ...state, layout, moved: id };
-}
-
-function reduce(state: State, action: Action): State {
-  switch (action.type) {
-    case 'select':
-      return state.selected === action.id ? state : { ...state, selected: action.id };
-    case 'move':
-      return withLayout(state, action.id, movePiece(state.layout, action.id, action.x, action.y));
-    case 'nudge':
-      return withLayout(state, action.id, nudgePiece(state.layout, action.id, action.dx, action.dy));
-    case 'rotate':
-      return withLayout(state, action.id, rotatePiece(state.layout, action.id));
-    case 'reset':
-      return { ...INITIAL, showPlan: state.showPlan };
-    case 'togglePlan':
-      return { ...state, showPlan: !state.showPlan };
-  }
-}
-
-// "Can the room still work once everything fits?" — the article's question,
-// playable. Every piece is the real size from the measurements table; the start
-// fits everything and works for nothing; the five rules are checked live against
-// the real geometry (src/lib/roomFit.ts), the walkway by measuring the narrowest
-// point of the widest route from the front door, not by a rule of thumb.
+// "Can the room still work once everything fits?" — the article's question, playable. One game
+// (useRoomFitGame) in three settings: side by side with its checks where the screen is wide, as a
+// picture and one button where it is not, and full screen — the way a phone plays it, and anyone can
+// choose — with the plan and its buttons together and nothing to scroll.
 export default function RoomFit({ lang }: InteractiveProps) {
-  const [state, dispatch] = useReducer(reduce, INITIAL);
+  const game = useRoomFitGame(lang);
+  const compact = useMediaQuery(COMPACT_QUERY);
+  const [playing, setPlaying] = useState(false);
+  const leaving = useRef(false);
+  const pushed = useRef(false);
+  // The room the game takes in the article, kept open while the dialog stands in for it.
+  const [held, setHeld] = useState(0);
 
-  // The four quick rules follow every move. The walkway is a route search — about 25 ms on
-  // a laptop, 100-250 ms on a mid-range phone — and run for every 5 cm of a drag it would keep
-  // the main thread busy for most of the drag (useDeferredValue does not help: the search is
-  // one render that cannot be interrupted). So the full check waits until the arrangement has
-  // held still, and until then the game speaks only for what it has actually checked.
-  const fast = useMemo(() => evaluateFast(state.layout), [state.layout]);
-  const [checked, setChecked] = useState(state.layout);
+  // The button that opened the full-screen game is replaced while it is up: put focus on its successor.
   useEffect(() => {
-    const timer = window.setTimeout(() => setChecked(state.layout), WALK_CHECK_DELAY_MS);
-    return () => window.clearTimeout(timer);
-  }, [state.layout]);
-  const verified = useMemo(() => evaluate(checked), [checked]);
-  const settled = checked === state.layout;
-  const ourWalk = useMemo(() => (state.showPlan ? evaluateWalk(FINAL_PLAN) : null), [state.showPlan]);
-  // Moving a piece only changes its label, which a screen reader does not re-read: say where it landed
-  // and which way it faces, once it has stopped.
-  const spoken = settled && state.moved ? placeLabel(state.moved, state.layout[state.moved], LIVING.y0, lang) : '';
+    if (playing || !leaving.current) return;
+    leaving.current = false;
+    document.querySelector<HTMLElement>('[data-action="play-full-screen"]')?.focus();
+  }, [playing]);
 
-  const labels = ruleLabels(WALK_MIN, BED_SIDE);
-  const rules: RuleView[] = [
-    { id: 'fit', label: labels.fit, ok: fast.fit, detail: fitDetail(fast.overlapping, lang) },
-    { id: 'doors', label: labels.doors, ok: fast.doors, detail: doorsDetail(fast.blockedDoors, lang) },
-    { id: 'walk', label: labels.walk, ok: verified.walk.ok, detail: walkDetail(verified.walk.width, lang) },
-    { id: 'use', label: labels.use, ok: fast.use, detail: useDetail(fast.cramped, lang) },
-    { id: 'bed', label: labels.bed, ok: fast.bed, detail: bedDetail(fast.bed, lang) },
-  ];
+  // Back pops the entry the dialog pushed: that is the game closing.
+  useEffect(() => {
+    if (!playing) return;
+    const onBack = () => {
+      pushed.current = false;
+      leaving.current = true;
+      setPlaying(false);
+    };
+    window.addEventListener('popstate', onBack);
+    return () => window.removeEventListener('popstate', onBack);
+  }, [playing]);
 
-  const ACTION_BUTTON =
-    'inline-flex items-center gap-2 rounded-full border sec-border px-4 py-2 font-sans text-[13px] sec-text-80 transition-colors duration-300 hover:border-sage-green hover:text-sage-green focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-green';
-
-  return (
-    <div
-      data-testid="room-fit"
-      data-rules-passed={verified.passed}
-      data-won={settled && verified.won}
-      data-settled={settled}
-      data-selected={state.selected ?? ''}
-      className="grid gap-6 lg:grid-cols-[minmax(0,370px)_minmax(0,1fr)] lg:gap-8"
-    >
-      <RoomBoard
-        layout={state.layout}
-        selected={state.selected}
-        fast={fast}
-        walk={verified.walk}
-        settled={settled}
-        showPlan={state.showPlan}
-        lang={lang}
-        onSelect={(id) => dispatch({ type: 'select', id })}
-        onMove={(id, x, y) => dispatch({ type: 'move', id, x, y })}
-        onNudge={(id, dx, dy) => dispatch({ type: 'nudge', id, dx, dy })}
-        onRotate={(id) => dispatch({ type: 'rotate', id })}
-      />
-
-      <div className="flex min-w-0 flex-col gap-5">
-        <div>
-          <p data-testid="room-fit-progress" aria-live="polite" className="font-sans text-[12px] font-medium uppercase tracking-[0.16em] sec-text-60">
-            {settled ? progress(verified.passed, RULE_COUNT, lang) : COPY.checking[lang]}
-          </p>
-          <p data-testid="room-fit-verdict" className="mt-1 font-sans text-[17px] font-medium leading-snug sec-text">
-            {verdict(verdictFor(fast.fit, settled, verified.won), lang)}
-          </p>
-          <p data-testid="room-fit-announce" aria-live="polite" className="sr-only">
-            {spoken}
-          </p>
-        </div>
-
-        <RulesList rules={rules} lang={lang} settled={settled} />
-
-        <PieceControls
-          selected={state.selected}
-          rot={state.selected ? state.layout[state.selected].rot : null}
+  if (playing) {
+    return (
+      <>
+        {/* The game is not in the article while the dialog is up. Without this the page shrinks by the game's height and, on
+            closing, the browser's scroll anchoring leaves the reader somewhere else in the article. */}
+        <div aria-hidden="true" style={{ height: held }} />
+        <RoomFitPlay
+          game={game}
           lang={lang}
-          onNudge={(id, dx, dy) => dispatch({ type: 'nudge', id, dx, dy })}
-          onRotate={(id) => dispatch({ type: 'rotate', id })}
+          onClose={() => {
+            leaving.current = true;
+            // Escape and the close button take the entry back off; the popstate above then closes the game.
+            if (pushed.current && window.history.state?.[PLAY_ENTRY]) window.history.back();
+            else setPlaying(false);
+          }}
         />
-
-        <div className="flex flex-wrap gap-3">
-          <button type="button" data-action="reset" onClick={() => dispatch({ type: 'reset' })} className={ACTION_BUTTON}>
-            <RotateCcw size={15} aria-hidden="true" />
-            {COPY.reset[lang]}
-          </button>
-          <button type="button" data-action="toggle-plan" onClick={() => dispatch({ type: 'togglePlan' })} className={ACTION_BUTTON}>
-            {state.showPlan ? <EyeOff size={15} aria-hidden="true" /> : <Eye size={15} aria-hidden="true" />}
-            {state.showPlan ? COPY.hidePlan[lang] : COPY.showPlan[lang]}
-          </button>
-        </div>
-
-        {ourWalk && <OurPlan walkWidth={ourWalk.width} lang={lang} />}
-
-        <div className="flex flex-col gap-1.5 font-sans text-[12px] leading-snug sec-text-60">
-          <p>{COPY.howTo[lang]}</p>
-          <p>{COPY.routeLegend[lang]}</p>
-          <p>{COPY.disclaimer[lang]}</p>
-        </div>
-      </div>
-    </div>
-  );
+      </>
+    );
+  }
+  const play = (event: MouseEvent<HTMLElement>) => {
+    setHeld(event.currentTarget.closest<HTMLElement>('[data-testid="room-fit"]')?.offsetHeight ?? 0);
+    try {
+      window.history.pushState({ [PLAY_ENTRY]: true }, '');
+      pushed.current = true;
+    } catch {
+      pushed.current = false; // the game still opens; Back then leaves the article, as it would have
+    }
+    setPlaying(true);
+  };
+  return compact ? <RoomFitCompact game={game} lang={lang} onPlay={play} /> : <RoomFitInline game={game} lang={lang} onPlay={play} />;
 }

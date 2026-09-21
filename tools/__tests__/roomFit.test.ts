@@ -8,32 +8,36 @@ import assert from 'node:assert/strict';
 import {
   BED_SIDE,
   DOOR_ZONES,
+  CLEAR_CAP,
   FINAL_PLAN,
-  FRIDGE_LENGTH,
   HEAD_DEPTH,
   LIVING,
   PIECE_IDS,
   SNAP,
   START_LAYOUT,
   WALK_MIN,
+  bedSideClear,
   bedStripsOf,
   clampPlacement,
+  clearDepthOf,
   evaluate,
   evaluateFast,
   evaluateWalk,
   footprintOf,
-  fridgeRectOf,
   frontZoneOf,
   headRectOf,
+  measureSpaces,
   movePiece,
   nudgePiece,
   overlaps,
   rotatePiece,
   snap,
+  specOf,
   walkOk,
 } from '../../src/lib/roomFit.ts';
 import type { Layout, PieceId, Placement } from '../../src/lib/roomFit.ts';
 import { CELL, widestRoutes } from '../../src/lib/roomFitRoute.ts';
+import { SPACE_IDS, SPACE_STANDARDS, tierOf, wholeCm } from '../../src/lib/roomStandards.ts';
 import type { Rect } from '../../src/lib/roomFitRoute.ts';
 
 const place = (x: number, y: number, rot: Placement['rot'] = 0): Placement => ({ x, y, rot });
@@ -67,26 +71,25 @@ describe('footprintOf', () => {
     assert.deepEqual(footprintOf('bed', place(0, 310, 90)), { x0: 0, y0: 310, x1: 160, y1: 510 });
     assert.deepEqual(footprintOf('bed', place(0, 310, 180)), { x0: 0, y0: 310, x1: 200, y1: 470 });
     assert.deepEqual(footprintOf('table', place(305, 160, 90)), { x0: 305, y0: 160, x1: 350, y1: 460 });
-    assert.deepEqual(footprintOf('kitchen', place(0, 0, 0)), { x0: 0, y0: 0, x1: 195, y1: 45 });
+    assert.deepEqual(footprintOf('kitchen', place(0, 0, 0)), { x0: 0, y0: 0, x1: 140, y1: 45 }); // the counter; the fridge is beside it
+    assert.deepEqual(footprintOf('fridge', place(0, 0, 0)), { x0: 0, y0: 0, x1: 55, y1: 55 });
   });
 });
 
 describe('frontZoneOf', () => {
   it('extends from the front edge, and the front turns clockwise with the piece', () => {
     const at = (rot: Placement['rot']) => frontZoneOf('closet', place(100, 300, rot));
-    assert.deepEqual(at(0), { x0: 100, y0: 360, x1: 250, y1: 420 }); // south
-    assert.deepEqual(at(90), { x0: 40, y0: 300, x1: 100, y1: 450 }); // west (footprint 60 x 150)
-    assert.deepEqual(at(180), { x0: 100, y0: 240, x1: 250, y1: 300 }); // north
-    assert.deepEqual(at(270), { x0: 160, y0: 300, x1: 220, y1: 450 }); // east
+    assert.deepEqual(at(0), { x0: 100, y0: 360, x1: 250, y1: 450 }); // south
+    assert.deepEqual(at(90), { x0: 10, y0: 300, x1: 100, y1: 450 }); // west (footprint 60 x 150)
+    assert.deepEqual(at(180), { x0: 100, y0: 210, x1: 250, y1: 300 }); // north
+    assert.deepEqual(at(270), { x0: 160, y0: 300, x1: 250, y1: 450 }); // east
   });
   it('uses each piece\'s own depth', () => {
     const depth = (id: PieceId) => {
       const zone = frontZoneOf(id, place(100, 300, 0))!;
       return zone.y1 - zone.y0;
     };
-    assert.equal(depth('kitchen'), 90);
-    assert.equal(depth('table'), 70);
-    assert.equal(depth('shelf'), 50);
+    assert.deepEqual([depth('closet'), depth('kitchen'), depth('fridge'), depth('table'), depth('shelf')], [90, 90, 70, 70, 50]);
   });
   it('has none for the bed, which is checked by its long sides instead', () => {
     assert.equal(frontZoneOf('bed', place(0, 310, 0)), null);
@@ -209,28 +212,15 @@ describe('random play never breaks the rules of the board', () => {
 });
 
 describe('the fridge and the bed\'s head', () => {
-  // The kitchen unit (195 cm, from the article's table) is a counter with a single-door fridge at one end,
-  // and the bed is drawn with its head against a wall: both are DRAWN parts of a piece, so they must turn with it.
-  it('puts the fridge at the "left" end of the kitchen unit and turns it with the unit', () => {
-    assert.equal(FRIDGE_LENGTH, 55);
-    assert.deepEqual(fridgeRectOf('kitchen', place(100, 200, 0)), { x0: 100, y0: 200, x1: 100 + FRIDGE_LENGTH, y1: 245 });
-    assert.deepEqual(fridgeRectOf('kitchen', place(305, 460, 90)), { x0: 305, y0: 460, x1: 350, y1: 460 + FRIDGE_LENGTH }); // the top end
-    assert.deepEqual(fridgeRectOf('kitchen', place(100, 200, 180)), { x0: 295 - FRIDGE_LENGTH, y0: 200, x1: 295, y1: 245 });
-    assert.deepEqual(fridgeRectOf('kitchen', place(305, 460, 270)), { x0: 305, y0: 655 - FRIDGE_LENGTH, x1: 350, y1: 655 });
+  // The kitchen run of the article's table is 195 cm: a 140 cm counter and a single-door fridge beside it.
+  it('makes the fridge a piece of its own — single door, 55 x 55 — next to a 140 cm counter', () => {
+    assert.deepEqual([specOf('fridge').w, specOf('fridge').d], [55, 55]);
+    assert.deepEqual([specOf('kitchen').w, specOf('kitchen').d], [140, 45]);
+    assert.equal(specOf('kitchen').w + specOf('fridge').w, 195);
   });
-  it('is a part of the kitchen only', () => {
-    for (const id of PIECE_IDS) {
-      if (id === 'kitchen') continue;
-      assert.equal(fridgeRectOf(id, place(100, 200, 0)), null, id);
-    }
-  });
-  it('keeps the fridge inside the kitchen\'s own footprint whichever way it faces', () => {
-    for (const rot of [0, 90, 180, 270] as const) {
-      const at = place(50, 300, rot);
-      const fridge = fridgeRectOf('kitchen', at);
-      const unit = footprintOf('kitchen', at);
-      assert.ok(fridge !== null && fridge.x0 >= unit.x0 && fridge.y0 >= unit.y0 && fridge.x1 <= unit.x1 && fridge.y1 <= unit.y1, `facing ${rot}`);
-    }
+  it('gives the fridge a front, for its door to swing into', () => {
+    const zone = frontZoneOf('fridge', place(295, 460, 90))!;
+    assert.deepEqual(zone, { x0: 295 - 70, y0: 460, x1: 295, y1: 515 });
   });
   it('draws the bed\'s head as a bar along one short side, and turns it with the bed', () => {
     assert.equal(HEAD_DEPTH, 10);
@@ -242,24 +232,82 @@ describe('the fridge and the bed\'s head', () => {
 });
 
 describe('the article\'s final plan', () => {
-  it('is exactly the arrangement drawn in the design (slides 4 and 7): bed head at the left wall, and down the right wall the table, the kitchen and the shelf by the front door', () => {
+  it('is exactly the arrangement drawn in the design (slides 4 and 7): bed head at the left wall, and down the right wall the table, the fridge, the kitchen counter and the shelf by the front door', () => {
     assert.deepEqual(FINAL_PLAN.bed, place(0, 310, 0));
     assert.deepEqual(FINAL_PLAN.table, place(305, 160, 90));
-    assert.deepEqual(FINAL_PLAN.kitchen, place(305, 460, 90));
+    assert.deepEqual(FINAL_PLAN.fridge, place(295, 460, 90)); // 55 deep: 10 cm proud of the 45 cm units
+    assert.deepEqual(FINAL_PLAN.kitchen, place(305, 515, 90));
     assert.deepEqual(FINAL_PLAN.shelf, place(305, 655, 90));
     assert.deepEqual(FINAL_PLAN.closet, place(0, 660, 180));
   });
-  it('runs the three right-wall units end to end from the balcony to the door: 300 + 195 + 60 = 555 of the 560 cm', () => {
+  it('runs the four right-wall units end to end from the balcony to the door: 300 + 55 + 140 + 60 = 555 of the 560 cm', () => {
     const table = footprintOf('table', FINAL_PLAN.table);
+    const fridge = footprintOf('fridge', FINAL_PLAN.fridge);
     const kitchen = footprintOf('kitchen', FINAL_PLAN.kitchen);
     const shelf = footprintOf('shelf', FINAL_PLAN.shelf);
     assert.equal(table.y0, LIVING.y0);
-    assert.equal(table.y1, kitchen.y0);
+    assert.equal(table.y1, fridge.y0);
+    assert.equal(fridge.y1, kitchen.y0);
     assert.equal(kitchen.y1, shelf.y0);
     assert.equal(shelf.y1, 715); // 5 cm of slack before the bottom wall
   });
   it('fits, and every piece is inside the living area', () => {
     for (const id of PIECE_IDS) assert.ok(inside(footprintOf(id, FINAL_PLAN[id])), id);
+  });
+});
+
+describe('clearDepthOf and measureSpaces — how much room each piece really has', () => {
+  it('reads the final plan: room to spare in front of almost everything, the fridge the tightest', () => {
+    assert.deepEqual(measureSpaces(FINAL_PLAN), { bedside: 150, closet: 150, kitchen: 150, fridge: 95, table: 105, shelf: 150 });
+  });
+
+  it('stops at the next piece, to the 5 cm the pieces snap to', () => {
+    // The table faces west from x = 305; the bed's right edge is at 300 - the gap is exactly 5.
+    assert.equal(clearDepthOf(withPiece(FINAL_PLAN, 'bed', place(100, 310, 0)), 'table'), 5);
+    assert.equal(clearDepthOf(withPiece(FINAL_PLAN, 'bed', place(20, 310, 0)), 'table'), 85);
+  });
+
+  it('stops at a wall, and is nothing at all when the front faces one', () => {
+    assert.equal(clearDepthOf(withPiece(FINAL_PLAN, 'closet', place(0, 660, 0)), 'closet'), 0); // front to the bottom wall
+    assert.equal(clearDepthOf(withPiece(FINAL_PLAN, 'closet', place(0, 200, 180)), 'closet'), 40); // 200 - 160 (the top of the living area)
+  });
+
+  it('never reports more than the cap: past it no tier changes', () => {
+    assert.equal(CLEAR_CAP, 150);
+    // The cap is only safe while it sits above every tier threshold, or a wide space could never read "comfortable".
+    for (const id of SPACE_IDS) assert.ok(CLEAR_CAP >= SPACE_STANDARDS[id].comfortable, `${id}: cap ${CLEAR_CAP} < ${SPACE_STANDARDS[id].comfortable}`);
+    for (const id of PIECE_IDS) assert.ok(id === 'bed' || clearDepthOf(FINAL_PLAN, id) <= CLEAR_CAP, id);
+  });
+
+  it('ignores a piece that stands beside the strip rather than in it', () => {
+    // The shelf is directly below the kitchen counter and does not reach into the counter's front.
+    assert.equal(clearDepthOf(FINAL_PLAN, 'kitchen'), 150);
+  });
+
+  it('measures the bed by its better long side', () => {
+    assert.equal(bedSideClear(FINAL_PLAN), 150);
+    const boxed = withPiece(withPiece(FINAL_PLAN, 'shelf', place(0, 250, 0)), 'closet', place(0, 470, 0));
+    assert.equal(bedSideClear(boxed), 15); // the shelf stands 15 cm from the bed's north side; the closet touches the south side
+    assert.equal(bedSideClear(withPiece(FINAL_PLAN, 'bed', place(120, 300, 90))), 120); // a bed pointing up the room: 120 to the left wall
+  });
+
+  it('can leave the bed "just right" while the rule still fails: beside it the game asks for "comfortable" (120)', () => {
+    // The shelf blocks the bed's north side at 105 cm and the closet its south side at 105 cm (bed y 325..485).
+    const boxed = withPiece(withPiece(withPiece(FINAL_PLAN, 'bed', place(0, 325, 0)), 'shelf', place(105, 160, 90)), 'closet', place(0, 575, 0));
+    const spaces = measureSpaces(boxed);
+    assert.equal(spaces.bedside, 105);
+    assert.equal(tierOf('bedside', spaces.bedside), 'standard'); // green on the meter...
+    assert.equal(evaluateFast(boxed).bed, false); // ...and still a failed rule: the screen must say "needs 120"
+  });
+
+  it('agrees with the rules: a piece is cramped exactly when its room is under its required width', () => {
+    for (const layout of [FINAL_PLAN, START_LAYOUT, withPiece(FINAL_PLAN, 'bed', place(150, 310, 0)), withPiece(FINAL_PLAN, 'closet', place(0, 560, 180))]) {
+      const spaces = measureSpaces(layout);
+      const fast = evaluateFast(layout);
+      for (const id of ['closet', 'kitchen', 'fridge', 'table', 'shelf'] as const) {
+        assert.equal(fast.cramped.includes(id), spaces[id] < specOf(id).frontDepth, id);
+      }
+    }
   });
 });
 
@@ -302,11 +350,11 @@ describe('evaluateFast', () => {
   });
 
   it('counts a piece as cramped when another piece stands in its front zone', () => {
-    // The bed pushed against the right wall sits in the front zone of the table (and the kitchen) beside it.
+    // The bed pushed against the right wall sits in the front zone of the table and of the fridge beside it.
     const r = evaluateFast(withPiece(FINAL_PLAN, 'bed', place(150, 310, 0)));
     assert.ok(r.cramped.includes('table'), JSON.stringify(r.cramped));
-    assert.ok(r.cramped.includes('kitchen'), JSON.stringify(r.cramped));
-    assert.ok(!r.cramped.includes('shelf') && !r.cramped.includes('closet'), JSON.stringify(r.cramped));
+    assert.ok(r.cramped.includes('fridge'), JSON.stringify(r.cramped));
+    assert.ok(!r.cramped.includes('kitchen') && !r.cramped.includes('shelf') && !r.cramped.includes('closet'), JSON.stringify(r.cramped));
   });
 
   it('needs 120 cm free beside the bed on at least one long side', () => {
@@ -408,9 +456,11 @@ describe('evaluateWalk', () => {
   it('finds the final plan comfortably walkable, with a route to each door', () => {
     const w = evaluateWalk(FINAL_PLAN);
     assert.equal(w.ok, true);
-    // The narrowest point is the strip between the bed (its right edge, x = 200) and the
-    // row of units (x = 305): 105 cm. What the game prints must be what a tape measure says.
-    assert.equal(w.width, 105);
+    // The narrowest point is the strip between the bed (its right edge, x = 200) and the front of the
+    // fridge (x = 295: it is 55 deep, the units beside it 45): 95 cm — just right. What the game prints
+    // must be what a tape measure says.
+    assert.equal(w.width, 95);
+    assert.equal(tierOf('walk', w.width), 'standard');
     assert.ok(w.toBathroom.path.length > 0 && w.toBalcony.path.length > 0);
   });
 
@@ -432,6 +482,16 @@ describe('evaluateWalk', () => {
     const w = evaluateWalk(withPiece(FINAL_PLAN, 'bed', place(100, 310, 0)));
     assert.equal(w.ok, true);
     assert.equal(w.width, 100);
+  });
+
+  it('measures a squeeze between two corners as a diagonal, so the width need not be a multiple of 5 — and grades it by what it really is', () => {
+    // The bed at (40, 265): the narrowest point of the best route is a corner-to-corner gap of 64.03 cm.
+    const w = evaluateWalk(withPiece(FINAL_PLAN, 'bed', place(40, 265, 0)));
+    assert.equal(Number.isInteger(w.width), false);
+    assert.ok(w.width > 64 && w.width < 65, String(w.width));
+    assert.equal(tierOf('walk', w.width), 'tight');
+    assert.equal(w.ok, false);
+    assert.equal(wholeCm(w.width), 64); // what the screen prints: rounded down, never up to a number that would pass
   });
 
   it('stays cheap enough to run each time a piece comes to rest', () => {
@@ -462,6 +522,13 @@ describe('evaluate', () => {
     assert.deepEqual(DOOR_ZONES.entrance, { x0: 220, y0: 640, x1: 300, y1: 720 }); // an 80 cm door
     assert.equal(DOOR_ZONES.bathroom.y0, LIVING.y0);
     assert.equal(DOOR_ZONES.balcony.y0, LIVING.y0);
+  });
+
+  it('gives the balcony a double sliding door that fills its exit: 120 cm, inside the balcony\'s 140', () => {
+    const b = DOOR_ZONES.balcony;
+    assert.equal(b.x1 - b.x0, 120);
+    assert.ok(b.x0 >= 0 && b.x1 <= 140, `${b.x0}..${b.x1} must lie between the balcony's walls (0..140)`);
+    assert.equal(b.x0 + b.x1, 140, 'centred on the balcony');
   });
 
   it('puts every door-zone edge on the lattice the walkway is measured on', () => {

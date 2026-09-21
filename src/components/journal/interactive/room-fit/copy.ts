@@ -1,5 +1,6 @@
 import type { DoorId, PieceId, Placement, Rotation } from '@/lib/roomFit';
 import { COMPASS, frontSide, headSide } from '@/lib/roomFitCompass';
+import { requiredCm, wholeCm } from '@/lib/roomStandards';
 import type { CompassPoint, Side } from '@/lib/roomFitCompass';
 import type { Bilingual } from '@/data/journalTypes';
 import type { LangCode } from '@/lib/journalBlocks';
@@ -14,19 +15,18 @@ export const PIECE_NAME: Record<PieceId, Bilingual> = {
   bed: t('Bed', 'เตียง'),
   closet: t('Closet', 'ตู้เสื้อผ้า'),
   kitchen: t('Kitchen', 'ครัว'),
+  fridge: t('Fridge', 'ตู้เย็น'),
   table: t('Table', 'โต๊ะ'),
   shelf: t('Shelf', 'ชั้นวาง'),
 };
 
-/** A part drawn inside a piece: the kitchen unit's single-door fridge. */
-export const FRIDGE_NAME: Bilingual = t('Fridge', 'ตู้เย็น');
-
-// What each piece is, with the heights from the article's measurements table. The kitchen's
-// fridge and the shelf's two halves are the owner's description of the real room.
+// What each piece is, with the heights from the article's measurements table. The fridge being
+// single-door and the shelf's two halves are the owner's description of the real room.
 export const PIECE_NOTE: Record<PieceId, Bilingual> = {
   bed: t('Head against a wall; you get in from a long side · 45 cm high', 'หัวเตียงชิดผนัง ขึ้นลงทางด้านยาว สูง 45 ซม.'),
   closet: t('Wardrobe, its doors open on the front · 240 cm tall', 'ตู้เสื้อผ้า เปิดประตูทางด้านหน้า สูง 240 ซม.'),
-  kitchen: t('Counter with a single-door fridge at one end · counter 100 cm high', 'เคาน์เตอร์ครัวพร้อมตู้เย็น 1 บานที่ปลายด้านหนึ่ง เคาน์เตอร์สูง 100 ซม.'),
+  kitchen: t('Kitchen counter along a wall · 100 cm high', 'เคาน์เตอร์ครัวชิดผนัง สูง 100 ซม.'),
+  fridge: t('Single-door fridge, its door opens on the front', 'ตู้เย็น 1 บาน เปิดประตูทางด้านหน้า'),
   table: t('Long desk along a wall, the chair on its front · 70 cm high', 'โต๊ะยาวชิดผนัง วางเก้าอี้ด้านหน้า สูง 70 ซม.'),
   shelf: t('Shoe rack in the lower half, storage above · 240 cm tall', 'ตู้รองเท้าครึ่งล่าง ที่เก็บของครึ่งบน สูง 240 ซม.'),
 };
@@ -61,6 +61,20 @@ export const DOOR_NAME: Record<DoorId, Bilingual> = {
   balcony: t('the balcony door', 'ประตูระเบียง'),
 };
 
+// How each door works, as the plan draws it: none of them swings into the living area.
+const DOOR_KIND: Record<DoorId, Bilingual> = {
+  entrance: t('swings out to the corridor', 'เปิดออกไปทางเดินนอกห้อง'),
+  bathroom: t('swings into the bathroom', 'เปิดเข้าห้องน้ำ'),
+  balcony: t('a double sliding door', 'บานเลื่อนสองบาน'),
+};
+
+/** What a screen reader says of a door: which it is, how it works, whether it is open, and what pressing does. */
+export function doorToggleLabel(id: DoorId, open: boolean, lang: LangCode): string {
+  const name = DOOR_NAME[id][lang];
+  if (lang === 'th') return `${name} ${DOOR_KIND[id].th}: ${open ? 'เปิดอยู่ กดเพื่อปิด' : 'ปิดอยู่ กดเพื่อเปิด'}`;
+  return `${name.charAt(0).toUpperCase()}${name.slice(1)}, ${DOOR_KIND[id].en}: ${open ? 'open. Press to close.' : 'closed. Press to open.'}`;
+}
+
 export const AREA_LABEL = {
   balcony: t('Balcony', 'ระเบียง'),
   bathroom: t('Bathroom', 'ห้องน้ำ'),
@@ -86,9 +100,18 @@ export const COPY = {
   hidePlan: t('Hide our plan', 'ซ่อนแปลนของเรา'),
   routeLegend: t('Dashed line: the widest walk from the front door', 'เส้นประ: ทางเดินที่กว้างที่สุดจากประตูห้อง'),
   disclaimer: t(
-    'Door positions and clearances are estimates read off the plan, for play — not a building specification.',
-    'ตำแหน่งประตูและระยะที่ต้องเว้นเป็นค่าประมาณจากแปลน เพื่อการเล่น ไม่ใช่ข้อกำหนดก่อสร้าง',
+    'Door positions and the fridge’s size are estimates read off the plan; the widths are our own standard. For play — not a building specification.',
+    'ตำแหน่งประตูและขนาดตู้เย็นเป็นค่าประมาณจากแปลน ส่วนความกว้างเป็นมาตรฐานของเราเอง เพื่อการเล่น ไม่ใช่ข้อกำหนดก่อสร้าง',
   ),
+  playFullScreen: t('Play full screen', 'เล่นเต็มจอ'),
+  playHint: t('The plan and its buttons together on the whole screen, so nothing needs scrolling.', 'แปลนกับปุ่มอยู่ด้วยกันเต็มจอ ไม่ต้องเลื่อนหน้า'),
+  playLabel: t('Arrange the room', 'ลองจัดห้อง'),
+  close: t('Close', 'ปิด'),
+  doors: t('Doors', 'ประตู'),
+  openDoors: t('Open the doors', 'เปิดประตูทั้งหมด'),
+  closeDoors: t('Close the doors', 'ปิดประตูทั้งหมด'),
+  showDetails: t('Show the rules and widths', 'ดูกฎและความกว้าง'),
+  hideDetails: t('Hide the rules and widths', 'ซ่อนกฎและความกว้าง'),
   checking: t('checking…', 'กำลังตรวจ…'),
   holds: t('holds', 'ผ่าน'),
   fails: t('does not hold', 'ไม่ผ่าน'),
@@ -132,8 +155,8 @@ export function placeLabel(id: PieceId, placement: Placement, topOfLiving: numbe
 
 export function ourPlanCaption(width: number, lang: LangCode): string {
   return lang === 'th'
-    ? `แปลนสุดท้ายของเรา ทางเดินแคบสุด ${Math.round(width)} ซม.`
-    : `Our final plan: narrowest walkway ${Math.round(width)} cm`;
+    ? `แปลนสุดท้ายของเรา ทางเดินแคบสุด ${wholeCm(width)} ซม.`
+    : `Our final plan: narrowest walkway ${wholeCm(width)} cm`;
 }
 
 const join = (names: string[], lang: LangCode) => names.join(lang === 'th' ? ' ' : ', ');
@@ -156,6 +179,15 @@ export function ruleLabels(walkMin: number, bedSide: number): Record<RuleView['i
   };
 }
 
+/** One word for each rule, for the row of five in the full-screen game's sheet. */
+export const RULE_SHORT: Record<RuleView['id'], Bilingual> = {
+  fit: t('Apart', 'ไม่ซ้อน'),
+  doors: t('Doors', 'ประตู'),
+  walk: t('Walk', 'ทางเดิน'),
+  use: t('Use', 'ที่ใช้งาน'),
+  bed: t('Bed', 'เตียง'),
+};
+
 export const RULE_HELP: Record<RuleView['id'], Bilingual> = {
   fit: t('No two pieces can stand on the same floor.', 'ไม่มีสองชิ้นไหนยืนทับที่เดียวกันได้'),
   doors: t(
@@ -166,9 +198,10 @@ export const RULE_HELP: Record<RuleView['id'], Bilingual> = {
     'From the front door to the bathroom and to the balcony, the narrowest point of the widest route.',
     'จากประตูห้องไปห้องน้ำและระเบียง ตรงที่แคบที่สุดของเส้นทางที่กว้างที่สุด',
   ),
+  // The widths come from the standards (roomStandards.ts), so this can never disagree with the rule.
   use: t(
-    'Closet 60 cm, kitchen 90 cm, table 70 cm (the chair), shelf 50 cm — in front of each.',
-    'หน้าตู้ 60 ซม. ครัว 90 ซม. โต๊ะ 70 ซม. (ที่วางเก้าอี้) ชั้นวาง 50 ซม.',
+    `Closet ${requiredCm('closet')} cm, kitchen ${requiredCm('kitchen')}, fridge ${requiredCm('fridge')}, table ${requiredCm('table')} (the chair), shelf ${requiredCm('shelf')} — in front of each.`,
+    `หน้าตู้เสื้อผ้า ${requiredCm('closet')} ซม. ครัว ${requiredCm('kitchen')} ตู้เย็น ${requiredCm('fridge')} โต๊ะ ${requiredCm('table')} (ที่วางเก้าอี้) ชั้นวาง ${requiredCm('shelf')} ซม.`,
   ),
   bed: t(
     'Along at least one long side, so you can get in and make the bed.',
@@ -177,7 +210,7 @@ export const RULE_HELP: Record<RuleView['id'], Bilingual> = {
 };
 
 export function fitDetail(overlapping: PieceId[], lang: LangCode): string {
-  if (overlapping.length === 0) return lang === 'th' ? 'ทั้งห้าชิ้นอยู่แยกกัน' : 'all five stand apart';
+  if (overlapping.length === 0) return lang === 'th' ? 'ทั้งหกชิ้นอยู่แยกกัน' : 'all six stand apart';
   const names = overlapping.map((id) => PIECE_NAME[id][lang]);
   return lang === 'th' ? `ซ้อนกัน: ${join(names, lang)}` : `overlapping: ${join(names, lang)}`;
 }
@@ -190,7 +223,7 @@ export function doorsDetail(blocked: DoorId[], lang: LangCode): string {
 
 export function walkDetail(width: number, lang: LangCode): string {
   if (width <= 0) return lang === 'th' ? 'เดินไปไม่ถึง' : 'no way through';
-  return lang === 'th' ? `แคบสุด ${Math.round(width)} ซม.` : `narrowest ${Math.round(width)} cm`;
+  return lang === 'th' ? `แคบสุด ${wholeCm(width)} ซม.` : `narrowest ${wholeCm(width)} cm`;
 }
 
 export function useDetail(cramped: PieceId[], lang: LangCode): string {

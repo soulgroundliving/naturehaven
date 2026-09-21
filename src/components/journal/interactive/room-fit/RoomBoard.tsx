@@ -1,7 +1,8 @@
 import { useEffect, useRef, type KeyboardEvent, type PointerEvent } from 'react';
 import { DOOR_IDS, DOOR_ZONES, PIECE_IDS, bedStripsOf, footprintOf, frontZoneOf } from '@/lib/roomFit';
-import type { FastEvaluation, Layout, PieceId, Point, Rect, WalkEvaluation } from '@/lib/roomFit';
+import type { DoorId, FastEvaluation, Layout, PieceId, Point, Rect, WalkEvaluation } from '@/lib/roomFit';
 import type { LangCode } from '@/lib/journalBlocks';
+import DoorsLayer from './DoorsLayer';
 import GhostPlan from './GhostPlan';
 import PieceShape from './PieceShape';
 import RoomBackdrop from './RoomBackdrop';
@@ -10,6 +11,12 @@ import { keyAction } from './pieceKeys';
 
 const width = (r: Rect) => r.x1 - r.x0;
 const height = (r: Rect) => r.y1 - r.y0;
+
+const BOARD_CLASS = {
+  inline: 'mx-auto block w-full max-w-[380px] select-none',
+  fill: 'block h-full w-full select-none',
+  tall: 'block h-full w-auto select-none',
+} as const;
 
 function ZoneRect({ rect, bad }: { rect: Rect; bad: boolean }) {
   return (
@@ -34,18 +41,26 @@ interface RoomBoardProps {
   walk: WalkEvaluation;
   settled: boolean;
   showPlan: boolean;
+  /** Which doors stand open. */
+  doors: Record<DoorId, boolean>;
+  /**
+   * 'inline' sits in the article at its own size. The full-screen game gives the plan all the room it has:
+   * 'fill' fits it into a box of any shape, 'tall' is as tall as its parent and exactly as wide as that makes it.
+   */
+  variant?: 'inline' | 'fill' | 'tall';
   lang: LangCode;
   onSelect: (id: PieceId) => void;
   onMove: (id: PieceId, x: number, y: number) => void;
   onNudge: (id: PieceId, dx: number, dy: number) => void;
   onRotate: (id: PieceId) => void;
+  onToggleDoor: (id: DoorId) => void;
 }
 
 // The plan: fixed walls and doors underneath, the pieces on top. Pieces move by
 // pointer (mouse, touch, pen) or by keyboard, and every move goes through the
 // same reducer, so the two cannot disagree. Positions are in cm (the SVG's own
 // units), so the geometry the rules see is exactly what is drawn.
-export default function RoomBoard({ layout, selected, fast, walk, settled, showPlan, lang, onSelect, onMove, onNudge, onRotate }: RoomBoardProps) {
+export default function RoomBoard({ layout, selected, fast, walk, settled, showPlan, doors, variant = 'inline', lang, onSelect, onMove, onNudge, onRotate, onToggleDoor }: RoomBoardProps) {
   const svg = useRef<SVGSVGElement>(null);
   const drag = useRef<{ id: PieceId; dx: number; dy: number } | null>(null);
 
@@ -55,15 +70,18 @@ export default function RoomBoard({ layout, selected, fast, walk, settled, showP
   // touchstart is what holds everywhere — and only when it lands on a piece, so a swipe
   // that starts on empty floor still scrolls the article instead of trapping the reader.
   // It must be a native, non-passive listener: React registers its touch handlers passive.
+  // Not in the full-screen game: its dialog is `touch-action: pinch-zoom`, which forbids one-finger panning, so no
+  // touch is ever taken for scrolling there — and the guard would stop a pinch that starts on a piece from zooming,
+  // which is how a visitor with low vision magnifies the plan.
   useEffect(() => {
     const board = svg.current;
-    if (!board) return;
+    if (!board || variant !== 'inline') return;
     const holdThePage = (event: TouchEvent) => {
       if (event.cancelable && event.target instanceof Element && event.target.closest('[data-piece]')) event.preventDefault();
     };
     board.addEventListener('touchstart', holdThePage, { passive: false });
     return () => board.removeEventListener('touchstart', holdThePage);
-  }, []);
+  }, [variant]);
 
   // Pointer position in the plan's own units, whatever the on-screen scale.
   const toPlan = (event: PointerEvent): Point | null => {
@@ -73,12 +91,14 @@ export default function RoomBoard({ layout, selected, fast, walk, settled, showP
     return { x: point.x, y: point.y };
   };
 
-  const endDrag = () => {
+  // Only the first finger (or the mouse) drags: the second finger of a pinch must neither carry the piece nor let it go.
+  const endDrag = (event?: PointerEvent) => {
+    if (event && !event.isPrimary) return;
     drag.current = null;
   };
 
   const onPointerDown = (event: PointerEvent<SVGGElement>, id: PieceId) => {
-    if (event.button !== 0) return;
+    if (event.button !== 0 || !event.isPrimary) return;
     const at = toPlan(event);
     if (!at) return;
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -88,7 +108,7 @@ export default function RoomBoard({ layout, selected, fast, walk, settled, showP
   };
 
   const onPointerMove = (event: PointerEvent<SVGGElement>, id: PieceId) => {
-    if (drag.current?.id !== id) return;
+    if (!event.isPrimary || drag.current?.id !== id) return;
     // A mouse button let go where nobody heard it must not leave the piece stuck to the pointer.
     if (event.pointerType === 'mouse' && event.buttons === 0) {
       endDrag();
@@ -112,11 +132,17 @@ export default function RoomBoard({ layout, selected, fast, walk, settled, showP
   return (
     <svg
       ref={svg}
-      viewBox="-16 -16 382 772"
+      // The extra 64 at the bottom is where the front door swings open, out in the corridor.
+      viewBox="-16 -16 382 836"
       role="group"
       aria-label={COPY.boardLabel[lang]}
-      className="mx-auto block w-full max-w-[380px] select-none"
-      style={{ maxHeight: '80svh', WebkitTouchCallout: 'none' }}
+      className={BOARD_CLASS[variant]}
+      style={variant === 'inline' ? { maxHeight: '80svh', WebkitTouchCallout: 'none' } : { WebkitTouchCallout: 'none' }}
+      // A second finger anywhere on the plan — on a piece or on the floor — is the start of a pinch: the piece the first
+      // finger was dragging stays where it got to instead of following the fingers apart.
+      onPointerDown={(event) => {
+        if (!event.isPrimary) endDrag();
+      }}
     >
       <RoomBackdrop lang={lang} />
 
@@ -139,6 +165,8 @@ export default function RoomBoard({ layout, selected, fast, walk, settled, showP
           />
         ) : null,
       )}
+
+      <DoorsLayer open={doors} lang={lang} onToggle={onToggleDoor} />
 
       {PIECE_IDS.map((id) => {
         const zone = frontZoneOf(id, layout[id]);

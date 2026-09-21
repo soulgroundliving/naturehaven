@@ -56,9 +56,9 @@ describe('COMPASS', () => {
 });
 
 describe('the final plan, in the compass', () => {
-  it('has the bed\'s head to the east, the closet facing south, and the table, kitchen and shelf on the west wall facing east', () => {
+  it('has the bed\'s head to the east, the closet facing south, and the table, fridge, kitchen and shelf on the west wall facing east', () => {
     assert.equal(COMPASS[headSide(FINAL_PLAN.bed.rot)], 'east');
     assert.equal(COMPASS[frontSide(FINAL_PLAN.closet.rot)], 'south');
-    for (const id of ['table', 'kitchen', 'shelf'] as const) assert.equal(COMPASS[frontSide(FINAL_PLAN[id].rot)], 'east', id);
+    for (const id of ['table', 'fridge', 'kitchen', 'shelf'] as const) assert.equal(COMPASS[frontSide(FINAL_PLAN[id].rot)], 'east', id);
   });
 });

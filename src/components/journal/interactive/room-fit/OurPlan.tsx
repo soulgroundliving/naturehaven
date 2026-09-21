@@ -5,7 +5,7 @@ import { PIECE_NAME, facingLabel, ourPlanCaption } from './copy';
 
 // In reading order along the plan: the bed and the closet on the left, then the units down the
 // right wall from the balcony end to the front door.
-const ORDER: readonly PieceId[] = ['bed', 'closet', 'table', 'kitchen', 'shelf'];
+const ORDER: readonly PieceId[] = ['bed', 'closet', 'table', 'fridge', 'kitchen', 'shelf'];
 
 // What "Show our plan" says beside the dashed outlines: the walkway it gives, and which way each
 // piece faces, by the article's compass — the direction half of what a plan has to tell you.

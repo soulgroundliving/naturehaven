@@ -94,7 +94,7 @@ function RoomBackdrop({ lang }: { lang: LangCode }) {
       {PILLARS.map(([x, y]) => (
         <rect key={`${x}-${y}`} x={x - 6} y={y - 6} width={12} height={12} style={{ fill: 'var(--sec-text)', opacity: 0.55 }} />
       ))}
-      <text x={260} y={ROOM.length + 22} textAnchor="middle" fontSize={13} style={{ fill: 'var(--sec-text-70)' }}>
+      <text x={110} y={ROOM.length + 22} textAnchor="middle" fontSize={13} style={{ fill: 'var(--sec-text-70)' }}>
         {AREA_LABEL.entrance[lang]}
       </text>
     </g>

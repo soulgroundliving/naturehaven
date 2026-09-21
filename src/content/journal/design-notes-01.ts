@@ -443,11 +443,16 @@ const article: Article = {
     },
     {
       type: 'table',
-      caption: { en: 'The pieces, in centimetres', th: 'เฟอร์นิเจอร์แต่ละชิ้น หน่วยเป็นเซนติเมตร' },
+      caption: {
+        en: 'The pieces, in centimetres. The fridge size is an estimate.',
+        th: 'เฟอร์นิเจอร์แต่ละชิ้น หน่วยเป็นเซนติเมตร ขนาดตู้เย็นเป็นค่าประมาณ',
+      },
       head: [{ en: 'Piece', th: 'ชิ้น' }, 'L', 'D', 'H'],
       rowHeader: true,
       rows: [
         [{ en: 'Kitchen', th: 'ครัว' }, '195', '45', '100'],
+        [{ en: 'Kitchen: counter', th: 'ครัว: เคาน์เตอร์' }, '140', '45', '100'],
+        [{ en: 'Kitchen: fridge, single door', th: 'ครัว: ตู้เย็น 1 บาน' }, '55', '55', '—'],
         [{ en: 'Wall', th: 'ผนัง' }, '260', '10', '240'],
         [{ en: 'Table', th: 'โต๊ะ' }, '300', '45', '70'],
         [{ en: 'Shelf', th: 'ชั้นวาง' }, '60', '45', '240'],
@@ -474,11 +479,13 @@ const article: Article = {
       id: 'room-fit',
       title: { en: 'Arrange the room yourself', th: 'ลองจัดห้องเอง' },
       description: {
-        en: 'The same 25.2 sqm room, with the five pieces at the real sizes from the table above. At the start everything fits — and the room still does not work. Drag the pieces (or select one and use the arrow keys, and R to turn it) until all five rules hold: nothing overlaps, the doors stay clear, the walkways are at least 90 cm wide, each piece has room to be used, and there is 120 cm beside the bed.',
-        th: 'ห้อง 25.2 ตร.ม. เดียวกัน กับเฟอร์นิเจอร์ห้าชิ้นขนาดจริงตามตารางด้านบน ตอนเริ่มทุกชิ้นใส่ได้พอดี แต่ห้องยังใช้งานไม่ได้ ลากชิ้นส่วน (หรือเลือกแล้วใช้ปุ่มลูกศร และกด R เพื่อหมุน) จนผ่านครบห้าข้อ ได้แก่ ไม่มีชิ้นไหนซ้อนกัน ประตูโล่ง ทางเดินกว้างอย่างน้อย 90 ซม. ทุกชิ้นมีที่ใช้งานหน้าตัวเอง และข้างเตียงว่าง 120 ซม.',
+        en: 'The same 25.2 sqm room, with the six pieces at the sizes from the table above. At the start everything fits — and the room still does not work. Drag the pieces (or select one and use the arrow keys, and R to turn it) until all five rules hold: nothing overlaps, the doors stay clear, the walkways are at least 90 cm wide, each piece has room to be used, and there is 120 cm beside the bed. As you move, “Room to live in” measures how wide each of those spaces really is, and says whether it is tight, minimum, just right or comfortable.',
+        th: 'ห้อง 25.2 ตร.ม. เดียวกัน กับเฟอร์นิเจอร์หกชิ้นตามขนาดในตารางด้านบน ตอนเริ่มทุกชิ้นใส่ได้พอดี แต่ห้องยังใช้งานไม่ได้ ลากชิ้นส่วน (หรือเลือกแล้วใช้ปุ่มลูกศร และกด R เพื่อหมุน) จนผ่านครบห้าข้อ ได้แก่ ไม่มีชิ้นไหนซ้อนกัน ประตูโล่ง ทางเดินกว้างอย่างน้อย 90 ซม. ทุกชิ้นมีที่ใช้งานหน้าตัวเอง และข้างเตียงว่าง 120 ซม. ระหว่างที่ขยับ ส่วน “พื้นที่ใช้สอย” จะวัดว่าแต่ละที่กว้างจริงเท่าไร และบอกว่าแคบ พอใช้ พอดี หรือสบาย',
       },
       size: 'wide',
-      minHeight: 640,
+      // What a phone shows here is a card (a picture of the plan and one button, ~335 px). Reserving more left
+      // a blank third of a screen under it; a wide screen loads the taller game before it scrolls into view.
+      minHeight: 320,
     },
 
     {
