@@ -4,6 +4,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import {
   PawPrint,
+  Dog,
+  Cat,
+  ClipboardCheck,
   Banknote,
   CalendarDays,
   FileText,
@@ -56,6 +59,9 @@ const ResidenceDetails: React.FC = () => {
   const r = TR.residences;
   const suitableFor = r.suitableFor[lang];
   const essentials = r.essentials[lang];
+  const pw = r.petsWelcome;
+  const petGroups = pw.groups[lang];
+  const PET_GROUP_ICONS = [Dog, Cat, ClipboardCheck];
 
   useGSAP(
     () => {
@@ -331,6 +337,49 @@ const ResidenceDetails: React.FC = () => {
             </p>
           </div>
         </div>
+
+        {/* Pets we welcome — the size test in one glance, then what it feels
+            like at home. The 15 kg figure is a weight rule (adult, by breed
+            standard), never a breed list. Copy: TR.residences.petsWelcome. */}
+        <section
+          aria-labelledby="pets-welcome-heading"
+          className="pets-welcome res-card card-surface backdrop-blur-sm rounded-xl mb-10 md:mb-16 lg:mb-20 overflow-hidden"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+            <div className="p-8 md:p-12 lg:pr-10 flex flex-col justify-between gap-8 lg:border-r sec-border">
+              <div>
+                <p className="font-sans text-[11px] sec-text-60 uppercase tracking-[0.18em] mb-4">{pw.label[lang]}</p>
+                <h3 id="pets-welcome-heading" className="font-serif text-2xl md:text-[32px] sec-text leading-[1.2]">
+                  {pw.title[lang]}
+                </h3>
+              </div>
+              <p className="flex items-end gap-3" data-pet-weight>
+                <span className="font-serif text-[88px] md:text-[112px] leading-[0.8] text-sage-green tabular-nums">{pw.weightNum[lang]}</span>
+                <span className="pb-1 font-sans text-sm font-light sec-text-70 leading-snug">
+                  <span className="block font-serif text-2xl sec-text">{pw.weightUnit[lang]}</span>
+                  {pw.weightCaption[lang]}
+                </span>
+              </p>
+            </div>
+            <div className="p-8 md:p-12 lg:pl-10 lg:py-12 border-t lg:border-t-0 sec-border">
+              <p className="font-sans text-base font-light leading-relaxed sec-text-80 mb-8">{pw.lead[lang]}</p>
+              <ul className="flex flex-col gap-6">
+                {petGroups.map((g, i) => {
+                  const Icon = PET_GROUP_ICONS[i] ?? PawPrint;
+                  return (
+                    <li key={g.title} className="flex items-start gap-4">
+                      <Icon size={22} strokeWidth={1.5} className="text-sage-green flex-shrink-0 mt-[3px]" />
+                      <div>
+                        <p className="font-sans text-[11px] sec-text-60 uppercase tracking-[0.16em] mb-1">{g.title}</p>
+                        <p className="font-sans text-[15px] font-light leading-relaxed sec-text">{g.body}</p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </section>
 
         {/* One render mid-section — breaks the longest text-only stretch on
             mobile (viewport audit 2026-07-12: 3.8 screen-heights with no image

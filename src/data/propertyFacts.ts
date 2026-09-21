@@ -110,8 +110,8 @@ export const RESERVED_PARKING_FEE_MONTHLY = 300;
 export const BOOKING_FEE = 500;
 
 export const PETS_POLICY = {
-  th: 'เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น — รับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง',
-  en: 'Pet-friendly throughout the entire building — no floor restrictions. Small pets, 1–2 per unit.',
+  th: 'เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น — รับทั้งสุนัขและแมว น้ำหนักตัวเต็มวัยไม่เกิน 15 กก. ตามมาตรฐานสายพันธุ์ ไม่เกิน 2 ตัวต่อห้อง',
+  en: 'Pet-friendly throughout the entire building — no floor restrictions. Dogs and cats welcome, up to 15 kg adult weight by breed standard, up to 2 per unit.',
 } as const;
 
 export const UNITS = [
@@ -174,23 +174,21 @@ export const FAQ_ITEMS = [
     id: 'kitchen',
     q_th: 'มีครัวไหม?',
     q_en: 'Is there a kitchen?',
-    a_th: 'ไม่มีครัวเต็มรูปแบบหรือเตาทำอาหาร — ในห้องมีตู้เก็บของอเนกประสงค์ 2 บานเปิดเข้าหากึ่งกลาง พร้อมชั้นวางของภายใน 2 ชั้น และเคาน์เตอร์ด้านบนสำหรับวางไมโครเวฟ ตั้งอยู่ติดตู้เย็น ใช้เก็บของครัวหรือของใช้ส่วนตัวได้อย่างยืดหยุ่น ส่วนซิงก์ล้างจานอยู่ที่ระเบียง',
-    a_en: 'There is no full kitchen or cooking stove — the room has a multi-purpose storage cabinet with two doors that open toward the centre, two internal shelves, and a countertop sized for a microwave, positioned next to the refrigerator. It flexibly stores kitchen items or personal belongings. The dish sink is on the balcony.',
+    a_th: 'ไม่มีครัวเต็มรูปแบบและไม่มีเตาติดตั้งในห้อง (ทำอาหารเบา ๆ ด้วยเตาไฟฟ้าที่นำมาเองได้ ดูคำถามถัดไป) — ในห้องมีตู้เก็บของอเนกประสงค์ 2 บานเปิดเข้าหากึ่งกลาง พร้อมชั้นวางของภายใน 2 ชั้น และเคาน์เตอร์ด้านบนสำหรับวางไมโครเวฟ ตั้งอยู่ติดตู้เย็น ใช้เก็บของครัวหรือของใช้ส่วนตัวได้อย่างยืดหยุ่น ส่วนซิงก์ล้างจานอยู่ที่ระเบียง',
+    a_en: 'There is no full kitchen and no built-in stove (light cooking on an electric hob you bring yourself is allowed — see the next question). The room has a multi-purpose storage cabinet with two doors that open toward the centre, two internal shelves, and a countertop sized for a microwave, positioned next to the refrigerator. It flexibly stores kitchen items or personal belongings. The dish sink is on the balcony.',
   },
-  // Owner-confirmed 2026-09-12, refined 2026-09-12 with the full allow/ban
-  // breakdown. Rule is based on the EFFECT of the activity (smoke / oil
-  // vapour / open flame / strong odour), not the energy source — an
-  // induction stove and an air fryer have no open flame but are banned
-  // anyway because of the heat/smell/oil vapour they produce. Rice cookers,
-  // toasters, and other electric cooking appliances are explicitly
-  // undecided pending an electrical-load/safety review — do not describe
-  // them as either allowed or banned.
+  // Source of truth: the-green-haven house rules (Nest) §2.1–2.2, owner
+  // decision 2026-09-21 — supersedes the 2026-09-12 blanket ban on induction
+  // hobs. One electric / induction hob (1 burner, <= 1,500 W, bring your own)
+  // is allowed; gas, grills and heavy-oil frying are not; strong odour/smoke
+  // is out. Air fryers, rice cookers and toasters are NOT addressed by §2, so
+  // this answer deliberately says nothing about them either way.
   {
     id: 'cooking',
     q_th: 'ทำอาหารในห้องได้ไหม?',
     q_en: 'Can I cook in the room?',
-    a_th: 'อาหารสำเร็จรูป อาหารกล่อง/Delivery แซนด์วิช ขนมปัง ซีเรียล โยเกิร์ต ผลไม้ สลัด หรืออาหารที่ไม่ต้องปรุงด้วยความร้อน ทานได้ตามปกติ ส่วนการอุ่นข้าว อาหารกล่อง ซุปสำเร็จรูป ของแช่แข็ง นม หรือเครื่องดื่ม ใช้ไมโครเวฟ กาต้มน้ำไฟฟ้า หรือเครื่องชงกาแฟได้สบาย แต่ไม่อนุญาตให้ทอด ผัด เจียว ปิ้ง ย่าง คั่ว อบอาหารที่ก่อควัน/กลิ่นแรง ต้มน้ำมัน หรือทำอาหารที่มีควันมาก และห้ามใช้เตาแก๊ส เตาไฟ/เตาแอลกอฮอล์ เตาถ่าน เตา Camping กระทะไฟฟ้าสำหรับทอด-ผัด หม้อทอดไร้น้ำมัน และเตาแม่เหล็กไฟฟ้า (แม้ไม่มีเปลวไฟ แต่ให้ความร้อน/กลิ่น/ไอน้ำมันสูง จึงห้ามตามวัตถุประสงค์การใช้งาน ไม่ใช่แยกแค่ชนิดพลังงาน) ส่วนเครื่องปิ้งขนมปัง หม้อหุงข้าว และอุปกรณ์ทำอาหารไฟฟ้าอื่น ๆ อยู่ระหว่างตรวจสอบเรื่องโหลดไฟ ความร้อน และกฎความปลอดภัยของอาคาร ยังไม่ยืนยัน — เพราะ "เป็นไฟฟ้า" ไม่ได้แปลว่าปลอดภัยทุกกรณี',
-    a_en: 'Ready-made meals, boxed meals or delivery, sandwiches, bread, cereal, yogurt, fruit, salads, and anything that doesn\'t need heating are all fine any time. For reheating rice, boxed meals, instant soup, frozen food, milk, or drinks, a microwave, electric kettle, or coffee machine work well. Frying, stir-frying, pan-frying, grilling, roasting, smoky/strong-smelling baking, boiling oil, or any cooking that produces a lot of smoke is not permitted — this includes gas stoves, open-flame or alcohol burners, charcoal stoves, camping stoves, electric frying pans used for frying, air fryers, and induction stoves (no open flame, but still high heat, smell, and oil vapor — banned by what it does, not what powers it). Toasters, rice cookers, and other electric cooking appliances are still under review for electrical load, heat, and building safety rules — being electric doesn\'t automatically mean safe in every case.',
+    a_th: 'ได้ในแบบเบา ๆ — ห้องไม่มีครัวเต็มรูปแบบ แต่ใช้เตาไฟฟ้าหรือเตาแม่เหล็กไฟฟ้าได้ 1 หัว กำลังไม่เกิน 1,500 วัตต์ (นำมาเอง) ซึ่งเพียงพอสำหรับต้มและผัดตามปกติ และเป็นเพดานที่ระบบไฟฟ้าของห้องรองรับได้อย่างปลอดภัย ห้ามใช้เตาแก๊ส เตาปิ้งย่าง และการทอดที่ใช้น้ำมันปริมาณมาก และขอให้งดอาหารที่มีกลิ่นหรือควันแรง เพราะกลิ่นเดินทางผ่านทางเดินและระเบียงไปถึงเพื่อนบ้านเสมอ อาหารสำเร็จรูป อาหารเดลิเวอรี และของที่ไม่ต้องปรุงด้วยความร้อน ทานได้ตามปกติ',
+    a_en: 'Yes, lightly — there is no full kitchen, but you may use one electric or induction hob (a single burner, up to 1,500 W) that you bring yourself. That is enough for everyday boiling and stir-frying, and it is the ceiling the wiring in each room carries safely. Gas stoves, grills and deep or heavy-oil frying are not allowed, and please avoid cooking with strong smells or smoke — odours travel through the corridor and balconies to your neighbours. Ready-made meals, delivery and anything that needs no heating are always fine.',
   },
   {
     id: 'smoking',
@@ -203,8 +201,8 @@ export const FAQ_ITEMS = [
     id: 'pets',
     q_th: 'รับสัตว์เลี้ยงไหม?',
     q_en: 'Are pets allowed?',
-    a_th: `เลี้ยงได้ทั้งตึก ไม่กำหนดว่าชั้นไหน — รับเฉพาะแมว กระต่าย และหนูแฮมสเตอร์ (หรือสัตว์ขนาดเล็กลักษณะใกล้เคียงที่ไม่ส่งเสียงรบกวน) ไม่รับสุนัขหรือสัตว์ชนิดอื่น 1–2 ตัวต่อห้อง มีค่าสัตว์เลี้ยง ${PET_FEE_MONTHLY.toLocaleString('en-US')} บาท/ตัว/เดือน`,
-    a_en: `Yes — pets are welcome throughout the entire building, with no floor restrictions. We accept cats, rabbits, and hamsters (or similar small, quiet pets) — no dogs or other species. 1–2 per unit; the monthly fee is ${PET_FEE_MONTHLY.toLocaleString('en-US')} THB per pet.`,
+    a_th: `รับ — ทั้งสุนัขและแมว เลี้ยงได้ทั้งตึก ไม่กำหนดว่าชั้นไหน เกณฑ์คือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ ไม่เกิน 15 กก. (ไม่ใช่รายชื่อสายพันธุ์) ไม่เกิน 2 ตัวต่อห้อง มีค่าสัตว์เลี้ยง ${PET_FEE_MONTHLY.toLocaleString('en-US')} บาท/ตัว/เดือน`,
+    a_en: `Yes — dogs and cats are both welcome, on every floor. The test is adult weight by breed standard, up to 15 kg (not a list of breeds), and up to 2 pets per unit. The monthly fee is ${PET_FEE_MONTHLY.toLocaleString('en-US')} THB per pet.`,
   },
   {
     id: 'contract',

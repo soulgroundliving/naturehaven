@@ -71,8 +71,8 @@ export const TR = {
     related: { en: 'More from the Journal', th: 'บทความอื่นจากบันทึก' },
     ctaTitle: { en: 'Want to see the space in person?', th: 'อยากเห็นห้องจริงไหม?' },
     ctaBody: {
-      en: 'Reserve a viewing via LINE — bookings open October, move-in November 2026.',
-      th: 'นัดชมห้องตัวอย่างผ่าน LINE — เปิดจองตุลาคม พร้อมเข้าอยู่พฤศจิกายน 2026',
+      en: 'Questions about the room? Message us on LINE — move-in from November 2026.',
+      th: 'มีคำถามเกี่ยวกับห้อง ทักเราทาง LINE ได้เลย — เข้าอยู่ได้ตั้งแต่พฤศจิกายน 2026',
     },
     ctaButton: { en: 'Chat on LINE', th: 'ทักไลน์เลย' },
     share: {
@@ -265,7 +265,55 @@ export const TR = {
     },
     openingRate: { en: 'Opening Rate', th: 'ราคาเปิดตัว' },
     petsEverywhere: { en: 'Pet-friendly — the whole building', th: 'อพาร์ทเมนท์เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น' },
-    petsEverywhereSub: { en: 'No floor restrictions — small pets (1–2 per unit) welcome in every home, on every floor.', th: 'ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสัตว์เลี้ยงขนาดเล็ก 1–2 ตัวต่อห้อง' },
+    petsEverywhereSub: { en: 'No floor restrictions — dogs and cats up to 15 kg (2 per unit at most) are welcome in every home, on every floor.', th: 'ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสุนัขและแมวน้ำหนักไม่เกิน 15 กก. ไม่เกิน 2 ตัวต่อห้อง' },
+    // "Pets we welcome" card — source: house rules (Nest) §4.2–4.6 + pet guide,
+    // owner decision 2026-09-21. The test is adult weight by breed standard,
+    // never a list of breeds. The floor tips are the guide's recommendations
+    // (not rules) and are worded as such.
+    petsWelcome: {
+      label: { en: 'Pets we welcome', th: 'รับสัตว์อะไรบ้าง' },
+      title: {
+        en: 'Dogs and cats — small to medium, at home in 25 sqm.',
+        th: 'สุนัขและแมว ตัวเล็กถึงกลาง ที่อยู่สบายในห้อง 25 ตร.ม.',
+      },
+      weightNum: { en: '15', th: '15' },
+      weightUnit: { en: 'kg', th: 'กก.' },
+      weightCaption: { en: 'full-grown, by breed standard', th: 'ตัวเต็มวัย ตามมาตรฐานสายพันธุ์' },
+      lead: {
+        en: 'We keep no list of approved breeds. There is one measure: a full-grown pet weighs up to 15 kg by its breed standard, checked on the day you register. We measure the adult because a 4 kg puppy today can be 30 kg next year — and up to 2 pets share each home.',
+        th: 'เราไม่มีรายชื่อสายพันธุ์ที่รับ มีเกณฑ์เดียวคือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ไม่เกิน 15 กก. พิจารณา ณ วันลงทะเบียน ที่วัดตอนโตเต็มวัยเพราะลูกสุนัข 4 กก. วันนี้ อาจเป็น 30 กก. ในปีหน้า และเลี้ยงได้ไม่เกิน 2 ตัวต่อห้อง',
+      },
+      groups: {
+        en: [
+          {
+            title: 'Dogs',
+            body: 'A small-to-medium dog fits a 25.2 sqm home the way it fits a person: a bed of its own, a private balcony for air, and a flight of stairs that is easy to climb together — the building has no elevator. Dogs that go out for two or more walks a day are happiest on floors 1–2 (a suggestion, not a rule).',
+          },
+          {
+            title: 'Cats',
+            body: 'Cats suit a home this size, and floors 3–4 are quieter for them (again, a suggestion). From the second floor up we ask for a fall-safe balcony net within 14 days of moving in, and we help arrange the installer.',
+          },
+          {
+            title: 'Before move-in',
+            body: 'Register every pet with its vaccination book in the app before you move in. We ask that a pet does not bark or cry continuously — the walls are built for quiet, and the neighbours are part of the home too.',
+          },
+        ],
+        th: [
+          {
+            title: 'สุนัข',
+            body: 'สุนัขตัวเล็กถึงกลางอยู่ในห้อง 25.2 ตร.ม. ได้พอดีตัว มีที่นอนของตัวเอง มีระเบียงส่วนตัวให้ดมลม และบันไดที่ขึ้นลงด้วยกันได้สบาย เพราะอาคารไม่มีลิฟต์ น้องที่ออกเดินวันละ 2 รอบขึ้นไปอยู่ชั้น 1–2 จะสบายกว่า (เป็นคำแนะนำ ไม่ใช่ข้อบังคับ)',
+          },
+          {
+            title: 'แมว',
+            body: 'แมวเหมาะกับห้องขนาดนี้ และชั้น 3–4 เงียบกว่าสำหรับน้อง (เป็นคำแนะนำเช่นกัน) ตั้งแต่ชั้น 2 ขึ้นไป ขอให้ติดตาข่ายกันตกที่ระเบียงภายใน 14 วันหลังเข้าอยู่ โครงการช่วยประสานช่างให้',
+          },
+          {
+            title: 'ก่อนย้ายเข้า',
+            body: 'ลงทะเบียนน้องทุกตัวพร้อมสมุดวัคซีนในแอปก่อนเข้าอยู่ และขอให้ไม่ส่งเสียงดังต่อเนื่อง เพราะผนังของเราออกแบบมาเพื่อความเงียบ และเพื่อนบ้านก็เป็นส่วนหนึ่งของบ้านเช่นกัน',
+          },
+        ],
+      },
+    },
     petFeeNote: {
       en: `Monthly pet fee: ${PET_FEE_MONTHLY.toLocaleString('en-US')} THB per pet.`,
       th: `ค่าสัตว์เลี้ยง ${PET_FEE_MONTHLY.toLocaleString('en-US')} บาท/ตัว/เดือน`,
