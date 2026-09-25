@@ -4,7 +4,8 @@ import type { InteractiveProps } from '../registry';
 import RoomFitCompact from './RoomFitCompact';
 import RoomFitInline from './RoomFitInline';
 import RoomFitPlay from './RoomFitPlay';
-import useMediaQuery from './useMediaQuery';
+import useBackDismiss from '@/hooks/useBackDismiss';
+import useMediaQuery from '@/hooks/useMediaQuery';
 import useRoomFitGame from './useRoomFitGame';
 
 // "Compact" is anything narrower than the article's two-column layout (Tailwind's `lg`): a phone or a
@@ -12,9 +13,6 @@ import useRoomFitGame from './useRoomFitGame';
 // (1023.98, not 1023: a fractional width such as 1023.5 px must land on one side or the other.)
 const COMPACT_QUERY = '(max-width: 1023.98px)';
 
-// The dialog gets a history entry of its own, so the Back gesture of a phone (Android's button, iOS's swipe)
-// closes the game instead of leaving the article and losing it. Same URL, so the router sees no navigation.
-const PLAY_ENTRY = 'roomFitPlay';
 
 // "Can the room still work once everything fits?" — the article's question, playable. One game
 // (useRoomFitGame) in three settings: side by side with its checks where the screen is wide, as a
@@ -25,7 +23,6 @@ export default function RoomFit({ lang }: InteractiveProps) {
   const compact = useMediaQuery(COMPACT_QUERY);
   const [playing, setPlaying] = useState(false);
   const leaving = useRef(false);
-  const pushed = useRef(false);
   // The room the game takes in the article, kept open while the dialog stands in for it.
   const [held, setHeld] = useState(0);
 
@@ -36,17 +33,11 @@ export default function RoomFit({ lang }: InteractiveProps) {
     document.querySelector<HTMLElement>('[data-action="play-full-screen"]')?.focus();
   }, [playing]);
 
-  // Back pops the entry the dialog pushed: that is the game closing.
-  useEffect(() => {
-    if (!playing) return;
-    const onBack = () => {
-      pushed.current = false;
-      leaving.current = true;
-      setPlaying(false);
-    };
-    window.addEventListener('popstate', onBack);
-    return () => window.removeEventListener('popstate', onBack);
-  }, [playing]);
+  // The Back gesture closes the game (the dialog has a history entry of its own) instead of leaving the article.
+  const back = useBackDismiss(playing, () => {
+    leaving.current = true;
+    setPlaying(false);
+  });
 
   if (playing) {
     return (
@@ -57,24 +48,14 @@ export default function RoomFit({ lang }: InteractiveProps) {
         <RoomFitPlay
           game={game}
           lang={lang}
-          onClose={() => {
-            leaving.current = true;
-            // Escape and the close button take the entry back off; the popstate above then closes the game.
-            if (pushed.current && window.history.state?.[PLAY_ENTRY]) window.history.back();
-            else setPlaying(false);
-          }}
+          onClose={back.leave}
         />
       </>
     );
   }
   const play = (event: MouseEvent<HTMLElement>) => {
     setHeld(event.currentTarget.closest<HTMLElement>('[data-testid="room-fit"]')?.offsetHeight ?? 0);
-    try {
-      window.history.pushState({ [PLAY_ENTRY]: true }, '');
-      pushed.current = true;
-    } catch {
-      pushed.current = false; // the game still opens; Back then leaves the article, as it would have
-    }
+    back.enter();
     setPlaying(true);
   };
   return compact ? <RoomFitCompact game={game} lang={lang} onPlay={play} /> : <RoomFitInline game={game} lang={lang} onPlay={play} />;

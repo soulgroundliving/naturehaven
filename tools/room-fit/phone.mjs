@@ -242,13 +242,13 @@ export default async function run({ check, driver }) {
     sameSpot(reopened.pieces.shelf, phoneHeld) && JSON.stringify(await doorsOf(pp, PLAY)) === '{"entrance":false,"bathroom":false,"balcony":true}',
     JSON.stringify({ shelf: reopened.pieces.shelf, phoneHeld }),
   );
-  const phoneEntry = await pp.evaluate(() => Boolean(history.state?.roomFitPlay));
+  const phoneEntry = await pp.evaluate(() => Boolean(history.state?.overlay));
   check('on a phone too, opening the game pushes a history entry of its own for Back to pop', phoneEntry === true, String(phoneEntry));
   if (phoneEntry) {
     await pp.evaluate(() => history.back());
     await pp.waitForFunction((play) => !document.querySelector(play), { timeout: 10000 }, PLAY);
     await sleep(300);
-    const backed = await pp.evaluate(() => ({ path: location.pathname, entry: Boolean(history.state?.roomFitPlay), card: Boolean(document.querySelector('[data-testid="room-fit"][data-mode="compact"]')) }));
+    const backed = await pp.evaluate(() => ({ path: location.pathname, entry: Boolean(history.state?.overlay), card: Boolean(document.querySelector('[data-testid="room-fit"][data-mode="compact"]')) }));
     check('on a phone the Back gesture closes the full-screen game and leaves the article where it is, with the card showing', backed.path === '/journal/design-notes-01' && backed.entry === false && backed.card, JSON.stringify(backed));
     await pp.tap('[data-action="play-full-screen"]');
     await pp.waitForSelector(PLAY, { timeout: 30000 });

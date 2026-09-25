@@ -163,6 +163,36 @@ export interface ArticleLayout {
   hero?: 'image' | 'none';
 }
 
+/**
+ * What stands beside a guide page's words (src/components/journal/guide): `plan`, `brief`, `constraints`, `layout`
+ * and `final` are drawings of the room's plan; `slide` and `measurements` lead with their section's own image;
+ * `try` is an interactive block played in place. src/lib/journalGuide.ts holds the list at runtime.
+ */
+export type GuideStage = 'plan' | 'brief' | 'constraints' | 'layout' | 'slide' | 'measurements' | 'try' | 'final';
+
+/**
+ * One page of an article's page-by-page reading (the "guide"): the words of one section of the article,
+ * beside a picture. A page holds no words of its own - they are the article's own blocks - so editing the
+ * article edits the guide.
+ */
+export type GuidePage = {
+  /** Which picture stands beside the words. */
+  stage: GuideStage;
+} & (
+  | {
+      /** The anchor id (see collectHeadings) of the h2 whose section is the words. */
+      section: string;
+    }
+  | {
+      /** The id of an interactive block: it gets a page of its own (stage `try`), with the paragraph that leads into it. */
+      interactive: string;
+    }
+);
+
+export interface ArticleGuide {
+  pages: NonEmpty<GuidePage>;
+}
+
 export interface Article {
   slug: string;
   category: Bilingual;
@@ -182,5 +212,7 @@ export interface Article {
    */
   heroOrigin?: MediaOrigin;
   layout?: ArticleLayout;
+  /** A page-by-page way to read the article, offered beside the long page. */
+  guide?: ArticleGuide;
   blocks: ArticleBlock[];
 }

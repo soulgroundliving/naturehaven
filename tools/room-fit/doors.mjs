@@ -209,7 +209,7 @@ export default async function run({ check, driver }) {
   check('the page behind the dialog is inert: no link in it can take focus while the game is up', behind.inert === true && behind.linkTookFocus === false && behind.focusInDialog, JSON.stringify(behind));
 
   // The Back gesture (Android's button, iOS's swipe) closes the game and stays on the article — it does not leave the page and lose the game.
-  const beforeBack = await dp.evaluate(() => ({ path: location.pathname, scroll: Math.round(scrollY), entry: Boolean(history.state?.roomFitPlay) }));
+  const beforeBack = await dp.evaluate(() => ({ path: location.pathname, scroll: Math.round(scrollY), entry: Boolean(history.state?.overlay) }));
   check('opening the full-screen game pushes a history entry of its own, so Back has something to pop instead of leaving the article', beforeBack.entry === true, JSON.stringify(beforeBack));
   if (beforeBack.entry) {
     await dp.evaluate(() => history.back());
@@ -218,7 +218,7 @@ export default async function run({ check, driver }) {
     const afterBack = await dp.evaluate(() => ({
       path: location.pathname,
       scroll: Math.round(scrollY),
-      entry: Boolean(history.state?.roomFitPlay),
+      entry: Boolean(history.state?.overlay),
       live: document.getElementById('root').inert === false,
       game: Boolean(document.querySelector('[data-testid="room-fit"]:not([data-mode="play"])')),
     }));
@@ -240,7 +240,7 @@ export default async function run({ check, driver }) {
     locked: getComputedStyle(document.documentElement).overflow,
     focus: document.activeElement?.getAttribute('data-action') ?? null,
     mode: document.querySelector('[data-testid="room-fit"]')?.dataset.mode ?? 'inline',
-    entry: Boolean(history.state?.roomFitPlay),
+    entry: Boolean(history.state?.overlay),
     live: document.getElementById('root').inert === false,
     scroll: Math.round(scrollY),
   }));

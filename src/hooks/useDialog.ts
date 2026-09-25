@@ -1,7 +1,10 @@
 import { useEffect, useRef } from 'react';
 import type { RefObject } from 'react';
 
-const FOCUSABLE = 'button:not([disabled]), [href], summary, [tabindex]:not([tabindex="-1"])';
+// What Tab can land on. tabindex="-1" takes an element out of the Tab order whatever it is - a button included -
+// so it must not count as the first or last stop: a trap that wraps to a stop Tab cannot reach lets focus
+// walk out of the dialog from the real first one.
+const FOCUSABLE = ['button:not([disabled])', '[href]', 'summary', '[tabindex]'].map((selector) => `${selector}:not([tabindex="-1"])`).join(', ');
 
 const isShown = (el: HTMLElement) => el.getClientRects().length > 0;
 

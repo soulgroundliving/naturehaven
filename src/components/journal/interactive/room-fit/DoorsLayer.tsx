@@ -73,6 +73,8 @@ function DoorsLayer({ open, lang, onToggle }: DoorsLayerProps) {
   const onKeyDown = (event: KeyboardEvent<SVGGElement>, id: DoorId) => {
     if (event.key !== 'Enter' && event.key !== ' ') return;
     event.preventDefault();
+    // A key held down repeats; the door should open once, not flicker open and shut.
+    if (event.repeat) return;
     onToggle(id);
   };
   return (
@@ -99,7 +101,10 @@ function DoorsLayer({ open, lang, onToggle }: DoorsLayerProps) {
               height={2 * HIT_HALF_DEPTH}
               rx={6}
               fill="transparent"
-              strokeWidth={2}
+              // A focus ring is drawn in screen pixels, not plan units: at the scale a phone draws the plan a 2-unit
+              // line was under a pixel wide - too thin to find the focused door by.
+              vectorEffect="non-scaling-stroke"
+              strokeWidth={2.5}
               strokeDasharray="4 4"
               stroke="transparent"
               className="group-focus-visible/door:stroke-[color:var(--sec-text)]"

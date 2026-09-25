@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import JournalShell from '@/components/JournalShell';
 import JournalCard, { titleFont } from '@/components/JournalCard';
 import ShareRow from '@/components/ShareRow';
@@ -9,10 +9,32 @@ import type { Article } from '@/data/journalTypes';
 import { PROPERTY } from '@/data/propertyFacts';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { collectHeadings, shouldShowToc } from '@/lib/journalBlocks';
+import type { LangCode } from '@/lib/journalBlocks';
+import { guidePages } from '@/lib/journalGuide';
 import { TR } from '@/lib/translations';
+import BlockBoundary from './BlockBoundary';
 import JournalBlocks from './JournalBlocks';
 import JournalToc from './JournalToc';
 import OriginBadge from './OriginBadge';
+
+// The reader carries the game with it (its "try it" page is the real thing), and the game is deliberately
+// not in the article's own bundle - so nobody downloads either until the reader is asked for.
+const GuideView = lazy(() => import('./guide/GuideView'));
+
+// If the reader's chunk cannot be fetched (a deploy leaves an open tab pointing at a file that no longer exists) the
+// article must stay: a visitor who followed a ?guide link is told, and can dismiss it.
+function ReaderFailed({ lang, onClose }: { lang: LangCode; onClose: () => void }) {
+  return (
+    <div role="alert" className="fixed inset-x-4 bottom-4 z-[300] mx-auto flex max-w-[520px] items-center gap-3 rounded-xl border sec-border card-surface px-4 py-3 shadow-lg">
+      <p className="flex-1 font-sans text-[13px] leading-snug sec-text">
+        {lang === 'th' ? 'โหลดหน้าอ่านทีละหน้าไม่สำเร็จ โหลดหน้านี้ใหม่อีกครั้ง' : 'The page-by-page reader could not load. Reload the page to try again.'}
+      </p>
+      <button type="button" onClick={onClose} className="font-sans text-[13px] font-medium underline sec-text">
+        {lang === 'th' ? 'ปิด' : 'Close'}
+      </button>
+    </div>
+  );
+}
 
 interface ArticleViewProps {
   article: Article;
@@ -60,7 +82,8 @@ const ArticleView: React.FC<ArticleViewProps> = ({ article, noindex = false }) =
   // (and ScrollToTop) reset the scroll to the top on mount, and the browser's own
   // jump ran against the prerendered page that React then replaced — so scroll
   // again here. Effects run child-first, so this runs after JournalShell's reset.
-  const { hash } = useLocation();
+  const { hash, search, pathname } = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     if (!hash) return;
     let id = hash.slice(1);
@@ -71,6 +94,31 @@ const ArticleView: React.FC<ArticleViewProps> = ({ article, noindex = false }) =
     }
     document.getElementById(id)?.scrollIntoView();
   }, [hash]);
+
+  // The page-by-page reader is open exactly when the URL says so (?guide) and the article has pages to show. It is
+  // hidden while in review: only a visitor given the link sees it (not a security boundary - a URL parameter is
+  // guessable - just kept off the article for everyone else until the owner has read it on a phone and asked for the
+  // button that will open it for good). Because the URL is the whole state, Back closes a reader that a button
+  // opened with a push, it cannot be left "open" on another article, and `?guide=0` is off.
+  const guideOpen = useMemo(() => {
+    const flag = new URLSearchParams(search).get('guide');
+    return flag !== null && flag !== '0' && flag !== 'false' && guidePages(article).length > 0;
+  }, [search, article]);
+  const closeGuide = useCallback(() => {
+    const params = new URLSearchParams(search);
+    params.delete('guide');
+    const rest = params.toString();
+    navigate({ pathname, search: rest ? `?${rest}` : '', hash }, { replace: true });
+  }, [navigate, pathname, search, hash]);
+
+  // The reader is a dialog opened by a URL, not by a button, so nothing else will give focus back when it closes:
+  // it falls to <body> and a screen-reader user loses their place. The heading is the top of the page they return to.
+  const title = useRef<HTMLHeadingElement>(null);
+  const wasOpen = useRef(false);
+  useEffect(() => {
+    if (wasOpen.current && !guideOpen) title.current?.focus({ preventScroll: true });
+    wasOpen.current = guideOpen;
+  }, [guideOpen]);
 
   const headings = useMemo(() => collectHeadings(article.blocks), [article.blocks]);
   const showToc = shouldShowToc(article.layout, headings);
@@ -93,7 +141,9 @@ const ArticleView: React.FC<ArticleViewProps> = ({ article, noindex = false }) =
               {article.category[lang]}
             </p>
             <h1
-              className={`${titleFont(lang)} mt-3 text-[26px] leading-[1.35] sec-text md:text-4xl md:leading-[1.3]`}
+              ref={title}
+              tabIndex={-1}
+              className={`${titleFont(lang)} mt-3 text-[26px] leading-[1.35] outline-none sec-text md:text-4xl md:leading-[1.3]`}
               style={{ textWrap: 'balance' } as React.CSSProperties}
             >
               {article.title[lang]}
@@ -172,6 +222,13 @@ const ArticleView: React.FC<ArticleViewProps> = ({ article, noindex = false }) =
           )}
         </div>
       </article>
+      {guideOpen && (
+        <BlockBoundary label="page-by-page reader" fallback={<ReaderFailed lang={lang} onClose={closeGuide} />}>
+          <Suspense fallback={null}>
+            <GuideView key={article.slug} article={article} lang={lang} onClose={closeGuide} />
+          </Suspense>
+        </BlockBoundary>
+      )}
     </JournalShell>
   );
 };

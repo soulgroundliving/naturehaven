@@ -15,7 +15,8 @@
     "test:seo": "node tools/test-landing-seo.mjs",
     "test:journal": "node --test \"tools/__tests__/*.test.ts\" && node tools/test-journal-content.mjs",
     "test:journal:ui": "node tools/test-journal-blocks.mjs",
-    "test:room-fit": "node tools/test-room-fit.mjs"
+    "test:room-fit": "node tools/test-room-fit.mjs",
+    "test:guide": "node tools/test-journal-guide.mjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans-thai-looped": "^5.2.8",

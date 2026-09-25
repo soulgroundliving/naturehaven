@@ -8,7 +8,8 @@ import type { RoomFitGame } from './useRoomFitGame';
 interface PlayHeaderProps {
   game: RoomFitGame;
   lang: LangCode;
-  onClose: () => void;
+  /** The close button; a game shown inside something that has its own leaves it out. */
+  onClose?: () => void;
 }
 
 // The top of the full-screen game: what you are holding. It is always two lines — the game's name and a
@@ -38,16 +39,18 @@ export default function PlayHeader({ game, lang, onClose }: PlayHeaderProps) {
           <p className="truncate font-sans text-[12.5px] leading-snug sec-text-70">{COPY.nothingSelected[lang]}</p>
         )}
       </div>
-      <button
-        type="button"
-        data-action="close-play"
-        aria-label={COPY.close[lang]}
-        title={COPY.close[lang]}
-        onClick={onClose}
-        className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-full border sec-border card-surface sec-text-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-green"
-      >
-        <X size={20} aria-hidden="true" />
-      </button>
+      {onClose && (
+        <button
+          type="button"
+          data-action="close-play"
+          aria-label={COPY.close[lang]}
+          title={COPY.close[lang]}
+          onClick={onClose}
+          className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-full border sec-border card-surface sec-text-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-green"
+        >
+          <X size={20} aria-hidden="true" />
+        </button>
+      )}
     </header>
   );
 }

@@ -35,6 +35,19 @@ const article: Article = {
   },
   // The hero includes the four Furnish Master studies, so it carries the render badge.
   heroOrigin: 'render',
+  // The page-by-page way to read it (the page's own words are this article's blocks): six sections, the game, the final plan.
+  guide: {
+    pages: [
+      { section: '01-the-plan', stage: 'plan' },
+      { section: '02-the-brief', stage: 'brief' },
+      { section: '03-the-constraints', stage: 'constraints' },
+      { section: '04-the-layout', stage: 'layout' },
+      { section: '05-the-iterations', stage: 'slide' },
+      { section: '06-the-measurements', stage: 'measurements' },
+      { interactive: 'room-fit', stage: 'try' },
+      { section: '07-the-final-plan', stage: 'final' },
+    ],
+  },
   blocks: [
     {
       type: 'p',

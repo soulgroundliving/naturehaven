@@ -62,7 +62,7 @@ export const DOOR_NAME: Record<DoorId, Bilingual> = {
 };
 
 // How each door works, as the plan draws it: none of them swings into the living area.
-const DOOR_KIND: Record<DoorId, Bilingual> = {
+export const DOOR_KIND: Record<DoorId, Bilingual> = {
   entrance: t('swings out to the corridor', 'เปิดออกไปทางเดินนอกห้อง'),
   bathroom: t('swings into the bathroom', 'เปิดเข้าห้องน้ำ'),
   balcony: t('a double sliding door', 'บานเลื่อนสองบาน'),
