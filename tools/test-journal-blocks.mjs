@@ -184,17 +184,20 @@ try {
   });
   check('an unregistered interactive keeps its description and stays static', unregistered.state === 'static' && unregistered.registered === 'false' && unregistered.text, JSON.stringify(unregistered));
 
-  // Language: every block switches.
+  // Language: every block switches, and so does <html lang> (a screen reader picks its voice by it).
   await page.evaluate(() => window.scrollTo(0, 0));
+  const htmlLangBefore = await page.evaluate(() => document.documentElement.lang);
   await page.click('button[aria-label="Switch language"]');
   await sleep(500);
   const thai = await page.evaluate(() => ({
+    htmlLang: document.documentElement.lang,
     h1: document.querySelector('h1').textContent,
     tabs: [...document.querySelectorAll('[data-jn-block="choice"] [role="tab"]')].map((t) => t.textContent),
     galleryPrev: document.querySelector('[data-jn-block="gallery"] button').getAttribute('aria-label'),
     toc: document.querySelector('[data-jn-block="toc"] summary').textContent.trim(),
   }));
   check('switching to Thai retitles the page and every block', thai.h1 === 'ทุกบล็อกในหน้าเดียว' && thai.tabs[0] === 'นักศึกษา' && thai.galleryPrev === 'ก่อนหน้า' && thai.toc.startsWith('สารบัญ'), JSON.stringify(thai));
+  check('<html lang> follows the language: en on a ?lang=en load, th after the switch', htmlLangBefore === 'en' && thai.htmlLang === 'th', JSON.stringify({ before: htmlLangBefore, after: thai.htmlLang }));
 
   check('no console errors or page errors', problems.length === 0, problems.join(' | '));
   await page.close();

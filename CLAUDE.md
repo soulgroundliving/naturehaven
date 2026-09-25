@@ -205,7 +205,7 @@ The first real piece is **`room-fit`** (Design Notes #01, section 06): drag the 
 - `robots.txt` currently blocks all crawlers (stealth mode pre-launch). Flip to `Allow: /` before launch.
 - `<meta name="robots" content="noindex, nofollow" />` in `index.html` is the second gate — remove the `noindex` value (or drop the meta) at launch.
 - OG image placeholder at `/og-image.jpg` — replace with real shot before launch
-- Thai + English copy mixed intentionally; `lang="th"` on `<html>`
+- Thai + English copy mixed intentionally. `index.html` ships `<html lang="th">` (the default, and what the prerendered snapshots carry); `LanguageProvider` then keeps `document.documentElement.lang` on the active language so screen readers pick the right voice (WCAG 3.1.1) — the page-level `lang` lives there, not in components (a `lang` on an inline foreign-language passage is a separate, fine thing)
 - **SSG is live**: `npm run build` produces a fully-prerendered `dist/index.html` (~179 KB, all 13 sections, 11 K words of HTML). When the noindex gates flip, crawlers + social previewers see real content immediately. See the `SSG (puppeteer prerender)` block under Build commands.
 
 ---

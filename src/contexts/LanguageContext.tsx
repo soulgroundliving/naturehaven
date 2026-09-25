@@ -32,6 +32,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLang(readInitialLang());
   }, []);
 
+  // WCAG 3.1.1: keep <html lang> on the language the visitor is reading, so a
+  // screen reader picks the matching voice. index.html ships lang="th" (the
+  // default above), so the prerendered snapshot is unchanged.
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
   const toggle = () => {
     setLang(prev => {
       const next = prev === 'en' ? 'th' : 'en';
