@@ -114,10 +114,14 @@ export async function contrastOf(page, selector, png, { text: wanted } = {}) {
     if (!el) return null;
     const box = el.getBoundingClientRect();
     const style = getComputedStyle(el);
-    return { box: { x: box.left, y: box.top, w: box.width, h: box.height }, colour: el instanceof SVGElement ? style.fill : style.color };
+    // Text that is faded (opacity on it or on anything round it) is lighter than its colour says.
+    let opacity = 1;
+    for (let node = el; node instanceof Element; node = node.parentElement) opacity *= Number(getComputedStyle(node).opacity);
+    return { box: { x: box.left, y: box.top, w: box.width, h: box.height }, colour: el instanceof SVGElement ? style.fill : style.color, opacity };
   }, { s: selector, only: wanted });
   if (!found) return { ratio: NaN, note: `no element for ${selector}` };
   const background = modeColour(png, found.box);
-  const text = over(parseColour(found.colour), background);
+  const [r, g, b, a] = parseColour(found.colour);
+  const text = over([r, g, b, a * found.opacity], background);
   return { ratio: ratio(text, background), background, text };
 }

@@ -67,6 +67,11 @@ export const TR = {
     filterLabel: { en: 'Filter by category', th: 'กรองตามหมวด' },
     readMin: { en: 'min read', th: 'นาที' },
     byLine: { en: 'By the Nature Haven team', th: 'โดยทีม Nature Haven' },
+    // The page-by-page reader of an article that has one (article.guide): the button that opens it, and its page count.
+    guide: {
+      open: { en: 'Read page by page', th: 'อ่านทีละหน้า' },
+      pages: { en: 'pages', th: 'หน้า' },
+    },
     backHome: { en: 'Home', th: 'หน้าแรก' },
     related: { en: 'More from the Journal', th: 'บทความอื่นจากบันทึก' },
     ctaTitle: { en: 'Want to see the space in person?', th: 'อยากเห็นห้องจริงไหม?' },

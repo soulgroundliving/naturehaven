@@ -58,6 +58,17 @@ export default async function run({ check, driver }) {
     check(`${slot}: the game's heading inside the reader can be read (${summary(game)})`, worst(game).length === 0, worst(game).join(' | '));
     await page.close();
 
+    // The way in: the article's own button, white on the palette's call-to-action colour (sage by day, slate at night).
+    const entry = await driver.open({ query: '', tod: slot, viewport: PHONE });
+    await entry.page.waitForSelector('button[aria-haspopup="dialog"]', { timeout: 60000 });
+    await sleep(1100);
+    const way = await measure(entry.page, [
+      ['the label', 'button[aria-haspopup="dialog"] > span:first-of-type', TEXT],
+      ['the page count', 'button[aria-haspopup="dialog"] > span:last-of-type', TEXT],
+    ]);
+    check(`${slot}: the "Read page by page" button can be read (${summary(way)})`, worst(way).length === 0, worst(way).join(' | '));
+    await entry.page.close();
+
     // The game's own full-screen dialog is painted by the same surface: it had the same bug.
     const roomFit = createRoomFitDriver({ browser: driver.browser, base: driver.base });
     const article = await roomFit.openArticle({ tod: slot, viewport: PHONE });

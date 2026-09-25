@@ -1,3 +1,4 @@
+import { BookOpen } from 'lucide-react';
 import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import JournalShell from '@/components/JournalShell';
@@ -19,7 +20,8 @@ import OriginBadge from './OriginBadge';
 
 // The reader carries the game with it (its "try it" page is the real thing), and the game is deliberately
 // not in the article's own bundle - so nobody downloads either until the reader is asked for.
-const GuideView = lazy(() => import('./guide/GuideView'));
+const loadGuide = () => import('./guide/GuideView');
+const GuideView = lazy(loadGuide);
 
 // If the reader's chunk cannot be fetched (a deploy leaves an open tab pointing at a file that no longer exists) the
 // article must stay: a visitor who followed a ?guide link is told, and can dismiss it.
@@ -95,28 +97,50 @@ const ArticleView: React.FC<ArticleViewProps> = ({ article, noindex = false }) =
     document.getElementById(id)?.scrollIntoView();
   }, [hash]);
 
-  // The page-by-page reader is open exactly when the URL says so (?guide) and the article has pages to show. It is
-  // hidden while in review: only a visitor given the link sees it (not a security boundary - a URL parameter is
-  // guessable - just kept off the article for everyone else until the owner has read it on a phone and asked for the
-  // button that will open it for good). Because the URL is the whole state, Back closes a reader that a button
-  // opened with a push, it cannot be left "open" on another article, and `?guide=0` is off.
+  // The page-by-page reader is open exactly when the URL says so (?guide) and the article has pages to show, so the
+  // button that opens it and a shared ?guide link are the same thing. Because the URL is the whole state, Back closes
+  // a reader the button opened, it cannot be left "open" on another article, and `?guide=0` is off.
+  const guideLength = useMemo(() => guidePages(article).length, [article]);
   const guideOpen = useMemo(() => {
     const flag = new URLSearchParams(search).get('guide');
-    return flag !== null && flag !== '0' && flag !== 'false' && guidePages(article).length > 0;
-  }, [search, article]);
+    return flag !== null && flag !== '0' && flag !== 'false' && guideLength > 0;
+  }, [search, guideLength]);
+
+  // The button pushes an entry, so closing pops it (going back leaves no dead step: the same page, one Back away from
+  // the page you really came from). A reader opened by a link has no entry of ours to pop: it replaces the URL instead.
+  const pushed = useRef(false);
+  const openedByButton = useRef(false);
+  const opener = useRef<HTMLButtonElement>(null);
+  const openGuide = useCallback(() => {
+    const params = new URLSearchParams(search);
+    params.set('guide', '1');
+    pushed.current = true;
+    openedByButton.current = true;
+    navigate({ pathname, search: `?${params.toString()}`, hash });
+  }, [navigate, pathname, search, hash]);
   const closeGuide = useCallback(() => {
+    if (pushed.current) {
+      pushed.current = false;
+      navigate(-1);
+      return;
+    }
     const params = new URLSearchParams(search);
     params.delete('guide');
     const rest = params.toString();
     navigate({ pathname, search: rest ? `?${rest}` : '', hash }, { replace: true });
   }, [navigate, pathname, search, hash]);
 
-  // The reader is a dialog opened by a URL, not by a button, so nothing else will give focus back when it closes:
-  // it falls to <body> and a screen-reader user loses their place. The heading is the top of the page they return to.
+  // The reader is a dialog: when it closes, focus must not fall to <body> (a screen-reader user loses their place).
+  // It goes back to the button that opened it; a reader opened by a link has no such button in hand, so the heading -
+  // the top of the page they return to - takes it.
   const title = useRef<HTMLHeadingElement>(null);
   const wasOpen = useRef(false);
   useEffect(() => {
-    if (wasOpen.current && !guideOpen) title.current?.focus({ preventScroll: true });
+    if (wasOpen.current && !guideOpen) {
+      pushed.current = false; // the Back button popped it, or the close did
+      (openedByButton.current ? opener.current : title.current)?.focus({ preventScroll: true });
+      openedByButton.current = false;
+    }
     wasOpen.current = guideOpen;
   }, [guideOpen]);
 
@@ -155,6 +179,28 @@ const ArticleView: React.FC<ArticleViewProps> = ({ article, noindex = false }) =
               </span>
               <span>{j.byLine[lang]}</span>
             </div>
+            {guideLength > 0 && (
+              <div className="mt-5">
+                <button
+                  ref={opener}
+                  type="button"
+                  aria-haspopup="dialog"
+                  onClick={openGuide}
+                  // Fetch the reader (and the game inside it) as a finger or a pointer approaches, so it is there by the click.
+                  onPointerEnter={loadGuide}
+                  onPointerDown={loadGuide}
+                  onFocus={loadGuide}
+                  className="inline-flex h-11 items-center gap-2.5 rounded-full bg-[var(--cta-bg,#3D5A4C)] px-5 font-sans text-[13px] font-medium text-pure-white transition duration-300 hover:opacity-90 active:scale-[0.98]"
+                >
+                  <BookOpen size={18} aria-hidden="true" />
+                  <span>{j.guide.open[lang]}</span>{' '}
+                  {/* Told apart by weight, not by fading: white at 75% on the night button (slate) is 3.4:1. */}
+                  <span className="font-normal">
+                    {guideLength} {j.guide.pages[lang]}
+                  </span>
+                </button>
+              </div>
+            )}
             <div className="mt-5">
               <ShareRow url={canonical} title={article.title[lang]} />
             </div>

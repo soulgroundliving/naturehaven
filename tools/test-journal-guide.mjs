@@ -20,6 +20,7 @@ import { createGuideDriver } from './lib/guide-driver.mjs';
 import runContrast from './guide/contrast.mjs';
 import runDialog from './guide/dialog.mjs';
 import runDoors from './guide/doors.mjs';
+import runEntry from './guide/entry.mjs';
 import runGame from './guide/game.mjs';
 import runLanguages from './guide/languages.mjs';
 import runLayout from './guide/layout.mjs';
@@ -30,7 +31,7 @@ const { check, finish } = createChecks('journal-guide');
 const { browser, base, stop } = await startHarness({ label: 'journal-guide', port: 4179, probe: '/journal/design-notes-01' });
 const driver = createGuideDriver({ browser, base });
 
-const SECTIONS = [runPages, runUrl, runDoors, runGame, runDialog, runLayout, runLanguages, runContrast];
+const SECTIONS = [runPages, runEntry, runUrl, runDoors, runGame, runDialog, runLayout, runLanguages, runContrast];
 
 try {
   // Warm-up: the first dev request compiles the reader's chunks and can trigger a dependency reload.
