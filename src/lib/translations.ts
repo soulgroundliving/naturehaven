@@ -281,7 +281,7 @@ export const TR = {
       weightCaption: { en: 'full-grown, by breed standard', th: 'ตัวเต็มวัย ตามมาตรฐานสายพันธุ์' },
       lead: {
         en: 'We keep no list of approved breeds. There is one measure: a full-grown pet weighs up to 15 kg by its breed standard, checked on the day you register. We measure the adult because a 4 kg puppy today can be 30 kg next year — and up to 2 pets share each home.',
-        th: 'เราไม่มีรายชื่อสายพันธุ์ที่รับ มีเกณฑ์เดียวคือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ไม่เกิน 15 กก. พิจารณา ณ วันลงทะเบียน ที่วัดตอนโตเต็มวัยเพราะลูกสุนัข 4 กก. วันนี้ อาจเป็น 30 กก. ในปีหน้า และเลี้ยงได้ไม่เกิน 2 ตัวต่อห้อง',
+        th: 'เราไม่มีรายชื่อสายพันธุ์ที่รับ มีเกณฑ์เดียวคือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ไม่เกิน 15 กก. พิจารณา ณ วันลงทะเบียน เราวัดที่ตัวเต็มวัยเพราะลูกสุนัข 4 กก. วันนี้ อาจเป็น 30 กก. ในปีหน้า และเลี้ยงได้ไม่เกิน 2 ตัวต่อห้อง',
       },
       groups: {
         en: [
