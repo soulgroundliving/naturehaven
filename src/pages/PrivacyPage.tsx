@@ -58,7 +58,7 @@ const PrivacyPage: React.FC = () => {
           {
             h: '4. เมื่อคุณออกจากเว็บไซต์นี้ไปที่ LINE',
             body: [
-              'ปุ่ม "ทักไลน์" และ "นัดชมห้องส่วนตัว" ทุกจุดพาคุณออกจากเว็บไซต์นี้ไปยัง LINE Official Account ของโครงการ',
+              'ปุ่ม "ทักไลน์" และ "ทักไลน์สอบถาม" ทุกจุดพาคุณออกจากเว็บไซต์นี้ไปยัง LINE Official Account ของโครงการ',
               'ข้อมูลใด ๆ ที่คุณให้ไว้จากจุดนั้นเป็นต้นไป — เช่น ชื่อ เบอร์โทร ความสนใจจองห้อง หรือขั้นตอนทำสัญญาเช่า — อยู่ภายใต้นโยบายความเป็นส่วนตัวของแอปผู้เช่า Nature Haven ซึ่งดำเนินการโดย The Green Haven ไม่ใช่เว็บไซต์นี้',
             ],
           },
@@ -102,7 +102,7 @@ const PrivacyPage: React.FC = () => {
           {
             h: '4. When you leave this site for LINE',
             body: [
-              'Every "Message us on LINE" and "Book a private viewing" button takes you off this website to the project\'s LINE Official Account.',
+              'Every LINE button, such as "Message us on LINE", takes you off this website to the project\'s LINE Official Account.',
               "Anything you provide from that point on — your name, phone number, booking interest, or the lease process — is governed by the Nature Haven Resident App Privacy Policy, operated by The Green Haven, not by this website.",
             ],
           },

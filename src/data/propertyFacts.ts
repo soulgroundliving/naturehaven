@@ -153,8 +153,8 @@ export const FAQ_ITEMS = [
     id: 'price',
     q_th: 'ค่าเช่าต่อเดือนเท่าไหร่?',
     q_en: 'What is the monthly rent?',
-    a_th: `ชั้น 3-4 เริ่มต้น ${PRICE_FROM.toLocaleString('en-US')} บาท/เดือน และชั้น 1-2 ${PRICE_TO.toLocaleString('en-US')} บาท/เดือน — ยิ่งชั้นสูง (เดินขึ้นมากกว่า ไม่มีลิฟต์) ค่าเช่ายิ่งเบากว่า ราคานี้ยังไม่รวมค่าน้ำค่าไฟ ยืนยันห้องว่างล่าสุดและนัดชมทาง LINE`,
-    a_en: `From ${PRICE_FROM.toLocaleString('en-US')} THB/month on floors 3–4, and ${PRICE_TO.toLocaleString('en-US')} THB/month on floors 1–2 — the higher the floor (more stairs, no elevator), the lower the rent. Electricity and water are metered separately. Confirm current availability and book a viewing on LINE.`,
+    a_th: `ชั้น 3-4 เริ่มต้น ${PRICE_FROM.toLocaleString('en-US')} บาท/เดือน และชั้น 1-2 ${PRICE_TO.toLocaleString('en-US')} บาท/เดือน — ยิ่งชั้นสูง (เดินขึ้นมากกว่า ไม่มีลิฟต์) ค่าเช่ายิ่งเบากว่า ราคานี้ยังไม่รวมค่าน้ำค่าไฟ ยืนยันห้องว่างล่าสุดทาง LINE`,
+    a_en: `From ${PRICE_FROM.toLocaleString('en-US')} THB/month on floors 3–4, and ${PRICE_TO.toLocaleString('en-US')} THB/month on floors 1–2 — the higher the floor (more stairs, no elevator), the lower the rent. Electricity and water are metered separately. Confirm current availability on LINE.`,
   },
   {
     id: 'inclusive',
@@ -236,8 +236,8 @@ export const FAQ_ITEMS = [
     id: 'contact',
     q_th: 'ติดต่อจองได้ทางไหน?',
     q_en: 'How do I reserve a unit?',
-    a_th: 'ติดต่อทาง LINE เท่านั้น — กดปุ่ม "นัดชมห้องส่วนตัว" บนหน้าเว็บ แล้วทีมงานจะดูแลต่อให้ทั้งหมด',
-    a_en: 'LINE only — tap "Request Private Viewing" anywhere on the site and we will take care of the rest.',
+    a_th: 'ติดต่อทาง LINE เท่านั้น — กดปุ่ม "ทักไลน์สอบถาม" บนหน้าเว็บ แล้วทีมงานจะดูแลต่อให้ทั้งหมด',
+    a_en: 'LINE only — tap "Message us on LINE" anywhere on the site and we will take care of the rest.',
   },
   {
     id: 'elevator',

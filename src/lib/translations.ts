@@ -22,8 +22,8 @@ export const TR = {
   },
   cta: {
     mobileBar: {
-      en: 'Request Private Viewing · LINE',
-      th: 'นัดชมห้องส่วนตัว · ทัก LINE',
+      en: 'Message us on LINE',
+      th: 'ทักไลน์สอบถาม',
     },
   },
   links: {
@@ -37,7 +37,7 @@ export const TR = {
     nest: { en: 'NEST · ตั้งมั่น', th: 'NEST · ตั้งมั่น' },
     nestSub: { en: 'The story of our first building', th: 'เรื่องราวของอาคารแรก' },
     line: { en: 'Chat on LINE', th: 'ทักไลน์' },
-    lineSub: { en: 'Reserve a viewing · ask us anything', th: 'นัดชมห้อง · ถามอะไรก็ได้' },
+    lineSub: { en: 'Ask us anything about the rooms', th: 'ถามเรื่องห้องได้ทุกเรื่อง' },
     instagram: { en: 'Instagram', th: 'Instagram' },
     instagramSub: { en: '@naturehaven_official', th: '@naturehaven_official' },
     facebook: { en: 'Facebook', th: 'Facebook' },
@@ -74,10 +74,10 @@ export const TR = {
     },
     backHome: { en: 'Home', th: 'หน้าแรก' },
     related: { en: 'More from the Journal', th: 'บทความอื่นจากบันทึก' },
-    ctaTitle: { en: 'Want to see the space in person?', th: 'อยากเห็นห้องจริงไหม?' },
+    ctaTitle: { en: 'Questions about the room?', th: 'มีคำถามเกี่ยวกับห้องไหม?' },
     ctaBody: {
-      en: 'Questions about the room? Message us on LINE — move-in from November 2026.',
-      th: 'มีคำถามเกี่ยวกับห้อง ทักเราทาง LINE ได้เลย — เข้าอยู่ได้ตั้งแต่พฤศจิกายน 2026',
+      en: 'Message us on LINE — move-in from November 2026.',
+      th: 'ทักเราทาง LINE ได้เลย — เข้าอยู่ได้ตั้งแต่พฤศจิกายน 2026',
     },
     ctaButton: { en: 'Chat on LINE', th: 'ทักไลน์เลย' },
     share: {
@@ -120,12 +120,12 @@ export const TR = {
     prevCollection: { en: 'Previous', th: 'ก่อนหน้า' },
     nextCollection: { en: 'Next collection', th: 'คอลเลกชันถัดไป' },
     detailsWord: { en: 'The details', th: 'รายละเอียดทั้งหมด' },
-    ctaTitle: { en: 'See these details in person', th: 'อยากเห็นรายละเอียดเหล่านี้ด้วยตาตัวเอง?' },
+    ctaTitle: { en: 'Want to know more about these details?', th: 'อยากรู้รายละเอียดเหล่านี้เพิ่มไหม?' },
     ctaBody: {
-      en: 'Private viewings by appointment — message us on LINE.',
-      th: 'เปิดชมห้องแบบส่วนตัวตามนัดหมาย — ทักเราทาง LINE ได้เลย',
+      en: 'Ask us anything — message us on LINE.',
+      th: 'ถามอะไรก็ได้ — ทักเราทาง LINE ได้เลย',
     },
-    ctaButton: { en: 'Request Private Viewing', th: 'นัดชมห้องส่วนตัว' },
+    ctaButton: { en: 'Message us on LINE', th: 'ทักไลน์สอบถาม' },
   },
   hero: {
     labelWords: {
@@ -220,8 +220,8 @@ export const TR = {
       th: 'รวม Wi-Fi ทำความสะอาด ล้างแอร์ · ค่าน้ำค่าไฟแยกตามมิเตอร์ที่ใช้จริง',
     },
     decisionCostNote: {
-      en: `Move-in costs: a ${BOOKING_FEE} THB booking fee (credited toward the total once you sign), a one-month security deposit, and one month of advance rent. Current room availability and viewing times are confirmed on LINE.`,
-      th: `ค่าใช้จ่ายวันเข้าอยู่: ค่าจอง ${BOOKING_FEE} บาท (หักลบเป็นส่วนหนึ่งของยอดเมื่อทำสัญญา) เงินประกันความเสียหาย 1 เดือน และค่าเช่าล่วงหน้า 1 เดือน — ห้องว่างล่าสุดและเวลานัดชม ยืนยันทาง LINE`,
+      en: `Move-in costs: a ${BOOKING_FEE} THB booking fee (credited toward the total once you sign), a one-month security deposit, and one month of advance rent. Current room availability is confirmed on LINE.`,
+      th: `ค่าใช้จ่ายวันเข้าอยู่: ค่าจอง ${BOOKING_FEE} บาท (หักลบเป็นส่วนหนึ่งของยอดเมื่อทำสัญญา) เงินประกันความเสียหาย 1 เดือน และค่าเช่าล่วงหน้า 1 เดือน — ห้องว่างล่าสุด ยืนยันทาง LINE`,
     },
     suitableForTitle: { en: 'Suitable For', th: 'เหมาะสำหรับ' },
     suitableFor: {
@@ -265,8 +265,8 @@ export const TR = {
     floorTierUpperNote: { en: 'More stairs, no elevator — the entry rate.', th: 'เดินขึ้นมากกว่า ไม่มีลิฟต์ — ราคาเริ่มต้น' },
     floorTierLowerNote: { en: 'Closer to the entrance.', th: 'ใกล้ทางเข้ามากกว่า' },
     privateBody: {
-      en: 'Rates above are per floor, all-in before utilities. Current room availability and viewing times are confirmed on LINE.',
-      th: 'ราคาข้างต้นคือราคาต่อชั้น ยังไม่รวมค่าน้ำค่าไฟ ห้องที่ว่างล่าสุดและเวลานัดชม ยืนยันทาง LINE',
+      en: 'Rates above are per floor, all-in before utilities. Current room availability is confirmed on LINE.',
+      th: 'ราคาข้างต้นคือราคาต่อชั้น ยังไม่รวมค่าน้ำค่าไฟ ห้องที่ว่างล่าสุด ยืนยันทาง LINE',
     },
     openingRate: { en: 'Opening Rate', th: 'ราคาเปิดตัว' },
     petsEverywhere: { en: 'Pet-friendly — the whole building', th: 'อพาร์ทเมนท์เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น' },
@@ -325,10 +325,10 @@ export const TR = {
     },
     floorWord: { en: 'Floor', th: 'ชั้น' },
     fromLabel: { en: 'From', th: 'เริ่มต้น' },
-    tierCta: { en: 'Book a viewing', th: 'นัดชมห้อง' },
+    tierCta: { en: 'Ask about this floor', th: 'สอบถามชั้นนี้' },
     unitsPerFloor: { en: '5 units', th: '5 ห้อง' },
-    ctaLabel: { en: 'Ready to see it in person?', th: 'อยากเห็นห้องจริงด้วยตาตัวเอง?' },
-    ctaButton: { en: 'Request Private Viewing', th: 'นัดชมห้องส่วนตัว' },
+    ctaLabel: { en: 'Want to know more about the room?', th: 'อยากรู้เรื่องห้องเพิ่มไหม?' },
+    ctaButton: { en: 'Message us on LINE', th: 'ทักไลน์สอบถาม' },
     galleryBedroom: { en: 'Bedroom', th: 'ห้องนอน' },
     galleryBathroom: { en: 'Bathroom', th: 'ห้องน้ำ' },
     galleryKitchen: { en: 'Storage', th: 'ที่เก็บของ' },
@@ -408,10 +408,10 @@ export const TR = {
     ctaTag: { en: 'All included', th: 'รวมทุกอย่าง' },
     ctaHeadline: { en: 'Ready when\nyou are.', th: 'พร้อมเมื่อ\nคุณพร้อม' },
     ctaBody: {
-      en: 'Come see it in person — every detail here has already been handled.',
-      th: 'มาเห็นด้วยตาตัวเอง — ทุกรายละเอียดที่นี่ได้รับการดูแลไว้แล้ว',
+      en: 'Ask us about any detail — every one here has already been handled.',
+      th: 'ถามเราได้ทุกรายละเอียด — ทุกอย่างที่นี่ได้รับการดูแลไว้แล้ว',
     },
-    ctaButton: { en: 'Request Private Viewing', th: 'นัดชมห้องส่วนตัว' },
+    ctaButton: { en: 'Message us on LINE', th: 'ทักไลน์สอบถาม' },
   },
   location: {
     sectionLabel: { en: 'Location', th: 'ที่ตั้ง' },
@@ -495,26 +495,26 @@ export const TR = {
   },
   contact: {
     sectionLabel: { en: 'Contact', th: 'ติดต่อ' },
-    headline: { en: 'Request a private viewing.', th: 'นัดชมห้องส่วนตัว' },
+    headline: { en: 'Ask us anything.', th: 'ถามเราได้ทุกเรื่อง' },
     steps: {
       en: [
         { num: '01', title: 'Explore', body: 'Browse the residences. Decide if Nature Haven is the right fit.' },
-        { num: '02', title: 'Reach out', body: "Message us on LINE. We'll answer questions and arrange a viewing." },
+        { num: '02', title: 'Reach out', body: "Message us on LINE. We'll answer your questions." },
         { num: '03', title: 'Reserve', body: 'Pay the deposit via PromptPay to hold your unit.' },
         { num: '04', title: 'Move in', body: 'Sign the lease. Residences open from November 2026.' },
       ],
       th: [
         { num: '01', title: 'สำรวจ', body: 'ดูห้องพัก ตัดสินใจว่า Nature Haven เหมาะกับคุณไหม' },
-        { num: '02', title: 'ติดต่อ', body: 'ส่งข้อความทาง LINE เราจะตอบคำถามและนัดชมห้อง' },
+        { num: '02', title: 'ติดต่อ', body: 'ส่งข้อความทาง LINE เราจะตอบคำถามของคุณ' },
         { num: '03', title: 'จอง', body: 'ชำระมัดจำผ่าน PromptPay เพื่อยึดห้องของคุณ' },
         { num: '04', title: 'ย้ายเข้า', body: 'เซ็นสัญญา พร้อมเข้าอยู่พฤศจิกายน 2569' },
       ],
     },
-    ctaButton: { en: 'Request a private viewing on LINE', th: 'นัดชมห้องส่วนตัวผ่าน LINE' },
+    ctaButton: { en: 'Message us on LINE', th: 'ทักไลน์สอบถามผ่าน LINE' },
     lineNote: { en: 'We answer fastest on LINE.', th: 'เราตอบเร็วที่สุดทาง LINE' },
     appointmentNote: {
-      en: 'There is no walk-in office. After we connect on LINE, we will confirm a time to meet you at the project.',
-      th: 'โครงการไม่มีสำนักงานสำหรับ walk-in กรุณาทัก LINE ก่อน แล้วเราจะยืนยันเวลานัดพบที่โครงการ',
+      en: 'There is no walk-in office — please message us on LINE and we will reply there.',
+      th: 'โครงการไม่มีสำนักงานสำหรับ walk-in กรุณาทัก LINE แล้วเราจะตอบกลับทางนั้น',
     },
   },
   footer: {

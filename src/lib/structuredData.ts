@@ -25,7 +25,7 @@ const organizationSchema = {
   name: PROPERTY.name,
   alternateName: ['เนเจอร์ เฮเว่น', PROPERTY.legalName],
   description:
-    `Nature Haven อพาร์ทเมนท์สายไหม บนถนนเฉลิมพงษ์ เลี้ยงสัตว์ได้ทั้งตึกในกรุงเทพฯ. 25.2 sqm one-bedroom homes with a multi-purpose storage cabinet (microwave station, next to the fridge) and a private balcony (with dish sink) — pets welcome throughout the entire building; Wi-Fi, housekeeping, and A/C maintenance included (electricity and water metered separately). ${PRICE_FROM.toLocaleString('en-US')}–${PRICE_TO.toLocaleString('en-US')} THB/month by floor, private viewings by appointment via LINE. Reservations open October 2026; move-in from November 2026.`,
+    `Nature Haven อพาร์ทเมนท์สายไหม บนถนนเฉลิมพงษ์ เลี้ยงสัตว์ได้ทั้งตึกในกรุงเทพฯ. 25.2 sqm one-bedroom homes with a multi-purpose storage cabinet (microwave station, next to the fridge) and a private balcony (with dish sink) — pets welcome throughout the entire building; Wi-Fi, housekeeping, and A/C maintenance included (electricity and water metered separately). ${PRICE_FROM.toLocaleString('en-US')}–${PRICE_TO.toLocaleString('en-US')} THB/month by floor, enquiries via LINE. Reservations open October 2026; move-in from November 2026.`,
   url: siteUrl,
   image: `${siteUrl}/og-image-v2.jpg`,
   priceRange: '฿฿',
