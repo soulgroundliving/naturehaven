@@ -65,8 +65,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'หากอยากวัดระยะด้วยเท้าของคุณเอง การนัดชมห้องสามารถรวมการเดินสำรวจย่านไปด้วยกันได้ — นัดหมายผ่าน LINE',
-        en: 'To measure it with your own feet, a viewing can include a walk through the neighbourhood — arranged on LINE.',
+        th: 'หากอยากวัดระยะด้วยเท้าของคุณเอง ลองเดินสำรวจย่านนี้ก่อนตัดสินใจ — อยากได้เส้นทางหรือข้อมูลย่านเพิ่มเติม ถามเราได้ทาง LINE',
+        en: 'To measure it with your own feet, take a walk through the neighbourhood before you decide — if you would like directions or local tips, ask us on LINE.',
       },
     },
   ],
