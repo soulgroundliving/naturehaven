@@ -292,7 +292,7 @@ export const TR = {
         en: [
           {
             title: 'Dogs',
-            body: 'A small-to-medium dog fits a 25.2 sqm home the way it fits a person: a bed of its own, a private balcony for air, and a flight of stairs that is easy to climb together — the building has no elevator. Dogs that go out for two or more walks a day are happiest on floors 1–2 (a suggestion, not a rule).',
+            body: 'A small-to-medium dog fits a 25.2 sqm home the way it fits a person: a bed of its own, a private balcony, and a flight of stairs that is easy to climb together — the building has no elevator. Dogs that go out for two or more walks a day are happiest on floors 1–2 (a suggestion, not a rule).',
           },
           {
             title: 'Cats',
@@ -306,7 +306,7 @@ export const TR = {
         th: [
           {
             title: 'สุนัข',
-            body: 'สุนัขตัวเล็กถึงกลางอยู่ในห้อง 25.2 ตร.ม. ได้พอดีตัว มีที่นอนของตัวเอง มีระเบียงส่วนตัวให้ดมลม และบันไดที่ขึ้นลงด้วยกันได้สบาย เพราะอาคารไม่มีลิฟต์ น้องที่ออกเดินวันละ 2 รอบขึ้นไปอยู่ชั้น 1–2 จะสบายกว่า (เป็นคำแนะนำ ไม่ใช่ข้อบังคับ)',
+            body: 'สุนัขตัวเล็กถึงกลางอยู่ในห้อง 25.2 ตร.ม. ได้พอดีตัว มีที่นอนของตัวเอง มีระเบียงส่วนตัว และบันไดที่ขึ้นลงด้วยกันได้สบาย เพราะอาคารไม่มีลิฟต์ น้องที่ออกเดินวันละ 2 รอบขึ้นไปอยู่ชั้น 1–2 จะสบายกว่า (เป็นคำแนะนำ ไม่ใช่ข้อบังคับ)',
           },
           {
             title: 'แมว',
