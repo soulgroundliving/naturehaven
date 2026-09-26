@@ -175,7 +175,7 @@ export const FAQ_ITEMS = [
     q_th: 'มีครัวไหม?',
     q_en: 'Is there a kitchen?',
     a_th: 'ไม่มีครัวเต็มรูปแบบและไม่มีเตาติดตั้งในห้อง (ทำอาหารเบา ๆ ด้วยเตาไฟฟ้าที่นำมาเองได้ ดูคำถามถัดไป) — ในห้องมีตู้เก็บของอเนกประสงค์ 2 บานเปิดเข้าหากึ่งกลาง พร้อมชั้นวางของภายใน 2 ชั้น และเคาน์เตอร์ด้านบนสำหรับวางไมโครเวฟ ตั้งอยู่ติดตู้เย็น ใช้เก็บของครัวหรือของใช้ส่วนตัวได้อย่างยืดหยุ่น ส่วนซิงก์ล้างจานอยู่ที่ระเบียง',
-    a_en: 'There is no full kitchen and no built-in stove (light cooking on an electric hob you bring yourself is allowed — see the next question). The room has a multi-purpose storage cabinet with two doors that open toward the centre, two internal shelves, and a countertop sized for a microwave, positioned next to the refrigerator. It flexibly stores kitchen items or personal belongings. The dish sink is on the balcony.',
+    a_en: 'There is no full kitchen and no built-in stove (light cooking on an electric hob you bring yourself is allowed — see the next question). The room has a multi-purpose storage cabinet with two doors that open toward the center, two internal shelves, and a countertop sized for a microwave, positioned next to the refrigerator. It flexibly stores kitchen items or personal belongings. The dish sink is on the balcony.',
   },
   // Source of truth: the-green-haven house rules (Nest) §2.1–2.2, owner
   // decision 2026-09-21 — supersedes the 2026-09-12 blanket ban on induction
@@ -188,7 +188,7 @@ export const FAQ_ITEMS = [
     q_th: 'ทำอาหารในห้องได้ไหม?',
     q_en: 'Can I cook in the room?',
     a_th: 'ได้ในแบบเบา ๆ — ห้องไม่มีครัวเต็มรูปแบบ แต่ใช้เตาไฟฟ้าหรือเตาแม่เหล็กไฟฟ้าได้ 1 หัว กำลังไม่เกิน 1,500 วัตต์ (นำมาเอง) ซึ่งเพียงพอสำหรับต้มและผัดตามปกติ และเป็นเพดานที่ระบบไฟฟ้าของห้องรองรับได้อย่างปลอดภัย ห้ามใช้เตาแก๊ส เตาปิ้งย่าง และการทอดที่ใช้น้ำมันปริมาณมาก และขอให้งดอาหารที่มีกลิ่นหรือควันแรง เพราะกลิ่นเดินทางผ่านทางเดินและระเบียงไปถึงเพื่อนบ้านเสมอ อาหารสำเร็จรูป อาหารเดลิเวอรี และของที่ไม่ต้องปรุงด้วยความร้อน ทานได้ตามปกติ',
-    a_en: 'Yes, lightly — there is no full kitchen, but you may use one electric or induction hob (a single burner, up to 1,500 W) that you bring yourself. That is enough for everyday boiling and stir-frying, and it is the ceiling the wiring in each room carries safely. Gas stoves, grills and deep or heavy-oil frying are not allowed, and please avoid cooking with strong smells or smoke — odours travel through the corridor and balconies to your neighbours. Ready-made meals, delivery and anything that needs no heating are always fine.',
+    a_en: 'Yes, lightly — there is no full kitchen, but you may use one electric or induction hob (a single burner, up to 1,500 W) that you bring yourself. That is enough for everyday boiling and stir-frying, and it is the most a room\'s electrical system can safely carry. Gas stoves, grills and deep or heavy-oil frying are not allowed, and please avoid cooking with strong odors or smoke — odors travel through the corridor and balconies to your neighbors. Ready-made meals, delivery and anything that needs no heating are always fine.',
   },
   {
     id: 'smoking',
@@ -202,7 +202,7 @@ export const FAQ_ITEMS = [
     q_th: 'รับสัตว์เลี้ยงไหม?',
     q_en: 'Are pets allowed?',
     a_th: `รับ — ทั้งสุนัขและแมว เลี้ยงได้ทั้งตึก ไม่กำหนดว่าชั้นไหน เกณฑ์คือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ ไม่เกิน 15 กก. (ไม่ใช่รายชื่อสายพันธุ์) ไม่เกิน 2 ตัวต่อห้อง มีค่าสัตว์เลี้ยง ${PET_FEE_MONTHLY.toLocaleString('en-US')} บาท/ตัว/เดือน`,
-    a_en: `Yes — dogs and cats are both welcome, on every floor. The test is adult weight by breed standard, up to 15 kg (not a list of breeds), and up to 2 pets per unit. The monthly fee is ${PET_FEE_MONTHLY.toLocaleString('en-US')} THB per pet.`,
+    a_en: `Yes — dogs and cats are both welcome, on every floor. The criterion is full-grown weight by breed standard, up to 15 kg (we keep no list of breeds), and up to 2 pets per unit. The monthly fee is ${PET_FEE_MONTHLY.toLocaleString('en-US')} THB per pet.`,
   },
   {
     id: 'contract',
