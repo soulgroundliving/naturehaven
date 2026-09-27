@@ -220,13 +220,33 @@ export const TR = {
       th: 'รวม Wi-Fi ทำความสะอาด ล้างแอร์ · ค่าน้ำค่าไฟแยกตามมิเตอร์ที่ใช้จริง',
     },
     decisionCostNote: {
-      en: `Move-in costs: a ${BOOKING_FEE} THB booking fee (credited toward the total once you sign), a one-month security deposit, and one month of advance rent. Current room availability is confirmed on LINE.`,
-      th: `ค่าใช้จ่ายวันเข้าอยู่: ค่าจอง ${BOOKING_FEE} บาท (หักลบเป็นส่วนหนึ่งของยอดเมื่อทำสัญญา) เงินประกันความเสียหาย 1 เดือน และค่าเช่าล่วงหน้า 1 เดือน — ห้องว่างล่าสุด ยืนยันทาง LINE`,
+      en: `Move-in costs: a ${BOOKING_FEE} THB booking fee (credited toward the total once you sign), a two-month security deposit, and one month of advance rent. Current room availability is confirmed on LINE.`,
+      th: `ค่าใช้จ่ายวันเข้าอยู่: ค่าจอง ${BOOKING_FEE} บาท (หักลบเป็นส่วนหนึ่งของยอดเมื่อทำสัญญา) เงินประกันความเสียหาย 2 เดือน และค่าเช่าล่วงหน้า 1 เดือน — ห้องว่างล่าสุด ยืนยันทาง LINE`,
     },
     suitableForTitle: { en: 'Suitable For', th: 'เหมาะสำหรับ' },
     suitableFor: {
-      en: ['1–2 residents', 'Working professionals', 'Couples', 'Those who value quiet living'],
-      th: ['1–2 คน', 'คนทำงาน', 'คู่รัก', 'ผู้ที่รักความสงบ'],
+      en: [
+        '1–2 residents',
+        'Working professionals',
+        'Couples',
+        'Those who value quiet living',
+        'Pet owners',
+        'Those who value their own private space',
+        'Those looking for a long-term stay',
+        'Those who enjoy simple home cooking',
+        'People who care about their quality of life',
+      ],
+      th: [
+        '1–2 คน',
+        'คนทำงาน',
+        'คู่รัก',
+        'ผู้ที่รักความสงบ',
+        'ผู้ที่เลี้ยงสัตว์',
+        'ผู้ที่ชอบพื้นที่ส่วนตัว',
+        'ผู้ที่มองหาที่พักระยะยาว',
+        'ผู้ที่ชอบทำอาหารง่าย ๆ',
+        'คนที่ใส่ใจในคุณภาพชีวิต',
+      ],
     },
     spaceTitle: { en: 'Space & Layout', th: 'พื้นที่และผังห้อง' },
     sqm: { en: 'sq.m.', th: 'ตร.ม.' },
@@ -239,8 +259,8 @@ export const TR = {
     contractValue: { en: 'Annual (12 months)', th: 'รายปี (12 เดือน)' },
     moveinLabel: { en: 'Move-in', th: 'เข้าอยู่' },
     moveinValue: {
-      en: `${BOOKING_FEE} THB booking fee + 1 mo. deposit + 1 mo. advance`,
-      th: `ค่าจอง ${BOOKING_FEE} บาท + เงินประกัน 1 เดือน + ค่าเช่าล่วงหน้า 1 เดือน`,
+      en: `${BOOKING_FEE} THB booking fee + 2 mo. deposit + 1 mo. advance`,
+      th: `ค่าจอง ${BOOKING_FEE} บาท + เงินประกัน 2 เดือน + ค่าเช่าล่วงหน้า 1 เดือน`,
     },
     availableLabel: { en: 'Available from', th: 'พร้อมเข้าอยู่' },
     availableValue: { en: MOVE_IN_LABEL.en, th: MOVE_IN_LABEL.th },
@@ -251,8 +271,8 @@ export const TR = {
     },
     parkingLabel: { en: 'Parking', th: 'ที่จอดรถ' },
     parkingValue: {
-      en: `~${PARKING_CAPACITY_APPROX} spaces, first-come, first-served`,
-      th: `ประมาณ ${PARKING_CAPACITY_APPROX} คัน มาก่อนได้จอดก่อน`,
+      en: `Enough spaces for all ${PARKING_CAPACITY_APPROX} units`,
+      th: `เพียงพอสำหรับทุกห้อง (${PARKING_CAPACITY_APPROX} ห้อง)`,
     },
     allinclusive: {
       en: 'Wi-Fi, cleaning & A/C service are included in the rent. Electricity and water are metered separately — no common fee.',
@@ -391,14 +411,14 @@ export const TR = {
     scrollHint: { en: 'Scroll', th: 'เลื่อน' },
     items: {
       en: [
-        { label: 'Parking', desc: `Registered residents · ~${PARKING_CAPACITY_APPROX} spaces around the building · first-come, first-served.` },
+        { label: 'Parking', desc: `Enough spaces around the building for all ${PARKING_CAPACITY_APPROX} units.` },
         { label: 'Pocket Garden', desc: 'A communal garden to slow down in. Green, quiet, yours.' },
         { label: 'Laundry & Dryer', desc: 'Washers and dryers on site, with a drinking-water refill station.' },
         { label: 'Cleaning Service', desc: 'In-unit cleaning included — twice a year for units with a pet, once a year without.' },
         { label: 'A/C Maintenance', desc: 'Serviced on a regular schedule — at least yearly, or sooner based on condition — included in your rate.' },
       ],
       th: [
-        { label: 'ที่จอดรถ', desc: `สำหรับผู้พักอาศัยที่ลงทะเบียน · พื้นที่จอดจริงประมาณ ${PARKING_CAPACITY_APPROX} คันรอบอาคาร · มาก่อนได้จอดก่อน` },
+        { label: 'ที่จอดรถ', desc: `พื้นที่จอดรอบอาคารเพียงพอสำหรับทุกห้อง (${PARKING_CAPACITY_APPROX} ห้อง)` },
         { label: 'สวนกระเป๋า', desc: 'สวนส่วนกลาง — สีเขียว สงบ เป็นของคุณ' },
         { label: 'ซักผ้า & อบผ้า', desc: 'เครื่องซักและเครื่องอบในอาคาร พร้อมจุดเติมน้ำดื่ม' },
         { label: 'บริการทำความสะอาด', desc: 'ทำความสะอาดห้องพักรวมอยู่ในค่าเช่า — ปีละ 2 ครั้งสำหรับห้องที่เลี้ยงสัตว์ ปีละครั้งสำหรับห้องที่ไม่เลี้ยงสัตว์' },
@@ -467,12 +487,10 @@ export const TR = {
     },
     sustainable: {
       en: [
-        { title: 'Solar energy integration', body: "Rooftop solar offsets common-area power, reducing the building's footprint year-round." },
         { title: 'Energy-conscious design', body: 'Cross-ventilation, UV-blocking curtains and inverter cooling — designed to use less from day one.' },
         { title: 'Long-term material durability', body: 'Selected for how they age — quietly, without losing their character.' },
       ],
       th: [
-        { title: 'ใช้พลังงานโซลาร์', body: 'โซลาร์เซลล์บนหลังคาช่วยลดการใช้ไฟฟ้าในพื้นที่ส่วนกลาง ลดรอยเท้าคาร์บอนตลอดปี' },
         { title: 'ดีไซน์ประหยัดพลังงาน', body: 'การระบายอากาศไขว้ ม่านกัน UV และแอร์อินเวอร์เตอร์ — ออกแบบมาให้ใช้ไฟน้อยตั้งแต่วันแรก' },
         { title: 'ความทนทานของวัสดุในระยะยาว', body: 'คัดเลือกตามวิธีที่มันจะเก่าอย่างงดงาม — โดยไม่สูญเสน่ห์' },
       ],

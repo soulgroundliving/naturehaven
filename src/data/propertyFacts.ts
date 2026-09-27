@@ -93,10 +93,10 @@ export const PET_FEE_MONTHLY = 500;
 // NOT say the Wi-Fi is "fiber" (no real service is installed yet, so it can't be claimed).
 export const HAS_COMMON_FEE = false;
 
-// Owner-confirmed 2026-09-11. NEST has 20 rooms but only ~16 practical parking
-// spaces around the building — do NOT state or imply a 1-room-to-1-space
-// guarantee anywhere on the site.
-export const PARKING_CAPACITY_APPROX = 16;
+// Owner-confirmed 2026-09-27 — supersedes the 2026-09-11 figure of ~16.
+// Parking now covers every unit (20 rooms, 20+ spaces): the site should state
+// parking is sufficient for every unit rather than quoting the old shortfall.
+export const PARKING_CAPACITY_APPROX = 20;
 
 // Owner-confirmed 2026-09-12 (previously proposed but unconfirmed as of
 // 2026-09-11 — now approved for publication). A reserved space on top of the
@@ -139,7 +139,6 @@ export const UNITS = [
 
 export const AMENITIES = [
   'Free Wi-Fi',
-  'Solar energy integration',
   'Digital door lock (unit & building)',
   '24/7 CCTV',
   'Smart app — bookings, payments, maintenance, pet records',
@@ -215,15 +214,15 @@ export const FAQ_ITEMS = [
     id: 'deposit',
     q_th: 'เงินที่ต้องเตรียมวันเข้าอยู่?',
     q_en: 'What deposit is required to move in?',
-    a_th: `ค่าใช้จ่ายวันเข้าอยู่มี 3 ส่วน — ค่าจอง ${BOOKING_FEE} บาท (ชำระผ่าน PromptPay ตอนกดจอง คืนได้หากแจ้งยกเลิกตามกำหนด แต่ริบหากไม่มาตามนัดโดยไม่แจ้งล่วงหน้า และหักลบเป็นส่วนหนึ่งของยอดด้านล่างเมื่อทำสัญญา) เงินประกันความเสียหาย 1 เดือน (เท่ากับค่าเช่าห้องนั้น คืนเต็มจำนวนเมื่อสิ้นสุดสัญญาหากไม่มีความเสียหายและไม่มีค้างชำระ) และค่าเช่าล่วงหน้า 1 เดือน`,
-    a_en: `Move-in costs have three parts — a ${BOOKING_FEE} THB booking fee (paid via PromptPay when you book; refundable if you cancel with notice, forfeited on a no-show, and credited toward the total below once you sign), a one-month security deposit (equal to your unit's rent, fully refundable at lease end if there's no damage or unpaid balance), and one month of advance rent.`,
+    a_th: `ค่าใช้จ่ายวันเข้าอยู่มี 3 ส่วน — ค่าจอง ${BOOKING_FEE} บาท (ชำระผ่าน PromptPay ตอนกดจอง คืนได้หากแจ้งยกเลิกตามกำหนด แต่ริบหากไม่มาตามนัดโดยไม่แจ้งล่วงหน้า และหักลบเป็นส่วนหนึ่งของยอดด้านล่างเมื่อทำสัญญา) เงินประกันความเสียหาย 2 เดือน (เท่ากับค่าเช่าห้องนั้นคูณสอง คืนเต็มจำนวนเมื่อสิ้นสุดสัญญาหากไม่มีความเสียหายและไม่มีค้างชำระ) และค่าเช่าล่วงหน้า 1 เดือน`,
+    a_en: `Move-in costs have three parts — a ${BOOKING_FEE} THB booking fee (paid via PromptPay when you book; refundable if you cancel with notice, forfeited on a no-show, and credited toward the total below once you sign), a two-month security deposit (equal to twice your unit's rent, fully refundable at lease end if there's no damage or unpaid balance), and one month of advance rent.`,
   },
   {
     id: 'parking',
     q_th: 'มีที่จอดรถไหม?',
     q_en: 'Is parking available?',
-    a_th: `มีที่จอดรถสำหรับผู้พักอาศัยที่ลงทะเบียนรถ — พื้นที่จอดฟรีประมาณ ${PARKING_CAPACITY_APPROX} คันรอบอาคาร (จากทั้งหมด ${PROPERTY.totalUnits} ห้อง) ให้บริการแบบมาก่อนได้จอดก่อน ไม่ได้การันตีว่าทุกห้องจะมีที่จอดประจำ หากต้องการที่จอดแบบจองประจำ มีค่าบริการเพิ่มเดือนละ ${RESERVED_PARKING_FEE_MONTHLY} บาท`,
-    a_en: `Yes — free parking is available for registered residents, with approximately ${PARKING_CAPACITY_APPROX} spaces around the building (out of ${PROPERTY.totalUnits} units total), on a first-come, first-served basis. A dedicated space per unit is not guaranteed. A reserved space is available for an additional ${RESERVED_PARKING_FEE_MONTHLY} THB/month.`,
+    a_th: `มีที่จอดรถเพียงพอสำหรับผู้พักอาศัยทุกห้อง — พื้นที่จอดฟรีรอบอาคารครอบคลุมทั้ง ${PROPERTY.totalUnits} ห้อง หากต้องการที่จอดแบบจองประจำ มีค่าบริการเพิ่มเดือนละ ${RESERVED_PARKING_FEE_MONTHLY} บาท`,
+    a_en: `Yes — free parking is available for every resident, with enough spaces around the building to cover all ${PROPERTY.totalUnits} units. A reserved space is available for an additional ${RESERVED_PARKING_FEE_MONTHLY} THB/month.`,
   },
   {
     id: 'open',

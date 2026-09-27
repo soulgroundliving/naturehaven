@@ -14,15 +14,15 @@ const article: Article = {
     th: 'Build Diary #1 — สิ่งที่เคาะแล้ว ระหว่างทางสู่พฤศจิกายน 2026',
   },
   excerpt: {
-    en: 'A record kept as the building rises. The first entry: what is already decided — one clear rent, one rule for every home, solar power for the common areas — as five cards from our post and a short list.',
-    th: 'บันทึกที่เก็บไว้ระหว่างตึกค่อย ๆ เป็นรูปเป็นร่าง ฉบับแรกว่าด้วยสิ่งที่เคาะแล้ว — ค่าเช่าที่ชัดเจน กติกาเดียวกันทุกห้อง โซลาร์เซลล์พื้นที่ส่วนกลาง — เป็นห้าใบจากโพสต์ของเรากับรายการสั้น ๆ',
+    en: 'A record kept as the building rises. The first entry: what is already decided — one clear rent, one rule for every home — as five cards from our post and a short list.',
+    th: 'บันทึกที่เก็บไว้ระหว่างตึกค่อย ๆ เป็นรูปเป็นร่าง ฉบับแรกว่าด้วยสิ่งที่เคาะแล้ว — ค่าเช่าที่ชัดเจน กติกาเดียวกันทุกห้อง — เป็นห้าใบจากโพสต์ของเรากับรายการสั้น ๆ',
   },
   date: '2026-06-19',
   readMinutes: 2,
-  hero: '/assets/sustainability-solar.jpg',
+  hero: '/assets/unit-overview.jpg',
   heroAlt: {
-    en: 'Solar panels — part of Nature Haven’s common-area energy plan',
-    th: 'แผงโซลาร์เซลล์ — ส่วนหนึ่งของแผนพลังงานส่วนกลางของ Nature Haven',
+    en: 'A Nature Haven residence opening toward its private balcony',
+    th: 'ห้องพัก Nature Haven ที่เปิดออกสู่ระเบียงส่วนตัว',
   },
   blocks: [
     {
@@ -110,15 +110,8 @@ const article: Article = {
         [
           { th: 'สัญญาและวันเข้าอยู่', en: 'Lease and move-in' },
           {
-            th: 'สัญญา 12 เดือน ค่าใช้จ่ายวันเข้าอยู่คือค่าจอง เงินประกันความเสียหาย 1 เดือน และค่าเช่าล่วงหน้า 1 เดือน เปิดเข้าอยู่พฤศจิกายน 2569',
-            en: 'A twelve-month lease. Move-in costs are a booking fee, a one-month security deposit and one month of advance rent. Move-in opens in November 2026.',
-          },
-        ],
-        [
-          { th: 'โซลาร์เซลล์', en: 'Solar power' },
-          {
-            th: 'สำหรับพื้นที่ส่วนกลางของตึกเท่านั้น ไม่ได้หมายถึงค่าไฟในห้องพัก ซึ่งยังคิดตามมิเตอร์จริง',
-            en: 'For the building’s common areas only — not the rooms, whose electricity is still metered and billed at actual use.',
+            th: 'สัญญา 12 เดือน ค่าใช้จ่ายวันเข้าอยู่คือค่าจอง เงินประกันความเสียหาย 2 เดือน และค่าเช่าล่วงหน้า 1 เดือน เปิดเข้าอยู่พฤศจิกายน 2569',
+            en: 'A twelve-month lease. Move-in costs are a booking fee, a two-month security deposit and one month of advance rent. Move-in opens in November 2026.',
           },
         ],
       ],
