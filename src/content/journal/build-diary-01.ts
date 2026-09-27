@@ -1,11 +1,11 @@
 import type { Article } from '@/data/journalTypes';
 
-// Built from our real social post — the five-slide Build Diary #1 carousel
-// (C10) — plus the details its slides point to. The slides are typographic
-// cards (origin 'drawing'), copied from the marketing pack as WebP under new
-// filenames. Slide 4 is the corrected one (move-in November 2569).
-const SLIDES = '/assets/journal/build-diary-01';
-
+// This entry does NOT correspond to any real Facebook/Instagram post — earlier
+// versions claimed it was "built from a five-slide carousel" (C10), but no
+// such post was ever published anywhere except this site. Owner-clarified
+// 2026-09-27: rewritten as the site's own recap of settled facts, with no
+// claim of a social-media source. See build-diary-02-materials.ts, which may
+// carry the same framing risk and hasn't been re-checked yet.
 const article: Article = {
   slug: 'build-diary-01',
   category: { en: 'Build Diary', th: 'บันทึกการสร้าง' },
@@ -14,8 +14,8 @@ const article: Article = {
     th: 'Build Diary #1 — สิ่งที่เคาะแล้ว ระหว่างทางสู่พฤศจิกายน 2026',
   },
   excerpt: {
-    en: 'A record kept as the building rises. The first entry: what is already decided — one clear rent, one rule for every home — as five cards from our post and a short list.',
-    th: 'บันทึกที่เก็บไว้ระหว่างตึกค่อย ๆ เป็นรูปเป็นร่าง ฉบับแรกว่าด้วยสิ่งที่เคาะแล้ว — ค่าเช่าที่ชัดเจน กติกาเดียวกันทุกห้อง — เป็นห้าใบจากโพสต์ของเรากับรายการสั้น ๆ',
+    en: 'A record kept as the building rises. The first entry: what is already decided — one clear rent, one rule for every home.',
+    th: 'บันทึกที่เก็บไว้ระหว่างตึกค่อย ๆ เป็นรูปเป็นร่าง ฉบับแรกว่าด้วยสิ่งที่เคาะแล้ว — ค่าเช่าที่ชัดเจน กติกาเดียวกันทุกห้อง',
   },
   date: '2026-06-19',
   readMinutes: 2,
@@ -28,51 +28,9 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'เราเปิดบันทึกของตึกไว้ตั้งแต่ตอนที่มันกำลังก่อร่างขึ้นจริง เพื่อให้ผู้ที่กำลังพิจารณาบ้านหลังต่อไปเห็นความคิดเบื้องหลัง ไม่ใช่แค่ห้องที่เสร็จแล้ว นี่คือฉบับแรก — โพสต์ที่พาคุณมาที่นี่ปัดดูได้ด้านล่าง และรายละเอียดอยู่ในรายการถัดไป',
-        en: 'We keep this record open while the building actually rises, so anyone considering where to live next can see the thinking, not only the finished rooms. This is entry one — the post that brought you here is below, and the details follow in the list after it.',
+        th: 'เราเปิดบันทึกของตึกไว้ตั้งแต่ตอนที่มันกำลังก่อร่างขึ้นจริง เพื่อให้ผู้ที่กำลังพิจารณาบ้านหลังต่อไปเห็นความคิดเบื้องหลัง ไม่ใช่แค่ห้องที่เสร็จแล้ว นี่คือฉบับแรก — สรุปสิ่งที่เคาะแล้วก่อนวันเปิดตัว',
+        en: 'We keep this record open while the building actually rises, so anyone considering where to live next can see the thinking, not only the finished rooms. This is entry one — a recap of what is already settled before opening day.',
       },
-    },
-    {
-      type: 'gallery',
-      label: { th: 'โพสต์ Build Diary #1 ห้าสไลด์', en: 'The Build Diary #1 post, five slides' },
-      size: 'narrow',
-      items: [
-        {
-          src: `${SLIDES}/diary-1.webp`,
-          alt: { th: 'สไลด์ 1 จาก 5: Build Diary #1 — บันทึกระหว่างตึกค่อย ๆ เป็นรูปเป็นร่าง ฉบับแรก สิ่งที่เคาะแล้ว', en: 'Slide 1 of 5: Build Diary #1 — a record kept as the building takes shape; the first entry, what is decided' },
-          width: 1080,
-          height: 1350,
-          origin: 'drawing',
-        },
-        {
-          src: `${SLIDES}/diary-2.webp`,
-          alt: { th: 'สไลด์ 2 จาก 5: โครงสร้างราคาเคาะแล้ว — ค่าเช่าตัวเลขเดียว แจ้งชัดเจนตรงไปตรงมาตั้งแต่แรก กติกาเดียวกันทุกห้อง', en: 'Slide 2 of 5: The pricing structure is settled — one clear rent, stated plainly from the start, one rule for every home' },
-          width: 1080,
-          height: 1350,
-          origin: 'drawing',
-        },
-        {
-          src: `${SLIDES}/diary-3.webp`,
-          alt: { th: 'สไลด์ 3 จาก 5: โซลาร์เซลล์พื้นที่ส่วนกลาง — พลังงานแสงอาทิตย์สำหรับพื้นที่ส่วนกลางของตึก', en: 'Slide 3 of 5: Solar panels for the common areas — solar power for the building’s shared spaces' },
-          width: 1080,
-          height: 1350,
-          origin: 'drawing',
-        },
-        {
-          src: `${SLIDES}/diary-4.webp`,
-          alt: { th: 'สไลด์ 4 จาก 5: พฤศจิกายน 2569 เปิดเข้าอยู่ — ระหว่างทาง เราบันทึกทุกความคืบหน้าไว้ใน Journal', en: 'Slide 4 of 5: November 2026, move-in opens — along the way we record every step of progress in the Journal' },
-          width: 1080,
-          height: 1350,
-          origin: 'drawing',
-        },
-        {
-          src: `${SLIDES}/diary-5.webp`,
-          alt: { th: 'สไลด์ 5 จาก 5: ตามอ่าน Build Diary — สิ่งที่ตัดสินใจแล้ว และสิ่งที่กำลังดำเนินต่อไป ฉบับเต็มอยู่บนเว็บ', en: 'Slide 5 of 5: Follow the Build Diary — what is decided and what comes next, in full on the site' },
-          width: 1080,
-          height: 1350,
-          origin: 'drawing',
-        },
-      ],
     },
     {
       type: 'h2',

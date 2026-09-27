@@ -1,11 +1,11 @@
 import type { Article } from '@/data/journalTypes';
 
-// Built from our real social post — the six-slide "Quiet by construction"
-// carousel (C8) — plus the materials list its last slides promise. The slides
-// are typographic cards (origin 'drawing'), copied from the marketing pack as
-// WebP under new filenames.
-const SLIDES = '/assets/journal/build-diary-02-materials';
-
+// This entry does NOT correspond to any real Facebook/Instagram post —
+// earlier versions claimed it was "built from a six-slide carousel" (C8),
+// but no such post was ever published anywhere except this site.
+// Owner-clarified 2026-09-27 (same finding as build-diary-01.ts): rewritten
+// as the site's own recap of the real materials, with no claim of a
+// social-media source.
 const article: Article = {
   slug: 'build-diary-02-materials',
   category: { en: 'Build Diary', th: 'บันทึกการสร้าง' },
@@ -14,8 +14,8 @@ const article: Article = {
     th: 'Build Diary #2 — ความเงียบที่มาจากโครงสร้าง วัสดุจริง บอกชื่อทีละชิ้น',
   },
   excerpt: {
-    en: 'The calm of a room does not come from decoration — it comes from what you cannot see. Six cards from our post, then the full list of real materials, named down to the colour code on the tin.',
-    th: 'ความสงบของห้องไม่ได้มาจากการตกแต่ง แต่มาจากสิ่งที่คุณมองไม่เห็น หกใบจากโพสต์ของเรา แล้วตามด้วยรายการวัสดุจริงฉบับเต็ม บอกชื่อถึงระดับเบอร์สีบนกระป๋อง',
+    en: 'The calm of a room does not come from decoration — it comes from what you cannot see. The full list of real materials, named down to the colour code on the tin.',
+    th: 'ความสงบของห้องไม่ได้มาจากการตกแต่ง แต่มาจากสิ่งที่คุณมองไม่เห็น รายการวัสดุจริงฉบับเต็ม บอกชื่อถึงระดับเบอร์สีบนกระป๋อง',
   },
   date: '2026-07-03',
   readMinutes: 3,
@@ -28,58 +28,9 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ความสงบของห้อง ไม่ได้มาจากการตกแต่ง แต่มาจากสิ่งที่คุณมองไม่เห็น นี่คือโพสต์ที่พาคุณมาที่นี่ — ปัดดูได้เลย แล้วอ่านรายการวัสดุจริงฉบับเต็มด้านล่าง',
-        en: 'The calm of a room does not come from decoration — it comes from what you cannot see. This is the post that brought you here: swipe through it, then read the full list of real materials below.',
+        th: 'ความสงบของห้อง ไม่ได้มาจากการตกแต่ง แต่มาจากสิ่งที่คุณมองไม่เห็น นี่คือฉบับแรกที่บอกชื่อวัสดุจริงที่เลือกใช้ทีละชิ้น',
+        en: 'The calm of a room does not come from decoration — it comes from what you cannot see. Here is the real materials, named one by one.',
       },
-    },
-    {
-      type: 'gallery',
-      label: { th: 'โพสต์ความเงียบที่มาจากโครงสร้าง หกสไลด์', en: 'The quiet-by-construction post, six slides' },
-      size: 'narrow',
-      items: [
-        {
-          src: `${SLIDES}/materials-1.webp`,
-          alt: { th: 'สไลด์ 1 จาก 6: ความเงียบที่มาจากโครงสร้าง — รายละเอียดที่ทำให้การอยู่จริง เงียบและทน', en: 'Slide 1 of 6: Quiet that comes from structure — the details that make everyday living quiet and durable' },
-          width: 1080,
-          height: 1350,
-          origin: 'drawing',
-        },
-        {
-          src: `${SLIDES}/materials-2.webp`,
-          alt: { th: 'สไลด์ 2 จาก 6: พื้น SPC เดินแล้วนุ่ม เก็บเสียง และทนต่อการใช้งาน', en: 'Slide 2 of 6: SPC flooring that is soft underfoot, absorbs sound and stands up to daily use' },
-          width: 1080,
-          height: 1350,
-          origin: 'drawing',
-        },
-        {
-          src: `${SLIDES}/materials-3.webp`,
-          alt: { th: 'สไลด์ 3 จาก 6: สีทาผนัง low-VOC กลิ่นน้อย เผื่อจมูกที่ไวของน้องและคนแพ้ง่าย', en: 'Slide 3 of 6: Low-VOC wall paint with little odour, for sensitive pet and human noses' },
-          width: 1080,
-          height: 1350,
-          origin: 'drawing',
-        },
-        {
-          src: `${SLIDES}/materials-4.webp`,
-          alt: { th: 'สไลด์ 4 จาก 6: ล็อกหลายจุด น้ำอุ่นกันลวก — ประตูดิจิทัลล็อกหลายจุด และเครื่องทำน้ำอุ่นที่มีระบบกันลวก', en: 'Slide 4 of 6: Multi-point locks and a scald-safe water heater' },
-          width: 1080,
-          height: 1350,
-          origin: 'drawing',
-        },
-        {
-          src: `${SLIDES}/materials-5.webp`,
-          alt: { th: 'สไลด์ 5 จาก 6: บอกชื่อวัสดุจริงทีละชิ้น — ฉบับเต็มบนเว็บระบุวัสดุจริงถึงระดับเบอร์สีบนกระป๋อง', en: 'Slide 5 of 6: Real materials, named one by one — the full version on the site names them down to the colour code on the tin' },
-          width: 1080,
-          height: 1350,
-          origin: 'drawing',
-        },
-        {
-          src: `${SLIDES}/materials-6.webp`,
-          alt: { th: 'สไลด์ 6 จาก 6: อ่านฉบับเต็มใน Journal — พื้น ผนัง บิลต์อิน ทางเข้าตึก พร้อมเหตุผลเบื้องหลังการเลือกทุกชิ้น', en: 'Slide 6 of 6: Read the full version in the Journal — floor, walls, built-ins, the entrance, with the reasoning behind every choice' },
-          width: 1080,
-          height: 1350,
-          origin: 'drawing',
-        },
-      ],
     },
     {
       type: 'h2',
