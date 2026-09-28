@@ -5,6 +5,7 @@ import { PROPERTY } from '@/data/propertyFacts';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
 import SiteMenuOverlay from '@/components/SiteMenuOverlay';
+import FilmDialog from '@/components/FilmDialog';
 import { lineMessageUrl } from '@/lib/lineMessage';
 import {
   LineIcon,
@@ -65,6 +66,8 @@ const LinksPage: React.FC = () => {
   const l = TR.links;
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuTriggerRef = React.useRef<HTMLButtonElement>(null);
+  const [filmOpen, setFilmOpen] = React.useState(false);
+  const filmTriggerRef = React.useRef<HTMLButtonElement>(null);
   const [params, setParams] = useSearchParams();
   const touchStart = React.useRef<{ x: number; y: number } | null>(null);
 
@@ -157,10 +160,10 @@ const LinksPage: React.FC = () => {
     Icon: IconType;
     image?: string;
   }
-  const line: Dest = { label: l.line[lang], sub: l.lineSub[lang], href: PROPERTY.lineUrl, external: true, Icon: LineIcon, image: '/assets/balcony-view.jpg' };
-  const website: Dest = { label: l.website[lang], sub: l.websiteSub[lang], href: '/', external: false, Icon: HomeIcon, image: '/assets/hero-living-space.jpg' };
+  const line: Dest = { label: l.line[lang], sub: l.lineSub[lang], href: PROPERTY.lineUrl, external: true, Icon: LineIcon, image: '/assets/unit-overview.jpg' };
+  const website: Dest = { label: l.website[lang], sub: l.websiteSub[lang], href: '/', external: false, Icon: HomeIcon, image: '/assets/hero-room.jpg' };
   const rooms: Dest = { label: l.rooms[lang], sub: l.roomsSub[lang], href: '/residence', external: false, Icon: HomeIcon };
-  const instagram: Dest = { label: l.instagram[lang], sub: l.instagramSub[lang], href: PROPERTY.instagramUrl, external: true, Icon: InstagramIcon, image: '/assets/about-minimal-room.jpg' };
+  const instagram: Dest = { label: l.instagram[lang], sub: l.instagramSub[lang], href: PROPERTY.instagramUrl, external: true, Icon: InstagramIcon };
   const facebook: Dest = { label: l.facebook[lang], sub: l.facebookSub[lang], href: PROPERTY.facebookUrl, external: true, Icon: FacebookIcon };
   const tiktok: Dest = { label: l.tiktok[lang], sub: l.tiktokSub[lang], href: PROPERTY.tiktokUrl, external: true, Icon: TikTokIcon };
   const googleMap: Dest = { label: l.googleMap[lang], sub: l.mapsSub[lang], href: PROPERTY.mapsUrl, external: true, Icon: LocationPin };
@@ -194,6 +197,37 @@ const LinksPage: React.FC = () => {
         <ArrowRight size={13} className={arrow} />
       </DestLink>
     </li>
+  );
+
+  // The opening clip: a nature plate that opens the film full screen. It is a
+  // button (it opens a dialog), styled like the other lead plates.
+  const filmPlate = (
+    <button
+      ref={filmTriggerRef}
+      type="button"
+      onClick={() => setFilmOpen(true)}
+      aria-haspopup="dialog"
+      className="group flex min-h-0 flex-1 flex-col text-left"
+    >
+      <span className="relative block min-h-[64px] flex-1 overflow-hidden bg-light-warm-grey ring-1 ring-inset ring-dark-charcoal/10 short:min-h-[44px] md:max-h-[300px]" aria-hidden="true">
+        <span
+          className="absolute inset-0 bg-cover transition-transform duration-1000 ease-out group-hover:scale-[1.04]"
+          style={{ backgroundImage: "url('/assets/hero-video-poster.jpg')", backgroundPosition: '50% 82%' }}
+        />
+        <span className="absolute inset-0 flex items-center justify-center">
+          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-pure-white/85 text-sage-green shadow-sm transition-transform duration-300 group-hover:scale-105 short:h-10 short:w-10">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5z" /></svg>
+          </span>
+        </span>
+      </span>
+      <span className="mt-2 flex flex-none items-start justify-between gap-2">
+        <span className="min-w-0">
+          <span className={`${serif} block text-[18px] leading-tight min-[360px]:text-[20px] md:text-[26px]`}>{l.filmTitle[lang]}</span>
+          <span className="mt-0.5 block font-sans text-[11.5px] leading-snug text-dark-charcoal/65 min-[360px]:text-[12px] md:text-sm">{l.filmSub[lang]}</span>
+        </span>
+        <span className="mt-1 flex-none font-sans text-[11px] text-dark-charcoal/55 md:text-sm">{l.filmPlay[lang]}</span>
+      </span>
+    </button>
   );
 
   // Inactive pages are display:none, not unmounted: every link stays in the
@@ -233,7 +267,7 @@ const LinksPage: React.FC = () => {
                 aria-pressed={lang === code}
                 lang={code}
                 aria-label={code === 'en' ? 'English' : 'ภาษาไทย'}
-                className={`min-h-9 px-2 ${lang === code ? 'text-dark-charcoal underline underline-offset-[6px]' : 'text-dark-charcoal/65'}`}
+                className={`min-h-9 px-2 uppercase ${lang === code ? 'text-dark-charcoal underline underline-offset-[6px]' : 'text-dark-charcoal/65'}`}
               >
                 {code}
               </button>
@@ -254,6 +288,15 @@ const LinksPage: React.FC = () => {
       </div>
 
       <SiteMenuOverlay open={menuOpen} onClose={() => setMenuOpen(false)} triggerRef={menuTriggerRef} lang={lang} />
+      <FilmDialog
+        open={filmOpen}
+        onClose={() => setFilmOpen(false)}
+        triggerRef={filmTriggerRef}
+        src="/assets/links/what-is-nature-haven.mp4"
+        poster="/assets/links/what-is-nature-haven-poster.webp"
+        title={l.filmTitle[lang]}
+        closeLabel={l.filmClose[lang]}
+      />
 
       <main className="flex w-full max-w-[560px] flex-1 flex-col px-5 md:max-w-[720px] md:px-10">
         <header className="flex flex-col items-center pt-1 text-center short:pt-0 md:pt-6">
@@ -345,8 +388,8 @@ const LinksPage: React.FC = () => {
           {panel(
             'follow',
             <>
-              {plate(instagram)}
-              <ul className={`mt-2 flex-none border-t ${rule}`}>{[facebook, tiktok].map(listRow)}</ul>
+              {filmPlate}
+              <ul className={`mt-2 flex-none border-t ${rule}`}>{[instagram, facebook, tiktok].map(listRow)}</ul>
             </>,
           )}
         </div>
