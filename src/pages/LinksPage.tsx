@@ -177,22 +177,22 @@ const LinksPage: React.FC = () => {
 
       <header className="flex w-full max-w-[480px] flex-col items-center px-6 pb-2 text-center roomy:pb-3 md:max-w-[640px] md:pb-6">
         <LeafIcon size={18} className="mb-1 text-sage-green/70 roomy:h-6 roomy:w-6 md:mb-2 md:h-8 md:w-8" />
-        <h1 className="font-serif text-[26px] leading-none tracking-[0.05em] text-dark-charcoal roomy:text-[32px] md:text-[56px]">
+        <h1 className="font-serif text-[26px] leading-none tracking-[0.05em] text-dark-charcoal min-[360px]:text-[30px] md:text-[56px]">
           Nature Haven
         </h1>
-        <p className="mt-1.5 font-sans text-[9px] font-medium uppercase tracking-[0.4em] text-sage-green roomy:text-[10px] md:mt-3 md:text-sm">
+        <p className="mt-1.5 font-sans text-[9px] font-medium uppercase tracking-[0.4em] text-sage-green min-[360px]:text-[11px] md:mt-3 md:text-sm">
           {l.heroTagline[lang]}
         </p>
-        <p className="mt-2 font-serif text-[14px] text-dark-charcoal roomy:mt-3 roomy:text-[16px] md:mt-6 md:text-2xl">
+        <p className="mt-2 font-serif text-[14px] text-dark-charcoal min-[360px]:text-[16px] roomy:mt-3 roomy:text-[18px] md:mt-6 md:text-2xl">
           {l.heroHeading[lang]}
         </p>
-        <p className="mt-1 hidden max-w-[320px] font-sans text-[10.5px] leading-snug text-dark-charcoal/80 snug:block roomy:text-[12px] md:mt-3 md:max-w-[520px] md:text-base md:leading-relaxed">
+        <p className="mt-1 hidden max-w-[340px] font-sans text-[10.5px] leading-snug text-dark-charcoal/80 snug:block min-[360px]:text-[12.5px] md:mt-3 md:max-w-[520px] md:text-base md:leading-relaxed">
           {l.heroBody[lang]}
         </p>
       </header>
 
       <div className="w-full max-w-[520px] px-3 md:max-w-[720px] md:px-6 lg:max-w-[1040px]">
-        <p className="mb-1 text-center font-sans text-[9.5px] text-dark-charcoal/75 md:mb-3 md:text-sm">{l.lineQuickIntro[lang]}</p>
+        <p className="mb-1 text-center font-sans text-[9.5px] text-dark-charcoal/75 min-[360px]:text-[11px] md:mb-3 md:text-sm">{l.lineQuickIntro[lang]}</p>
         <div className="mb-1.5 flex gap-1.5 md:mb-4 md:gap-4">
           {quickMessages.map(({ key, label, text }) => (
             <a
@@ -200,7 +200,7 @@ const LinksPage: React.FC = () => {
               href={lineMessageUrl(text)}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 rounded-full border border-sage-green/40 bg-pure-white/60 py-1.5 text-center font-sans text-[10px] font-medium text-sage-green transition-transform duration-150 hover:-translate-y-0.5 roomy:py-2 roomy:text-[11px] md:py-3 md:text-base"
+              className="flex-1 rounded-full border border-sage-green/40 bg-pure-white/60 py-1.5 text-center font-sans text-[10px] font-medium text-sage-green transition-transform min-[360px]:py-2 min-[360px]:text-[12px] duration-150 hover:-translate-y-0.5 roomy:py-2.5 md:py-3 md:text-base"
             >
               {label}
               <span className="sr-only"> {l.newTab[lang]}</span>
@@ -215,17 +215,17 @@ const LinksPage: React.FC = () => {
             const content = (
               <>
                 <div
-                  className="min-h-[46px] w-[32%] flex-none bg-cover bg-center md:min-h-[104px]"
+                  className="min-h-[46px] w-[30%] flex-none bg-cover bg-center md:min-h-[104px]"
                   style={{ backgroundImage: `url('${image}')` }}
                   aria-hidden="true"
                 />
                 <div className="flex min-w-0 flex-1 flex-col justify-between gap-1 p-1.5 roomy:p-2 md:gap-2 md:p-4">
                   <span className="min-w-0">
                     <span className="flex min-w-0 items-center gap-1 roomy:gap-1.5 md:gap-2">
-                      <span className="flex h-4 w-4 flex-none items-center justify-center text-sage-green roomy:h-7 roomy:w-7 roomy:rounded-full roomy:bg-sage-green roomy:text-pure-white roomy:[&_svg]:h-4 roomy:[&_svg]:w-4 md:h-8 md:w-8 md:rounded-full md:bg-sage-green md:text-pure-white md:[&_svg]:h-4 md:[&_svg]:w-4">
-                        <Icon size={11} />
+                      <span className="flex h-4 w-4 flex-none items-center justify-center text-sage-green min-[360px]:h-5 min-[360px]:w-5 [&_svg]:h-[11px] [&_svg]:w-[11px] min-[360px]:[&_svg]:h-[14px] min-[360px]:[&_svg]:w-[14px] roomy:h-7 roomy:w-7 roomy:rounded-full roomy:bg-sage-green roomy:text-pure-white roomy:[&_svg]:h-4 roomy:[&_svg]:w-4 md:h-8 md:w-8 md:rounded-full md:bg-sage-green md:text-pure-white md:[&_svg]:h-4 md:[&_svg]:w-4">
+                        <Icon size={14} />
                       </span>
-                      <span className="min-w-0 break-words font-serif text-[0.6875rem] leading-tight text-dark-charcoal roomy:text-[0.875rem] md:text-lg">
+                      <span className="min-w-0 break-words font-serif text-[11px] leading-tight text-dark-charcoal min-[360px]:text-[14px] md:text-lg">
                         {label}
                       </span>
                     </span>
@@ -234,12 +234,12 @@ const LinksPage: React.FC = () => {
                     {/* Shown once the visible screen is tall enough (desc) —
                         below that it stays for screen readers so every card,
                         photo and label still fits one screen. */}
-                    <span className="sr-only min-w-0 flex-1 desc:not-sr-only desc:line-clamp-2 desc:font-sans desc:text-[9.5px] desc:leading-snug desc:text-dark-charcoal/75 roomy:text-[10px] md:line-clamp-none md:text-sm">
+                    <span className="sr-only min-w-0 flex-1 desc:not-sr-only desc:line-clamp-2 desc:font-sans desc:text-[9.5px] desc:leading-snug min-[360px]:desc:text-[11px] desc:text-dark-charcoal/75 md:line-clamp-none md:text-sm">
                       {sub}
                       {external && <span className="sr-only"> {l.newTab[lang]}</span>}
                     </span>
-                    <span className="ml-auto flex h-4 w-4 flex-none items-center justify-center rounded-full border border-dark-charcoal/25 text-dark-charcoal/70 transition-transform duration-200 group-hover:translate-x-0.5 roomy:h-6 roomy:w-6 md:h-8 md:w-8 md:[&_svg]:h-4 md:[&_svg]:w-4">
-                      <ArrowRight size={9} />
+                    <span className="ml-auto flex h-4 w-4 flex-none items-center justify-center rounded-full border min-[360px]:h-5 min-[360px]:w-5 border-dark-charcoal/25 text-dark-charcoal/70 transition-transform duration-200 group-hover:translate-x-0.5 roomy:h-6 roomy:w-6 md:h-8 md:w-8 md:[&_svg]:h-4 md:[&_svg]:w-4">
+                      <ArrowRight size={11} />
                     </span>
                   </span>
                 </div>
@@ -263,7 +263,7 @@ const LinksPage: React.FC = () => {
           href={PROPERTY.lineUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-2 flex items-center justify-center gap-2 rounded-full bg-sage-green py-1.5 font-sans text-[12px] font-medium text-pure-white shadow-sm transition-transform duration-150 hover:-translate-y-0.5 roomy:mt-3 roomy:py-3 roomy:text-[14px] md:mx-auto md:w-full md:max-w-[520px] md:py-3.5 md:text-base"
+          className="mt-2 flex items-center justify-center gap-2 rounded-full bg-sage-green py-1.5 font-sans text-[12px] font-medium min-[360px]:py-2.5 min-[360px]:text-[14px] text-pure-white shadow-sm transition-transform duration-150 hover:-translate-y-0.5 roomy:mt-3 roomy:py-3 md:mx-auto md:w-full md:max-w-[520px] md:py-3.5 md:text-base"
         >
           <LineIcon size={16} />
           {l.addLine[lang]}
@@ -271,21 +271,21 @@ const LinksPage: React.FC = () => {
           <span className="sr-only"> {l.newTab[lang]}</span>
         </a>
 
-        <div className="mt-1.5 flex items-center justify-center gap-2 md:mt-5 md:gap-4">
+        <div className="mt-1.5 hidden items-center justify-center gap-2 snug:flex md:mt-5 md:gap-4">
           <span className="h-px w-8 bg-dark-charcoal/20" />
           <span className="font-serif text-[12px] italic text-sage-green/80 md:text-xl">{l.footerTagline[lang]}</span>
           <LeafIcon size={11} className="text-sage-green/60" />
           <span className="h-px w-8 bg-dark-charcoal/20" />
         </div>
 
-        <p className="mt-0.5 text-center font-sans text-[8.5px] leading-tight text-dark-charcoal/70 md:text-xs">{l.aiNote[lang]}</p>
+        <p className="mt-0.5 text-center font-sans text-[8.5px] leading-tight text-dark-charcoal/70 min-[360px]:text-[10px] md:text-xs">{l.aiNote[lang]}</p>
 
         <div className="mt-0.5 flex items-center justify-center gap-4">
           <a
             href={PROPERTY.privacyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block py-0.5 text-[9.5px] leading-none text-dark-charcoal/75 transition-colors duration-200 hover:text-dark-charcoal md:text-sm"
+            className="inline-block py-0.5 text-[9.5px] leading-none min-[360px]:text-[11px] text-dark-charcoal/75 transition-colors duration-200 hover:text-dark-charcoal md:text-sm"
           >
             {TR.footer.privacy[lang]}
           </a>
@@ -293,7 +293,7 @@ const LinksPage: React.FC = () => {
             href={PROPERTY.termsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block py-0.5 text-[9.5px] leading-none text-dark-charcoal/75 transition-colors duration-200 hover:text-dark-charcoal md:text-sm"
+            className="inline-block py-0.5 text-[9.5px] leading-none min-[360px]:text-[11px] text-dark-charcoal/75 transition-colors duration-200 hover:text-dark-charcoal md:text-sm"
           >
             {TR.footer.terms[lang]}
           </a>
