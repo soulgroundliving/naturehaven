@@ -170,12 +170,6 @@ export const PlanIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => 
   </svg>
 );
 
-export const BookOpenIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => (
-  <svg width={size} height={size} fill="none" stroke="currentColor" viewBox="0 0 24 24" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6c-1.5-1.3-3.6-2-6-2-1 0-2 .13-3 .4v13.6c1-.27 2-.4 3-.4 2.4 0 4.5.7 6 2m0-13.6c1.5-1.3 3.6-2 6-2 1 0 2 .13 3 .4v13.6c-1-.27-2-.4-3-.4-2.4 0-4.5.7-6 2m0-13.6v13.6" />
-  </svg>
-);
-
 export const NestIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => (
   <svg width={size} height={size} fill="none" stroke="currentColor" viewBox="0 0 24 24" className={className}>
     <ellipse cx="12" cy="8" rx="2.6" ry="3.3" strokeWidth={1.5} />
