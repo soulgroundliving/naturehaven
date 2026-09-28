@@ -186,7 +186,7 @@ const LinksPage: React.FC = () => {
         <p className="mt-2 font-serif text-[14px] text-dark-charcoal roomy:mt-3 roomy:text-[16px] md:mt-6 md:text-2xl">
           {l.heroHeading[lang]}
         </p>
-        <p className="mt-1 max-w-[320px] font-sans text-[10.5px] leading-snug text-dark-charcoal/80 roomy:text-[12px] md:mt-3 md:max-w-[520px] md:text-base md:leading-relaxed">
+        <p className="mt-1 hidden max-w-[320px] font-sans text-[10.5px] leading-snug text-dark-charcoal/80 snug:block roomy:text-[12px] md:mt-3 md:max-w-[520px] md:text-base md:leading-relaxed">
           {l.heroBody[lang]}
         </p>
       </header>
@@ -222,7 +222,7 @@ const LinksPage: React.FC = () => {
                 <div className="flex min-w-0 flex-1 flex-col justify-between gap-1 p-1.5 roomy:p-2 md:gap-2 md:p-4">
                   <span className="min-w-0">
                     <span className="flex min-w-0 items-center gap-1 roomy:gap-1.5 md:gap-2">
-                      <span className="flex h-4 w-4 flex-none items-center justify-center text-sage-green roomy:h-5 roomy:w-5 roomy:[&_svg]:h-[18px] roomy:[&_svg]:w-[18px] md:h-6 md:w-6 md:[&_svg]:h-5 md:[&_svg]:w-5">
+                      <span className="flex h-4 w-4 flex-none items-center justify-center text-sage-green roomy:h-7 roomy:w-7 roomy:rounded-full roomy:bg-sage-green roomy:text-pure-white roomy:[&_svg]:h-4 roomy:[&_svg]:w-4 md:h-8 md:w-8 md:rounded-full md:bg-sage-green md:text-pure-white md:[&_svg]:h-4 md:[&_svg]:w-4">
                         <Icon size={11} />
                       </span>
                       <span className="min-w-0 break-words font-serif text-[0.6875rem] leading-tight text-dark-charcoal roomy:text-[0.875rem] md:text-lg">
@@ -257,6 +257,18 @@ const LinksPage: React.FC = () => {
           })}
         </div>
 
+        <a
+          href={PROPERTY.lineUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 flex items-center justify-center gap-2 rounded-full bg-sage-green py-1.5 font-sans text-[12px] font-medium text-pure-white shadow-sm transition-transform duration-150 hover:-translate-y-0.5 roomy:mt-3 roomy:py-3 roomy:text-[14px] md:mx-auto md:w-full md:max-w-[520px] md:py-3.5 md:text-base"
+        >
+          <LineIcon size={16} />
+          {l.addLine[lang]}
+          <ArrowRight size={14} />
+          <span className="sr-only"> {l.newTab[lang]}</span>
+        </a>
+
         <div className="mt-1.5 flex items-center justify-center gap-2 md:mt-5 md:gap-4">
           <span className="h-px w-8 bg-dark-charcoal/20" />
           <span className="font-serif text-[12px] italic text-sage-green/80 md:text-xl">{l.footerTagline[lang]}</span>
@@ -264,14 +276,14 @@ const LinksPage: React.FC = () => {
           <span className="h-px w-8 bg-dark-charcoal/20" />
         </div>
 
-        <p className="mt-1 text-center font-sans text-[8.5px] leading-tight text-dark-charcoal/70 md:text-xs">{l.aiNote[lang]}</p>
+        <p className="mt-0.5 text-center font-sans text-[8.5px] leading-tight text-dark-charcoal/70 md:text-xs">{l.aiNote[lang]}</p>
 
         <div className="mt-0.5 flex items-center justify-center gap-4">
           <a
             href={PROPERTY.privacyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block py-1 text-[9.5px] leading-none text-dark-charcoal/75 transition-colors duration-200 hover:text-dark-charcoal md:text-sm"
+            className="inline-block py-0.5 text-[9.5px] leading-none text-dark-charcoal/75 transition-colors duration-200 hover:text-dark-charcoal md:text-sm"
           >
             {TR.footer.privacy[lang]}
           </a>
@@ -279,7 +291,7 @@ const LinksPage: React.FC = () => {
             href={PROPERTY.termsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block py-1 text-[9.5px] leading-none text-dark-charcoal/75 transition-colors duration-200 hover:text-dark-charcoal md:text-sm"
+            className="inline-block py-0.5 text-[9.5px] leading-none text-dark-charcoal/75 transition-colors duration-200 hover:text-dark-charcoal md:text-sm"
           >
             {TR.footer.terms[lang]}
           </a>

@@ -49,6 +49,7 @@ export const TR = {
     lineQuickVacancyMsg: { en: "Hi! I'd like to ask about reserving a room.", th: 'สวัสดีครับ/ค่ะ อยากสอบถามเรื่องการจองห้องครับ/ค่ะ' },
     lineQuickTour: { en: 'Room viewing', th: 'นัดดูห้อง' },
     lineQuickTourMsg: { en: "Hi! I'd like to schedule a room viewing.", th: 'สวัสดีครับ/ค่ะ อยากนัดดูห้องได้ไหมครับ/ค่ะ' },
+    addLine: { en: 'Add us on LINE for more information', th: 'แอดไลน์เพื่อรับข้อมูลเพิ่มเติม' },
     menuAria: { en: 'Open site menu', th: 'เปิดเมนูเว็บไซต์' },
     menuTitle: { en: 'Website menu', th: 'เมนูเว็บไซต์' },
     menuClose: { en: 'Close menu', th: 'ปิดเมนู' },
