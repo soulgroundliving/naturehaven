@@ -199,16 +199,12 @@ const LinksPage: React.FC = () => {
     </li>
   );
 
-  // The opening clip: a nature plate that opens the film full screen. It is a
-  // button (it opens a dialog), styled like the other lead plates.
+  // The opening clip: a nature plate that opens the film full screen. The
+  // layout is a plain div (like the link plates) with a transparent button laid
+  // over it: iPhone Safari lays out a <button> used as a flex container badly —
+  // the picture came up as an empty box there while a tap still worked.
   const filmPlate = (
-    <button
-      ref={filmTriggerRef}
-      type="button"
-      onClick={() => setFilmOpen(true)}
-      aria-haspopup="dialog"
-      className="group flex min-h-0 flex-1 flex-col text-left"
-    >
+    <div className="group relative flex min-h-0 flex-1 flex-col">
       <span className="relative block min-h-[64px] flex-1 overflow-hidden bg-light-warm-grey ring-1 ring-inset ring-dark-charcoal/10 short:min-h-[44px] md:max-h-[300px]" aria-hidden="true">
         <span
           className="absolute inset-0 bg-cover transition-transform duration-1000 ease-out group-hover:scale-[1.04]"
@@ -220,14 +216,22 @@ const LinksPage: React.FC = () => {
           </span>
         </span>
       </span>
-      <span className="mt-2 flex flex-none items-start justify-between gap-2">
+      <span className="mt-2 flex flex-none items-start justify-between gap-2" aria-hidden="true">
         <span className="min-w-0">
           <span className={`${serif} block text-[18px] leading-tight min-[360px]:text-[20px] md:text-[26px]`}>{l.filmTitle[lang]}</span>
           <span className="mt-0.5 block font-sans text-[11.5px] leading-snug text-dark-charcoal/65 min-[360px]:text-[12px] md:text-sm">{l.filmSub[lang]}</span>
         </span>
         <span className="mt-1 flex-none font-sans text-[11px] text-dark-charcoal/55 md:text-sm">{l.filmPlay[lang]}</span>
       </span>
-    </button>
+      <button
+        ref={filmTriggerRef}
+        type="button"
+        onClick={() => setFilmOpen(true)}
+        aria-haspopup="dialog"
+        aria-label={`${l.filmTitle[lang]} — ${l.filmSub[lang]}. ${l.filmPlay[lang]}`}
+        className="absolute inset-0 z-10 cursor-pointer"
+      />
+    </div>
   );
 
   // Inactive pages are display:none, not unmounted: every link stays in the
