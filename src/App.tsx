@@ -48,6 +48,19 @@ const FooterSection     = lazy(() => import('@/sections/FooterSection'));
 
 gsap.registerPlugin(ScrollTrigger);
 
+const SECTION_IDS = [
+  'about',
+  'collections',
+  'residences',
+  'amenities',
+  'journal',
+  'location',
+  'smart-living',
+  'faq',
+  'contact',
+  'footer',
+];
+
 function App() {
   const { palette } = useTimeOfDay();
   const lenisRef = useRef<Lenis | null>(null);
@@ -63,6 +76,10 @@ function App() {
   useEffect(() => {
     document.getElementById('nh-prelock')?.remove();
     if (prerendering) return;
+    // A hash naming a real section (e.g. the /links menu's "/#about") is a
+    // deep-link — skip the top-pin below so it doesn't fight the hash-scroll
+    // effect. An unknown hash ("/#foo") is not, and pins to the top as usual.
+    if (SECTION_IDS.includes(window.location.hash.slice(1))) return;
     window.scrollTo(0, 0);
     let frame = 0;
     const pinTop = () => {
@@ -72,21 +89,57 @@ function App() {
     requestAnimationFrame(pinTop);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Deep-link into a homepage section from another route (the /links page's
+  // full-site menu uses "/#about" etc.). The target may be a lazy chunk that
+  // hasn't mounted yet, and even after it has, sections loading ABOVE it keep
+  // pushing it further down in bursts (each lazy chunk arriving separately)
+  // — a frame-stability check got fooled by the brief lull between two
+  // chunks and finished early (verified: "/#amenities" settled on About).
+  // Watching the body's actual size instead catches every burst, however
+  // spaced out, for a few seconds after landing.
+  useEffect(() => {
+    if (prerendering) return;
+    const id = window.location.hash.slice(1);
+    if (!SECTION_IDS.includes(id)) return;
+
+    let done = false;
+    const snapToTarget = () => {
+      if (done) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      const top = target.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo(0, Math.max(top, 0));
+    };
+
+    const ro = new ResizeObserver(snapToTarget);
+    ro.observe(document.body);
+    snapToTarget();
+
+    // The moment the visitor scrolls, touches or presses a key the page is
+    // theirs — stop pulling it back to the section.
+    const stop = () => {
+      done = true;
+      ro.disconnect();
+    };
+    const takeover = ['wheel', 'touchstart', 'keydown', 'pointerdown'] as const;
+    takeover.forEach((type) => window.addEventListener(type, stop, { passive: true, once: true }));
+    // Last lazy chunks can land after a couple of seconds on a slow phone or
+    // a cold dev server, so keep watching for 4s and land exactly at the end.
+    const finish = window.setTimeout(() => {
+      snapToTarget();
+      stop();
+    }, 4000);
+
+    return () => {
+      stop();
+      takeover.forEach((type) => window.removeEventListener(type, stop));
+      clearTimeout(finish);
+    };
+  }, [prerendering]);
   const [isPastHero, setIsPastHero] = useState(false);
 
-  const sectionIds = [
-    'about',
-    'collections',
-    'residences',
-    'amenities',
-    'journal',
-    'location',
-    'smart-living',
-    'faq',
-    'contact',
-    'footer',
-  ];
-  const activeSection = useSectionObserver(sectionIds);
+  const activeSection = useSectionObserver(SECTION_IDS);
 
   // ── Safari: prevent page drift on load + handle bfcache restore ──────────
   // Pre-React scroll lock lives in index.html (`#nh-prelock` <style>) so the

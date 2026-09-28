@@ -4,7 +4,22 @@ import usePageMeta from '@/hooks/usePageMeta';
 import { PROPERTY } from '@/data/propertyFacts';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
-import { LineIcon, InstagramIcon, FacebookIcon, TikTokIcon, LocationPin, ChevronRight, HomeIcon, EditIcon, NestIcon, PlanIcon } from '@/components/icons';
+import SiteMenuOverlay from '@/components/SiteMenuOverlay';
+import AiRenderBadge from '@/components/AiRenderBadge';
+import { lineMessageUrl } from '@/lib/lineMessage';
+import {
+  LineIcon,
+  InstagramIcon,
+  FacebookIcon,
+  TikTokIcon,
+  LocationPin,
+  HomeIcon,
+  EditIcon,
+  BookOpenIcon,
+  ArrowRight,
+  LeafIcon,
+  Menu,
+} from '@/components/icons';
 
 // The "master link" (ลิงค์แม่) — one URL for every Nature Haven channel,
 // meant to live in a social bio (Instagram/Facebook/TikTok) or get shared
@@ -18,6 +33,14 @@ import { LineIcon, InstagramIcon, FacebookIcon, TikTokIcon, LocationPin, Chevron
 const LinksPage: React.FC = () => {
   const { lang, toggle } = useLanguage();
   const l = TR.links;
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const menuTriggerRef = React.useRef<HTMLButtonElement>(null);
+
+  const quickMessages = [
+    { key: 'price', label: l.lineQuickPrice[lang], text: l.lineQuickPriceMsg[lang] },
+    { key: 'vacancy', label: l.lineQuickVacancy[lang], text: l.lineQuickVacancyMsg[lang] },
+    { key: 'tour', label: l.lineQuickTour[lang], text: l.lineQuickTourMsg[lang] },
+  ];
 
   // index.html hard-locks scroll before React mounts (#nh-prelock →
   // `html, body { overflow: hidden !important }`) so iOS restores at the top,
@@ -33,37 +56,33 @@ const LinksPage: React.FC = () => {
     description: l.pageDescription[lang],
     canonical: `${PROPERTY.url}/links`,
     ogImage: `${PROPERTY.url}/og-image-v2.jpg`,
+    // A link hub has no content of its own — indexed, it showed up as a
+    // second "Nature Haven" result under the homepage. Bios still work.
+    robots: 'noindex, follow',
   });
 
-  const mapsUrl = PROPERTY.mapsUrl;
-
-  const items = [
-    {
-      key: 'designNotes',
-      label: l.designNotes[lang],
-      sub: l.designNotesSub[lang],
-      href: '/journal/design-notes-01',
-      external: false,
-      primary: false,
-      Icon: PlanIcon,
-    },
-    {
-      key: 'nest',
-      label: l.nest[lang],
-      sub: l.nestSub[lang],
-      href: '/journal/nest',
-      external: false,
-      primary: false,
-      Icon: NestIcon,
-    },
+  // `render`: the photo is an AI visualization (the building isn't built yet —
+  // see AiRenderBadge), so the thumbnail carries an "AI" tag.
+  const cards = [
     {
       key: 'line',
       label: l.line[lang],
       sub: l.lineSub[lang],
-      href: PROPERTY.lineUrl,
+      href: lineMessageUrl(l.lineDefaultMsg[lang]),
       external: true,
-      primary: true,
       Icon: LineIcon,
+      image: '/assets/balcony-view.jpg',
+      render: true,
+    },
+    {
+      key: 'rooms',
+      label: l.rooms[lang],
+      sub: l.roomsSub[lang],
+      href: '/residence',
+      external: false,
+      Icon: HomeIcon,
+      image: '/assets/unit-overview.jpg',
+      render: true,
     },
     {
       key: 'instagram',
@@ -71,8 +90,9 @@ const LinksPage: React.FC = () => {
       sub: l.instagramSub[lang],
       href: PROPERTY.instagramUrl,
       external: true,
-      primary: false,
       Icon: InstagramIcon,
+      image: '/assets/about-minimal-room.jpg',
+      render: true,
     },
     {
       key: 'facebook',
@@ -80,8 +100,9 @@ const LinksPage: React.FC = () => {
       sub: l.facebookSub[lang],
       href: PROPERTY.facebookUrl,
       external: true,
-      primary: false,
       Icon: FacebookIcon,
+      image: '/assets/corridor-approach.jpg',
+      render: true,
     },
     {
       key: 'tiktok',
@@ -89,126 +110,186 @@ const LinksPage: React.FC = () => {
       sub: l.tiktokSub[lang],
       href: PROPERTY.tiktokUrl,
       external: true,
-      primary: false,
       Icon: TikTokIcon,
+      image: '/assets/hero-room.jpg',
+      render: true,
     },
     {
-      key: 'journal',
-      label: l.journal[lang],
+      key: 'googleMap',
+      label: l.googleMap[lang],
+      sub: l.mapsSub[lang],
+      href: PROPERTY.mapsUrl,
+      external: true,
+      Icon: LocationPin,
+      image: '/assets/location-area-map.webp',
+      render: false,
+    },
+    {
+      key: 'journalHub',
+      label: l.journalHub[lang],
       sub: l.journalSub[lang],
       href: '/journal',
       external: false,
-      primary: false,
       Icon: EditIcon,
+      image: '/assets/room-3d-render.jpg',
+      render: true,
     },
     {
-      key: 'home',
-      label: l.home[lang],
-      sub: l.homeSub[lang],
-      href: '/',
+      key: 'recommendedArticle',
+      label: l.recommendedArticle[lang],
+      sub: l.designNotesSub[lang],
+      href: '/journal/design-notes-01',
       external: false,
-      primary: false,
-      Icon: HomeIcon,
-    },
-    {
-      key: 'maps',
-      label: l.maps[lang],
-      sub: l.mapsSub[lang],
-      href: mapsUrl,
-      external: true,
-      primary: false,
-      Icon: LocationPin,
+      Icon: BookOpenIcon,
+      image: '/assets/design-notes-01-hero.jpg',
+      render: true,
     },
   ] as const;
 
   return (
-    <div className="relative flex min-h-[100dvh] w-full items-center justify-center overflow-x-hidden">
-      {/* iOS/IG-webview toolbars resize the visual viewport after paint, so this
-          layer is sized to the wrapper's own box (inset-0 + wrapper's min-h-dvh)
-          rather than to a background-size:cover on the flex wrapper itself —
-          that combo previously left a gap once the address bar collapsed. */}
-      <div
-        className="absolute inset-0 -z-10 bg-[#F5F1EA] bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/assets/links-leaf-bg.webp')" }}
-      />
-
-      {/* flex items-center on the wrapper centers this column vertically, so
-          leftover space above/below stays symmetric on tall screens instead of
-          piling up underneath a top-anchored block. */}
-      <button
-        type="button"
-        onClick={toggle}
-        aria-label="Switch language"
-        className="absolute right-5 top-5 z-10 flex items-center gap-1 font-sans text-[11px] uppercase tracking-[0.1em] text-dark-charcoal/60 transition-colors duration-200 hover:text-dark-charcoal"
-      >
-        <span style={{ opacity: lang === 'en' ? 1 : 0.4 }}>EN</span>
-        <span className="mx-0.5 opacity-30">·</span>
-        <span style={{ opacity: lang === 'th' ? 1 : 0.4 }}>TH</span>
-      </button>
-
-      <div className="relative mx-auto flex w-full max-w-[430px] flex-col items-center px-5 py-3">
-        <p className="font-serif text-[13px] tracking-[0.35em] text-dark-charcoal/70 mb-0.5">N · H</p>
-        <h1 className="font-serif text-2xl text-dark-charcoal text-center leading-tight">Nature Haven</h1>
-        <p className="font-sans text-[13px] text-dark-charcoal/60 mt-0.5 text-center">{l.subtitle[lang]}</p>
-
-        <div className="w-full flex flex-col gap-1 mt-2">
-          {items.map(({ key, label, sub, href, external, primary, Icon }) =>
-            external ? (
-              <a
-                key={key}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group flex items-center gap-3.5 w-full rounded-xl px-3.5 py-1 transition-all duration-200 hover:-translate-y-0.5 ${
-                  primary
-                    ? 'bg-sage-green text-pure-white shadow-md'
-                    : 'bg-pure-white text-dark-charcoal border border-dark-charcoal/10 shadow-sm'
-                }`}
-              >
-                <span
-                  className={`flex-none inline-flex items-center justify-center w-8 h-8 rounded-full ${
-                    primary ? 'bg-white/15' : 'bg-sage-green/10 text-sage-green'
-                  }`}
+    <div className="relative flex min-h-[100dvh] w-full flex-col items-center overflow-x-hidden bg-[#F5F1EA]">
+      <div className="z-10 flex w-full items-center justify-between border-b border-dark-charcoal/8 bg-[#F5F1EA] px-4 py-2">
+        <span className="font-serif text-[15px] text-dark-charcoal">Nature Haven</span>
+        <div className="flex items-center gap-3.5">
+          <div className="flex items-center font-sans text-[11px] uppercase tracking-[0.1em]">
+            {(['en', 'th'] as const).map((code, i) => (
+              <React.Fragment key={code}>
+                {i > 0 && <span aria-hidden="true" className="text-dark-charcoal/40">·</span>}
+                <button
+                  type="button"
+                  onClick={() => lang !== code && toggle()}
+                  aria-pressed={lang === code}
+                  lang={code}
+                  aria-label={code === 'en' ? 'English' : 'ภาษาไทย'}
+                  className={`min-h-9 px-2 ${lang === code ? 'font-semibold text-dark-charcoal underline underline-offset-4' : 'text-dark-charcoal/70'}`}
                 >
-                  <Icon size={15} />
-                </span>
-                <span className="flex-1 text-left">
-                  <span className="block font-sans text-[15px] font-medium leading-tight">{label}</span>
-                  <span className={`block font-sans text-[12px] leading-tight ${primary ? 'text-white/75' : 'text-dark-charcoal/55'}`}>
-                    {sub}
+                  {code}
+                </button>
+              </React.Fragment>
+            ))}
+          </div>
+          <button
+            ref={menuTriggerRef}
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-expanded={menuOpen}
+            aria-controls="site-menu"
+            aria-label={l.menuAria[lang]}
+            className="flex h-9 w-9 items-center justify-center text-dark-charcoal"
+          >
+            <Menu size={20} />
+          </button>
+        </div>
+      </div>
+
+      <SiteMenuOverlay open={menuOpen} onClose={() => setMenuOpen(false)} triggerRef={menuTriggerRef} lang={lang} />
+
+      {/* Hero: a real interior photo grounds the "mini-app of the site"
+          feel the flat leaf-bg version lacked — a soft cream scrim keeps
+          the copy readable and fades the photo into the card grid below. */}
+      <div
+        className="relative w-full bg-cover bg-center"
+        style={{ backgroundImage: "url('/assets/hero-living-space.jpg')" }}
+      >
+        <AiRenderBadge className="absolute left-2 top-1.5 !px-1.5 !py-0.5 !text-[8px]" />
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(180deg, rgba(245,241,234,0.55) 0%, rgba(245,241,234,0.88) 70%, #F5F1EA 100%)' }}
+        />
+        <div className="relative mx-auto flex w-full max-w-[480px] flex-col items-center px-6 pb-2 pt-3 text-center">
+          <LeafIcon size={16} className="mb-0.5 text-sage-green/70" />
+          <h1 className="font-serif text-[20px] leading-none text-dark-charcoal">Nature Haven</h1>
+          <p className="mt-1 font-sans text-[9px] font-medium uppercase tracking-[0.3em] text-sage-green">
+            {l.heroTagline[lang]}
+          </p>
+          <p className="mt-1.5 font-serif text-[14px] text-dark-charcoal">{l.heroHeading[lang]}</p>
+          <p className="mt-1 max-w-[320px] font-sans text-[10.5px] leading-snug text-dark-charcoal/80">
+            {l.heroBody[lang]}
+          </p>
+        </div>
+      </div>
+
+      <div className="w-full max-w-[520px] px-3 pt-1">
+        <p className="mb-1 text-center font-sans text-[9.5px] text-dark-charcoal/75">{l.lineQuickIntro[lang]}</p>
+        <div className="mb-1.5 flex gap-1.5">
+          {quickMessages.map(({ key, label, text }) => (
+            <a
+              key={key}
+              href={lineMessageUrl(text)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 rounded-full border border-sage-green/35 bg-pure-white py-1.5 text-center font-sans text-[10px] font-medium text-sage-green transition-transform duration-150 hover:-translate-y-0.5"
+            >
+              {label}
+              <span className="sr-only"> {l.newTab[lang]}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div className="w-full max-w-[520px] px-3 pb-2.5">
+        <div className="grid grid-cols-2 gap-2">
+          {cards.map(({ key, label, sub, href, external, Icon, image, render }) => {
+            const content = (
+              <>
+                <div
+                  className="relative min-h-[46px] flex-none bg-cover bg-center"
+                  style={{ backgroundImage: `url('${image}')`, width: '32%' }}
+                >
+                  {render && (
+                    <span className="absolute bottom-0.5 left-0.5 rounded bg-black/60 px-1 font-sans text-[7px] font-medium leading-[10px] text-white/90">
+                      <span aria-hidden="true">AI</span>
+                      <span className="sr-only">{l.aiTag[lang]}</span>
+                    </span>
+                  )}
+                </div>
+                <div className="flex min-w-0 flex-1 flex-col justify-between gap-1 p-1.5">
+                  <span className="flex min-w-0 items-center gap-1">
+                    <span className="flex h-4 w-4 flex-none items-center justify-center text-sage-green">
+                      <Icon size={11} />
+                    </span>
+                    <span className="min-w-0 break-words font-serif text-[0.6875rem] leading-tight text-dark-charcoal">{label}</span>
                   </span>
-                </span>
-                <ChevronRight size={16} className={`flex-none ${primary ? 'text-white/70' : 'text-dark-charcoal/30'}`} />
+                  {/* The description still exists for anyone using a screen
+                      reader — visually dropped to keep every card, photo
+                      and label on one screen on the smallest phones. */}
+                  <span className="sr-only">
+                    {sub}
+                    {external && ` ${l.newTab[lang]}`}
+                  </span>
+                  <span className="flex h-4 w-4 flex-none items-center justify-center self-end rounded-full bg-light-warm-grey text-dark-charcoal/70 transition-transform duration-200 group-hover:translate-x-0.5">
+                    <ArrowRight size={9} />
+                  </span>
+                </div>
+              </>
+            );
+            const className =
+              'group flex overflow-hidden rounded-xl border border-dark-charcoal/8 bg-pure-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md';
+            return external ? (
+              <a key={key} href={href} target="_blank" rel="noopener noreferrer" className={className}>
+                {content}
               </a>
             ) : (
-              <Link
-                key={key}
-                to={href}
-                className="group flex items-center gap-3.5 w-full rounded-xl px-3.5 py-1 bg-pure-white text-dark-charcoal border border-dark-charcoal/10 shadow-sm transition-all duration-200 hover:-translate-y-0.5"
-              >
-                <span className="flex-none inline-flex items-center justify-center w-8 h-8 rounded-full bg-sage-green/10 text-sage-green">
-                  <Icon size={15} />
-                </span>
-                <span className="flex-1 text-left">
-                  <span className="block font-sans text-[15px] font-medium leading-tight">{label}</span>
-                  <span className="block font-sans text-[12px] leading-tight text-dark-charcoal/55">{sub}</span>
-                </span>
-                <ChevronRight size={16} className="flex-none text-dark-charcoal/30" />
+              <Link key={key} to={href} className={className}>
+                {content}
               </Link>
-            )
-          )}
+            );
+          })}
         </div>
 
-        {/* Legal — text-only, not a row card: this page is fit tightly to the
-            IG in-app-browser viewport (~520-550px, zero scroll overflow), so a
-            full card here would blow that budget again. Docs live on the
-            operating company's system, same as FooterSection's legal row. */}
-        <div className="w-full flex items-center justify-center gap-4 mt-1">
+        <div className="mt-2.5 flex items-center justify-center gap-2">
+          <span className="h-px w-8 bg-dark-charcoal/20" />
+          <span className="font-serif text-[12px] italic text-sage-green/80">{l.footerTagline[lang]}</span>
+          <LeafIcon size={11} className="text-sage-green/60" />
+          <span className="h-px w-8 bg-dark-charcoal/20" />
+        </div>
+
+        <div className="mt-1 flex items-center justify-center gap-4 pb-1">
           <a
             href={PROPERTY.privacyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-sans text-[10px] leading-none text-dark-charcoal/50 hover:text-dark-charcoal/80 transition-colors duration-200"
+            className="font-sans inline-block py-1 text-[9.5px] leading-none text-dark-charcoal/75 hover:text-dark-charcoal transition-colors duration-200"
           >
             {TR.footer.privacy[lang]}
           </a>
@@ -216,7 +297,7 @@ const LinksPage: React.FC = () => {
             href={PROPERTY.termsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-sans text-[10px] leading-none text-dark-charcoal/50 hover:text-dark-charcoal/80 transition-colors duration-200"
+            className="font-sans inline-block py-1 text-[9.5px] leading-none text-dark-charcoal/75 hover:text-dark-charcoal transition-colors duration-200"
           >
             {TR.footer.terms[lang]}
           </a>
