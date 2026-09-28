@@ -210,18 +210,17 @@ const LinksPage: React.FC = () => {
           className="absolute inset-0 bg-cover transition-transform duration-1000 ease-out group-hover:scale-[1.04]"
           style={{ backgroundImage: "url('/assets/hero-video-poster.jpg')", backgroundPosition: '50% 82%' }}
         />
-        {/* The name on the cover, over the sky: a cream veil keeps it legible
-            on the busy meadow below, and the Thai reading sits under it. */}
+        {/* The name sits in the middle of the cover, the play button under it.
+            A soft cream veil behind the centre keeps the type legible on the
+            busy meadow without dulling the edges of the picture. */}
         <span
-          className="absolute inset-x-0 top-0 h-3/5"
-          style={{ background: 'linear-gradient(180deg, rgba(245,241,234,0.94) 0%, rgba(245,241,234,0.7) 55%, rgba(245,241,234,0) 100%)' }}
+          className="absolute inset-0"
+          style={{ background: 'radial-gradient(ellipse at center, rgba(245,241,234,0.92) 0%, rgba(245,241,234,0.78) 32%, rgba(245,241,234,0) 72%)' }}
         />
-        <span className="absolute inset-x-0 top-2 flex flex-col items-center text-center md:top-4">
-          <span className={`${serif} text-[22px] leading-none tracking-[0.06em] short:text-[17px] md:text-4xl`}>{l.filmBrand}</span>
-          <span className="mt-1 font-sans text-[12px] leading-none text-dark-charcoal/75 short:text-[10.5px] md:mt-2 md:text-base">{l.filmBrandTh}</span>
-        </span>
-        <span className="absolute inset-x-0 bottom-0 flex justify-center pb-3 short:pb-2 md:pb-5">
-          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-pure-white/90 text-sage-green shadow-sm transition-transform duration-300 group-hover:scale-105 short:h-8 short:w-8 md:h-14 md:w-14">
+        <span className="absolute inset-0 flex flex-col items-center justify-center text-center">
+          <span className={`${serif} text-[24px] leading-none tracking-[0.06em] short:text-[18px] md:text-4xl`}>{l.filmBrand}</span>
+          <span className="mt-1 font-sans text-[13px] leading-none text-dark-charcoal/80 short:text-[11px] md:mt-2 md:text-base">{l.filmBrandTh}</span>
+          <span className="mt-2.5 flex h-10 w-10 items-center justify-center rounded-full bg-pure-white/95 text-sage-green shadow-sm transition-transform duration-300 group-hover:scale-105 short:mt-1.5 short:h-[30px] short:w-[30px] md:mt-4 md:h-14 md:w-14">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5z" /></svg>
           </span>
         </span>
