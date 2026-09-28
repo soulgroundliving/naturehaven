@@ -4,6 +4,9 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      // Short phone screens (small iPhones, Safari with its bars up): /links tightens
+      // spacing there so each page still fits without scrolling.
+      screens: { short: { raw: '(max-height: 700px)' } },
       colors: {
         'pure-white': '#FFFFFF',
         'soft-taupe': '#B1A69D',
@@ -83,11 +86,16 @@ module.exports = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(8px)" },
         },
+        "tab-in": {
+          from: { opacity: "0", transform: "translateY(6px)" },
+          to: { opacity: "1", transform: "none" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "bounce-gentle": "bounce-gentle 2s ease-in-out infinite",
+        "tab-in": "tab-in 0.35s ease-out",
       },
     },
   },
