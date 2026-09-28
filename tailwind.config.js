@@ -4,15 +4,6 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      // Phones differ more in height than in width (Safari's bars eat ~200px, so a 844px phone shows ~650);
-      // /links uses this to show card descriptions only when there is room.
-      screens: {
-        // 'snug' = enough height for the intro paragraph; 'roomy' = enough for card descriptions.
-        // 'desc' = enough height for the small description inside each card.
-        desc: { raw: '(min-height: 600px)' },
-        snug: { raw: '(min-height: 640px)' },
-        roomy: { raw: '(min-height: 880px)' },
-      },
       colors: {
         'pure-white': '#FFFFFF',
         'soft-taupe': '#B1A69D',
