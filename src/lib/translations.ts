@@ -61,7 +61,6 @@ export const TR = {
     recommendedArticle: { en: 'Featured', th: 'บทความแนะนำ' },
     line: { en: 'Chat on LINE', th: 'ทักไลน์' },
     lineSub: { en: 'Ask us anything, or get more information', th: 'ติดต่อสอบถาม หรือรับข้อมูลเพิ่มเติม' },
-    lineDefaultMsg: { en: "Hi! I'm interested in Nature Haven — could you tell me more? (via the links page)", th: 'สวัสดีครับ/ค่ะ สนใจ Nature Haven อยากสอบถามข้อมูลเพิ่มเติมครับ/ค่ะ (ทักมาจากหน้าลิงก์)' },
     instagram: { en: 'Instagram', th: 'Instagram' },
     instagramSub: { en: 'Photos, stories, and the mood of Nature Haven', th: 'ภาพ สตอรี่ และบรรยากาศของ Nature Haven' },
     facebook: { en: 'Facebook', th: 'Facebook' },

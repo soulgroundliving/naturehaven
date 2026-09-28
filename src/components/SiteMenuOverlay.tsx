@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { Close } from '@/components/icons';
 import { PROPERTY } from '@/data/propertyFacts';
-import { lineMessageUrl } from '@/lib/lineMessage';
 import useDialog from '@/hooks/useDialog';
 import type { Lang } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
@@ -42,7 +41,7 @@ const MenuPanel: React.FC<Omit<SiteMenuOverlayProps, 'open'>> = ({ onClose, trig
     { label: navLabels[6], href: '/#contact' },
   ];
   const secondaryLinks = [
-    { label: TR.links.line[lang], href: lineMessageUrl(TR.links.lineDefaultMsg[lang]) },
+    { label: TR.links.line[lang], href: PROPERTY.lineUrl },
     { label: TR.links.maps[lang], href: PROPERTY.mapsUrl },
   ];
 
