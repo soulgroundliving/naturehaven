@@ -73,7 +73,7 @@ export const TR = {
     rooms: { en: 'Rooms', th: 'ห้องและราคา' },
     roomsSub: { en: 'Room details and pricing', th: 'รายละเอียดห้องและราคา' },
     newTab: { en: '(opens in a new tab)', th: '(เปิดในแท็บใหม่)' },
-    aiTag: { en: 'AI-generated visualization', th: 'ภาพจำลองด้วย AI' },
+    aiNote: { en: 'Images are AI-generated visualizations (except the map)', th: 'ภาพประกอบเป็นภาพจำลองด้วย AI (ยกเว้นแผนที่)' },
     maps: { en: 'Get directions', th: 'ดูแผนที่ / นำทาง' },
     mapsSub: { en: 'Find our location and the way there', th: 'ค้นหาที่ตั้งโครงการ และเส้นทางการเดินทาง' },
     googleMap: { en: 'Google Map', th: 'Google Map' },

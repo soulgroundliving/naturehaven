@@ -4,6 +4,9 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      // Phones differ more in height than in width (Safari's bars eat ~200px, so a 844px phone shows ~650);
+      // /links uses this to show card descriptions only when there is room.
+      screens: { roomy: { raw: '(min-height: 880px)' } },
       colors: {
         'pure-white': '#FFFFFF',
         'soft-taupe': '#B1A69D',
