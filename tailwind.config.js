@@ -8,6 +8,8 @@ module.exports = {
       // /links uses this to show card descriptions only when there is room.
       screens: {
         // 'snug' = enough height for the intro paragraph; 'roomy' = enough for card descriptions.
+        // 'desc' = enough height for the small description inside each card.
+        desc: { raw: '(min-height: 600px)' },
         snug: { raw: '(min-height: 640px)' },
         roomy: { raw: '(min-height: 880px)' },
       },

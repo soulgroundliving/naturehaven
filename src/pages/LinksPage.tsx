@@ -229,16 +229,18 @@ const LinksPage: React.FC = () => {
                         {label}
                       </span>
                     </span>
-                    {/* Shown only when the screen is tall enough (roomy) —
-                        otherwise kept for screen readers so every card, photo
-                        and label still fits one screen on the shortest phones. */}
-                    <span className="sr-only roomy:not-sr-only roomy:mt-1 roomy:line-clamp-2 roomy:block roomy:font-sans roomy:text-[10px] roomy:leading-snug roomy:text-dark-charcoal/75 md:line-clamp-none md:text-sm">
+                  </span>
+                  <span className="flex items-end justify-between gap-1">
+                    {/* Shown once the visible screen is tall enough (desc) —
+                        below that it stays for screen readers so every card,
+                        photo and label still fits one screen. */}
+                    <span className="sr-only min-w-0 flex-1 desc:not-sr-only desc:line-clamp-2 desc:font-sans desc:text-[9.5px] desc:leading-snug desc:text-dark-charcoal/75 roomy:text-[10px] md:line-clamp-none md:text-sm">
                       {sub}
                       {external && <span className="sr-only"> {l.newTab[lang]}</span>}
                     </span>
-                  </span>
-                  <span className="flex h-4 w-4 flex-none items-center justify-center self-end rounded-full border border-dark-charcoal/25 text-dark-charcoal/70 transition-transform duration-200 group-hover:translate-x-0.5 roomy:h-6 roomy:w-6 md:h-8 md:w-8 md:[&_svg]:h-4 md:[&_svg]:w-4">
-                    <ArrowRight size={9} />
+                    <span className="ml-auto flex h-4 w-4 flex-none items-center justify-center rounded-full border border-dark-charcoal/25 text-dark-charcoal/70 transition-transform duration-200 group-hover:translate-x-0.5 roomy:h-6 roomy:w-6 md:h-8 md:w-8 md:[&_svg]:h-4 md:[&_svg]:w-4">
+                      <ArrowRight size={9} />
+                    </span>
                   </span>
                 </div>
               </>
