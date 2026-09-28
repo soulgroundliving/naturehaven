@@ -59,6 +59,8 @@ export const TR = {
     tabFollow: { en: 'Follow', th: 'ติดตาม' },
     website: { en: 'Website', th: 'เว็บไซต์' },
     websiteSub: { en: 'Nature Haven home page', th: 'หน้าหลัก Nature Haven' },
+    filmBrand: 'Nature Haven',
+    filmBrandTh: 'เนเจอร์เฮฟเว่น',
     filmTitle: { en: 'What is Nature Haven', th: 'What is Nature Haven' },
     filmSub: { en: 'A short film', th: 'คลิปแนะนำสั้น ๆ' },
     filmPlay: { en: 'Play', th: 'เล่นคลิป' },
