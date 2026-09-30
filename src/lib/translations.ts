@@ -93,6 +93,31 @@ export const TR = {
     maps: { en: 'Get directions', th: 'ดูแผนที่ / นำทาง' },
     mapsSub: { en: 'Location and route', th: 'ที่ตั้งและการเดินทาง' },
     googleMap: { en: 'Google Map', th: 'Google Map' },
+    // Chat-first Contact tab (2026-09-30). The Thai side of each `q*` entry is always what
+    // actually gets SENT to Green (the LINE bot reads Thai keywords only) — the English side
+    // is a gloss for EN-language visitors, never sent. Every Thai string here was run through
+    // the-green-haven's real classifier before shipping (see project memory for the mapping);
+    // re-verify against a fresh `functions/_greenIntent.js` before editing any of them, since
+    // Green's keyword rules change independently of this site.
+    chatPrompt: { en: 'What would you like to know first?', th: 'อยากรู้เรื่องไหนก่อน?' },
+    chatHint: { en: 'Opens LINE with this message ready — tap send there.', th: 'เปิดแอป LINE พร้อมข้อความนี้ กดส่งในไลน์ได้เลยค่ะ' },
+    chatSend: { en: 'Send in LINE', th: 'ส่งใน LINE' },
+    qProject: { en: 'The project', th: 'ขอรายละเอียดโครงการ' },
+    // "NEST" (not "Nature Nest") is the owner-ratified public building name — matches the live
+    // Journal article's own spelling. Keep it on price/availability (scopes the answer to that
+    // one building); keep it OFF qProject (a building name there narrows the 6-card overview
+    // down to one building's own carousel instead).
+    qPrice: { en: 'Room prices', th: 'ราคาห้อง NEST' },
+    qAvailability: { en: 'Availability', th: 'มีห้องว่างไหม NEST' },
+    qPets: { en: 'Pets allowed?', th: 'เลี้ยงสัตว์ได้ไหม' },
+    qLocation: { en: 'Location', th: 'ที่ตั้งอยู่ไหน' },
+    qBooking: { en: 'Booking opens', th: 'เปิดจองเมื่อไหร่' },
+    qNearby: { en: "What's nearby?", th: 'หาในย่าน' },
+    moreExplore: { en: 'More to see', th: 'ดูรอบ ๆ เพิ่มเติม' },
+    moreChannels: { en: 'More from us', th: 'ช่องทางอื่น ๆ' },
+    nestStory: { en: 'Why "NEST"?', th: 'ทำไมชื่อ NEST' },
+    nestStorySub: { en: "The founder's story", th: 'เรื่องราวจากผู้ก่อตั้ง' },
+    watchFilm: { en: 'What is Nature Haven — watch the film', th: 'What is Nature Haven — ดูคลิปแนะนำ' },
   },
   journal: {
     navLabel: { en: 'Journal', th: 'บันทึกจากเฮเวน' },

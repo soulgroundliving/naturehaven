@@ -68,6 +68,7 @@ const LinksPage: React.FC = () => {
   const menuTriggerRef = React.useRef<HTMLButtonElement>(null);
   const [filmOpen, setFilmOpen] = React.useState(false);
   const filmTriggerRef = React.useRef<HTMLButtonElement>(null);
+  const [sel, setSel] = React.useState(0);
   const [params, setParams] = useSearchParams();
   const touchStart = React.useRef<{ x: number; y: number } | null>(null);
 
@@ -140,11 +141,17 @@ const LinksPage: React.FC = () => {
     robots: 'noindex, follow',
   });
 
-  const quickMessages = [
-    { key: 'price', label: l.lineQuickPrice[lang], text: l.lineQuickPriceMsg[lang] },
-    { key: 'vacancy', label: l.lineQuickVacancy[lang], text: l.lineQuickVacancyMsg[lang] },
-    { key: 'tour', label: l.lineQuickTour[lang], text: l.lineQuickTourMsg[lang] },
-  ];
+  // The 7 opening questions for the Contact chat card, in tap order. `msg` is always the Thai
+  // string — Green (the LINE bot) only reads Thai keywords, so an EN-language visitor's tap
+  // must still send Thai; `label` follows the page language. Each was verified against
+  // the-green-haven's real classifier before shipping (2026-09-30) — see project memory for
+  // the exact intent each one resolves to, and re-verify before editing: Green's keyword rules
+  // live in a separate repo and change independently of this site.
+  const questionKeys = ['qProject', 'qPrice', 'qAvailability', 'qPets', 'qLocation', 'qBooking', 'qNearby'] as const;
+  const questions = questionKeys.map((key) => ({ key, label: l[key][lang], msg: l[key].th }));
+  // Named to avoid colliding with the tab-button loop's own `selected` (which tab is active) —
+  // this is which chip is picked.
+  const selectedQuestion = questions[sel];
 
   const tabLabels: Record<TabKey, string> = {
     contact: l.tabContact[lang],
@@ -160,15 +167,20 @@ const LinksPage: React.FC = () => {
     Icon: IconType;
     image?: string;
   }
-  const line: Dest = { label: l.line[lang], sub: l.lineSub[lang], href: PROPERTY.lineUrl, external: true, Icon: LineIcon, image: '/assets/unit-overview.jpg' };
-  const website: Dest = { label: l.website[lang], sub: l.websiteSub[lang], href: '/', external: false, Icon: HomeIcon, image: '/assets/hero-room.jpg' };
-  const rooms: Dest = { label: l.rooms[lang], sub: l.roomsSub[lang], href: '/residence', external: false, Icon: HomeIcon };
+  // `line` (Chat on LINE) and `website` no longer have their own plate on this page (the Contact
+  // tab is the chat card now; Explore's lead is Rooms) — but `l.line`/`l.lineSub` stay in
+  // translations.ts because Navigation.tsx and SiteMenuOverlay.tsx still read them.
+  const rooms: Dest = { label: l.rooms[lang], sub: l.roomsSub[lang], href: '/residence', external: false, Icon: HomeIcon, image: '/assets/hero-room.jpg' };
   const instagram: Dest = { label: l.instagram[lang], sub: l.instagramSub[lang], href: PROPERTY.instagramUrl, external: true, Icon: InstagramIcon };
   const facebook: Dest = { label: l.facebook[lang], sub: l.facebookSub[lang], href: PROPERTY.facebookUrl, external: true, Icon: FacebookIcon };
   const tiktok: Dest = { label: l.tiktok[lang], sub: l.tiktokSub[lang], href: PROPERTY.tiktokUrl, external: true, Icon: TikTokIcon };
   const googleMap: Dest = { label: l.googleMap[lang], sub: l.mapsSub[lang], href: PROPERTY.mapsUrl, external: true, Icon: LocationPin };
   const featured: Dest = { label: l.recommendedArticle[lang], sub: l.designNotesSub[lang], href: '/journal/design-notes-01', external: false, Icon: BookOpenIcon };
   const journalHub: Dest = { label: l.journalHub[lang], sub: l.journalSub[lang], href: '/journal', external: false, Icon: EditIcon };
+  // The founder's own NEST-naming story (real article, live since 2026-09-18) — now the Follow
+  // tab's lead plate, because "a visitor doesn't know what NEST means" is a real gap a generic
+  // Instagram cover photo never addressed. Icon is unused by `plate()` but Dest requires it.
+  const nestStory: Dest = { label: l.nestStory[lang], sub: l.nestStorySub[lang], href: '/journal/nest', external: false, Icon: HomeIcon, image: '/assets/corridor-approach.jpg' };
 
   const plate = ({ label, sub, href, external, image }: Dest) => (
     <DestLink href={href} external={external} newTab={l.newTab[lang]} className="group flex min-h-0 flex-1 flex-col">
@@ -188,59 +200,37 @@ const LinksPage: React.FC = () => {
     </DestLink>
   );
 
-  const listRow = ({ label, sub, href, external, Icon }: Dest) => (
-    <li key={href} className={`border-b ${rule}`}>
-      <DestLink href={href} external={external} newTab={l.newTab[lang]} className="group flex min-h-[46px] items-center gap-3 py-2 short:min-h-[36px] short:py-1 md:min-h-12">
-        <Icon size={16} className="flex-none text-sage-green/80" />
-        <span className={`${serif} text-[16px] leading-tight min-[360px]:text-[17px] md:text-xl`}>{label}</span>
-        <span className="ml-auto text-right font-sans text-[11px] leading-snug text-dark-charcoal/62 md:text-sm">{sub}</span>
-        <ArrowRight size={13} className={arrow} />
-      </DestLink>
-    </li>
+  // A compact icon tile — three sit side by side under a tab's lead plate (Explore's Map/
+  // Featured/Journal Hub; Follow's Instagram/Facebook/TikTok), reading as "also here" rather
+  // than competing with the plate for top billing.
+  const tile = ({ label, href, external, Icon }: Dest) => (
+    <DestLink
+      key={href}
+      href={href}
+      external={external}
+      newTab={l.newTab[lang]}
+      className="flex min-h-[72px] flex-col items-center justify-center gap-1.5 rounded-xl border border-dark-charcoal/15 py-2.5 text-center transition-colors duration-300 hover:border-sage-green/50 hover:bg-sage-green/5 short:min-h-[60px] short:py-2"
+    >
+      <Icon size={18} className="flex-none text-sage-green/80" />
+      <span className="font-sans text-[11px] font-medium leading-tight text-dark-charcoal min-[360px]:text-[11.5px]">{label}</span>
+    </DestLink>
   );
 
-  // The opening clip: a nature plate that opens the film full screen. The
-  // layout is a plain div (like the link plates) with a transparent button laid
-  // over it: iPhone Safari lays out a <button> used as a flex container badly —
-  // the picture came up as an empty box there while a tap still worked.
-  const filmPlate = (
-    <div className="group relative flex min-h-0 flex-1 flex-col">
-      <span className="relative block min-h-[64px] flex-1 overflow-hidden bg-light-warm-grey ring-1 ring-inset ring-dark-charcoal/10 short:min-h-[44px] md:max-h-[300px]" aria-hidden="true">
-        <span
-          className="absolute inset-0 bg-cover transition-transform duration-1000 ease-out group-hover:scale-[1.04]"
-          style={{ backgroundImage: "url('/assets/hero-video-poster.jpg')", backgroundPosition: '50% 82%' }}
-        />
-        {/* The name sits in the middle of the cover, the play button under it.
-            A soft cream veil behind the centre keeps the type legible on the
-            busy meadow without dulling the edges of the picture. */}
-        <span
-          className="absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse at center, rgba(245,241,234,0.92) 0%, rgba(245,241,234,0.78) 32%, rgba(245,241,234,0) 72%)' }}
-        />
-        <span className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <span className={`${serif} text-[24px] leading-none tracking-[0.06em] short:text-[18px] md:text-4xl`}>{l.filmBrand}</span>
-          <span className="mt-1 font-sans text-[13px] leading-none text-dark-charcoal/80 short:text-[11px] md:mt-2 md:text-base">{l.filmBrandTh}</span>
-          <span className="mt-2.5 flex h-10 w-10 items-center justify-center rounded-full bg-pure-white/95 text-sage-green shadow-sm transition-transform duration-300 group-hover:scale-105 short:mt-1.5 short:h-[30px] short:w-[30px] md:mt-4 md:h-14 md:w-14">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5z" /></svg>
-          </span>
-        </span>
-      </span>
-      <span className="mt-2 flex flex-none items-start justify-between gap-2" aria-hidden="true">
-        <span className="min-w-0">
-          <span className={`${serif} block text-[18px] leading-tight min-[360px]:text-[20px] md:text-[26px]`}>{l.filmTitle[lang]}</span>
-          <span className="mt-0.5 block font-sans text-[11.5px] leading-snug text-dark-charcoal/65 min-[360px]:text-[12px] md:text-sm">{l.filmSub[lang]}</span>
-        </span>
-        <span className="mt-1 flex-none font-sans text-[11px] text-dark-charcoal/55 md:text-sm">{l.filmPlay[lang]}</span>
-      </span>
-      <button
-        ref={filmTriggerRef}
-        type="button"
-        onClick={() => setFilmOpen(true)}
-        aria-haspopup="dialog"
-        aria-label={`${l.filmTitle[lang]} — ${l.filmSub[lang]}. ${l.filmPlay[lang]}`}
-        className="absolute inset-0 z-10 cursor-pointer"
-      />
-    </div>
+  // The Follow tab's lead plate is now the NEST story (see `nestStory` above), so the film is a
+  // slim CTA row under the channel tiles instead of its own big plate — still one tap to the
+  // same full-screen player, just no longer competing with the NEST story for top billing.
+  const filmRow = (
+    <button
+      ref={filmTriggerRef}
+      type="button"
+      onClick={() => setFilmOpen(true)}
+      aria-haspopup="dialog"
+      aria-label={`${l.watchFilm[lang]} — ${l.filmTitle[lang]}, ${l.filmSub[lang]}`}
+      className="group mt-3 flex min-h-11 w-full flex-none items-center justify-center gap-2 border-y border-sage-green/30 font-sans text-[12.5px] tracking-[0.01em] text-sage-green transition-colors duration-300 hover:bg-sage-green/10 short:mt-2 short:min-h-9"
+    >
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="flex-none"><path d="M8 5.5v13l11-6.5-11-6.5z" /></svg>
+      {l.watchFilm[lang]}
+    </button>
   );
 
   // Inactive pages are display:none, not unmounted: every link stays in the
@@ -329,7 +319,6 @@ const LinksPage: React.FC = () => {
               </React.Fragment>
             ))}
           </p>
-          <p className="mt-1 font-sans text-[11px] leading-relaxed text-dark-charcoal/65 short:hidden md:mt-2 md:text-sm">{l.heroBody[lang]}</p>
         </section>
 
         {/* The three pages */}
@@ -368,41 +357,78 @@ const LinksPage: React.FC = () => {
         >
           {panel(
             'contact',
-            <>
-              {plate(line)}
-              <div className="mt-3 flex-none md:mt-6">
-                <p className="mb-1.5 text-center font-sans text-[11px] text-dark-charcoal/60 md:text-xs">{l.lineQuickIntro[lang]}</p>
-                <div className={`grid grid-cols-3 divide-x divide-dark-charcoal/10 border-y ${rule}`}>
-                  {quickMessages.map(({ key, label, text }, i) => (
-                    <a
-                      key={key}
-                      href={lineMessageUrl(text)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex min-h-12 items-center justify-center px-1.5 py-2 text-center font-sans text-[12px] leading-tight transition-colors duration-300 hover:bg-sage-green/10 md:min-h-14 md:text-sm ${
-                        i === 0 ? 'bg-sage-green/[0.08] font-medium text-sage-green' : 'text-dark-charcoal/75'
-                      }`}
-                    >
-                      {label}
-                      <span className="sr-only"> {l.newTab[lang]}</span>
-                    </a>
-                  ))}
-                </div>
+            // The chat card: a preview of an actual LINE message, not a link list — picking a
+            // chip fills the compose bar below with that question, and the round button opens
+            // LINE with it ready to send (which also adds Nature Haven as a friend for a
+            // visitor who isn't one yet).
+            // md:max-h caps the card the same way plate()'s image caps at md:max-h-[300px] — without
+            // it, the flex-1 spacer below the chips stretches to fill the tall desktop container and
+            // leaves a dead gap above the compose bar.
+            <div className="flex min-h-0 flex-1 flex-col rounded-2xl border border-dark-charcoal/10 bg-pure-white/55 p-3 short:p-2.5 md:max-h-[520px]">
+              <div className="flex flex-none items-center gap-2 border-b border-dark-charcoal/10 pb-2 short:pb-1.5">
+                <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-sage-green/10 short:h-6 short:w-6">
+                  <LeafIcon size={13} className="text-sage-green/70" />
+                </span>
+                <span className={`${serif} text-[15px] short:text-[13.5px]`}>Nature Haven</span>
+                <span className="ml-auto flex flex-none items-center gap-1 font-sans text-[10.5px] text-dark-charcoal/60">
+                  <LineIcon size={12} className="text-sage-green" /> LINE
+                </span>
               </div>
-            </>,
+              <div className="mt-2.5 max-w-[80%] flex-none self-start rounded-2xl rounded-tl-sm border border-dark-charcoal/10 bg-pure-white px-3 py-2 font-sans text-[13.5px] leading-snug text-dark-charcoal short:mt-1.5 short:py-1.5 short:text-[12.5px]">
+                {l.chatPrompt[lang]}
+              </div>
+              <div className="mt-2.5 flex flex-none flex-wrap justify-end gap-1.5 short:mt-1.5 short:gap-1">
+                {questions.map((q, i) => (
+                  <button
+                    key={q.key}
+                    type="button"
+                    onClick={() => setSel(i)}
+                    aria-pressed={i === sel}
+                    className={`min-h-10 rounded-full border px-3 font-sans text-[12.5px] leading-tight transition-colors duration-300 short:min-h-8 short:px-2.5 short:text-[12px] ${
+                      i === sel
+                        ? 'border-sage-green bg-sage-green/10 font-medium text-dark-charcoal'
+                        : 'border-dark-charcoal/20 bg-pure-white/70 text-dark-charcoal/80 hover:border-dark-charcoal/35'
+                    }`}
+                  >
+                    {q.label}
+                  </button>
+                ))}
+              </div>
+              <div className="min-h-2 flex-1 short:min-h-1" />
+              <p className="flex-none text-center font-sans text-[10px] leading-snug text-dark-charcoal/60 short:hidden">{l.chatHint[lang]}</p>
+              <div className="mt-1.5 flex min-h-[46px] flex-none items-center gap-2 rounded-full border border-dark-charcoal/20 bg-pure-white py-1.5 pl-3.5 pr-1.5 short:mt-1 short:min-h-[40px] short:py-1">
+                <span aria-hidden="true" className="text-[17px] leading-none text-dark-charcoal/35">+</span>
+                <span className="flex-1 truncate font-sans text-[13px] text-dark-charcoal">{selectedQuestion.msg}</span>
+                <a
+                  href={lineMessageUrl(selectedQuestion.msg)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={l.chatSend[lang]}
+                  className="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-sage-green text-pure-white"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M12 19V5M5 12l7-7 7 7" />
+                  </svg>
+                  <span className="sr-only"> {l.newTab[lang]}</span>
+                </a>
+              </div>
+            </div>,
           )}
           {panel(
             'explore',
             <>
-              {plate(website)}
-              <ul className={`mt-2 flex-none border-t ${rule}`}>{[rooms, googleMap, featured, journalHub].map(listRow)}</ul>
+              {plate(rooms)}
+              <p className="mt-4 flex-none text-center font-sans text-[10px] text-dark-charcoal/55 short:mt-3">{l.moreExplore[lang]}</p>
+              <div className="mt-2 grid flex-none grid-cols-3 gap-2">{[googleMap, featured, journalHub].map(tile)}</div>
             </>,
           )}
           {panel(
             'follow',
             <>
-              {filmPlate}
-              <ul className={`mt-2 flex-none border-t ${rule}`}>{[instagram, facebook, tiktok].map(listRow)}</ul>
+              {plate(nestStory)}
+              <p className="mt-4 flex-none text-center font-sans text-[10px] text-dark-charcoal/55 short:mt-3">{l.moreChannels[lang]}</p>
+              <div className="mt-2 grid flex-none grid-cols-3 gap-2">{[instagram, facebook, tiktok].map(tile)}</div>
+              {filmRow}
             </>,
           )}
         </div>
