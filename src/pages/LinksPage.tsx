@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
+import gsap from 'gsap';
 import usePageMeta from '@/hooks/usePageMeta';
 import { PROPERTY } from '@/data/propertyFacts';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -13,7 +14,6 @@ import {
   FacebookIcon,
   TikTokIcon,
   LocationPin,
-  BookOpenIcon,
   HomeIcon,
   EditIcon,
   ArrowRight,
@@ -64,6 +64,7 @@ const arrow = 'flex-none text-dark-charcoal/45 transition-transform duration-500
 const LinksPage: React.FC = () => {
   const { lang, toggle } = useLanguage();
   const l = TR.links;
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuTriggerRef = React.useRef<HTMLButtonElement>(null);
   const [filmOpen, setFilmOpen] = React.useState(false);
@@ -71,6 +72,30 @@ const LinksPage: React.FC = () => {
   const [sel, setSel] = React.useState(0);
   const [params, setParams] = useSearchParams();
   const touchStart = React.useRef<{ x: number; y: number } | null>(null);
+
+  // "Enter the website" portal transition (Explore tab's hero photo → the real,
+  // GSAP/3D-animated homepage at "/" — a deliberately different FEEL from this
+  // plain bio-hub page, so the jump should read as stepping through, not a
+  // flat route swap). Captures the photo's own on-screen rect, grows a clone
+  // of it to fill the viewport while a cream veil fades in, then navigates —
+  // skipped entirely for prefers-reduced-motion, where the <Link> just
+  // navigates immediately like any other destination on this page.
+  const heroImageRef = React.useRef<HTMLSpanElement>(null);
+  const portalRef = React.useRef<HTMLDivElement>(null);
+  const [portal, setPortal] = React.useState<{ rect: DOMRect; image: string; href: string } | null>(null);
+
+  React.useLayoutEffect(() => {
+    if (!portal || !portalRef.current) return;
+    const el = portalRef.current;
+    const veil = el.querySelector<HTMLElement>('.portal-veil');
+    const tl = gsap.timeline({ onComplete: () => navigate(portal.href) });
+    tl.set(el, { top: portal.rect.top, left: portal.rect.left, width: portal.rect.width, height: portal.rect.height });
+    tl.to(el, { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight, duration: 0.6, ease: 'power3.inOut' }, 0);
+    if (veil) tl.to(veil, { opacity: 1, duration: 0.45, ease: 'power1.in' }, 0.22);
+    return () => {
+      tl.kill();
+    };
+  }, [portal, navigate]);
 
   const requested = params.get('tab');
   const tab: TabKey = TABS.find((key) => key === requested) ?? 'contact';
@@ -167,15 +192,19 @@ const LinksPage: React.FC = () => {
     Icon: IconType;
     image?: string;
   }
-  // `line` (Chat on LINE) and `website` no longer have their own plate on this page (the Contact
-  // tab is the chat card now; Explore's lead is Rooms) — but `l.line`/`l.lineSub` stay in
-  // translations.ts because Navigation.tsx and SiteMenuOverlay.tsx still read them.
-  const rooms: Dest = { label: l.rooms[lang], sub: l.roomsSub[lang], href: '/residence', external: false, Icon: HomeIcon, image: '/assets/hero-room.jpg' };
+  // `line` (Chat on LINE) no longer has its own plate on this page (the Contact tab is the chat
+  // card now) — but `l.line`/`l.lineSub` stay in translations.ts because Navigation.tsx and
+  // SiteMenuOverlay.tsx still read them.
+  // The Explore hero: the room photo is now the "enter the website" portal (see heroPortal()
+  // below), reusing the `website`/`websiteSub` copy that used to sit on its own removed plate —
+  // nothing else on the site reads those two keys, confirmed by grep before reusing them here.
+  const websiteHero: Dest = { label: l.website[lang], sub: l.websiteSub[lang], href: '/', external: false, Icon: HomeIcon, image: '/assets/hero-room.jpg' };
+  // Rooms-and-pricing moved off the hero photo onto this plain tile (owner: 2026-10-01).
+  const roomsPrice: Dest = { label: l.rooms[lang], sub: l.roomsSub[lang], href: '/residence', external: false, Icon: HomeIcon };
   const instagram: Dest = { label: l.instagram[lang], sub: l.instagramSub[lang], href: PROPERTY.instagramUrl, external: true, Icon: InstagramIcon };
   const facebook: Dest = { label: l.facebook[lang], sub: l.facebookSub[lang], href: PROPERTY.facebookUrl, external: true, Icon: FacebookIcon };
   const tiktok: Dest = { label: l.tiktok[lang], sub: l.tiktokSub[lang], href: PROPERTY.tiktokUrl, external: true, Icon: TikTokIcon };
   const googleMap: Dest = { label: l.googleMap[lang], sub: l.mapsSub[lang], href: PROPERTY.mapsUrl, external: true, Icon: LocationPin };
-  const featured: Dest = { label: l.recommendedArticle[lang], sub: l.designNotesSub[lang], href: '/journal/design-notes-01', external: false, Icon: BookOpenIcon };
   const journalHub: Dest = { label: l.journalHub[lang], sub: l.journalSub[lang], href: '/journal', external: false, Icon: EditIcon };
   // The founder's own NEST-naming story (real article, live since 2026-09-18) — now the Follow
   // tab's lead plate, because "a visitor doesn't know what NEST means" is a real gap a generic
@@ -198,6 +227,41 @@ const LinksPage: React.FC = () => {
         <ArrowRight size={15} className={`${arrow} mt-1.5`} />
       </span>
     </DestLink>
+  );
+
+  // The Explore hero, specifically: same markup as plate() but a real <Link> (not DestLink,
+  // the href is always internal "/") with a ref on the photo and an onClick that intercepts the
+  // navigation to run the portal transition above. prefers-reduced-motion bails out of the
+  // handler entirely so the <Link> just navigates normally, same as everywhere else on the page.
+  const heroPortal = ({ label, sub, href, image }: Dest) => (
+    <Link
+      to={href}
+      onClick={(event) => {
+        const imageEl = heroImageRef.current;
+        if (!imageEl || !image || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        event.preventDefault();
+        setPortal({ rect: imageEl.getBoundingClientRect(), image, href });
+      }}
+      className="group flex min-h-0 flex-1 flex-col"
+    >
+      <span
+        ref={heroImageRef}
+        className="relative block min-h-[64px] flex-1 overflow-hidden short:min-h-[44px] bg-light-warm-grey ring-1 ring-inset ring-dark-charcoal/10 md:max-h-[300px]"
+        aria-hidden="true"
+      >
+        <span
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-[1.04]"
+          style={{ backgroundImage: `url('${image}')` }}
+        />
+      </span>
+      <span className="mt-2 flex flex-none items-start justify-between gap-2">
+        <span className="min-w-0">
+          <span className={`${serif} block text-[18px] leading-tight min-[360px]:text-[20px] md:text-[26px]`}>{label}</span>
+          <span className="mt-0.5 block font-sans text-[11.5px] leading-snug text-dark-charcoal/65 min-[360px]:text-[12px] md:text-sm">{sub}</span>
+        </span>
+        <ArrowRight size={15} className={`${arrow} mt-1.5`} />
+      </span>
+    </Link>
   );
 
   // A compact icon tile — three sit side by side under a tab's lead plate (Explore's Map/
@@ -300,6 +364,12 @@ const LinksPage: React.FC = () => {
         title={l.filmTitle[lang]}
         closeLabel={l.filmClose[lang]}
       />
+      {portal && (
+        <div ref={portalRef} className="fixed z-50 overflow-hidden pointer-events-none" aria-hidden="true">
+          <span className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${portal.image}')` }} />
+          <span className="portal-veil absolute inset-0 bg-[#F5F1EA] opacity-0" />
+        </div>
+      )}
 
       <main className="flex w-full max-w-[560px] flex-1 flex-col px-5 md:max-w-[720px] md:px-10">
         <header className="flex flex-col items-center pt-1 text-center short:pt-0 md:pt-6">
@@ -417,9 +487,9 @@ const LinksPage: React.FC = () => {
           {panel(
             'explore',
             <>
-              {plate(rooms)}
+              {heroPortal(websiteHero)}
               <p className="mt-4 flex-none text-center font-sans text-[10px] text-dark-charcoal/55 short:mt-3">{l.moreExplore[lang]}</p>
-              <div className="mt-2 grid flex-none grid-cols-3 gap-2">{[googleMap, featured, journalHub].map(tile)}</div>
+              <div className="mt-2 grid flex-none grid-cols-3 gap-2">{[googleMap, roomsPrice, journalHub].map(tile)}</div>
             </>,
           )}
           {panel(
