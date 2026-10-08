@@ -357,7 +357,7 @@ export const TR = {
     },
     openingRate: { en: 'Opening Rate', th: 'ราคาเปิดตัว' },
     petsEverywhere: { en: 'Pet-friendly — the whole building', th: 'อพาร์ทเมนท์เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น' },
-    petsEverywhereSub: { en: 'No floor restrictions — dogs and cats up to 15 kg (2 per unit at most) are welcome in every home, on every floor.', th: 'ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสุนัขและแมวน้ำหนักไม่เกิน 15 กก. ไม่เกิน 2 ตัวต่อห้อง' },
+    petsEverywhereSub: { en: 'No floor restrictions — dogs (up to 15 kg), cats, rabbits and hamsters (2 per unit at most) are welcome in every home, on every floor.', th: 'ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสุนัข (ไม่เกิน 15 กก.) แมว กระต่าย และหนูแฮมสเตอร์ ไม่เกิน 2 ตัวต่อห้อง' },
     // "Pets we welcome" card — source: house rules (Nest) §4.2–4.6 + pet guide,
     // owner decision 2026-09-21. The test is adult weight by breed standard,
     // never a list of breeds. The floor tips are the guide's recommendations
@@ -365,15 +365,15 @@ export const TR = {
     petsWelcome: {
       label: { en: 'Pets we welcome', th: 'รับสัตว์อะไรบ้าง' },
       title: {
-        en: 'Dogs and cats — small to medium, at home in 25 sqm.',
-        th: 'สุนัขและแมว ตัวเล็กถึงกลาง ที่อยู่สบายในห้อง 25 ตร.ม.',
+        en: 'Dogs, cats, rabbits and hamsters — small to medium, at home in 25 sqm.',
+        th: 'สุนัข แมว กระต่าย และหนูแฮมสเตอร์ ตัวเล็กถึงกลาง ที่อยู่สบายในห้อง 25 ตร.ม.',
       },
       weightNum: { en: '15', th: '15' },
       weightUnit: { en: 'kg', th: 'กก.' },
       weightCaption: { en: 'full-grown, by breed standard', th: 'ตัวเต็มวัย ตามมาตรฐานสายพันธุ์' },
       lead: {
-        en: 'We keep no list of approved breeds. There is one measure: a full-grown pet weighs up to 15 kg by its breed standard, checked on the day you register. We measure the adult because a 4 kg puppy today can be 30 kg next year — and up to 2 pets share each home.',
-        th: 'เราไม่มีรายชื่อสายพันธุ์ที่รับ มีเกณฑ์เดียวคือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ไม่เกิน 15 กก. พิจารณา ณ วันลงทะเบียน เราวัดที่ตัวเต็มวัยเพราะลูกสุนัข 4 กก. วันนี้ อาจเป็น 30 กก. ในปีหน้า และเลี้ยงได้ไม่เกิน 2 ตัวต่อห้อง',
+        en: 'We accept dogs, cats, rabbits and hamsters — other species not at this time. We keep no list of approved breeds: a full-grown dog weighs up to 15 kg by its breed standard, checked on the day you register. We measure the adult because a 4 kg puppy today can be 30 kg next year — and up to 2 pets share each home.',
+        th: 'เรารับสุนัข แมว กระต่าย และหนูแฮมสเตอร์ สัตว์ชนิดอื่นยังไม่รับ เราไม่มีรายชื่อสายพันธุ์ที่รับ สำหรับสุนัขมีเกณฑ์เดียวคือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ไม่เกิน 15 กก. พิจารณา ณ วันลงทะเบียน เราวัดที่ตัวเต็มวัยเพราะลูกสุนัข 4 กก. วันนี้ อาจเป็น 30 กก. ในปีหน้า และเลี้ยงได้ไม่เกิน 2 ตัวต่อห้อง',
       },
       groups: {
         en: [
@@ -387,7 +387,7 @@ export const TR = {
           },
           {
             title: 'Before move-in',
-            body: 'Register every pet with its vaccination book in the app before you move in. We ask that a pet does not bark or cry continuously — the walls are built for quiet, and the neighbours are part of the home too.',
+            body: 'Register every pet with its vaccination book in the app before you move in. We ask that a pet does not bark or cry continuously, and that you keep the pet and your home clean so no smell reaches the neighbours — the walls are built for quiet, and the neighbours are part of the home too.',
           },
         ],
         th: [
@@ -401,7 +401,7 @@ export const TR = {
           },
           {
             title: 'ก่อนย้ายเข้า',
-            body: 'ลงทะเบียนน้องทุกตัวพร้อมสมุดวัคซีนในแอปก่อนเข้าอยู่ และขอให้ไม่ส่งเสียงดังต่อเนื่อง เพราะผนังของเราออกแบบมาเพื่อความเงียบ และเพื่อนบ้านก็เป็นส่วนหนึ่งของบ้านเช่นกัน',
+            body: 'ลงทะเบียนน้องทุกตัวพร้อมสมุดวัคซีนในแอปก่อนเข้าอยู่ และขอให้ไม่ส่งเสียงดังต่อเนื่อง ดูแลน้องและห้องให้สะอาดไม่ให้กลิ่นไปรบกวนเพื่อนบ้าน เพราะผนังของเราออกแบบมาเพื่อความเงียบ และเพื่อนบ้านก็เป็นส่วนหนึ่งของบ้านเช่นกัน',
           },
         ],
       },
@@ -481,15 +481,15 @@ export const TR = {
         { label: 'Parking', desc: `Enough spaces around the building for all ${PARKING_CAPACITY_APPROX} units.` },
         { label: 'Pocket Garden', desc: 'A communal garden to slow down in. Green, quiet, yours.' },
         { label: 'Laundry & Dryer', desc: 'Washers and dryers on site, with a drinking-water refill station.' },
-        { label: 'Cleaning Service', desc: 'In-unit cleaning included — twice a year for units with a pet, once a year without.' },
-        { label: 'A/C Maintenance', desc: 'Serviced on a regular schedule — at least yearly, or sooner based on condition — included in your rate.' },
+        { label: 'Cleaning Service', desc: 'In-unit cleaning included — every 3 months for units with a pet, every 6 months without.' },
+        { label: 'A/C Maintenance', desc: 'Serviced on a regular schedule — every 6 months for units with a pet, yearly without — included in your rate.' },
       ],
       th: [
         { label: 'ที่จอดรถ', desc: `พื้นที่จอดรอบอาคารเพียงพอสำหรับทุกห้อง (${PARKING_CAPACITY_APPROX} ห้อง)` },
         { label: 'สวนกระเป๋า', desc: 'สวนส่วนกลาง — สีเขียว สงบ เป็นของคุณ' },
         { label: 'ซักผ้า & อบผ้า', desc: 'เครื่องซักและเครื่องอบในอาคาร พร้อมจุดเติมน้ำดื่ม' },
-        { label: 'บริการทำความสะอาด', desc: 'ทำความสะอาดห้องพักรวมอยู่ในค่าเช่า — ปีละ 2 ครั้งสำหรับห้องที่เลี้ยงสัตว์ ปีละครั้งสำหรับห้องที่ไม่เลี้ยงสัตว์' },
-        { label: 'บริการล้างแอร์', desc: 'ล้างแอร์ตามรอบ อย่างน้อยปีละครั้ง หรือเร็วกว่านั้นตามสภาพ รวมอยู่ในค่าเช่าแล้ว' },
+        { label: 'บริการทำความสะอาด', desc: 'ทำความสะอาดห้องพักรวมอยู่ในค่าเช่า — ทุก 3 เดือนสำหรับห้องที่เลี้ยงสัตว์ ทุก 6 เดือนสำหรับห้องที่ไม่เลี้ยงสัตว์' },
+        { label: 'บริการล้างแอร์', desc: 'ล้างแอร์ตามรอบ ทุก 6 เดือนสำหรับห้องที่เลี้ยงสัตว์ ปีละครั้งสำหรับห้องที่ไม่เลี้ยงสัตว์ รวมอยู่ในค่าเช่าแล้ว' },
       ],
     },
     ctaTag: { en: 'All included', th: 'รวมทุกอย่าง' },

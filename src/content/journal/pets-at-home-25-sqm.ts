@@ -8,8 +8,8 @@ const article: Article = {
     th: 'เลี้ยงสัตว์ได้ทุกชั้น — ทำอย่างไรให้ 25.2 ตร.ม. เป็นบ้านของทั้งคุณและเขา',
   },
   excerpt: {
-    en: 'No pet floor, no pet wing — the whole building welcomes dogs and cats, up to 15 kg full-grown by breed standard, two to a home at most. A single rule, applied evenly, and a layout considered for four legs as much as two.',
-    th: 'ไม่มีชั้นสัตว์เลี้ยง ไม่มีปีกพิเศษ — ทั้งตึกต้อนรับทั้งสุนัขและแมว ตัวเต็มวัยตามมาตรฐานสายพันธุ์ไม่เกิน 15 กก. ไม่เกิน 2 ตัวต่อห้อง กติกาเดียวที่ใช้เท่ากันทุกที่ และเลย์เอาต์ที่คิดมาเพื่อสี่ขาไม่น้อยไปกว่าสองขา',
+    en: 'No pet floor, no pet wing — the whole building welcomes dogs (up to 15 kg full-grown by breed standard), cats, rabbits and hamsters, two to a home at most. A single rule, applied evenly, and a layout considered for four legs as much as two.',
+    th: 'ไม่มีชั้นสัตว์เลี้ยง ไม่มีปีกพิเศษ — ทั้งตึกต้อนรับสุนัข (ตัวเต็มวัยตามมาตรฐานสายพันธุ์ไม่เกิน 15 กก.) แมว กระต่าย และหนูแฮมสเตอร์ ไม่เกิน 2 ตัวต่อห้อง กติกาเดียวที่ใช้เท่ากันทุกที่ และเลย์เอาต์ที่คิดมาเพื่อสี่ขาไม่น้อยไปกว่าสองขา',
   },
   date: '2026-06-26',
   readMinutes: 7,
@@ -22,8 +22,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ไม่มีชั้นให้ต้องเลือก และไม่มีข้อยกเว้นให้ต้องกังวล — ที่ Nature Haven ทุกห้องในทุกชั้นต้อนรับทั้งสุนัขและแมว ตัวเล็กถึงกลาง ไม่เกิน 2 ตัวต่อห้อง ไม่ใช่สิทธิพิเศษที่กันไว้แค่มุมใดมุมหนึ่งของตึก แต่เป็นคำตอบเดียวกันทั้งอาคาร',
-        en: 'There is no floor to choose and no exception to navigate: at Nature Haven, every unit on every level welcomes dogs and cats, small to medium, up to two per residence. Not a feature reserved for a corner of the building — the whole address, built around the same answer.',
+        th: 'ไม่มีชั้นให้ต้องเลือก และไม่มีข้อยกเว้นให้ต้องกังวล — ที่ Nature Haven ทุกห้องในทุกชั้นต้อนรับสุนัข แมว กระต่าย และหนูแฮมสเตอร์ ตัวเล็กถึงกลาง ไม่เกิน 2 ตัวต่อห้อง ไม่ใช่สิทธิพิเศษที่กันไว้แค่มุมใดมุมหนึ่งของตึก แต่เป็นคำตอบเดียวกันทั้งอาคาร',
+        en: 'There is no floor to choose and no exception to navigate: at Nature Haven, every unit on every level welcomes dogs, cats, rabbits and hamsters, small to medium, up to two per residence. Not a feature reserved for a corner of the building — the whole address, built around the same answer.',
       },
     },
     {
@@ -51,8 +51,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'เกณฑ์ของเรามีข้อเดียว คือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ต้องไม่เกิน 15 กก. พิจารณา ณ วันลงทะเบียน — ไม่มีรายชื่อสายพันธุ์ที่รับหรือไม่รับ เราวัดที่ตัวเต็มวัยเพื่อความแฟร์กับทุกฝ่าย เพราะลูกสุนัข 4 กก. วันนี้ อาจเป็น 30 กก. ในปีหน้า ห้องเลี้ยงได้ไม่เกิน 2 ตัว และขอให้น้องไม่ส่งเสียงดังต่อเนื่องรบกวนเพื่อนบ้าน',
-        en: 'Our test is a single number: full-grown weight, by breed standard, up to 15 kg, judged on the day you register. There is no list of breeds we accept or refuse. We measure the adult because it is fair to everyone — a 4 kg puppy today can be 30 kg next year. Up to two per home, and we ask that a pet does not bark or cry continuously and disturb the neighbours.',
+        th: 'เรารับสุนัข แมว กระต่าย และหนูแฮมสเตอร์ สำหรับสุนัข เกณฑ์ของเรามีข้อเดียว คือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ต้องไม่เกิน 15 กก. พิจารณา ณ วันลงทะเบียน — ไม่มีรายชื่อสายพันธุ์ที่รับหรือไม่รับ เราวัดที่ตัวเต็มวัยเพื่อความแฟร์กับทุกฝ่าย เพราะลูกสุนัข 4 กก. วันนี้ อาจเป็น 30 กก. ในปีหน้า ห้องเลี้ยงได้ไม่เกิน 2 ตัว และขอให้น้องไม่ส่งเสียงดังต่อเนื่องรบกวนเพื่อนบ้าน',
+        en: 'We accept dogs, cats, rabbits and hamsters. For dogs our test is a single number: full-grown weight, by breed standard, up to 15 kg, judged on the day you register. There is no list of breeds we accept or refuse. We measure the adult because it is fair to everyone — a 4 kg puppy today can be 30 kg next year. Up to two per home, and we ask that a pet does not bark or cry continuously and disturb the neighbours.',
       },
     },
     {
