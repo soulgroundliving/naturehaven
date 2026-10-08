@@ -11,6 +11,12 @@ const article: Article = {
     en: 'Every decision at Nature Haven starts from one question: does it make daily life quieter? This is the reasoning behind the low-rise form, moving the wet work out to the balcony, and what the rent covers.',
     th: 'ทุกการตัดสินใจของ Nature Haven เริ่มจากคำถามเดียว: มันทำให้ชีวิตประจำวันเงียบขึ้นไหม — นี่คือเหตุผลเบื้องหลังตึกเตี้ย การย้ายงานล้างไปไว้ที่ระเบียง และสิ่งที่ค่าเช่าครอบคลุม',
   },
+  // What a search result shows (the title above stays the on-page heading). Leads with what a visitor searches — a quiet
+  // place to rent in Sai Mai, and why there is no elevator — and ends with the brand name, not the journal's.
+  seoTitle: {
+    en: 'Quiet by design: why a 20-unit building has no elevator | Nature Haven',
+    th: 'ห้องเช่าเงียบสงบ สายไหม: ทำไมตึก 20 ห้องไม่มีลิฟต์ | Nature Haven',
+  },
   date: '2026-07-03',
   readMinutes: 5,
   hero: '/assets/room-view-in.jpg',
@@ -74,6 +80,17 @@ const article: Article = {
       text: {
         th: 'และยังมีความเงียบอีกชั้นหนึ่งที่ไม่ได้อยู่ในผนัง แต่อยู่ในใบแจ้งหนี้ — ค่าเช่ารวม Wi-Fi บริการทำความสะอาด และดูแลแอร์ไว้แล้วในตัวเลขเดียว ส่วนค่าน้ำค่าไฟคิดตามมิเตอร์ที่ใช้จริงอย่างตรงไปตรงมา ไม่มีค่าส่วนกลางแอบแฝง',
         en: 'There is a last, quieter register too — not in the walls, but in the bill. Rent already bundles Wi-Fi, cleaning, and air-conditioning service into one figure. Electricity and water are simply metered by actual usage, with no hidden common fee.',
+      },
+    },
+    {
+      // The same facts the FAQ already states (src/data/propertyFacts.ts, "is it quiet?") — said here too, because this page
+      // is titled for a quiet place to rent and must not promise more than the building can.
+      type: 'callout',
+      tone: 'note',
+      title: { th: 'เรื่องเสียงจากภายนอก', en: 'About sound from outside' },
+      text: {
+        th: 'ตึกออกแบบให้เงียบจากภายใน แต่ด้วยทำเลที่ตั้ง ผู้พักอาศัยอาจได้ยินเสียงจากภายนอกเป็นครั้งคราว เช่น เสียงพลุช่วงเทศกาลปีใหม่ (จากระยะไกล) เสียงสุนัขเห่าหรือหอนในบางวัน และเสียงเวทีดนตรีจากหมู่บ้านใกล้เคียงในบางโอกาส เราแจ้งไว้ล่วงหน้าเพื่อให้คุณประเมินได้ก่อนตัดสินใจ',
+        en: 'The building is designed to be quiet from the inside, but because of where it stands you may occasionally hear sound from outside — fireworks over the New Year festival (from a distance), dogs barking or howling on some days, and stage music from a neighbouring village on some occasions. We say so up front so you can judge for yourself before you decide.',
       },
     },
     {

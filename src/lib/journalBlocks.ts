@@ -3,9 +3,14 @@
 // Deliberately dependency-free (type-only imports, erasable syntax) so they run
 // on plain Node: tools/__tests__/journalBlocks.test.ts imports this file
 // directly, and tools/test-journal-content.mjs reuses isLocalAssetPath.
-import type { ArticleBlock, ArticleLayout, Bilingual, Localized } from '../data/journalTypes.ts';
+import type { Article, ArticleBlock, ArticleLayout, Bilingual, Localized } from '../data/journalTypes.ts';
 
 export type LangCode = 'en' | 'th';
+
+/** The page <title>: the article's seoTitle when it has one, otherwise its title plus the journal's name. */
+export function documentTitle(article: Pick<Article, 'title' | 'seoTitle'>, lang: LangCode): string {
+  return article.seoTitle ? article.seoTitle[lang] : `${article.title[lang]} — The Haven Journal`;
+}
 
 /** Resolve a value that is either one string for both languages or { en, th }. */
 export function localize(value: Localized, lang: LangCode): string {

@@ -118,9 +118,16 @@ function checkBlock(block: ArticleBlock, path: string, problems: string[]): void
   }
 }
 
+/** A search result shows roughly this many characters of a title before cutting it. */
+export const SEO_TITLE_MAX = 70;
+
 /** Everything wrong with an article that the types cannot catch. Empty means it honours the contract. */
 export function validateArticle(article: Article): string[] {
   const problems: string[] = [];
+  for (const lang of ['en', 'th'] as const) {
+    const seo = article.seoTitle?.[lang];
+    if (seo !== undefined && seo.length > SEO_TITLE_MAX) problems.push(`seoTitle.${lang} is ${seo.length} characters; keep it within ${SEO_TITLE_MAX}`);
+  }
   if (!SLUG.test(article.slug)) problems.push(`slug "${article.slug}" must be a lowercase slug`);
   if (!DATE.test(article.date) || Number.isNaN(Date.parse(article.date))) problems.push(`date "${article.date}" must be YYYY-MM-DD`);
   if (!isPositiveInt(article.readMinutes)) problems.push('readMinutes must be a positive whole number');
