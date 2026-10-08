@@ -29,7 +29,7 @@ assert(index.includes('Nature Haven อพาร์ทเม้นท์สา�
 assert(!index.includes('"@type": "FAQPage"'), 'FAQPage must not be global in the static shell');
 assert(!index.includes('"@type": "LocalBusiness"'), 'LocalBusiness must not be global in the static shell');
 assert(!index.includes('"@type": "ApartmentComplex"'), 'ApartmentComplex must not be global in the static shell');
-assert(index.includes('"availabilityStarts": "2026-10-01"') === false, 'availability must be route-managed, not duplicated in static shell');
+assert(index.includes('"availabilityStarts": "2026-12-01"') === false, 'availability must be route-managed, not duplicated in static shell');
 
 const dist = path.join(root, 'dist');
 const routeFile = (route) => route === '/' ? path.join(dist, 'index.html') : path.join(dist, route.slice(1), 'index.html');
@@ -52,7 +52,7 @@ for (const route of ['/', '/residence', '/places', '/journal', '/links', '/priva
     for (const type of ['WebSite', 'Organization', 'ApartmentComplex', 'FAQPage']) {
       assert(types.includes(type), `homepage must include ${type}`);
     }
-    assert(html.includes('2026-10-01'), 'homepage schema must use October 2026 availability');
+    assert(html.includes('2026-12-01'), 'homepage schema must use December 2026 availability');
     assert(html.includes('500 บาท/ตัว/เดือน'), 'homepage FAQ schema must include the confirmed 500 THB pet fee');
     assert(html.includes('อพาร์ทเม้นท์สายไหม'), 'homepage must retain the Saimai apartment search phrase');
     assert(html.includes('อพาร์ทเมนท์เลี้ยงสัตว์ได้'), 'homepage must retain the pet-friendly apartment search phrase');

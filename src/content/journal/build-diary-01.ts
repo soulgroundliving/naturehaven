@@ -10,8 +10,8 @@ const article: Article = {
   slug: 'build-diary-01',
   category: { en: 'Build Diary', th: 'บันทึกการสร้าง' },
   title: {
-    en: 'Build Diary #1 — what is already decided, on the road to November 2026',
-    th: 'Build Diary #1 — สิ่งที่เคาะแล้ว ระหว่างทางสู่พฤศจิกายน 2026',
+    en: 'Build Diary #1 — what is already decided, on the road to December 2026',
+    th: 'Build Diary #1 — สิ่งที่เคาะแล้ว ระหว่างทางสู่ธันวาคม 2026',
   },
   excerpt: {
     en: 'A record kept as the building rises. The first entry: what is already decided — one clear rent, one rule for every home.',
@@ -68,8 +68,8 @@ const article: Article = {
         [
           { th: 'สัญญาและวันเข้าอยู่', en: 'Lease and move-in' },
           {
-            th: 'สัญญา 12 เดือน ค่าใช้จ่ายวันเข้าอยู่คือค่าจอง เงินประกันความเสียหาย 2 เดือน และค่าเช่าล่วงหน้า 1 เดือน เปิดเข้าอยู่พฤศจิกายน 2569',
-            en: 'A twelve-month lease. Move-in costs are a booking fee, a two-month security deposit and one month of advance rent. Move-in opens in November 2026.',
+            th: 'สัญญา 12 เดือน ค่าใช้จ่ายวันเข้าอยู่คือค่าจอง เงินประกันความเสียหาย 2 เดือน และค่าเช่าล่วงหน้า 1 เดือน คาดว่าเปิดเข้าอยู่ธันวาคม 2569',
+            en: 'A twelve-month lease. Move-in costs are a booking fee, a two-month security deposit and one month of advance rent. Move-in is expected to open in December 2026.',
           },
         ],
       ],
