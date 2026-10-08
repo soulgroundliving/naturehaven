@@ -45,18 +45,15 @@ export const PROPERTY = {
   // Terms of service is still the operating company's shared doc — out of
   // scope for the privacy-policy split above (owner asked about privacy only).
   termsUrl: 'https://the-green-haven.vercel.app/terms',
-  // October 2026 = reservations/bookings open (this ISO date feeds
-  // AggregateOffer.availabilityStarts in structuredData.ts — tools/test-landing-seo.mjs
-  // asserts it stays '2026-10-01', so change that test too if this ever moves).
-  // Actual move-in is November 2026 — a separate fact, stated in prose (FAQ 'open',
-  // hero tagline, decision-summary Move-in field) rather than a second schema field.
-  // Owner-clarified 2026-09-11: the two dates are intentionally different milestones.
-  // Exact day owner-confirmed 2026-09-12 (matches the "จะเปิด 24 พ.ย." opening
-  // date on the property's own Google Business listing) — MOVE_IN_LABEL below
-  // still only surfaces month+year everywhere it's shown, so this doesn't
-  // change any visible copy, just makes the underlying date accurate.
-  availableFrom: '2026-10-01',
-  moveInFrom: '2026-11-24',
+  // December 2026 = reservations/bookings open AND move-in (owner 2026-10-08: she cannot
+  // confirm any earlier date — painting unfinished — so both milestones are December).
+  // MONTH-LEVEL ONLY: the day is not confirmed, so '-01' below is a placeholder that only feeds
+  // AggregateOffer.availabilityStarts in structuredData.ts (tools/test-landing-seo.mjs asserts it
+  // stays '2026-12-01', so change that test too if this ever moves) and the month labels. Always
+  // word it "expected" in copy. History: 2026-09-11/12 split Oct booking / 24 Nov move-in;
+  // the 24 Nov day is retired (the Google Business listing still says it — owner edits that).
+  availableFrom: '2026-12-01',
+  moveInFrom: '2026-12-01',
   totalUnits: 20,
   hasElevator: false,
 } as const;
@@ -228,8 +225,8 @@ export const FAQ_ITEMS = [
     id: 'open',
     q_th: 'เปิดให้เข้าอยู่เมื่อไหร่?',
     q_en: 'When can I move in?',
-    a_th: `เปิดให้จองตั้งแต่${AVAILABLE_FROM_LABEL.th} · พร้อมเข้าอยู่จริง${MOVE_IN_LABEL.th}`,
-    a_en: `Reservations open ${AVAILABLE_FROM_LABEL.en} · actual move-in from ${MOVE_IN_LABEL.en}.`,
+    a_th: `คาดว่าเปิดจองและพร้อมเข้าอยู่ช่วง${MOVE_IN_LABEL.th} · ตอนนี้ตึกยังอยู่ระหว่างก่อสร้างและยังไม่มีห้องตัวอย่าง จะนัดชมห้องจริงเมื่อตึกเสร็จ`,
+    a_en: `Reservations and move-in are expected from ${MOVE_IN_LABEL.en}. The building is still under construction and there is no sample room yet — viewings of the real rooms start once it is finished.`,
   },
   {
     id: 'contact',

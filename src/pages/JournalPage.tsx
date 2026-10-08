@@ -4,7 +4,7 @@ import { titleFont } from '@/components/JournalCard';
 import JournalMosaicGrid from '@/components/JournalMosaicGrid';
 import usePageMeta from '@/hooks/usePageMeta';
 import { ARTICLES } from '@/data/journal';
-import { PROPERTY } from '@/data/propertyFacts';
+import { MOVE_IN_LABEL, PROPERTY } from '@/data/propertyFacts';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { TR } from '@/lib/translations';
 
@@ -16,8 +16,8 @@ const JournalPage: React.FC = () => {
     title: 'The Haven Journal — Nature Haven · บันทึกจากเฮเวน',
     description:
       lang === 'th'
-        ? 'บันทึกจากเฮเวน — เรื่องเล่าการอยู่อย่างสงบ ชีวิตกับสัตว์เลี้ยง และบันทึกการสร้าง Nature Haven สายไหม กรุงเทพฯ เปิดให้เข้าอยู่พฤศจิกายน 2026'
-        : 'The Haven Journal — notes on quiet living, pet life, and the building of Nature Haven, Saimai, Bangkok. Opening November 2026.',
+        ? 'บันทึกจากเฮเวน — เรื่องเล่าการอยู่อย่างสงบ ชีวิตกับสัตว์เลี้ยง และบันทึกการสร้าง Nature Haven สายไหม กรุงเทพฯ คาดว่าเปิดให้เข้าอยู่' + MOVE_IN_LABEL.th
+        : 'The Haven Journal — notes on quiet living, pet life, and the building of Nature Haven, Saimai, Bangkok. Move-in expected ' + MOVE_IN_LABEL.en + '.',
     canonical: `${PROPERTY.url}/journal`,
   });
 

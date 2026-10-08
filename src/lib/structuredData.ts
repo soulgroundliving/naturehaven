@@ -1,4 +1,4 @@
-import { FAQ_ITEMS, PARKING_CAPACITY_APPROX, PETS_POLICY, PRICE_FROM, PRICE_TO, PROPERTY } from '@/data/propertyFacts';
+import { FAQ_ITEMS, MOVE_IN_LABEL, PARKING_CAPACITY_APPROX, PETS_POLICY, PRICE_FROM, PRICE_TO, PROPERTY } from '@/data/propertyFacts';
 
 const siteUrl = PROPERTY.url;
 
@@ -25,7 +25,7 @@ const organizationSchema = {
   name: PROPERTY.name,
   alternateName: ['เนเจอร์ เฮเว่น', PROPERTY.legalName],
   description:
-    `Nature Haven อพาร์ทเมนท์สายไหม บนถนนเฉลิมพงษ์ เลี้ยงสัตว์ได้ทั้งตึกในกรุงเทพฯ. 25.2 sqm one-bedroom homes with a multi-purpose storage cabinet (microwave station, next to the fridge) and a private balcony (with dish sink) — pets welcome throughout the entire building; Wi-Fi, housekeeping, and A/C maintenance included (electricity and water metered separately). ${PRICE_FROM.toLocaleString('en-US')}–${PRICE_TO.toLocaleString('en-US')} THB/month by floor, enquiries via LINE. Reservations open October 2026; move-in from November 2026.`,
+    `Nature Haven อพาร์ทเมนท์สายไหม บนถนนเฉลิมพงษ์ เลี้ยงสัตว์ได้ทั้งตึกในกรุงเทพฯ. 25.2 sqm one-bedroom homes with a multi-purpose storage cabinet (microwave station, next to the fridge) and a private balcony (with dish sink) — pets welcome throughout the entire building; Wi-Fi, housekeeping, and A/C maintenance included (electricity and water metered separately). ${PRICE_FROM.toLocaleString('en-US')}–${PRICE_TO.toLocaleString('en-US')} THB/month by floor, enquiries via LINE. Move-in expected from ${MOVE_IN_LABEL.en}.`,
   url: siteUrl,
   image: `${siteUrl}/og-image-v2.jpg`,
   priceRange: '฿฿',
@@ -55,7 +55,7 @@ export const apartmentComplexSchema = {
   '@id': `${siteUrl}/#apartmentcomplex`,
   name: PROPERTY.name,
   description:
-    'Nature Haven is a newly built 20-unit อพาร์ทเมนท์เลี้ยงสัตว์ได้ on Chaloem Phong Road, Sai Mai, Bangkok. 25.2 sqm homes with 1 bedroom, 1 bathroom, a multi-purpose storage cabinet with a microwave station, and a private balcony — quiet low-density community. Rent includes Wi-Fi, cleaning and A/C maintenance; electricity and water are metered separately. Reservations open October 2026; move-in from November 2026.',
+    'Nature Haven is a newly built 20-unit อพาร์ทเมนท์เลี้ยงสัตว์ได้ on Chaloem Phong Road, Sai Mai, Bangkok. 25.2 sqm homes with 1 bedroom, 1 bathroom, a multi-purpose storage cabinet with a microwave station, and a private balcony — quiet low-density community. Rent includes Wi-Fi, cleaning and A/C maintenance; electricity and water are metered separately. Move-in expected from ' + MOVE_IN_LABEL.en + '.',
   url: siteUrl,
   image: `${siteUrl}/og-image-v2.jpg`,
   address: postalAddress,

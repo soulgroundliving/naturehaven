@@ -6,7 +6,6 @@ import {
   PARKING_CAPACITY_APPROX,
   BOOKING_FEE,
   MOVE_IN_LABEL,
-  AVAILABLE_FROM_LABEL,
 } from '@/data/propertyFacts';
 
 type T = { en: string; th: string };
@@ -34,8 +33,8 @@ export const TR = {
     },
     heroTagline: { en: 'LIVE WITH NATURE', th: 'LIVE WITH NATURE' },
     heroHeading: {
-      en: `Reservations open ${AVAILABLE_FROM_LABEL.en} · move-in ${MOVE_IN_LABEL.en}`,
-      th: `เปิดจอง${AVAILABLE_FROM_LABEL.th} · เข้าอยู่${MOVE_IN_LABEL.th}`,
+      en: `Reservations and move-in expected ${MOVE_IN_LABEL.en}`,
+      th: `คาดว่าเปิดจองและเข้าอยู่${MOVE_IN_LABEL.th}`,
     },
     heroBody: {
       en: 'Build updates and room facts — as they happen.',
@@ -127,8 +126,8 @@ export const TR = {
       th: 'เรื่องเล่าการอยู่อย่างสงบ\nเขียนไประหว่างสร้างไป',
     },
     indexIntro: {
-      en: 'Stories from the making of Nature Haven — quiet living, life with pets, the neighbourhood, and honest build diaries on the road to move-in in November 2026.',
-      th: 'เรื่องเล่าระหว่างการสร้าง Nature Haven — การอยู่อย่างสงบ ชีวิตกับสัตว์เลี้ยง ย่านสายไหม และบันทึกการสร้างแบบตรงไปตรงมา จนถึงวันเข้าอยู่พฤศจิกายน 2026',
+      en: `Stories from the making of Nature Haven — quiet living, life with pets, the neighbourhood, and honest build diaries on the road to move-in, expected ${MOVE_IN_LABEL.en}.`,
+      th: `เรื่องเล่าระหว่างการสร้าง Nature Haven — การอยู่อย่างสงบ ชีวิตกับสัตว์เลี้ยง ย่านสายไหม และบันทึกการสร้างแบบตรงไปตรงมา จนถึงวันเข้าอยู่ที่คาดไว้ช่วง${MOVE_IN_LABEL.th}`,
     },
     readAll: { en: 'Read all stories', th: 'อ่านบทความทั้งหมด' },
     filterAll: { en: 'All', th: 'ทั้งหมด' },
@@ -144,8 +143,8 @@ export const TR = {
     related: { en: 'More from the Journal', th: 'บทความอื่นจากบันทึก' },
     ctaTitle: { en: 'Questions about the room?', th: 'มีคำถามเกี่ยวกับห้องไหม?' },
     ctaBody: {
-      en: 'Message us on LINE — move-in from November 2026.',
-      th: 'ทักเราทาง LINE ได้เลย — เข้าอยู่ได้ตั้งแต่พฤศจิกายน 2026',
+      en: `Message us on LINE — move-in expected from ${MOVE_IN_LABEL.en}.`,
+      th: `ทักเราทาง LINE ได้เลย — คาดว่าเข้าอยู่ได้ตั้งแต่${MOVE_IN_LABEL.th}`,
     },
     ctaButton: { en: 'Chat on LINE', th: 'ทักไลน์เลย' },
     share: {
@@ -226,8 +225,8 @@ export const TR = {
       th: 'ที่พักส่วนตัวสร้างใหม่\nได้รับแรงบันดาลใจจาก\nการใช้ชีวิตแบบมินิมอล',
     },
     aboutBody: {
-      en: 'Designed for calm, crafted for privacy, and quietly connected to Sai Mai Road. Available from November 2026.',
-      th: 'อพาร์ทเมนท์สร้างใหม่ในสายไหม ออกแบบเพื่อความสงบและความเป็นส่วนตัว พร้อมเข้าอยู่พฤศจิกายน 2569',
+      en: `Designed for calm, crafted for privacy, and quietly connected to Sai Mai Road. Expected from ${MOVE_IN_LABEL.en}.`,
+      th: `อพาร์ทเมนท์สร้างใหม่ในสายไหม ออกแบบเพื่อความสงบและความเป็นส่วนตัว คาดว่าพร้อมเข้าอยู่${MOVE_IN_LABEL.th}`,
     },
     aboutButton: { en: 'View Residences', th: 'ดูห้องพัก' },
   },
@@ -279,8 +278,8 @@ export const TR = {
     decisionLeaseDetail: { en: 'Annual contract; move-in costs are confirmed on LINE.', th: 'สัญญารายปี และยืนยันค่าใช้จ่ายวันเข้าอยู่ทาง LINE' },
     decisionMoveinLabel: { en: 'Move-in', th: 'พร้อมเข้าอยู่' },
     decisionMoveinDetail: {
-      en: `From ${MOVE_IN_LABEL.en} (reservations open ${AVAILABLE_FROM_LABEL.en.split(' ')[0]}).`,
-      th: `${MOVE_IN_LABEL.th} (เปิดจอง${AVAILABLE_FROM_LABEL.th.split(' ')[0]})`,
+      en: `Expected from ${MOVE_IN_LABEL.en}.`,
+      th: `คาดว่า${MOVE_IN_LABEL.th}`,
     },
     decisionIncludedLabel: { en: 'Monthly rate', th: 'ค่าเช่ารายเดือน' },
     decisionIncludedDetail: {
@@ -587,13 +586,13 @@ export const TR = {
         { num: '01', title: 'Explore', body: 'Browse the residences. Decide if Nature Haven is the right fit.' },
         { num: '02', title: 'Reach out', body: "Message us on LINE. We'll answer your questions." },
         { num: '03', title: 'Reserve', body: 'Pay the deposit via PromptPay to hold your unit.' },
-        { num: '04', title: 'Move in', body: 'Sign the lease. Residences open from November 2026.' },
+        { num: '04', title: 'Move in', body: `Sign the lease. Residences are expected to open from ${MOVE_IN_LABEL.en}.` },
       ],
       th: [
         { num: '01', title: 'สำรวจ', body: 'ดูห้องพัก ตัดสินใจว่า Nature Haven เหมาะกับคุณไหม' },
         { num: '02', title: 'ติดต่อ', body: 'ส่งข้อความทาง LINE เราจะตอบคำถามของคุณ' },
         { num: '03', title: 'จอง', body: 'ชำระมัดจำผ่าน PromptPay เพื่อยึดห้องของคุณ' },
-        { num: '04', title: 'ย้ายเข้า', body: 'เซ็นสัญญา พร้อมเข้าอยู่พฤศจิกายน 2569' },
+        { num: '04', title: 'ย้ายเข้า', body: `เซ็นสัญญา คาดว่าพร้อมเข้าอยู่${MOVE_IN_LABEL.th}` },
       ],
     },
     ctaButton: { en: 'Message us on LINE', th: 'ทักไลน์สอบถามผ่าน LINE' },
