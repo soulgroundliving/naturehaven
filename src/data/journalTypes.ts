@@ -198,6 +198,12 @@ export interface Article {
   category: Bilingual;
   title: Bilingual;
   excerpt: Bilingual;
+  /**
+   * The title a search result shows — OPTIONAL. Without it the page title is "<title> — The Haven Journal"
+   * (the article title is also the on-page heading, so it can be long and need not carry what a visitor
+   * searches). Write one when it should: keep it within SEO_TITLE_MAX characters and end it with the brand name.
+   */
+  seoTitle?: Bilingual;
   /** ISO date, drives sort order (newest first) */
   date: string;
   readMinutes: number;

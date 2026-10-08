@@ -9,7 +9,7 @@ import { ARTICLES, formatArticleDate } from '@/data/journal';
 import type { Article } from '@/data/journalTypes';
 import { PROPERTY } from '@/data/propertyFacts';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { collectHeadings, shouldShowToc } from '@/lib/journalBlocks';
+import { collectHeadings, documentTitle, shouldShowToc } from '@/lib/journalBlocks';
 import type { LangCode } from '@/lib/journalBlocks';
 import { guidePages } from '@/lib/journalGuide';
 import { TR } from '@/lib/translations';
@@ -52,7 +52,7 @@ const ArticleView: React.FC<ArticleViewProps> = ({ article, noindex = false }) =
 
   const canonical = `${PROPERTY.url}/journal/${article.slug}`;
   usePageMeta({
-    title: `${article.title[lang]} — The Haven Journal`,
+    title: documentTitle(article, lang),
     description: article.excerpt[lang],
     canonical,
     ogImage: `${PROPERTY.url}${article.hero}`,
