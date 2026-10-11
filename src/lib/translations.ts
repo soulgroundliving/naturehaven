@@ -6,6 +6,7 @@ import {
   PARKING_CAPACITY_APPROX,
   BOOKING_FEE,
   MOVE_IN_LABEL,
+  AVAILABLE_FROM_LABEL,
 } from '@/data/propertyFacts';
 
 type T = { en: string; th: string };
@@ -33,8 +34,8 @@ export const TR = {
     },
     heroTagline: { en: 'LIVE WITH NATURE', th: 'LIVE WITH NATURE' },
     heroHeading: {
-      en: `Reservations and move-in expected ${MOVE_IN_LABEL.en}`,
-      th: `คาดว่าเปิดจองและเข้าอยู่${MOVE_IN_LABEL.th}`,
+      en: `Reservations expected from ${AVAILABLE_FROM_LABEL.en} · move-in ${MOVE_IN_LABEL.en}`,
+      th: `คาดว่าเปิดจอง${AVAILABLE_FROM_LABEL.th} · เข้าอยู่${MOVE_IN_LABEL.th}`,
     },
     heroBody: {
       en: 'Build updates and room facts — as they happen.',
