@@ -358,7 +358,7 @@ export const TR = {
     },
     openingRate: { en: 'Opening Rate', th: 'ราคาเปิดตัว' },
     petsEverywhere: { en: 'Pet-friendly — the whole building', th: 'อพาร์ทเมนท์เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น' },
-    petsEverywhereSub: { en: 'No floor restrictions — dogs (up to 15 kg), cats, rabbits and hamsters (2 per unit at most) are welcome in every home, on every floor.', th: 'ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสุนัข (ไม่เกิน 15 กก.) แมว กระต่าย และหนูแฮมสเตอร์ ไม่เกิน 2 ตัวต่อห้อง' },
+    petsEverywhereSub: { en: 'No floor restrictions — dogs (up to 15 kg), cats, rabbits and hamsters (one per unit, per the Bangkok pet ordinance) are welcome in every home, on every floor.', th: 'ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสุนัข (ไม่เกิน 15 กก.) แมว กระต่าย และหนูแฮมสเตอร์ 1 ตัวต่อห้องตามข้อบัญญัติ กทม.' },
     // "Pets we welcome" card — source: house rules (Nest) §4.2–4.6 + pet guide,
     // owner decision 2026-09-21. The test is adult weight by breed standard,
     // never a list of breeds. The floor tips are the guide's recommendations
@@ -373,8 +373,8 @@ export const TR = {
       weightUnit: { en: 'kg', th: 'กก.' },
       weightCaption: { en: 'full-grown, by breed standard', th: 'ตัวเต็มวัย ตามมาตรฐานสายพันธุ์' },
       lead: {
-        en: 'We accept dogs, cats, rabbits and hamsters — other species not at this time. We keep no list of approved breeds: a full-grown dog weighs up to 15 kg by its breed standard, checked on the day you register. We measure the adult because a 4 kg puppy today can be 30 kg next year — and up to 2 pets share each home.',
-        th: 'เรารับสุนัข แมว กระต่าย และหนูแฮมสเตอร์ สัตว์ชนิดอื่นยังไม่รับ เราไม่มีรายชื่อสายพันธุ์ที่รับ สำหรับสุนัขมีเกณฑ์เดียวคือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ไม่เกิน 15 กก. พิจารณา ณ วันลงทะเบียน เราวัดที่ตัวเต็มวัยเพราะลูกสุนัข 4 กก. วันนี้ อาจเป็น 30 กก. ในปีหน้า และเลี้ยงได้ไม่เกิน 2 ตัวต่อห้อง',
+        en: 'We accept dogs, cats, rabbits and hamsters — other species not at this time. We keep no list of approved breeds: a full-grown dog weighs up to 15 kg by its breed standard, checked on the day you register. We measure the adult because a 4 kg puppy today can be 30 kg next year — and one pet per home, as the Bangkok pet ordinance sets.',
+        th: 'เรารับสุนัข แมว กระต่าย และหนูแฮมสเตอร์ สัตว์ชนิดอื่นยังไม่รับ เราไม่มีรายชื่อสายพันธุ์ที่รับ สำหรับสุนัขมีเกณฑ์เดียวคือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ไม่เกิน 15 กก. พิจารณา ณ วันลงทะเบียน เราวัดที่ตัวเต็มวัยเพราะลูกสุนัข 4 กก. วันนี้ อาจเป็น 30 กก. ในปีหน้า และเลี้ยงได้ 1 ตัวต่อห้องตามข้อบัญญัติ กทม.',
       },
       groups: {
         en: [

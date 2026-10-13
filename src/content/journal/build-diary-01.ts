@@ -61,8 +61,8 @@ const article: Article = {
         [
           { th: 'สัตว์เลี้ยง', en: 'Pets' },
           {
-            th: 'ทุกห้องทุกชั้นเลี้ยงได้ กติกาเดียวกันทั้งตึก — สุนัข (ตัวเต็มวัยไม่เกิน 15 กก.) แมว กระต่าย และหนูแฮมสเตอร์ ไม่เกิน 2 ตัวต่อห้อง มีค่าสัตว์เลี้ยงรายเดือนต่อตัว ไม่ใช่ข้อยกเว้นที่ต้องต่อรองเป็นราย ๆ',
-            en: 'Every unit on every floor is pet-friendly, under one rule for the whole building — dogs (up to 15 kg full-grown), cats, rabbits and hamsters, two per home at most, with a monthly pet fee per animal. Never an exception to negotiate.',
+            th: 'ทุกห้องทุกชั้นเลี้ยงได้ กติกาเดียวกันทั้งตึก — สุนัข (ตัวเต็มวัยไม่เกิน 15 กก.) แมว กระต่าย และหนูแฮมสเตอร์ 1 ตัวต่อห้องตามข้อบัญญัติ กทม. มีค่าสัตว์เลี้ยงรายเดือน ไม่ใช่ข้อยกเว้นที่ต้องต่อรองเป็นราย ๆ',
+            en: 'Every unit on every floor is pet-friendly, under one rule for the whole building — dogs (up to 15 kg full-grown), cats, rabbits and hamsters, one per home, as the Bangkok pet ordinance sets, with a monthly pet fee. Never an exception to negotiate.',
           },
         ],
         [

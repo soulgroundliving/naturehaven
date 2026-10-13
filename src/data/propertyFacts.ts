@@ -108,8 +108,8 @@ export const RESERVED_PARKING_FEE_MONTHLY = 300;
 export const BOOKING_FEE = 500;
 
 export const PETS_POLICY = {
-  th: 'เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น — รับสุนัข (น้ำหนักตัวเต็มวัยไม่เกิน 15 กก. ตามมาตรฐานสายพันธุ์) แมว กระต่าย และหนูแฮมสเตอร์ ไม่เกิน 2 ตัวต่อห้อง',
-  en: 'Pet-friendly throughout the entire building — no floor restrictions. Dogs (up to 15 kg adult weight by breed standard), cats, rabbits and hamsters welcome, up to 2 per unit.',
+  th: 'เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น — รับสุนัข (น้ำหนักตัวเต็มวัยไม่เกิน 15 กก. ตามมาตรฐานสายพันธุ์) แมว กระต่าย และหนูแฮมสเตอร์ 1 ตัวต่อห้องตามข้อบัญญัติ กทม.',
+  en: 'Pet-friendly throughout the entire building — no floor restrictions. Dogs (up to 15 kg adult weight by breed standard), cats, rabbits and hamsters welcome, one per unit as the Bangkok pet ordinance sets.',
 } as const;
 
 export const UNITS = [
@@ -198,8 +198,8 @@ export const FAQ_ITEMS = [
     id: 'pets',
     q_th: 'รับสัตว์เลี้ยงไหม?',
     q_en: 'Are pets allowed?',
-    a_th: `รับ — สุนัข แมว กระต่าย และหนูแฮมสเตอร์ เลี้ยงได้ทั้งตึก ไม่กำหนดว่าชั้นไหน สำหรับสุนัขเกณฑ์คือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ ไม่เกิน 15 กก. (ไม่ใช่รายชื่อสายพันธุ์) ไม่เกิน 2 ตัวต่อห้อง สัตว์ชนิดอื่นยังไม่รับ มีค่าสัตว์เลี้ยง ${PET_FEE_MONTHLY.toLocaleString('en-US')} บาท/ตัว/เดือน และขอให้ดูแลน้องและห้องให้สะอาด ไม่ให้มีกลิ่นรบกวนเพื่อนบ้าน`,
-    a_en: `Yes — dogs, cats, rabbits and hamsters are welcome, on every floor. For dogs the criterion is full-grown weight by breed standard, up to 15 kg (we keep no list of breeds), and up to 2 pets per unit. Other species are not accepted at this time. The monthly fee is ${PET_FEE_MONTHLY.toLocaleString('en-US')} THB per pet, and we ask you to keep the pet and the home clean so no smell reaches the neighbours.`,
+    a_th: `รับ — สุนัข แมว กระต่าย และหนูแฮมสเตอร์ เลี้ยงได้ทั้งตึก ไม่กำหนดว่าชั้นไหน สำหรับสุนัขเกณฑ์คือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ ไม่เกิน 15 กก. (ไม่ใช่รายชื่อสายพันธุ์) 1 ตัวต่อห้องตามข้อบัญญัติ กทม. สัตว์ชนิดอื่นยังไม่รับ มีค่าสัตว์เลี้ยง ${PET_FEE_MONTHLY.toLocaleString('en-US')} บาท/ตัว/เดือน และขอให้ดูแลน้องและห้องให้สะอาด ไม่ให้มีกลิ่นรบกวนเพื่อนบ้าน`,
+    a_en: `Yes — dogs, cats, rabbits and hamsters are welcome, on every floor. For dogs the criterion is full-grown weight by breed standard, up to 15 kg (we keep no list of breeds), and one pet per unit as the Bangkok pet ordinance sets. Other species are not accepted at this time. The monthly fee is ${PET_FEE_MONTHLY.toLocaleString('en-US')} THB per pet, and we ask you to keep the pet and the home clean so no smell reaches the neighbours.`,
   },
   {
     id: 'contract',
