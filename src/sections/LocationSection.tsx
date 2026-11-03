@@ -76,16 +76,39 @@ const LocationSection: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div className="loc-map relative">
+            {/* One map for both languages: the redrawn building + the real drive
+                (U-turn at Make Me Wine) exist only with Thai labels. Landscape
+                20:13 — shown whole, never cropped, so the route stays readable.
+                The same file is the hero of Green's location card on LINE. */}
             <img
-              src={lang === 'th' ? '/assets/location-area-map-th.png' : '/assets/location-area-map-en.png'}
+              src="/assets/location-area-map-th.png"
               alt={
                 lang === 'th'
-                  ? 'ภาพประกอบแผนที่ Nature Haven และจุดสังเกตใกล้เคียงย่านสายไหม — Big C ลำลูกกา 2, รพ. CGH สายไหม, ตลาดวงศกร, Makro'
-                  : 'Illustrated map of Nature Haven and nearby Sai Mai landmarks — Big C Lam Luk Ka 2, CGH Sai Mai Hospital, Wongsakorn Market, Makro'
+                  ? 'แผนที่ทางมา Nature Haven จาก BTS คูคต ต่อแท็กซี่ราว 5 กม. ตาม ถ.ลำลูกกา เลย ถ.เฉลิมพงษ์ไปกลับรถที่ร้าน Make Me Wine แล้วเลี้ยวซ้ายเข้า ถ.เฉลิมพงษ์ ตรงหัวมุม Big C คลอง 4 ตึกอยู่ขวามือ พร้อม Big C มินิ รพ. CGH สายไหม 7-Eleven ตลาดวงศกร และ Makro ใกล้ตึก ภาพอาคารเป็นภาพจำลอง (AI)'
+                  : 'Map (Thai labels) of the drive to Nature Haven: from BTS Khu Khot take a taxi about 5 km along Lam Luk Ka Rd, pass Chalermpong Rd, U-turn at Make Me Wine, then turn left into Chalermpong Rd at the Big C Khlong 4 corner — the building is on the right. Nearby: Big C Mini, CGH Sai Mai Hospital, 7-Eleven, Wongsakorn Market, Makro. The building is an AI illustration.'
               }
+              width={1900}
+              height={1236}
               loading="lazy"
-              className="w-full rounded-xl shadow-lg object-cover aspect-[3/4] lg:aspect-auto lg:h-[700px]"
+              className="w-full h-auto rounded-xl shadow-lg"
             />
+            <figure className="mt-6 flex flex-col items-center">
+              <video
+                src="/assets/nest-journey-map.mp4"
+                poster="/assets/nest-journey-map-poster.jpg"
+                controls
+                muted
+                playsInline
+                preload="none"
+                width={1080}
+                height={1920}
+                className="w-full max-w-[300px] h-auto rounded-xl shadow-lg bg-[#f5f1e4]"
+                aria-label={lang === 'th' ? 'วิดีโอทางมาบ้าน จาก BTS คูคต ถึงหน้าตึก (59 วินาที ไม่มีเสียง)' : 'Video: the way here, from BTS Khu Khot to the building (59 s, no sound)'}
+              />
+              <figcaption className="mt-2 font-sans text-sm sec-text-60 text-center">
+                {lang === 'th' ? 'วิดีโอทางมาบ้าน · 59 วิ · ภาพอาคารเป็นภาพจำลอง (AI)' : 'The way here · 59 s · building is an AI illustration'}
+              </figcaption>
+            </figure>
           </div>
 
           <div>
