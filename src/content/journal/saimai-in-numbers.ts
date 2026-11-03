@@ -13,10 +13,11 @@ const article: Article = {
   },
   date: '2026-07-02',
   readMinutes: 4,
-  hero: '/assets/location-area-map-th.png',
+  hero: '/assets/location-area-map-th-16x9.jpg',
+  heroOrigin: 'ai',
   heroAlt: {
-    en: 'Map of the area around Nature Haven, Sai Mai, Bangkok',
-    th: 'แผนที่บริเวณรอบ Nature Haven ย่านสายไหม กรุงเทพฯ',
+    en: 'Map (Thai labels) of the drive to Nature Haven, Sai Mai, Bangkok, from BTS Khu Khot — the building is an AI illustration',
+    th: 'แผนที่ทางมา Nature Haven ย่านสายไหม กรุงเทพฯ จาก BTS คูคต — ภาพอาคารเป็นภาพจำลอง (AI)',
   },
   blocks: [
     {
