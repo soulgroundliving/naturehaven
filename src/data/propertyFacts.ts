@@ -212,8 +212,8 @@ export const FAQ_ITEMS = [
     id: 'deposit',
     q_th: 'เงินที่ต้องเตรียมวันเข้าอยู่?',
     q_en: 'What deposit is required to move in?',
-    a_th: `ค่าใช้จ่ายวันเข้าอยู่มี 3 ส่วน — ค่าจอง ${BOOKING_FEE} บาท (ชำระผ่าน PromptPay ตอนกดจอง คืนได้หากแจ้งยกเลิกตามกำหนด แต่ริบหากไม่มาตามนัดโดยไม่แจ้งล่วงหน้า และหักลบเป็นส่วนหนึ่งของยอดด้านล่างเมื่อทำสัญญา) เงินประกันความเสียหาย 2 เดือน (เท่ากับค่าเช่าห้องนั้นคูณสอง คืนเต็มจำนวนเมื่อสิ้นสุดสัญญาหากไม่มีความเสียหายและไม่มีค้างชำระ) และค่าเช่าล่วงหน้า 1 เดือน`,
-    a_en: `Move-in costs have three parts — a ${BOOKING_FEE} THB booking fee (paid via PromptPay when you book; refundable if you cancel with notice, forfeited on a no-show, and credited toward the total below once you sign), a two-month security deposit (equal to twice your unit's rent, fully refundable at lease end if there's no damage or unpaid balance), and one month of advance rent.`,
+    a_th: `ค่าใช้จ่ายวันเข้าอยู่มี 3 ส่วน — ค่าจองคิว ${BOOKING_FEE} บาท (ชำระผ่าน PromptPay ตอนกดจอง คืนเต็มจำนวนหากโครงการเสนอห้องในชั้นที่เลือกไม่ได้หรือการพิจารณาไม่ผ่าน และคืนเต็มจำนวนเมื่อแจ้งขอ หากโครงการเลื่อนวันเข้าอยู่แล้วคุณไม่ต้องการรอ ไม่คืนหากยกเลิกเองหรือไม่มาตามนัดโดยไม่แจ้งล่วงหน้า และหักลบเป็นส่วนหนึ่งของยอดด้านล่างเมื่อทำสัญญา) เงินประกันความเสียหาย 2 เดือน (เท่ากับค่าเช่าห้องนั้นคูณสอง คืนเต็มจำนวนเมื่อสิ้นสุดสัญญาหากไม่มีความเสียหายและไม่มีค้างชำระ) และค่าเช่าล่วงหน้า 1 เดือน`,
+    a_en: `Move-in costs have three parts — a ${BOOKING_FEE} THB booking fee (paid via PromptPay when you book; fully refunded if we can't offer a room on your chosen floor or your application isn't approved, and refunded in full on request if we push back the move-in date and you'd rather not wait; not refunded if you cancel on your own or don't show up without telling us; credited toward the total below once you sign), a two-month security deposit (equal to twice your unit's rent, fully refundable at lease end if there's no damage or unpaid balance), and one month of advance rent.`,
   },
   {
     id: 'parking',
@@ -279,19 +279,20 @@ export type FaqItem = (typeof FAQ_ITEMS)[number];
 // in src/content/journal/saimai-in-numbers.ts. That article isn't imported
 // from here (it's editorial narrative, not a data consumer) — if a distance
 // below ever changes, re-check that article by hand.
+// Thai names follow the saimai-in-numbers article; brand names stay in Latin script.
 export const NEARBY_ESSENTIALS = [
-  { name: 'Big C', distance: '280 m' },
-  { name: 'CGH Sai Mai Hospital', distance: '300 m' },
-  { name: 'Wongsakorn Market', distance: '700 m' },
-  { name: 'Makro Sai Mai', distance: '750 m' },
-  { name: 'BTS Khu Khot', distance: '5 km · ~15 min by taxi' },
+  { name: { en: 'Big C', th: 'Big C' }, distance: { en: '280 m', th: '280 ม.' } },
+  { name: { en: 'CGH Sai Mai Hospital', th: 'โรงพยาบาล CGH สายไหม' }, distance: { en: '300 m', th: '300 ม.' } },
+  { name: { en: 'Wongsakorn Market', th: 'ตลาดวงศกร' }, distance: { en: '700 m', th: '700 ม.' } },
+  { name: { en: 'Makro Sai Mai', th: 'Makro สายไหม' }, distance: { en: '750 m', th: '750 ม.' } },
+  { name: { en: 'BTS Khu Khot', th: 'BTS คูคต' }, distance: { en: '5 km · ~15 min by taxi', th: '5 กม. · แท็กซี่ราว 15 นาที' } },
 ] as const;
 
 export const LIFESTYLE_SURROUNDINGS = [
-  { name: 'Saimai Avenue', distance: '1 km' },
-  { name: 'Maruay Market', distance: '4.4 km' },
-  { name: 'AC Sai Mai Market', distance: '5 km' },
-  { name: 'Foodland', distance: '3.3 km' },
-  { name: 'Save One Go Market', distance: '7 km' },
-  { name: 'Market Place Theprak', distance: '9.7 km' },
+  { name: { en: 'Saimai Avenue', th: 'Saimai Avenue' }, distance: { en: '1 km', th: '1 กม.' } },
+  { name: { en: 'Maruay Market', th: 'ตลาดมารวย' }, distance: { en: '4.4 km', th: '4.4 กม.' } },
+  { name: { en: 'AC Sai Mai Market', th: 'ตลาดเอซี สายไหม' }, distance: { en: '5 km', th: '5 กม.' } },
+  { name: { en: 'Foodland', th: 'Foodland' }, distance: { en: '3.3 km', th: '3.3 กม.' } },
+  { name: { en: 'Save One Go Market', th: 'Save One Go Market' }, distance: { en: '7 km', th: '7 กม.' } },
+  { name: { en: 'Market Place Theprak', th: 'Market Place Theprak' }, distance: { en: '9.7 km', th: '9.7 กม.' } },
 ] as const;

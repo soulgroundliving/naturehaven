@@ -70,13 +70,15 @@ const FooterSection: React.FC = () => {
             itemScope
             itemType="https://schema.org/PostalAddress"
           >
-            <span itemProp="addressLocality">Sai Mai</span>
-            {', '}
-            <span itemProp="addressRegion">Bangkok</span>
+            {/* Microdata keeps the English values; the visible text follows the language */}
+            <meta itemProp="addressLocality" content="Sai Mai" />
+            <meta itemProp="addressRegion" content="Bangkok" />
+            <meta itemProp="addressCountry" content="TH" />
+            {f.address[lang]}
             {' · '}
             <span itemProp="postalCode">10220</span>
             {' · '}
-            <span itemProp="addressCountry">Thailand</span>
+            {f.country[lang]}
           </address>
         </div>
 

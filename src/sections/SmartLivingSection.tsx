@@ -29,6 +29,8 @@ type SimpleIcon = React.FC<{ size?: number; className?: string }>;
 
 const FEATURE_ICONS: SimpleIcon[] = [KeyIcon, ShieldIcon, WifiIcon];
 const APP_FEATURE_ICONS: LucideIcon[] = [CalendarCheck, Receipt, Wrench, PawPrint];
+// Phone mockup tiles, in TR.smart.phone.tiles order
+const PHONE_TILE_ICONS: (LucideIcon | SimpleIcon)[] = [CalendarCheck, Receipt, KeyIcon, Wrench, PawPrint, LeafIcon];
 
 const PhoneTile: React.FC<{
   Icon: LucideIcon | SimpleIcon;
@@ -55,6 +57,7 @@ const SmartLivingSection: React.FC = () => {
   const sl = TR.smart;
   const features = sl.features[lang];
   const appFeatures = sl.appFeatures[lang];
+  const phoneTiles = sl.phone.tiles[lang];
   const sustainable = sl.sustainable[lang];
 
   useGSAP(
@@ -195,20 +198,17 @@ const SmartLivingSection: React.FC = () => {
                 <div className="px-5 pt-5 pb-4 flex justify-between items-center border-b border-dark-charcoal/10">
                   <div>
                     <span className="block text-[9px] text-dark-charcoal/45 uppercase tracking-[0.35em] mb-1">NATURE HAVEN</span>
-                    <span className="font-serif text-[18px] font-light leading-tight">Good morning.</span>
+                    <span className="font-serif text-[18px] font-light leading-tight">{sl.phone.greeting[lang]}</span>
                   </div>
                   <div className="w-8 h-8 rounded-full bg-soft-taupe/50 border border-dark-charcoal/10" />
                 </div>
                 <div className="mx-5 mt-4 mb-4 px-3.5 py-2.5 bg-pure-white rounded-full flex gap-2 items-center text-[11px] text-dark-charcoal/40 shadow-sm">
-                  <Search size={13} /><span>Search the residence…</span>
+                  <Search size={13} /><span>{sl.phone.search[lang]}</span>
                 </div>
                 <div className="px-5 grid grid-cols-2 gap-2">
-                  <PhoneTile Icon={CalendarCheck} title="Booking"     sub="Common spaces"   accent />
-                  <PhoneTile Icon={Receipt}       title="Payments"    sub="Auto · LINE Pay" />
-                  <PhoneTile Icon={KeyIcon}       title="My Door"     sub="Open · Lock" />
-                  <PhoneTile Icon={Wrench}        title="Maintenance" sub="Request anytime" />
-                  <PhoneTile Icon={PawPrint}      title="Pet"         sub="Vaccinations" />
-                  <PhoneTile Icon={LeafIcon}      title="Air Quality" sub="PM2.5 · 18" />
+                  {PHONE_TILE_ICONS.map((Icon, i) => (
+                    <PhoneTile key={i} Icon={Icon} {...phoneTiles[i]} accent={i === 0} />
+                  ))}
                 </div>
                 <div className="mt-auto px-5 py-3.5 border-t border-dark-charcoal/10 flex justify-around items-center">
                   <HomeIcon      size={17} className="text-sage-green" />

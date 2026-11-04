@@ -15,6 +15,12 @@ export { pick };
 
 export const TR = {
   nav: {
+    sectionsLabel: { en: 'Page sections', th: 'ส่วนต่าง ๆ ของหน้า' },
+    // SectionDots, in SECTION_IDS order
+    sections: {
+      en: ['Hero', 'Philosophy', 'Lookbook', 'Residences', 'Amenities', 'Journal', 'Location', 'Smart Living', 'FAQ', 'Contact'],
+      th: ['หน้าแรก', 'ปรัชญา', 'คอลเลกชัน', 'ห้องพัก', 'สิ่งอำนวย', 'บันทึก', 'ทำเล', 'สมาร์ทลิฟวิ่ง', 'คำถาม', 'ติดต่อ'],
+    },
     links: {
       en: ['PHILOSOPHY', 'LOOKBOOK', 'RESIDENCES', 'AMENITIES', 'JOURNAL', 'LOCATION', 'CONTACT'],
       th: ['ปรัชญา', 'คอลเลกชัน', 'ห้องพัก', 'สิ่งอำนวย', 'บันทึก', 'ทำเล', 'ติดต่อ'],
@@ -85,7 +91,7 @@ export const TR = {
     tiktokSub: { en: 'Short project clips', th: 'คลิปสั้นจากโครงการ' },
     journal: { en: 'The Haven Journal', th: 'บันทึกจากเฮเวน' },
     journalSub: { en: 'Articles and stories', th: 'บทความและเรื่องราว' },
-    journalHub: { en: 'Journal Hub', th: 'Journal Hub' },
+    journalHub: { en: 'Journal Hub', th: 'บันทึกจากเฮเวน' },
     rooms: { en: 'Rooms', th: 'ห้องและราคา' },
     roomsSub: { en: 'Details and pricing', th: 'รายละเอียดและราคา' },
     newTab: { en: '(opens in a new tab)', th: '(เปิดในแท็บใหม่)' },
@@ -320,7 +326,7 @@ export const TR = {
     sqm: { en: 'sq.m.', th: 'ตร.ม.' },
     bedroom: { en: '1 Bedroom / 1 Bathroom', th: '1 ห้องนอน / 1 ห้องน้ำ' },
     kitchen: { en: 'Storage cabinet + microwave station, sink on the balcony', th: 'ตู้เก็บของอเนกประสงค์ + ที่วางไมโครเวฟ, ซิงก์ที่ระเบียง' },
-    unitsTotal: { en: 'units total', th: 'ยูนิตรวม' },
+    unitsTotal: { en: 'units total', th: 'ยูนิต' },
     floors: { en: 'floors', th: 'ชั้น' },
     termsTitle: { en: 'Terms', th: 'เงื่อนไข' },
     contractLabel: { en: 'Contract', th: 'สัญญา' },
@@ -528,12 +534,35 @@ export const TR = {
         { label: 'Free Wi-Fi', sub: 'Included in rent' },
       ],
       th: [
-        { label: 'ดิจิทัลล็อค์', sub: 'ยูนิตและอาคาร' },
+        { label: 'ดิจิทัลล็อก', sub: 'ยูนิตและอาคาร' },
         { label: 'กล้องวงจรปิด', sub: 'ตรวจจับตลอด 24 ชม.' },
         { label: 'Wi-Fi ฟรี', sub: 'รวมในค่าเช่า' },
       ],
     },
     appLabel: { en: 'Also in-app', th: 'ในแอปยังมี' },
+    // The phone mockup's own screen text
+    phone: {
+      greeting: { en: 'Good morning.', th: 'อรุณสวัสดิ์' },
+      search: { en: 'Search the residence…', th: 'ค้นหาในโครงการ…' },
+      tiles: {
+        en: [
+          { title: 'Booking', sub: 'Common spaces' },
+          { title: 'Payments', sub: 'Auto · LINE Pay' },
+          { title: 'My Door', sub: 'Open · Lock' },
+          { title: 'Maintenance', sub: 'Request anytime' },
+          { title: 'Pet', sub: 'Vaccinations' },
+          { title: 'Air Quality', sub: 'PM2.5 · 18' },
+        ],
+        th: [
+          { title: 'จองพื้นที่', sub: 'พื้นที่ส่วนกลาง' },
+          { title: 'ชำระเงิน', sub: 'Auto · LINE Pay' },
+          { title: 'ประตูห้อง', sub: 'เปิด · ล็อก' },
+          { title: 'แจ้งซ่อม', sub: 'แจ้งได้ทุกเมื่อ' },
+          { title: 'สัตว์เลี้ยง', sub: 'ประวัติวัคซีน' },
+          { title: 'คุณภาพอากาศ', sub: 'PM2.5 · 18' },
+        ],
+      },
+    },
     appFeatures: {
       en: [
         { label: 'Bookings', sub: 'Common spaces' },
@@ -586,17 +615,17 @@ export const TR = {
       en: [
         { num: '01', title: 'Explore', body: 'Browse the residences. Decide if Nature Haven is the right fit.' },
         { num: '02', title: 'Reach out', body: "Message us on LINE. We'll answer your questions." },
-        { num: '03', title: 'Reserve', body: 'Pay the deposit via PromptPay to hold your unit.' },
+        { num: '03', title: 'Reserve', body: `Pay the ${BOOKING_FEE} THB booking fee via PromptPay to secure your place in the queue to view and sign.` },
         { num: '04', title: 'Move in', body: `Sign the lease. Residences are expected to open from ${MOVE_IN_LABEL.en}.` },
       ],
       th: [
         { num: '01', title: 'สำรวจ', body: 'ดูห้องพัก ตัดสินใจว่า Nature Haven เหมาะกับคุณไหม' },
         { num: '02', title: 'ติดต่อ', body: 'ส่งข้อความทาง LINE เราจะตอบคำถามของคุณ' },
-        { num: '03', title: 'จอง', body: 'ชำระมัดจำผ่าน PromptPay เพื่อยึดห้องของคุณ' },
+        { num: '03', title: 'จองคิว', body: `ชำระค่าจองคิว ${BOOKING_FEE} บาทผ่าน PromptPay เพื่อรับคิวเข้าชมห้องและทำสัญญา` },
         { num: '04', title: 'ย้ายเข้า', body: `เซ็นสัญญา คาดว่าพร้อมเข้าอยู่${MOVE_IN_LABEL.th}` },
       ],
     },
-    ctaButton: { en: 'Message us on LINE', th: 'ทักไลน์สอบถามผ่าน LINE' },
+    ctaButton: { en: 'Message us on LINE', th: 'สอบถามทาง LINE' },
     lineNote: { en: 'We answer fastest on LINE.', th: 'เราตอบเร็วที่สุดทาง LINE' },
     appointmentNote: {
       en: 'There is no walk-in office — please message us on LINE and we will reply there.',
@@ -610,6 +639,8 @@ export const TR = {
     allChannels: { en: 'All Channels', th: 'ช่องทางทั้งหมด' },
     privacy: { en: 'Privacy Policy', th: 'นโยบายความเป็นส่วนตัว' },
     terms: { en: 'Terms of Service', th: 'ข้อตกลงการใช้งาน' },
+    address: { en: 'Sai Mai, Bangkok', th: 'สายไหม กรุงเทพฯ' },
+    country: { en: 'Thailand', th: 'ประเทศไทย' },
   },
   cookieNotice: {
     message: {
