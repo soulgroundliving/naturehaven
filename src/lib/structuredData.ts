@@ -151,7 +151,7 @@ export function routeStructuredData(pathname: string) {
     );
   }
   if (pathname.startsWith('/journal/') || pathname.startsWith('/collections/')) {
-    return pageSchema('WebPage', pathname, 'Nature Haven — เรื่องเล่าจากเฮเวน', 'เรื่องเล่าและรายละเอียดการออกแบบจาก Nature Haven สายไหม กรุงเทพฯ');
+    return pageSchema('WebPage', pathname, 'Nature Haven — บันทึกจากเฮเวน', 'เรื่องเล่าและรายละเอียดการออกแบบจาก Nature Haven สายไหม กรุงเทพฯ');
   }
   if (pathname === '/links') {
     return pageSchema('WebPage', '/links', 'Nature Haven — ช่องทางทั้งหมด', 'รวม LINE, เว็บไซต์, บันทึกจากเฮเวน และแผนที่ของ Nature Haven สายไหม กรุงเทพฯ');

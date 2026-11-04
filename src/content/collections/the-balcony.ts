@@ -7,7 +7,7 @@ const collection: Collection = {
   index: '05',
   title: {
     en: 'The Engineered Balcony',
-    th: 'ระเบียงนวัตกรรม',
+    th: 'ระเบียงที่คิดมาทุกจุด',
   },
   essence: {
     en: 'The outdoor edge — where the wet work, the drying and the fresh air live, thought through to the last hook and slope.',
@@ -20,7 +20,7 @@ const collection: Collection = {
   hero: '/assets/balcony-view.jpg',
   heroAlt: {
     en: 'The private balcony — stainless dish sink, wall-mounted drying rail, black railing and the engineered slider frame',
-    th: 'ระเบียงส่วนตัวจริงของโครงการ — ซิงก์ล้างจานสแตนเลส ราวตากผ้าติดผนัง ราวกันตกสีดำ และกรอบบานเลื่อนนวัตกรรม',
+    th: 'ระเบียงส่วนตัว — ซิงก์ล้างจานสแตนเลส ราวตากผ้าติดผนัง ราวกันตกสีดำ และกรอบบานเลื่อน',
   },
   details: [
     {
@@ -28,7 +28,7 @@ const collection: Collection = {
       title: { en: 'A slider built to keep the weather out', th: 'บานเลื่อนที่กันทุกอย่างไว้ข้างนอก' },
       body: {
         en: 'A specially developed door: a 10 cm aluminium frame, 6 mm green-tinted glass, and hook locks top and bottom — heavier and tighter than the standard kind, so rain never drives in and the frame never rattles. A pet mesh is built into the same track, so the breeze comes through while your animals stay safely inside.',
-        th: 'บานเลื่อนรุ่นพัฒนาพิเศษ กรอบอะลูมิเนียมหนา 10 ซม. กระจกเขียวใสหนา 6 มม. และตัวล็อกตะขอทั้งบน-ล่าง — หนาและแน่นกว่าบานทั่วไป ฝนจึงไม่สาดเข้า กรอบไม่สั่นคลอน และมีมุ้งกันสัตว์เลี้ยงในรางเดียวกัน เปิดรับลมได้โดยที่น้อง ๆ ยังอยู่ในห้องอย่างปลอดภัย',
+        th: 'บานเลื่อนที่พัฒนาขึ้นเป็นพิเศษ กรอบอะลูมิเนียมหนา 10 ซม. กระจกเขียวใสหนา 6 มม. และตัวล็อกตะขอทั้งบน-ล่าง — หนาและแน่นกว่าบานทั่วไป ฝนจึงไม่สาดเข้า กรอบไม่สั่นคลอน และมีมุ้งกันสัตว์เลี้ยงในรางเดียวกัน เปิดรับลมได้โดยที่น้อง ๆ ยังอยู่ในห้องอย่างปลอดภัย',
       },
       spec: {
         en: 'Aluminium frame 10 cm · glass 6 mm green-tinted · built-in pet mesh · hook locks top + bottom',
@@ -40,7 +40,7 @@ const collection: Collection = {
       title: { en: 'The wet work, kept outside', th: 'งานเปียก อยู่ข้างนอก' },
       body: {
         en: 'A full stainless dish sink with a low tap and its own under-shelf, plus a wall-mounted drying rail — the washing-up and the damp live out here in the fresh air, not beside your bed. It is the quiet reason the room inside always stays a room, never a kitchen.',
-        th: 'ซิงก์ล้างจานสแตนเลสเต็มตัวพร้อมก๊อกด้านล่างและชั้นวางในตัว พร้อมราวตากผ้าติดผนัง — งานล้างและความชื้นถูกย้ายมาอยู่กลางแจ้งตรงนี้ ไม่ใช่ข้างเตียง มันคือเหตุผลเงียบ ๆ ที่ทำให้ห้องด้านในยังเป็นห้องพักเสมอ ไม่กลายเป็นครัว',
+        th: 'ซิงก์ล้างจานสแตนเลสเต็มตัวพร้อมก๊อกด้านล่างและชั้นวางในตัว พร้อมราวตากผ้าติดผนัง — งานล้างและความชื้นถูกย้ายมาอยู่กลางแจ้งตรงนี้ ไม่ใช่ข้างเตียง ห้องด้านในจึงยังเป็นห้องพักเสมอ ไม่กลายเป็นครัว',
       },
     },
     {

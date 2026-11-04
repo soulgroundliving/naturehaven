@@ -102,14 +102,14 @@ export const TR = {
     tiktokSub: { en: 'Short project clips', th: 'คลิปสั้นจากโครงการ' },
     journal: { en: 'The Haven Journal', th: 'บันทึกจากเฮเวน' },
     journalSub: { en: 'Articles and stories', th: 'บทความและเรื่องราว' },
-    journalHub: { en: 'Journal Hub', th: 'บันทึกจากเฮเวน' },
+    journalHub: { en: 'The Haven Journal', th: 'บันทึกจากเฮเวน' },
     rooms: { en: 'Rooms', th: 'ห้องและราคา' },
     roomsSub: { en: 'Details and pricing', th: 'รายละเอียดและราคา' },
     newTab: { en: '(opens in a new tab)', th: '(เปิดในแท็บใหม่)' },
     aiNote: { en: 'Images are AI-generated visualizations (except the map)', th: 'ภาพประกอบเป็นภาพจำลองด้วย AI (ยกเว้นแผนที่)' },
     maps: { en: 'Get directions', th: 'ดูแผนที่ / นำทาง' },
     mapsSub: { en: 'Location and route', th: 'ที่ตั้งและการเดินทาง' },
-    googleMap: { en: 'Google Map', th: 'Google Map' },
+    googleMap: { en: 'Google Maps', th: 'Google Maps' },
     // Chat-first Contact tab (2026-09-30). The Thai side of each `q*` entry is always what
     // actually gets SENT to Green (the LINE bot reads Thai keywords only) — the English side
     // is a gloss for EN-language visitors, never sent. Every Thai string here was run through
@@ -117,7 +117,7 @@ export const TR = {
     // re-verify against a fresh `functions/_greenIntent.js` before editing any of them, since
     // Green's keyword rules change independently of this site.
     chatPrompt: { en: 'What would you like to know first?', th: 'อยากรู้เรื่องไหนก่อน?' },
-    chatHint: { en: 'Opens LINE with this message ready — tap send there.', th: 'เปิดแอป LINE พร้อมข้อความนี้ กดส่งในไลน์ได้เลยค่ะ' },
+    chatHint: { en: 'Opens LINE with this message ready — tap send there.', th: 'เปิดแอป LINE พร้อมข้อความนี้ แล้วกดส่งในไลน์' },
     chatSend: { en: 'Send in LINE', th: 'ส่งใน LINE' },
     chatOther: { en: 'Or pick another question', th: 'หรือเลือกคำถามอื่น' },
     qProject: { en: 'The project', th: 'ขอรายละเอียดโครงการ' },
@@ -140,7 +140,7 @@ export const TR = {
     sectionLabel: { en: 'The Haven Journal', th: 'บันทึกจากเฮเวน' },
     sectionHeadline: {
       en: 'Notes on quiet living,\nwritten while we build',
-      th: 'เรื่องเล่าการอยู่อย่างสงบ\nเขียนไประหว่างสร้างไป',
+      th: 'เรื่องเล่าการอยู่อย่างสงบ\nเขียนระหว่างที่เราสร้าง',
     },
     indexIntro: {
       en: `Stories from the making of Nature Haven — quiet living, life with pets, the neighbourhood, and honest build diaries on the road to move-in, expected ${MOVE_IN_LABEL.en}.`,
@@ -207,7 +207,7 @@ export const TR = {
     ctaTitle: { en: 'Want to know more about these details?', th: 'อยากรู้รายละเอียดเหล่านี้เพิ่มไหม?' },
     ctaBody: {
       en: 'Ask us anything — message us on LINE.',
-      th: 'ถามอะไรก็ได้ — ทักเราทาง LINE ได้เลย',
+      th: 'ถามเราได้ทุกเรื่องทาง LINE',
     },
     ctaButton: { en: 'Message us on LINE', th: 'ทักไลน์สอบถาม' },
   },
@@ -230,16 +230,16 @@ export const TR = {
     philosophyLabel: { en: 'Our Philosophy', th: 'ปรัชญาของเรา' },
     philosophyHeadline: {
       en: 'True comfort is\nnever excessive.',
-      th: 'ความสุขที่แท้จริง\nไม่เคยเกินพอดี',
+      th: 'ความสบายที่แท้จริง\nไม่เคยเกินพอดี',
     },
     philosophyBody: {
       en: 'It is found in stillness — in spaces that are thoughtfully designed, and in a quiet balance that allows each day to unfold with ease.',
-      th: 'มันอยู่ในความสงบ — ในพื้นที่ที่ออกแบบมาอย่างใส่ใจ และในความสมดุลที่เงียบงาม ที่ให้ทุกวันดำเนินไปอย่างราบรื่น',
+      th: 'พบได้ในความสงบ — ในพื้นที่ที่ออกแบบอย่างใส่ใจ และในความสมดุลเงียบ ๆ ที่ให้แต่ละวันค่อย ๆ ผ่านไปอย่างง่ายดาย',
     },
     aboutLabel: { en: 'About', th: 'เกี่ยวกับเรา' },
     aboutHeadline: {
       en: 'A newly built private\nresidence inspired\nby MUJI minimal living.',
-      th: 'ที่พักส่วนตัวสร้างใหม่\nได้รับแรงบันดาลใจจาก\nการใช้ชีวิตแบบมินิมอล',
+      th: 'ที่พักสร้างใหม่\nเป็นส่วนตัว\nเรียบง่ายแบบมินิมอล',
     },
     aboutBody: {
       en: `Designed for calm, crafted for privacy, and quietly connected to Sai Mai Road. Expected from ${MOVE_IN_LABEL.en}.`,
@@ -277,7 +277,7 @@ export const TR = {
     sectionLabel: { en: 'Residences', th: 'ห้องพัก' },
     sectionHeadline: {
       en: 'Spaces designed for real living — comfortable, intentional, and meant to last.',
-      th: 'พื้นที่ที่ออกแบบมาเพื่อการใช้ชีวิตจริง — สะดวกสบาย ตั้งใจ และยั่งยืน',
+      th: 'พื้นที่ที่ออกแบบเพื่อการใช้ชีวิตจริง — อยู่สบาย ตั้งใจทุกจุด และอยู่ได้นาน',
     },
     decisionTitle: { en: 'The essentials, before you ask.', th: 'ข้อมูลสำคัญ ก่อนตัดสินใจ' },
     decisionIntro: {
@@ -335,7 +335,7 @@ export const TR = {
     spaceTitle: { en: 'Space & Layout', th: 'พื้นที่และผังห้อง' },
     sqm: { en: 'sq.m.', th: 'ตร.ม.' },
     bedroom: { en: '1 Bedroom / 1 Bathroom', th: '1 ห้องนอน / 1 ห้องน้ำ' },
-    kitchen: { en: 'Storage cabinet + microwave station, sink on the balcony', th: 'ตู้เก็บของอเนกประสงค์ + ที่วางไมโครเวฟ, ซิงก์ที่ระเบียง' },
+    kitchen: { en: 'Storage cabinet + microwave station, sink on the balcony', th: 'ตู้เก็บของอเนกประสงค์และที่วางไมโครเวฟ ซิงก์อยู่ที่ระเบียง' },
     unitsTotal: { en: 'units total', th: 'ยูนิต' },
     floors: { en: 'floors', th: 'ชั้น' },
     termsTitle: { en: 'Terms', th: 'เงื่อนไข' },
@@ -373,8 +373,8 @@ export const TR = {
       th: 'ราคาข้างต้นคือราคาต่อชั้น ยังไม่รวมค่าน้ำค่าไฟ ห้องที่ว่างล่าสุด ยืนยันทาง LINE',
     },
     openingRate: { en: 'Opening Rate', th: 'ราคาเปิดตัว' },
-    petsEverywhere: { en: 'Pet-friendly — the whole building', th: 'อพาร์ทเมนท์เลี้ยงสัตว์ได้ทั้งตึก ไม่จำกัดชั้น' },
-    petsEverywhereSub: { en: 'No floor restrictions — dogs (up to 15 kg), cats, rabbits and hamsters (one per unit, per the Bangkok pet ordinance) are welcome in every home, on every floor.', th: 'ไม่กำหนดว่าชั้นไหน — ทุกห้องทุกชั้นรับสุนัข (ไม่เกิน 15 กก.) แมว กระต่าย และหนูแฮมสเตอร์ 1 ตัวต่อห้องตามข้อบัญญัติ กทม.' },
+    petsEverywhere: { en: 'Pet-friendly — the whole building', th: 'อพาร์ทเมนท์เลี้ยงสัตว์ได้ทั้งตึก' },
+    petsEverywhereSub: { en: 'No floor restrictions — dogs (up to 15 kg), cats, rabbits and hamsters (one per unit, per the Bangkok pet ordinance) are welcome in every home, on every floor.', th: 'ทุกห้องทุกชั้นรับสุนัข (ไม่เกิน 15 กก.) แมว กระต่าย และหนูแฮมสเตอร์ 1 ตัวต่อห้องตามข้อบัญญัติ กทม.' },
     // "Pets we welcome" card — source: house rules (Nest) §4.2–4.6 + pet guide,
     // owner decision 2026-09-21. The test is adult weight by breed standard,
     // never a list of breeds. The floor tips are the guide's recommendations
@@ -452,14 +452,14 @@ export const TR = {
         'Air ventilation system',
       ],
       th: [
-        'เฟอร์นิเจอร์บิ้วอินทั้งห้อง (soft-close)',
+        'เฟอร์นิเจอร์บิวท์อินทั้งห้อง (soft-close)',
         'ที่นอน Pocket Spring 10 นิ้ว',
         'โต๊ะทำงาน / ตู้เสื้อผ้า / ชั้นวาง / เก้าอี้',
         'กระจกบานใหญ่',
         'เครื่องปรับอากาศ',
-        'ตู้เย็น & ไมโครเวฟ',
+        'ตู้เย็นและไมโครเวฟ',
         'เครื่องทำน้ำอุ่น',
-        'ม่านกัน UV สมบูรณ์',
+        'ม่านกัน UV เต็มบาน',
         'ระบบระบายอากาศ',
       ],
     },
@@ -486,7 +486,7 @@ export const TR = {
     sectionLabel: { en: 'Amenities', th: 'สิ่งอำนวยความสะดวก' },
     headline: {
       en: 'Everything in place,\nbefore you arrive.',
-      th: 'ทุกอย่างพร้อมแล้ว\nก่อนที่คุณจะมาถึง',
+      th: 'ทุกอย่างจะพร้อม\nก่อนวันที่คุณมาถึง',
     },
     subtext: {
       en: 'Every item below is included in your monthly rate — stated clearly from day one.',
@@ -503,17 +503,17 @@ export const TR = {
       ],
       th: [
         { label: 'ที่จอดรถ', desc: `พื้นที่จอดรอบอาคารเพียงพอสำหรับทุกห้อง (${PARKING_CAPACITY_APPROX} ห้อง)` },
-        { label: 'สวนกระเป๋า', desc: 'สวนส่วนกลาง — สีเขียว สงบ เป็นของคุณ' },
-        { label: 'ซักผ้า & อบผ้า', desc: 'เครื่องซักและเครื่องอบในอาคาร พร้อมจุดเติมน้ำดื่ม' },
+        { label: 'สวนหย่อม', desc: 'สวนส่วนกลางไว้นั่งพัก — เขียวและเงียบ' },
+        { label: 'ซักผ้าและอบผ้า', desc: 'เครื่องซักและเครื่องอบในอาคาร พร้อมจุดเติมน้ำดื่ม' },
         { label: 'บริการทำความสะอาด', desc: 'ทำความสะอาดห้องพักรวมอยู่ในค่าเช่า — ทุก 3 เดือนสำหรับห้องที่เลี้ยงสัตว์ ทุก 6 เดือนสำหรับห้องที่ไม่เลี้ยงสัตว์' },
         { label: 'บริการล้างแอร์', desc: 'ล้างแอร์ตามรอบ ทุก 6 เดือนสำหรับห้องที่เลี้ยงสัตว์ ปีละครั้งสำหรับห้องที่ไม่เลี้ยงสัตว์ รวมอยู่ในค่าเช่าแล้ว' },
       ],
     },
     ctaTag: { en: 'All included', th: 'รวมทุกอย่าง' },
-    ctaHeadline: { en: 'Ready when\nyou are.', th: 'พร้อมเมื่อ\nคุณพร้อม' },
+    ctaHeadline: { en: 'The right home\nstarts with a talk.', th: 'บ้านที่ใช่\nเริ่มจากได้คุยกัน' },
     ctaBody: {
       en: 'Ask us about any detail — every one here has already been handled.',
-      th: 'ถามเราได้ทุกรายละเอียด — ทุกอย่างที่นี่ได้รับการดูแลไว้แล้ว',
+      th: 'ถามเราได้ทุกรายละเอียด — เราคิดเรื่องเหล่านี้ไว้ให้แล้ว',
     },
     ctaButton: { en: 'Message us on LINE', th: 'ทักไลน์สอบถาม' },
   },
@@ -521,21 +521,21 @@ export const TR = {
     sectionLabel: { en: 'Location', th: 'ที่ตั้ง' },
     sectionHeadline: {
       en: 'Set in a peaceful neighborhood — yet effortlessly close to everyday essentials.',
-      th: 'อพาร์ทเม้นท์สายไหมในย่านสงบ — แต่ใกล้ชิดกับสิ่งอำนวยความสะดวกในชีวิตประจำวัน',
+      th: 'อพาร์ทเม้นท์สายไหมในย่านสงบ — แต่ใกล้สิ่งจำเป็นในแต่ละวัน',
     },
     nearbyTitle: { en: 'Nearby Essentials', th: 'สถานที่ใกล้เคียง' },
     lifestyleTitle: { en: 'Lifestyle Surroundings', th: 'ห้างร้านและตลาดรอบข้าง' },
     guideLink: { en: 'See the full neighbourhood guide', th: 'ดูคู่มือย่านฉบับเต็ม' },
   },
   smart: {
-    leftLabel: { en: 'Quietly Connected', th: 'เชื่อมต่ออย่างเงียบงาม' },
+    leftLabel: { en: 'Quietly Connected', th: 'เชื่อมต่อแบบไม่รบกวน' },
     leftHeadline: {
       en: 'Managed simply,\nthrough one\napplication.',
       th: 'จัดการง่าย\nผ่านแอป\nเดียว',
     },
     leftBody: {
-      en: 'Smart Living gathers everything you might ever need — bookings, payments, maintenance, even the air around you — into a single quiet surface, with a personal assistant on LINE who remembers, reminds, and knows the neighbourhood.',
-      th: 'Smart Living รวบรวมทุกสิ่งที่คุณต้องการ — การจอง การชำระเงิน การแจ้งซ่อม แม้แต่อากาศรอบข้าง — ไว้ในพื้นที่เดียวที่เงียบงาม พร้อมผู้ช่วยส่วนตัวใน LINE ที่ช่วยจำ ช่วยเตือน และรู้จักย่านนี้เป็นอย่างดี',
+      en: 'Bookings, payments, maintenance, even the air around you — gathered in one quiet app, with an assistant on LINE who remembers, reminds, and knows the neighbourhood.',
+      th: 'จอง จ่าย แจ้งซ่อม ไปจนถึงดูคุณภาพอากาศ — รวมไว้ในแอปเดียว พร้อมผู้ช่วยใน LINE ที่ช่วยจำ ช่วยเตือน และรู้จักย่านนี้ดี',
     },
     features: {
       en: [
@@ -587,10 +587,10 @@ export const TR = {
         { label: 'บันทึกสัตว์เลี้ยง', sub: 'ประวัติวัคซีน' },
       ],
     },
-    rightLabel: { en: 'Sustainable by Intention', th: 'ยั่งยืนโดยเจตนา' },
+    rightLabel: { en: 'Sustainable by Intention', th: 'ยั่งยืนอย่างตั้งใจ' },
     rightHeadline: {
       en: 'Built to last —\nnot to impress.',
-      th: 'สร้างเพื่อความยั่งยืน —\nไม่ใช่เพื่อโชว์',
+      th: 'สร้างให้อยู่ได้นาน —\nไม่ใช่เพื่อโชว์',
     },
     sustainable: {
       en: [
@@ -599,7 +599,7 @@ export const TR = {
       ],
       th: [
         { title: 'ดีไซน์ประหยัดพลังงาน', body: 'การระบายอากาศไขว้ ม่านกัน UV และแอร์อินเวอร์เตอร์ — ออกแบบมาให้ใช้ไฟน้อยตั้งแต่วันแรก' },
-        { title: 'ความทนทานของวัสดุในระยะยาว', body: 'คัดเลือกตามวิธีที่มันจะเก่าอย่างงดงาม — โดยไม่สูญเสน่ห์' },
+        { title: 'วัสดุที่อยู่ได้นาน', body: 'เลือกวัสดุที่ค่อย ๆ เก่าอย่างงาม — โดยไม่เสียเสน่ห์ของตัวเอง' },
       ],
     },
   },
@@ -639,12 +639,12 @@ export const TR = {
     lineNote: { en: 'We answer fastest on LINE.', th: 'เราตอบเร็วที่สุดทาง LINE' },
     appointmentNote: {
       en: 'There is no walk-in office — please message us on LINE and we will reply there.',
-      th: 'โครงการไม่มีสำนักงานสำหรับ walk-in กรุณาทัก LINE แล้วเราจะตอบกลับทางนั้น',
+      th: 'โครงการไม่มีสำนักงานให้แวะเข้ามาติดต่อ ส่งข้อความทาง LINE แล้วเราจะตอบกลับทางนั้น',
     },
   },
   footer: {
     headline: { en: 'Nature Haven — Quiet Living in Saimai', th: 'Nature Haven — ที่พักเงียบสงบในสายไหม' },
-    sub: { en: 'A residence shaped by intention.', th: 'ที่พักที่ออกแบบด้วยเจตนา' },
+    sub: { en: 'A residence shaped by intention.', th: 'ที่พักที่ออกแบบอย่างตั้งใจ' },
     copyright: { en: '© 2026 Nature Haven. All rights reserved.', th: '© 2569 Nature Haven สงวนสิทธิ์ทั้งหมด' },
     allChannels: { en: 'All Channels', th: 'ช่องทางทั้งหมด' },
     privacy: { en: 'Privacy Policy', th: 'นโยบายความเป็นส่วนตัว' },

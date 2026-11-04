@@ -15,7 +15,7 @@ const collection: Collection = {
   },
   manifesto: {
     en: 'This home has two species of resident. So every distance is calculated — the height of a chair, the sightline from the bed, the position of a switch — precise for your body, and safe for their curiosity, at the same time.',
-    th: 'บ้านหลังนี้มีผู้อยู่อาศัยสองสายพันธุ์ เราจึงคำนวณทุกระยะ — ความสูงของเก้าอี้ ระดับสายตาจากเตียง ตำแหน่งของสวิตช์ — ให้พอดีกับสรีระของคุณ และปลอดภัยกับความซนของพวกเขา ในเวลาเดียวกัน',
+    th: 'บ้านหลังนี้มีผู้อยู่อาศัยทั้งคนและสัตว์เลี้ยง เราจึงคำนวณทุกระยะ — ความสูงของเก้าอี้ ระดับสายตาจากเตียง ตำแหน่งของสวิตช์ — ให้พอดีกับสรีระของคุณ และปลอดภัยกับความซนของพวกเขา ในเวลาเดียวกัน',
   },
   hero: '/assets/room-view-out.jpg',
   heroAlt: {

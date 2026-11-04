@@ -12,7 +12,7 @@ const collection: Collection = {
   },
   essence: {
     en: 'A bathroom considered to the last degree — nothing left to worry about.',
-    th: 'ห้องน้ำที่คิดเผื่อไว้หมดแล้ว — จนคุณไม่เหลืออะไรต้องกังวล',
+    th: 'ห้องน้ำที่เราคิดเผื่อไว้ทีละจุด',
   },
   manifesto: {
     en: 'The room you use most quietly should ask nothing of you. So we did the thinking in advance — from the height of a tap, to the tilt of a bottle ledge, to the fan that closes itself once the last of the damp has gone.',
@@ -21,7 +21,7 @@ const collection: Collection = {
   hero: '/assets/bathroom-functional.jpg',
   heroAlt: {
     en: 'The bathroom — oval mirror, one-piece D-shape closet, constant-temperature shower and the tilted bottle ledge',
-    th: 'ห้องน้ำจริงของโครงการ — กระจกวงรี สุขภัณฑ์ชิ้นเดียวทรง D ฝักบัวน้ำอุ่นอุณหภูมิคงที่ และชั้นวางขวดหลังโถ',
+    th: 'ห้องน้ำ — กระจกวงรี สุขภัณฑ์ชิ้นเดียวทรง D ฝักบัวน้ำอุ่นอุณหภูมิคงที่ และชั้นวางขวดหลังโถ',
   },
   details: [
     {

@@ -5,7 +5,7 @@ const article: Article = {
   category: { en: 'Quiet Living', th: 'อยู่อย่างสงบ' },
   title: {
     en: 'Quiet by design — why a 20-unit building with no elevator is the point',
-    th: 'เงียบโดยตั้งใจ — ทำไมตึก 20 ห้องที่ไม่มีลิฟต์ ถึงเป็นความตั้งใจ ไม่ใช่ข้อจำกัด',
+    th: 'เงียบโดยตั้งใจ — ตึก 20 ห้องที่ไม่มีลิฟต์ ไม่ใช่ข้อจำกัด แต่คือสิ่งที่เราเลือก',
   },
   excerpt: {
     en: 'Every decision at Nature Haven starts from one question: does it make daily life quieter? This is the reasoning behind the low-rise form, moving the wet work out to the balcony, and what the rent covers.',
@@ -28,7 +28,7 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'เสียงแรกที่คุณได้ยินเมื่อเปิดประตูห้อง ควรเป็นเสียงของตัวเอง — ประโยคนี้อยู่ในหัวเราตั้งแต่วันแรกที่ร่างแบบ Nature Haven และมันอธิบายได้ว่าทำไมตึกนี้ถึง "เล็ก" อย่างตั้งใจ: low-rise 4 ชั้น เพียง 20 ห้อง ชั้นละ 5 ห้อง ในซอยที่สงบของย่านสายไหม',
+        th: 'เสียงแรกที่คุณได้ยินเมื่อเปิดประตูห้อง ควรเป็นเสียงของตัวเอง — ประโยคนี้อยู่ในหัวเราตั้งแต่วันแรกที่ร่างแบบ Nature Haven และมันอธิบายได้ว่าทำไมตึกนี้ถึง "เล็ก" อย่างตั้งใจ: ตึกสูงเพียง 4 ชั้น 20 ห้อง ชั้นละ 5 ห้อง ในซอยที่สงบของย่านสายไหม',
         en: 'The first sound you hear when you open your door should be your own. That sentence has guided Nature Haven since the first sketch, and it explains why this building is deliberately small: a low-rise of 4 floors, just 20 units, 5 per floor, on a quiet street in Sai Mai.',
       },
     },
@@ -60,8 +60,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'มันยังทำให้ราคามีความซื่อตรงในตัวมันเอง — ชั้นที่ต้องใช้แรงขาเดินมากกว่า เริ่มต้นที่ 6,900 บาทต่อเดือน ส่วนชั้นล่างอยู่ที่ 7,200 บาท เดินมากขึ้น จ่ายน้อยลง — กติกาเงียบ ๆ ข้อเดียว บอกตรง ๆ ไว้ตั้งแต่แรก ไม่ต้องทักมาถามก่อน',
-        en: 'It also lends the pricing a certain honesty: the floors that ask more of your legs begin at 6,900 THB a month, and the floors below sit at 7,200. More stairs, less rent — one quiet rule, stated plainly from the start rather than held back for a conversation.',
+        th: 'ราคาจึงตรงไปตรงมาด้วย — ชั้น 3–4 ที่ต้องเดินขึ้นมากกว่า เริ่มต้นที่ 6,900 บาทต่อเดือน ส่วนชั้น 1–2 อยู่ที่ 7,200 บาท เดินมากขึ้น จ่ายน้อยลง กติกาเงียบ ๆ ข้อเดียว ที่เราบอกไว้ตั้งแต่แรก',
+        en: 'It also keeps the pricing honest: floors 3–4, which ask more of your legs, begin at 6,900 THB a month, and floors 1–2 are 7,200. More stairs, less rent — one quiet rule, stated plainly from the start.',
       },
     },
     {
@@ -71,7 +71,7 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ทุกยูนิตมีขนาด 25.2 ตร.ม. — หนึ่งห้องนอน หนึ่งห้องน้ำ ระเบียงส่วนตัว และตู้เก็บของอเนกประสงค์พร้อมที่วางไมโครเวฟ ที่ย้ายซิงก์ล้างจานออกไปพักอยู่ที่ระเบียง แทนที่จะอยู่ข้างเตียง เป็นการย้ายเล็ก ๆ ที่ให้ผลลัพธ์ไม่เล็กเลย: ไม่มีจานกองใกล้หมอน ไม่มีมุมชื้นในพื้นที่ที่คุณใช้ชีวิตจริง และแสงยามเช้าจากระเบียงเข้าถึงห้องโดยไม่รบกวนใคร',
+        th: 'ทุกห้องมีขนาด 25.2 ตร.ม. — หนึ่งห้องนอน หนึ่งห้องน้ำ ระเบียงส่วนตัว และตู้เก็บของอเนกประสงค์พร้อมที่วางไมโครเวฟ ส่วนซิงก์ล้างจานเราย้ายออกไปไว้ที่ระเบียง แทนที่จะอยู่ข้างเตียง เป็นการย้ายเล็ก ๆ ที่ให้ผลไม่เล็กเลย: ไม่มีจานกองใกล้หมอน ไม่มีมุมชื้นในพื้นที่ที่คุณใช้ชีวิตจริง และแสงยามเช้าจากระเบียงเข้าถึงห้องโดยไม่รบกวนใคร',
         en: 'Every residence measures 25.2 sqm — one bedroom, one bathroom, a private balcony, and a multi-purpose storage cabinet with a microwave station, whose dish sink rests outside on the balcony rather than beside the bed. It is a small relocation with an outsized effect: no plates gathering near the pillow, no damp corner in the room where you actually live, and morning light reaching in from the balcony without disturbing anyone.',
       },
     },
@@ -96,7 +96,7 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'Nature Haven คาดว่าเปิดให้เข้าอยู่ช่วงมีนาคม 2027 หากสิ่งแรกที่คุณอยากได้ยินตอนกลับถึงบ้านคือความว่างเปล่าของเสียง นี่คือตึกที่สร้างขึ้นเพื่อความปรารถนานั้นโดยเฉพาะ',
+        th: 'Nature Haven คาดว่าเปิดให้เข้าอยู่ช่วงมีนาคม 2027 หากสิ่งแรกที่อยากได้ยินตอนกลับถึงบ้านคือความเงียบ ตึกนี้สร้างขึ้นมาเพื่อสิ่งนั้น',
         en: 'Nature Haven is expected to open around March 2027. If the first thing you wish to hear on returning home is nothing at all, this is the building made for that wish.',
       },
     },

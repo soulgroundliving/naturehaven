@@ -15,7 +15,7 @@ const article: Article = {
   },
   excerpt: {
     en: 'The calm of a room does not come from decoration — it comes from what you cannot see. The full list of real materials, named down to the colour code on the tin.',
-    th: 'ความสงบของห้องไม่ได้มาจากการตกแต่ง แต่มาจากสิ่งที่คุณมองไม่เห็น รายการวัสดุจริงฉบับเต็ม บอกชื่อถึงระดับเบอร์สีบนกระป๋อง',
+    th: 'ความสงบของห้องไม่ได้มาจากการตกแต่ง แต่มาจากสิ่งที่มองไม่เห็น รายการวัสดุจริงฉบับเต็ม บอกชื่อถึงระดับเบอร์สีบนกระป๋อง',
   },
   date: '2026-07-03',
   readMinutes: 3,
@@ -28,8 +28,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ความสงบของห้อง ไม่ได้มาจากการตกแต่ง แต่มาจากสิ่งที่คุณมองไม่เห็น นี่คือฉบับแรกที่บอกชื่อวัสดุจริงที่เลือกใช้ทีละชิ้น',
-        en: 'The calm of a room does not come from decoration — it comes from what you cannot see. Here is the real materials, named one by one.',
+        th: 'ความสงบของห้อง ไม่ได้มาจากการตกแต่ง แต่มาจากสิ่งที่มองไม่เห็น ฉบับนี้บอกชื่อวัสดุจริงที่เลือกใช้ทีละชิ้น',
+        en: 'The calm of a room does not come from decoration — it comes from what you cannot see. Here are the real materials, named one by one.',
       },
     },
     {
@@ -47,7 +47,7 @@ const article: Article = {
         [
           { th: 'พื้น', en: 'Floor' },
           {
-            th: 'SPC โทนอ่อนทุกห้อง เนื้อ virgin 100% ไม่ผสมเนื้อรีไซเคิล — เดินแล้วนุ่ม เก็บเสียง ทนน้ำ ทนรอยขีดข่วน และดูแลง่าย คุณสมบัติที่สำคัญเป็นสองเท่าในตึกที่ทุกห้องต้อนรับสัตว์เลี้ยง',
+            th: 'SPC โทนอ่อนทุกห้อง เนื้อ virgin 100% ไม่ผสมเนื้อรีไซเคิล — เดินแล้วนุ่ม เก็บเสียง ทนน้ำ ทนรอยขีดข่วน และดูแลง่าย ซึ่งยิ่งสำคัญในตึกที่ทุกห้องต้อนรับสัตว์เลี้ยง',
             en: 'Pale-tone SPC in every unit, 100% virgin material with no recycled content — soft underfoot, sound-absorbing, water- and scratch-resistant, easy to keep. Those qualities matter doubly in a building where every unit welcomes a pet.',
           },
         ],
@@ -112,7 +112,7 @@ const article: Article = {
     {
       type: 'pull',
       text: {
-        th: 'วัสดุที่ดีไม่ได้แค่สวยวันส่งมอบ — มันต้องซื่อสัตย์กับปีที่ห้า',
+        th: 'วัสดุที่ดี ไม่ได้วัดกันที่วันส่งมอบ แต่วัดกันที่ปีที่ห้า',
         en: 'Good materials are not about looking right on handover day — they have to stay honest in year five.',
       },
     },

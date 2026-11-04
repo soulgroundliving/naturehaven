@@ -11,7 +11,7 @@ const article: Article = {
   category: { en: 'Build Diary', th: 'บันทึกการสร้าง' },
   title: {
     en: 'Build Diary #1 — what is already decided, on the road to move-in',
-    th: 'Build Diary #1 — สิ่งที่เคาะแล้ว ระหว่างทางสู่วันเข้าอยู่',
+    th: 'Build Diary #1 — สิ่งที่ลงตัวแล้ว ระหว่างทางสู่วันเข้าอยู่',
   },
   excerpt: {
     en: 'A record kept as the building rises. The first entry: what is already decided — one clear rent, one rule for every home.',
@@ -28,18 +28,18 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'เราเปิดบันทึกของตึกไว้ตั้งแต่ตอนที่มันกำลังก่อร่างขึ้นจริง เพื่อให้ผู้ที่กำลังพิจารณาบ้านหลังต่อไปเห็นความคิดเบื้องหลัง ไม่ใช่แค่ห้องที่เสร็จแล้ว นี่คือฉบับแรก — สรุปสิ่งที่เคาะแล้วก่อนวันเปิดตัว',
+        th: 'เราเปิดบันทึกนี้ไว้ตั้งแต่ตึกยังค่อย ๆ ขึ้นโครง ให้คนที่กำลังมองหาที่อยู่ใหม่ได้เห็นความคิดเบื้องหลัง ไม่ใช่แค่ห้องที่เสร็จแล้ว นี่คือฉบับแรก — สรุปสิ่งที่ลงตัวแล้วก่อนวันเปิด',
         en: 'We keep this record open while the building actually rises, so anyone considering where to live next can see the thinking, not only the finished rooms. This is entry one — a recap of what is already settled before opening day.',
       },
     },
     {
       type: 'h2',
-      text: { th: 'สิ่งที่เคาะแล้ว', en: 'What is locked in' },
+      text: { th: 'สิ่งที่ลงตัวแล้ว', en: 'What is locked in' },
     },
     {
       type: 'table',
       caption: {
-        th: 'ที่เคาะแล้วและบอกตรง ๆ ตั้งแต่ก่อนวันเปิด',
+        th: 'ที่ลงตัวแล้วและบอกตรง ๆ ตั้งแต่ก่อนวันเปิด',
         en: 'Settled, and stated plainly before opening day',
       },
       rowHeader: true,
@@ -77,18 +77,18 @@ const article: Article = {
     {
       type: 'pull',
       text: {
-        th: 'สิ่งที่พูดอย่างตรงไปตรงมาก่อนวันเปิดตัว มีค่ามากกว่าสิ่งใดที่พิมพ์ออกมาภายหลัง',
+        th: 'คำที่พูดตรง ๆ ก่อนวันเปิด มีค่ากว่าทุกอย่างที่พิมพ์ทีหลัง',
         en: 'What is said honestly before opening day is worth more than anything printed after it.',
       },
     },
     {
       type: 'h2',
-      text: { th: 'สิ่งที่กำลังดำเนินต่อไป', en: 'What comes next' },
+      text: { th: 'ก้าวต่อไป', en: 'What comes next' },
     },
     {
       type: 'p',
       text: {
-        th: 'ตอนนี้โฟกัสอยู่ที่งานภายใน — ให้ห้องจริงยืนอยู่ในมาตรฐานเดียวกับภาพเรนเดอร์ที่เคยแสดงไว้ ฉบับที่สองบอกชื่อวัสดุจริงที่เลือกแล้ว หากมีคำถามที่อยากให้ฉบับต่อไปตอบ ทักเราทาง LINE ได้เลย',
+        th: 'ตอนนี้เรากำลังเน้นงานภายใน — ให้ห้องจริงออกมาได้มาตรฐานเดียวกับภาพเรนเดอร์ที่เคยแสดงไว้ ฉบับที่สองบอกชื่อวัสดุจริงที่เลือกแล้ว หากมีคำถามที่อยากให้ฉบับต่อไปตอบ ทักเราทาง LINE ได้เลย',
         en: 'The present focus is interior work — holding the finished rooms to the same standard as the renderings already shown. Entry two names the actual materials chosen. If there is a question you would like a later entry to answer, message us on LINE.',
       },
     },

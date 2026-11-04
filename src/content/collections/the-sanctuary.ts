@@ -7,7 +7,7 @@ const collection: Collection = {
   index: '02',
   title: {
     en: 'The Sanctuary',
-    th: 'ความสงบและการพักผ่อนที่สมบูรณ์แบบ',
+    th: 'ห้องนอนที่เงียบสงบ',
   },
   essence: {
     en: 'Close the door and the city softens — a bedroom quieted detail by detail.',
@@ -15,7 +15,7 @@ const collection: Collection = {
   },
   manifesto: {
     en: 'The truest comfort of rest is silence, so we chased it point by point — an acoustic-sealed door, a floor with its own cushioning layer, a mattress built for real, uninterrupted sleep — to give the night back to you.',
-    th: 'ความสบายที่แท้จริงของการพักผ่อนคือความเงียบ เราจึงตามเก็บเสียงทีละจุด — เทปกันเสียงรอบบานประตู พื้นที่มีชั้นโฟมซับในตัว ไปจนถึงที่นอนที่ออกแบบมาเพื่อการนอนหลับที่ไม่สะดุด — เพื่อคืนค่ำคืนที่สมบูรณ์กลับมาให้คุณ',
+    th: 'ความสบายที่แท้จริงของการพักผ่อนคือความเงียบ เราจึงตามเก็บเสียงทีละจุด — เทปกันเสียงรอบบานประตู พื้นที่มีชั้นโฟมซับในตัว ไปจนถึงที่นอนที่ออกแบบมาเพื่อการนอนหลับที่ไม่สะดุด — เพื่อคืนค่ำคืนที่เงียบกลับมาให้คุณ',
   },
   hero: '/assets/room-view-in.jpg',
   heroAlt: {
@@ -52,12 +52,12 @@ const collection: Collection = {
       title: { en: 'UV-blocking, without the cord', th: 'กัน UV และไร้สาย' },
       body: {
         en: 'Deep-cream UV-blocking curtains mounted flush to the ceiling, on a cordless hand-drawn rail — cleaner to the eye, and safer for pets, in one decision.',
-        th: 'ม่านโทนครีมเข้มกัน UV ติดตั้งชิดฝ้าเพื่อเก็บแสงลอดด้านบน รางแบบจับเลื่อน ไม่มีสายห้อย — เรียบตากว่า และปลอดภัยกับสัตว์เลี้ยงกว่า ในการตัดสินใจเดียว',
+        th: 'ม่านโทนครีมเข้มกัน UV ติดตั้งชิดฝ้าเพื่อเก็บแสงลอดด้านบน รางแบบจับเลื่อน ไม่มีสายห้อย — เรียบตากว่า และปลอดภัยกับสัตว์เลี้ยงกว่าไปพร้อมกัน',
       },
     },
     {
       label: 'The Masterpiece Bed',
-      title: { en: 'The masterpiece bed', th: 'เตียงชิ้นเอกของห้อง' },
+      title: { en: 'The masterpiece bed', th: 'เตียงที่เราใส่ใจที่สุด' },
       body: {
         en: 'A Sleep Happy Atlantis Pro V2 — ten inches of pocket springs built to a 25-year standard, breathable for the Thai climate — on a built-in bed with a metre-high full-wall headboard you can truly lean against, lit by a low striplight for the nights that don’t want the big lamp.',
         th: 'ที่นอน Sleep Happy รุ่น Atlantis Pro V2 พ็อกเก็ตสปริงหนา 10 นิ้ว มาตรฐานการใช้งาน 25 ปี ระบายอากาศดีเหมาะกับอากาศเมืองไทย วางบนเตียงบิ้วอินกรุหัวเตียงเต็มผนังสูง 1 เมตร — นั่งพิงอ่านหนังสือได้จริง วางของบนหัวเตียงได้ และมีไฟ striplight แสงสลัวสำหรับคืนที่ไม่อยากเปิดไฟดวงใหญ่',

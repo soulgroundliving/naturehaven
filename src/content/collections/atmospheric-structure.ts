@@ -11,7 +11,7 @@ const collection: Collection = {
   },
   essence: {
     en: '25.2 m² set on the north–south wind line — nature does the quiet work.',
-    th: 'ห้อง 25.2 ตร.ม. ที่วางตัวตามแนวลมเหนือ–ใต้ — ให้ธรรมชาติทำงานแทนเครื่องปรับอากาศ',
+    th: 'ห้อง 25.2 ตร.ม. ที่วางตัวตามแนวลมเหนือ–ใต้ — ให้ธรรมชาติช่วยทำงานอย่างเงียบ ๆ',
   },
   manifesto: {
     en: 'Before the first material was chosen, we chose the direction of the wind. Every residence sits on a north–south line — the door receives the breeze, the balcony releases it — and the whole is wrapped in a structure and a paint that are safe to breathe, for every life in the room.',

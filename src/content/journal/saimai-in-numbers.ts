@@ -5,7 +5,7 @@ const article: Article = {
   category: { en: 'Neighborhood', th: 'ย่านสายไหม' },
   title: {
     en: 'Sai Mai, measured in metres — what "quiet but convenient" actually means',
-    th: 'สายไหมวัดเป็นเมตร — "เงียบแต่สะดวก" ของจริงหน้าตาเป็นแบบนี้',
+    th: 'สายไหมวัดเป็นเมตร — "เงียบแต่สะดวก" หมายถึงอะไรจริง ๆ',
   },
   excerpt: {
     en: 'We describe this neighbourhood in metres, not adjectives — the actual distances, measured from our front gate.',
@@ -34,7 +34,7 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ของใช้ชิ้นใหญ่: Big C ระยะ 280 เมตร วัตถุดิบสด: ตลาดวงศกร 700 เมตร ซื้อยกลัง: Makro สายไหม 750 เมตร และระยะทางที่เราให้น้ำหนักมากที่สุดตอนเลือกที่ดินผืนนี้ — โรงพยาบาล CGH สายไหม ห่างเพียง 300 เมตร ใกล้พอที่คำว่า "กรณีฉุกเฉิน" จะยังเป็นแผนการจริง ไม่ใช่แค่คำปลอบใจ',
+        th: 'ซื้อของเข้าบ้าน: Big C ระยะ 280 เมตร วัตถุดิบสด: ตลาดวงศกร 700 เมตร ซื้อยกลัง: Makro สายไหม 750 เมตร และระยะทางที่เราให้น้ำหนักมากที่สุดตอนเลือกที่ดินผืนนี้ — โรงพยาบาล CGH สายไหม ห่างเพียง 300 เมตร ใกล้พอที่คำว่า "กรณีฉุกเฉิน" จะยังเป็นแผนการจริง ไม่ใช่แค่คำปลอบใจ',
         en: 'The larger errand: Big C at 280 m. Fresh ingredients: Wongsakorn Market at 700 m. A bulk run: Makro Sai Mai at 750 m. And the distance we weighed most heavily when choosing this land — CGH Sai Mai Hospital, just 300 m away, close enough that "in case of emergency" remains a real plan rather than a reassuring phrase.',
       },
     },
@@ -59,7 +59,7 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ส่วนรถไฟฟ้า — BTS คูคต อยู่ห่างประมาณ 5 กิโลเมตร ราวสิบห้านาทีโดยแท็กซี่หรือวินมอเตอร์ไซค์ นี่คือ trade-off ที่เราบอกตรง ๆ โดยไม่ปรุงแต่ง: สายไหมไม่ใช่ย่านที่อยู่ติดแนวรถไฟฟ้า สิ่งที่ได้กลับมาคือความเงียบที่แท้จริง ค่าเช่าที่เบากว่า และชีวิตประจำวันทั้งหมดอยู่ในระยะเดิน เป็นการแลกที่เราเลือกอย่างตั้งใจ ด้วยความเชื่อว่าผู้อยู่อาศัยที่เหมาะกับบ้านหลังนี้จะเลือกแบบเดียวกัน',
+        th: 'ส่วนรถไฟฟ้า — BTS คูคต อยู่ห่างประมาณ 5 กิโลเมตร ราวสิบห้านาทีโดยแท็กซี่หรือวินมอเตอร์ไซค์ นี่คือสิ่งที่ต้องแลก และเราบอกตรง ๆ โดยไม่ปรุงแต่ง: สายไหมไม่ใช่ย่านที่อยู่ติดแนวรถไฟฟ้า สิ่งที่ได้กลับมาคือความเงียบที่แท้จริง ค่าเช่าที่เบากว่า และชีวิตประจำวันทั้งหมดอยู่ในระยะเดิน เป็นการแลกที่เราเลือกอย่างตั้งใจ ด้วยความเชื่อว่าผู้อยู่อาศัยที่เหมาะกับบ้านหลังนี้จะเลือกแบบเดียวกัน',
         en: 'As for the train — BTS Khu Khot lies roughly 5 km away, around fifteen minutes by taxi or motorbike. This is the trade-off, stated without dressing it up: Sai Mai does not sit beside the BTS line. In return, it offers a quiet that is real, a rent that is lighter, and an entire daily routine within walking distance. It is a trade we made deliberately, on the belief that the resident this home suits would choose the same way.',
       },
     },

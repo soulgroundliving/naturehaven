@@ -28,13 +28,13 @@ const COPY = {
   headline: { en: 'Restaurants, cafés & local places around Nature Haven', th: 'ร้านอาหาร คาเฟ่ และสถานที่ใกล้เคียงในสายไหม' },
   intro: {
     en: 'A practical guide to cafés, restaurants, markets, pharmacies, and everyday places around Nature Haven in Sai Mai, Bangkok — the same picks Green shares on LINE.',
-    th: 'คู่มือร้านอาหาร คาเฟ่ ตลาด ร้านยา และสถานที่ใกล้เคียง Nature Haven ในย่านสายไหม กรุงเทพฯ — ชุดเดียวกับที่น้อง Green แนะนำใน LINE ค่ะ',
+    th: 'คู่มือร้านอาหาร คาเฟ่ ตลาด ร้านยา และสถานที่ใกล้เคียง Nature Haven ในย่านสายไหม กรุงเทพฯ — ชุดเดียวกับที่ Green แนะนำใน LINE',
   },
   all: { en: 'All', th: 'ทั้งหมด' },
   loading: { en: 'Loading the guide…', th: 'กำลังโหลดไกด์ย่าน…' },
-  empty: { en: 'The guide is being put together — check back soon.', th: 'กำลังรวบรวมร้านเด็ด ๆ อยู่นะคะ เร็ว ๆ นี้ค่ะ 🌿' },
-  noResults: { en: 'There are no places in this category yet.', th: 'หมวดนี้ยังไม่มีร้านที่คัดมาแนะนำค่ะ' },
-  error: { en: 'The guide is temporarily unavailable. Please try again.', th: 'ไกด์ย่านยังไม่พร้อมชั่วคราว ลองใหม่อีกครั้งนะคะ' },
+  empty: { en: 'The guide is being put together — check back soon.', th: 'เรากำลังรวบรวมร้านในย่านนี้ แวะกลับมาอีกครั้งเร็ว ๆ นี้' },
+  noResults: { en: 'There are no places in this category yet.', th: 'หมวดนี้ยังไม่มีร้านที่เราคัดไว้' },
+  error: { en: 'The guide is temporarily unavailable. Please try again.', th: 'ไกด์ย่านยังโหลดไม่ได้ชั่วคราว ลองใหม่อีกครั้ง' },
   retry: { en: 'Try again', th: 'ลองใหม่' },
   map: { en: 'Open map', th: 'เปิดแผนที่' },
   call: { en: 'Call', th: 'โทร' },
@@ -46,7 +46,7 @@ const COPY = {
   resultCount: { en: 'places selected', th: 'สถานที่ที่คัดไว้' },
   source: {
     en: 'Our picks from around the neighbourhood · call ahead to confirm hours.',
-    th: 'เราเลือกมาให้จากย่านนี้ · โทรเช็กเวลาเปิดก่อนไปนะคะ',
+    th: 'เราเลือกมาให้จากย่านนี้ · โทรเช็กเวลาเปิดก่อนไป',
   },
   residenceCtaTitle: { en: 'Curious about the residence itself?', th: 'อยากรู้จักตัวห้องพักด้วยไหม?' },
   residenceCtaBody: {

@@ -162,7 +162,7 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'โซนนอน — พื้นที่สำหรับพักผ่อนและฟื้นตัวโดยเฉพาะ',
+        th: 'โซนนอน — พื้นที่สำหรับพักผ่อนโดยเฉพาะ',
         en: 'Sleeping — a dedicated area for rest and recovery.',
       },
     },
@@ -253,7 +253,7 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'การวางแผนที่ดีไม่ใช่การแกล้งทำเป็นว่าทุกความเป็นไปได้ยังเปิดอยู่ แต่คือการเข้าใจขอบเขตก่อน แล้วใช้พื้นที่ภายในขอบเขตนั้นให้เกิดประโยชน์มากที่สุด',
+        th: 'การวางแผนที่ดี ไม่ใช่การทำเหมือนว่าเลือกได้ทุกทาง แต่คือการเข้าใจขอบเขตก่อน แล้วใช้พื้นที่ในขอบเขตนั้นให้คุ้มที่สุด',
         en: 'Good planning is not about pretending that every possibility is available. It is about understanding the boundaries first, then making the most of the space within them.',
       },
     },
@@ -323,7 +323,7 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'พื้นที่ว่างระหว่างสิ่งของสำคัญพอ ๆ กับตัวสิ่งของเอง ห้องหนึ่งอาจใส่ทุกอย่างได้ในทางเทคนิค แต่ก็ยังรู้สึกว่าใช้งานไม่ได้เลย',
+        th: 'ที่ว่างระหว่างสิ่งของ สำคัญพอ ๆ กับตัวสิ่งของเอง บางทีห้องหนึ่งใส่ของได้ครบ แต่กลับใช้ชีวิตในนั้นไม่ได้เลย',
         en: 'These spaces between objects are just as important as the objects themselves. A room can technically contain everything and still feel impossible to use.',
       },
     },
@@ -389,7 +389,7 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'การทดลองเหล่านี้ไม่ได้นำเสนอเป็นชุดของคำตอบที่สมบูรณ์แบบ แต่เป็นบันทึกของเวอร์ชันที่มาก่อนเวอร์ชันปัจจุบัน คุณค่าของการย้อนกลับไปดูไม่ได้อยู่ที่การเห็นว่าอะไรเปลี่ยนไปเท่านั้น',
+        th: 'ภาพทดลองเหล่านี้ไม่ใช่คำตอบที่สมบูรณ์แบบ แต่คือบันทึกของเวอร์ชันที่ผ่านมา การย้อนกลับไปดู ไม่ได้มีค่าแค่ได้เห็นว่าอะไรเปลี่ยนไป',
         en: 'These studies are not presented as a collection of perfect answers. They are records of the versions that came before the current one. The value of looking back is not simply seeing what changed.',
       },
     },
@@ -439,7 +439,7 @@ const article: Article = {
         en: 'The plan with its overall dimensions, 350 by 720 cm, beside the size of each piece of furniture',
         th: 'แปลนพร้อมขนาดรวม 350 คูณ 720 ซม. และขนาดของเฟอร์นิเจอร์แต่ละชิ้น',
       },
-      { en: 'The Measurements. Small numbers. Big consequences.', th: 'การวัดขนาด ตัวเลขเล็ก ๆ ผลใหญ่ ๆ' },
+      { en: 'The Measurements. Small numbers. Big consequences.', th: 'การวัดขนาด ตัวเลขเล็ก ๆ ที่ส่งผลทั้งห้อง' },
       'reading',
     ),
     {
@@ -476,14 +476,14 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ตัวเลขทำให้แบบวาดขยับจากการจัดวางเชิงนามธรรม ไปเป็นสิ่งที่สร้างได้ ตกแต่งได้ และใช้งานได้จริง',
+        th: 'ตัวเลขคือสิ่งที่พาแบบวาด จากการจัดวางบนกระดาษ ไปเป็นห้องที่สร้างได้ ตกแต่งได้ และใช้งานได้จริง',
         en: 'The measurements allow the drawing to move from an abstract arrangement into something that can actually be built, furnished, and used.',
       },
     },
     {
       type: 'p',
       text: {
-        th: 'ตัวเลขเหล่านี้คือทั้งหมดที่ต้องใช้ ลองจัดห้องเดียวกันนี้ด้วยตัวเองดู',
+        th: 'มีแค่ตัวเลขเหล่านี้ก็พอ ลองจัดห้องเดียวกันนี้ด้วยตัวเองดู',
         en: 'Those numbers are all it takes. Try arranging the same room yourself.',
       },
     },
@@ -493,7 +493,7 @@ const article: Article = {
       title: { en: 'Arrange the room yourself', th: 'ลองจัดห้องเอง' },
       description: {
         en: 'The same 25.2 sqm room, with the six pieces at the sizes from the table above. At the start everything fits — and the room still does not work. Drag the pieces (or select one and use the arrow keys, and R to turn it) until all five rules hold: nothing overlaps, the doors stay clear, the walkways are at least 90 cm wide, each piece has room to be used, and there is 120 cm beside the bed. As you move, “Room to live in” measures how wide each of those spaces really is, and says whether it is tight, minimum, just right or comfortable.',
-        th: 'ห้อง 25.2 ตร.ม. เดียวกัน กับเฟอร์นิเจอร์หกชิ้นตามขนาดในตารางด้านบน ตอนเริ่มทุกชิ้นใส่ได้พอดี แต่ห้องยังใช้งานไม่ได้ ลากชิ้นส่วน (หรือเลือกแล้วใช้ปุ่มลูกศร และกด R เพื่อหมุน) จนผ่านครบห้าข้อ ได้แก่ ไม่มีชิ้นไหนซ้อนกัน ประตูโล่ง ทางเดินกว้างอย่างน้อย 90 ซม. ทุกชิ้นมีที่ใช้งานหน้าตัวเอง และข้างเตียงว่าง 120 ซม. ระหว่างที่ขยับ ส่วน “พื้นที่ใช้สอย” จะวัดว่าแต่ละที่กว้างจริงเท่าไร และบอกว่าแคบ พอใช้ พอดี หรือสบาย',
+        th: 'ห้อง 25.2 ตร.ม. เดียวกัน กับเฟอร์นิเจอร์หกชิ้นตามขนาดในตารางด้านบน ตอนเริ่มทุกชิ้นใส่ได้พอดี แต่ห้องยังใช้งานไม่ได้ ลากเฟอร์นิเจอร์ (หรือเลือกแล้วใช้ปุ่มลูกศร และกด R เพื่อหมุน) จนผ่านครบห้าข้อ ได้แก่ ไม่มีชิ้นไหนซ้อนกัน ประตูโล่ง ทางเดินกว้างอย่างน้อย 90 ซม. ทุกชิ้นมีที่ใช้งานหน้าตัวเอง และข้างเตียงว่าง 120 ซม. ระหว่างที่ขยับ ส่วน “พื้นที่ใช้สอย” จะวัดว่าแต่ละที่กว้างจริงเท่าไร และบอกว่าแคบ พอใช้ พอดี หรือสบาย',
       },
       size: 'wide',
       // What a phone shows here is a card (a picture of the plan and one button, ~335 px). Reserving more left
@@ -518,19 +518,19 @@ const article: Article = {
         en: 'The final floor plan with every piece of furniture in its place',
         th: 'แปลนสุดท้ายที่เฟอร์นิเจอร์ทุกชิ้นอยู่ในตำแหน่งของมัน',
       },
-      { en: 'The Final Plan. Every piece earns its place.', th: 'แปลนสุดท้าย ทุกชิ้นมีเหตุผลของที่ที่มันอยู่' },
+      { en: 'The Final Plan. Every piece earns its place.', th: 'แปลนสุดท้าย ทุกชิ้นอยู่ตรงนั้นด้วยเหตุผล' },
     ),
     {
       type: 'p',
       text: {
-        th: 'เฟอร์นิเจอร์มีตำแหน่งที่แน่นอน โซนการใช้งานมีที่ของมัน ระยะว่างถูกพิจารณาแล้ว และขนาดถูกสรุปแล้ว',
+        th: 'เฟอร์นิเจอร์มีตำแหน่งที่แน่นอน แต่ละโซนมีที่ของตัวเอง ระยะว่างคิดมาแล้ว และขนาดได้ข้อสรุปแล้ว',
         en: 'The furniture has a defined position. The functional zones have their place. The clearances have been considered. The dimensions have been resolved.',
       },
     },
     {
       type: 'p',
       text: {
-        th: 'แปลนจึงไม่ใช่แค่ความคิดว่าห้องหนึ่งอาจใช้งานได้อย่างไรอีกต่อไป มันกลายเป็นแปลนที่ห้องจริงสามารถถูกสร้างขึ้นมาจากมันได้',
+        th: 'แปลนจึงไม่ใช่แค่ความคิดว่าห้องหนึ่งอาจใช้งานอย่างไร แต่คือแปลนที่สร้างห้องจริงขึ้นมาได้',
         en: 'And the plan is no longer just an idea of how a room might work. It becomes the plan from which the room can actually be made.',
       },
     },

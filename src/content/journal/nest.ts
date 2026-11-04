@@ -146,8 +146,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'NEST · ตั้งมั่น จุดเริ่มต้นแรกของ Nature Haven',
-        en: 'NEST · Tang Man — the first beginning of Nature Haven.',
+        th: 'NEST · ตั้งมั่น จุดเริ่มต้นของ Nature Haven',
+        en: 'NEST · Tang Man — where Nature Haven begins.',
       },
     },
   ],

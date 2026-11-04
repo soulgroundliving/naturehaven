@@ -85,11 +85,11 @@ export const COPY = {
   boardLabel: t('Plan of the 25.2 sqm room, in centimetres', 'แปลนห้อง 25.2 ตร.ม. หน่วยเป็นเซนติเมตร'),
   howTo: t(
     'Drag a piece on the plan — or select it and use the arrow keys (Shift for bigger steps) and R to turn it.',
-    'ลากชิ้นส่วนบนแปลน หรือเลือกแล้วใช้ปุ่มลูกศร (กด Shift เพื่อขยับทีละมาก) และ R เพื่อหมุน',
+    'ลากเฟอร์นิเจอร์บนแปลน หรือเลือกแล้วใช้ปุ่มลูกศร (กด Shift เพื่อขยับไกลขึ้น) และ R เพื่อหมุน',
   ),
-  pieceRole: t('movable piece', 'ชิ้นส่วนที่ขยับได้'),
+  pieceRole: t('movable piece', 'เฟอร์นิเจอร์ที่ขยับได้'),
   selected: t('Selected', 'ที่เลือก'),
-  nothingSelected: t('Select a piece to move it.', 'เลือกชิ้นส่วนเพื่อเริ่มขยับ'),
+  nothingSelected: t('Select a piece to move it.', 'เลือกเฟอร์นิเจอร์เพื่อเริ่มขยับ'),
   rotate: t('Turn 90°', 'หมุน 90°'),
   moveUp: t('Move up', 'ขยับขึ้น'),
   moveDown: t('Move down', 'ขยับลง'),
@@ -189,7 +189,7 @@ export const RULE_SHORT: Record<RuleView['id'], Bilingual> = {
 };
 
 export const RULE_HELP: Record<RuleView['id'], Bilingual> = {
-  fit: t('No two pieces can stand on the same floor.', 'ไม่มีสองชิ้นไหนยืนทับที่เดียวกันได้'),
+  fit: t('No two pieces can stand on the same floor.', 'เฟอร์นิเจอร์สองชิ้นวางทับที่เดียวกันไม่ได้'),
   doors: t(
     'The front, bathroom and balcony doors need floor in front of them.',
     'ประตูทางเข้า ห้องน้ำ และระเบียง ต้องมีพื้นที่โล่งหน้าประตู',
