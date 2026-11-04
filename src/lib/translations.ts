@@ -204,9 +204,16 @@ export const TR = {
       en: 'A residence shaped by intention — where life, and the ones you love, gently return to a natural rhythm.',
       th: 'ที่พักที่ออกแบบด้วยเจตนา — ที่ซึ่งชีวิตและสัตว์เลี้ยงที่คุณรักค่อยๆ กลับคืนสู่จังหวะธรรมชาติ',
     },
-    cta: {
-      en: `Apartment · Pet-friendly · Saimai\nMove in ${MOVE_IN_LABEL.en}`,
-      th: `อพาร์ทเม้นท์สายไหม · เลี้ยงสัตว์ได้ทั้งตึก\nพร้อมเข้าอยู่ ${MOVE_IN_LABEL.th}`,
+    // The four facts a visitor needs on the first screen: what, where, size,
+    // price. Price is the floor range, not "เริ่ม" (an open owner question).
+    facts: {
+      en: [`Pet-friendly apartments · Sai Mai, Bangkok`, `25.2 sqm · ${PRICE_FROM.toLocaleString('en-US')}–${PRICE_TO.toLocaleString('en-US')} THB/month`],
+      th: [`อพาร์ทเม้นท์เลี้ยงสัตว์ได้ทั้งตึก · สายไหม`, `25.2 ตร.ม. · ${PRICE_FROM.toLocaleString('en-US')}–${PRICE_TO.toLocaleString('en-US')} บาท/เดือน`],
+    },
+    // "Expected": the move-in month is a forecast, not a promise.
+    moveIn: {
+      en: `Move-in expected ${MOVE_IN_LABEL.en}`,
+      th: `คาดว่าเข้าอยู่ได้ ${MOVE_IN_LABEL.th}`,
     },
     scroll: { en: 'Scroll to explore', th: 'เลื่อนเพื่อสำรวจ' },
   },

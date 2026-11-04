@@ -148,11 +148,22 @@ const HeroSection: React.FC = () => {
           </p>
         )}
 
-        {/* Sansiri-level clean (owner call 2026-07-12): image + wordmark only.
-            The support facts live in the MarqueeStrip right below (Pet-Friendly ·
-            the move-in month · …) and the ONE site-wide CTA is the floating LINE
-            pill — nothing else to say up here. */}
-        <div className="hero-rule-bottom mb-6 mt-6 h-px w-[220px] opacity-25" style={{ background: HERO_TEXT }} />
+        <div className="hero-rule-bottom mb-5 mt-6 h-px w-[220px] opacity-25" style={{ background: HERO_TEXT }} />
+
+        {/* Owner 2026-11-05 (reverses the 07-12 "wordmark only" call): the first
+            screen must say what, where, size and price — a phone visitor saw only
+            the name, and the price sat ~5 screens down. Still one quiet line pair,
+            no button: the one site-wide CTA stays the floating LINE pill. */}
+        <p
+          className="font-sans text-[14px] font-light leading-[1.7] tracking-[0.04em] sm:text-[15px] md:text-[17px]"
+          style={{ color: HERO_TEXT, textShadow: HERO_TEXT_SHADOW }}
+        >
+          {h.facts[lang].map((line, i) => (
+            <span key={i} className="block">
+              {line}
+            </span>
+          ))}
+        </p>
       </div>
 
       <div
