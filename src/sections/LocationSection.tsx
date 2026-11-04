@@ -79,9 +79,12 @@ const LocationSection: React.FC = () => {
             {/* One map for both languages: the redrawn building + the real drive
                 (U-turn at Make Me Wine) exist only with Thai labels. Landscape
                 20:13 — shown whole, never cropped, so the route stays readable.
-                The same file is the hero of Green's location card on LINE. */}
+                The same picture is the hero of Green's location card on LINE
+                (which still links the undated name with a ?v= stamp).
+                /assets is cached immutable for a year: a changed map, clip or
+                poster gets a new dated filename, never an overwrite. */}
             <img
-              src="/assets/location-area-map-th.png"
+              src="/assets/location-area-map-th-20261104.png"
               alt={
                 lang === 'th'
                   ? 'แผนที่ทางมา Nature Haven จาก BTS คูคต ต่อแท็กซี่ราว 5 กม. ตาม ถ.ลำลูกกา เลย ถ.เฉลิมพงษ์ไปกลับรถที่ร้าน Make Me Wine แล้วเลี้ยวซ้ายเข้า ถ.เฉลิมพงษ์ ตรงหัวมุม Big C คลอง 4 ตึกอยู่ขวามือ พร้อม Big C มินิ รพ. CGH สายไหม 7-Eleven ตลาดวงศกร และ Makro ใกล้ตึก ภาพอาคารเป็นภาพจำลอง (AI)'
@@ -94,8 +97,8 @@ const LocationSection: React.FC = () => {
             />
             <figure className="mt-6 flex flex-col items-center">
               <video
-                src="/assets/nest-journey-map.mp4"
-                poster="/assets/nest-journey-map-poster.jpg"
+                src="/assets/nest-journey-map-20261104.mp4"
+                poster="/assets/nest-journey-map-poster-20261104.jpg"
                 controls
                 muted
                 playsInline
