@@ -151,14 +151,14 @@ export const FAQ_ITEMS = [
     id: 'price',
     q_th: 'ค่าเช่าต่อเดือนเท่าไหร่?',
     q_en: 'What is the monthly rent?',
-    a_th: `ชั้น 3-4 เริ่มต้น ${PRICE_FROM.toLocaleString('en-US')} บาท/เดือน และชั้น 1-2 ${PRICE_TO.toLocaleString('en-US')} บาท/เดือน — ยิ่งชั้นสูง (เดินขึ้นมากกว่า ไม่มีลิฟต์) ค่าเช่ายิ่งเบากว่า ราคานี้ยังไม่รวมค่าน้ำค่าไฟ ยืนยันห้องว่างล่าสุดทาง LINE`,
+    a_th: `ชั้น 3-4 เริ่มต้น ${PRICE_FROM.toLocaleString('en-US')} บาท/เดือน และชั้น 1-2 ${PRICE_TO.toLocaleString('en-US')} บาท/เดือน — ชั้นบนต้องเดินขึ้นไกลกว่า (ไม่มีลิฟต์) ค่าเช่าจึงถูกกว่า ราคานี้ยังไม่รวมค่าน้ำค่าไฟ ห้องว่างล่าสุด สอบถามได้ทาง LINE`,
     a_en: `From ${PRICE_FROM.toLocaleString('en-US')} THB/month on floors 3–4, and ${PRICE_TO.toLocaleString('en-US')} THB/month on floors 1–2 — the higher the floor (more stairs, no elevator), the lower the rent. Electricity and water are metered separately. Confirm current availability on LINE.`,
   },
   {
     id: 'inclusive',
     q_th: 'ค่าเช่ารวมอะไรบ้าง?',
     q_en: "What's included in the rent?",
-    a_th: 'ค่าเช่ารวม Wi-Fi, บริการทำความสะอาดห้องพัก (ทุก 3 เดือนสำหรับห้องที่เลี้ยงสัตว์ ทุก 6 เดือนสำหรับห้องที่ไม่เลี้ยงสัตว์) และบริการล้างแอร์ (ทุก 6 เดือนสำหรับห้องที่เลี้ยงสัตว์ ปีละครั้งสำหรับห้องที่ไม่เลี้ยงสัตว์) ไว้แล้ว ส่วนค่าน้ำค่าไฟแยกจากค่าเช่า คิดตามมิเตอร์ที่ใช้จริง',
+    a_th: 'ค่าเช่ารวม Wi-Fi ทำความสะอาดในห้อง (ห้องมีสัตว์เลี้ยงทุก 3 เดือน ห้องทั่วไปทุก 6 เดือน) และล้างแอร์ (ห้องมีสัตว์เลี้ยงทุก 6 เดือน ห้องทั่วไปปีละครั้ง) ส่วนค่าน้ำค่าไฟแยกจากค่าเช่า คิดตามมิเตอร์ที่ใช้จริง',
     a_en: 'Rent includes Wi-Fi, in-unit cleaning (every 3 months for units with a pet, every 6 months without) and A/C servicing (every 6 months for units with a pet, yearly without). Electricity and water are metered and billed separately by actual usage.',
   },
   {
@@ -172,8 +172,8 @@ export const FAQ_ITEMS = [
     id: 'kitchen',
     q_th: 'มีครัวไหม?',
     q_en: 'Is there a kitchen?',
-    a_th: 'ไม่มีครัวเต็มรูปแบบและไม่มีเตาติดตั้งในห้อง (ทำอาหารเบา ๆ ด้วยเตาไฟฟ้าที่นำมาเองได้ ดูคำถามถัดไป) — ในห้องมีตู้เก็บของอเนกประสงค์ 2 บานเปิดเข้าหากึ่งกลาง พร้อมชั้นวางของภายใน 2 ชั้น และเคาน์เตอร์ด้านบนสำหรับวางไมโครเวฟ ตั้งอยู่ติดตู้เย็น ใช้เก็บของครัวหรือของใช้ส่วนตัวได้อย่างยืดหยุ่น ส่วนซิงก์ล้างจานอยู่ที่ระเบียง',
-    a_en: 'There is no full kitchen and no built-in stove (light cooking on an electric hob you bring yourself is allowed — see the next question). The room has a multi-purpose storage cabinet with two doors that open toward the center, two internal shelves, and a countertop sized for a microwave, positioned next to the refrigerator. It flexibly stores kitchen items or personal belongings. The dish sink is on the balcony.',
+    a_th: 'ไม่มีครัวเต็มรูปแบบ และไม่มีเตาติดตั้งในห้อง ข้างตู้เย็นมีตู้เก็บของอเนกประสงค์ 2 บานเปิดเข้าหากึ่งกลาง ชั้นวางภายใน 2 ชั้น และเคาน์เตอร์ด้านบนไว้วางไมโครเวฟ ซิงก์ล้างจานอยู่ที่ระเบียง ทำอาหารเบา ๆ ด้วยเตาไฟฟ้าที่นำมาเองได้ (ดูข้อถัดไป)',
+    a_en: 'There is no full kitchen and no built-in stove. Next to the refrigerator is a multi-purpose storage cabinet: two doors that open toward the center, two internal shelves, and a countertop sized for a microwave. The dish sink is on the balcony. Light cooking on an electric hob you bring yourself is allowed (see the next question).',
   },
   // Source of truth: the-green-haven house rules (Nest) §2.1–2.2, owner
   // decision 2026-09-21 — supersedes the 2026-09-12 blanket ban on induction
@@ -185,14 +185,14 @@ export const FAQ_ITEMS = [
     id: 'cooking',
     q_th: 'ทำอาหารในห้องได้ไหม?',
     q_en: 'Can I cook in the room?',
-    a_th: 'ได้ในแบบเบา ๆ — ห้องไม่มีครัวเต็มรูปแบบ แต่ใช้เตาไฟฟ้าหรือเตาแม่เหล็กไฟฟ้าได้ 1 หัว กำลังไม่เกิน 1,500 วัตต์ (นำมาเอง) ซึ่งเพียงพอสำหรับต้มและผัดตามปกติ และเป็นเพดานที่ระบบไฟฟ้าของห้องรองรับได้อย่างปลอดภัย ห้ามใช้เตาแก๊ส เตาปิ้งย่าง และการทอดที่ใช้น้ำมันปริมาณมาก และขอให้งดอาหารที่มีกลิ่นหรือควันแรง เพราะกลิ่นเดินทางผ่านทางเดินและระเบียงไปถึงเพื่อนบ้านเสมอ อาหารสำเร็จรูป อาหารเดลิเวอรี และของที่ไม่ต้องปรุงด้วยความร้อน ทานได้ตามปกติ',
+    a_th: 'ได้ แบบเบา ๆ — ห้องไม่มีครัวเต็มรูปแบบ แต่ใช้เตาไฟฟ้าหรือเตาแม่เหล็กไฟฟ้าได้ 1 หัว กำลังไม่เกิน 1,500 วัตต์ (นำมาเอง) พอสำหรับต้มและผัดตามปกติ และเป็นกำลังสูงสุดที่ระบบไฟของห้องรับได้อย่างปลอดภัย ห้ามใช้เตาแก๊ส เตาปิ้งย่าง และการทอดที่ใช้น้ำมันมาก ขอให้งดอาหารที่มีกลิ่นหรือควันแรงด้วย เพราะกลิ่นลอยไปตามทางเดินและระเบียงถึงเพื่อนบ้าน ส่วนอาหารสำเร็จรูป เดลิเวอรี และของที่ไม่ต้องปรุงด้วยความร้อน ทานได้ตามปกติ',
     a_en: 'Yes, lightly — there is no full kitchen, but you may use one electric or induction hob (a single burner, up to 1,500 W) that you bring yourself. That is enough for everyday boiling and stir-frying, and it is the most a room\'s electrical system can safely carry. Gas stoves, grills and deep or heavy-oil frying are not allowed, and please avoid cooking with strong odors or smoke — odors travel through the corridor and balconies to your neighbors. Ready-made meals, delivery and anything that needs no heating are always fine.',
   },
   {
     id: 'smoking',
     q_th: 'สูบบุหรี่ได้ไหม?',
     q_en: 'Can I smoke?',
-    a_th: 'ไม่อนุญาตให้สูบบุหรี่ภายในอาคารหรือในห้องพักทุกกรณี สูบได้เฉพาะในพื้นที่สูบบุหรี่ที่จัดไว้ให้เท่านั้น',
+    a_th: 'ห้ามสูบบุหรี่ในอาคารและในห้องทุกกรณี สูบได้เฉพาะจุดสูบบุหรี่ที่จัดไว้',
     a_en: 'Smoking is not allowed inside the building or in any unit — it is permitted only in the designated smoking area.',
   },
   {
@@ -211,10 +211,10 @@ export const FAQ_ITEMS = [
   },
   {
     id: 'deposit',
-    q_th: 'เงินที่ต้องเตรียมวันเข้าอยู่?',
+    q_th: 'วันเข้าอยู่ต้องเตรียมเงินเท่าไหร่?',
     q_en: 'What deposit is required to move in?',
-    a_th: `ค่าใช้จ่ายวันเข้าอยู่มี 3 ส่วน — ค่าจองคิว ${BOOKING_FEE} บาท (ชำระผ่าน PromptPay ตอนกดจอง คืนเต็มจำนวนหากโครงการเสนอห้องในชั้นที่เลือกไม่ได้หรือการพิจารณาไม่ผ่าน และคืนเต็มจำนวนเมื่อแจ้งขอ หากโครงการเลื่อนวันเข้าอยู่แล้วคุณไม่ต้องการรอ ไม่คืนหากยกเลิกเองหรือไม่มาตามนัดโดยไม่แจ้งล่วงหน้า และหักลบเป็นส่วนหนึ่งของยอดด้านล่างเมื่อทำสัญญา) เงินประกันความเสียหาย 2 เดือน (เท่ากับค่าเช่าห้องนั้นคูณสอง คืนเต็มจำนวนเมื่อสิ้นสุดสัญญาหากไม่มีความเสียหายและไม่มีค้างชำระ) และค่าเช่าล่วงหน้า 1 เดือน`,
-    a_en: `Move-in costs have three parts — a ${BOOKING_FEE} THB booking fee (paid via PromptPay when you book; fully refunded if we can't offer a room on your chosen floor or your application isn't approved, and refunded in full on request if we push back the move-in date and you'd rather not wait; not refunded if you cancel on your own or don't show up without telling us; credited toward the total below once you sign), a two-month security deposit (equal to twice your unit's rent, fully refundable at lease end if there's no damage or unpaid balance), and one month of advance rent.`,
+    a_th: `มี 3 ส่วน: ค่าจองคิว ${BOOKING_FEE} บาท · เงินประกันความเสียหาย 2 เดือน · ค่าเช่าล่วงหน้า 1 เดือน ค่าจองคิวชำระผ่าน PromptPay ตอนกดจอง และหักเป็นส่วนหนึ่งของยอดเมื่อทำสัญญา · คืนค่าจองคิวเต็มจำนวน: เมื่อเราไม่มีห้องในชั้นที่เลือก, การพิจารณาไม่ผ่าน, หรือเราเลื่อนวันเข้าอยู่แล้วคุณไม่อยากรอ (แจ้งขอคืนได้) · ไม่คืนค่าจองคิว: เมื่อยกเลิกเอง หรือไม่มาตามนัดโดยไม่แจ้งล่วงหน้า · เงินประกันเท่ากับค่าเช่าห้องนั้น 2 เดือน คืนเต็มจำนวนเมื่อจบสัญญา หากไม่มีความเสียหายและไม่มียอดค้าง`,
+    a_en: `Three parts: a ${BOOKING_FEE} THB booking fee · a two-month security deposit · one month of advance rent. The booking fee is paid via PromptPay when you book and is credited toward the total once you sign. It is fully refunded if we can't offer a room on your chosen floor or your application isn't approved, and refunded in full on request if we push back the move-in date and you'd rather not wait. It is not refunded if you cancel on your own or don't show up without telling us. The deposit equals twice your unit's rent and is fully refundable at lease end if there's no damage or unpaid balance.`,
   },
   {
     id: 'parking',
@@ -234,15 +234,15 @@ export const FAQ_ITEMS = [
     id: 'contact',
     q_th: 'ติดต่อจองได้ทางไหน?',
     q_en: 'How do I reserve a unit?',
-    a_th: 'ติดต่อทาง LINE เท่านั้น — กดปุ่ม "ทักไลน์สอบถาม" บนหน้าเว็บ แล้วทีมงานจะดูแลต่อให้ทั้งหมด',
+    a_th: 'ติดต่อทาง LINE เท่านั้น — กดปุ่ม "คุยกับเราทาง LINE" ตรงไหนก็ได้บนหน้าเว็บ แล้วเราดูแลต่อให้ทั้งหมด',
     a_en: 'LINE only — tap "Message us on LINE" anywhere on the site and we will take care of the rest.',
   },
   {
     id: 'elevator',
     q_th: 'มีลิฟต์ไหม?',
     q_en: 'Is there an elevator?',
-    a_th: 'ไม่มีลิฟต์ — เป็น low-rise 4 ชั้น ออกแบบเพื่อความเป็นส่วนตัวและประหยัดพลังงาน',
-    a_en: 'No elevator — low-rise 4 floors, designed for privacy and energy efficiency.',
+    a_th: 'ไม่มีลิฟต์ อาคารสูง 4 ชั้น ขึ้นลงด้วยบันได ชั้นที่สูงกว่าจึงค่าเช่าเบากว่า',
+    a_en: 'No elevator — the building is 4 floors, served by stairs, which is why the upper floors rent for less.',
   },
   {
     id: 'location',
@@ -258,7 +258,7 @@ export const FAQ_ITEMS = [
     id: 'ambientNoise',
     q_th: 'ห้องกันเสียงดีแค่ไหน มีเสียงรบกวนจากภายนอกไหม?',
     q_en: 'How soundproof are the rooms — is there any outside noise?',
-    a_th: 'ห้องออกแบบมาเพื่อกันเสียงตั้งแต่โครงสร้าง — ผนังก่ออิฐมวลเบาฉาบทั้งสองด้านทุกห้อง ผนังกั้นห้องก่อเต็มความสูงและฉาบปิดช่องเหนือฝ้าเรียบร้อยทุกห้อง ประตูมียางกันเสียงและซีลหนา หน้าต่างกระจก 6 มิล อย่างไรก็ตาม ด้วยทำเลที่ตั้ง ผู้พักอาศัยอาจได้ยินเสียงจากภายนอกเป็นครั้งคราว เช่น เสียงพลุช่วงเทศกาลปีใหม่ (จากระยะไกล) เสียงสุนัขเห่า/หอนในบางวัน และเสียงเวทีดนตรีจากหมู่บ้านใกล้เคียงในบางโอกาส เราขอบอกไว้ก่อนจอง ดีกว่าให้มารู้หลังย้ายเข้า',
+    a_th: 'ห้องออกแบบมาเพื่อกันเสียงตั้งแต่โครงสร้าง — ผนังกั้นห้องทุกห้องเป็นอิฐมวลเบา ฉาบทั้งสองด้าน ก่อเต็มความสูงและฉาบปิดช่องเหนือฝ้า ประตูมียางกันเสียงและซีลหนา หน้าต่างกระจก 6 มม. อย่างไรก็ตาม ด้วยทำเลที่ตั้ง ผู้พักอาศัยอาจได้ยินเสียงจากภายนอกเป็นครั้งคราว เช่น เสียงพลุช่วงเทศกาลปีใหม่ (จากระยะไกล) เสียงสุนัขเห่า/หอนในบางวัน และเสียงเวทีดนตรีจากหมู่บ้านใกล้เคียงในบางโอกาส เราขอบอกไว้ก่อนจอง ดีกว่าให้มารู้หลังย้ายเข้า',
     a_en: "Every unit is built for sound insulation from the structure up — plastered lightweight-brick partition walls on both sides in every room, built full-height and sealed above the ceiling line, plus sealed doors with thick rubber gaskets and 6mm glass windows. That said, given the surrounding area, residents may occasionally hear outside sounds — distant fireworks around the New Year holiday, occasional dog barking or howling on some days, and occasional live music from a neighboring village's event stage. We'd rather you know this before booking than be surprised by it after moving in.",
   },
   // Owner-confirmed 2026-09-12 — proactive disclosure so prospective
@@ -268,7 +268,7 @@ export const FAQ_ITEMS = [
     id: 'noiseEtiquette',
     q_th: 'จัดปาร์ตี้หรือสังสรรค์เสียงดังได้ไหม?',
     q_en: 'Can I host parties or loud gatherings here?',
-    a_th: 'Nature Haven เป็นพื้นที่พักอาศัยเป็นหลัก ไม่เหมาะกับการจัดปาร์ตี้หรือสังสรรค์เสียงดัง ชุมชนโดยรอบค่อนข้างเงียบสงบ จึงขอความร่วมมือผู้พักอาศัยทุกท่านช่วยกันดูแล — งดส่งเสียงดังรบกวนเพื่อนบ้านและพื้นที่ข้างเคียง โดยเฉพาะในช่วงเวลาพักผ่อนของอาคาร 22:00–07:00 น. เพื่อให้ทุกคนพักผ่อนได้อย่างสบายใจ',
+    a_th: 'Nature Haven เป็นที่พักอาศัย ไม่เหมาะกับการจัดปาร์ตี้หรือสังสรรค์เสียงดัง ย่านนี้เงียบ เราจึงอยากให้ช่วยกันรักษาไว้ ไม่ส่งเสียงรบกวนเพื่อนบ้าน โดยเฉพาะช่วงเวลาพักผ่อนของอาคาร 22:00–07:00 น. ให้ทุกคนพักได้อย่างสบายใจ',
     a_en: 'Nature Haven is a residential space first, not a venue for parties or loud gatherings. The surrounding community is quiet, so we ask every resident to help keep it that way — please avoid noise that could disturb neighbors, especially during the building\'s 22:00–07:00 quiet hours, so everyone can rest comfortably.',
   },
 ] as const;

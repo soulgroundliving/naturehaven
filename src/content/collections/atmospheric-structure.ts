@@ -7,20 +7,20 @@ const collection: Collection = {
   index: '01',
   title: {
     en: 'Atmospheric & Structure',
-    th: 'สเปซที่หายใจร่วมกับธรรมชาติ',
+    th: 'ห้องที่วางตามทางลม',
   },
   essence: {
     en: '25.2 m² set on the north–south wind line — nature does the quiet work.',
-    th: 'ห้อง 25.2 ตร.ม. ที่วางตัวตามแนวลมเหนือ–ใต้ — ให้ธรรมชาติช่วยทำงานอย่างเงียบ ๆ',
+    th: 'ห้อง 25.2 ตร.ม. ที่วางตัวตามแนวลมเหนือ–ใต้ — ให้ลมช่วยดูแลห้องอย่างเงียบ ๆ',
   },
   manifesto: {
     en: 'Before the first material was chosen, we chose the direction of the wind. Every residence sits on a north–south line — the door receives the breeze, the balcony releases it — and the whole is wrapped in a structure and a paint that are safe to breathe, for every life in the room.',
-    th: 'ก่อนจะเลือกวัสดุชิ้นแรก เราเลือกทิศของลมก่อน ห้องทุกห้องวางตัวในแนวเหนือ–ใต้ ประตูรับลมเข้า ระเบียงปล่อยลมออก อากาศจึงหมุนเวียนเองตลอดปี จากนั้นจึงห่อทั้งหมดด้วยโครงสร้างและสีที่ปลอดภัยต่อลมหายใจของทุกชีวิตในห้อง',
+    th: 'ก่อนจะเลือกวัสดุชิ้นแรก เราเลือกทิศของลมก่อน ห้องทุกห้องวางตัวในแนวเหนือ–ใต้ ประตูรับลมเข้า ระเบียงปล่อยลมออก อากาศจึงหมุนเวียนเองตลอดปี แล้วจึงเลือกโครงสร้างและสีที่ปลอดภัยต่อลมหายใจของทุกชีวิตในห้อง',
   },
   hero: '/assets/corridor-approach.jpg',
   heroAlt: {
     en: 'The building corridor — warm recessed light, digital-locked doors, open to the breeze and greenery',
-    th: 'โถงทางเดินของอาคาร — ไฟ warm light ประตูพร้อมล็อกดิจิทัล เปิดรับลมและแนวต้นไม้',
+    th: 'โถงทางเดินของอาคาร — ไฟโทนอุ่น ประตูพร้อมล็อกดิจิทัล เปิดรับลมและแนวต้นไม้',
   },
   details: [
     {
@@ -28,7 +28,7 @@ const collection: Collection = {
       title: { en: 'Planned around the wind', th: 'วางผังตามทิศลม' },
       body: {
         en: 'The entrance faces north, the balcony south — aligned with Bangkok’s prevailing breeze, so air moves straight through the room all year. The room stays open and fresh without leaning on machines.',
-        th: 'ประตูทางเข้าหันทิศเหนือ ระเบียงหันทิศใต้ — ตรงแนวลมประจำของกรุงเทพฯ พอดี ลมจึงไหลผ่านห้องได้ตรง ๆ ตลอดทั้งปี ห้องโปร่ง ไม่อับ โดยไม่ต้องพึ่งเครื่องจักรตลอดเวลา',
+        th: 'ประตูทางเข้าหันทิศเหนือ ระเบียงหันทิศใต้ — ตรงแนวลมประจำของกรุงเทพฯ พอดี ลมจึงไหลผ่านห้องได้ตรง ๆ ตลอดทั้งปี ห้องโปร่ง ไม่อับ โดยไม่ต้องเปิดแอร์ตลอดเวลา',
       },
       // OWNER VERIFICATION REQUIRED (2026-09-12): bedroom dimensions and
       // ceiling height below are estimated/design figures, not yet measured
@@ -56,7 +56,7 @@ const collection: Collection = {
       title: { en: 'A finish that is safe to breathe', th: 'สีที่ปลอดภัยต่อลมหายใจ' },
       body: {
         en: 'Inside and out, Nippon Green Grade in a soft white-cream — semi-gloss to matte, low-odour, and safe for both you and your animals from the first day you move in.',
-        th: 'ทั้งภายในและภายนอกใช้สี Nippon รุ่น Green Grade โทนขาว-ครีม กึ่งเงา-ด้าน ไร้กลิ่นฉุนรบกวน ปลอดภัยต่อสุขภาพของคุณและสัตว์เลี้ยง — ตั้งแต่วันแรกที่ย้ายเข้า',
+        th: 'ทั้งภายในและภายนอกใช้สี Nippon รุ่น Green Grade โทนขาว-ครีม กึ่งเงา-ด้าน กลิ่นอ่อน ปลอดภัยกับคุณและสัตว์เลี้ยง ตั้งแต่วันแรกที่ย้ายเข้า',
       },
       spec: {
         en: 'Nippon Paint Green Grade · semi-gloss / matte · interior + exterior',
@@ -67,16 +67,16 @@ const collection: Collection = {
       label: 'The Light',
       title: { en: 'Light that follows your day', th: 'แสงที่ปรับตามจังหวะชีวิต' },
       body: {
-        en: 'Four corner LED downlights switch in pairs, and the central lamp shifts across three colour temperatures by its own remote, from anywhere in the room — work light to bedtime warmth in a few seconds.',
-        th: 'ดาวน์ไลท์ LED 4 จุดตามมุมห้อง เปิดเป็นคู่ได้ตามโซน และโคมกลางห้องปรับได้ 3 โทนสีพร้อมอุณหภูมิแสง สั่งด้วยรีโมทเฉพาะจากตรงไหนก็ได้ในห้อง — จากแสงทำงานตอนบ่าย ถึงแสงอุ่นก่อนนอน ในไม่กี่วินาที',
+        en: 'Four corner LED downlights switch in pairs, and the central lamp shifts across three colour temperatures by its own remote, from anywhere in the room — work light to bedtime warmth.',
+        th: 'ดาวน์ไลท์ LED 4 จุดตามมุมห้อง เปิดเป็นคู่ได้ตามโซน และโคมกลางห้องปรับแสงได้ 3 โทน สั่งด้วยรีโมทเฉพาะได้จากทุกมุมห้อง — จากแสงทำงานตอนบ่าย ถึงแสงอุ่นก่อนนอน',
       },
     },
     {
       label: 'The Invisible Grid',
       title: { en: 'The grid you never see', th: 'โครงข่ายที่เดินสายไว้ให้แล้ว' },
       body: {
-        en: 'Outlets in every corner of the room, plus pre-run wiring for private Wi-Fi and a LAN line for the television. Nothing to drill, nothing to trail across the floor.',
-        th: 'ปลั๊กไฟครบทุกมุมห้อง พร้อมเดินสายรองรับ Wi-Fi ส่วนตัว และสาย LAN สำหรับทีวี — อยากติดตั้งอะไรเพิ่ม ไม่ต้องเจาะ ไม่ต้องลากสายเองแม้แต่เส้นเดียว',
+        en: 'Outlets in every corner of the room, plus pre-run wiring for private Wi-Fi and a LAN line for the television. Little to drill, nothing to trail across the floor.',
+        th: 'ปลั๊กไฟครบทุกมุมห้อง พร้อมเดินสายรองรับ Wi-Fi ส่วนตัว และสาย LAN สำหรับทีวี — จะติดตั้งอะไรภายหลัง ก็แทบไม่ต้องเจาะหรือเดินสายใหม่',
       },
     },
     {
@@ -88,7 +88,7 @@ const collection: Collection = {
       // (which already correctly states only the verified space count).
       body: {
         en: 'A 1.6-metre corridor in soft cream tile, warm recessed light along the way, access-key entry, CCTV and perimeter lighting through the night — and covered parking around the building for registered residents, on a first-come, first-served basis.',
-        th: 'ทางเดินภายในอาคารกว้าง 1.6 เมตร ปูกระเบื้องโทนครีมเงานวล ไฟ warm light ฝังตามทาง ประตูอาคารเข้าด้วย access key พร้อมกล้องวงจรปิดและไฟรอบอาคารตลอดคืน — และที่จอดรถมีหลังคารอบอาคารสำหรับผู้พักอาศัยที่ลงทะเบียน แบบมาก่อนได้จอดก่อน',
+        th: 'ทางเดินในอาคารกว้าง 1.6 เมตร ปูกระเบื้องโทนครีมเงานวล มีไฟโทนอุ่นฝังตามทาง ประตูอาคารเปิดด้วยคีย์ของผู้พักอาศัย กล้องวงจรปิดและไฟรอบอาคารเปิดไว้ตลอดคืน ส่วนที่จอดรถมีหลังคารอบอาคาร สำหรับผู้พักอาศัยที่ลงทะเบียน มาก่อนได้จอดก่อน',
       },
     },
   ],

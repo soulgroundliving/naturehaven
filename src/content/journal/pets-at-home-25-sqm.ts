@@ -5,25 +5,25 @@ const article: Article = {
   category: { en: 'Pet Life', th: 'ชีวิตกับสัตว์เลี้ยง' },
   title: {
     en: 'Pets on every floor — how 25.2 sqm becomes home for both of you',
-    th: 'เลี้ยงสัตว์ได้ทุกชั้น — ทำอย่างไรให้ 25.2 ตร.ม. เป็นบ้านของทั้งคุณและเขา',
+    th: 'เลี้ยงสัตว์ได้ทุกชั้น — 25.2 ตร.ม. ที่เป็นบ้านของทั้งคนและน้อง',
   },
   excerpt: {
-    en: 'No pet floor, no pet wing — the whole building welcomes dogs (up to 15 kg full-grown by breed standard), cats, rabbits and hamsters, one per home, as the Bangkok pet ordinance sets. A single rule, applied evenly, and a layout considered for four legs as much as two.',
-    th: 'ไม่มีชั้นหรือโซนเฉพาะสัตว์เลี้ยง — ทั้งตึกต้อนรับสุนัข (ตัวเต็มวัยตามมาตรฐานสายพันธุ์ไม่เกิน 15 กก.) แมว กระต่าย และหนูแฮมสเตอร์ 1 ตัวต่อห้องตามข้อบัญญัติ กทม. กติกาเดียวที่ใช้เท่ากันทุกที่ และเลย์เอาต์ที่คิดมาเพื่อสี่ขาไม่น้อยไปกว่าสองขา',
+    en: 'No pet floor, no pet wing — the whole building welcomes dogs (up to 15 kg full-grown by breed standard), cats, rabbits and hamsters, one per home, as the Bangkok pet ordinance sets. One rule for the whole building, and a room that thinks of four legs too.',
+    th: 'ไม่มีชั้นหรือโซนเฉพาะสัตว์เลี้ยง — ทุกห้องเลี้ยงสุนัข แมว กระต่าย หรือหนูแฮมสเตอร์ได้ห้องละ 1 ตัว ตามข้อบัญญัติ กทม. สุนัขตัวเต็มวัยตามมาตรฐานสายพันธุ์ไม่เกิน 15 กก. กติกาเดียวกันทั้งตึก และห้องที่จัดไว้เผื่อเพื่อนสี่ขา',
   },
   date: '2026-06-26',
   readMinutes: 7,
   hero: '/assets/room-view-out.jpg',
   heroAlt: {
     en: 'Nature Haven bedroom — view from the bed toward the entrance, desk and wardrobe',
-    th: 'ห้องพัก Nature Haven — มุมมองออกห้อง เห็นโต๊ะทำงานและตู้เสื้อผ้า',
+    th: 'ห้องที่ Nature Haven — มองจากเตียงไปทางประตู เห็นโต๊ะทำงานและตู้เสื้อผ้า',
   },
   blocks: [
     {
       type: 'p',
       text: {
-        th: 'ไม่มีชั้นให้ต้องเลือก และไม่มีข้อยกเว้นให้ต้องกังวล — ที่ Nature Haven ทุกห้องในทุกชั้นต้อนรับสุนัข แมว กระต่าย และหนูแฮมสเตอร์ ตัวเล็กถึงกลาง 1 ตัวต่อห้องตามข้อบัญญัติ กทม. ไม่ใช่สิทธิพิเศษที่กันไว้แค่มุมใดมุมหนึ่งของตึก แต่เป็นคำตอบเดียวกันทั้งอาคาร',
-        en: 'There is no floor to choose and no exception to navigate: at Nature Haven, every unit on every level welcomes dogs, cats, rabbits and hamsters, small to medium, one per home, as the Bangkok pet ordinance sets. Not a feature reserved for a corner of the building — the whole address, built around the same answer.',
+        th: 'ที่นี่ไม่มีชั้นสำหรับสัตว์เลี้ยง เพราะเลี้ยงได้ทุกชั้น และไม่มีข้อยกเว้นให้ต้องกังวล ทุกห้องต้อนรับสุนัข แมว กระต่าย และหนูแฮมสเตอร์ ตัวเล็กถึงกลาง 1 ตัวต่อห้องตามข้อบัญญัติ กทม. ไม่ใช่สิทธิพิเศษของบางมุม แต่เป็นกติกาเดียวกันทั้งตึก',
+        en: 'There is no floor to choose and no exception to navigate: at Nature Haven, every unit on every level welcomes dogs, cats, rabbits and hamsters, small to medium, one per home, as the Bangkok pet ordinance sets. Not a privilege for one corner, but the same rule across the whole building.',
       },
     },
     {
@@ -33,8 +33,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'เราตัดสินใจตั้งแต่แบบร่างแรกว่าสัตว์เลี้ยงอยู่ได้ทั้งตึก ไม่ใช่แค่บางชั้นหรือบางปีก — เพราะคนที่ใช้ชีวิตร่วมกับสัตว์เลี้ยงควรได้อยู่อย่างคนในบ้านเต็มตัว ไม่ใช่แขกในบ้านของตัวเอง กติกาของเราจึงมีชุดเดียวสำหรับผู้อยู่อาศัยทุกคน ชัดเจนพอที่เพื่อนบ้าน ไม่ว่าจะมีสัตว์เลี้ยงหรือไม่ จะอยู่ร่วมตึกเดียวกันได้จริง',
-        en: 'We decided from the first draft that pets belong to the whole building, not to a floor or a wing — because someone who shares their life with an animal should be fully at home, never a guest in their own building. So there is one rule for every resident, clear enough that neighbours — with an animal or without — can genuinely share the building.',
+        th: 'เราตัดสินใจตั้งแต่แบบร่างแรกว่าสัตว์เลี้ยงอยู่ได้ทั้งตึก เพราะคนที่ใช้ชีวิตร่วมกับสัตว์เลี้ยงควรได้อยู่อย่างคนในบ้านเต็มตัว ไม่ใช่แขกในบ้านของตัวเอง กติกาจึงมีชุดเดียว ชัดพอให้เพื่อนบ้านทุกคน ไม่ว่าจะเลี้ยงสัตว์หรือไม่ อยู่ร่วมกันได้สบายใจ',
+        en: 'We decided from the first draft that pets belong to the whole building, not to one floor — because someone who shares their life with an animal should be fully at home, never a guest in their own building. So there is one rule for everyone, clear enough that every neighbour, with an animal or without, can live together at ease.',
       },
     },
     {
@@ -51,26 +51,33 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'เรารับสุนัข แมว กระต่าย และหนูแฮมสเตอร์ สำหรับสุนัข เกณฑ์ของเรามีข้อเดียว คือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ต้องไม่เกิน 15 กก. พิจารณา ณ วันลงทะเบียน — ไม่มีรายชื่อสายพันธุ์ที่รับหรือไม่รับ เราวัดที่ตัวเต็มวัยเพื่อความเป็นธรรมกับทุกฝ่าย เพราะลูกสุนัข 4 กก. วันนี้ อาจเป็น 30 กก. ในปีหน้า ห้องละ 1 ตัวตามข้อบัญญัติ กทม. และขอให้น้องไม่ส่งเสียงดังต่อเนื่องรบกวนเพื่อนบ้าน',
-        en: 'We accept dogs, cats, rabbits and hamsters. For dogs our test is a single number: full-grown weight, by breed standard, up to 15 kg, judged on the day you register. There is no list of breeds we accept or refuse. We measure the adult because it is fair to everyone — a 4 kg puppy today can be 30 kg next year. One per home, as the Bangkok pet ordinance sets, and we ask that a pet does not bark or cry continuously and disturb the neighbours.',
+        th: 'เรารับสุนัข แมว กระต่าย และหนูแฮมสเตอร์ สำหรับสุนัข เกณฑ์ของเรามีข้อเดียว คือน้ำหนักตัวเต็มวัยตามมาตรฐานสายพันธุ์ต้องไม่เกิน 15 กก. พิจารณา ณ วันลงทะเบียน — ไม่มีรายชื่อสายพันธุ์ที่รับหรือไม่รับ เราวัดที่ตัวเต็มวัย เพราะลูกสุนัข 4 กก. วันนี้ อาจเป็น 30 กก. ในปีหน้า ห้องละ 1 ตัวตามข้อบัญญัติ กทม. และขอให้น้องไม่ส่งเสียงดังต่อเนื่องรบกวนเพื่อนบ้าน',
+        en: 'We accept dogs, cats, rabbits and hamsters. For dogs our test is a single number: full-grown weight, by breed standard, up to 15 kg, judged on the day you register. There is no list of breeds we accept or refuse. We measure the adult because a 4 kg puppy today can be 30 kg next year. One per home, as the Bangkok pet ordinance sets, and we ask that a pet does not bark or cry continuously and disturb the neighbours.',
       },
     },
     {
       type: 'p',
       text: {
-        th: 'หากมีเสียงรบกวนต่อเนื่องจริง เรามีกระบวนการสามขั้นที่ยุติธรรมกับทุกฝ่าย — โครงการแจ้งเจ้าของ นัดคุยหาทางแก้ร่วมกัน (การฝึก อุปกรณ์ การย้ายชั้น) และทบทวนสิทธิ์การเลี้ยงเป็นทางเลือกสุดท้ายเมื่อแก้ไม่ได้จริง ทุกขั้นมีบันทึกเป็นลายลักษณ์อักษร และเจ้าของมีโอกาสชี้แจงก่อนการตัดสินใดเสมอ',
-        en: 'If noise does persist, there are three steps, fair to everyone: we tell the owner; we meet to find a fix together (training, equipment, a move to another floor); and only if nothing works do we review the right to keep the pet. Every step is recorded in writing, and the owner is always heard before any decision.',
+        th: 'หากมีเสียงรบกวนต่อเนื่องจริง เรามีสามขั้นที่ใช้กับทุกคนเท่ากัน — เราแจ้งเจ้าของ นัดคุยหาทางแก้ร่วมกัน (การฝึก อุปกรณ์ การย้ายชั้น) และทบทวนสิทธิ์การเลี้ยงเป็นทางเลือกสุดท้ายเมื่อแก้ไม่ได้จริง ทุกขั้นมีบันทึกเป็นลายลักษณ์อักษร และเจ้าของได้ชี้แจงก่อนตัดสินใจทุกครั้ง',
+        en: 'If noise does persist, there are three steps, the same for everyone: we tell the owner; we meet to find a fix together (training, equipment, a move to another floor); and only if nothing works do we review the right to keep the pet. Every step is recorded in writing, and the owner is always heard before any decision.',
       },
     },
     {
       type: 'h2',
-      text: { th: 'เลย์เอาต์ที่คิดเผื่อสี่ขา', en: 'A layout that thinks in four legs' },
+      text: { th: 'ผังห้องที่คิดเผื่อเพื่อนสี่ขา', en: 'A layout that thinks in four legs' },
     },
     {
       type: 'p',
       text: {
-        th: 'แต่ละห้องขนาด 25.2 ตร.ม. มีโซนนอน ห้องน้ำ ตู้เก็บของอเนกประสงค์ และระเบียงส่วนตัว สำหรับบ้านที่มีสัตว์เลี้ยง ความใส่ใจอยู่ในรายละเอียดเล็ก ๆ: อาหารของคุณและของน้องเก็บไว้สูงในตู้บิลต์อินที่ปิดมิดชิด พ้นจมูกช่างสงสัย ซิงก์ล้างจานอยู่ที่ระเบียง ไม่ใช่ข้างเตียง ประตูห้องน้ำปิดได้เมื่ออยากมีความเป็นส่วนตัว ส่วนระเบียงเปิดรับแดด — บ้านที่เลี้ยงแมวตั้งแต่ชั้น 2 ขึ้นไป เราขอให้ติดตาข่ายกันตกที่ระเบียงภายใน 14 วันหลังเข้าอยู่ และยินดีช่วยประสานช่างให้ เพราะไม่มีใครอยากเจอเหตุที่ป้องกันได้',
-        en: 'Each 25.2 sqm residence holds a sleeping zone, a bathroom, a multi-purpose storage cabinet, and a private balcony — and for a pet household, the consideration lives in the details. Food, yours and theirs, stays up high behind closed built-in doors, away from curious noses. The dish sink rests on the balcony rather than beside the bed. A bathroom door that closes gives you privacy on demand. And the balcony is an open, sun-washed space — for cat households from the second floor up, we ask for a fall-safe balcony net within 14 days of moving in, and we help arrange the installer. That rule exists for one reason: nobody wants to meet an accident that could have been prevented.',
+        th: 'แต่ละห้องขนาด 25.2 ตร.ม. มีโซนนอน ห้องน้ำ ตู้บิวท์อิน และระเบียงส่วนตัว อาหารของคนและของน้องเก็บไว้ในตู้สูงที่ปิดสนิท ซิงก์ล้างจานอยู่ที่ระเบียง ไม่ใช่ข้างเตียง ประตูห้องน้ำปิดได้เมื่ออยากมีความเป็นส่วนตัว',
+        en: 'Each 25.2 sqm residence holds a sleeping zone, a bathroom, a built-in cabinet, and a private balcony. Food, yours and theirs, stays up high behind closed built-in doors. The dish sink rests on the balcony rather than beside the bed. A bathroom door that closes gives you privacy on demand.',
+      },
+    },
+    {
+      type: 'p',
+      text: {
+        th: 'ระเบียงเปิดรับแดด — สำหรับบ้านที่มีแมวตั้งแต่ชั้น 2 ขึ้นไป เราขอให้ติดตาข่ายกันตกที่ระเบียงภายใน 14 วันหลังเข้าอยู่ และยินดีช่วยประสานช่างให้ เพราะไม่มีใครอยากเจอเหตุที่ป้องกันได้',
+        en: 'The balcony is open to the sun. For cat households from the second floor up, we ask for a fall-safe balcony net within 14 days of moving in, and we help arrange the installer — because nobody wants to meet an accident that could have been prevented.',
       },
     },
     {
@@ -105,7 +112,7 @@ const article: Article = {
         [
           { th: 'สุนัขสูงวัย หรือพันธุ์หลังยาวขาสั้น', en: 'Senior dogs, or long-backed short-legged breeds' },
           '1',
-          { th: 'ข้อสะโพกและหมอนรองกระดูกไม่ควรเจอบันไดเป็นกิจวัตร', en: 'Hips and spines should not face stairs as a daily routine.' },
+          { th: 'บันไดทุกวันไม่ดีต่อสะโพกและหลัง', en: 'Stairs every day are hard on hips and spines.' },
         ],
       ],
       rowHeader: true,
@@ -113,8 +120,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'แม้แต่เรื่องเอกสารก็คิดมาละเอียดไม่ต่างจากตัวห้อง — ก่อนเข้าอยู่ น้องทุกตัวลงทะเบียนพร้อมสมุดวัคซีนในแอปลูกบ้าน ประวัติจึงอยู่ที่เดียวกับสัญญาและบิลของคุณ ไม่มีสมุดเล่มไหนหล่นหายในลิ้นชัก',
-        en: 'The paperwork has been considered as carefully as the room: the resident app holds pet records alongside your lease and your bills — every pet is registered with its vaccination book in the app before move-in, and the history lives in one place, with no booklet left loose in a drawer.',
+        th: 'ก่อนเข้าอยู่ น้องทุกตัวลงทะเบียนพร้อมสมุดวัคซีนในแอปลูกบ้าน ประวัติอยู่ที่เดียวกับสัญญาและบิล ไม่ต้องตามหา',
+        en: 'Before move-in, every pet is registered with its vaccination book in the resident app, so its history sits in one place with the lease and the bills — nothing to hunt for.',
       },
     },
     {

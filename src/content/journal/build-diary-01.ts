@@ -11,24 +11,24 @@ const article: Article = {
   category: { en: 'Build Diary', th: 'บันทึกการสร้าง' },
   title: {
     en: 'Build Diary #1 — what is already decided, on the road to move-in',
-    th: 'Build Diary #1 — สิ่งที่ลงตัวแล้ว ระหว่างทางสู่วันเข้าอยู่',
+    th: 'Build Diary #1 — สิ่งที่ลงตัวแล้ว ก่อนวันเข้าอยู่',
   },
   excerpt: {
     en: 'A record kept as the building rises. The first entry: what is already decided — one clear rent, one rule for every home.',
-    th: 'บันทึกที่เก็บไว้ระหว่างตึกค่อย ๆ เป็นรูปเป็นร่าง ฉบับแรกว่าด้วยสิ่งที่เคาะแล้ว — ค่าเช่าที่ชัดเจน กติกาเดียวกันทุกห้อง',
+    th: 'บันทึกที่เก็บไว้ระหว่างตึกค่อย ๆ เป็นรูปเป็นร่าง ฉบับแรกว่าด้วยสิ่งที่ลงตัวแล้ว — ค่าเช่าที่ชัดเจน กติกาเดียวกันทุกห้อง',
   },
   date: '2026-06-19',
   readMinutes: 2,
   hero: '/assets/unit-overview.jpg',
   heroAlt: {
     en: 'A Nature Haven residence opening toward its private balcony',
-    th: 'ห้องพัก Nature Haven ที่เปิดออกสู่ระเบียงส่วนตัว',
+    th: 'ห้องหนึ่งของ Nature Haven ที่ต่อออกไปยังระเบียงส่วนตัว',
   },
   blocks: [
     {
       type: 'p',
       text: {
-        th: 'เราเปิดบันทึกนี้ไว้ตั้งแต่ตึกยังค่อย ๆ ขึ้นโครง ให้คนที่กำลังมองหาที่อยู่ใหม่ได้เห็นความคิดเบื้องหลัง ไม่ใช่แค่ห้องที่เสร็จแล้ว นี่คือฉบับแรก — สรุปสิ่งที่ลงตัวแล้วก่อนวันเปิด',
+        th: 'เราเริ่มบันทึกนี้ตั้งแต่ตึกยังค่อย ๆ ขึ้นโครง ให้คนที่กำลังมองหาที่อยู่ใหม่ได้เห็นความคิดเบื้องหลัง ไม่ใช่แค่ห้องที่เสร็จแล้ว ฉบับแรกนี้สรุปสิ่งที่ลงตัวแล้วก่อนวันเปิด',
         en: 'We keep this record open while the building actually rises, so anyone considering where to live next can see the thinking, not only the finished rooms. This is entry one — a recap of what is already settled before opening day.',
       },
     },
@@ -61,7 +61,7 @@ const article: Article = {
         [
           { th: 'สัตว์เลี้ยง', en: 'Pets' },
           {
-            th: 'ทุกห้องทุกชั้นเลี้ยงได้ กติกาเดียวกันทั้งตึก — สุนัข (ตัวเต็มวัยไม่เกิน 15 กก.) แมว กระต่าย และหนูแฮมสเตอร์ 1 ตัวต่อห้องตามข้อบัญญัติ กทม. มีค่าสัตว์เลี้ยงรายเดือน ไม่ใช่ข้อยกเว้นที่ต้องต่อรองเป็นราย ๆ',
+            th: 'ทุกห้องทุกชั้นเลี้ยงได้ ใช้กติกาเดียวกันทั้งตึก ไม่ต้องขอเป็นกรณีพิเศษ เลี้ยงได้ห้องละ 1 ตัว ตามข้อบัญญัติ กทม. ได้แก่ สุนัข (ตัวเต็มวัยไม่เกิน 15 กก.) แมว กระต่าย หรือหนูแฮมสเตอร์ มีค่าสัตว์เลี้ยงรายเดือน',
             en: 'Every unit on every floor is pet-friendly, under one rule for the whole building — dogs (up to 15 kg full-grown), cats, rabbits and hamsters, one per home, as the Bangkok pet ordinance sets, with a monthly pet fee. Never an exception to negotiate.',
           },
         ],
@@ -77,7 +77,7 @@ const article: Article = {
     {
       type: 'pull',
       text: {
-        th: 'คำที่พูดตรง ๆ ก่อนวันเปิด มีค่ากว่าทุกอย่างที่พิมพ์ทีหลัง',
+        th: 'บอกให้ชัดตั้งแต่วันนี้ ดีกว่าอธิบายทีหลัง',
         en: 'What is said honestly before opening day is worth more than anything printed after it.',
       },
     },
@@ -88,7 +88,7 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ตอนนี้เรากำลังเน้นงานภายใน — ให้ห้องจริงออกมาได้มาตรฐานเดียวกับภาพเรนเดอร์ที่เคยแสดงไว้ ฉบับที่สองบอกชื่อวัสดุจริงที่เลือกแล้ว หากมีคำถามที่อยากให้ฉบับต่อไปตอบ ทักเราทาง LINE ได้เลย',
+        th: 'ตอนนี้เราเน้นงานภายใน ให้ห้องจริงออกมาได้มาตรฐานเดียวกับภาพเรนเดอร์ที่เคยให้ดู ฉบับที่สองบอกชื่อวัสดุจริงที่เลือกแล้ว มีคำถามที่อยากให้ฉบับหน้าตอบ บอกเราทาง LINE',
         en: 'The present focus is interior work — holding the finished rooms to the same standard as the renderings already shown. Entry two names the actual materials chosen. If there is a question you would like a later entry to answer, message us on LINE.',
       },
     },

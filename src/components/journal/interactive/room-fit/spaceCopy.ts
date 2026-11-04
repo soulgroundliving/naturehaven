@@ -18,10 +18,10 @@ export const TIER_NAME: Record<Tier, Bilingual> = {
 };
 
 export const TIER_MEANING: Record<Tier, Bilingual> = {
-  tight: t('Under what we accept.', 'ต่ำกว่าที่เรารับได้'),
-  minimum: t('It works for one person, but only just: no room to carry things or to stay at ease.', 'ใช้ได้สำหรับคนเดียวแต่แค่พอ ไม่มีที่ถือของหรืออยู่ให้สบาย'),
-  standard: t('Our standard: one person uses it freely, carrying things, without having to think about it.', 'มาตรฐานของเรา คนหนึ่งคนใช้ได้คล่อง ถือของได้ โดยไม่ต้องคิด'),
-  comfortable: t('Room to spare: you can use it with a basket, a bag, or someone beside you.', 'เหลือเฟือ ใช้ได้แม้ถือตะกร้า ถือกระเป๋า หรือมีอีกคนอยู่ข้าง ๆ'),
+  tight: t('Under what we accept.', 'แคบกว่าที่เรารับได้'),
+  minimum: t('It works for one person, but only just: no room to carry things or to stay at ease.', 'คนเดียวใช้ได้ แต่แค่พอ ถือของหรือขยับตัวไม่สะดวก'),
+  standard: t('Our standard: one person uses it freely, carrying things, without having to think about it.', 'มาตรฐานของเรา คนเดียวใช้ได้คล่อง ถือของไปด้วยก็ไม่ติดขัด'),
+  comfortable: t('Room to spare: you can use it with a basket, a bag, or someone beside you.', 'มีที่เหลือ ถือตะกร้า ถือกระเป๋า หรือมีอีกคนอยู่ข้าง ๆ ก็ยังสบาย'),
 };
 
 /** What "tight" means for each space in particular, said after the general line. */
@@ -52,7 +52,7 @@ export const SPACE_WHERE: Record<SpaceId, Bilingual> = {
   kitchen: t('in front of the kitchen counter', 'หน้าเคาน์เตอร์ครัว'),
   fridge: t('in front of the fridge', 'หน้าตู้เย็น'),
   table: t('in front of the table, for the chair', 'หน้าโต๊ะ ที่วางเก้าอี้'),
-  shelf: t('in front of the shoe shelf', 'หน้าตู้รองเท้า'),
+  shelf: t('in front of the shoe shelf', 'หน้าชั้นวาง'),
 };
 
 export const SPACE_FOR: Record<SpaceId, Bilingual> = {
@@ -71,7 +71,7 @@ export const SPACES_COPY = {
     'The floor no piece stands on, measured in your arrangement: how wide each space really is, against our standard.',
     'พื้นที่ว่างที่ไม่มีเฟอร์นิเจอร์วางอยู่ วัดจากห้องที่คุณจัด ว่าแต่ละที่กว้างจริงเท่าไร เทียบกับมาตรฐานของเรา',
   ),
-  askedFor: t('The game asks for at least', 'เกมต้องการอย่างน้อย'),
+  askedFor: t('The game asks for at least', 'เกมนี้ขออย่างน้อยระดับ'),
   sourcesTitle: t('Where these numbers come from', 'ตัวเลขเหล่านี้มาจากไหน'),
   checking: t('checking…', 'กำลังตรวจ…'),
   needs: t('needs', 'ต้องการ'),
@@ -86,7 +86,7 @@ export const SPACES_COPY = {
 export function standardsNote(lang: LangCode): string {
   const { walk, kitchen } = SPACE_STANDARDS;
   if (lang === 'th') {
-    return `ความกว้างเหล่านี้คือมาตรฐานการทำงานของ Nature Haven ยึดเจตนารมณ์ของ universal design (WELL v2 · Accessibility and Universal Design) ไม่ใช่ข้อกำหนดของ WELL มีสองค่าที่เทียบกับแนวปฏิบัติที่เผยแพร่ได้ ทางสัญจรที่เข้าถึงได้กว้าง 91 ซม. (36 นิ้ว) และลดได้เหลือ 81 ซม. (32 นิ้ว) ในช่วงยาวไม่เกิน 61 ซม. (24 นิ้ว) (ADA Standards) เราตั้งทางเดินไว้ที่ ${walk.standard} และเรียก ${walk.minimum} ว่าพอใช้ ส่วนทางเดินในครัวกว้าง 91 ซม. และช่องทำงานของคนทำอาหารคนเดียว 107 ซม. (NKBA) หน้าเคาน์เตอร์เราตั้งไว้ที่ ${kitchen.standard} และเรียก ${kitchen.comfortable} ว่าสบาย ช่อง 107 จึงอยู่ระหว่างสองค่านี้ ค่าที่เหลือเป็นดุลพินิจของเราสำหรับห้อง 25.2 ตร.ม.`;
+    return `ความกว้างเหล่านี้เป็นเกณฑ์ที่ Nature Haven ตั้งเอง ตามแนวคิด universal design (WELL v2 · Accessibility and Universal Design) แต่ไม่ใช่ข้อกำหนดของ WELL มีสองค่าที่เทียบกับแนวปฏิบัติที่เผยแพร่ได้ ข้อแรก ทางเดินสำหรับทุกคน (accessible route) กว้าง 91 ซม. (36 นิ้ว) แคบลงได้ถึง 81 ซม. (32 นิ้ว) ในช่วงยาวไม่เกิน 61 ซม. (24 นิ้ว) (ADA Standards) เราตั้งทางเดินไว้ที่ ${walk.standard} และเรียก ${walk.minimum} ว่าพอใช้ ข้อสอง ทางเดินในครัวกว้าง 91 ซม. และช่องทำงานของคนทำอาหารคนเดียว 107 ซม. (NKBA) หน้าเคาน์เตอร์เราตั้งไว้ที่ ${kitchen.standard} และเรียก ${kitchen.comfortable} ว่าสบาย ช่อง 107 จึงอยู่ระหว่างสองค่านี้ ค่าที่เหลือเราตัดสินเองสำหรับห้อง 25.2 ตร.ม.`;
   }
   return `These widths are Nature Haven’s own working standard, designed in the spirit of universal design (WELL v2, Accessibility and Universal Design). They are not a WELL requirement. Two of them can be set beside published guidance. An accessible route is 91 cm (36 in) wide and may narrow to 81 cm (32 in) for a stretch of up to 61 cm (24 in) (ADA Standards); we ask ${walk.standard} for a walkway and call ${walk.minimum} the minimum. A kitchen walkway is 91 cm and a one-cook work aisle 107 cm (NKBA); in front of the counter we ask ${kitchen.standard} and call ${kitchen.comfortable} comfortable, so the one-cook aisle sits between the two. The rest are our own judgement for a 25.2 sqm room.`;
 }

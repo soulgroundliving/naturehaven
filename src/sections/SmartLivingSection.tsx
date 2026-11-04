@@ -154,7 +154,7 @@ const SmartLivingSection: React.FC = () => {
 
             <div className="sl-left-anim mt-7 pt-6 border-t sec-border">
               <p className="font-sans text-[10px] sec-text-60 uppercase tracking-[0.2em] mb-4">
-                {lang === 'th' ? 'ฟีเจอร์ในแอป' : 'In the app'}
+                {lang === 'th' ? 'ในแอป' : 'In the app'}
               </p>
               <div className="grid grid-cols-2 gap-x-5 gap-y-3">
                 {appFeatures.map(({ label, sub }, i) => {
