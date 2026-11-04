@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { MOVE_IN_LABEL, PROPERTY, UNITS, HAS_COMMON_FEE } from '@/data/propertyFacts';
+import { MOVE_IN_LABEL, PROPERTY, UNITS } from '@/data/propertyFacts';
 
 // English-only by design (doesn't follow the lang toggle) — the numbers
 // still come from propertyFacts.ts so they can't drift from the rest of
@@ -12,7 +12,7 @@ const ITEMS = [
   'Saimai · Bangkok',
   `${MOVE_IN_LABEL.en}`,
   'Pet-Friendly',
-  HAS_COMMON_FEE ? 'Common Fee Applies' : 'No Common Fee',
+  'Cleaning Included',
   `${UNITS[0].sqm} m²`,
   `${PROPERTY.totalUnits} Residences`,
   'Private Balcony',

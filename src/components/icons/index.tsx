@@ -183,3 +183,21 @@ export const NestIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => 
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12.5c3 1.5 6 2 9 2s6-.5 9-2" />
   </svg>
 );
+
+export const PawIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => (
+  <svg width={size} height={size} fill="none" stroke="currentColor" viewBox="0 0 24 24" className={className}>
+    <ellipse cx="6" cy="10" rx="1.7" ry="2.2" strokeWidth={1.5} />
+    <ellipse cx="10" cy="6.2" rx="1.7" ry="2.2" strokeWidth={1.5} />
+    <ellipse cx="14" cy="6.2" rx="1.7" ry="2.2" strokeWidth={1.5} />
+    <ellipse cx="18" cy="10" rx="1.7" ry="2.2" strokeWidth={1.5} />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 11.5c-2.3 0-5 3.3-5 5.6 0 1.6 1.2 2.4 2.6 2.4 1 0 1.6-.5 2.4-.5s1.4.5 2.4.5c1.4 0 2.6-.8 2.6-2.4 0-2.3-2.7-5.6-5-5.6z" />
+  </svg>
+);
+
+// A balcony rail with a plant
+export const BalconyIcon: React.FC<IconProps> = ({ className = '', size = 20 }) => (
+  <svg width={size} height={size} fill="none" stroke="currentColor" viewBox="0 0 24 24" className={className}>
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 13h18M4 13v7M9 13v7M15 13v7M20 13v7M3 20h18" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 13V9.5M17 9.5c0-2 1.5-3.5 3.5-3.5 0 2-1.5 3.5-3.5 3.5zM17 10.5c0-1.7-1.2-3-3-3 0 1.7 1.2 3 3 3z" />
+  </svg>
+);

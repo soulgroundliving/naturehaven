@@ -7,15 +7,15 @@ const collection: Collection = {
   index: '02',
   title: {
     en: 'The Sanctuary',
-    th: 'ความสงบและการพักผ่อนที่สมบูรณ์แบบ',
+    th: 'ห้องนอนที่เงียบสงบ',
   },
   essence: {
     en: 'Close the door and the city softens — a bedroom quieted detail by detail.',
-    th: 'เมื่อประตูปิดลง โลกภายนอกก็เบาลงตาม — ห้องนอนที่เก็บเสียงทีละจุด',
+    th: 'เมื่อประตูปิดลง โลกภายนอกก็เบาลงตาม — ห้องนอนที่เงียบจากรายละเอียดเล็ก ๆ',
   },
   manifesto: {
     en: 'The truest comfort of rest is silence, so we chased it point by point — an acoustic-sealed door, a floor with its own cushioning layer, a mattress built for real, uninterrupted sleep — to give the night back to you.',
-    th: 'ความสบายที่แท้จริงของการพักผ่อนคือความเงียบ เราจึงตามเก็บเสียงทีละจุด — เทปกันเสียงรอบบานประตู พื้นที่มีชั้นโฟมซับในตัว ไปจนถึงที่นอนที่ออกแบบมาเพื่อการนอนหลับที่ไม่สะดุด — เพื่อคืนค่ำคืนที่สมบูรณ์กลับมาให้คุณ',
+    th: 'การพักที่ดีเริ่มจากความเงียบ เราจึงเก็บเสียงทีละจุด ตั้งแต่เทปกันเสียงรอบบานประตู พื้นที่มีชั้นโฟมซับในตัว ไปจนถึงที่นอนที่ให้หลับได้ยาว — ให้กลางคืนเงียบอย่างที่ควรเป็น',
   },
   hero: '/assets/room-view-in.jpg',
   heroAlt: {
@@ -49,22 +49,22 @@ const collection: Collection = {
     },
     {
       label: 'The Veil',
-      title: { en: 'UV-blocking, without the cord', th: 'กัน UV และไร้สาย' },
+      title: { en: 'UV-blocking, without the cord', th: 'กัน UV ไม่มีสายห้อย' },
       body: {
         en: 'Deep-cream UV-blocking curtains mounted flush to the ceiling, on a cordless hand-drawn rail — cleaner to the eye, and safer for pets, in one decision.',
-        th: 'ม่านโทนครีมเข้มกัน UV ติดตั้งชิดฝ้าเพื่อเก็บแสงลอดด้านบน รางแบบจับเลื่อน ไม่มีสายห้อย — เรียบตากว่า และปลอดภัยกับสัตว์เลี้ยงกว่า ในการตัดสินใจเดียว',
+        th: 'ม่านโทนครีมเข้มกัน UV ติดตั้งชิดฝ้าเพื่อเก็บแสงลอดด้านบน รางแบบจับเลื่อน ไม่มีสายห้อย — เรียบตา และปลอดภัยกับน้อง ๆ',
       },
     },
     {
       label: 'The Masterpiece Bed',
-      title: { en: 'The masterpiece bed', th: 'เตียงชิ้นเอกของห้อง' },
+      title: { en: 'The masterpiece bed', th: 'เตียงและหัวเตียง' },
       body: {
         en: 'A Sleep Happy Atlantis Pro V2 — ten inches of pocket springs built to a 25-year standard, breathable for the Thai climate — on a built-in bed with a metre-high full-wall headboard you can truly lean against, lit by a low striplight for the nights that don’t want the big lamp.',
-        th: 'ที่นอน Sleep Happy รุ่น Atlantis Pro V2 พ็อกเก็ตสปริงหนา 10 นิ้ว มาตรฐานการใช้งาน 25 ปี ระบายอากาศดีเหมาะกับอากาศเมืองไทย วางบนเตียงบิ้วอินกรุหัวเตียงเต็มผนังสูง 1 เมตร — นั่งพิงอ่านหนังสือได้จริง วางของบนหัวเตียงได้ และมีไฟ striplight แสงสลัวสำหรับคืนที่ไม่อยากเปิดไฟดวงใหญ่',
+        th: 'ที่นอน Sleep Happy รุ่น Atlantis Pro V2 พ็อกเก็ตสปริงหนา 10 นิ้ว มาตรฐานการใช้งาน 25 ปี ระบายอากาศดีเหมาะกับอากาศเมืองไทย วางบนเตียงบิวท์อินกรุหัวเตียงเต็มผนังสูง 1 เมตร — นั่งพิงอ่านหนังสือได้จริง วางของบนหัวเตียงได้ และมีไฟเส้นแสงสลัวสำหรับคืนที่ไม่อยากเปิดไฟดวงใหญ่',
       },
       spec: {
         en: 'Sleep Happy Atlantis Pro V2 · 10-inch pocket spring · 25-year standard · 1 m built-in headboard',
-        th: 'Sleep Happy Atlantis Pro V2 · Pocket Spring 10 นิ้ว · มาตรฐานการใช้งาน 25 ปี · หัวเตียงบิ้วอินสูง 1 ม.',
+        th: 'Sleep Happy Atlantis Pro V2 · Pocket Spring 10 นิ้ว · มาตรฐานการใช้งาน 25 ปี · หัวเตียงบิวท์อินสูง 1 ม.',
       },
     },
     {
@@ -72,7 +72,7 @@ const collection: Collection = {
       title: { en: 'Cool air, easily kept', th: 'ความเย็นที่ดูแลง่าย' },
       body: {
         en: '12,000 BTU of cooling, chosen for easy self-cleaning — with a full professional service on a regular schedule, at least yearly, or sooner if condition and inspection call for it.',
-        th: 'เครื่องปรับอากาศ 12,000 BTU เลือกรุ่นที่เน้นถอดล้างง่าย ดูแลเบื้องต้นได้ด้วยตัวเอง และมีโครงการล้างใหญ่ตามรอบ อย่างน้อยปีละครั้ง หรือเร็วกว่านั้นตามสภาพและผลการตรวจ',
+        th: 'เครื่องปรับอากาศ 12,000 BTU เลือกรุ่นที่เน้นถอดล้างง่าย ดูแลเบื้องต้นได้ด้วยตัวเอง และเราล้างใหญ่ให้ตามรอบ อย่างน้อยปีละครั้ง หรือเร็วกว่านั้นตามสภาพและผลการตรวจ',
       },
     },
   ],

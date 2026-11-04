@@ -121,13 +121,13 @@ const LocationSection: React.FC = () => {
             <div className="space-y-0">
               {nearbyEssentials.map(({ name, distance }, i) => (
                 <div
-                  key={name}
+                  key={name.en}
                   className={`loc-item flex items-center justify-between py-3.5 ${
                     i < nearbyEssentials.length - 1 ? 'border-b border-dotted sec-border' : ''
                   }`}
                 >
-                  <span className="font-sans text-base font-normal sec-text">{name}</span>
-                  <span className="font-sans text-base font-light sec-text-60">{distance}</span>
+                  <span className="font-sans text-base font-normal sec-text">{name[lang]}</span>
+                  <span className="font-sans text-base font-light sec-text-60">{distance[lang]}</span>
                 </div>
               ))}
             </div>
@@ -148,13 +148,13 @@ const LocationSection: React.FC = () => {
             <div className={`space-y-0 ${showAll ? '' : 'hidden md:block'}`}>
               {lifestyleSurroundings.map(({ name, distance }, i) => (
                 <div
-                  key={name}
+                  key={name.en}
                   className={`loc-item flex items-center justify-between py-3 ${
                     i < lifestyleSurroundings.length - 1 ? 'border-b border-dotted sec-border' : ''
                   }`}
                 >
-                  <span className="font-sans text-base font-normal sec-text">{name}</span>
-                  <span className="font-sans text-base font-light sec-text-60">{distance}</span>
+                  <span className="font-sans text-base font-normal sec-text">{name[lang]}</span>
+                  <span className="font-sans text-base font-light sec-text-60">{distance[lang]}</span>
                 </div>
               ))}
             </div>

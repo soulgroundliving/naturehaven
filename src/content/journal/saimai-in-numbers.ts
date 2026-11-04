@@ -5,11 +5,11 @@ const article: Article = {
   category: { en: 'Neighborhood', th: 'ย่านสายไหม' },
   title: {
     en: 'Sai Mai, measured in metres — what "quiet but convenient" actually means',
-    th: 'สายไหมวัดเป็นเมตร — "เงียบแต่สะดวก" ของจริงหน้าตาเป็นแบบนี้',
+    th: 'สายไหมในระยะเมตร — "เงียบแต่สะดวก" จริงแค่ไหน',
   },
   excerpt: {
     en: 'We describe this neighbourhood in metres, not adjectives — the actual distances, measured from our front gate.',
-    th: 'เราขอเล่าย่านนี้ด้วยระยะทางจริงแทนคำคุณศัพท์ — ทุกระยะวัดจากหน้าประตูโครงการ',
+    th: 'เราขอเล่าย่านนี้ด้วยระยะทางจริง แทนคำบรรยาย — ทุกระยะวัดจากหน้าประตูของเรา',
   },
   date: '2026-07-02',
   readMinutes: 4,
@@ -23,8 +23,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'คำว่า เงียบ สะดวก ทำเลดี จะมีน้ำหนักก็ต่อเมื่อมีตัวเลขรองรับ นี่คือตัวเลขจริง วัดจากหน้าประตูโครงการของเราเอง — ระยะทางที่จะกำหนดชีวิตประจำวันของคุณในย่านสายไหม',
-        en: 'Quiet, convenient, well-located — words like these carry weight only when numbers stand behind them. So here they are, measured from our own front gate: the real distances that will shape daily life in Sai Mai.',
+        th: 'คำว่า "เงียบ" "สะดวก" "ทำเลดี" จะมีน้ำหนักก็ต่อเมื่อมีตัวเลขรองรับ และนี่คือตัวเลขจริง วัดจากหน้าประตูของเราเอง',
+        en: 'Quiet, convenient, well-located — words like these carry weight only when numbers stand behind them. So here they are, measured from our own front gate.',
       },
     },
     {
@@ -34,15 +34,15 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'ของใช้ชิ้นใหญ่: Big C ระยะ 280 เมตร วัตถุดิบสด: ตลาดวงศกร 700 เมตร ซื้อยกลัง: Makro สายไหม 750 เมตร และระยะทางที่เราให้น้ำหนักมากที่สุดตอนเลือกที่ดินผืนนี้ — โรงพยาบาล CGH สายไหม ห่างเพียง 300 เมตร ใกล้พอที่คำว่า "กรณีฉุกเฉิน" จะยังเป็นแผนการจริง ไม่ใช่แค่คำปลอบใจ',
+        th: 'Big C อยู่ห่าง 280 เมตร ไว้ซื้อของเข้าบ้าน ตลาดวงศกร 700 เมตร ไว้ซื้อของสด Makro สายไหม 750 เมตร ไว้ซื้อยกลัง และระยะทางที่เราให้น้ำหนักมากที่สุดตอนเลือกที่ดินผืนนี้ — โรงพยาบาล CGH สายไหม ห่างเพียง 300 เมตร ใกล้พอให้ยามฉุกเฉินไปถึงได้จริง',
         en: 'The larger errand: Big C at 280 m. Fresh ingredients: Wongsakorn Market at 700 m. A bulk run: Makro Sai Mai at 750 m. And the distance we weighed most heavily when choosing this land — CGH Sai Mai Hospital, just 300 m away, close enough that "in case of emergency" remains a real plan rather than a reassuring phrase.',
       },
     },
     {
       type: 'pull',
       text: {
-        th: 'ยิ่งของจำเป็นอยู่ใกล้เท่าไหร่ ชีวิตยิ่งช้าลงได้อย่างสบายใจเท่านั้น',
-        en: 'The closer the essentials, the more comfortably life is allowed to slow down.',
+        th: 'ของจำเป็นอยู่ใกล้ ชีวิตก็ไม่ต้องรีบ',
+        en: 'With the essentials close, life need not hurry.',
       },
     },
     {
@@ -52,22 +52,22 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'Saimai Avenue คอมมูนิตี้มอลล์อยู่ห่างออกไป 1 กิโลเมตร — ร้านอาหารและคาเฟ่สำหรับเย็นวันศุกร์ Foodland ระยะ 3.3 กม. สำหรับของนำเข้า ตลาดมารวย 4.4 กม. และตลาดเอซี สายไหม 5 กม. สำหรับบ่ายวันที่อยากเดินเล่นในตลาดจริง ๆ ทั้งหมดอยู่ในระยะขับรถสิบนาที หรือนั่งวินไปไม่นาน',
+        th: 'Saimai Avenue คอมมูนิตี้มอลล์ อยู่ห่างออกไป 1 กม. มีร้านอาหารและคาเฟ่ไว้นั่งเย็นวันศุกร์ Foodland 3.3 กม. สำหรับของนำเข้า ตลาดมารวย 4.4 กม. และตลาดเอซี สายไหม 5 กม. สำหรับบ่ายที่อยากเดินตลาดจริง ๆ ทั้งหมดอยู่ในระยะขับรถ 10 นาที หรือนั่งมอเตอร์ไซค์รับจ้างไปไม่นาน',
         en: 'Saimai Avenue, the community mall, sits 1 km away — restaurants and cafés for a Friday evening. Foodland at 3.3 km for imported goods, Maruay Market at 4.4 km, and AC Sai Mai Market at 5 km for an afternoon spent properly wandering a market. All within a ten-minute drive, or a short ride away.',
       },
     },
     {
       type: 'p',
       text: {
-        th: 'ส่วนรถไฟฟ้า — BTS คูคต อยู่ห่างประมาณ 5 กิโลเมตร ราวสิบห้านาทีโดยแท็กซี่หรือวินมอเตอร์ไซค์ นี่คือ trade-off ที่เราบอกตรง ๆ โดยไม่ปรุงแต่ง: สายไหมไม่ใช่ย่านที่อยู่ติดแนวรถไฟฟ้า สิ่งที่ได้กลับมาคือความเงียบที่แท้จริง ค่าเช่าที่เบากว่า และชีวิตประจำวันทั้งหมดอยู่ในระยะเดิน เป็นการแลกที่เราเลือกอย่างตั้งใจ ด้วยความเชื่อว่าผู้อยู่อาศัยที่เหมาะกับบ้านหลังนี้จะเลือกแบบเดียวกัน',
-        en: 'As for the train — BTS Khu Khot lies roughly 5 km away, around fifteen minutes by taxi or motorbike. This is the trade-off, stated without dressing it up: Sai Mai does not sit beside the BTS line. In return, it offers a quiet that is real, a rent that is lighter, and an entire daily routine within walking distance. It is a trade we made deliberately, on the belief that the resident this home suits would choose the same way.',
+        th: 'ส่วนรถไฟฟ้า — BTS คูคต อยู่ห่างประมาณ 5 กม. ราว 15 นาทีโดยแท็กซี่หรือมอเตอร์ไซค์รับจ้าง นี่คือสิ่งที่ต้องแลก และเราขอบอกตรง ๆ ว่าสายไหมไม่ได้อยู่ติดรถไฟฟ้า สิ่งที่ได้กลับมาคือความเงียบ ค่าเช่าที่เบากว่า และของจำเป็นในระยะเดิน เราเลือกแบบนี้ และเชื่อว่าคงมีคนที่เลือกเหมือนกัน',
+        en: 'As for the train — BTS Khu Khot lies roughly 5 km away, around fifteen minutes by taxi or motorbike. This is the trade-off, stated without dressing it up: Sai Mai does not sit beside the BTS line. In return: quiet, a lighter rent, and the essentials within walking distance. We chose this trade, and we believe others will choose it too.',
       },
     },
     {
       type: 'p',
       text: {
-        th: 'หากอยากวัดระยะด้วยเท้าของคุณเอง ลองเดินสำรวจย่านนี้ก่อนตัดสินใจ — อยากได้เส้นทางหรือข้อมูลย่านเพิ่มเติม ถามเราได้ทาง LINE',
-        en: 'To measure it with your own feet, take a walk through the neighbourhood before you decide — if you would like directions or local tips, ask us on LINE.',
+        th: 'อยากลองมาเดินดูเองก่อนตัดสินใจ หรืออยากได้เส้นทางและข้อมูลย่าน ถามเราได้ทาง LINE',
+        en: 'If you would like to walk it yourself before you decide — if you would like directions or local tips, ask us on LINE.',
       },
     },
   ],

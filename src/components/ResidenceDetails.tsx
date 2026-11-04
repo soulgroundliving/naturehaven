@@ -241,17 +241,17 @@ const ResidenceDetails: React.FC = () => {
               <span ref={sqmRef} className="font-serif text-6xl md:text-7xl lg:text-[80px] sec-text leading-none">
                 25.2
               </span>
-              <span className="font-sans text-base sec-text-60">sq.m.</span>
+              <span className="font-sans text-base sec-text-60">{r.sqm[lang]}</span>
             </div>
             <div className="w-full h-px my-4" style={{ background: 'var(--sec-border)' }} />
             <p className="font-sans text-base font-light sec-text mb-1">{r.bedroom[lang]}</p>
             <p className="font-sans text-base font-light sec-text mb-5">{r.kitchen[lang]}</p>
             <div className="flex items-center gap-2">
               <span className="inline-block bg-subtle-taupe/20 sec-text text-[11px] font-sans px-2.5 py-1 rounded-full">
-                <span ref={unitsRef}>20</span> units total
+                <span ref={unitsRef}>20</span> {r.unitsTotal[lang]}
               </span>
               <span className="inline-block bg-subtle-taupe/20 sec-text text-[11px] font-sans px-2.5 py-1 rounded-full">
-                <span ref={floorsRef}>4</span> floors
+                <span ref={floorsRef}>4</span> {r.floors[lang]}
               </span>
             </div>
           </div>

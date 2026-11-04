@@ -78,18 +78,18 @@ export function doorToggleLabel(id: DoorId, open: boolean, lang: LangCode): stri
 export const AREA_LABEL = {
   balcony: t('Balcony', 'ระเบียง'),
   bathroom: t('Bathroom', 'ห้องน้ำ'),
-  entrance: t('Front door', 'ประตูห้อง'),
+  entrance: t('Front door', 'ทางเข้า'),
 };
 
 export const COPY = {
   boardLabel: t('Plan of the 25.2 sqm room, in centimetres', 'แปลนห้อง 25.2 ตร.ม. หน่วยเป็นเซนติเมตร'),
   howTo: t(
     'Drag a piece on the plan — or select it and use the arrow keys (Shift for bigger steps) and R to turn it.',
-    'ลากชิ้นส่วนบนแปลน หรือเลือกแล้วใช้ปุ่มลูกศร (กด Shift เพื่อขยับทีละมาก) และ R เพื่อหมุน',
+    'ลากเฟอร์นิเจอร์บนแปลน หรือเลือกแล้วใช้ปุ่มลูกศร (กด Shift เพื่อขยับไกลขึ้น) และกด R เพื่อหมุน',
   ),
-  pieceRole: t('movable piece', 'ชิ้นส่วนที่ขยับได้'),
+  pieceRole: t('movable piece', 'เฟอร์นิเจอร์ที่ขยับได้'),
   selected: t('Selected', 'ที่เลือก'),
-  nothingSelected: t('Select a piece to move it.', 'เลือกชิ้นส่วนเพื่อเริ่มขยับ'),
+  nothingSelected: t('Select a piece to move it.', 'เลือกเฟอร์นิเจอร์เพื่อเริ่มขยับ'),
   rotate: t('Turn 90°', 'หมุน 90°'),
   moveUp: t('Move up', 'ขยับขึ้น'),
   moveDown: t('Move down', 'ขยับลง'),
@@ -98,7 +98,7 @@ export const COPY = {
   reset: t('Start over', 'เริ่มใหม่'),
   showPlan: t('Show our plan', 'ดูแปลนของเรา'),
   hidePlan: t('Hide our plan', 'ซ่อนแปลนของเรา'),
-  routeLegend: t('Dashed line: the widest walk from the front door', 'เส้นประ: ทางเดินที่กว้างที่สุดจากประตูห้อง'),
+  routeLegend: t('Dashed line: the widest walk from the front door', 'เส้นประ: ทางเดินที่กว้างที่สุดจากประตูทางเข้า'),
   disclaimer: t(
     'Door positions and the fridge’s size are estimates read off the plan; the widths are our own standard. For play — not a building specification.',
     'ตำแหน่งประตูและขนาดตู้เย็นเป็นค่าประมาณจากแปลน ส่วนความกว้างเป็นมาตรฐานของเราเอง เพื่อการเล่น ไม่ใช่ข้อกำหนดก่อสร้าง',
@@ -110,8 +110,8 @@ export const COPY = {
   doors: t('Doors', 'ประตู'),
   openDoors: t('Open the doors', 'เปิดประตูทั้งหมด'),
   closeDoors: t('Close the doors', 'ปิดประตูทั้งหมด'),
-  showDetails: t('Show the rules and widths', 'ดูกฎและความกว้าง'),
-  hideDetails: t('Hide the rules and widths', 'ซ่อนกฎและความกว้าง'),
+  showDetails: t('Show the rules and widths', 'ดูเงื่อนไขและความกว้าง'),
+  hideDetails: t('Hide the rules and widths', 'ซ่อนเงื่อนไขและความกว้าง'),
   checking: t('checking…', 'กำลังตรวจ…'),
   holds: t('holds', 'ผ่าน'),
   fails: t('does not hold', 'ไม่ผ่าน'),
@@ -174,7 +174,7 @@ export function ruleLabels(walkMin: number, bedSide: number): Record<RuleView['i
     fit: t('Nothing overlaps', 'ไม่มีชิ้นไหนซ้อนกัน'),
     doors: t('Doors stay clear', 'ประตูโล่ง'),
     walk: t(`Walkways at least ${walkMin} cm wide`, `ทางเดินกว้างอย่างน้อย ${walkMin} ซม.`),
-    use: t('Room to use each piece', 'มีที่ใช้งานหน้าของแต่ละชิ้น'),
+    use: t('Room to use each piece', 'หน้าแต่ละชิ้นมีที่ใช้งาน'),
     bed: t(`${bedSide} cm free beside the bed`, `ข้างเตียงว่าง ${bedSide} ซม.`),
   };
 }
@@ -189,14 +189,14 @@ export const RULE_SHORT: Record<RuleView['id'], Bilingual> = {
 };
 
 export const RULE_HELP: Record<RuleView['id'], Bilingual> = {
-  fit: t('No two pieces can stand on the same floor.', 'ไม่มีสองชิ้นไหนยืนทับที่เดียวกันได้'),
+  fit: t('No two pieces can stand on the same floor.', 'เฟอร์นิเจอร์สองชิ้นวางทับที่เดียวกันไม่ได้'),
   doors: t(
     'The front, bathroom and balcony doors need floor in front of them.',
     'ประตูทางเข้า ห้องน้ำ และระเบียง ต้องมีพื้นที่โล่งหน้าประตู',
   ),
   walk: t(
     'From the front door to the bathroom and to the balcony, the narrowest point of the widest route.',
-    'จากประตูห้องไปห้องน้ำและระเบียง ตรงที่แคบที่สุดของเส้นทางที่กว้างที่สุด',
+    'วัดจุดที่แคบที่สุด บนทางที่กว้างที่สุด จากประตูทางเข้าไปห้องน้ำและระเบียง',
   ),
   // The widths come from the standards (roomStandards.ts), so this can never disagree with the rule.
   use: t(
@@ -205,7 +205,7 @@ export const RULE_HELP: Record<RuleView['id'], Bilingual> = {
   ),
   bed: t(
     'Along at least one long side, so you can get in and make the bed.',
-    'ตามด้านยาวอย่างน้อยหนึ่งด้าน เพื่อขึ้นลงและจัดเตียงได้',
+    'ว่างอย่างน้อยหนึ่งด้านยาว ให้ขึ้นลงและจัดเตียงได้',
   ),
 };
 
@@ -229,10 +229,10 @@ export function walkDetail(width: number, lang: LangCode): string {
 export function useDetail(cramped: PieceId[], lang: LangCode): string {
   if (cramped.length === 0) return lang === 'th' ? 'ทุกชิ้นใช้งานได้' : 'every piece is usable';
   const names = cramped.map((id) => PIECE_NAME[id][lang]);
-  return lang === 'th' ? `หน้าไม่พอ: ${join(names, lang)}` : `no room in front of: ${join(names, lang)}`;
+  return lang === 'th' ? `ที่ด้านหน้าไม่พอ: ${join(names, lang)}` : `no room in front of: ${join(names, lang)}`;
 }
 
 export function bedDetail(ok: boolean, lang: LangCode): string {
   if (ok) return lang === 'th' ? 'ขึ้นลงเตียงได้' : 'you can get in and out';
-  return lang === 'th' ? 'ทั้งสองข้างยาวถูกบัง' : 'both long sides are blocked';
+  return lang === 'th' ? 'ด้านยาวถูกบังทั้งสองด้าน' : 'both long sides are blocked';
 }
