@@ -47,8 +47,8 @@ const article: Article = {
         [
           { th: 'ค่าเช่า', en: 'Rent' },
           {
-            th: 'เริ่มต้น 6,900 บาทต่อเดือน เป็นตัวเลขเดียวที่แจ้งตรงไปตรงมา ราคาต่อชั้นอยู่บนเว็บ และไม่มีค่าส่วนกลางเพิ่มเติม',
-            en: 'From 6,900 THB a month — one clear figure, stated plainly. The rate for each floor is on the site, and there is no extra common-area fee.',
+            th: 'เริ่มต้น 6,900 บาทต่อเดือน เป็นตัวเลขเดียวที่แจ้งตรงไปตรงมา ราคาต่อชั้นอยู่บนเว็บ',
+            en: 'From 6,900 THB a month — one clear figure, stated plainly. The rate for each floor is on the site.',
           },
         ],
         [

@@ -1,5 +1,6 @@
 import type { Lang } from '@/contexts/LanguageContext';
 import {
+  UNITS,
   PRICE_FROM,
   PRICE_TO,
   PET_FEE_MONTHLY,
@@ -38,11 +39,25 @@ export const TR = {
       en: 'All Nature Haven channels — LINE, the Journal, the site, and directions — in one link.',
       th: 'รวมทุกช่องทางของ Nature Haven — LINE, บันทึกจากเฮเวน, เว็บไซต์ และแผนที่ — ไว้ในลิงก์เดียว',
     },
-    heroTagline: { en: 'LIVE WITH NATURE', th: 'LIVE WITH NATURE' },
     heroHeading: {
-      en: `Reservations expected from ${AVAILABLE_FROM_LABEL.en} · move-in ${MOVE_IN_LABEL.en}`,
-      th: `คาดว่าเปิดจอง${AVAILABLE_FROM_LABEL.th} · เข้าอยู่${MOVE_IN_LABEL.th}`,
+      en: `Reservations expected from ${AVAILABLE_FROM_LABEL.en} · move-in around ${MOVE_IN_LABEL.en}`,
+      th: `คาดว่าเปิดจอง${AVAILABLE_FROM_LABEL.th} · เข้าอยู่ช่วง${MOVE_IN_LABEL.th}`,
     },
+    // First screen (2026-11-04): say what this is, what it costs and why it is different before
+    // asking a question. Every fact is an existing constant or existing site copy.
+    pitch: { en: 'A pet-friendly apartment building in Sai Mai', th: 'อพาร์ทเม้นท์\u200bเลี้ยงสัตว์ได้ทั้งตึก ในสายไหม' },
+    sizePrice: {
+      en: `${UNITS[0].sqm} sqm rooms · from ${PRICE_FROM.toLocaleString('en-US')} THB/month`,
+      th: `ห้อง ${UNITS[0].sqm} ตร.ม. · เริ่มต้น ${PRICE_FROM.toLocaleString('en-US')} บาท/เดือน`,
+    },
+    // U+200B marks where a label may wrap; each part stays whole (LinksPage phrases())
+    proofPets: { en: 'Pets on every floor', th: 'เลี้ยงสัตว์ได้\u200bทุกชั้น' },
+    // Not 'no common fee': see the common-area fee note in propertyFacts.ts
+    proofCleaning: { en: 'Cleaning included', th: 'รวม\u200bทำความสะอาด' },
+    proofBalcony: { en: 'Private balcony', th: 'ระเบียง\u200bส่วนตัว' },
+    enterSite: { en: 'See the full website', th: 'ดูเว็บไซต์เต็ม' },
+    sectionExplore: { en: 'Look around', th: 'ดูรอบ ๆ' },
+    sectionFollow: { en: 'Follow the build', th: 'ติดตามการสร้าง' },
     heroBody: {
       en: 'Build updates and room facts — as they happen.',
       th: 'อัปเดตการก่อสร้างและข้อมูลห้อง ตามที่เกิดขึ้นจริง',
@@ -59,10 +74,6 @@ export const TR = {
     groupPrimary: { en: 'Contact and rooms', th: 'ติดต่อและห้องพัก' },
     groupChannels: { en: 'Social channels and map', th: 'ช่องทางออนไลน์และแผนที่' },
     groupEditorial: { en: 'Journal', th: 'บันทึกและบทความ' },
-    tabsLabel: { en: 'Nature Haven channels', th: 'ช่องทางของ Nature Haven' },
-    tabContact: { en: 'Contact', th: 'ติดต่อ' },
-    tabExplore: { en: 'Explore', th: 'สำรวจ' },
-    tabFollow: { en: 'Follow', th: 'ติดตาม' },
     website: { en: 'Website', th: 'เว็บไซต์' },
     websiteSub: { en: 'Nature Haven home page', th: 'หน้าหลัก Nature Haven' },
     filmBrand: 'Nature Haven',
@@ -108,6 +119,7 @@ export const TR = {
     chatPrompt: { en: 'What would you like to know first?', th: 'อยากรู้เรื่องไหนก่อน?' },
     chatHint: { en: 'Opens LINE with this message ready — tap send there.', th: 'เปิดแอป LINE พร้อมข้อความนี้ กดส่งในไลน์ได้เลยค่ะ' },
     chatSend: { en: 'Send in LINE', th: 'ส่งใน LINE' },
+    chatOther: { en: 'Or pick another question', th: 'หรือเลือกคำถามอื่น' },
     qProject: { en: 'The project', th: 'ขอรายละเอียดโครงการ' },
     // "NEST" (not "Nature Nest") is the owner-ratified public building name — matches the live
     // Journal article's own spelling. Keep it on price/availability (scopes the answer to that
@@ -119,8 +131,6 @@ export const TR = {
     qLocation: { en: 'Location', th: 'ที่ตั้งอยู่ไหน' },
     qBooking: { en: 'Booking opens', th: 'เปิดจองเมื่อไหร่' },
     qNearby: { en: "What's nearby?", th: 'หาในย่าน' },
-    moreExplore: { en: 'More to see', th: 'ดูรอบ ๆ เพิ่มเติม' },
-    moreChannels: { en: 'More from us', th: 'ช่องทางอื่น ๆ' },
     nestStory: { en: 'Why "NEST"?', th: 'ทำไมชื่อ NEST' },
     nestStorySub: { en: "The founder's story", th: 'เรื่องราวจากผู้ก่อตั้ง' },
     watchFilm: { en: 'What is Nature Haven — watch the film', th: 'What is Nature Haven — ดูคลิปแนะนำ' },
@@ -349,8 +359,8 @@ export const TR = {
       th: `เพียงพอสำหรับทุกห้อง (${PARKING_CAPACITY_APPROX} ห้อง)`,
     },
     allinclusive: {
-      en: 'Wi-Fi, cleaning & A/C service are included in the rent. Electricity and water are metered separately — no common fee.',
-      th: 'ค่าเช่ารวม Wi-Fi ทำความสะอาด และล้างแอร์ไว้แล้ว ส่วนค่าน้ำค่าไฟคิดตามหน่วยจริงแยกต่างหาก — ไม่มีค่าส่วนกลาง',
+      en: 'Wi-Fi, cleaning & A/C service are included in the rent. Electricity and water are metered separately.',
+      th: 'ค่าเช่ารวม Wi-Fi ทำความสะอาด และล้างแอร์ไว้แล้ว ส่วนค่าน้ำค่าไฟคิดตามหน่วยจริงแยกต่างหาก',
     },
     pricingLabel: { en: 'Pricing', th: 'ราคา' },
     pricingNote: { en: 'By floor · opening rate', th: 'ตามชั้น · ราคาเปิดตัว' },

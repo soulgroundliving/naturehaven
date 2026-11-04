@@ -84,12 +84,13 @@ export const PRICE_TO = 7200;
 export const PET_FEE_MONTHLY = 500;
 
 // Owner-confirmed 2026-09-11. Rent covers Wi-Fi, cleaning and A/C maintenance;
-// electricity and water are metered and billed separately. There is no separate
-// common-area fee.
+// electricity and water are metered and billed separately.
+// Common-area fee: the site said "none" until 2026-11-04, when the owner had it removed
+// everywhere — the-green-haven product-facts §8 lists ค่าส่วนกลาง/ค่าขยะ as still undecided
+// and marketing-hub lists a 40 THB/month garbage fee. Say nothing about it until DECISIONS.md does.
 // Owner decision 2026-09-19: the public site does NOT show per-unit utility rates
 // (say only "metered by actual usage" — the rates are answered on LINE), and does
 // NOT say the Wi-Fi is "fiber" (no real service is installed yet, so it can't be claimed).
-export const HAS_COMMON_FEE = false;
 
 // Owner-confirmed 2026-09-27 — supersedes the 2026-09-11 figure of ~16.
 // Parking now covers every unit (20 rooms, 20+ spaces): the site should state
@@ -157,8 +158,8 @@ export const FAQ_ITEMS = [
     id: 'inclusive',
     q_th: 'ค่าเช่ารวมอะไรบ้าง?',
     q_en: "What's included in the rent?",
-    a_th: 'ค่าเช่ารวม Wi-Fi, บริการทำความสะอาดห้องพัก (ทุก 3 เดือนสำหรับห้องที่เลี้ยงสัตว์ ทุก 6 เดือนสำหรับห้องที่ไม่เลี้ยงสัตว์) และบริการล้างแอร์ (ทุก 6 เดือนสำหรับห้องที่เลี้ยงสัตว์ ปีละครั้งสำหรับห้องที่ไม่เลี้ยงสัตว์) ไว้แล้ว ส่วนค่าน้ำค่าไฟแยกจากค่าเช่า คิดตามมิเตอร์ที่ใช้จริง ไม่มีค่าส่วนกลางเพิ่มเติม',
-    a_en: 'Rent includes Wi-Fi, in-unit cleaning (every 3 months for units with a pet, every 6 months without) and A/C servicing (every 6 months for units with a pet, yearly without). Electricity and water are metered and billed separately by actual usage. There is no additional common-area fee.',
+    a_th: 'ค่าเช่ารวม Wi-Fi, บริการทำความสะอาดห้องพัก (ทุก 3 เดือนสำหรับห้องที่เลี้ยงสัตว์ ทุก 6 เดือนสำหรับห้องที่ไม่เลี้ยงสัตว์) และบริการล้างแอร์ (ทุก 6 เดือนสำหรับห้องที่เลี้ยงสัตว์ ปีละครั้งสำหรับห้องที่ไม่เลี้ยงสัตว์) ไว้แล้ว ส่วนค่าน้ำค่าไฟแยกจากค่าเช่า คิดตามมิเตอร์ที่ใช้จริง',
+    a_en: 'Rent includes Wi-Fi, in-unit cleaning (every 3 months for units with a pet, every 6 months without) and A/C servicing (every 6 months for units with a pet, yearly without). Electricity and water are metered and billed separately by actual usage.',
   },
   {
     id: 'size',

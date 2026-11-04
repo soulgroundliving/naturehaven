@@ -90,8 +90,12 @@ const HeroSection: React.FC = () => {
     >
       {/* The room itself, full-bleed — real estate first, mood second. */}
       <img
-        src="/assets/hero-room.jpg"
-        alt="Inside a Nature Haven residence — bedroom with private balcony"
+        src="/assets/room-sunlit-2569-11.webp"
+        srcSet="/assets/room-sunlit-2569-11-720.webp 720w, /assets/room-sunlit-2569-11.webp 1217w"
+        sizes="100vw"
+        width={1217}
+        height={1293}
+        alt={lang === 'th' ? 'ภาพจำลองห้องพัก Nature Haven — ห้องนอนพร้อมระเบียงส่วนตัว' : 'Render of a Nature Haven residence — bedroom with private balcony'}
         className="absolute inset-0 h-full w-full object-cover"
         fetchPriority="high"
       />

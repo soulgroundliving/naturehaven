@@ -78,8 +78,8 @@ const article: Article = {
     {
       type: 'p',
       text: {
-        th: 'และยังมีความเงียบอีกชั้นหนึ่งที่ไม่ได้อยู่ในผนัง แต่อยู่ในใบแจ้งหนี้ — ค่าเช่ารวม Wi-Fi บริการทำความสะอาด และดูแลแอร์ไว้แล้วในตัวเลขเดียว ส่วนค่าน้ำค่าไฟคิดตามมิเตอร์ที่ใช้จริงอย่างตรงไปตรงมา ไม่มีค่าส่วนกลางแอบแฝง',
-        en: 'There is a last, quieter register too — not in the walls, but in the bill. Rent already bundles Wi-Fi, cleaning, and air-conditioning service into one figure. Electricity and water are simply metered by actual usage, with no hidden common fee.',
+        th: 'และยังมีความเงียบอีกชั้นหนึ่งที่ไม่ได้อยู่ในผนัง แต่อยู่ในใบแจ้งหนี้ — ค่าเช่ารวม Wi-Fi บริการทำความสะอาด และดูแลแอร์ไว้แล้วในตัวเลขเดียว ส่วนค่าน้ำค่าไฟคิดตามมิเตอร์ที่ใช้จริงอย่างตรงไปตรงมา',
+        en: 'There is a last, quieter register too — not in the walls, but in the bill. Rent already bundles Wi-Fi, cleaning, and air-conditioning service into one figure. Electricity and water are simply metered by actual usage.',
       },
     },
     {
